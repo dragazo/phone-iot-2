@@ -20,6 +20,15 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
 
 // Section: api2wire
 
+  @protected
+  String api2wire_String(String raw) {
+    return raw;
+  }
+
+  @protected
+  Uint8List api2wire_uint_8_list(Uint8List raw) {
+    return raw;
+  }
 // Section: finalizer
 }
 
@@ -33,9 +42,10 @@ external NativeWasmModule get wasmModule;
 class NativeWasmModule implements WasmModule {
   external Object /* Promise */ call([String? moduleName]);
   external NativeWasmModule bind(dynamic thisArg, String moduleName);
-  external dynamic /* void */ wire_platform(NativePortType port_);
+  external dynamic /* void */ wire_get_status(NativePortType port_);
 
-  external dynamic /* void */ wire_rust_release_mode(NativePortType port_);
+  external dynamic /* void */ wire_set_project(
+      NativePortType port_, String xml);
 }
 
 // Section: WASM wire connector
@@ -44,8 +54,9 @@ class NativeWire extends FlutterRustBridgeWasmWireBase<NativeWasmModule> {
   NativeWire(FutureOr<WasmModule> module)
       : super(WasmModule.cast<NativeWasmModule>(module));
 
-  void wire_platform(NativePortType port_) => wasmModule.wire_platform(port_);
+  void wire_get_status(NativePortType port_) =>
+      wasmModule.wire_get_status(port_);
 
-  void wire_rust_release_mode(NativePortType port_) =>
-      wasmModule.wire_rust_release_mode(port_);
+  void wire_set_project(NativePortType port_, String xml) =>
+      wasmModule.wire_set_project(port_, xml);
 }

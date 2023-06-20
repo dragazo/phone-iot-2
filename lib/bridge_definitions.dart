@@ -11,22 +11,15 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class Native {
-  Future<Platform> platform({dynamic hint});
+  Future<Status> getStatus({dynamic hint});
 
-  FlutterRustBridgeTaskConstMeta get kPlatformConstMeta;
+  FlutterRustBridgeTaskConstMeta get kGetStatusConstMeta;
 
-  Future<bool> rustReleaseMode({dynamic hint});
+  Future<void> setProject({required String xml, dynamic hint});
 
-  FlutterRustBridgeTaskConstMeta get kRustReleaseModeConstMeta;
+  FlutterRustBridgeTaskConstMeta get kSetProjectConstMeta;
 }
 
-enum Platform {
-  Unknown,
-  Android,
-  Ios,
-  Windows,
-  Unix,
-  MacIntel,
-  MacApple,
-  Wasm,
+class Status {
+  const Status();
 }

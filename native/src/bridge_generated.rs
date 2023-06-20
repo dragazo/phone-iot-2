@@ -21,24 +21,27 @@ use std::sync::Arc;
 
 // Section: wire functions
 
-fn wire_platform_impl(port_: MessagePort) {
+fn wire_get_status_impl(port_: MessagePort) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
         WrapInfo {
-            debug_name: "platform",
+            debug_name: "get_status",
             port: Some(port_),
             mode: FfiCallMode::Normal,
         },
-        move || move |task_callback| Ok(platform()),
+        move || move |task_callback| Ok(get_status()),
     )
 }
-fn wire_rust_release_mode_impl(port_: MessagePort) {
+fn wire_set_project_impl(port_: MessagePort, xml: impl Wire2Api<String> + UnwindSafe) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
         WrapInfo {
-            debug_name: "rust_release_mode",
+            debug_name: "set_project",
             port: Some(port_),
             mode: FfiCallMode::Normal,
         },
-        move || move |task_callback| Ok(rust_release_mode()),
+        move || {
+            let api_xml = xml.wire2api();
+            move |task_callback| Ok(set_project(api_xml))
+        },
     )
 }
 // Section: wrapper structs
@@ -63,24 +66,22 @@ where
         (!self.is_null()).then(|| self.wire2api())
     }
 }
-// Section: impl IntoDart
 
-impl support::IntoDart for Platform {
-    fn into_dart(self) -> support::DartAbi {
-        match self {
-            Self::Unknown => 0,
-            Self::Android => 1,
-            Self::Ios => 2,
-            Self::Windows => 3,
-            Self::Unix => 4,
-            Self::MacIntel => 5,
-            Self::MacApple => 6,
-            Self::Wasm => 7,
-        }
-        .into_dart()
+impl Wire2Api<u8> for u8 {
+    fn wire2api(self) -> u8 {
+        self
     }
 }
-impl support::IntoDartExceptPrimitive for Platform {}
+
+// Section: impl IntoDart
+
+impl support::IntoDart for Status {
+    fn into_dart(self) -> support::DartAbi {
+        Vec::<u8>::new().into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for Status {}
+
 // Section: executor
 
 support::lazy_static! {

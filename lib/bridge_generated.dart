@@ -20,36 +20,37 @@ class NativeImpl implements Native {
   factory NativeImpl.wasm(FutureOr<WasmModule> module) =>
       NativeImpl(module as ExternalLibrary);
   NativeImpl.raw(this._platform);
-  Future<Platform> platform({dynamic hint}) {
+  Future<Status> getStatus({dynamic hint}) {
     return _platform.executeNormal(FlutterRustBridgeTask(
-      callFfi: (port_) => _platform.inner.wire_platform(port_),
-      parseSuccessData: _wire2api_platform,
-      constMeta: kPlatformConstMeta,
+      callFfi: (port_) => _platform.inner.wire_get_status(port_),
+      parseSuccessData: _wire2api_status,
+      constMeta: kGetStatusConstMeta,
       argValues: [],
       hint: hint,
     ));
   }
 
-  FlutterRustBridgeTaskConstMeta get kPlatformConstMeta =>
+  FlutterRustBridgeTaskConstMeta get kGetStatusConstMeta =>
       const FlutterRustBridgeTaskConstMeta(
-        debugName: "platform",
+        debugName: "get_status",
         argNames: [],
       );
 
-  Future<bool> rustReleaseMode({dynamic hint}) {
+  Future<void> setProject({required String xml, dynamic hint}) {
+    var arg0 = _platform.api2wire_String(xml);
     return _platform.executeNormal(FlutterRustBridgeTask(
-      callFfi: (port_) => _platform.inner.wire_rust_release_mode(port_),
-      parseSuccessData: _wire2api_bool,
-      constMeta: kRustReleaseModeConstMeta,
-      argValues: [],
+      callFfi: (port_) => _platform.inner.wire_set_project(port_, arg0),
+      parseSuccessData: _wire2api_unit,
+      constMeta: kSetProjectConstMeta,
+      argValues: [xml],
       hint: hint,
     ));
   }
 
-  FlutterRustBridgeTaskConstMeta get kRustReleaseModeConstMeta =>
+  FlutterRustBridgeTaskConstMeta get kSetProjectConstMeta =>
       const FlutterRustBridgeTaskConstMeta(
-        debugName: "rust_release_mode",
-        argNames: [],
+        debugName: "set_project",
+        argNames: ["xml"],
       );
 
   void dispose() {
@@ -57,19 +58,23 @@ class NativeImpl implements Native {
   }
 // Section: wire2api
 
-  bool _wire2api_bool(dynamic raw) {
-    return raw as bool;
+  Status _wire2api_status(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 0)
+      throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
+    return Status();
   }
 
-  int _wire2api_i32(dynamic raw) {
-    return raw as int;
-  }
-
-  Platform _wire2api_platform(dynamic raw) {
-    return Platform.values[raw as int];
+  void _wire2api_unit(dynamic raw) {
+    return;
   }
 }
 
 // Section: api2wire
+
+@protected
+int api2wire_u8(int raw) {
+  return raw;
+}
 
 // Section: finalizer
