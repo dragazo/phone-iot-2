@@ -11,6 +11,10 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class Native {
+  Future<void> initialize({dynamic hint});
+
+  FlutterRustBridgeTaskConstMeta get kInitializeConstMeta;
+
   Future<Status> getStatus({dynamic hint});
 
   FlutterRustBridgeTaskConstMeta get kGetStatusConstMeta;
@@ -21,5 +25,9 @@ abstract class Native {
 }
 
 class Status {
-  const Status();
+  final List<String> errors;
+
+  const Status({
+    required this.errors,
+  });
 }

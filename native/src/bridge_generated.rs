@@ -21,6 +21,16 @@ use std::sync::Arc;
 
 // Section: wire functions
 
+fn wire_initialize_impl(port_: MessagePort) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap(
+        WrapInfo {
+            debug_name: "initialize",
+            port: Some(port_),
+            mode: FfiCallMode::Normal,
+        },
+        move || move |task_callback| Ok(initialize()),
+    )
+}
 fn wire_get_status_impl(port_: MessagePort) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
         WrapInfo {
@@ -77,7 +87,7 @@ impl Wire2Api<u8> for u8 {
 
 impl support::IntoDart for Status {
     fn into_dart(self) -> support::DartAbi {
-        Vec::<u8>::new().into_dart()
+        vec![self.errors.into_dart()].into_dart()
     }
 }
 impl support::IntoDartExceptPrimitive for Status {}

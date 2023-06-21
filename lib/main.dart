@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
+import 'dart:async';
 
 void main() {
   runApp(const MyApp());
@@ -39,16 +40,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Future<Status> status;
+  late Status status;
+  late Timer? timer;
 
   @override
   void initState() {
     super.initState();
-    status = api.getStatus();
+    api.initialize();
+    status = const Status(errors: []);
+
+    void update() {
+      api.getStatus().then((res) => setState(() {
+        status = res;
+        timer = Timer(const Duration(milliseconds: 500), update);
+      }));
+    }
+    update();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer?.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -57,25 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text("NetsBlox VM..."),
-            FutureBuilder<dynamic>(
-              future: status,
-              builder: (context, snap) {
-                final style = Theme.of(context).textTheme.headlineMedium;
-                if (snap.error != null) {
-                  debugPrint(snap.error.toString());
-                  return Tooltip(
-                    message: snap.error.toString(),
-                    child: Text('Unknown OS', style: style),
-                  );
-                }
-
-                final status = snap.data;
-                if (status == null) return const CircularProgressIndicator();
-
-                return Text('loaded!!', style: style);
-              },
-            )
+            Text("NetsBlox VM", style: theme.headlineMedium),
+            Text('errors: ${status.errors}', style: theme.headlineSmall),
           ],
         ),
       ),

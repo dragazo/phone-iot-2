@@ -2,6 +2,11 @@ use super::*;
 // Section: wire functions
 
 #[wasm_bindgen]
+pub fn wire_initialize(port_: MessagePort) {
+    wire_initialize_impl(port_)
+}
+
+#[wasm_bindgen]
 pub fn wire_get_status(port_: MessagePort) {
     wire_get_status_impl(port_)
 }

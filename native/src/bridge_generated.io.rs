@@ -2,6 +2,11 @@ use super::*;
 // Section: wire functions
 
 #[no_mangle]
+pub extern "C" fn wire_initialize(port_: i64) {
+    wire_initialize_impl(port_)
+}
+
+#[no_mangle]
 pub extern "C" fn wire_get_status(port_: i64) {
     wire_get_status_impl(port_)
 }
