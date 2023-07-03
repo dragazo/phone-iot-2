@@ -16,6 +16,11 @@ pub fn wire_set_project(port_: MessagePort, xml: String) {
     wire_set_project_impl(port_, xml)
 }
 
+#[wasm_bindgen]
+pub fn wire_start_project(port_: MessagePort) {
+    wire_start_project_impl(port_)
+}
+
 // Section: allocate functions
 
 // Section: related functions

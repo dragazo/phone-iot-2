@@ -69,6 +69,22 @@ class NativeImpl implements Native {
         argNames: ["xml"],
       );
 
+  Future<void> startProject({dynamic hint}) {
+    return _platform.executeNormal(FlutterRustBridgeTask(
+      callFfi: (port_) => _platform.inner.wire_start_project(port_),
+      parseSuccessData: _wire2api_unit,
+      constMeta: kStartProjectConstMeta,
+      argValues: [],
+      hint: hint,
+    ));
+  }
+
+  FlutterRustBridgeTaskConstMeta get kStartProjectConstMeta =>
+      const FlutterRustBridgeTaskConstMeta(
+        debugName: "start_project",
+        argNames: [],
+      );
+
   void dispose() {
     _platform.dispose();
   }
@@ -78,8 +94,30 @@ class NativeImpl implements Native {
     return raw as String;
   }
 
-  List<String> _wire2api_StringList(dynamic raw) {
-    return (raw as List<dynamic>).cast<String>();
+  (MessageType, String) _wire2api___record__message_type_String(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2) {
+      throw Exception('Expected 2 elements, got ${arr.length}');
+    }
+    return (
+      _wire2api_message_type(arr[0]),
+      _wire2api_String(arr[1]),
+    );
+  }
+
+  int _wire2api_i32(dynamic raw) {
+    return raw as int;
+  }
+
+  List<(MessageType, String)> _wire2api_list___record__message_type_String(
+      dynamic raw) {
+    return (raw as List<dynamic>)
+        .map(_wire2api___record__message_type_String)
+        .toList();
+  }
+
+  MessageType _wire2api_message_type(dynamic raw) {
+    return MessageType.values[raw as int];
   }
 
   Status _wire2api_status(dynamic raw) {
@@ -87,7 +125,7 @@ class NativeImpl implements Native {
     if (arr.length != 1)
       throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
     return Status(
-      errors: _wire2api_StringList(arr[0]),
+      messages: _wire2api_list___record__message_type_String(arr[0]),
     );
   }
 

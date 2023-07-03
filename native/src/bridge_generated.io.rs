@@ -16,6 +16,11 @@ pub extern "C" fn wire_set_project(port_: i64, xml: *mut wire_uint_8_list) {
     wire_set_project_impl(port_, xml)
 }
 
+#[no_mangle]
+pub extern "C" fn wire_start_project(port_: i64) {
+    wire_start_project_impl(port_)
+}
+
 // Section: allocate functions
 
 #[no_mangle]

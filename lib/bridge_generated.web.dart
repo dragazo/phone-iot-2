@@ -48,6 +48,8 @@ class NativeWasmModule implements WasmModule {
 
   external dynamic /* void */ wire_set_project(
       NativePortType port_, String xml);
+
+  external dynamic /* void */ wire_start_project(NativePortType port_);
 }
 
 // Section: WASM wire connector
@@ -64,4 +66,7 @@ class NativeWire extends FlutterRustBridgeWasmWireBase<NativeWasmModule> {
 
   void wire_set_project(NativePortType port_, String xml) =>
       wasmModule.wire_set_project(port_, xml);
+
+  void wire_start_project(NativePortType port_) =>
+      wasmModule.wire_start_project(port_);
 }

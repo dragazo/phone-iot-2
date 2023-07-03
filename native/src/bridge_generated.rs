@@ -54,6 +54,16 @@ fn wire_set_project_impl(port_: MessagePort, xml: impl Wire2Api<String> + Unwind
         },
     )
 }
+fn wire_start_project_impl(port_: MessagePort) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap(
+        WrapInfo {
+            debug_name: "start_project",
+            port: Some(port_),
+            mode: FfiCallMode::Normal,
+        },
+        move || move |task_callback| Ok(start_project()),
+    )
+}
 // Section: wrapper structs
 
 // Section: static checks
@@ -85,9 +95,19 @@ impl Wire2Api<u8> for u8 {
 
 // Section: impl IntoDart
 
+impl support::IntoDart for MessageType {
+    fn into_dart(self) -> support::DartAbi {
+        match self {
+            Self::Output => 0,
+            Self::Error => 1,
+        }
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for MessageType {}
 impl support::IntoDart for Status {
     fn into_dart(self) -> support::DartAbi {
-        vec![self.errors.into_dart()].into_dart()
+        vec![self.messages.into_dart()].into_dart()
     }
 }
 impl support::IntoDartExceptPrimitive for Status {}

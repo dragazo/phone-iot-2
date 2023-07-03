@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 import 'dart:async';
+import 'package:http/http.dart' as http;
 
 const updateInterval = Duration(milliseconds: 500);
 
@@ -28,6 +29,7 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
   final TextEditingController serverAddr = TextEditingController();
+  final TextEditingController projectAddr = TextEditingController();
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -50,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
     devicePW = 'test pass';
 
     api.initialize();
-    status = const Status(errors: []);
+    status = const Status(messages: []);
 
     void update() {
       api.getStatus()
@@ -120,10 +122,33 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: _reconnect,
               child: const Text('Reconnect'),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _newPassword,
               child: const Text('New Password'),
+            ),
+            const SizedBox(height: 40),
+            SizedBox(
+              width: 250,
+              child: TextFormField(
+                controller: widget.projectAddr,
+                textAlign: TextAlign.center,
+                decoration: const InputDecoration(
+                  floatingLabelAlignment: FloatingLabelAlignment.center,
+                  alignLabelWithHint: true,
+                  labelText: 'Project Address',
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _loadProject,
+              child: const Text('Load Project'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: _startProject,
+              child: const Text('Start'),
             ),
           ],
         ),
@@ -149,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("NetsBlox VM", style: theme.headlineMedium),
-                  Text('errors: ${status.errors}', style: theme.headlineSmall),
+                  Text('messages: ${status.messages}', style: theme.headlineSmall),
                 ],
               ),
             ),
@@ -167,13 +192,35 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _connect() {
-    print('connect');
+    print('connect ${widget.serverAddr.text}');
   }
   void _reconnect() {
-    print('reconnect');
+    print('reconnect ${widget.serverAddr.text}');
   }
 
   void _newPassword() {
     print('new password');
+  }
+
+  // https://editor.netsblox.org/?action=present&Username=devinjean&ProjectName=phoneiot-2-test&
+  // https://editor.netsblox.org/api/RawPublic?action=present&Username=devinjean&ProjectName=phoneiot-2-test&
+
+  void _loadProject() {
+    var url = widget.projectAddr.text;
+    final pat = RegExp(r'^.*\b(\w+)\.netsblox\.org/(.*)$');
+    final m = pat.firstMatch(url);
+    if (m != null) {
+      url = 'https://${m.group(1)}.netsblox.org/api/RawPublic/${m.group(2)}';
+    }
+    http.get(Uri.parse(url))
+      .then((res) {
+        api.setProject(xml: res.body);
+      })
+      .catchError((e) {
+        print('error fetching project $e');
+      });
+  }
+  void _startProject() {
+    api.startProject();
   }
 }

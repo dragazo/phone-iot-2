@@ -1,11 +1,11 @@
 use std::sync::atomic::{AtomicBool, Ordering as MemOrder};
 use std::collections::VecDeque;
-use std::time::Duration;
+use std::time::{Duration, Instant};
 use std::{mem, thread};
 use std::sync::Mutex;
 use std::rc::Rc;
 
-use netsblox_vm::project::{Project, IdleAction, ProjectStep};
+use netsblox_vm::project::{Project, IdleAction, ProjectStep, Input};
 use netsblox_vm::std_system::StdSystem;
 use netsblox_vm::bytecode::{ByteCode, Locations};
 use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, IntermediateType, ErrorCause, Value, FromAstError, Config};
@@ -16,6 +16,7 @@ use netsblox_vm::ast;
 const SERVER_URL: &'static str = "https://editor.netsblox.org";
 const IDLE_SLEEP_THRESH: usize = 256;
 const IDLE_SLEEP_TIME: Duration = Duration::from_millis(1);
+const MESSAGE_DURATION: Duration = Duration::from_secs(10);
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum NativeType {}
@@ -87,11 +88,26 @@ fn get_env<C: CustomTypes<StdSystem<C>>>(role: &ast::Role, system: Rc<StdSystem<
 
 enum Command {
     SetProject { xml: String },
+    Start,
 }
 
 static COMMANDS: Mutex<VecDeque<Command>> = Mutex::new(VecDeque::new());
-static ERRORS: Mutex<Vec<String>> = Mutex::new(Vec::new());
+static MESSAGES: Mutex<VecDeque<(Instant, MessageType, String)>> = Mutex::new(VecDeque::new());
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
+
+fn prune_messages(messages: &mut VecDeque<(Instant, MessageType, String)>) {
+    while let Some(msg) = messages.front() {
+        if msg.0.elapsed() < MESSAGE_DURATION {
+            break;
+        }
+        messages.pop_front();
+    }
+}
+fn push_message(ty: MessageType, content: String) {
+    let mut msgs = MESSAGES.lock().unwrap();
+    prune_messages(&mut msgs);
+    msgs.push_back((Instant::now(), ty, content));
+}
 
 // -----------------------------------------------------------------
 
@@ -113,11 +129,16 @@ pub fn initialize() {
                     Ok(project) => match project.roles.as_slice() {
                         [role] => match get_env(role, system.clone()) {
                             Ok(x) => env = x,
-                            Err(e) => ERRORS.lock().unwrap().push(format!("project load error: {e:?}")),
+                            Err(e) => push_message(MessageType::Error, format!("project load error: {e:?}")),
                         }
-                        x => ERRORS.lock().unwrap().push(format!("project load error: expected 1 role, got {}", x.len())),
+                        x => push_message(MessageType::Error, format!("project load error: expected 1 role, got {}", x.len())),
                     }
-                    Err(e) => ERRORS.lock().unwrap().push(format!("project load error: {e:?}")),
+                    Err(e) => push_message(MessageType::Error, format!("project load error: {e:?}")),
+                }
+                Some(Command::Start) => {
+                    env.mutate(|mc, env| {
+                        env.proj.borrow_mut(mc).input(Input::Start);
+                    });
                 }
                 None => (),
             }
@@ -125,7 +146,7 @@ pub fn initialize() {
             env.mutate(|mc, env| {
                 let res = env.proj.borrow_mut(mc).step(mc);
                 if let ProjectStep::Error { error, proc } = &res {
-                    ERRORS.lock().unwrap().push(format!("runtime error in entity {:?}: {:?}", proc.get_call_stack().last().unwrap().entity.borrow().name, error.cause));
+                    push_message(MessageType::Error, format!("runtime error in entity {:?}: {:?}", proc.get_call_stack().last().unwrap().entity.borrow().name, error.cause));
                 }
                 idle_sleeper.consume(&res);
             });
@@ -133,15 +154,25 @@ pub fn initialize() {
     });
 }
 
+#[derive(Clone, Copy)]
+pub enum MessageType {
+    Output,
+    Error,
+}
 pub struct Status {
-    pub errors: Vec<String>,
+    pub messages: Vec<(MessageType, String)>,
 }
 
 pub fn get_status() -> Status {
+    let mut msgs = MESSAGES.lock().unwrap();
+    prune_messages(&mut msgs);
     Status {
-        errors: mem::take(&mut *ERRORS.lock().unwrap()),
+        messages: msgs.iter().map(|x| (x.1, x.2.clone())).collect(),
     }
 }
 pub fn set_project(xml: String) {
     COMMANDS.lock().unwrap().push_back(Command::SetProject { xml });
+}
+pub fn start_project() {
+    COMMANDS.lock().unwrap().push_back(Command::Start);
 }

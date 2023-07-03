@@ -22,12 +22,21 @@ abstract class Native {
   Future<void> setProject({required String xml, dynamic hint});
 
   FlutterRustBridgeTaskConstMeta get kSetProjectConstMeta;
+
+  Future<void> startProject({dynamic hint});
+
+  FlutterRustBridgeTaskConstMeta get kStartProjectConstMeta;
+}
+
+enum MessageType {
+  Output,
+  Error,
 }
 
 class Status {
-  final List<String> errors;
+  final List<(MessageType, String)> messages;
 
   const Status({
-    required this.errors,
+    required this.messages,
   });
 }
