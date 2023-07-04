@@ -155,6 +155,42 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
+    final messages = <Widget>[];
+    for (final item in status.messages) {
+      Color color;
+      switch (item.$1) {
+        case MessageType.Error:
+          color = Colors.red;
+        case MessageType.Output:
+          color = Colors.black54;
+      }
+      messages.add(Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          color: color,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black45,
+              blurRadius: 10,
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: SizedBox(
+            width: 300,
+            child: Text(
+              item.$2,
+              style: const TextStyle(
+                color: Color.fromARGB(200, 255, 255, 255),
+              ),
+            ),
+          ),
+        ),
+      ));
+      messages.add(const SizedBox(height: 5));
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -177,6 +213,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text('messages: ${status.messages}', style: theme.headlineSmall),
                 ],
               ),
+            ),
+          ),
+          Positioned(
+            right: 20,
+            top: 20,
+            child: Column(
+              children: messages,
             ),
           ),
           AnimatedPositioned(

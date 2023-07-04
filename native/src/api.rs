@@ -8,7 +8,7 @@ use std::rc::Rc;
 use netsblox_vm::project::{Project, IdleAction, ProjectStep, Input};
 use netsblox_vm::std_system::StdSystem;
 use netsblox_vm::bytecode::{ByteCode, Locations};
-use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, IntermediateType, ErrorCause, Value, FromAstError, Config};
+use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, IntermediateType, ErrorCause, Value, FromAstError, Config, Command, CommandStatus};
 use netsblox_vm::gc::{Gc, RefLock, Collect, Arena, Rootable, Mutation};
 use netsblox_vm::json::Json;
 use netsblox_vm::ast;
@@ -86,12 +86,12 @@ fn get_env<C: CustomTypes<StdSystem<C>>>(role: &ast::Role, system: Rc<StdSystem<
     }))
 }
 
-enum Command {
+enum ProjCommand {
     SetProject { xml: String },
     Start,
 }
 
-static COMMANDS: Mutex<VecDeque<Command>> = Mutex::new(VecDeque::new());
+static COMMANDS: Mutex<VecDeque<ProjCommand>> = Mutex::new(VecDeque::new());
 static MESSAGES: Mutex<VecDeque<(Instant, MessageType, String)>> = Mutex::new(VecDeque::new());
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
 
@@ -114,7 +114,21 @@ fn push_message(ty: MessageType, content: String) {
 pub fn initialize() {
     if INITIALIZED.swap(true, MemOrder::Relaxed) { return }
     thread::spawn(move || {
-        let config = Config::<C, StdSystem<C>>::default();
+        let config = Config::<C, StdSystem<C>> {
+            command: Some(Rc::new(move |_, _, key, command, _| match command {
+                Command::Print { style: _, value } => {
+                    if let Some(value) = value {
+                        match value.to_string() {
+                            Ok(x) => push_message(MessageType::Output, x.into_owned()),
+                            Err(e) => push_message(MessageType::Error, format!("print {e:?}")),
+                        }
+                    }
+                    CommandStatus::Handled
+                }
+                _ => CommandStatus::UseDefault { key, command },
+            })),
+            request: None,
+        };
         let system = Rc::new(StdSystem::new(SERVER_URL.to_owned(), None, config));
         let mut env = {
             let project = ast::Parser::default().parse(netsblox_vm::template::EMPTY_PROJECT).unwrap();
@@ -125,17 +139,20 @@ pub fn initialize() {
         loop {
             let cmd = COMMANDS.lock().unwrap().pop_front();
             match cmd {
-                Some(Command::SetProject { xml }) => match ast::Parser::default().parse(&xml) {
+                Some(ProjCommand::SetProject { xml }) => match ast::Parser::default().parse(&xml) {
                     Ok(project) => match project.roles.as_slice() {
                         [role] => match get_env(role, system.clone()) {
-                            Ok(x) => env = x,
+                            Ok(x) => {
+                                env = x;
+                                push_message(MessageType::Output, "loaded project".into());
+                            }
                             Err(e) => push_message(MessageType::Error, format!("project load error: {e:?}")),
                         }
                         x => push_message(MessageType::Error, format!("project load error: expected 1 role, got {}", x.len())),
                     }
                     Err(e) => push_message(MessageType::Error, format!("project load error: {e:?}")),
                 }
-                Some(Command::Start) => {
+                Some(ProjCommand::Start) => {
                     env.mutate(|mc, env| {
                         env.proj.borrow_mut(mc).input(Input::Start);
                     });
@@ -171,8 +188,8 @@ pub fn get_status() -> Status {
     }
 }
 pub fn set_project(xml: String) {
-    COMMANDS.lock().unwrap().push_back(Command::SetProject { xml });
+    COMMANDS.lock().unwrap().push_back(ProjCommand::SetProject { xml });
 }
 pub fn start_project() {
-    COMMANDS.lock().unwrap().push_back(Command::Start);
+    COMMANDS.lock().unwrap().push_back(ProjCommand::Start);
 }
