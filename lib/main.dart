@@ -57,9 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     api.initialize();
     status = const Status(
       messages: [],
-      controls: CustomControls(
-        buttons: [],
-      ),
+      controls: [],
     );
 
     void update() {
@@ -211,12 +209,15 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Stack(
         children: [
-          GestureDetector(
-            onTapDown: (e) {
-              print('down ${e.localPosition}');
+          Listener(
+            onPointerDown: (e) {
+              print('down ${e.pointer}');
             },
-            onTapUp: (e) {
-              print('up ${e.localPosition}');
+            onPointerMove: (e) {
+              print('move ${e.pointer}');
+            },
+            onPointerUp: (e) {
+              print('up ${e.pointer}');
             },
             child: CustomPaint(
               painter: ControlsCanvas(status.controls),

@@ -93,7 +93,7 @@ enum ProjCommand {
 
 static COMMANDS: Mutex<VecDeque<ProjCommand>> = Mutex::new(VecDeque::new());
 static MESSAGES: Mutex<VecDeque<(Instant, MessageType, String)>> = Mutex::new(VecDeque::new());
-static CONTROLS: Mutex<CustomControls> = Mutex::new(CustomControls::new());
+static CONTROLS: Mutex<Vec<CustomControl>> = Mutex::new(Vec::new());
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
 
 fn prune_messages(messages: &mut VecDeque<(Instant, MessageType, String)>) {
@@ -117,6 +117,11 @@ pub enum CustomButtonStyle {
     Rectangle, Ellipse, Square, Circle,
 }
 #[derive(Clone, Copy)]
+pub enum CustomTextAlign {
+    Left, Center, Right,
+}
+
+#[derive(Clone, Copy)]
 pub struct CustomColor {
     pub a: u8,
     pub r: u8,
@@ -138,17 +143,21 @@ pub struct CustomButton {
     pub style: CustomButtonStyle,
     pub landscape: bool,
 }
-
 #[derive(Clone)]
-pub struct CustomControls {
-    pub buttons: Vec<CustomButton>,
+pub struct CustomLabel {
+    pub id: String,
+    pub x: f32,
+    pub y: f32,
+    pub color: CustomColor,
+    pub text: String,
+    pub font_size: f32,
+    pub align: CustomTextAlign,
+    pub landscape: bool,
 }
-impl CustomControls {
-    const fn new() -> Self {
-        Self {
-            buttons: Vec::new(),
-        }
-    }
+#[derive(Clone)]
+pub enum CustomControl {
+    Button(CustomButton),
+    Label(CustomLabel),
 }
 
 pub fn initialize() {
@@ -213,7 +222,7 @@ pub fn initialize() {
         }
     });
 
-    CONTROLS.lock().unwrap().buttons.push(CustomButton {
+    CONTROLS.lock().unwrap().push(CustomControl::Button(CustomButton {
         id: "test".into(),
         x: 0.0,
         y: 0.0,
@@ -226,7 +235,7 @@ pub fn initialize() {
         font_size: 1.0,
         style: CustomButtonStyle::Rectangle,
         landscape: false,
-    });
+    }));
 }
 
 #[derive(Clone, Copy)]
@@ -236,7 +245,7 @@ pub enum MessageType {
 }
 pub struct Status {
     pub messages: Vec<(MessageType, String)>,
-    pub controls: CustomControls,
+    pub controls: Vec<CustomControl>,
 }
 
 pub fn get_status() -> Status {

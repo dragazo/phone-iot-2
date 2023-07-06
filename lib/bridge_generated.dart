@@ -109,6 +109,14 @@ class NativeImpl implements Native {
     return raw as bool;
   }
 
+  CustomButton _wire2api_box_autoadd_custom_button(dynamic raw) {
+    return _wire2api_custom_button(raw);
+  }
+
+  CustomLabel _wire2api_box_autoadd_custom_label(dynamic raw) {
+    return _wire2api_custom_label(raw);
+  }
+
   CustomButton _wire2api_custom_button(dynamic raw) {
     final arr = raw as List<dynamic>;
     if (arr.length != 12)
@@ -145,13 +153,39 @@ class NativeImpl implements Native {
     );
   }
 
-  CustomControls _wire2api_custom_controls(dynamic raw) {
+  CustomControl _wire2api_custom_control(dynamic raw) {
+    switch (raw[0]) {
+      case 0:
+        return CustomControl_Button(
+          _wire2api_box_autoadd_custom_button(raw[1]),
+        );
+      case 1:
+        return CustomControl_Label(
+          _wire2api_box_autoadd_custom_label(raw[1]),
+        );
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  CustomLabel _wire2api_custom_label(dynamic raw) {
     final arr = raw as List<dynamic>;
-    if (arr.length != 1)
-      throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
-    return CustomControls(
-      buttons: _wire2api_list_custom_button(arr[0]),
+    if (arr.length != 8)
+      throw Exception('unexpected arr length: expect 8 but see ${arr.length}');
+    return CustomLabel(
+      id: _wire2api_String(arr[0]),
+      x: _wire2api_f32(arr[1]),
+      y: _wire2api_f32(arr[2]),
+      color: _wire2api_custom_color(arr[3]),
+      text: _wire2api_String(arr[4]),
+      fontSize: _wire2api_f32(arr[5]),
+      align: _wire2api_custom_text_align(arr[6]),
+      landscape: _wire2api_bool(arr[7]),
     );
+  }
+
+  CustomTextAlign _wire2api_custom_text_align(dynamic raw) {
+    return CustomTextAlign.values[raw as int];
   }
 
   double _wire2api_f32(dynamic raw) {
@@ -169,8 +203,8 @@ class NativeImpl implements Native {
         .toList();
   }
 
-  List<CustomButton> _wire2api_list_custom_button(dynamic raw) {
-    return (raw as List<dynamic>).map(_wire2api_custom_button).toList();
+  List<CustomControl> _wire2api_list_custom_control(dynamic raw) {
+    return (raw as List<dynamic>).map(_wire2api_custom_control).toList();
   }
 
   MessageType _wire2api_message_type(dynamic raw) {
@@ -187,7 +221,7 @@ class NativeImpl implements Native {
       throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
     return Status(
       messages: _wire2api_list___record__message_type_String(arr[0]),
-      controls: _wire2api_custom_controls(arr[1]),
+      controls: _wire2api_list_custom_control(arr[1]),
     );
   }
 

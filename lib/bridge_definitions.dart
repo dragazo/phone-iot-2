@@ -9,6 +9,9 @@ import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge.dart';
 import 'package:uuid/uuid.dart';
+import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
+
+part 'bridge_definitions.freezed.dart';
 
 abstract class Native {
   Future<void> initialize({dynamic hint});
@@ -79,12 +82,42 @@ class CustomColor {
   });
 }
 
-class CustomControls {
-  final List<CustomButton> buttons;
+@freezed
+sealed class CustomControl with _$CustomControl {
+  const factory CustomControl.button(
+    CustomButton field0,
+  ) = CustomControl_Button;
+  const factory CustomControl.label(
+    CustomLabel field0,
+  ) = CustomControl_Label;
+}
 
-  const CustomControls({
-    required this.buttons,
+class CustomLabel {
+  final String id;
+  final double x;
+  final double y;
+  final CustomColor color;
+  final String text;
+  final double fontSize;
+  final CustomTextAlign align;
+  final bool landscape;
+
+  const CustomLabel({
+    required this.id,
+    required this.x,
+    required this.y,
+    required this.color,
+    required this.text,
+    required this.fontSize,
+    required this.align,
+    required this.landscape,
   });
+}
+
+enum CustomTextAlign {
+  Left,
+  Center,
+  Right,
 }
 
 enum MessageType {
@@ -94,7 +127,7 @@ enum MessageType {
 
 class Status {
   final List<(MessageType, String)> messages;
-  final CustomControls controls;
+  final List<CustomControl> controls;
 
   const Status({
     required this.messages,

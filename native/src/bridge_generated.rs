@@ -141,12 +141,44 @@ impl support::IntoDart for CustomColor {
 }
 impl support::IntoDartExceptPrimitive for CustomColor {}
 
-impl support::IntoDart for CustomControls {
+impl support::IntoDart for CustomControl {
     fn into_dart(self) -> support::DartAbi {
-        vec![self.buttons.into_dart()].into_dart()
+        match self {
+            Self::Button(field0) => vec![0.into_dart(), field0.into_dart()],
+            Self::Label(field0) => vec![1.into_dart(), field0.into_dart()],
+        }
+        .into_dart()
     }
 }
-impl support::IntoDartExceptPrimitive for CustomControls {}
+impl support::IntoDartExceptPrimitive for CustomControl {}
+impl support::IntoDart for CustomLabel {
+    fn into_dart(self) -> support::DartAbi {
+        vec![
+            self.id.into_dart(),
+            self.x.into_dart(),
+            self.y.into_dart(),
+            self.color.into_dart(),
+            self.text.into_dart(),
+            self.font_size.into_dart(),
+            self.align.into_dart(),
+            self.landscape.into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for CustomLabel {}
+
+impl support::IntoDart for CustomTextAlign {
+    fn into_dart(self) -> support::DartAbi {
+        match self {
+            Self::Left => 0,
+            Self::Center => 1,
+            Self::Right => 2,
+        }
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for CustomTextAlign {}
 
 impl support::IntoDart for MessageType {
     fn into_dart(self) -> support::DartAbi {
