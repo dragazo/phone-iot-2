@@ -253,9 +253,6 @@ class _MyHomePageState extends State<MyHomePage> {
     print('new password');
   }
 
-  // https://editor.netsblox.org/?action=present&Username=devinjean&ProjectName=phoneiot-2-test&
-  // https://editor.netsblox.org/api/RawPublic?action=present&Username=devinjean&ProjectName=phoneiot-2-test&
-
   void _loadProject() {
     var url = widget.projectAddr.text;
     final pat = RegExp(r'^.*\b(\w+)\.netsblox\.org/(.*)$');
