@@ -1,14 +1,14 @@
 use std::sync::atomic::{AtomicBool, Ordering as MemOrder};
 use std::collections::VecDeque;
 use std::time::{Duration, Instant};
-use std::{mem, thread};
 use std::sync::Mutex;
 use std::rc::Rc;
+use std::thread;
 
 use netsblox_vm::project::{Project, IdleAction, ProjectStep, Input};
 use netsblox_vm::std_system::StdSystem;
 use netsblox_vm::bytecode::{ByteCode, Locations};
-use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, IntermediateType, ErrorCause, Value, FromAstError, Config, Command, CommandStatus};
+use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, IntermediateType, ErrorCause, Value, FromAstError, Config, Command, CommandStatus, Key};
 use netsblox_vm::gc::{Gc, RefLock, Collect, Arena, Rootable, Mutation};
 use netsblox_vm::json::Json;
 use netsblox_vm::ast;
@@ -93,6 +93,7 @@ enum ProjCommand {
 
 static COMMANDS: Mutex<VecDeque<ProjCommand>> = Mutex::new(VecDeque::new());
 static MESSAGES: Mutex<VecDeque<(Instant, MessageType, String)>> = Mutex::new(VecDeque::new());
+static CONTROLS: Mutex<CustomControls> = Mutex::new(CustomControls::new());
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
 
 fn prune_messages(messages: &mut VecDeque<(Instant, MessageType, String)>) {
@@ -111,21 +112,63 @@ fn push_message(ty: MessageType, content: String) {
 
 // -----------------------------------------------------------------
 
+#[derive(Clone, Copy)]
+pub enum CustomButtonStyle {
+    Rectangle, Ellipse, Square, Circle,
+}
+#[derive(Clone, Copy)]
+pub struct CustomColor {
+    pub a: u8,
+    pub r: u8,
+    pub g: u8,
+    pub b: u8,
+}
+#[derive(Clone)]
+pub struct CustomButton {
+    pub id: String,
+    pub x: f32,
+    pub y: f32,
+    pub width: f32,
+    pub height: f32,
+    pub back_color: CustomColor,
+    pub fore_color: CustomColor,
+    pub text: String,
+    pub event: Option<String>,
+    pub font_size: f32,
+    pub style: CustomButtonStyle,
+    pub landscape: bool,
+}
+
+#[derive(Clone)]
+pub struct CustomControls {
+    pub buttons: Vec<CustomButton>,
+}
+impl CustomControls {
+    const fn new() -> Self {
+        Self {
+            buttons: Vec::new(),
+        }
+    }
+}
+
 pub fn initialize() {
     if INITIALIZED.swap(true, MemOrder::Relaxed) { return }
     thread::spawn(move || {
         let config = Config::<C, StdSystem<C>> {
-            command: Some(Rc::new(move |_, _, key, command, _| match command {
-                Command::Print { style: _, value } => {
-                    if let Some(value) = value {
-                        match value.to_string() {
-                            Ok(x) => push_message(MessageType::Output, x.into_owned()),
-                            Err(e) => push_message(MessageType::Error, format!("print {e:?}")),
+            command: Some(Rc::new(move |_, _, key, command, _| {
+                match command {
+                    Command::Print { style: _, value } => {
+                        if let Some(value) = value {
+                            match value.to_string() {
+                                Ok(x) => push_message(MessageType::Output, x.into_owned()),
+                                Err(e) => push_message(MessageType::Error, format!("print {e:?}")),
+                            }
                         }
                     }
-                    CommandStatus::Handled
+                    _ => return CommandStatus::UseDefault { key, command },
                 }
-                _ => CommandStatus::UseDefault { key, command },
+                key.complete(Ok(()));
+                CommandStatus::Handled
             })),
             request: None,
         };
@@ -169,6 +212,21 @@ pub fn initialize() {
             });
         }
     });
+
+    CONTROLS.lock().unwrap().buttons.push(CustomButton {
+        id: "test".into(),
+        x: 0.0,
+        y: 0.0,
+        width: 50.0,
+        height: 50.0,
+        back_color: CustomColor { a: 255, r: 255, g: 100, b: 100 },
+        fore_color: CustomColor { a: 255, r: 100, g: 255, b: 100 },
+        text: "merp derp".into(),
+        event: None,
+        font_size: 1.0,
+        style: CustomButtonStyle::Rectangle,
+        landscape: false,
+    });
 }
 
 #[derive(Clone, Copy)]
@@ -178,14 +236,17 @@ pub enum MessageType {
 }
 pub struct Status {
     pub messages: Vec<(MessageType, String)>,
+    pub controls: CustomControls,
 }
 
 pub fn get_status() -> Status {
-    let mut msgs = MESSAGES.lock().unwrap();
-    prune_messages(&mut msgs);
-    Status {
-        messages: msgs.iter().map(|x| (x.1, x.2.clone())).collect(),
-    }
+    let messages = {
+        let mut msgs = MESSAGES.lock().unwrap();
+        prune_messages(&mut msgs);
+        msgs.iter().map(|x| (x.1, x.2.clone())).collect()
+    };
+    let controls = CONTROLS.lock().unwrap().clone();
+    Status { messages, controls }
 }
 pub fn set_project(xml: String) {
     COMMANDS.lock().unwrap().push_back(ProjCommand::SetProject { xml });

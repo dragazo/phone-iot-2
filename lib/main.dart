@@ -1,7 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+
+import 'canvas.dart';
 
 const updateInterval = Duration(milliseconds: 500);
 
@@ -52,7 +55,12 @@ class _MyHomePageState extends State<MyHomePage> {
     devicePW = 'test pass';
 
     api.initialize();
-    status = const Status(messages: []);
+    status = const Status(
+      messages: [],
+      controls: CustomControls(
+        buttons: [],
+      ),
+    );
 
     void update() {
       api.getStatus()
@@ -162,7 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
         case MessageType.Error:
           color = Colors.red;
         case MessageType.Output:
-          color = Colors.black54;
+          color = const Color.fromARGB(255, 80, 80, 80);
       }
       messages.add(Container(
         decoration: BoxDecoration(
@@ -182,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Text(
               item.$2,
               style: const TextStyle(
-                color: Color.fromARGB(200, 255, 255, 255),
+                color: Color.fromARGB(255, 200, 200, 200),
               ),
             ),
           ),
@@ -203,16 +211,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Stack(
         children: [
-          Container(
-            color: Colors.white,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("NetsBlox VM", style: theme.headlineMedium),
-                  Text('messages: ${status.messages}', style: theme.headlineSmall),
-                ],
-              ),
+          GestureDetector(
+            onTapDown: (e) {
+              print('down ${e.localPosition}');
+            },
+            onTapUp: (e) {
+              print('up ${e.localPosition}');
+            },
+            child: CustomPaint(
+              painter: ControlsCanvas(status.controls),
+              child: Container(),
             ),
           ),
           Positioned(

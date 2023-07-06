@@ -105,6 +105,59 @@ class NativeImpl implements Native {
     );
   }
 
+  bool _wire2api_bool(dynamic raw) {
+    return raw as bool;
+  }
+
+  CustomButton _wire2api_custom_button(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 12)
+      throw Exception('unexpected arr length: expect 12 but see ${arr.length}');
+    return CustomButton(
+      id: _wire2api_String(arr[0]),
+      x: _wire2api_f32(arr[1]),
+      y: _wire2api_f32(arr[2]),
+      width: _wire2api_f32(arr[3]),
+      height: _wire2api_f32(arr[4]),
+      backColor: _wire2api_custom_color(arr[5]),
+      foreColor: _wire2api_custom_color(arr[6]),
+      text: _wire2api_String(arr[7]),
+      event: _wire2api_opt_String(arr[8]),
+      fontSize: _wire2api_f32(arr[9]),
+      style: _wire2api_custom_button_style(arr[10]),
+      landscape: _wire2api_bool(arr[11]),
+    );
+  }
+
+  CustomButtonStyle _wire2api_custom_button_style(dynamic raw) {
+    return CustomButtonStyle.values[raw as int];
+  }
+
+  CustomColor _wire2api_custom_color(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 4)
+      throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
+    return CustomColor(
+      a: _wire2api_u8(arr[0]),
+      r: _wire2api_u8(arr[1]),
+      g: _wire2api_u8(arr[2]),
+      b: _wire2api_u8(arr[3]),
+    );
+  }
+
+  CustomControls _wire2api_custom_controls(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 1)
+      throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
+    return CustomControls(
+      buttons: _wire2api_list_custom_button(arr[0]),
+    );
+  }
+
+  double _wire2api_f32(dynamic raw) {
+    return raw as double;
+  }
+
   int _wire2api_i32(dynamic raw) {
     return raw as int;
   }
@@ -116,16 +169,25 @@ class NativeImpl implements Native {
         .toList();
   }
 
+  List<CustomButton> _wire2api_list_custom_button(dynamic raw) {
+    return (raw as List<dynamic>).map(_wire2api_custom_button).toList();
+  }
+
   MessageType _wire2api_message_type(dynamic raw) {
     return MessageType.values[raw as int];
   }
 
+  String? _wire2api_opt_String(dynamic raw) {
+    return raw == null ? null : _wire2api_String(raw);
+  }
+
   Status _wire2api_status(dynamic raw) {
     final arr = raw as List<dynamic>;
-    if (arr.length != 1)
-      throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
     return Status(
       messages: _wire2api_list___record__message_type_String(arr[0]),
+      controls: _wire2api_custom_controls(arr[1]),
     );
   }
 

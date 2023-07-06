@@ -28,6 +28,65 @@ abstract class Native {
   FlutterRustBridgeTaskConstMeta get kStartProjectConstMeta;
 }
 
+class CustomButton {
+  final String id;
+  final double x;
+  final double y;
+  final double width;
+  final double height;
+  final CustomColor backColor;
+  final CustomColor foreColor;
+  final String text;
+  final String? event;
+  final double fontSize;
+  final CustomButtonStyle style;
+  final bool landscape;
+
+  const CustomButton({
+    required this.id,
+    required this.x,
+    required this.y,
+    required this.width,
+    required this.height,
+    required this.backColor,
+    required this.foreColor,
+    required this.text,
+    this.event,
+    required this.fontSize,
+    required this.style,
+    required this.landscape,
+  });
+}
+
+enum CustomButtonStyle {
+  Rectangle,
+  Ellipse,
+  Square,
+  Circle,
+}
+
+class CustomColor {
+  final int a;
+  final int r;
+  final int g;
+  final int b;
+
+  const CustomColor({
+    required this.a,
+    required this.r,
+    required this.g,
+    required this.b,
+  });
+}
+
+class CustomControls {
+  final List<CustomButton> buttons;
+
+  const CustomControls({
+    required this.buttons,
+  });
+}
+
 enum MessageType {
   Output,
   Error,
@@ -35,8 +94,10 @@ enum MessageType {
 
 class Status {
   final List<(MessageType, String)> messages;
+  final CustomControls controls;
 
   const Status({
     required this.messages,
+    required this.controls,
   });
 }

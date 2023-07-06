@@ -95,6 +95,59 @@ impl Wire2Api<u8> for u8 {
 
 // Section: impl IntoDart
 
+impl support::IntoDart for CustomButton {
+    fn into_dart(self) -> support::DartAbi {
+        vec![
+            self.id.into_dart(),
+            self.x.into_dart(),
+            self.y.into_dart(),
+            self.width.into_dart(),
+            self.height.into_dart(),
+            self.back_color.into_dart(),
+            self.fore_color.into_dart(),
+            self.text.into_dart(),
+            self.event.into_dart(),
+            self.font_size.into_dart(),
+            self.style.into_dart(),
+            self.landscape.into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for CustomButton {}
+
+impl support::IntoDart for CustomButtonStyle {
+    fn into_dart(self) -> support::DartAbi {
+        match self {
+            Self::Rectangle => 0,
+            Self::Ellipse => 1,
+            Self::Square => 2,
+            Self::Circle => 3,
+        }
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for CustomButtonStyle {}
+impl support::IntoDart for CustomColor {
+    fn into_dart(self) -> support::DartAbi {
+        vec![
+            self.a.into_dart(),
+            self.r.into_dart(),
+            self.g.into_dart(),
+            self.b.into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for CustomColor {}
+
+impl support::IntoDart for CustomControls {
+    fn into_dart(self) -> support::DartAbi {
+        vec![self.buttons.into_dart()].into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for CustomControls {}
+
 impl support::IntoDart for MessageType {
     fn into_dart(self) -> support::DartAbi {
         match self {
@@ -105,9 +158,10 @@ impl support::IntoDart for MessageType {
     }
 }
 impl support::IntoDartExceptPrimitive for MessageType {}
+
 impl support::IntoDart for Status {
     fn into_dart(self) -> support::DartAbi {
-        vec![self.messages.into_dart()].into_dart()
+        vec![self.messages.into_dart(), self.controls.into_dart()].into_dart()
     }
 }
 impl support::IntoDartExceptPrimitive for Status {}
