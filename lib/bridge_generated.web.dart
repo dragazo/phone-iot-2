@@ -47,7 +47,7 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
 
   @protected
   List<dynamic> api2wire_dart_request_key(DartRequestKey raw) {
-    return [api2wire_u64(raw.value)];
+    return [api2wire_usize(raw.value)];
   }
 
   @protected
@@ -95,14 +95,10 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
   }
 
   @protected
-  Object api2wire_u64(int raw) {
-    return castNativeBigInt(raw);
-  }
-
-  @protected
   Uint8List api2wire_uint_8_list(Uint8List raw) {
     return raw;
   }
+
 // Section: finalizer
 }
 

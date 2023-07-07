@@ -93,6 +93,7 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.stderr({
     required String msg,
   }) = DartCommand_Stderr;
+  const factory DartCommand.clearControls() = DartCommand_ClearControls;
   const factory DartCommand.addButton({
     required ButtonInfo info,
     required DartRequestKey key,

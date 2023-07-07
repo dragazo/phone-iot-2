@@ -101,17 +101,17 @@ impl Wire2Api<f64> for f64 {
     }
 }
 
-impl Wire2Api<u64> for u64 {
-    fn wire2api(self) -> u64 {
-        self
-    }
-}
 impl Wire2Api<u8> for u8 {
     fn wire2api(self) -> u8 {
         self
     }
 }
 
+impl Wire2Api<usize> for usize {
+    fn wire2api(self) -> usize {
+        self
+    }
+}
 // Section: impl IntoDart
 
 impl support::IntoDart for ButtonInfo {
@@ -165,8 +165,9 @@ impl support::IntoDart for DartCommand {
         match self {
             Self::Stdout { msg } => vec![0.into_dart(), msg.into_dart()],
             Self::Stderr { msg } => vec![1.into_dart(), msg.into_dart()],
-            Self::AddButton { info, key } => vec![2.into_dart(), info.into_dart(), key.into_dart()],
-            Self::AddLabel { info, key } => vec![3.into_dart(), info.into_dart(), key.into_dart()],
+            Self::ClearControls => vec![2.into_dart()],
+            Self::AddButton { info, key } => vec![3.into_dart(), info.into_dart(), key.into_dart()],
+            Self::AddLabel { info, key } => vec![4.into_dart(), info.into_dart(), key.into_dart()],
         }
         .into_dart()
     }

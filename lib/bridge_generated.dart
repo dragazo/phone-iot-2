@@ -122,15 +122,15 @@ class NativeImpl implements Native {
       throw Exception('unexpected arr length: expect 12 but see ${arr.length}');
     return ButtonInfo(
       id: _wire2api_String(arr[0]),
-      x: _wire2api_f32(arr[1]),
-      y: _wire2api_f32(arr[2]),
-      width: _wire2api_f32(arr[3]),
-      height: _wire2api_f32(arr[4]),
+      x: _wire2api_f64(arr[1]),
+      y: _wire2api_f64(arr[2]),
+      width: _wire2api_f64(arr[3]),
+      height: _wire2api_f64(arr[4]),
       backColor: _wire2api_color_info(arr[5]),
       foreColor: _wire2api_color_info(arr[6]),
       text: _wire2api_String(arr[7]),
       event: _wire2api_opt_String(arr[8]),
-      fontSize: _wire2api_f32(arr[9]),
+      fontSize: _wire2api_f64(arr[9]),
       style: _wire2api_button_style_info(arr[10]),
       landscape: _wire2api_bool(arr[11]),
     );
@@ -163,11 +163,13 @@ class NativeImpl implements Native {
           msg: _wire2api_String(raw[1]),
         );
       case 2:
+        return DartCommand_ClearControls();
+      case 3:
         return DartCommand_AddButton(
           info: _wire2api_box_autoadd_button_info(raw[1]),
           key: _wire2api_box_autoadd_dart_request_key(raw[2]),
         );
-      case 3:
+      case 4:
         return DartCommand_AddLabel(
           info: _wire2api_box_autoadd_label_info(raw[1]),
           key: _wire2api_box_autoadd_dart_request_key(raw[2]),
@@ -182,11 +184,11 @@ class NativeImpl implements Native {
     if (arr.length != 1)
       throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
     return DartRequestKey(
-      value: _wire2api_u64(arr[0]),
+      value: _wire2api_usize(arr[0]),
     );
   }
 
-  double _wire2api_f32(dynamic raw) {
+  double _wire2api_f64(dynamic raw) {
     return raw as double;
   }
 
@@ -200,11 +202,11 @@ class NativeImpl implements Native {
       throw Exception('unexpected arr length: expect 8 but see ${arr.length}');
     return LabelInfo(
       id: _wire2api_String(arr[0]),
-      x: _wire2api_f32(arr[1]),
-      y: _wire2api_f32(arr[2]),
+      x: _wire2api_f64(arr[1]),
+      y: _wire2api_f64(arr[2]),
       color: _wire2api_color_info(arr[3]),
       text: _wire2api_String(arr[4]),
-      fontSize: _wire2api_f32(arr[5]),
+      fontSize: _wire2api_f64(arr[5]),
       align: _wire2api_text_align_info(arr[6]),
       landscape: _wire2api_bool(arr[7]),
     );
@@ -222,10 +224,6 @@ class NativeImpl implements Native {
     return TextAlignInfo.values[raw as int];
   }
 
-  int _wire2api_u64(dynamic raw) {
-    return castInt(raw);
-  }
-
   int _wire2api_u8(dynamic raw) {
     return raw as int;
   }
@@ -236,6 +234,10 @@ class NativeImpl implements Native {
 
   void _wire2api_unit(dynamic raw) {
     return;
+  }
+
+  int _wire2api_usize(dynamic raw) {
+    return castInt(raw);
   }
 }
 
@@ -251,4 +253,8 @@ int api2wire_u8(int raw) {
   return raw;
 }
 
+@protected
+int api2wire_usize(int raw) {
+  return raw;
+}
 // Section: finalizer

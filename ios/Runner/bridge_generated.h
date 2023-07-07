@@ -33,7 +33,7 @@ typedef struct wire_RustCommand {
 } wire_RustCommand;
 
 typedef struct wire_DartRequestKey {
-  uint64_t value;
+  uintptr_t value;
 } wire_DartRequestKey;
 
 typedef struct wire_SimpleValue_Number {

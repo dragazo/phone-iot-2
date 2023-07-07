@@ -65,16 +65,12 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
   }
 
   @protected
-  int api2wire_u64(int raw) {
-    return raw;
-  }
-
-  @protected
   ffi.Pointer<wire_uint_8_list> api2wire_uint_8_list(Uint8List raw) {
     final ans = inner.new_uint_8_list_0(raw.length);
     ans.ref.ptr.asTypedList(raw.length).setAll(0, raw);
     return ans;
   }
+
 // Section: finalizer
 
 // Section: api_fill_to_wire
@@ -101,7 +97,7 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
 
   void _api_fill_to_wire_dart_request_key(
       DartRequestKey apiObj, wire_DartRequestKey wireObj) {
-    wireObj.value = api2wire_u64(apiObj.value);
+    wireObj.value = api2wire_usize(apiObj.value);
   }
 
   void _api_fill_to_wire_request_result(
@@ -503,7 +499,7 @@ final class wire_RustCommand extends ffi.Struct {
 }
 
 final class wire_DartRequestKey extends ffi.Struct {
-  @ffi.Uint64()
+  @ffi.UintPtr()
   external int value;
 }
 

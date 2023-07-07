@@ -179,12 +179,13 @@ impl Wire2Api<Vec<u8>> for *mut wire_uint_8_list {
         }
     }
 }
+
 // Section: wire structs
 
 #[repr(C)]
 #[derive(Clone)]
 pub struct wire_DartRequestKey {
-    value: u64,
+    value: usize,
 }
 
 #[repr(C)]

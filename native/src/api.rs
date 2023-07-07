@@ -1,4 +1,4 @@
-use std::sync::atomic::{AtomicBool, AtomicU64, Ordering as MemOrder};
+use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering as MemOrder};
 use std::collections::BTreeMap;
 use std::time::Duration;
 use std::sync::Mutex;
@@ -8,7 +8,7 @@ use std::{mem, thread};
 use netsblox_vm::project::{Project, IdleAction, ProjectStep, Input};
 use netsblox_vm::std_system::{StdSystem, RequestKey};
 use netsblox_vm::bytecode::{ByteCode, Locations};
-use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, IntermediateType, ErrorCause, Value, FromAstError, Config, Command, Request, CommandStatus, RequestStatus, Key};
+use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, IntermediateType, ErrorCause, Value, FromAstError, Config, Command, Request, CommandStatus, RequestStatus, Key, System};
 use netsblox_vm::gc::{Gc, RefLock, Collect, Arena, Rootable, Mutation};
 use netsblox_vm::json::{Json, json};
 use netsblox_vm::ast;
@@ -17,11 +17,20 @@ const SERVER_URL: &'static str = "https://editor.netsblox.org";
 const IDLE_SLEEP_THRESH: usize = 256;
 const IDLE_SLEEP_TIME: Duration = Duration::from_millis(1);
 
+const BLUE: ColorInfo = ColorInfo { a: 255, r: 66, g: 135, b: 245 };
+const BLACK: ColorInfo = ColorInfo { a: 255, r: 0, g: 0, b: 0 };
+const WHITE: ColorInfo = ColorInfo { a: 255, r: 255, g: 255, b: 255 };
+
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
 static DART_COMMANDS: Mutex<Vec<DartCommand>> = Mutex::new(Vec::new());
 static RUST_COMMANDS: Mutex<Vec<RustCommand>> = Mutex::new(Vec::new());
 static PENDING_REQUESTS: Mutex<BTreeMap<DartRequestKey, RequestKey<C>>> = Mutex::new(BTreeMap::new());
-static COUNTER: AtomicU64 = AtomicU64::new(0);
+static KEY_COUNTER: AtomicUsize = AtomicUsize::new(0);
+static CONTROL_COUNTER: AtomicUsize = AtomicUsize::new(0);
+
+fn new_control_id() -> String {
+    format!("ctrl-{}", CONTROL_COUNTER.fetch_add(1, MemOrder::Relaxed).wrapping_add(1))
+}
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum NativeType {}
@@ -100,6 +109,7 @@ pub enum TextAlignInfo {
     Left, Center, Right,
 }
 
+#[derive(Clone, Copy)]
 pub struct ColorInfo {
     pub a: u8,
     pub r: u8,
@@ -108,25 +118,25 @@ pub struct ColorInfo {
 }
 pub struct ButtonInfo {
     pub id: String,
-    pub x: f32,
-    pub y: f32,
-    pub width: f32,
-    pub height: f32,
+    pub x: f64,
+    pub y: f64,
+    pub width: f64,
+    pub height: f64,
     pub back_color: ColorInfo,
     pub fore_color: ColorInfo,
     pub text: String,
     pub event: Option<String>,
-    pub font_size: f32,
+    pub font_size: f64,
     pub style: ButtonStyleInfo,
     pub landscape: bool,
 }
 pub struct LabelInfo {
     pub id: String,
-    pub x: f32,
-    pub y: f32,
+    pub x: f64,
+    pub y: f64,
     pub color: ColorInfo,
     pub text: String,
-    pub font_size: f32,
+    pub font_size: f64,
     pub align: TextAlignInfo,
     pub landscape: bool,
 }
@@ -136,19 +146,20 @@ pub enum RustCommand {
     Start,
 }
 
-#[derive(PartialOrd, Ord, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialOrd, Ord, PartialEq, Eq)]
 pub struct DartRequestKey {
-    pub value: u64,
+    pub value: usize,
 }
 impl DartRequestKey {
     fn new() -> Self {
-        Self { value: COUNTER.fetch_add(1, MemOrder::Relaxed) }
+        Self { value: KEY_COUNTER.fetch_add(1, MemOrder::Relaxed) }
     }
 }
 
 pub enum DartCommand {
     Stdout { msg: String },
     Stderr { msg: String },
+    ClearControls,
     AddButton { info: ButtonInfo, key: DartRequestKey },
     AddLabel { info: LabelInfo, key: DartRequestKey },
 }
@@ -201,11 +212,162 @@ pub fn initialize() {
                 CommandStatus::Handled
             })),
             request: Some(Rc::new(move |_, _, key, request, _| {
+                fn is_local_id(s: &str) -> bool {
+                    s.chars().all(|x| x == '0')
+                }
+                fn parse_options<'gc, C: CustomTypes<S>, S: System<C>>(name: &str, opts: &Value<'gc, C, S>, allowed: &[&str]) -> Result<BTreeMap<String, Value<'gc, C, S>>, String> {
+                    let mut res = BTreeMap::new();
+                    match opts {
+                        Value::String(x) => match x.is_empty() {
+                            true => (),
+                            false => return Err(format!("'{name}' must be a list of lists")),
+                        }
+                        Value::List(x) => for x in x.borrow().iter() {
+                            match x {
+                                Value::List(x) => {
+                                    let x = x.borrow();
+                                    if x.len() != 2 {
+                                        return Err(format!("'{name}' must be a list of pairs (length 2 lists)"));
+                                    }
+                                    let k = match x[0].to_string() {
+                                        Ok(x) => x.into_owned(),
+                                        Err(_) => return Err(format!("'{name}' keys must be strings")),
+                                    };
+                                    if !allowed.iter().any(|x| **x == k) {
+                                        return Err(format!("'{name}': unknown option '{k}'"));
+                                    }
+                                    if res.insert(k.clone(), x[1].clone()).is_some() {
+                                        return Err(format!("'{name}': option '{k}' was already specified"));
+                                    }
+                                }
+                                _ => return Err(format!("'{name}' must be a list of lists")),
+                            }
+                        }
+                        _ => return Err(format!("{name}' must be a list of lists")),
+                    }
+                    Ok(res)
+                }
+                macro_rules! parse {
+                    ($n:ident := $e:expr => bool) => {
+                        match &$e {
+                            Value::Bool(x) => *x,
+                            Value::String(x) if **x == "true" => true,
+                            Value::String(x) if **x == "false" => false,
+                            x => {
+                                key.complete(Err(format!("'{}': expected bool, got {:?}", stringify!($n), x.get_type())));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
+                    ($n:ident := $e:expr => f64) => {
+                        match $e.to_number() {
+                            Ok(x) => x.get(),
+                            Err(x) => {
+                                key.complete(Err(format!("'{}': expected number, got {:?}", stringify!($n), x.got)));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
+                    ($n:ident := $e:expr => String) => {
+                        match $e.to_string() {
+                            Ok(x) => x.into_owned(),
+                            Err(x) => {
+                                key.complete(Err(format!("'{}': expected string, got {:?}", stringify!($n), x.got)));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
+                    ($n:ident := $e:expr => ButtonStyleInfo) => {
+                        match parse!($n := $e => String).as_str() {
+                            "rectangle" => ButtonStyleInfo::Rectangle,
+                            "ellipse" => ButtonStyleInfo::Ellipse,
+                            "square" => ButtonStyleInfo::Square,
+                            "circle" => ButtonStyleInfo::Circle,
+                            x => {
+                                key.complete(Err(format!("'{}': unknown button style '{}'", stringify!($n), x)));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
+                    ($n:ident := $e:expr => ColorInfo) => {{
+                        let v = parse!($n := $e => f64) as i32 as u32;
+                        let a = (v >> 24) as u8;
+                        let r = (v >> 16) as u8;
+                        let g = (v >> 8) as u8;
+                        let b = v as u8;
+                        ColorInfo { a, r, g, b }
+                    }};
+                    ($n:ident := $e:expr => {$($f:ident),*}) => {
+                        match parse_options(stringify!($n), &$e, &[$(stringify!($f)),*]) {
+                            Ok(x) => x,
+                            Err(e) => {
+                                key.complete(Err(e));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
+                    ($n:ident := $e:expr => Option<$t:ident>) => {
+                        match &$e {
+                            Some(x) => Some(parse!($n := x => $t)),
+                            None => None,
+                        }
+                    };
+                }
                 match &request {
                     Request::Rpc { service, rpc, args } if service == "PhoneIoT" => match rpc.as_str() {
-                        _ => return RequestStatus::UseDefault { key, request }
+                        "getColor" => {
+                            if args.len() != 4 {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let r = parse!(r := args[0].1 => f64) as u8;
+                            let g = parse!(g := args[1].1 => f64) as u8;
+                            let b = parse!(b := args[2].1 => f64) as u8;
+                            let a = parse!(a := args[3].1 => f64) as u8;
+
+                            let encoded = ((a as i32) << 24) | ((r as i32) << 16) | ((g as i32) << 8) | b as i32;
+                            key.complete(Ok(Intermediate::Json(json!(encoded))));
+                            RequestStatus::Handled
+                        }
+                        "clearControls" => {
+                            if args.len() != 1 || !args[0].1.to_string().ok().map(|x| is_local_id(&x)).unwrap_or(false) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            DART_COMMANDS.lock().unwrap().push(DartCommand::ClearControls);
+                            CONTROL_COUNTER.store(0, MemOrder::Relaxed);
+                            key.complete(Ok(Intermediate::Json(json!("OK"))));
+                            RequestStatus::Handled
+                        }
+                        "addButton" => {
+                            if args.len() != 7 || !args[0].1.to_string().ok().map(|x| is_local_id(&x)).unwrap_or(false) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let x = parse!(x := args[1].1 => f64);
+                            let y = parse!(y := args[2].1 => f64);
+                            let width = parse!(width := args[3].1 => f64);
+                            let height = parse!(height := args[4].1 => f64);
+                            let text = parse!(text := args[5].1 => String);
+                            let options = parse!(options := args[6].1 => { id, event, style, color, textColor, landscape, fontSize });
+                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                            let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                            let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(WHITE);
+                            let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
+                            let event = parse!(event := options.get("event") => Option<String>);
+                            let style = parse!(style := options.get("style") => Option<ButtonStyleInfo>).unwrap_or(ButtonStyleInfo::Rectangle);
+
+                            let dart_key = DartRequestKey::new();
+                            PENDING_REQUESTS.lock().unwrap().insert(dart_key, key);
+                            DART_COMMANDS.lock().unwrap().push(DartCommand::AddButton { key: dart_key, info: ButtonInfo {
+                                id, x, y, width, height, text, landscape, back_color, fore_color, font_size, event, style,
+                            }});
+                            RequestStatus::Handled
+                        }
+                        _ => RequestStatus::UseDefault { key, request },
                     }
-                    _ => return RequestStatus::UseDefault { key, request },
+                    _ => RequestStatus::UseDefault { key, request },
                 }
             })),
         };
