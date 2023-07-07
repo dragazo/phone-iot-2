@@ -4,11 +4,10 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:phone_iot_2/ffi.dart';
 
+const double defaultFontSize = 16;
+
 Color getColor(ColorInfo color) {
   return Color.fromARGB(color.a, color.r, color.g, color.b);
-}
-Rect getRect(Size canvasSize, double x, double y, double width, double height) {
-  return Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, width * canvasSize.width / 100, height * canvasSize.height / 100);
 }
 TextAlign getAlign(TextAlignInfo align) {
   switch (align) {
@@ -18,9 +17,9 @@ TextAlign getAlign(TextAlignInfo align) {
   }
 }
 
-void drawTextRect(Canvas canvas, Rect rect, Color color, String text, TextAlign align, bool vCenter) {
+void drawTextRect(Canvas canvas, Rect rect, Color color, String text, double fontSize, TextAlign align, bool vCenter) {
   final parBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(textAlign: align));
-  parBuilder.pushStyle(ui.TextStyle(color: color));
+  parBuilder.pushStyle(ui.TextStyle(color: color, fontSize: defaultFontSize * fontSize));
   parBuilder.addText(text);
   final par = parBuilder.build();
   par.layout(ui.ParagraphConstraints(width: rect.width));
@@ -32,7 +31,8 @@ void drawTextRect(Canvas canvas, Rect rect, Color color, String text, TextAlign 
 }
 
 abstract class CustomControl {
-  void draw(Canvas canvas, Size canvasSize);
+  Size canvasSize = Size.zero;
+  void draw(Canvas canvas);
 }
 class CustomButton extends CustomControl {
   double x, y, width, height, fontSize;
@@ -47,13 +47,27 @@ class CustomButton extends CustomControl {
     event = info.event, fontSize = info.fontSize, style = info.style, landscape = info.landscape;
 
   @override
-  void draw(Canvas canvas, Size canvasSize) {
+  void draw(Canvas canvas) {
     final paint = Paint();
     paint.style = PaintingStyle.fill;
     paint.color = backColor;
-    final rect = getRect(canvasSize, x, y, width, height);
-    canvas.drawRect(rect, paint);
-    drawTextRect(canvas, rect, foreColor, text, TextAlign.center, true);
+    double w = width * canvasSize.width / 100;
+    double h = style == ButtonStyleInfo.Square || style == ButtonStyleInfo.Circle ? w : height * canvasSize.height / 100;
+    Rect rect = Rect.fromLTWH(0, 0, w, h);
+
+    canvas.save();
+    canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
+    if (landscape) canvas.rotate(pi / 2);
+    switch (style) {
+      case ButtonStyleInfo.Rectangle:
+      case ButtonStyleInfo.Square:
+        canvas.drawRect(rect, paint);
+      case ButtonStyleInfo.Ellipse:
+      case ButtonStyleInfo.Circle:
+        canvas.drawOval(rect, paint);
+    }
+    drawTextRect(canvas, rect, foreColor, text, fontSize, TextAlign.center, true);
+    canvas.restore();
   }
 }
 class CustomLabel extends CustomControl {
@@ -67,7 +81,7 @@ class CustomLabel extends CustomControl {
     fontSize = info.fontSize, align = getAlign(info.align), landscape = info.landscape;
 
   @override
-  void draw(Canvas canvas, Size canvasSize) {
+  void draw(Canvas canvas) {
 
   }
 }
@@ -80,7 +94,8 @@ class ControlsCanvas extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     for (final x in controls.values) {
-      x.draw(canvas, size);
+      x.canvasSize = size;
+      x.draw(canvas);
     }
   }
 

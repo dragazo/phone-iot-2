@@ -262,7 +262,7 @@ pub fn initialize() {
         text: "merp derp this is going to be a big thing of text that will go off the thing and be really long and stuff haha".into(),
         event: None,
         font_size: 1.0,
-        style: ButtonStyleInfo::Rectangle,
+        style: ButtonStyleInfo::Ellipse,
         landscape: false,
     }});
     DART_COMMANDS.lock().unwrap().push(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
@@ -270,14 +270,28 @@ pub fn initialize() {
         x: 20.0,
         y: 40.0,
         width: 20.0,
-        height: 30.0,
+        height: 70.0,
         back_color: ColorInfo { a: 255, r: 50, g: 100, b: 100 },
         fore_color: ColorInfo { a: 255, r: 200, g: 100, b: 100 },
         text: "merp derp this is going to be a big thing of text that will go off the thing and be really long and stuff haha".into(),
         event: None,
-        font_size: 1.0,
-        style: ButtonStyleInfo::Rectangle,
+        font_size: 2.0,
+        style: ButtonStyleInfo::Circle,
         landscape: false,
+    }});
+    DART_COMMANDS.lock().unwrap().push(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
+        id: "test-3".into(),
+        x: 55.0,
+        y: 25.0,
+        width: 40.0,
+        height: 30.0,
+        back_color: ColorInfo { a: 255, r: 20, g: 100, b: 20 },
+        fore_color: ColorInfo { a: 255, r: 200, g: 200, b: 100 },
+        text: "merp derp this is going to be a big thing of text that will go off the thing and be really long and stuff haha".into(),
+        event: None,
+        font_size: 2.0,
+        style: ButtonStyleInfo::Rectangle,
+        landscape: true,
     }});
 }
 
