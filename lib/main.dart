@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'canvas.dart';
 
 const updateInterval = Duration(milliseconds: 500);
+const messageLifetime = Duration(seconds: 10);
 
 void main() {
   runApp(const MyApp());
@@ -41,10 +42,10 @@ enum MessageType {
   stdout, stderr,
 }
 class Message {
-  DateTime t;
+  DateTime expiry;
   String msg;
   MessageType type;
-  Message(this.msg, this.type) : t = DateTime.now();
+  Message(this.msg, this.type) : expiry = DateTime.now().add(messageLifetime);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -52,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   late String devicePW;
   Timer? timer;
 
-  final List<Message> messages = List.empty();
+  final List<Message> messages = [];
   final Map<String, CustomControl> controls = {};
   bool menuOpen = true;
 
@@ -74,6 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     }
     void update() {
+      final now = DateTime.now();
+      while (messages.isNotEmpty && messages.first.expiry.isBefore(now)) {
+        setState(() => messages.removeAt(0));
+      }
       api.recvCommands()
         .then((commands) {
           for (final command in commands) {
