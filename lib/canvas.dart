@@ -29,6 +29,26 @@ void drawTextRect(Canvas canvas, Rect rect, Color color, String text, double fon
   canvas.drawParagraph(par, Offset(rect.left, rect.top + vOffset));
   canvas.restore();
 }
+void drawTextPos(Canvas canvas, Offset offset, Color color, String text, double fontSize, TextAlign align) {
+  final parBuilder = ui.ParagraphBuilder(ui.ParagraphStyle());
+  parBuilder.pushStyle(ui.TextStyle(color: color, fontSize: defaultFontSize * fontSize));
+  parBuilder.addText(text);
+  final par = parBuilder.build();
+  par.layout(const ui.ParagraphConstraints(width: double.infinity));
+  double dx;
+  switch (align) {
+    case TextAlign.left:
+    case TextAlign.justify:
+    case TextAlign.start:
+      dx = 0;
+    case TextAlign.center:
+      dx = -par.longestLine / 2;
+    case TextAlign.right:
+    case TextAlign.end:
+      dx = -par.longestLine;
+  }
+  canvas.drawParagraph(par, Offset(offset.dx + dx, offset.dy));
+}
 
 abstract class CustomControl {
   Size canvasSize = Size.zero;
@@ -82,7 +102,11 @@ class CustomLabel extends CustomControl {
 
   @override
   void draw(Canvas canvas) {
-
+    canvas.save();
+    canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
+    if (landscape) canvas.rotate(pi / 2);
+    drawTextPos(canvas, Offset.zero, color, text, fontSize, align);
+    canvas.restore();
   }
 }
 

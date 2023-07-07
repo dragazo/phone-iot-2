@@ -293,6 +293,36 @@ pub fn initialize() {
         style: ButtonStyleInfo::Rectangle,
         landscape: true,
     }});
+    DART_COMMANDS.lock().unwrap().push(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
+        id: "test-4".into(),
+        x: 20.0,
+        y: 5.0,
+        color: ColorInfo { a: 255, r: 20, g: 100, b: 20 },
+        text: "shorter message test...".into(),
+        font_size: 1.0,
+        align: TextAlignInfo::Left,
+        landscape: false,
+    }});
+    DART_COMMANDS.lock().unwrap().push(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
+        id: "test-5".into(),
+        x: 20.0,
+        y: 7.0,
+        color: ColorInfo { a: 255, r: 20, g: 100, b: 20 },
+        text: "shorter message test...".into(),
+        font_size: 1.0,
+        align: TextAlignInfo::Center,
+        landscape: true,
+    }});
+    DART_COMMANDS.lock().unwrap().push(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
+        id: "test-6".into(),
+        x: 20.0,
+        y: 9.0,
+        color: ColorInfo { a: 255, r: 20, g: 100, b: 20 },
+        text: "shorter message test...".into(),
+        font_size: 2.0,
+        align: TextAlignInfo::Right,
+        landscape: false,
+    }});
 }
 
 pub fn send_command(cmd: RustCommand) {
