@@ -23,6 +23,53 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
   }
 
   @protected
+  ffi.Pointer<wire_DartRequestKey> api2wire_box_autoadd_dart_request_key(
+      DartRequestKey raw) {
+    final ptr = inner.new_box_autoadd_dart_request_key_0();
+    _api_fill_to_wire_dart_request_key(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_RequestResult> api2wire_box_autoadd_request_result(
+      RequestResult raw) {
+    final ptr = inner.new_box_autoadd_request_result_0();
+    _api_fill_to_wire_request_result(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_RustCommand> api2wire_box_autoadd_rust_command(
+      RustCommand raw) {
+    final ptr = inner.new_box_autoadd_rust_command_0();
+    _api_fill_to_wire_rust_command(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_SimpleValue> api2wire_box_autoadd_simple_value(
+      SimpleValue raw) {
+    final ptr = inner.new_box_autoadd_simple_value_0();
+    _api_fill_to_wire_simple_value(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_list_simple_value> api2wire_list_simple_value(
+      List<SimpleValue> raw) {
+    final ans = inner.new_list_simple_value_0(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      _api_fill_to_wire_simple_value(raw[i], ans.ref.ptr[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  int api2wire_u64(int raw) {
+    return raw;
+  }
+
+  @protected
   ffi.Pointer<wire_uint_8_list> api2wire_uint_8_list(Uint8List raw) {
     final ans = inner.new_uint_8_list_0(raw.length);
     ans.ref.ptr.asTypedList(raw.length).setAll(0, raw);
@@ -31,6 +78,89 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
 // Section: finalizer
 
 // Section: api_fill_to_wire
+
+  void _api_fill_to_wire_box_autoadd_dart_request_key(
+      DartRequestKey apiObj, ffi.Pointer<wire_DartRequestKey> wireObj) {
+    _api_fill_to_wire_dart_request_key(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_autoadd_request_result(
+      RequestResult apiObj, ffi.Pointer<wire_RequestResult> wireObj) {
+    _api_fill_to_wire_request_result(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_autoadd_rust_command(
+      RustCommand apiObj, ffi.Pointer<wire_RustCommand> wireObj) {
+    _api_fill_to_wire_rust_command(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_autoadd_simple_value(
+      SimpleValue apiObj, ffi.Pointer<wire_SimpleValue> wireObj) {
+    _api_fill_to_wire_simple_value(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_dart_request_key(
+      DartRequestKey apiObj, wire_DartRequestKey wireObj) {
+    wireObj.value = api2wire_u64(apiObj.value);
+  }
+
+  void _api_fill_to_wire_request_result(
+      RequestResult apiObj, wire_RequestResult wireObj) {
+    if (apiObj is RequestResult_Ok) {
+      var pre_field0 = api2wire_box_autoadd_simple_value(apiObj.field0);
+      wireObj.tag = 0;
+      wireObj.kind = inner.inflate_RequestResult_Ok();
+      wireObj.kind.ref.Ok.ref.field0 = pre_field0;
+      return;
+    }
+    if (apiObj is RequestResult_Err) {
+      var pre_field0 = api2wire_String(apiObj.field0);
+      wireObj.tag = 1;
+      wireObj.kind = inner.inflate_RequestResult_Err();
+      wireObj.kind.ref.Err.ref.field0 = pre_field0;
+      return;
+    }
+  }
+
+  void _api_fill_to_wire_rust_command(
+      RustCommand apiObj, wire_RustCommand wireObj) {
+    if (apiObj is RustCommand_SetProject) {
+      var pre_xml = api2wire_String(apiObj.xml);
+      wireObj.tag = 0;
+      wireObj.kind = inner.inflate_RustCommand_SetProject();
+      wireObj.kind.ref.SetProject.ref.xml = pre_xml;
+      return;
+    }
+    if (apiObj is RustCommand_Start) {
+      wireObj.tag = 1;
+      return;
+    }
+  }
+
+  void _api_fill_to_wire_simple_value(
+      SimpleValue apiObj, wire_SimpleValue wireObj) {
+    if (apiObj is SimpleValue_Number) {
+      var pre_field0 = api2wire_f64(apiObj.field0);
+      wireObj.tag = 0;
+      wireObj.kind = inner.inflate_SimpleValue_Number();
+      wireObj.kind.ref.Number.ref.field0 = pre_field0;
+      return;
+    }
+    if (apiObj is SimpleValue_String) {
+      var pre_field0 = api2wire_String(apiObj.field0);
+      wireObj.tag = 1;
+      wireObj.kind = inner.inflate_SimpleValue_String();
+      wireObj.kind.ref.String.ref.field0 = pre_field0;
+      return;
+    }
+    if (apiObj is SimpleValue_List) {
+      var pre_field0 = api2wire_list_simple_value(apiObj.field0);
+      wireObj.tag = 2;
+      wireObj.kind = inner.inflate_SimpleValue_List();
+      wireObj.kind.ref.List.ref.field0 = pre_field0;
+      return;
+    }
+  }
 }
 
 // ignore_for_file: camel_case_types, non_constant_identifier_names, avoid_positional_boolean_parameters, annotate_overrides, constant_identifier_names
@@ -143,50 +273,115 @@ class NativeWire implements FlutterRustBridgeWireBase {
   late final _wire_initialize =
       _wire_initializePtr.asFunction<void Function(int)>();
 
-  void wire_get_status(
+  void wire_send_command(
     int port_,
+    ffi.Pointer<wire_RustCommand> cmd,
   ) {
-    return _wire_get_status(
+    return _wire_send_command(
       port_,
+      cmd,
     );
   }
 
-  late final _wire_get_statusPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
-          'wire_get_status');
-  late final _wire_get_status =
-      _wire_get_statusPtr.asFunction<void Function(int)>();
-
-  void wire_set_project(
-    int port_,
-    ffi.Pointer<wire_uint_8_list> xml,
-  ) {
-    return _wire_set_project(
-      port_,
-      xml,
-    );
-  }
-
-  late final _wire_set_projectPtr = _lookup<
+  late final _wire_send_commandPtr = _lookup<
       ffi.NativeFunction<
           ffi.Void Function(
-              ffi.Int64, ffi.Pointer<wire_uint_8_list>)>>('wire_set_project');
-  late final _wire_set_project = _wire_set_projectPtr
-      .asFunction<void Function(int, ffi.Pointer<wire_uint_8_list>)>();
+              ffi.Int64, ffi.Pointer<wire_RustCommand>)>>('wire_send_command');
+  late final _wire_send_command = _wire_send_commandPtr
+      .asFunction<void Function(int, ffi.Pointer<wire_RustCommand>)>();
 
-  void wire_start_project(
+  void wire_recv_commands(
     int port_,
   ) {
-    return _wire_start_project(
+    return _wire_recv_commands(
       port_,
     );
   }
 
-  late final _wire_start_projectPtr =
+  late final _wire_recv_commandsPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
-          'wire_start_project');
-  late final _wire_start_project =
-      _wire_start_projectPtr.asFunction<void Function(int)>();
+          'wire_recv_commands');
+  late final _wire_recv_commands =
+      _wire_recv_commandsPtr.asFunction<void Function(int)>();
+
+  void wire_complete_request(
+    int port_,
+    ffi.Pointer<wire_DartRequestKey> key,
+    ffi.Pointer<wire_RequestResult> result,
+  ) {
+    return _wire_complete_request(
+      port_,
+      key,
+      result,
+    );
+  }
+
+  late final _wire_complete_requestPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Int64, ffi.Pointer<wire_DartRequestKey>,
+              ffi.Pointer<wire_RequestResult>)>>('wire_complete_request');
+  late final _wire_complete_request = _wire_complete_requestPtr.asFunction<
+      void Function(int, ffi.Pointer<wire_DartRequestKey>,
+          ffi.Pointer<wire_RequestResult>)>();
+
+  ffi.Pointer<wire_DartRequestKey> new_box_autoadd_dart_request_key_0() {
+    return _new_box_autoadd_dart_request_key_0();
+  }
+
+  late final _new_box_autoadd_dart_request_key_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_DartRequestKey> Function()>>(
+          'new_box_autoadd_dart_request_key_0');
+  late final _new_box_autoadd_dart_request_key_0 =
+      _new_box_autoadd_dart_request_key_0Ptr
+          .asFunction<ffi.Pointer<wire_DartRequestKey> Function()>();
+
+  ffi.Pointer<wire_RequestResult> new_box_autoadd_request_result_0() {
+    return _new_box_autoadd_request_result_0();
+  }
+
+  late final _new_box_autoadd_request_result_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_RequestResult> Function()>>(
+          'new_box_autoadd_request_result_0');
+  late final _new_box_autoadd_request_result_0 =
+      _new_box_autoadd_request_result_0Ptr
+          .asFunction<ffi.Pointer<wire_RequestResult> Function()>();
+
+  ffi.Pointer<wire_RustCommand> new_box_autoadd_rust_command_0() {
+    return _new_box_autoadd_rust_command_0();
+  }
+
+  late final _new_box_autoadd_rust_command_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_RustCommand> Function()>>(
+          'new_box_autoadd_rust_command_0');
+  late final _new_box_autoadd_rust_command_0 =
+      _new_box_autoadd_rust_command_0Ptr
+          .asFunction<ffi.Pointer<wire_RustCommand> Function()>();
+
+  ffi.Pointer<wire_SimpleValue> new_box_autoadd_simple_value_0() {
+    return _new_box_autoadd_simple_value_0();
+  }
+
+  late final _new_box_autoadd_simple_value_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_SimpleValue> Function()>>(
+          'new_box_autoadd_simple_value_0');
+  late final _new_box_autoadd_simple_value_0 =
+      _new_box_autoadd_simple_value_0Ptr
+          .asFunction<ffi.Pointer<wire_SimpleValue> Function()>();
+
+  ffi.Pointer<wire_list_simple_value> new_list_simple_value_0(
+    int len,
+  ) {
+    return _new_list_simple_value_0(
+      len,
+    );
+  }
+
+  late final _new_list_simple_value_0Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_list_simple_value> Function(
+              ffi.Int32)>>('new_list_simple_value_0');
+  late final _new_list_simple_value_0 = _new_list_simple_value_0Ptr
+      .asFunction<ffi.Pointer<wire_list_simple_value> Function(int)>();
 
   ffi.Pointer<wire_uint_8_list> new_uint_8_list_0(
     int len,
@@ -202,6 +397,67 @@ class NativeWire implements FlutterRustBridgeWireBase {
               ffi.Int32)>>('new_uint_8_list_0');
   late final _new_uint_8_list_0 = _new_uint_8_list_0Ptr
       .asFunction<ffi.Pointer<wire_uint_8_list> Function(int)>();
+
+  ffi.Pointer<RequestResultKind> inflate_RequestResult_Ok() {
+    return _inflate_RequestResult_Ok();
+  }
+
+  late final _inflate_RequestResult_OkPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<RequestResultKind> Function()>>(
+          'inflate_RequestResult_Ok');
+  late final _inflate_RequestResult_Ok = _inflate_RequestResult_OkPtr
+      .asFunction<ffi.Pointer<RequestResultKind> Function()>();
+
+  ffi.Pointer<RequestResultKind> inflate_RequestResult_Err() {
+    return _inflate_RequestResult_Err();
+  }
+
+  late final _inflate_RequestResult_ErrPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<RequestResultKind> Function()>>(
+          'inflate_RequestResult_Err');
+  late final _inflate_RequestResult_Err = _inflate_RequestResult_ErrPtr
+      .asFunction<ffi.Pointer<RequestResultKind> Function()>();
+
+  ffi.Pointer<RustCommandKind> inflate_RustCommand_SetProject() {
+    return _inflate_RustCommand_SetProject();
+  }
+
+  late final _inflate_RustCommand_SetProjectPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<RustCommandKind> Function()>>(
+          'inflate_RustCommand_SetProject');
+  late final _inflate_RustCommand_SetProject =
+      _inflate_RustCommand_SetProjectPtr
+          .asFunction<ffi.Pointer<RustCommandKind> Function()>();
+
+  ffi.Pointer<SimpleValueKind> inflate_SimpleValue_Number() {
+    return _inflate_SimpleValue_Number();
+  }
+
+  late final _inflate_SimpleValue_NumberPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<SimpleValueKind> Function()>>(
+          'inflate_SimpleValue_Number');
+  late final _inflate_SimpleValue_Number = _inflate_SimpleValue_NumberPtr
+      .asFunction<ffi.Pointer<SimpleValueKind> Function()>();
+
+  ffi.Pointer<SimpleValueKind> inflate_SimpleValue_String() {
+    return _inflate_SimpleValue_String();
+  }
+
+  late final _inflate_SimpleValue_StringPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<SimpleValueKind> Function()>>(
+          'inflate_SimpleValue_String');
+  late final _inflate_SimpleValue_String = _inflate_SimpleValue_StringPtr
+      .asFunction<ffi.Pointer<SimpleValueKind> Function()>();
+
+  ffi.Pointer<SimpleValueKind> inflate_SimpleValue_List() {
+    return _inflate_SimpleValue_List();
+  }
+
+  late final _inflate_SimpleValue_ListPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<SimpleValueKind> Function()>>(
+          'inflate_SimpleValue_List');
+  late final _inflate_SimpleValue_List = _inflate_SimpleValue_ListPtr
+      .asFunction<ffi.Pointer<SimpleValueKind> Function()>();
 
   void free_WireSyncReturn(
     WireSyncReturn ptr,
@@ -225,6 +481,86 @@ final class wire_uint_8_list extends ffi.Struct {
 
   @ffi.Int32()
   external int len;
+}
+
+final class wire_RustCommand_SetProject extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> xml;
+}
+
+final class wire_RustCommand_Start extends ffi.Opaque {}
+
+final class RustCommandKind extends ffi.Union {
+  external ffi.Pointer<wire_RustCommand_SetProject> SetProject;
+
+  external ffi.Pointer<wire_RustCommand_Start> Start;
+}
+
+final class wire_RustCommand extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external ffi.Pointer<RustCommandKind> kind;
+}
+
+final class wire_DartRequestKey extends ffi.Struct {
+  @ffi.Uint64()
+  external int value;
+}
+
+final class wire_SimpleValue_Number extends ffi.Struct {
+  @ffi.Double()
+  external double field0;
+}
+
+final class wire_SimpleValue_String extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+}
+
+final class wire_list_simple_value extends ffi.Struct {
+  external ffi.Pointer<wire_SimpleValue> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_SimpleValue extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external ffi.Pointer<SimpleValueKind> kind;
+}
+
+final class SimpleValueKind extends ffi.Union {
+  external ffi.Pointer<wire_SimpleValue_Number> Number;
+
+  external ffi.Pointer<wire_SimpleValue_String> String;
+
+  external ffi.Pointer<wire_SimpleValue_List> List;
+}
+
+final class wire_SimpleValue_List extends ffi.Struct {
+  external ffi.Pointer<wire_list_simple_value> field0;
+}
+
+final class wire_RequestResult_Ok extends ffi.Struct {
+  external ffi.Pointer<wire_SimpleValue> field0;
+}
+
+final class wire_RequestResult_Err extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+}
+
+final class RequestResultKind extends ffi.Union {
+  external ffi.Pointer<wire_RequestResult_Ok> Ok;
+
+  external ffi.Pointer<wire_RequestResult_Err> Err;
+}
+
+final class wire_RequestResult extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external ffi.Pointer<RequestResultKind> kind;
 }
 
 typedef DartPostCObjectFnType = ffi.Pointer<

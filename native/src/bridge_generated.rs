@@ -31,37 +31,45 @@ fn wire_initialize_impl(port_: MessagePort) {
         move || move |task_callback| Ok(initialize()),
     )
 }
-fn wire_get_status_impl(port_: MessagePort) {
+fn wire_send_command_impl(port_: MessagePort, cmd: impl Wire2Api<RustCommand> + UnwindSafe) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
         WrapInfo {
-            debug_name: "get_status",
-            port: Some(port_),
-            mode: FfiCallMode::Normal,
-        },
-        move || move |task_callback| Ok(get_status()),
-    )
-}
-fn wire_set_project_impl(port_: MessagePort, xml: impl Wire2Api<String> + UnwindSafe) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap(
-        WrapInfo {
-            debug_name: "set_project",
+            debug_name: "send_command",
             port: Some(port_),
             mode: FfiCallMode::Normal,
         },
         move || {
-            let api_xml = xml.wire2api();
-            move |task_callback| Ok(set_project(api_xml))
+            let api_cmd = cmd.wire2api();
+            move |task_callback| Ok(send_command(api_cmd))
         },
     )
 }
-fn wire_start_project_impl(port_: MessagePort) {
+fn wire_recv_commands_impl(port_: MessagePort) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
         WrapInfo {
-            debug_name: "start_project",
+            debug_name: "recv_commands",
             port: Some(port_),
             mode: FfiCallMode::Normal,
         },
-        move || move |task_callback| Ok(start_project()),
+        move || move |task_callback| Ok(recv_commands()),
+    )
+}
+fn wire_complete_request_impl(
+    port_: MessagePort,
+    key: impl Wire2Api<DartRequestKey> + UnwindSafe,
+    result: impl Wire2Api<RequestResult> + UnwindSafe,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap(
+        WrapInfo {
+            debug_name: "complete_request",
+            port: Some(port_),
+            mode: FfiCallMode::Normal,
+        },
+        move || {
+            let api_key = key.wire2api();
+            let api_result = result.wire2api();
+            move |task_callback| Ok(complete_request(api_key, api_result))
+        },
     )
 }
 // Section: wrapper structs
@@ -87,6 +95,17 @@ where
     }
 }
 
+impl Wire2Api<f64> for f64 {
+    fn wire2api(self) -> f64 {
+        self
+    }
+}
+
+impl Wire2Api<u64> for u64 {
+    fn wire2api(self) -> u64 {
+        self
+    }
+}
 impl Wire2Api<u8> for u8 {
     fn wire2api(self) -> u8 {
         self
@@ -95,7 +114,7 @@ impl Wire2Api<u8> for u8 {
 
 // Section: impl IntoDart
 
-impl support::IntoDart for CustomButton {
+impl support::IntoDart for ButtonInfo {
     fn into_dart(self) -> support::DartAbi {
         vec![
             self.id.into_dart(),
@@ -114,9 +133,9 @@ impl support::IntoDart for CustomButton {
         .into_dart()
     }
 }
-impl support::IntoDartExceptPrimitive for CustomButton {}
+impl support::IntoDartExceptPrimitive for ButtonInfo {}
 
-impl support::IntoDart for CustomButtonStyle {
+impl support::IntoDart for ButtonStyleInfo {
     fn into_dart(self) -> support::DartAbi {
         match self {
             Self::Rectangle => 0,
@@ -127,8 +146,8 @@ impl support::IntoDart for CustomButtonStyle {
         .into_dart()
     }
 }
-impl support::IntoDartExceptPrimitive for CustomButtonStyle {}
-impl support::IntoDart for CustomColor {
+impl support::IntoDartExceptPrimitive for ButtonStyleInfo {}
+impl support::IntoDart for ColorInfo {
     fn into_dart(self) -> support::DartAbi {
         vec![
             self.a.into_dart(),
@@ -139,19 +158,28 @@ impl support::IntoDart for CustomColor {
         .into_dart()
     }
 }
-impl support::IntoDartExceptPrimitive for CustomColor {}
+impl support::IntoDartExceptPrimitive for ColorInfo {}
 
-impl support::IntoDart for CustomControl {
+impl support::IntoDart for DartCommand {
     fn into_dart(self) -> support::DartAbi {
         match self {
-            Self::Button(field0) => vec![0.into_dart(), field0.into_dart()],
-            Self::Label(field0) => vec![1.into_dart(), field0.into_dart()],
+            Self::Stdout { msg } => vec![0.into_dart(), msg.into_dart()],
+            Self::Stderr { msg } => vec![1.into_dart(), msg.into_dart()],
+            Self::AddButton { info, key } => vec![2.into_dart(), info.into_dart(), key.into_dart()],
+            Self::AddLabel { info, key } => vec![3.into_dart(), info.into_dart(), key.into_dart()],
         }
         .into_dart()
     }
 }
-impl support::IntoDartExceptPrimitive for CustomControl {}
-impl support::IntoDart for CustomLabel {
+impl support::IntoDartExceptPrimitive for DartCommand {}
+impl support::IntoDart for DartRequestKey {
+    fn into_dart(self) -> support::DartAbi {
+        vec![self.value.into_dart()].into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for DartRequestKey {}
+
+impl support::IntoDart for LabelInfo {
     fn into_dart(self) -> support::DartAbi {
         vec![
             self.id.into_dart(),
@@ -166,9 +194,9 @@ impl support::IntoDart for CustomLabel {
         .into_dart()
     }
 }
-impl support::IntoDartExceptPrimitive for CustomLabel {}
+impl support::IntoDartExceptPrimitive for LabelInfo {}
 
-impl support::IntoDart for CustomTextAlign {
+impl support::IntoDart for TextAlignInfo {
     fn into_dart(self) -> support::DartAbi {
         match self {
             Self::Left => 0,
@@ -178,25 +206,7 @@ impl support::IntoDart for CustomTextAlign {
         .into_dart()
     }
 }
-impl support::IntoDartExceptPrimitive for CustomTextAlign {}
-
-impl support::IntoDart for MessageType {
-    fn into_dart(self) -> support::DartAbi {
-        match self {
-            Self::Output => 0,
-            Self::Error => 1,
-        }
-        .into_dart()
-    }
-}
-impl support::IntoDartExceptPrimitive for MessageType {}
-
-impl support::IntoDart for Status {
-    fn into_dart(self) -> support::DartAbi {
-        vec![self.messages.into_dart(), self.controls.into_dart()].into_dart()
-    }
-}
-impl support::IntoDartExceptPrimitive for Status {}
+impl support::IntoDartExceptPrimitive for TextAlignInfo {}
 
 // Section: executor
 

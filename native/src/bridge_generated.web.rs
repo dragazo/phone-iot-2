@@ -7,18 +7,18 @@ pub fn wire_initialize(port_: MessagePort) {
 }
 
 #[wasm_bindgen]
-pub fn wire_get_status(port_: MessagePort) {
-    wire_get_status_impl(port_)
+pub fn wire_send_command(port_: MessagePort, cmd: JsValue) {
+    wire_send_command_impl(port_, cmd)
 }
 
 #[wasm_bindgen]
-pub fn wire_set_project(port_: MessagePort, xml: String) {
-    wire_set_project_impl(port_, xml)
+pub fn wire_recv_commands(port_: MessagePort) {
+    wire_recv_commands_impl(port_)
 }
 
 #[wasm_bindgen]
-pub fn wire_start_project(port_: MessagePort) {
-    wire_start_project_impl(port_)
+pub fn wire_complete_request(port_: MessagePort, key: JsValue, result: JsValue) {
+    wire_complete_request_impl(port_, key, result)
 }
 
 // Section: allocate functions
@@ -33,6 +33,64 @@ impl Wire2Api<String> for String {
     }
 }
 
+impl Wire2Api<DartRequestKey> for JsValue {
+    fn wire2api(self) -> DartRequestKey {
+        let self_ = self.dyn_into::<JsArray>().unwrap();
+        assert_eq!(
+            self_.length(),
+            1,
+            "Expected 1 elements, got {}",
+            self_.length()
+        );
+        DartRequestKey {
+            value: self_.get(0).wire2api(),
+        }
+    }
+}
+
+impl Wire2Api<Vec<SimpleValue>> for JsValue {
+    fn wire2api(self) -> Vec<SimpleValue> {
+        self.dyn_into::<JsArray>()
+            .unwrap()
+            .iter()
+            .map(Wire2Api::wire2api)
+            .collect()
+    }
+}
+impl Wire2Api<RequestResult> for JsValue {
+    fn wire2api(self) -> RequestResult {
+        let self_ = self.unchecked_into::<JsArray>();
+        match self_.get(0).unchecked_into_f64() as _ {
+            0 => RequestResult::Ok(self_.get(1).wire2api()),
+            1 => RequestResult::Err(self_.get(1).wire2api()),
+            _ => unreachable!(),
+        }
+    }
+}
+impl Wire2Api<RustCommand> for JsValue {
+    fn wire2api(self) -> RustCommand {
+        let self_ = self.unchecked_into::<JsArray>();
+        match self_.get(0).unchecked_into_f64() as _ {
+            0 => RustCommand::SetProject {
+                xml: self_.get(1).wire2api(),
+            },
+            1 => RustCommand::Start,
+            _ => unreachable!(),
+        }
+    }
+}
+impl Wire2Api<SimpleValue> for JsValue {
+    fn wire2api(self) -> SimpleValue {
+        let self_ = self.unchecked_into::<JsArray>();
+        match self_.get(0).unchecked_into_f64() as _ {
+            0 => SimpleValue::Number(self_.get(1).wire2api()),
+            1 => SimpleValue::String(self_.get(1).wire2api()),
+            2 => SimpleValue::List(self_.get(1).wire2api()),
+            _ => unreachable!(),
+        }
+    }
+}
+
 impl Wire2Api<Vec<u8>> for Box<[u8]> {
     fn wire2api(self) -> Vec<u8> {
         self.into_vec()
@@ -43,6 +101,16 @@ impl Wire2Api<Vec<u8>> for Box<[u8]> {
 impl Wire2Api<String> for JsValue {
     fn wire2api(self) -> String {
         self.as_string().expect("non-UTF-8 string, or not a string")
+    }
+}
+impl Wire2Api<f64> for JsValue {
+    fn wire2api(self) -> f64 {
+        self.unchecked_into_f64() as _
+    }
+}
+impl Wire2Api<u64> for JsValue {
+    fn wire2api(self) -> u64 {
+        ::std::convert::TryInto::try_into(self.dyn_into::<js_sys::BigInt>().unwrap()).unwrap()
     }
 }
 impl Wire2Api<u8> for JsValue {

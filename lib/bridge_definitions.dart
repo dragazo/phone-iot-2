@@ -18,34 +18,37 @@ abstract class Native {
 
   FlutterRustBridgeTaskConstMeta get kInitializeConstMeta;
 
-  Future<Status> getStatus({dynamic hint});
+  Future<void> sendCommand({required RustCommand cmd, dynamic hint});
 
-  FlutterRustBridgeTaskConstMeta get kGetStatusConstMeta;
+  FlutterRustBridgeTaskConstMeta get kSendCommandConstMeta;
 
-  Future<void> setProject({required String xml, dynamic hint});
+  Future<List<DartCommand>> recvCommands({dynamic hint});
 
-  FlutterRustBridgeTaskConstMeta get kSetProjectConstMeta;
+  FlutterRustBridgeTaskConstMeta get kRecvCommandsConstMeta;
 
-  Future<void> startProject({dynamic hint});
+  Future<void> completeRequest(
+      {required DartRequestKey key,
+      required RequestResult result,
+      dynamic hint});
 
-  FlutterRustBridgeTaskConstMeta get kStartProjectConstMeta;
+  FlutterRustBridgeTaskConstMeta get kCompleteRequestConstMeta;
 }
 
-class CustomButton {
+class ButtonInfo {
   final String id;
   final double x;
   final double y;
   final double width;
   final double height;
-  final CustomColor backColor;
-  final CustomColor foreColor;
+  final ColorInfo backColor;
+  final ColorInfo foreColor;
   final String text;
   final String? event;
   final double fontSize;
-  final CustomButtonStyle style;
+  final ButtonStyleInfo style;
   final bool landscape;
 
-  const CustomButton({
+  const ButtonInfo({
     required this.id,
     required this.x,
     required this.y,
@@ -61,20 +64,20 @@ class CustomButton {
   });
 }
 
-enum CustomButtonStyle {
+enum ButtonStyleInfo {
   Rectangle,
   Ellipse,
   Square,
   Circle,
 }
 
-class CustomColor {
+class ColorInfo {
   final int a;
   final int r;
   final int g;
   final int b;
 
-  const CustomColor({
+  const ColorInfo({
     required this.a,
     required this.r,
     required this.g,
@@ -83,26 +86,42 @@ class CustomColor {
 }
 
 @freezed
-sealed class CustomControl with _$CustomControl {
-  const factory CustomControl.button(
-    CustomButton field0,
-  ) = CustomControl_Button;
-  const factory CustomControl.label(
-    CustomLabel field0,
-  ) = CustomControl_Label;
+sealed class DartCommand with _$DartCommand {
+  const factory DartCommand.stdout({
+    required String msg,
+  }) = DartCommand_Stdout;
+  const factory DartCommand.stderr({
+    required String msg,
+  }) = DartCommand_Stderr;
+  const factory DartCommand.addButton({
+    required ButtonInfo info,
+    required DartRequestKey key,
+  }) = DartCommand_AddButton;
+  const factory DartCommand.addLabel({
+    required LabelInfo info,
+    required DartRequestKey key,
+  }) = DartCommand_AddLabel;
 }
 
-class CustomLabel {
+class DartRequestKey {
+  final int value;
+
+  const DartRequestKey({
+    required this.value,
+  });
+}
+
+class LabelInfo {
   final String id;
   final double x;
   final double y;
-  final CustomColor color;
+  final ColorInfo color;
   final String text;
   final double fontSize;
-  final CustomTextAlign align;
+  final TextAlignInfo align;
   final bool landscape;
 
-  const CustomLabel({
+  const LabelInfo({
     required this.id,
     required this.x,
     required this.y,
@@ -114,23 +133,39 @@ class CustomLabel {
   });
 }
 
-enum CustomTextAlign {
+@freezed
+sealed class RequestResult with _$RequestResult {
+  const factory RequestResult.ok(
+    SimpleValue field0,
+  ) = RequestResult_Ok;
+  const factory RequestResult.err(
+    String field0,
+  ) = RequestResult_Err;
+}
+
+@freezed
+sealed class RustCommand with _$RustCommand {
+  const factory RustCommand.setProject({
+    required String xml,
+  }) = RustCommand_SetProject;
+  const factory RustCommand.start() = RustCommand_Start;
+}
+
+@freezed
+sealed class SimpleValue with _$SimpleValue {
+  const factory SimpleValue.number(
+    double field0,
+  ) = SimpleValue_Number;
+  const factory SimpleValue.string(
+    String field0,
+  ) = SimpleValue_String;
+  const factory SimpleValue.list(
+    List<SimpleValue> field0,
+  ) = SimpleValue_List;
+}
+
+enum TextAlignInfo {
   Left,
   Center,
   Right,
-}
-
-enum MessageType {
-  Output,
-  Error,
-}
-
-class Status {
-  final List<(MessageType, String)> messages;
-  final List<CustomControl> controls;
-
-  const Status({
-    required this.messages,
-    required this.controls,
-  });
 }

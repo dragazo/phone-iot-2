@@ -37,13 +37,23 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+enum MessageType {
+  stdout, stderr,
+}
+class Message {
+  DateTime t;
+  String msg;
+  MessageType type;
+  Message(this.msg, this.type) : t = DateTime.now();
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   late String deviceID;
   late String devicePW;
+  Timer? timer;
 
-  late Status status;
-  late Timer? timer;
-
+  final List<Message> messages = List.empty();
+  final Map<String, CustomControl> controls = {};
   bool menuOpen = true;
 
   @override
@@ -54,15 +64,26 @@ class _MyHomePageState extends State<MyHomePage> {
     devicePW = 'test pass';
 
     api.initialize();
-    status = const Status(
-      messages: [],
-      controls: [],
-    );
 
+    void addControl(String id, CustomControl control, DartRequestKey key) {
+      if (controls.containsKey(id)) {
+        api.completeRequest(key: key, result: RequestResult.err('id $id is already in use'));
+      } else {
+        controls[id] = control;
+        api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+      }
+    }
     void update() {
-      api.getStatus()
-        .then((res) {
-          setState(() => status = res);
+      api.recvCommands()
+        .then((commands) {
+          for (final command in commands) {
+            command.when(
+              stdout: (msg) => setState(() => messages.add(Message(msg, MessageType.stdout))),
+              stderr: (msg) => setState(() => messages.add(Message(msg, MessageType.stderr))),
+              addButton: (info, key) => addControl(info.id, CustomButton(info), key),
+              addLabel: (info, key) => addControl(info.id, CustomLabel(info), key),
+            );
+          }
           timer = Timer(updateInterval, update);
         })
         .catchError((e) {
@@ -160,16 +181,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-    final messages = <Widget>[];
-    for (final item in status.messages) {
+    final msgs = <Widget>[];
+    for (final item in messages) {
       Color color;
-      switch (item.$1) {
-        case MessageType.Error:
-          color = Colors.red;
-        case MessageType.Output:
-          color = const Color.fromARGB(255, 80, 80, 80);
+      switch (item.type) {
+        case MessageType.stderr: color = Colors.red;
+        case MessageType.stdout: color = const Color.fromARGB(255, 80, 80, 80);
       }
-      messages.add(Container(
+      msgs.add(Container(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           color: color,
@@ -185,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: SizedBox(
             width: 300,
             child: Text(
-              item.$2,
+              item.msg,
               style: const TextStyle(
                 color: Color.fromARGB(255, 200, 200, 200),
               ),
@@ -193,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ));
-      messages.add(const SizedBox(height: 5));
+      msgs.add(const SizedBox(height: 5));
     }
 
     return Scaffold(
@@ -219,7 +238,7 @@ class _MyHomePageState extends State<MyHomePage> {
               print('up ${e.pointer}');
             },
             child: CustomPaint(
-              painter: ControlsCanvas(status.controls),
+              painter: ControlsCanvas(controls),
               child: Container(),
             ),
           ),
@@ -227,7 +246,7 @@ class _MyHomePageState extends State<MyHomePage> {
             right: 20,
             top: 20,
             child: Column(
-              children: messages,
+              children: msgs,
             ),
           ),
           AnimatedPositioned(
@@ -262,13 +281,13 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     http.get(Uri.parse(url))
       .then((res) {
-        api.setProject(xml: res.body);
+        api.sendCommand(cmd: RustCommand.setProject(xml: res.body));
       })
       .catchError((e) {
         print('error fetching project $e');
       });
   }
   void _startProject() {
-    api.startProject();
+    api.sendCommand(cmd: const RustCommand.start());
   }
 }

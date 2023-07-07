@@ -36,53 +36,59 @@ class NativeImpl implements Native {
         argNames: [],
       );
 
-  Future<Status> getStatus({dynamic hint}) {
+  Future<void> sendCommand({required RustCommand cmd, dynamic hint}) {
+    var arg0 = _platform.api2wire_box_autoadd_rust_command(cmd);
     return _platform.executeNormal(FlutterRustBridgeTask(
-      callFfi: (port_) => _platform.inner.wire_get_status(port_),
-      parseSuccessData: _wire2api_status,
-      constMeta: kGetStatusConstMeta,
+      callFfi: (port_) => _platform.inner.wire_send_command(port_, arg0),
+      parseSuccessData: _wire2api_unit,
+      constMeta: kSendCommandConstMeta,
+      argValues: [cmd],
+      hint: hint,
+    ));
+  }
+
+  FlutterRustBridgeTaskConstMeta get kSendCommandConstMeta =>
+      const FlutterRustBridgeTaskConstMeta(
+        debugName: "send_command",
+        argNames: ["cmd"],
+      );
+
+  Future<List<DartCommand>> recvCommands({dynamic hint}) {
+    return _platform.executeNormal(FlutterRustBridgeTask(
+      callFfi: (port_) => _platform.inner.wire_recv_commands(port_),
+      parseSuccessData: _wire2api_list_dart_command,
+      constMeta: kRecvCommandsConstMeta,
       argValues: [],
       hint: hint,
     ));
   }
 
-  FlutterRustBridgeTaskConstMeta get kGetStatusConstMeta =>
+  FlutterRustBridgeTaskConstMeta get kRecvCommandsConstMeta =>
       const FlutterRustBridgeTaskConstMeta(
-        debugName: "get_status",
+        debugName: "recv_commands",
         argNames: [],
       );
 
-  Future<void> setProject({required String xml, dynamic hint}) {
-    var arg0 = _platform.api2wire_String(xml);
+  Future<void> completeRequest(
+      {required DartRequestKey key,
+      required RequestResult result,
+      dynamic hint}) {
+    var arg0 = _platform.api2wire_box_autoadd_dart_request_key(key);
+    var arg1 = _platform.api2wire_box_autoadd_request_result(result);
     return _platform.executeNormal(FlutterRustBridgeTask(
-      callFfi: (port_) => _platform.inner.wire_set_project(port_, arg0),
+      callFfi: (port_) =>
+          _platform.inner.wire_complete_request(port_, arg0, arg1),
       parseSuccessData: _wire2api_unit,
-      constMeta: kSetProjectConstMeta,
-      argValues: [xml],
+      constMeta: kCompleteRequestConstMeta,
+      argValues: [key, result],
       hint: hint,
     ));
   }
 
-  FlutterRustBridgeTaskConstMeta get kSetProjectConstMeta =>
+  FlutterRustBridgeTaskConstMeta get kCompleteRequestConstMeta =>
       const FlutterRustBridgeTaskConstMeta(
-        debugName: "set_project",
-        argNames: ["xml"],
-      );
-
-  Future<void> startProject({dynamic hint}) {
-    return _platform.executeNormal(FlutterRustBridgeTask(
-      callFfi: (port_) => _platform.inner.wire_start_project(port_),
-      parseSuccessData: _wire2api_unit,
-      constMeta: kStartProjectConstMeta,
-      argValues: [],
-      hint: hint,
-    ));
-  }
-
-  FlutterRustBridgeTaskConstMeta get kStartProjectConstMeta =>
-      const FlutterRustBridgeTaskConstMeta(
-        debugName: "start_project",
-        argNames: [],
+        debugName: "complete_request",
+        argNames: ["key", "result"],
       );
 
   void dispose() {
@@ -94,58 +100,51 @@ class NativeImpl implements Native {
     return raw as String;
   }
 
-  (MessageType, String) _wire2api___record__message_type_String(dynamic raw) {
-    final arr = raw as List<dynamic>;
-    if (arr.length != 2) {
-      throw Exception('Expected 2 elements, got ${arr.length}');
-    }
-    return (
-      _wire2api_message_type(arr[0]),
-      _wire2api_String(arr[1]),
-    );
-  }
-
   bool _wire2api_bool(dynamic raw) {
     return raw as bool;
   }
 
-  CustomButton _wire2api_box_autoadd_custom_button(dynamic raw) {
-    return _wire2api_custom_button(raw);
+  ButtonInfo _wire2api_box_autoadd_button_info(dynamic raw) {
+    return _wire2api_button_info(raw);
   }
 
-  CustomLabel _wire2api_box_autoadd_custom_label(dynamic raw) {
-    return _wire2api_custom_label(raw);
+  DartRequestKey _wire2api_box_autoadd_dart_request_key(dynamic raw) {
+    return _wire2api_dart_request_key(raw);
   }
 
-  CustomButton _wire2api_custom_button(dynamic raw) {
+  LabelInfo _wire2api_box_autoadd_label_info(dynamic raw) {
+    return _wire2api_label_info(raw);
+  }
+
+  ButtonInfo _wire2api_button_info(dynamic raw) {
     final arr = raw as List<dynamic>;
     if (arr.length != 12)
       throw Exception('unexpected arr length: expect 12 but see ${arr.length}');
-    return CustomButton(
+    return ButtonInfo(
       id: _wire2api_String(arr[0]),
       x: _wire2api_f32(arr[1]),
       y: _wire2api_f32(arr[2]),
       width: _wire2api_f32(arr[3]),
       height: _wire2api_f32(arr[4]),
-      backColor: _wire2api_custom_color(arr[5]),
-      foreColor: _wire2api_custom_color(arr[6]),
+      backColor: _wire2api_color_info(arr[5]),
+      foreColor: _wire2api_color_info(arr[6]),
       text: _wire2api_String(arr[7]),
       event: _wire2api_opt_String(arr[8]),
       fontSize: _wire2api_f32(arr[9]),
-      style: _wire2api_custom_button_style(arr[10]),
+      style: _wire2api_button_style_info(arr[10]),
       landscape: _wire2api_bool(arr[11]),
     );
   }
 
-  CustomButtonStyle _wire2api_custom_button_style(dynamic raw) {
-    return CustomButtonStyle.values[raw as int];
+  ButtonStyleInfo _wire2api_button_style_info(dynamic raw) {
+    return ButtonStyleInfo.values[raw as int];
   }
 
-  CustomColor _wire2api_custom_color(dynamic raw) {
+  ColorInfo _wire2api_color_info(dynamic raw) {
     final arr = raw as List<dynamic>;
     if (arr.length != 4)
       throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
-    return CustomColor(
+    return ColorInfo(
       a: _wire2api_u8(arr[0]),
       r: _wire2api_u8(arr[1]),
       g: _wire2api_u8(arr[2]),
@@ -153,39 +152,38 @@ class NativeImpl implements Native {
     );
   }
 
-  CustomControl _wire2api_custom_control(dynamic raw) {
+  DartCommand _wire2api_dart_command(dynamic raw) {
     switch (raw[0]) {
       case 0:
-        return CustomControl_Button(
-          _wire2api_box_autoadd_custom_button(raw[1]),
+        return DartCommand_Stdout(
+          msg: _wire2api_String(raw[1]),
         );
       case 1:
-        return CustomControl_Label(
-          _wire2api_box_autoadd_custom_label(raw[1]),
+        return DartCommand_Stderr(
+          msg: _wire2api_String(raw[1]),
+        );
+      case 2:
+        return DartCommand_AddButton(
+          info: _wire2api_box_autoadd_button_info(raw[1]),
+          key: _wire2api_box_autoadd_dart_request_key(raw[2]),
+        );
+      case 3:
+        return DartCommand_AddLabel(
+          info: _wire2api_box_autoadd_label_info(raw[1]),
+          key: _wire2api_box_autoadd_dart_request_key(raw[2]),
         );
       default:
         throw Exception("unreachable");
     }
   }
 
-  CustomLabel _wire2api_custom_label(dynamic raw) {
+  DartRequestKey _wire2api_dart_request_key(dynamic raw) {
     final arr = raw as List<dynamic>;
-    if (arr.length != 8)
-      throw Exception('unexpected arr length: expect 8 but see ${arr.length}');
-    return CustomLabel(
-      id: _wire2api_String(arr[0]),
-      x: _wire2api_f32(arr[1]),
-      y: _wire2api_f32(arr[2]),
-      color: _wire2api_custom_color(arr[3]),
-      text: _wire2api_String(arr[4]),
-      fontSize: _wire2api_f32(arr[5]),
-      align: _wire2api_custom_text_align(arr[6]),
-      landscape: _wire2api_bool(arr[7]),
+    if (arr.length != 1)
+      throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
+    return DartRequestKey(
+      value: _wire2api_u64(arr[0]),
     );
-  }
-
-  CustomTextAlign _wire2api_custom_text_align(dynamic raw) {
-    return CustomTextAlign.values[raw as int];
   }
 
   double _wire2api_f32(dynamic raw) {
@@ -196,33 +194,36 @@ class NativeImpl implements Native {
     return raw as int;
   }
 
-  List<(MessageType, String)> _wire2api_list___record__message_type_String(
-      dynamic raw) {
-    return (raw as List<dynamic>)
-        .map(_wire2api___record__message_type_String)
-        .toList();
+  LabelInfo _wire2api_label_info(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 8)
+      throw Exception('unexpected arr length: expect 8 but see ${arr.length}');
+    return LabelInfo(
+      id: _wire2api_String(arr[0]),
+      x: _wire2api_f32(arr[1]),
+      y: _wire2api_f32(arr[2]),
+      color: _wire2api_color_info(arr[3]),
+      text: _wire2api_String(arr[4]),
+      fontSize: _wire2api_f32(arr[5]),
+      align: _wire2api_text_align_info(arr[6]),
+      landscape: _wire2api_bool(arr[7]),
+    );
   }
 
-  List<CustomControl> _wire2api_list_custom_control(dynamic raw) {
-    return (raw as List<dynamic>).map(_wire2api_custom_control).toList();
-  }
-
-  MessageType _wire2api_message_type(dynamic raw) {
-    return MessageType.values[raw as int];
+  List<DartCommand> _wire2api_list_dart_command(dynamic raw) {
+    return (raw as List<dynamic>).map(_wire2api_dart_command).toList();
   }
 
   String? _wire2api_opt_String(dynamic raw) {
     return raw == null ? null : _wire2api_String(raw);
   }
 
-  Status _wire2api_status(dynamic raw) {
-    final arr = raw as List<dynamic>;
-    if (arr.length != 2)
-      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
-    return Status(
-      messages: _wire2api_list___record__message_type_String(arr[0]),
-      controls: _wire2api_list_custom_control(arr[1]),
-    );
+  TextAlignInfo _wire2api_text_align_info(dynamic raw) {
+    return TextAlignInfo.values[raw as int];
+  }
+
+  int _wire2api_u64(dynamic raw) {
+    return castInt(raw);
   }
 
   int _wire2api_u8(dynamic raw) {
@@ -239,6 +240,11 @@ class NativeImpl implements Native {
 }
 
 // Section: api2wire
+
+@protected
+double api2wire_f64(double raw) {
+  return raw;
+}
 
 @protected
 int api2wire_u8(int raw) {

@@ -26,6 +26,80 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
   }
 
   @protected
+  List<dynamic> api2wire_box_autoadd_dart_request_key(DartRequestKey raw) {
+    return api2wire_dart_request_key(raw);
+  }
+
+  @protected
+  List<dynamic> api2wire_box_autoadd_request_result(RequestResult raw) {
+    return api2wire_request_result(raw);
+  }
+
+  @protected
+  List<dynamic> api2wire_box_autoadd_rust_command(RustCommand raw) {
+    return api2wire_rust_command(raw);
+  }
+
+  @protected
+  List<dynamic> api2wire_box_autoadd_simple_value(SimpleValue raw) {
+    return api2wire_simple_value(raw);
+  }
+
+  @protected
+  List<dynamic> api2wire_dart_request_key(DartRequestKey raw) {
+    return [api2wire_u64(raw.value)];
+  }
+
+  @protected
+  List<dynamic> api2wire_list_simple_value(List<SimpleValue> raw) {
+    return raw.map(api2wire_simple_value).toList();
+  }
+
+  @protected
+  List<dynamic> api2wire_request_result(RequestResult raw) {
+    if (raw is RequestResult_Ok) {
+      return [0, api2wire_box_autoadd_simple_value(raw.field0)];
+    }
+    if (raw is RequestResult_Err) {
+      return [1, api2wire_String(raw.field0)];
+    }
+
+    throw Exception('unreachable');
+  }
+
+  @protected
+  List<dynamic> api2wire_rust_command(RustCommand raw) {
+    if (raw is RustCommand_SetProject) {
+      return [0, api2wire_String(raw.xml)];
+    }
+    if (raw is RustCommand_Start) {
+      return [1];
+    }
+
+    throw Exception('unreachable');
+  }
+
+  @protected
+  List<dynamic> api2wire_simple_value(SimpleValue raw) {
+    if (raw is SimpleValue_Number) {
+      return [0, api2wire_f64(raw.field0)];
+    }
+    if (raw is SimpleValue_String) {
+      return [1, api2wire_String(raw.field0)];
+    }
+    if (raw is SimpleValue_List) {
+      return [2, api2wire_list_simple_value(raw.field0)];
+    }
+
+    throw Exception('unreachable');
+  }
+
+  @protected
+  Object api2wire_u64(int raw) {
+    return castNativeBigInt(raw);
+  }
+
+  @protected
   Uint8List api2wire_uint_8_list(Uint8List raw) {
     return raw;
   }
@@ -44,12 +118,13 @@ class NativeWasmModule implements WasmModule {
   external NativeWasmModule bind(dynamic thisArg, String moduleName);
   external dynamic /* void */ wire_initialize(NativePortType port_);
 
-  external dynamic /* void */ wire_get_status(NativePortType port_);
+  external dynamic /* void */ wire_send_command(
+      NativePortType port_, List<dynamic> cmd);
 
-  external dynamic /* void */ wire_set_project(
-      NativePortType port_, String xml);
+  external dynamic /* void */ wire_recv_commands(NativePortType port_);
 
-  external dynamic /* void */ wire_start_project(NativePortType port_);
+  external dynamic /* void */ wire_complete_request(
+      NativePortType port_, List<dynamic> key, List<dynamic> result);
 }
 
 // Section: WASM wire connector
@@ -61,12 +136,13 @@ class NativeWire extends FlutterRustBridgeWasmWireBase<NativeWasmModule> {
   void wire_initialize(NativePortType port_) =>
       wasmModule.wire_initialize(port_);
 
-  void wire_get_status(NativePortType port_) =>
-      wasmModule.wire_get_status(port_);
+  void wire_send_command(NativePortType port_, List<dynamic> cmd) =>
+      wasmModule.wire_send_command(port_, cmd);
 
-  void wire_set_project(NativePortType port_, String xml) =>
-      wasmModule.wire_set_project(port_, xml);
+  void wire_recv_commands(NativePortType port_) =>
+      wasmModule.wire_recv_commands(port_);
 
-  void wire_start_project(NativePortType port_) =>
-      wasmModule.wire_start_project(port_);
+  void wire_complete_request(
+          NativePortType port_, List<dynamic> key, List<dynamic> result) =>
+      wasmModule.wire_complete_request(port_, key, result);
 }
