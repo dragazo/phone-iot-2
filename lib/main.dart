@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'canvas.dart';
 
-const updateInterval = Duration(milliseconds: 500);
+const updateInterval = Duration(milliseconds: 50);
 const messageLifetime = Duration(seconds: 10);
 
 void main() {

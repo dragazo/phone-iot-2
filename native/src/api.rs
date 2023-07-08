@@ -289,6 +289,17 @@ pub fn initialize() {
                             }
                         }
                     };
+                    ($n:ident := $e:expr => TextAlignInfo) => {
+                        match parse!($n := $e => String).as_str() {
+                            "left" => TextAlignInfo::Left,
+                            "right" => TextAlignInfo::Right,
+                            "center" => TextAlignInfo::Center,
+                            x => {
+                                key.complete(Err(format!("'{}': unknown text align '{}'", stringify!($n), x)));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
                     ($n:ident := $e:expr => ColorInfo) => {{
                         let v = parse!($n := $e => f64) as i32 as u32;
                         let a = (v >> 24) as u8;
@@ -362,6 +373,28 @@ pub fn initialize() {
                             PENDING_REQUESTS.lock().unwrap().insert(dart_key, key);
                             DART_COMMANDS.lock().unwrap().push(DartCommand::AddButton { key: dart_key, info: ButtonInfo {
                                 id, x, y, width, height, text, landscape, back_color, fore_color, font_size, event, style,
+                            }});
+                            RequestStatus::Handled
+                        }
+                        "addLabel" => {
+                            if args.len() != 5 || !args[0].1.to_string().ok().map(|x| is_local_id(&x)).unwrap_or(false) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let x = parse!(x := args[1].1 => f64);
+                            let y = parse!(y := args[2].1 => f64);
+                            let text = parse!(text := args[3].1 => String);
+                            let options = parse!(options := args[4].1 => { id, textColor, align, fontSize, landscape });
+                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                            let color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
+                            let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
+                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                            let align = parse!(align := options.get("align") => Option<TextAlignInfo>).unwrap_or(TextAlignInfo::Left);
+
+                            let dart_key = DartRequestKey::new();
+                            PENDING_REQUESTS.lock().unwrap().insert(dart_key, key);
+                            DART_COMMANDS.lock().unwrap().push(DartCommand::AddLabel { key: dart_key, info: LabelInfo {
+                                x, y, text, id, color, font_size, landscape, align,
                             }});
                             RequestStatus::Handled
                         }
