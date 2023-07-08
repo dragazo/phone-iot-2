@@ -24,23 +24,27 @@ const BLACK: ColorInfo = ColorInfo { a: 255, r: 0, g: 0, b: 0 };
 const WHITE: ColorInfo = ColorInfo { a: 255, r: 255, g: 255, b: 255 };
 
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
-static DART_COMMANDS_BACKLOG: Mutex<Vec<DartCommand>> = Mutex::new(Vec::new());
-static DART_COMMANDS: Mutex<Option<StreamSink<DartCommand>>> = Mutex::new(None);
+static DART_COMMANDS: Mutex<DartCommandPipe> = Mutex::new(DartCommandPipe { sink: None, backlog: Vec::new() });
 static RUST_COMMANDS: Mutex<Vec<RustCommand>> = Mutex::new(Vec::new());
 static PENDING_REQUESTS: Mutex<BTreeMap<DartRequestKey, RequestKey<C>>> = Mutex::new(BTreeMap::new());
 static KEY_COUNTER: AtomicUsize = AtomicUsize::new(0);
 static CONTROL_COUNTER: AtomicUsize = AtomicUsize::new(0);
+
+struct DartCommandPipe {
+    sink: Option<StreamSink<DartCommand>>,
+    backlog: Vec<DartCommand>,
+}
 
 fn new_control_id() -> String {
     format!("ctrl-{}", CONTROL_COUNTER.fetch_add(1, MemOrder::Relaxed).wrapping_add(1))
 }
 
 fn send_dart_command(cmd: DartCommand) {
-    let sink = DART_COMMANDS.lock().unwrap();
-    let handled = sink.as_ref().map(|x| x.add(cmd.clone())).unwrap_or(false);
+    let mut commands = DART_COMMANDS.lock().unwrap();
+    let handled = commands.sink.as_ref().map(|x| x.add(cmd.clone())).unwrap_or(false);
     if !handled {
         println!("backlogging cmd {cmd:?}");
-        DART_COMMANDS_BACKLOG.lock().unwrap().push(cmd);
+        commands.backlog.push(cmd);
     }
 }
 
@@ -541,9 +545,12 @@ pub fn send_command(cmd: RustCommand) {
     RUST_COMMANDS.lock().unwrap().push(cmd);
 }
 pub fn recv_commands(sink: StreamSink<DartCommand>) {
-    *DART_COMMANDS.lock().unwrap() = Some(sink.clone());
-    println!("retrying backlogged commands");
-    let backlog = mem::take(&mut *DART_COMMANDS_BACKLOG.lock().unwrap());
+    let backlog = {
+        let mut commands = DART_COMMANDS.lock().unwrap();
+        commands.sink = Some(sink.clone());
+        mem::take(&mut commands.backlog)
+    };
+    println!("retrying backlogged commands...");
     for cmd in backlog {
         send_dart_command(cmd);
     }
