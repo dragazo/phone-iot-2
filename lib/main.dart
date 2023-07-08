@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'canvas.dart';
 
-const updateInterval = Duration(milliseconds: 50);
+const updateInterval = Duration(milliseconds: 500);
 const messageLifetime = Duration(seconds: 10);
 
 void main() {
@@ -66,38 +66,37 @@ class _MyHomePageState extends State<MyHomePage> {
 
     api.initialize();
 
-    void addControl(String id, CustomControl control, DartRequestKey key) {
-      if (controls.containsKey(id)) {
-        api.completeRequest(key: key, result: RequestResult.err('id $id is already in use'));
-      } else {
-        setState(() => controls[id] = control);
-        api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(id)));
+    void msgLifetimeUpdateLoop() async {
+      while (true) {
+        await Future.delayed(const Duration(milliseconds: 500));
+        final now = DateTime.now();
+        while (messages.isNotEmpty && messages.first.expiry.isBefore(now)) {
+          setState(() => messages.removeAt(0));
+        }
       }
     }
-    void update() {
-      final now = DateTime.now();
-      while (messages.isNotEmpty && messages.first.expiry.isBefore(now)) {
-        setState(() => messages.removeAt(0));
+    msgLifetimeUpdateLoop();
+
+    void cmdHandlerLoop() async {
+      void addControl(String id, CustomControl control, DartRequestKey key) {
+        if (controls.containsKey(id)) {
+          api.completeRequest(key: key, result: RequestResult.err('id $id is already in use'));
+        } else {
+          setState(() => controls[id] = control);
+          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(id)));
+        }
       }
-      api.recvCommands()
-        .then((commands) {
-          for (final command in commands) {
-            command.when(
-              stdout: (msg) => setState(() => messages.add(Message(msg, MessageType.stdout))),
-              stderr: (msg) => setState(() => messages.add(Message(msg, MessageType.stderr))),
-              clearControls:() => setState(() => controls.clear()),
-              addButton: (info, key) => addControl(info.id, CustomButton(info), key),
-              addLabel: (info, key) => addControl(info.id, CustomLabel(info), key),
-            );
-          }
-          timer = Timer(updateInterval, update);
-        })
-        .catchError((e) {
-          debugPrint('update exception: $e');
-          timer = Timer(updateInterval, update);
-        });
+      await for (final cmd in api.recvCommands()) {
+        cmd.when(
+          stdout: (msg) => setState(() => messages.add(Message(msg, MessageType.stdout))),
+          stderr: (msg) => setState(() => messages.add(Message(msg, MessageType.stderr))),
+          clearControls:() => setState(() => controls.clear()),
+          addButton: (info, key) => addControl(info.id, CustomButton(info), key),
+          addLabel: (info, key) => addControl(info.id, CustomLabel(info), key),
+        );
+      }
     }
-    update();
+    cmdHandlerLoop();
   }
 
   @override

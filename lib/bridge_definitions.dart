@@ -22,7 +22,7 @@ abstract class Native {
 
   FlutterRustBridgeTaskConstMeta get kSendCommandConstMeta;
 
-  Future<List<DartCommand>> recvCommands({dynamic hint});
+  Stream<DartCommand> recvCommands({dynamic hint});
 
   FlutterRustBridgeTaskConstMeta get kRecvCommandsConstMeta;
 

@@ -49,9 +49,9 @@ fn wire_recv_commands_impl(port_: MessagePort) {
         WrapInfo {
             debug_name: "recv_commands",
             port: Some(port_),
-            mode: FfiCallMode::Normal,
+            mode: FfiCallMode::Stream,
         },
-        move || move |task_callback| Ok(recv_commands()),
+        move || move |task_callback| Ok(recv_commands(task_callback.stream_sink())),
     )
 }
 fn wire_complete_request_impl(

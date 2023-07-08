@@ -13,6 +13,8 @@ use netsblox_vm::gc::{Gc, RefLock, Collect, Arena, Rootable, Mutation};
 use netsblox_vm::json::{Json, json};
 use netsblox_vm::ast;
 
+use flutter_rust_bridge::StreamSink;
+
 const SERVER_URL: &'static str = "https://editor.netsblox.org";
 const IDLE_SLEEP_THRESH: usize = 256;
 const IDLE_SLEEP_TIME: Duration = Duration::from_millis(1);
@@ -22,7 +24,8 @@ const BLACK: ColorInfo = ColorInfo { a: 255, r: 0, g: 0, b: 0 };
 const WHITE: ColorInfo = ColorInfo { a: 255, r: 255, g: 255, b: 255 };
 
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
-static DART_COMMANDS: Mutex<Vec<DartCommand>> = Mutex::new(Vec::new());
+static DART_COMMANDS_BACKLOG: Mutex<Vec<DartCommand>> = Mutex::new(Vec::new());
+static DART_COMMANDS: Mutex<Option<StreamSink<DartCommand>>> = Mutex::new(None);
 static RUST_COMMANDS: Mutex<Vec<RustCommand>> = Mutex::new(Vec::new());
 static PENDING_REQUESTS: Mutex<BTreeMap<DartRequestKey, RequestKey<C>>> = Mutex::new(BTreeMap::new());
 static KEY_COUNTER: AtomicUsize = AtomicUsize::new(0);
@@ -30,6 +33,15 @@ static CONTROL_COUNTER: AtomicUsize = AtomicUsize::new(0);
 
 fn new_control_id() -> String {
     format!("ctrl-{}", CONTROL_COUNTER.fetch_add(1, MemOrder::Relaxed).wrapping_add(1))
+}
+
+fn send_dart_command(cmd: DartCommand) {
+    let sink = DART_COMMANDS.lock().unwrap();
+    let handled = sink.as_ref().map(|x| x.add(cmd.clone())).unwrap_or(false);
+    if !handled {
+        println!("backlogging cmd {cmd:?}");
+        DART_COMMANDS_BACKLOG.lock().unwrap().push(cmd);
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -102,20 +114,23 @@ fn get_env<C: CustomTypes<StdSystem<C>>>(role: &ast::Role, system: Rc<StdSystem<
 
 // -----------------------------------------------------------------
 
+#[derive(Clone, Copy, Debug)]
 pub enum ButtonStyleInfo {
     Rectangle, Ellipse, Square, Circle,
 }
+#[derive(Clone, Copy, Debug)]
 pub enum TextAlignInfo {
     Left, Center, Right,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub struct ColorInfo {
     pub a: u8,
     pub r: u8,
     pub g: u8,
     pub b: u8,
 }
+#[derive(Clone, Debug)]
 pub struct ButtonInfo {
     pub id: String,
     pub x: f64,
@@ -130,6 +145,7 @@ pub struct ButtonInfo {
     pub style: ButtonStyleInfo,
     pub landscape: bool,
 }
+#[derive(Clone, Debug)]
 pub struct LabelInfo {
     pub id: String,
     pub x: f64,
@@ -146,7 +162,7 @@ pub enum RustCommand {
     Start,
 }
 
-#[derive(Clone, Copy, PartialOrd, Ord, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialOrd, Ord, PartialEq, Eq, Debug)]
 pub struct DartRequestKey {
     pub value: usize,
 }
@@ -156,6 +172,7 @@ impl DartRequestKey {
     }
 }
 
+#[derive(Clone, Debug)]
 pub enum DartCommand {
     Stdout { msg: String },
     Stderr { msg: String },
@@ -201,8 +218,8 @@ pub fn initialize() {
                     Command::Print { style: _, value } => {
                         if let Some(value) = value {
                             match value.to_string() {
-                                Ok(x) => DART_COMMANDS.lock().unwrap().push(DartCommand::Stdout { msg: x.into_owned() }),
-                                Err(e) => DART_COMMANDS.lock().unwrap().push(DartCommand::Stderr { msg: format!("print {e:?}") }),
+                                Ok(x) => send_dart_command(DartCommand::Stdout { msg: x.into_owned() }),
+                                Err(e) => send_dart_command(DartCommand::Stderr { msg: format!("print {e:?}") }),
                             }
                         }
                     }
@@ -345,7 +362,7 @@ pub fn initialize() {
                                 return RequestStatus::UseDefault { key, request };
                             }
 
-                            DART_COMMANDS.lock().unwrap().push(DartCommand::ClearControls);
+                            send_dart_command(DartCommand::ClearControls);
                             CONTROL_COUNTER.store(0, MemOrder::Relaxed);
                             key.complete(Ok(Intermediate::Json(json!("OK"))));
                             RequestStatus::Handled
@@ -371,7 +388,7 @@ pub fn initialize() {
 
                             let dart_key = DartRequestKey::new();
                             PENDING_REQUESTS.lock().unwrap().insert(dart_key, key);
-                            DART_COMMANDS.lock().unwrap().push(DartCommand::AddButton { key: dart_key, info: ButtonInfo {
+                            send_dart_command(DartCommand::AddButton { key: dart_key, info: ButtonInfo {
                                 id, x, y, width, height, text, landscape, back_color, fore_color, font_size, event, style,
                             }});
                             RequestStatus::Handled
@@ -393,7 +410,7 @@ pub fn initialize() {
 
                             let dart_key = DartRequestKey::new();
                             PENDING_REQUESTS.lock().unwrap().insert(dart_key, key);
-                            DART_COMMANDS.lock().unwrap().push(DartCommand::AddLabel { key: dart_key, info: LabelInfo {
+                            send_dart_command(DartCommand::AddLabel { key: dart_key, info: LabelInfo {
                                 x, y, text, id, color, font_size, landscape, align,
                             }});
                             RequestStatus::Handled
@@ -420,13 +437,13 @@ pub fn initialize() {
                             [role] => match get_env(role, system.clone()) {
                                 Ok(x) => {
                                     env = x;
-                                    DART_COMMANDS.lock().unwrap().push(DartCommand::Stdout { msg: "loaded project".into() });
+                                    send_dart_command(DartCommand::Stdout { msg: "loaded project".into() });
                                 }
-                                Err(e) => DART_COMMANDS.lock().unwrap().push(DartCommand::Stderr { msg: format!("project load error: {e:?}") }),
+                                Err(e) => send_dart_command(DartCommand::Stderr { msg: format!("project load error: {e:?}") }),
                             }
-                            x => DART_COMMANDS.lock().unwrap().push(DartCommand::Stderr { msg: format!("project load error: expected 1 role, got {}", x.len()) } ),
+                            x => send_dart_command(DartCommand::Stderr { msg: format!("project load error: expected 1 role, got {}", x.len()) } ),
                         }
-                        Err(e) => DART_COMMANDS.lock().unwrap().push(DartCommand::Stderr { msg: format!("project load error: {e:?}") }),
+                        Err(e) => send_dart_command(DartCommand::Stderr { msg: format!("project load error: {e:?}") }),
                     }
                     RustCommand::Start => {
                         env.mutate(|mc, env| {
@@ -439,14 +456,14 @@ pub fn initialize() {
             env.mutate(|mc, env| {
                 let res = env.proj.borrow_mut(mc).step(mc);
                 if let ProjectStep::Error { error, proc } = &res {
-                    DART_COMMANDS.lock().unwrap().push(DartCommand::Stderr { msg: format!("runtime error in entity {:?}: {:?}", proc.get_call_stack().last().unwrap().entity.borrow().name, error.cause) });
+                    send_dart_command(DartCommand::Stderr { msg: format!("runtime error in entity {:?}: {:?}", proc.get_call_stack().last().unwrap().entity.borrow().name, error.cause) });
                 }
                 idle_sleeper.consume(&res);
             });
         }
     });
 
-    DART_COMMANDS.lock().unwrap().push(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
+    send_dart_command(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
         id: "test-1".into(),
         x: 10.0,
         y: 10.0,
@@ -460,7 +477,7 @@ pub fn initialize() {
         style: ButtonStyleInfo::Ellipse,
         landscape: false,
     }});
-    DART_COMMANDS.lock().unwrap().push(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
+    send_dart_command(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
         id: "test-2".into(),
         x: 20.0,
         y: 40.0,
@@ -474,7 +491,7 @@ pub fn initialize() {
         style: ButtonStyleInfo::Circle,
         landscape: false,
     }});
-    DART_COMMANDS.lock().unwrap().push(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
+    send_dart_command(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
         id: "test-3".into(),
         x: 55.0,
         y: 25.0,
@@ -488,7 +505,7 @@ pub fn initialize() {
         style: ButtonStyleInfo::Rectangle,
         landscape: true,
     }});
-    DART_COMMANDS.lock().unwrap().push(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
+    send_dart_command(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
         id: "test-4".into(),
         x: 20.0,
         y: 5.0,
@@ -498,7 +515,7 @@ pub fn initialize() {
         align: TextAlignInfo::Left,
         landscape: false,
     }});
-    DART_COMMANDS.lock().unwrap().push(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
+    send_dart_command(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
         id: "test-5".into(),
         x: 20.0,
         y: 7.0,
@@ -508,7 +525,7 @@ pub fn initialize() {
         align: TextAlignInfo::Center,
         landscape: true,
     }});
-    DART_COMMANDS.lock().unwrap().push(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
+    send_dart_command(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
         id: "test-6".into(),
         x: 20.0,
         y: 9.0,
@@ -523,8 +540,13 @@ pub fn initialize() {
 pub fn send_command(cmd: RustCommand) {
     RUST_COMMANDS.lock().unwrap().push(cmd);
 }
-pub fn recv_commands() -> Vec<DartCommand> {
-    mem::take(&mut *DART_COMMANDS.lock().unwrap())
+pub fn recv_commands(sink: StreamSink<DartCommand>) {
+    *DART_COMMANDS.lock().unwrap() = Some(sink.clone());
+    println!("retrying backlogged commands");
+    let backlog = mem::take(&mut *DART_COMMANDS_BACKLOG.lock().unwrap());
+    for cmd in backlog {
+        send_dart_command(cmd);
+    }
 }
 
 pub fn complete_request(key: DartRequestKey, result: RequestResult) {

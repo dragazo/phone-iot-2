@@ -53,10 +53,10 @@ class NativeImpl implements Native {
         argNames: ["cmd"],
       );
 
-  Future<List<DartCommand>> recvCommands({dynamic hint}) {
-    return _platform.executeNormal(FlutterRustBridgeTask(
+  Stream<DartCommand> recvCommands({dynamic hint}) {
+    return _platform.executeStream(FlutterRustBridgeTask(
       callFfi: (port_) => _platform.inner.wire_recv_commands(port_),
-      parseSuccessData: _wire2api_list_dart_command,
+      parseSuccessData: _wire2api_dart_command,
       constMeta: kRecvCommandsConstMeta,
       argValues: [],
       hint: hint,
@@ -210,10 +210,6 @@ class NativeImpl implements Native {
       align: _wire2api_text_align_info(arr[6]),
       landscape: _wire2api_bool(arr[7]),
     );
-  }
-
-  List<DartCommand> _wire2api_list_dart_command(dynamic raw) {
-    return (raw as List<dynamic>).map(_wire2api_dart_command).toList();
   }
 
   String? _wire2api_opt_String(dynamic raw) {
