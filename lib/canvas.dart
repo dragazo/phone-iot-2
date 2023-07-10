@@ -5,6 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:phone_iot_2/ffi.dart';
 
 const double defaultFontSize = 16;
+const Color selectColor = Color.fromARGB(50, 255, 255, 255);
+
+enum ClickType {
+  down, move, up,
+}
+enum ClickResult {
+  redraw, noRedraw,
+}
 
 Color getColor(ColorInfo color) {
   return Color.fromARGB(color.a, color.r, color.g, color.b);
@@ -15,6 +23,16 @@ TextAlign getAlign(TextAlignInfo align) {
     case TextAlignInfo.Center: return TextAlign.center;
     case TextAlignInfo.Right: return TextAlign.right;
   }
+}
+
+Rect rotated(Rect r) {
+  return Rect.fromLTWH(r.left - r.height, r.top, r.height, r.width);
+}
+bool ellipseContains(Rect r, Offset pos) {
+  double rx = r.width / 2, ry = r.height / 2;
+  double cx = r.left + rx, cy = r.top + ry;
+  double px = pos.dx - cx, py = pos.dy - cy;
+  return (px * px) / (rx * rx) + (py * py) / (ry * ry) <= 1;
 }
 
 void drawTextRect(Canvas canvas, Rect rect, Color color, String text, double fontSize, TextAlign align, bool vCenter) {
@@ -53,6 +71,8 @@ void drawTextPos(Canvas canvas, Offset offset, Color color, String text, double 
 abstract class CustomControl {
   Size canvasSize = Size.zero;
   void draw(Canvas canvas);
+  bool contains(Offset pos);
+  ClickResult handleClick(Offset pos, ClickType type);
 }
 class CustomButton extends CustomControl {
   double x, y, width, height, fontSize;
@@ -61,6 +81,8 @@ class CustomButton extends CustomControl {
   bool landscape;
   String? event;
   String text;
+
+  bool clicked = false;
 
   CustomButton(ButtonInfo info) : x = info.x, y = info.y, width = info.width, height = info.height,
     backColor = getColor(info.backColor), foreColor = getColor(info.foreColor), text = info.text,
@@ -82,12 +104,51 @@ class CustomButton extends CustomControl {
       case ButtonStyleInfo.Rectangle:
       case ButtonStyleInfo.Square:
         canvas.drawRect(rect, paint);
+        if (clicked) {
+          paint.color = selectColor;
+          canvas.drawRect(rect, paint);
+        }
       case ButtonStyleInfo.Ellipse:
       case ButtonStyleInfo.Circle:
         canvas.drawOval(rect, paint);
+        if (clicked) {
+          paint.color = selectColor;
+          canvas.drawOval(rect, paint);
+        }
     }
     drawTextRect(canvas, rect, foreColor, text, fontSize, TextAlign.center, true);
     canvas.restore();
+  }
+
+  @override
+  bool contains(Offset pos) {
+    Rect r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, width * canvasSize.width / 100, height * canvasSize.height / 100);
+    if (style == ButtonStyleInfo.Square || style == ButtonStyleInfo.Circle) {
+        r = Rect.fromLTWH(r.left, r.top, r.width, r.width);
+    }
+    if (landscape) r = rotated(r);
+    switch (style) {
+      case ButtonStyleInfo.Rectangle:
+      case ButtonStyleInfo.Square:
+        return r.contains(pos);
+      case ButtonStyleInfo.Ellipse:
+      case ButtonStyleInfo.Circle:
+        return ellipseContains(r, pos);
+    }
+  }
+
+  @override
+  ClickResult handleClick(Offset pos, ClickType type) {
+    switch (type) {
+      case ClickType.down:
+        clicked = true;
+        return ClickResult.redraw;
+      case ClickType.up:
+        clicked = false;
+        return ClickResult.redraw;
+      case ClickType.move:
+        return ClickResult.noRedraw;
+    }
   }
 }
 class CustomLabel extends CustomControl {
@@ -108,6 +169,12 @@ class CustomLabel extends CustomControl {
     drawTextPos(canvas, Offset.zero, color, text, fontSize, align);
     canvas.restore();
   }
+
+  @override
+  bool contains(Offset pos) => false;
+
+  @override
+  ClickResult handleClick(Offset pos, ClickType type) => ClickResult.noRedraw;
 }
 
 class ControlsCanvas extends CustomPainter {

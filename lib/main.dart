@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 import 'dart:async';
@@ -54,7 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Timer? timer;
 
   final List<Message> messages = [];
-  final Map<String, CustomControl> controls = {};
+  final LinkedHashMap<String, CustomControl> controls = LinkedHashMap(); // must preserve insertion order iteration
+  final Map<int, CustomControl> clickTargets = {};
   bool menuOpen = true;
 
   @override
@@ -224,24 +227,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         leading: InkWell(
           onTap: () => setState(() => menuOpen ^= true),
-          child: const Icon(
-            Icons.list,
-          )
+          child: const Icon(Icons.list),
         ),
         title: Text(widget.title),
       ),
       body: Stack(
         children: [
           Listener(
-            onPointerDown: (e) {
-              print('down ${e.pointer}');
-            },
-            onPointerMove: (e) {
-              print('move ${e.pointer}');
-            },
-            onPointerUp: (e) {
-              print('up ${e.pointer}');
-            },
+            onPointerDown: (e) => _handleClick(e.localPosition, e.pointer, ClickType.down),
+            onPointerMove: (e) => _handleClick(e.localPosition, e.pointer, ClickType.move),
+            onPointerUp: (e) => _handleClick(e.localPosition, e.pointer, ClickType.up),
             child: CustomPaint(
               painter: ControlsCanvas(controls),
               child: Container(),
@@ -250,9 +245,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Positioned(
             right: 20,
             top: 20,
-            child: Column(
-              children: msgs,
-            ),
+            child: Column(children: msgs),
           ),
           AnimatedPositioned(
             duration: const Duration(milliseconds: 10000),
@@ -294,5 +287,24 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   void _startProject() {
     api.sendCommand(cmd: const RustCommand.start());
+  }
+
+  void _handleClick(Offset pos, int id, ClickType type) {
+    CustomControl? target = clickTargets[id];
+    if (target == null && type == ClickType.down) {
+      for (final x in controls.values) {
+        if (x.contains(pos)) target = x; // don't break, cause we need the last hit on highest layer (no reversed iterator, sadly)
+      }
+    }
+    if (target == null) return;
+    switch (type) {
+      case ClickType.down: clickTargets[id] = target;
+      case ClickType.up: clickTargets.remove(id);
+      case ClickType.move: ();
+    }
+    switch (target.handleClick(pos, type)) {
+      case ClickResult.redraw: setState(() {});
+      case ClickResult.noRedraw: ();
+    }
   }
 }
