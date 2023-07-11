@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:phone_iot_2/ffi.dart';
 
 const double defaultFontSize = 16;
+const double textPadding = 5;
 const Color selectColor = Color.fromARGB(50, 255, 255, 255);
 
 enum ClickType {
   down, move, up,
 }
 enum ClickResult {
-  redraw, noRedraw,
+  none, redraw, requestText,
 }
 
 Color getColor(ColorInfo color) {
@@ -68,6 +69,11 @@ void drawTextPos(Canvas canvas, Offset offset, Color color, String text, double 
   canvas.drawParagraph(par, Offset(offset.dx + dx, offset.dy));
 }
 
+mixin TextLike {
+  String getText();
+  void setText(String value);
+}
+
 abstract class CustomControl {
   Size canvasSize = Size.zero;
 
@@ -75,7 +81,44 @@ abstract class CustomControl {
   bool contains(Offset pos);
   ClickResult handleClick(Offset pos, ClickType type);
 }
-class CustomButton extends CustomControl {
+
+class CustomLabel extends CustomControl with TextLike {
+  double x, y, fontSize;
+  TextAlign align;
+  Color color;
+  String text;
+  bool landscape;
+
+  CustomLabel(LabelInfo info) : x = info.x, y = info.y, color = getColor(info.color), text = info.text,
+    fontSize = info.fontSize, align = getAlign(info.align), landscape = info.landscape;
+
+  @override
+  void draw(Canvas canvas) {
+    canvas.save();
+    canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
+    if (landscape) canvas.rotate(pi / 2);
+    drawTextPos(canvas, Offset.zero, color, text, fontSize, align);
+    canvas.restore();
+  }
+
+  @override
+  bool contains(Offset pos) => false;
+
+  @override
+  ClickResult handleClick(Offset pos, ClickType type) => ClickResult.none;
+
+  @override
+  String getText() {
+    return text;
+  }
+
+  @override
+  void setText(String value) {
+    text = value;
+  }
+}
+
+class CustomButton extends CustomControl with TextLike {
   double x, y, width, height, fontSize;
   Color backColor, foreColor;
   ButtonStyleInfo style;
@@ -151,34 +194,69 @@ class CustomButton extends CustomControl {
         clicked = false;
         return ClickResult.redraw;
       case ClickType.move:
-        return ClickResult.noRedraw;
+        return ClickResult.none;
     }
   }
-}
-class CustomLabel extends CustomControl {
-  double x, y, fontSize;
-  TextAlign align;
-  Color color;
-  String text;
-  bool landscape;
 
-  CustomLabel(LabelInfo info) : x = info.x, y = info.y, color = getColor(info.color), text = info.text,
-    fontSize = info.fontSize, align = getAlign(info.align), landscape = info.landscape;
+  @override
+  String getText() {
+    return text;
+  }
+
+  @override
+  void setText(String value) {
+    text = value;
+  }
+}
+
+class CustomTextField extends CustomControl with TextLike {
+  double x, y, width, height, fontSize;
+  Color backColor, foreColor;
+  TextAlign align;
+  bool landscape, readonly;
+  String? event;
+  String id, text;
+
+  CustomTextField(TextFieldInfo info) : id = info.id, x = info.x, y = info.y, width = info.width, height = info.height,
+    backColor = getColor(info.backColor), foreColor = getColor(info.foreColor), text = info.text, readonly = info.readonly,
+    event = info.event, fontSize = info.fontSize, align = getAlign(info.align), landscape = info.landscape;
 
   @override
   void draw(Canvas canvas) {
+    final paint = Paint();
+    paint.style = PaintingStyle.stroke;
+    paint.color = backColor;
+    Rect rect = Rect.fromLTWH(0, 0, width * canvasSize.width / 100, height * canvasSize.height / 100);
+
     canvas.save();
     canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
     if (landscape) canvas.rotate(pi / 2);
-    drawTextPos(canvas, Offset.zero, color, text, fontSize, align);
+    canvas.drawRect(rect, paint);
+    drawTextRect(canvas, rect.deflate(textPadding), foreColor, text, fontSize, align, false);
     canvas.restore();
   }
 
   @override
-  bool contains(Offset pos) => false;
+  bool contains(Offset pos) {
+    Rect r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, width * canvasSize.width / 100, height * canvasSize.height / 100);
+    if (landscape) r = rotated(r);
+    return r.contains(pos);
+  }
 
   @override
-  ClickResult handleClick(Offset pos, ClickType type) => ClickResult.noRedraw;
+  ClickResult handleClick(Offset pos, ClickType type) {
+    return type == ClickType.down && !readonly ? ClickResult.requestText : ClickResult.none;
+  }
+
+  @override
+  String getText() {
+    return text;
+  }
+
+  @override
+  void setText(String value) {
+    text = value;
+  }
 }
 
 class ControlsCanvas extends CustomPainter {

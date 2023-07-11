@@ -127,13 +127,24 @@ pub enum ButtonStyleInfo {
 pub enum TextAlignInfo {
     Left, Center, Right,
 }
-
 #[derive(Clone, Copy, Debug)]
 pub struct ColorInfo {
     pub a: u8,
     pub r: u8,
     pub g: u8,
     pub b: u8,
+}
+
+#[derive(Clone, Debug)]
+pub struct LabelInfo {
+    pub id: String,
+    pub x: f64,
+    pub y: f64,
+    pub color: ColorInfo,
+    pub text: String,
+    pub font_size: f64,
+    pub align: TextAlignInfo,
+    pub landscape: bool,
 }
 #[derive(Clone, Debug)]
 pub struct ButtonInfo {
@@ -151,15 +162,20 @@ pub struct ButtonInfo {
     pub landscape: bool,
 }
 #[derive(Clone, Debug)]
-pub struct LabelInfo {
+pub struct TextFieldInfo {
     pub id: String,
     pub x: f64,
     pub y: f64,
-    pub color: ColorInfo,
+    pub width: f64,
+    pub height: f64,
+    pub back_color: ColorInfo,
+    pub fore_color: ColorInfo,
     pub text: String,
+    pub event: Option<String>,
     pub font_size: f64,
-    pub align: TextAlignInfo,
     pub landscape: bool,
+    pub readonly: bool,
+    pub align: TextAlignInfo,
 }
 
 pub enum RustCommand {
@@ -186,8 +202,9 @@ pub enum DartCommand {
     Stderr { msg: String },
     ClearControls { key: DartRequestKey },
     RemoveControl { key: DartRequestKey, id: String },
-    AddButton { key: DartRequestKey, info: ButtonInfo },
     AddLabel { key: DartRequestKey, info: LabelInfo },
+    AddButton { key: DartRequestKey, info: ButtonInfo },
+    AddTextField { key: DartRequestKey, info: TextFieldInfo },
 }
 
 pub enum SimpleValue {
@@ -521,63 +538,20 @@ pub fn initialize() {
         style: ButtonStyleInfo::Ellipse,
         landscape: false,
     }});
-    send_dart_command(DartCommand::AddButton { key: DartRequestKey { value: usize::MAX }, info: ButtonInfo {
+    send_dart_command(DartCommand::AddTextField { key: DartRequestKey { value: usize::MAX }, info: TextFieldInfo {
         id: "test-2".into(),
         x: 20.0,
         y: 40.0,
-        width: 20.0,
-        height: 70.0,
+        width: 50.0,
+        height: 30.0,
         back_color: ColorInfo { a: 255, r: 50, g: 100, b: 100 },
-        fore_color: ColorInfo { a: 255, r: 200, g: 100, b: 100 },
+        fore_color: ColorInfo { a: 255, r: 100, g: 100, b: 100 },
         text: "2 merp derp this is going to be a big thing of text that will go off the thing and be really long and stuff haha".into(),
         event: None,
         font_size: 2.0,
-        style: ButtonStyleInfo::Circle,
         landscape: false,
-    }});
-    send_dart_command(DartCommand::AddButton { key: DartRequestKey { value: usize::MAX }, info: ButtonInfo {
-        id: "test-3".into(),
-        x: 55.0,
-        y: 25.0,
-        width: 40.0,
-        height: 30.0,
-        back_color: ColorInfo { a: 255, r: 20, g: 100, b: 20 },
-        fore_color: ColorInfo { a: 255, r: 200, g: 200, b: 100 },
-        text: "3 merp derp this is going to be a big thing of text that will go off the thing and be really long and stuff haha".into(),
-        event: None,
-        font_size: 2.0,
-        style: ButtonStyleInfo::Rectangle,
-        landscape: true,
-    }});
-    send_dart_command(DartCommand::AddLabel { key: DartRequestKey { value: usize::MAX }, info: LabelInfo {
-        id: "test-4".into(),
-        x: 20.0,
-        y: 5.0,
-        color: ColorInfo { a: 255, r: 20, g: 100, b: 20 },
-        text: "4 shorter message test...".into(),
-        font_size: 1.0,
         align: TextAlignInfo::Left,
-        landscape: false,
-    }});
-    send_dart_command(DartCommand::AddLabel { key: DartRequestKey { value: usize::MAX }, info: LabelInfo {
-        id: "test-5".into(),
-        x: 20.0,
-        y: 7.0,
-        color: ColorInfo { a: 255, r: 20, g: 100, b: 20 },
-        text: "5 shorter message test...".into(),
-        font_size: 1.0,
-        align: TextAlignInfo::Center,
-        landscape: true,
-    }});
-    send_dart_command(DartCommand::AddLabel { key: DartRequestKey { value: usize::MAX }, info: LabelInfo {
-        id: "test-6".into(),
-        x: 20.0,
-        y: 9.0,
-        color: ColorInfo { a: 255, r: 20, g: 100, b: 20 },
-        text: "6 shorter message test...".into(),
-        font_size: 2.0,
-        align: TextAlignInfo::Right,
-        landscape: false,
+        readonly: false,
     }});
 }
 

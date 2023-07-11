@@ -167,8 +167,11 @@ impl support::IntoDart for DartCommand {
             Self::Stderr { msg } => vec![1.into_dart(), msg.into_dart()],
             Self::ClearControls { key } => vec![2.into_dart(), key.into_dart()],
             Self::RemoveControl { key, id } => vec![3.into_dart(), key.into_dart(), id.into_dart()],
-            Self::AddButton { key, info } => vec![4.into_dart(), key.into_dart(), info.into_dart()],
-            Self::AddLabel { key, info } => vec![5.into_dart(), key.into_dart(), info.into_dart()],
+            Self::AddLabel { key, info } => vec![4.into_dart(), key.into_dart(), info.into_dart()],
+            Self::AddButton { key, info } => vec![5.into_dart(), key.into_dart(), info.into_dart()],
+            Self::AddTextField { key, info } => {
+                vec![6.into_dart(), key.into_dart(), info.into_dart()]
+            }
         }
         .into_dart()
     }
@@ -209,6 +212,27 @@ impl support::IntoDart for TextAlignInfo {
     }
 }
 impl support::IntoDartExceptPrimitive for TextAlignInfo {}
+impl support::IntoDart for TextFieldInfo {
+    fn into_dart(self) -> support::DartAbi {
+        vec![
+            self.id.into_dart(),
+            self.x.into_dart(),
+            self.y.into_dart(),
+            self.width.into_dart(),
+            self.height.into_dart(),
+            self.back_color.into_dart(),
+            self.fore_color.into_dart(),
+            self.text.into_dart(),
+            self.event.into_dart(),
+            self.font_size.into_dart(),
+            self.landscape.into_dart(),
+            self.readonly.into_dart(),
+            self.align.into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for TextFieldInfo {}
 
 // Section: executor
 

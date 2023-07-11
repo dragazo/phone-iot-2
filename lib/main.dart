@@ -35,6 +35,7 @@ class MyHomePage extends StatefulWidget {
   final String title;
   final TextEditingController serverAddr = TextEditingController();
   final TextEditingController projectAddr = TextEditingController();
+  final TextEditingController textInput = TextEditingController();
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -101,8 +102,9 @@ class _MyHomePageState extends State<MyHomePage> {
             setState(() => controls.remove(id));
             api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
           },
-          addButton: (key, info) => addControl(info.id, CustomButton(info), key),
           addLabel: (key, info) => addControl(info.id, CustomLabel(info), key),
+          addButton: (key, info) => addControl(info.id, CustomButton(info), key),
+          addTextField: (key, info) => addControl(info.id, CustomTextField(info), key),
         );
       }
     }
@@ -119,17 +121,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
 
+    const haloDecoration = BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(20)),
+      color: Colors.white,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black45,
+          blurRadius: 10,
+        ),
+      ],
+    );
+
     final menu = Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black45,
-            blurRadius: 10,
-          ),
-        ],
-      ),
+      decoration: haloDecoration,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -230,6 +234,40 @@ class _MyHomePageState extends State<MyHomePage> {
       msgs.add(const SizedBox(height: 5));
     }
 
+    final textInput = Container(
+      decoration: haloDecoration,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 400,
+              height: 150,
+              child: TextFormField(
+                controller: widget.textInput,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+              ),
+            ),
+            const SizedBox(width: 20),
+            Column(
+              children: [
+                InkWell(
+                  onTap: () => setState(() => menuOpen ^= true),
+                  child: const Icon(Icons.check),
+                ),
+                const SizedBox(height: 30),
+                InkWell(
+                  onTap: () => setState(() => menuOpen ^= true),
+                  child: const Icon(Icons.close),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -253,6 +291,17 @@ class _MyHomePageState extends State<MyHomePage> {
             right: 20,
             top: 20,
             child: Column(children: msgs),
+          ),
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 10000),
+            left: 0,
+            right: 0,
+            bottom: menuOpen ? 20 : -200,
+            curve: Curves.ease,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [textInput],
+            ),
           ),
           AnimatedPositioned(
             duration: const Duration(milliseconds: 10000),
@@ -310,8 +359,10 @@ class _MyHomePageState extends State<MyHomePage> {
       case ClickType.move: ();
     }
     switch (target.handleClick(pos, type)) {
+      case ClickResult.none: ();
       case ClickResult.redraw: setState(() {});
-      case ClickResult.noRedraw: ();
+      case ClickResult.requestText:
+        setState(() => messages.add(Message('requested text from $target', MessageType.stdout)));
     }
   }
 }

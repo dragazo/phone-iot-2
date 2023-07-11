@@ -116,6 +116,10 @@ class NativeImpl implements Native {
     return _wire2api_label_info(raw);
   }
 
+  TextFieldInfo _wire2api_box_autoadd_text_field_info(dynamic raw) {
+    return _wire2api_text_field_info(raw);
+  }
+
   ButtonInfo _wire2api_button_info(dynamic raw) {
     final arr = raw as List<dynamic>;
     if (arr.length != 12)
@@ -172,14 +176,19 @@ class NativeImpl implements Native {
           id: _wire2api_String(raw[2]),
         );
       case 4:
+        return DartCommand_AddLabel(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          info: _wire2api_box_autoadd_label_info(raw[2]),
+        );
+      case 5:
         return DartCommand_AddButton(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_button_info(raw[2]),
         );
-      case 5:
-        return DartCommand_AddLabel(
+      case 6:
+        return DartCommand_AddTextField(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
-          info: _wire2api_box_autoadd_label_info(raw[2]),
+          info: _wire2api_box_autoadd_text_field_info(raw[2]),
         );
       default:
         throw Exception("unreachable");
@@ -225,6 +234,27 @@ class NativeImpl implements Native {
 
   TextAlignInfo _wire2api_text_align_info(dynamic raw) {
     return TextAlignInfo.values[raw as int];
+  }
+
+  TextFieldInfo _wire2api_text_field_info(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 13)
+      throw Exception('unexpected arr length: expect 13 but see ${arr.length}');
+    return TextFieldInfo(
+      id: _wire2api_String(arr[0]),
+      x: _wire2api_f64(arr[1]),
+      y: _wire2api_f64(arr[2]),
+      width: _wire2api_f64(arr[3]),
+      height: _wire2api_f64(arr[4]),
+      backColor: _wire2api_color_info(arr[5]),
+      foreColor: _wire2api_color_info(arr[6]),
+      text: _wire2api_String(arr[7]),
+      event: _wire2api_opt_String(arr[8]),
+      fontSize: _wire2api_f64(arr[9]),
+      landscape: _wire2api_bool(arr[10]),
+      readonly: _wire2api_bool(arr[11]),
+      align: _wire2api_text_align_info(arr[12]),
+    );
   }
 
   int _wire2api_u8(dynamic raw) {

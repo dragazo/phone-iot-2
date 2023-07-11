@@ -100,14 +100,18 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required String id,
   }) = DartCommand_RemoveControl;
-  const factory DartCommand.addButton({
-    required DartRequestKey key,
-    required ButtonInfo info,
-  }) = DartCommand_AddButton;
   const factory DartCommand.addLabel({
     required DartRequestKey key,
     required LabelInfo info,
   }) = DartCommand_AddLabel;
+  const factory DartCommand.addButton({
+    required DartRequestKey key,
+    required ButtonInfo info,
+  }) = DartCommand_AddButton;
+  const factory DartCommand.addTextField({
+    required DartRequestKey key,
+    required TextFieldInfo info,
+  }) = DartCommand_AddTextField;
 }
 
 class DartRequestKey {
@@ -179,4 +183,36 @@ enum TextAlignInfo {
   Left,
   Center,
   Right,
+}
+
+class TextFieldInfo {
+  final String id;
+  final double x;
+  final double y;
+  final double width;
+  final double height;
+  final ColorInfo backColor;
+  final ColorInfo foreColor;
+  final String text;
+  final String? event;
+  final double fontSize;
+  final bool landscape;
+  final bool readonly;
+  final TextAlignInfo align;
+
+  const TextFieldInfo({
+    required this.id,
+    required this.x,
+    required this.y,
+    required this.width,
+    required this.height,
+    required this.backColor,
+    required this.foreColor,
+    required this.text,
+    this.event,
+    required this.fontSize,
+    required this.landscape,
+    required this.readonly,
+    required this.align,
+  });
 }
