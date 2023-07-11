@@ -36,7 +36,8 @@ struct DartCommandPipe {
 }
 
 fn new_control_id() -> String {
-    format!("ctrl-{}", CONTROL_COUNTER.fetch_add(1, MemOrder::Relaxed).wrapping_add(1))
+    // important: this can't be the same scheme as the default remote netsblox scheme or there will be collision failures when using both defaults
+    format!("ct-{}", CONTROL_COUNTER.fetch_add(1, MemOrder::Relaxed).wrapping_add(1))
 }
 
 fn send_dart_command(cmd: DartCommand) {
@@ -172,8 +173,10 @@ pub struct DartRequestKey {
     pub value: usize,
 }
 impl DartRequestKey {
-    fn new() -> Self {
-        Self { value: KEY_COUNTER.fetch_add(1, MemOrder::Relaxed) }
+    fn new(key: RequestKey<C>) -> Self {
+        let res = Self { value: KEY_COUNTER.fetch_add(1, MemOrder::Relaxed) };
+        PENDING_REQUESTS.lock().unwrap().insert(res, key);
+        res
     }
 }
 
@@ -181,9 +184,10 @@ impl DartRequestKey {
 pub enum DartCommand {
     Stdout { msg: String },
     Stderr { msg: String },
-    ClearControls,
-    AddButton { info: ButtonInfo, key: DartRequestKey },
-    AddLabel { info: LabelInfo, key: DartRequestKey },
+    ClearControls { key: DartRequestKey },
+    RemoveControl { key: DartRequestKey, id: String },
+    AddButton { key: DartRequestKey, info: ButtonInfo },
+    AddLabel { key: DartRequestKey, info: LabelInfo },
 }
 
 pub enum SimpleValue {
@@ -234,8 +238,8 @@ pub fn initialize() {
                 CommandStatus::Handled
             })),
             request: Some(Rc::new(move |_, _, key, request, _| {
-                fn is_local_id(s: &str) -> bool {
-                    s.chars().all(|x| x == '0')
+                fn is_local_id<'gc, C: CustomTypes<S>, S: System<C>>(s: &Value<'gc, C, S>) -> bool {
+                    s.to_string().ok().map(|x| x.chars().all(|x| x == '0')).unwrap_or(false)
                 }
                 fn parse_options<'gc, C: CustomTypes<S>, S: System<C>>(name: &str, opts: &Value<'gc, C, S>, allowed: &[&str]) -> Result<BTreeMap<String, Value<'gc, C, S>>, String> {
                     let mut res = BTreeMap::new();
@@ -348,6 +352,16 @@ pub fn initialize() {
                 }
                 match &request {
                     Request::Rpc { service, rpc, args } if service == "PhoneIoT" => match rpc.as_str() {
+                        "getSensors" => {
+                            if args.len() != 0 {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+                            key.complete(Ok(Intermediate::Json(json!([
+                                "gravity", "gyroscope", "orientation", "accelerometer", "magneticField", "linearAcceleration", "lightLevel",
+                                "microphoneLevel", "proximity", "stepCount", "location", "pressure", "temperature", "humidity",
+                            ]))));
+                            RequestStatus::Handled
+                        }
                         "getColor" => {
                             if args.len() != 4 {
                                 return RequestStatus::UseDefault { key, request };
@@ -362,18 +376,44 @@ pub fn initialize() {
                             key.complete(Ok(Intermediate::Json(json!(encoded))));
                             RequestStatus::Handled
                         }
-                        "clearControls" => {
-                            if args.len() != 1 || !args[0].1.to_string().ok().map(|x| is_local_id(&x)).unwrap_or(false) {
+                        "setCredentials" => {
+                            if args.len() != 2 || !is_local_id(&args[0].1) {
                                 return RequestStatus::UseDefault { key, request };
                             }
-
-                            send_dart_command(DartCommand::ClearControls);
-                            CONTROL_COUNTER.store(0, MemOrder::Relaxed);
                             key.complete(Ok(Intermediate::Json(json!("OK"))));
                             RequestStatus::Handled
                         }
+                        "authenticate" | "listenToGUI" => {
+                            if args.len() != 1 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+                            key.complete(Ok(Intermediate::Json(json!("OK"))));
+                            RequestStatus::Handled
+                        }
+                        "clearControls" => {
+                            if args.len() != 1 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            CONTROL_COUNTER.store(0, MemOrder::Relaxed);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::ClearControls { key });
+                            RequestStatus::Handled
+                        }
+                        "removeControl" => {
+                            if args.len() != 2 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::RemoveControl { key, id });
+                            RequestStatus::Handled
+                        }
                         "addButton" => {
-                            if args.len() != 7 || !args[0].1.to_string().ok().map(|x| is_local_id(&x)).unwrap_or(false) {
+                            if args.len() != 7 || !is_local_id(&args[0].1) {
                                 return RequestStatus::UseDefault { key, request };
                             }
 
@@ -391,15 +431,14 @@ pub fn initialize() {
                             let event = parse!(event := options.get("event") => Option<String>);
                             let style = parse!(style := options.get("style") => Option<ButtonStyleInfo>).unwrap_or(ButtonStyleInfo::Rectangle);
 
-                            let dart_key = DartRequestKey::new();
-                            PENDING_REQUESTS.lock().unwrap().insert(dart_key, key);
-                            send_dart_command(DartCommand::AddButton { key: dart_key, info: ButtonInfo {
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::AddButton { key, info: ButtonInfo {
                                 id, x, y, width, height, text, landscape, back_color, fore_color, font_size, event, style,
                             }});
                             RequestStatus::Handled
                         }
                         "addLabel" => {
-                            if args.len() != 5 || !args[0].1.to_string().ok().map(|x| is_local_id(&x)).unwrap_or(false) {
+                            if args.len() != 5 || !is_local_id(&args[0].1) {
                                 return RequestStatus::UseDefault { key, request };
                             }
 
@@ -413,9 +452,8 @@ pub fn initialize() {
                             let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
                             let align = parse!(align := options.get("align") => Option<TextAlignInfo>).unwrap_or(TextAlignInfo::Left);
 
-                            let dart_key = DartRequestKey::new();
-                            PENDING_REQUESTS.lock().unwrap().insert(dart_key, key);
-                            send_dart_command(DartCommand::AddLabel { key: dart_key, info: LabelInfo {
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::AddLabel { key, info: LabelInfo {
                                 x, y, text, id, color, font_size, landscape, align,
                             }});
                             RequestStatus::Handled
@@ -469,7 +507,7 @@ pub fn initialize() {
         }
     });
 
-    send_dart_command(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
+    send_dart_command(DartCommand::AddButton { key: DartRequestKey { value: usize::MAX }, info: ButtonInfo {
         id: "test-1".into(),
         x: 10.0,
         y: 10.0,
@@ -483,7 +521,7 @@ pub fn initialize() {
         style: ButtonStyleInfo::Ellipse,
         landscape: false,
     }});
-    send_dart_command(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
+    send_dart_command(DartCommand::AddButton { key: DartRequestKey { value: usize::MAX }, info: ButtonInfo {
         id: "test-2".into(),
         x: 20.0,
         y: 40.0,
@@ -497,7 +535,7 @@ pub fn initialize() {
         style: ButtonStyleInfo::Circle,
         landscape: false,
     }});
-    send_dart_command(DartCommand::AddButton { key: DartRequestKey::new(), info: ButtonInfo {
+    send_dart_command(DartCommand::AddButton { key: DartRequestKey { value: usize::MAX }, info: ButtonInfo {
         id: "test-3".into(),
         x: 55.0,
         y: 25.0,
@@ -511,7 +549,7 @@ pub fn initialize() {
         style: ButtonStyleInfo::Rectangle,
         landscape: true,
     }});
-    send_dart_command(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
+    send_dart_command(DartCommand::AddLabel { key: DartRequestKey { value: usize::MAX }, info: LabelInfo {
         id: "test-4".into(),
         x: 20.0,
         y: 5.0,
@@ -521,7 +559,7 @@ pub fn initialize() {
         align: TextAlignInfo::Left,
         landscape: false,
     }});
-    send_dart_command(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
+    send_dart_command(DartCommand::AddLabel { key: DartRequestKey { value: usize::MAX }, info: LabelInfo {
         id: "test-5".into(),
         x: 20.0,
         y: 7.0,
@@ -531,7 +569,7 @@ pub fn initialize() {
         align: TextAlignInfo::Center,
         landscape: true,
     }});
-    send_dart_command(DartCommand::AddLabel { key: DartRequestKey::new(), info: LabelInfo {
+    send_dart_command(DartCommand::AddLabel { key: DartRequestKey { value: usize::MAX }, info: LabelInfo {
         id: "test-6".into(),
         x: 20.0,
         y: 9.0,

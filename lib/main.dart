@@ -93,9 +93,16 @@ class _MyHomePageState extends State<MyHomePage> {
         cmd.when(
           stdout: (msg) => setState(() => messages.add(Message(msg, MessageType.stdout))),
           stderr: (msg) => setState(() => messages.add(Message(msg, MessageType.stderr))),
-          clearControls:() => setState(() => controls.clear()),
-          addButton: (info, key) => addControl(info.id, CustomButton(info), key),
-          addLabel: (info, key) => addControl(info.id, CustomLabel(info), key),
+          clearControls: (key) {
+            setState(() => controls.clear());
+            api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+          },
+          removeControl: (key, id) {
+            setState(() => controls.remove(id));
+            api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+          },
+          addButton: (key, info) => addControl(info.id, CustomButton(info), key),
+          addLabel: (key, info) => addControl(info.id, CustomLabel(info), key),
         );
       }
     }
@@ -282,7 +289,7 @@ class _MyHomePageState extends State<MyHomePage> {
         api.sendCommand(cmd: RustCommand.setProject(xml: res.body));
       })
       .catchError((e) {
-        print('error fetching project $e');
+        setState(() => messages.add(Message('error fetching project $e', MessageType.stderr)));
       });
   }
   void _startProject() {

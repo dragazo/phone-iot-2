@@ -165,9 +165,10 @@ impl support::IntoDart for DartCommand {
         match self {
             Self::Stdout { msg } => vec![0.into_dart(), msg.into_dart()],
             Self::Stderr { msg } => vec![1.into_dart(), msg.into_dart()],
-            Self::ClearControls => vec![2.into_dart()],
-            Self::AddButton { info, key } => vec![3.into_dart(), info.into_dart(), key.into_dart()],
-            Self::AddLabel { info, key } => vec![4.into_dart(), info.into_dart(), key.into_dart()],
+            Self::ClearControls { key } => vec![2.into_dart(), key.into_dart()],
+            Self::RemoveControl { key, id } => vec![3.into_dart(), key.into_dart(), id.into_dart()],
+            Self::AddButton { key, info } => vec![4.into_dart(), key.into_dart(), info.into_dart()],
+            Self::AddLabel { key, info } => vec![5.into_dart(), key.into_dart(), info.into_dart()],
         }
         .into_dart()
     }

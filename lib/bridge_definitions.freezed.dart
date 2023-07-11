@@ -20,27 +20,30 @@ mixin _$DartCommand {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
-    required TResult Function() clearControls,
-    required TResult Function(ButtonInfo info, DartRequestKey key) addButton,
-    required TResult Function(LabelInfo info, DartRequestKey key) addLabel,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
-    TResult? Function()? clearControls,
-    TResult? Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult? Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
-    TResult Function()? clearControls,
-    TResult Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +52,7 @@ mixin _$DartCommand {
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddLabel value) addLabel,
   }) =>
@@ -58,6 +62,7 @@ mixin _$DartCommand {
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
   }) =>
@@ -67,6 +72,7 @@ mixin _$DartCommand {
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddLabel value)? addLabel,
     required TResult orElse(),
@@ -159,9 +165,10 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
-    required TResult Function() clearControls,
-    required TResult Function(ButtonInfo info, DartRequestKey key) addButton,
-    required TResult Function(LabelInfo info, DartRequestKey key) addLabel,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
   }) {
     return stdout(msg);
   }
@@ -171,9 +178,10 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
-    TResult? Function()? clearControls,
-    TResult? Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult? Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
   }) {
     return stdout?.call(msg);
   }
@@ -183,9 +191,10 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
-    TResult Function()? clearControls,
-    TResult Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -200,6 +209,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddLabel value) addLabel,
   }) {
@@ -212,6 +222,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
   }) {
@@ -224,6 +235,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddLabel value)? addLabel,
     required TResult orElse(),
@@ -312,9 +324,10 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
-    required TResult Function() clearControls,
-    required TResult Function(ButtonInfo info, DartRequestKey key) addButton,
-    required TResult Function(LabelInfo info, DartRequestKey key) addLabel,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
   }) {
     return stderr(msg);
   }
@@ -324,9 +337,10 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
-    TResult? Function()? clearControls,
-    TResult? Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult? Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
   }) {
     return stderr?.call(msg);
   }
@@ -336,9 +350,10 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
-    TResult Function()? clearControls,
-    TResult Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -353,6 +368,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddLabel value) addLabel,
   }) {
@@ -365,6 +381,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
   }) {
@@ -377,6 +394,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddLabel value)? addLabel,
     required TResult orElse(),
@@ -404,6 +422,8 @@ abstract class _$$DartCommand_ClearControlsCopyWith<$Res> {
           _$DartCommand_ClearControls value,
           $Res Function(_$DartCommand_ClearControls) then) =
       __$$DartCommand_ClearControlsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key});
 }
 
 /// @nodoc
@@ -413,38 +433,63 @@ class __$$DartCommand_ClearControlsCopyWithImpl<$Res>
   __$$DartCommand_ClearControlsCopyWithImpl(_$DartCommand_ClearControls _value,
       $Res Function(_$DartCommand_ClearControls) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+  }) {
+    return _then(_$DartCommand_ClearControls(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$DartCommand_ClearControls implements DartCommand_ClearControls {
-  const _$DartCommand_ClearControls();
+  const _$DartCommand_ClearControls({required this.key});
+
+  @override
+  final DartRequestKey key;
 
   @override
   String toString() {
-    return 'DartCommand.clearControls()';
+    return 'DartCommand.clearControls(key: $key)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_ClearControls);
+            other is _$DartCommand_ClearControls &&
+            (identical(other.key, key) || other.key == key));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, key);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_ClearControlsCopyWith<_$DartCommand_ClearControls>
+      get copyWith => __$$DartCommand_ClearControlsCopyWithImpl<
+          _$DartCommand_ClearControls>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
-    required TResult Function() clearControls,
-    required TResult Function(ButtonInfo info, DartRequestKey key) addButton,
-    required TResult Function(LabelInfo info, DartRequestKey key) addLabel,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
   }) {
-    return clearControls();
+    return clearControls(key);
   }
 
   @override
@@ -452,11 +497,12 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
-    TResult? Function()? clearControls,
-    TResult? Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult? Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
   }) {
-    return clearControls?.call();
+    return clearControls?.call(key);
   }
 
   @override
@@ -464,13 +510,14 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
-    TResult Function()? clearControls,
-    TResult Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
-      return clearControls();
+      return clearControls(key);
     }
     return orElse();
   }
@@ -481,6 +528,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddLabel value) addLabel,
   }) {
@@ -493,6 +541,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
   }) {
@@ -505,6 +554,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddLabel value)? addLabel,
     required TResult orElse(),
@@ -517,7 +567,183 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
 }
 
 abstract class DartCommand_ClearControls implements DartCommand {
-  const factory DartCommand_ClearControls() = _$DartCommand_ClearControls;
+  const factory DartCommand_ClearControls({required final DartRequestKey key}) =
+      _$DartCommand_ClearControls;
+
+  DartRequestKey get key;
+  @JsonKey(ignore: true)
+  _$$DartCommand_ClearControlsCopyWith<_$DartCommand_ClearControls>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_RemoveControlCopyWith<$Res> {
+  factory _$$DartCommand_RemoveControlCopyWith(
+          _$DartCommand_RemoveControl value,
+          $Res Function(_$DartCommand_RemoveControl) then) =
+      __$$DartCommand_RemoveControlCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key, String id});
+}
+
+/// @nodoc
+class __$$DartCommand_RemoveControlCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_RemoveControl>
+    implements _$$DartCommand_RemoveControlCopyWith<$Res> {
+  __$$DartCommand_RemoveControlCopyWithImpl(_$DartCommand_RemoveControl _value,
+      $Res Function(_$DartCommand_RemoveControl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+    Object? id = null,
+  }) {
+    return _then(_$DartCommand_RemoveControl(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
+  const _$DartCommand_RemoveControl({required this.key, required this.id});
+
+  @override
+  final DartRequestKey key;
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'DartCommand.removeControl(key: $key, id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_RemoveControl &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_RemoveControlCopyWith<_$DartCommand_RemoveControl>
+      get copyWith => __$$DartCommand_RemoveControlCopyWithImpl<
+          _$DartCommand_RemoveControl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+  }) {
+    return removeControl(key, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+  }) {
+    return removeControl?.call(key, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    required TResult orElse(),
+  }) {
+    if (removeControl != null) {
+      return removeControl(key, id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+  }) {
+    return removeControl(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+  }) {
+    return removeControl?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    required TResult orElse(),
+  }) {
+    if (removeControl != null) {
+      return removeControl(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_RemoveControl implements DartCommand {
+  const factory DartCommand_RemoveControl(
+      {required final DartRequestKey key,
+      required final String id}) = _$DartCommand_RemoveControl;
+
+  DartRequestKey get key;
+  String get id;
+  @JsonKey(ignore: true)
+  _$$DartCommand_RemoveControlCopyWith<_$DartCommand_RemoveControl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -526,7 +752,7 @@ abstract class _$$DartCommand_AddButtonCopyWith<$Res> {
           $Res Function(_$DartCommand_AddButton) then) =
       __$$DartCommand_AddButtonCopyWithImpl<$Res>;
   @useResult
-  $Res call({ButtonInfo info, DartRequestKey key});
+  $Res call({DartRequestKey key, ButtonInfo info});
 }
 
 /// @nodoc
@@ -540,18 +766,18 @@ class __$$DartCommand_AddButtonCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? info = null,
     Object? key = null,
+    Object? info = null,
   }) {
     return _then(_$DartCommand_AddButton(
-      info: null == info
-          ? _value.info
-          : info // ignore: cast_nullable_to_non_nullable
-              as ButtonInfo,
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as DartRequestKey,
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as ButtonInfo,
     ));
   }
 }
@@ -559,16 +785,16 @@ class __$$DartCommand_AddButtonCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DartCommand_AddButton implements DartCommand_AddButton {
-  const _$DartCommand_AddButton({required this.info, required this.key});
+  const _$DartCommand_AddButton({required this.key, required this.info});
 
   @override
-  final ButtonInfo info;
-  @override
   final DartRequestKey key;
+  @override
+  final ButtonInfo info;
 
   @override
   String toString() {
-    return 'DartCommand.addButton(info: $info, key: $key)';
+    return 'DartCommand.addButton(key: $key, info: $info)';
   }
 
   @override
@@ -576,12 +802,12 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DartCommand_AddButton &&
-            (identical(other.info, info) || other.info == info) &&
-            (identical(other.key, key) || other.key == key));
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.info, info) || other.info == info));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, info, key);
+  int get hashCode => Object.hash(runtimeType, key, info);
 
   @JsonKey(ignore: true)
   @override
@@ -595,11 +821,12 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
-    required TResult Function() clearControls,
-    required TResult Function(ButtonInfo info, DartRequestKey key) addButton,
-    required TResult Function(LabelInfo info, DartRequestKey key) addLabel,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
   }) {
-    return addButton(info, key);
+    return addButton(key, info);
   }
 
   @override
@@ -607,11 +834,12 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
-    TResult? Function()? clearControls,
-    TResult? Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult? Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
   }) {
-    return addButton?.call(info, key);
+    return addButton?.call(key, info);
   }
 
   @override
@@ -619,13 +847,14 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
-    TResult Function()? clearControls,
-    TResult Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     required TResult orElse(),
   }) {
     if (addButton != null) {
-      return addButton(info, key);
+      return addButton(key, info);
     }
     return orElse();
   }
@@ -636,6 +865,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddLabel value) addLabel,
   }) {
@@ -648,6 +878,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
   }) {
@@ -660,6 +891,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddLabel value)? addLabel,
     required TResult orElse(),
@@ -673,11 +905,11 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
 
 abstract class DartCommand_AddButton implements DartCommand {
   const factory DartCommand_AddButton(
-      {required final ButtonInfo info,
-      required final DartRequestKey key}) = _$DartCommand_AddButton;
+      {required final DartRequestKey key,
+      required final ButtonInfo info}) = _$DartCommand_AddButton;
 
-  ButtonInfo get info;
   DartRequestKey get key;
+  ButtonInfo get info;
   @JsonKey(ignore: true)
   _$$DartCommand_AddButtonCopyWith<_$DartCommand_AddButton> get copyWith =>
       throw _privateConstructorUsedError;
@@ -689,7 +921,7 @@ abstract class _$$DartCommand_AddLabelCopyWith<$Res> {
           $Res Function(_$DartCommand_AddLabel) then) =
       __$$DartCommand_AddLabelCopyWithImpl<$Res>;
   @useResult
-  $Res call({LabelInfo info, DartRequestKey key});
+  $Res call({DartRequestKey key, LabelInfo info});
 }
 
 /// @nodoc
@@ -703,18 +935,18 @@ class __$$DartCommand_AddLabelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? info = null,
     Object? key = null,
+    Object? info = null,
   }) {
     return _then(_$DartCommand_AddLabel(
-      info: null == info
-          ? _value.info
-          : info // ignore: cast_nullable_to_non_nullable
-              as LabelInfo,
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as DartRequestKey,
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as LabelInfo,
     ));
   }
 }
@@ -722,16 +954,16 @@ class __$$DartCommand_AddLabelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DartCommand_AddLabel implements DartCommand_AddLabel {
-  const _$DartCommand_AddLabel({required this.info, required this.key});
+  const _$DartCommand_AddLabel({required this.key, required this.info});
 
   @override
-  final LabelInfo info;
-  @override
   final DartRequestKey key;
+  @override
+  final LabelInfo info;
 
   @override
   String toString() {
-    return 'DartCommand.addLabel(info: $info, key: $key)';
+    return 'DartCommand.addLabel(key: $key, info: $info)';
   }
 
   @override
@@ -739,12 +971,12 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DartCommand_AddLabel &&
-            (identical(other.info, info) || other.info == info) &&
-            (identical(other.key, key) || other.key == key));
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.info, info) || other.info == info));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, info, key);
+  int get hashCode => Object.hash(runtimeType, key, info);
 
   @JsonKey(ignore: true)
   @override
@@ -758,11 +990,12 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
-    required TResult Function() clearControls,
-    required TResult Function(ButtonInfo info, DartRequestKey key) addButton,
-    required TResult Function(LabelInfo info, DartRequestKey key) addLabel,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
   }) {
-    return addLabel(info, key);
+    return addLabel(key, info);
   }
 
   @override
@@ -770,11 +1003,12 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
-    TResult? Function()? clearControls,
-    TResult? Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult? Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
   }) {
-    return addLabel?.call(info, key);
+    return addLabel?.call(key, info);
   }
 
   @override
@@ -782,13 +1016,14 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
-    TResult Function()? clearControls,
-    TResult Function(ButtonInfo info, DartRequestKey key)? addButton,
-    TResult Function(LabelInfo info, DartRequestKey key)? addLabel,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
-      return addLabel(info, key);
+      return addLabel(key, info);
     }
     return orElse();
   }
@@ -799,6 +1034,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddLabel value) addLabel,
   }) {
@@ -811,6 +1047,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
   }) {
@@ -823,6 +1060,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddLabel value)? addLabel,
     required TResult orElse(),
@@ -836,11 +1074,11 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
 
 abstract class DartCommand_AddLabel implements DartCommand {
   const factory DartCommand_AddLabel(
-      {required final LabelInfo info,
-      required final DartRequestKey key}) = _$DartCommand_AddLabel;
+      {required final DartRequestKey key,
+      required final LabelInfo info}) = _$DartCommand_AddLabel;
 
-  LabelInfo get info;
   DartRequestKey get key;
+  LabelInfo get info;
   @JsonKey(ignore: true)
   _$$DartCommand_AddLabelCopyWith<_$DartCommand_AddLabel> get copyWith =>
       throw _privateConstructorUsedError;

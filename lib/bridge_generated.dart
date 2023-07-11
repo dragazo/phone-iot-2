@@ -163,16 +163,23 @@ class NativeImpl implements Native {
           msg: _wire2api_String(raw[1]),
         );
       case 2:
-        return DartCommand_ClearControls();
+        return DartCommand_ClearControls(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
       case 3:
-        return DartCommand_AddButton(
-          info: _wire2api_box_autoadd_button_info(raw[1]),
-          key: _wire2api_box_autoadd_dart_request_key(raw[2]),
+        return DartCommand_RemoveControl(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
         );
       case 4:
+        return DartCommand_AddButton(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          info: _wire2api_box_autoadd_button_info(raw[2]),
+        );
+      case 5:
         return DartCommand_AddLabel(
-          info: _wire2api_box_autoadd_label_info(raw[1]),
-          key: _wire2api_box_autoadd_dart_request_key(raw[2]),
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          info: _wire2api_box_autoadd_label_info(raw[2]),
         );
       default:
         throw Exception("unreachable");
