@@ -200,11 +200,16 @@ impl DartRequestKey {
 pub enum DartCommand {
     Stdout { msg: String },
     Stderr { msg: String },
+
     ClearControls { key: DartRequestKey },
     RemoveControl { key: DartRequestKey, id: String },
+
     AddLabel { key: DartRequestKey, info: LabelInfo },
     AddButton { key: DartRequestKey, info: ButtonInfo },
     AddTextField { key: DartRequestKey, info: TextFieldInfo },
+
+    GetText { key: DartRequestKey, id: String },
+    SetText { key: DartRequestKey, id: String, value: String },
 }
 
 pub enum SimpleValue {
@@ -499,6 +504,29 @@ pub fn initialize() {
                             send_dart_command(DartCommand::AddTextField { key, info: TextFieldInfo {
                                 id, x, y, width, height, back_color, fore_color, text, event, font_size, landscape, readonly, align,
                             }});
+                            RequestStatus::Handled
+                        }
+                        "getText" => {
+                            if args.len() != 2 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::GetText { key, id });
+                            RequestStatus::Handled
+                        }
+                        "setText" => {
+                            if args.len() != 3 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+                            let value = parse!(text := args[2].1 => String);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::SetText { key, id, value });
                             RequestStatus::Handled
                         }
                         _ => RequestStatus::UseDefault { key, request },

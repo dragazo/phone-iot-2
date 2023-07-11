@@ -172,6 +172,13 @@ impl support::IntoDart for DartCommand {
             Self::AddTextField { key, info } => {
                 vec![6.into_dart(), key.into_dart(), info.into_dart()]
             }
+            Self::GetText { key, id } => vec![7.into_dart(), key.into_dart(), id.into_dart()],
+            Self::SetText { key, id, value } => vec![
+                8.into_dart(),
+                key.into_dart(),
+                id.into_dart(),
+                value.into_dart(),
+            ],
         }
         .into_dart()
     }

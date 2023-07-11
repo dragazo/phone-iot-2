@@ -112,6 +112,15 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required TextFieldInfo info,
   }) = DartCommand_AddTextField;
+  const factory DartCommand.getText({
+    required DartRequestKey key,
+    required String id,
+  }) = DartCommand_GetText;
+  const factory DartCommand.setText({
+    required DartRequestKey key,
+    required String id,
+    required String value,
+  }) = DartCommand_SetText;
 }
 
 class DartRequestKey {

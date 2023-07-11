@@ -190,6 +190,17 @@ class NativeImpl implements Native {
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_text_field_info(raw[2]),
         );
+      case 7:
+        return DartCommand_GetText(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+        );
+      case 8:
+        return DartCommand_SetText(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+          value: _wire2api_String(raw[3]),
+        );
       default:
         throw Exception("unreachable");
     }

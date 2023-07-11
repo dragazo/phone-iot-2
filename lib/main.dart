@@ -92,10 +92,17 @@ class _MyHomePageState extends State<MyHomePage> {
           api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(id)));
         }
       }
+      T? findControl<T>(String id) {
+        for (final x in controls.values) {
+          if (x is T) return x as T;
+        }
+        return null;
+      }
       await for (final cmd in api.recvCommands()) {
         cmd.when(
           stdout: (msg) => setState(() => messages.add(Message(msg, MessageType.stdout))),
           stderr: (msg) => setState(() => messages.add(Message(msg, MessageType.stderr))),
+
           clearControls: (key) {
             setState(() => controls.clear());
             api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
@@ -104,9 +111,20 @@ class _MyHomePageState extends State<MyHomePage> {
             setState(() => controls.remove(id));
             api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
           },
+
           addLabel: (key, info) => addControl(info.id, CustomLabel(info), key),
           addButton: (key, info) => addControl(info.id, CustomButton(info), key),
           addTextField: (key, info) => addControl(info.id, CustomTextField(info), key),
+
+          getText: (key, id) {
+            TextLike? target = findControl<TextLike>(id);
+            api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.string(target.getText())) : RequestResult.err('no text-like widget with id $id'));
+          },
+          setText: (key, id, value) {
+            TextLike? target = findControl<TextLike>(id);
+            if (target != null) setState(() => target.setText(value));
+            api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no text-like widget with id $id'));
+          },
         );
       }
     }
