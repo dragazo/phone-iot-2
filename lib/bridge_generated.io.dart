@@ -55,6 +55,17 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
   }
 
   @protected
+  ffi.Pointer<wire_list___record__String_simple_value>
+      api2wire_list___record__String_simple_value(
+          List<(String, SimpleValue)> raw) {
+    final ans = inner.new_list___record__String_simple_value_0(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      _api_fill_to_wire___record__String_simple_value(raw[i], ans.ref.ptr[i]);
+    }
+    return ans;
+  }
+
+  @protected
   ffi.Pointer<wire_list_simple_value> api2wire_list_simple_value(
       List<SimpleValue> raw) {
     final ans = inner.new_list_simple_value_0(raw.length);
@@ -74,6 +85,13 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
 // Section: finalizer
 
 // Section: api_fill_to_wire
+
+  void _api_fill_to_wire___record__String_simple_value(
+      (String, SimpleValue) apiObj,
+      wire___record__String_simple_value wireObj) {
+    wireObj.field0 = api2wire_String(apiObj.$1);
+    _api_fill_to_wire_simple_value(apiObj.$2, wireObj.field1);
+  }
 
   void _api_fill_to_wire_box_autoadd_dart_request_key(
       DartRequestKey apiObj, ffi.Pointer<wire_DartRequestKey> wireObj) {
@@ -129,6 +147,16 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
     }
     if (apiObj is RustCommand_Start) {
       wireObj.tag = 1;
+      return;
+    }
+    if (apiObj is RustCommand_InjectMessage) {
+      var pre_msg_type = api2wire_String(apiObj.msgType);
+      var pre_values =
+          api2wire_list___record__String_simple_value(apiObj.values);
+      wireObj.tag = 2;
+      wireObj.kind = inner.inflate_RustCommand_InjectMessage();
+      wireObj.kind.ref.InjectMessage.ref.msg_type = pre_msg_type;
+      wireObj.kind.ref.InjectMessage.ref.values = pre_values;
       return;
     }
   }
@@ -364,6 +392,23 @@ class NativeWire implements FlutterRustBridgeWireBase {
       _new_box_autoadd_simple_value_0Ptr
           .asFunction<ffi.Pointer<wire_SimpleValue> Function()>();
 
+  ffi.Pointer<wire_list___record__String_simple_value>
+      new_list___record__String_simple_value_0(
+    int len,
+  ) {
+    return _new_list___record__String_simple_value_0(
+      len,
+    );
+  }
+
+  late final _new_list___record__String_simple_value_0Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_list___record__String_simple_value> Function(
+              ffi.Int32)>>('new_list___record__String_simple_value_0');
+  late final _new_list___record__String_simple_value_0 =
+      _new_list___record__String_simple_value_0Ptr.asFunction<
+          ffi.Pointer<wire_list___record__String_simple_value> Function(int)>();
+
   ffi.Pointer<wire_list_simple_value> new_list_simple_value_0(
     int len,
   ) {
@@ -423,6 +468,17 @@ class NativeWire implements FlutterRustBridgeWireBase {
           'inflate_RustCommand_SetProject');
   late final _inflate_RustCommand_SetProject =
       _inflate_RustCommand_SetProjectPtr
+          .asFunction<ffi.Pointer<RustCommandKind> Function()>();
+
+  ffi.Pointer<RustCommandKind> inflate_RustCommand_InjectMessage() {
+    return _inflate_RustCommand_InjectMessage();
+  }
+
+  late final _inflate_RustCommand_InjectMessagePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<RustCommandKind> Function()>>(
+          'inflate_RustCommand_InjectMessage');
+  late final _inflate_RustCommand_InjectMessage =
+      _inflate_RustCommand_InjectMessagePtr
           .asFunction<ffi.Pointer<RustCommandKind> Function()>();
 
   ffi.Pointer<SimpleValueKind> inflate_SimpleValue_Number() {
@@ -485,24 +541,6 @@ final class wire_RustCommand_SetProject extends ffi.Struct {
 
 final class wire_RustCommand_Start extends ffi.Opaque {}
 
-final class RustCommandKind extends ffi.Union {
-  external ffi.Pointer<wire_RustCommand_SetProject> SetProject;
-
-  external ffi.Pointer<wire_RustCommand_Start> Start;
-}
-
-final class wire_RustCommand extends ffi.Struct {
-  @ffi.Int32()
-  external int tag;
-
-  external ffi.Pointer<RustCommandKind> kind;
-}
-
-final class wire_DartRequestKey extends ffi.Struct {
-  @ffi.UintPtr()
-  external int value;
-}
-
 final class wire_SimpleValue_Number extends ffi.Struct {
   @ffi.Double()
   external double field0;
@@ -536,6 +574,45 @@ final class SimpleValueKind extends ffi.Union {
 
 final class wire_SimpleValue_List extends ffi.Struct {
   external ffi.Pointer<wire_list_simple_value> field0;
+}
+
+final class wire___record__String_simple_value extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+
+  external wire_SimpleValue field1;
+}
+
+final class wire_list___record__String_simple_value extends ffi.Struct {
+  external ffi.Pointer<wire___record__String_simple_value> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_RustCommand_InjectMessage extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> msg_type;
+
+  external ffi.Pointer<wire_list___record__String_simple_value> values;
+}
+
+final class RustCommandKind extends ffi.Union {
+  external ffi.Pointer<wire_RustCommand_SetProject> SetProject;
+
+  external ffi.Pointer<wire_RustCommand_Start> Start;
+
+  external ffi.Pointer<wire_RustCommand_InjectMessage> InjectMessage;
+}
+
+final class wire_RustCommand extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external ffi.Pointer<RustCommandKind> kind;
+}
+
+final class wire_DartRequestKey extends ffi.Struct {
+  @ffi.UintPtr()
+  external int value;
 }
 
 final class wire_RequestResult_Ok extends ffi.Struct {

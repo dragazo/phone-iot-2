@@ -22,20 +22,6 @@ typedef struct wire_RustCommand_Start {
 
 } wire_RustCommand_Start;
 
-typedef union RustCommandKind {
-  struct wire_RustCommand_SetProject *SetProject;
-  struct wire_RustCommand_Start *Start;
-} RustCommandKind;
-
-typedef struct wire_RustCommand {
-  int32_t tag;
-  union RustCommandKind *kind;
-} wire_RustCommand;
-
-typedef struct wire_DartRequestKey {
-  uintptr_t value;
-} wire_DartRequestKey;
-
 typedef struct wire_SimpleValue_Number {
   double field0;
 } wire_SimpleValue_Number;
@@ -63,6 +49,36 @@ typedef struct wire_SimpleValue {
   int32_t tag;
   union SimpleValueKind *kind;
 } wire_SimpleValue;
+
+typedef struct wire___record__String_simple_value {
+  struct wire_uint_8_list *field0;
+  struct wire_SimpleValue field1;
+} wire___record__String_simple_value;
+
+typedef struct wire_list___record__String_simple_value {
+  struct wire___record__String_simple_value *ptr;
+  int32_t len;
+} wire_list___record__String_simple_value;
+
+typedef struct wire_RustCommand_InjectMessage {
+  struct wire_uint_8_list *msg_type;
+  struct wire_list___record__String_simple_value *values;
+} wire_RustCommand_InjectMessage;
+
+typedef union RustCommandKind {
+  struct wire_RustCommand_SetProject *SetProject;
+  struct wire_RustCommand_Start *Start;
+  struct wire_RustCommand_InjectMessage *InjectMessage;
+} RustCommandKind;
+
+typedef struct wire_RustCommand {
+  int32_t tag;
+  union RustCommandKind *kind;
+} wire_RustCommand;
+
+typedef struct wire_DartRequestKey {
+  uintptr_t value;
+} wire_DartRequestKey;
 
 typedef struct wire_RequestResult_Ok {
   struct wire_SimpleValue *field0;
@@ -112,6 +128,8 @@ struct wire_RustCommand *new_box_autoadd_rust_command_0(void);
 
 struct wire_SimpleValue *new_box_autoadd_simple_value_0(void);
 
+struct wire_list___record__String_simple_value *new_list___record__String_simple_value_0(int32_t len);
+
 struct wire_list_simple_value *new_list_simple_value_0(int32_t len);
 
 struct wire_uint_8_list *new_uint_8_list_0(int32_t len);
@@ -121,6 +139,8 @@ union RequestResultKind *inflate_RequestResult_Ok(void);
 union RequestResultKind *inflate_RequestResult_Err(void);
 
 union RustCommandKind *inflate_RustCommand_SetProject(void);
+
+union RustCommandKind *inflate_RustCommand_InjectMessage(void);
 
 union SimpleValueKind *inflate_SimpleValue_Number(void);
 
@@ -140,11 +160,13 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) new_box_autoadd_request_result_0);
     dummy_var ^= ((int64_t) (void*) new_box_autoadd_rust_command_0);
     dummy_var ^= ((int64_t) (void*) new_box_autoadd_simple_value_0);
+    dummy_var ^= ((int64_t) (void*) new_list___record__String_simple_value_0);
     dummy_var ^= ((int64_t) (void*) new_list_simple_value_0);
     dummy_var ^= ((int64_t) (void*) new_uint_8_list_0);
     dummy_var ^= ((int64_t) (void*) inflate_RequestResult_Ok);
     dummy_var ^= ((int64_t) (void*) inflate_RequestResult_Err);
     dummy_var ^= ((int64_t) (void*) inflate_RustCommand_SetProject);
+    dummy_var ^= ((int64_t) (void*) inflate_RustCommand_InjectMessage);
     dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_Number);
     dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_String);
     dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_List);

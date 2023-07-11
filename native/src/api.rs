@@ -164,6 +164,7 @@ pub struct LabelInfo {
 pub enum RustCommand {
     SetProject { xml: String },
     Start,
+    InjectMessage { msg_type: String, values: Vec<(String, SimpleValue)> },
 }
 
 #[derive(Clone, Copy, PartialOrd, Ord, PartialEq, Eq, Debug)]
@@ -454,6 +455,7 @@ pub fn initialize() {
                             env.proj.borrow_mut(mc).input(Input::Start);
                         });
                     }
+                    RustCommand::InjectMessage { msg_type, values } => system.inject_message(msg_type, values.into_iter().map(|x| (x.0, x.1.into_json())).collect()),
                 }
             }
 

@@ -150,6 +150,10 @@ sealed class RustCommand with _$RustCommand {
     required String xml,
   }) = RustCommand_SetProject;
   const factory RustCommand.start() = RustCommand_Start;
+  const factory RustCommand.injectMessage({
+    required String msgType,
+    required List<(String, SimpleValue)> values,
+  }) = RustCommand_InjectMessage;
 }
 
 @freezed

@@ -70,6 +70,7 @@ void drawTextPos(Canvas canvas, Offset offset, Color color, String text, double 
 
 abstract class CustomControl {
   Size canvasSize = Size.zero;
+
   void draw(Canvas canvas);
   bool contains(Offset pos);
   ClickResult handleClick(Offset pos, ClickType type);
@@ -80,11 +81,11 @@ class CustomButton extends CustomControl {
   ButtonStyleInfo style;
   bool landscape;
   String? event;
-  String text;
+  String id, text;
 
   bool clicked = false;
 
-  CustomButton(ButtonInfo info) : x = info.x, y = info.y, width = info.width, height = info.height,
+  CustomButton(ButtonInfo info) : id = info.id, x = info.x, y = info.y, width = info.width, height = info.height,
     backColor = getColor(info.backColor), foreColor = getColor(info.foreColor), text = info.text,
     event = info.event, fontSize = info.fontSize, style = info.style, landscape = info.landscape;
 
@@ -142,6 +143,9 @@ class CustomButton extends CustomControl {
     switch (type) {
       case ClickType.down:
         clicked = true;
+        if (event != null) {
+          api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [('device', const SimpleValue.number(0)), ('id', SimpleValue.string(id))]));
+        }
         return ClickResult.redraw;
       case ClickType.up:
         clicked = false;

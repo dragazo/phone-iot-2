@@ -32,6 +32,18 @@ impl Wire2Api<String> for String {
         self
     }
 }
+impl Wire2Api<(String, SimpleValue)> for JsValue {
+    fn wire2api(self) -> (String, SimpleValue) {
+        let self_ = self.dyn_into::<JsArray>().unwrap();
+        assert_eq!(
+            self_.length(),
+            2,
+            "Expected 2 elements, got {}",
+            self_.length()
+        );
+        (self_.get(0).wire2api(), self_.get(1).wire2api())
+    }
+}
 
 impl Wire2Api<DartRequestKey> for JsValue {
     fn wire2api(self) -> DartRequestKey {
@@ -48,6 +60,15 @@ impl Wire2Api<DartRequestKey> for JsValue {
     }
 }
 
+impl Wire2Api<Vec<(String, SimpleValue)>> for JsValue {
+    fn wire2api(self) -> Vec<(String, SimpleValue)> {
+        self.dyn_into::<JsArray>()
+            .unwrap()
+            .iter()
+            .map(Wire2Api::wire2api)
+            .collect()
+    }
+}
 impl Wire2Api<Vec<SimpleValue>> for JsValue {
     fn wire2api(self) -> Vec<SimpleValue> {
         self.dyn_into::<JsArray>()
@@ -75,6 +96,10 @@ impl Wire2Api<RustCommand> for JsValue {
                 xml: self_.get(1).wire2api(),
             },
             1 => RustCommand::Start,
+            2 => RustCommand::InjectMessage {
+                msg_type: self_.get(1).wire2api(),
+                values: self_.get(2).wire2api(),
+            },
             _ => unreachable!(),
         }
     }

@@ -48,6 +48,20 @@ pub extern "C" fn new_box_autoadd_simple_value_0() -> *mut wire_SimpleValue {
 }
 
 #[no_mangle]
+pub extern "C" fn new_list___record__String_simple_value_0(
+    len: i32,
+) -> *mut wire_list___record__String_simple_value {
+    let wrap = wire_list___record__String_simple_value {
+        ptr: support::new_leak_vec_ptr(
+            <wire___record__String_simple_value>::new_with_null_ptr(),
+            len,
+        ),
+        len,
+    };
+    support::new_leak_box_ptr(wrap)
+}
+
+#[no_mangle]
 pub extern "C" fn new_list_simple_value_0(len: i32) -> *mut wire_list_simple_value {
     let wrap = wire_list_simple_value {
         ptr: support::new_leak_vec_ptr(<wire_SimpleValue>::new_with_null_ptr(), len),
@@ -73,6 +87,11 @@ impl Wire2Api<String> for *mut wire_uint_8_list {
     fn wire2api(self) -> String {
         let vec: Vec<u8> = self.wire2api();
         String::from_utf8_lossy(&vec).into_owned()
+    }
+}
+impl Wire2Api<(String, SimpleValue)> for wire___record__String_simple_value {
+    fn wire2api(self) -> (String, SimpleValue) {
+        (self.field0.wire2api(), self.field1.wire2api())
     }
 }
 impl Wire2Api<DartRequestKey> for *mut wire_DartRequestKey {
@@ -107,6 +126,15 @@ impl Wire2Api<DartRequestKey> for wire_DartRequestKey {
     }
 }
 
+impl Wire2Api<Vec<(String, SimpleValue)>> for *mut wire_list___record__String_simple_value {
+    fn wire2api(self) -> Vec<(String, SimpleValue)> {
+        let vec = unsafe {
+            let wrap = support::box_from_leak_ptr(self);
+            support::vec_from_leak_ptr(wrap.ptr, wrap.len)
+        };
+        vec.into_iter().map(Wire2Api::wire2api).collect()
+    }
+}
 impl Wire2Api<Vec<SimpleValue>> for *mut wire_list_simple_value {
     fn wire2api(self) -> Vec<SimpleValue> {
         let vec = unsafe {
@@ -144,6 +172,14 @@ impl Wire2Api<RustCommand> for wire_RustCommand {
                 }
             },
             1 => RustCommand::Start,
+            2 => unsafe {
+                let ans = support::box_from_leak_ptr(self.kind);
+                let ans = support::box_from_leak_ptr(ans.InjectMessage);
+                RustCommand::InjectMessage {
+                    msg_type: ans.msg_type.wire2api(),
+                    values: ans.values.wire2api(),
+                }
+            },
             _ => unreachable!(),
         }
     }
@@ -184,8 +220,22 @@ impl Wire2Api<Vec<u8>> for *mut wire_uint_8_list {
 
 #[repr(C)]
 #[derive(Clone)]
+pub struct wire___record__String_simple_value {
+    field0: *mut wire_uint_8_list,
+    field1: wire_SimpleValue,
+}
+
+#[repr(C)]
+#[derive(Clone)]
 pub struct wire_DartRequestKey {
     value: usize,
+}
+
+#[repr(C)]
+#[derive(Clone)]
+pub struct wire_list___record__String_simple_value {
+    ptr: *mut wire___record__String_simple_value,
+    len: i32,
 }
 
 #[repr(C)]
@@ -237,6 +287,7 @@ pub struct wire_RustCommand {
 pub union RustCommandKind {
     SetProject: *mut wire_RustCommand_SetProject,
     Start: *mut wire_RustCommand_Start,
+    InjectMessage: *mut wire_RustCommand_InjectMessage,
 }
 
 #[repr(C)]
@@ -248,6 +299,13 @@ pub struct wire_RustCommand_SetProject {
 #[repr(C)]
 #[derive(Clone)]
 pub struct wire_RustCommand_Start {}
+
+#[repr(C)]
+#[derive(Clone)]
+pub struct wire_RustCommand_InjectMessage {
+    msg_type: *mut wire_uint_8_list,
+    values: *mut wire_list___record__String_simple_value,
+}
 #[repr(C)]
 #[derive(Clone)]
 pub struct wire_SimpleValue {
@@ -289,6 +347,21 @@ pub trait NewWithNullPtr {
 impl<T> NewWithNullPtr for *mut T {
     fn new_with_null_ptr() -> Self {
         std::ptr::null_mut()
+    }
+}
+
+impl NewWithNullPtr for wire___record__String_simple_value {
+    fn new_with_null_ptr() -> Self {
+        Self {
+            field0: core::ptr::null_mut(),
+            field1: Default::default(),
+        }
+    }
+}
+
+impl Default for wire___record__String_simple_value {
+    fn default() -> Self {
+        Self::new_with_null_ptr()
     }
 }
 
@@ -359,6 +432,16 @@ pub extern "C" fn inflate_RustCommand_SetProject() -> *mut RustCommandKind {
     support::new_leak_box_ptr(RustCommandKind {
         SetProject: support::new_leak_box_ptr(wire_RustCommand_SetProject {
             xml: core::ptr::null_mut(),
+        }),
+    })
+}
+
+#[no_mangle]
+pub extern "C" fn inflate_RustCommand_InjectMessage() -> *mut RustCommandKind {
+    support::new_leak_box_ptr(RustCommandKind {
+        InjectMessage: support::new_leak_box_ptr(wire_RustCommand_InjectMessage {
+            msg_type: core::ptr::null_mut(),
+            values: core::ptr::null_mut(),
         }),
     })
 }

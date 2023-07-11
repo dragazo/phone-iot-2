@@ -26,6 +26,12 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
   }
 
   @protected
+  List<dynamic> api2wire___record__String_simple_value(
+      (String, SimpleValue) raw) {
+    return [api2wire_String(raw.$1), api2wire_simple_value(raw.$2)];
+  }
+
+  @protected
   List<dynamic> api2wire_box_autoadd_dart_request_key(DartRequestKey raw) {
     return api2wire_dart_request_key(raw);
   }
@@ -48,6 +54,12 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
   @protected
   List<dynamic> api2wire_dart_request_key(DartRequestKey raw) {
     return [api2wire_usize(raw.value)];
+  }
+
+  @protected
+  List<dynamic> api2wire_list___record__String_simple_value(
+      List<(String, SimpleValue)> raw) {
+    return raw.map(api2wire___record__String_simple_value).toList();
   }
 
   @protected
@@ -74,6 +86,13 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
     }
     if (raw is RustCommand_Start) {
       return [1];
+    }
+    if (raw is RustCommand_InjectMessage) {
+      return [
+        2,
+        api2wire_String(raw.msgType),
+        api2wire_list___record__String_simple_value(raw.values)
+      ];
     }
 
     throw Exception('unreachable');
