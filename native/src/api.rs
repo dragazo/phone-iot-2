@@ -475,6 +475,32 @@ pub fn initialize() {
                             }});
                             RequestStatus::Handled
                         }
+                        "addTextField" => {
+                            if args.len() != 6 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let x = parse!(x := args[1].1 => f64);
+                            let y = parse!(y := args[2].1 => f64);
+                            let width = parse!(width := args[3].1 => f64);
+                            let height = parse!(height := args[4].1 => f64);
+                            let options = parse!(options := args[5].1 => { id, event, text, color, textColor, readonly, fontSize, align, landscape });
+                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                            let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                            let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
+                            let text = parse!(text := options.get("text") => Option<String>).unwrap_or_default();
+                            let event = parse!(event := options.get("event") => Option<String>);
+                            let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
+                            let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
+                            let align = parse!(align := options.get("align") => Option<TextAlignInfo>).unwrap_or(TextAlignInfo::Left);
+                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::AddTextField { key, info: TextFieldInfo {
+                                id, x, y, width, height, back_color, fore_color, text, event, font_size, landscape, readonly, align,
+                            }});
+                            RequestStatus::Handled
+                        }
                         _ => RequestStatus::UseDefault { key, request },
                     }
                     _ => RequestStatus::UseDefault { key, request },

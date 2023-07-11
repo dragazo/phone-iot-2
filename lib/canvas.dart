@@ -163,7 +163,7 @@ class CustomButton extends CustomControl with TextLike {
           canvas.drawOval(rect, paint);
         }
     }
-    drawTextRect(canvas, rect, foreColor, text, fontSize, TextAlign.center, true);
+    drawTextRect(canvas, rect.deflate(textPadding), foreColor, text, fontSize, TextAlign.center, true);
     canvas.restore();
   }
 
