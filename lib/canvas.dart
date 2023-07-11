@@ -76,6 +76,9 @@ mixin TextLike {
 
 abstract class CustomControl {
   Size canvasSize = Size.zero;
+  String id;
+
+  CustomControl({ required this.id });
 
   void draw(Canvas canvas);
   bool contains(Offset pos);
@@ -90,7 +93,7 @@ class CustomLabel extends CustomControl with TextLike {
   bool landscape;
 
   CustomLabel(LabelInfo info) : x = info.x, y = info.y, color = getColor(info.color), text = info.text,
-    fontSize = info.fontSize, align = getAlign(info.align), landscape = info.landscape;
+    fontSize = info.fontSize, align = getAlign(info.align), landscape = info.landscape, super(id: info.id);
 
   @override
   void draw(Canvas canvas) {
@@ -124,13 +127,13 @@ class CustomButton extends CustomControl with TextLike {
   ButtonStyleInfo style;
   bool landscape;
   String? event;
-  String id, text;
+  String text;
 
   bool clicked = false;
 
-  CustomButton(ButtonInfo info) : id = info.id, x = info.x, y = info.y, width = info.width, height = info.height,
-    backColor = getColor(info.backColor), foreColor = getColor(info.foreColor), text = info.text,
-    event = info.event, fontSize = info.fontSize, style = info.style, landscape = info.landscape;
+  CustomButton(ButtonInfo info) : x = info.x, y = info.y, width = info.width, height = info.height,
+    backColor = getColor(info.backColor), foreColor = getColor(info.foreColor), text = info.text, event = info.event,
+    fontSize = info.fontSize, style = info.style, landscape = info.landscape, super(id: info.id);
 
   @override
   void draw(Canvas canvas) {
@@ -187,7 +190,10 @@ class CustomButton extends CustomControl with TextLike {
       case ClickType.down:
         clicked = true;
         if (event != null) {
-          api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [('device', const SimpleValue.number(0)), ('id', SimpleValue.string(id))]));
+          api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+            ('device', const SimpleValue.number(0)),
+            ('id', SimpleValue.string(id)),
+          ]));
         }
         return ClickResult.redraw;
       case ClickType.up:
@@ -215,11 +221,11 @@ class CustomTextField extends CustomControl with TextLike {
   TextAlign align;
   bool landscape, readonly;
   String? event;
-  String id, text;
+  String text;
 
-  CustomTextField(TextFieldInfo info) : id = info.id, x = info.x, y = info.y, width = info.width, height = info.height,
+  CustomTextField(TextFieldInfo info) : x = info.x, y = info.y, width = info.width, height = info.height,
     backColor = getColor(info.backColor), foreColor = getColor(info.foreColor), text = info.text, readonly = info.readonly,
-    event = info.event, fontSize = info.fontSize, align = getAlign(info.align), landscape = info.landscape;
+    event = info.event, fontSize = info.fontSize, align = getAlign(info.align), landscape = info.landscape, super(id: info.id);
 
   @override
   void draw(Canvas canvas) {
@@ -256,6 +262,13 @@ class CustomTextField extends CustomControl with TextLike {
   @override
   void setText(String value) {
     text = value;
+    if (event != null) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+        ('device', const SimpleValue.number(0)),
+        ('id', SimpleValue.string(id)),
+        ('text', SimpleValue.string(text)),
+      ]));
+    }
   }
 }
 

@@ -59,7 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Message> messages = [];
   final LinkedHashMap<String, CustomControl> controls = LinkedHashMap(); // must preserve insertion order iteration
   final Map<int, CustomControl> clickTargets = {};
+
   bool menuOpen = true;
+  TextLike? inputTextTarget;
 
   @override
   void initState() {
@@ -253,12 +255,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               children: [
                 InkWell(
-                  onTap: () => setState(() => menuOpen ^= true),
+                  onTap: () {
+                    if (inputTextTarget == null) return;
+                    inputTextTarget!.setText(widget.textInput.text);
+                    setState(() => inputTextTarget = null);
+                  },
                   child: const Icon(Icons.check),
                 ),
                 const SizedBox(height: 30),
                 InkWell(
-                  onTap: () => setState(() => menuOpen ^= true),
+                  onTap: () => setState(() => inputTextTarget = null),
                   child: const Icon(Icons.close),
                 ),
               ],
@@ -296,7 +302,7 @@ class _MyHomePageState extends State<MyHomePage> {
             duration: const Duration(milliseconds: 10000),
             left: 0,
             right: 0,
-            bottom: menuOpen ? 20 : -200,
+            bottom: inputTextTarget != null ? 20 : -200,
             curve: Curves.ease,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -362,7 +368,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case ClickResult.none: ();
       case ClickResult.redraw: setState(() {});
       case ClickResult.requestText:
-        setState(() => messages.add(Message('requested text from $target', MessageType.stdout)));
+        inputTextTarget = target as TextLike;
+        widget.textInput.text = inputTextTarget!.getText();
+        setState(() {});
     }
   }
 }
