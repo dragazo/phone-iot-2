@@ -26,10 +26,13 @@ mixin _$DartCommand {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,9 +44,11 @@ mixin _$DartCommand {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,9 +60,11 @@ mixin _$DartCommand {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,9 +77,11 @@ mixin _$DartCommand {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,9 +93,11 @@ mixin _$DartCommand {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -98,9 +109,11 @@ mixin _$DartCommand {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -197,10 +210,13 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) {
     return stdout(msg);
   }
@@ -215,9 +231,11 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) {
     return stdout?.call(msg);
   }
@@ -232,9 +250,11 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -253,9 +273,11 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) {
     return stdout(this);
   }
@@ -270,9 +292,11 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) {
     return stdout?.call(this);
   }
@@ -287,9 +311,11 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -382,10 +408,13 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) {
     return stderr(msg);
   }
@@ -400,9 +429,11 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) {
     return stderr?.call(msg);
   }
@@ -417,9 +448,11 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -438,9 +471,11 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) {
     return stderr(this);
   }
@@ -455,9 +490,11 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) {
     return stderr?.call(this);
   }
@@ -472,9 +509,11 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -568,10 +607,13 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) {
     return clearControls(key);
   }
@@ -586,9 +628,11 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) {
     return clearControls?.call(key);
   }
@@ -603,9 +647,11 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
@@ -624,9 +670,11 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) {
     return clearControls(this);
   }
@@ -641,9 +689,11 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) {
     return clearControls?.call(this);
   }
@@ -658,9 +708,11 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
@@ -762,10 +814,13 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) {
     return removeControl(key, id);
   }
@@ -780,9 +835,11 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) {
     return removeControl?.call(key, id);
   }
@@ -797,9 +854,11 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) {
     if (removeControl != null) {
@@ -818,9 +877,11 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) {
     return removeControl(this);
   }
@@ -835,9 +896,11 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) {
     return removeControl?.call(this);
   }
@@ -852,9 +915,11 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (removeControl != null) {
@@ -957,10 +1022,13 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) {
     return addLabel(key, info);
   }
@@ -975,9 +1043,11 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) {
     return addLabel?.call(key, info);
   }
@@ -992,9 +1062,11 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
@@ -1013,9 +1085,11 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) {
     return addLabel(this);
   }
@@ -1030,9 +1104,11 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) {
     return addLabel?.call(this);
   }
@@ -1047,9 +1123,11 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
@@ -1152,10 +1230,13 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) {
     return addButton(key, info);
   }
@@ -1170,9 +1251,11 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) {
     return addButton?.call(key, info);
   }
@@ -1187,9 +1270,11 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) {
     if (addButton != null) {
@@ -1208,9 +1293,11 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) {
     return addButton(this);
   }
@@ -1225,9 +1312,11 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) {
     return addButton?.call(this);
   }
@@ -1242,9 +1331,11 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (addButton != null) {
@@ -1348,10 +1439,13 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) {
     return addTextField(key, info);
   }
@@ -1366,9 +1460,11 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) {
     return addTextField?.call(key, info);
   }
@@ -1383,9 +1479,11 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) {
     if (addTextField != null) {
@@ -1404,9 +1502,11 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) {
     return addTextField(this);
   }
@@ -1421,9 +1521,11 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) {
     return addTextField?.call(this);
   }
@@ -1438,9 +1540,11 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (addTextField != null) {
@@ -1460,6 +1564,214 @@ abstract class DartCommand_AddTextField implements DartCommand {
   @JsonKey(ignore: true)
   _$$DartCommand_AddTextFieldCopyWith<_$DartCommand_AddTextField>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_AddJoystickCopyWith<$Res> {
+  factory _$$DartCommand_AddJoystickCopyWith(_$DartCommand_AddJoystick value,
+          $Res Function(_$DartCommand_AddJoystick) then) =
+      __$$DartCommand_AddJoystickCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key, JoystickInfo info});
+}
+
+/// @nodoc
+class __$$DartCommand_AddJoystickCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddJoystick>
+    implements _$$DartCommand_AddJoystickCopyWith<$Res> {
+  __$$DartCommand_AddJoystickCopyWithImpl(_$DartCommand_AddJoystick _value,
+      $Res Function(_$DartCommand_AddJoystick) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+    Object? info = null,
+  }) {
+    return _then(_$DartCommand_AddJoystick(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as JoystickInfo,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
+  const _$DartCommand_AddJoystick({required this.key, required this.info});
+
+  @override
+  final DartRequestKey key;
+  @override
+  final JoystickInfo info;
+
+  @override
+  String toString() {
+    return 'DartCommand.addJoystick(key: $key, info: $info)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_AddJoystick &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.info, info) || other.info == info));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key, info);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_AddJoystickCopyWith<_$DartCommand_AddJoystick> get copyWith =>
+      __$$DartCommand_AddJoystickCopyWithImpl<_$DartCommand_AddJoystick>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+  }) {
+    return addJoystick(key, info);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+  }) {
+    return addJoystick?.call(key, info);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    required TResult orElse(),
+  }) {
+    if (addJoystick != null) {
+      return addJoystick(key, info);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+  }) {
+    return addJoystick(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+  }) {
+    return addJoystick?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    required TResult orElse(),
+  }) {
+    if (addJoystick != null) {
+      return addJoystick(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_AddJoystick implements DartCommand {
+  const factory DartCommand_AddJoystick(
+      {required final DartRequestKey key,
+      required final JoystickInfo info}) = _$DartCommand_AddJoystick;
+
+  DartRequestKey get key;
+  JoystickInfo get info;
+  @JsonKey(ignore: true)
+  _$$DartCommand_AddJoystickCopyWith<_$DartCommand_AddJoystick> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1543,10 +1855,13 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) {
     return getText(key, id);
   }
@@ -1561,9 +1876,11 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) {
     return getText?.call(key, id);
   }
@@ -1578,9 +1895,11 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) {
     if (getText != null) {
@@ -1599,9 +1918,11 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) {
     return getText(this);
   }
@@ -1616,9 +1937,11 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) {
     return getText?.call(this);
   }
@@ -1633,9 +1956,11 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (getText != null) {
@@ -1747,10 +2072,13 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) {
     return setText(key, id, value);
   }
@@ -1765,9 +2093,11 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) {
     return setText?.call(key, id, value);
   }
@@ -1782,9 +2112,11 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) {
     if (setText != null) {
@@ -1803,9 +2135,11 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) {
     return setText(this);
   }
@@ -1820,9 +2154,11 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) {
     return setText?.call(this);
   }
@@ -1837,9 +2173,11 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (setText != null) {
@@ -1944,10 +2282,13 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
     required TResult Function(DartRequestKey key, TextFieldInfo info)
         addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
   }) {
     return isPressed(key, id);
   }
@@ -1962,9 +2303,11 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
   }) {
     return isPressed?.call(key, id);
   }
@@ -1979,9 +2322,11 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
     required TResult orElse(),
   }) {
     if (isPressed != null) {
@@ -2000,9 +2345,11 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     required TResult Function(DartCommand_AddLabel value) addLabel,
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
   }) {
     return isPressed(this);
   }
@@ -2017,9 +2364,11 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartCommand_AddLabel value)? addLabel,
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
   }) {
     return isPressed?.call(this);
   }
@@ -2034,9 +2383,11 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartCommand_AddLabel value)? addLabel,
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (isPressed != null) {
@@ -2055,6 +2406,214 @@ abstract class DartCommand_IsPressed implements DartCommand {
   String get id;
   @JsonKey(ignore: true)
   _$$DartCommand_IsPressedCopyWith<_$DartCommand_IsPressed> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_GetPositionCopyWith<$Res> {
+  factory _$$DartCommand_GetPositionCopyWith(_$DartCommand_GetPosition value,
+          $Res Function(_$DartCommand_GetPosition) then) =
+      __$$DartCommand_GetPositionCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key, String id});
+}
+
+/// @nodoc
+class __$$DartCommand_GetPositionCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetPosition>
+    implements _$$DartCommand_GetPositionCopyWith<$Res> {
+  __$$DartCommand_GetPositionCopyWithImpl(_$DartCommand_GetPosition _value,
+      $Res Function(_$DartCommand_GetPosition) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+    Object? id = null,
+  }) {
+    return _then(_$DartCommand_GetPosition(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_GetPosition implements DartCommand_GetPosition {
+  const _$DartCommand_GetPosition({required this.key, required this.id});
+
+  @override
+  final DartRequestKey key;
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'DartCommand.getPosition(key: $key, id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_GetPosition &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_GetPositionCopyWith<_$DartCommand_GetPosition> get copyWith =>
+      __$$DartCommand_GetPositionCopyWithImpl<_$DartCommand_GetPosition>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+  }) {
+    return getPosition(key, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+  }) {
+    return getPosition?.call(key, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    required TResult orElse(),
+  }) {
+    if (getPosition != null) {
+      return getPosition(key, id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+  }) {
+    return getPosition(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+  }) {
+    return getPosition?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    required TResult orElse(),
+  }) {
+    if (getPosition != null) {
+      return getPosition(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_GetPosition implements DartCommand {
+  const factory DartCommand_GetPosition(
+      {required final DartRequestKey key,
+      required final String id}) = _$DartCommand_GetPosition;
+
+  DartRequestKey get key;
+  String get id;
+  @JsonKey(ignore: true)
+  _$$DartCommand_GetPositionCopyWith<_$DartCommand_GetPosition> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -112,6 +112,10 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required TextFieldInfo info,
   }) = DartCommand_AddTextField;
+  const factory DartCommand.addJoystick({
+    required DartRequestKey key,
+    required JoystickInfo info,
+  }) = DartCommand_AddJoystick;
   const factory DartCommand.getText({
     required DartRequestKey key,
     required String id,
@@ -125,6 +129,10 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required String id,
   }) = DartCommand_IsPressed;
+  const factory DartCommand.getPosition({
+    required DartRequestKey key,
+    required String id,
+  }) = DartCommand_GetPosition;
 }
 
 class DartRequestKey {
@@ -132,6 +140,26 @@ class DartRequestKey {
 
   const DartRequestKey({
     required this.value,
+  });
+}
+
+class JoystickInfo {
+  final String id;
+  final double x;
+  final double y;
+  final double width;
+  final String? event;
+  final ColorInfo color;
+  final bool landscape;
+
+  const JoystickInfo({
+    required this.id,
+    required this.x,
+    required this.y,
+    required this.width,
+    this.event,
+    required this.color,
+    required this.landscape,
   });
 }
 

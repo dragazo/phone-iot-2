@@ -177,6 +177,16 @@ pub struct TextFieldInfo {
     pub readonly: bool,
     pub align: TextAlignInfo,
 }
+#[derive(Clone, Debug)]
+pub struct JoystickInfo {
+    pub id: String,
+    pub x: f64,
+    pub y: f64,
+    pub width: f64,
+    pub event: Option<String>,
+    pub color: ColorInfo,
+    pub landscape: bool,
+}
 
 pub enum RustCommand {
     SetProject { xml: String },
@@ -207,10 +217,12 @@ pub enum DartCommand {
     AddLabel { key: DartRequestKey, info: LabelInfo },
     AddButton { key: DartRequestKey, info: ButtonInfo },
     AddTextField { key: DartRequestKey, info: TextFieldInfo },
+    AddJoystick { key: DartRequestKey, info: JoystickInfo },
 
     GetText { key: DartRequestKey, id: String },
     SetText { key: DartRequestKey, id: String, value: String },
     IsPressed { key: DartRequestKey, id: String },
+    GetPosition { key: DartRequestKey, id: String },
 }
 
 pub enum SimpleValue {
@@ -509,6 +521,26 @@ pub fn initialize() {
                             }});
                             RequestStatus::Handled
                         }
+                        "addJoystick" => {
+                            if args.len() != 5 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let x = parse!(x := args[1].1 => f64);
+                            let y = parse!(y := args[2].1 => f64);
+                            let width = parse!(width := args[3].1 => f64);
+                            let options = parse!(options := args[4].1 => { id, event, color, landscape });
+                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                            let event = parse!(event := options.get("event") => Option<String>);
+                            let color = parse!(event := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::AddJoystick { key, info: JoystickInfo {
+                                x, y, width, id, event, color, landscape,
+                            }});
+                            RequestStatus::Handled
+                        }
                         "getText" => {
                             if args.len() != 2 || !is_local_id(&args[0].1) {
                                 return RequestStatus::UseDefault { key, request };
@@ -541,6 +573,17 @@ pub fn initialize() {
 
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::IsPressed { key, id });
+                            RequestStatus::Handled
+                        }
+                        "getPosition" => {
+                            if args.len() != 2 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::GetPosition { key, id });
                             RequestStatus::Handled
                         }
                         _ => RequestStatus::UseDefault { key, request },
@@ -591,36 +634,6 @@ pub fn initialize() {
             });
         }
     });
-
-    send_dart_command(DartCommand::AddButton { key: DartRequestKey { value: usize::MAX }, info: ButtonInfo {
-        id: "test-1".into(),
-        x: 10.0,
-        y: 10.0,
-        width: 50.0,
-        height: 50.0,
-        back_color: ColorInfo { a: 255, r: 255, g: 100, b: 100 },
-        fore_color: ColorInfo { a: 255, r: 100, g: 255, b: 100 },
-        text: "1 merp derp this is going to be a big thing of text that will go off the thing and be really long and stuff haha".into(),
-        event: None,
-        font_size: 1.0,
-        style: ButtonStyleInfo::Ellipse,
-        landscape: false,
-    }});
-    send_dart_command(DartCommand::AddTextField { key: DartRequestKey { value: usize::MAX }, info: TextFieldInfo {
-        id: "test-2".into(),
-        x: 20.0,
-        y: 40.0,
-        width: 50.0,
-        height: 30.0,
-        back_color: ColorInfo { a: 255, r: 50, g: 100, b: 100 },
-        fore_color: ColorInfo { a: 255, r: 100, g: 100, b: 100 },
-        text: "2 merp derp this is going to be a big thing of text that will go off the thing and be really long and stuff haha".into(),
-        event: None,
-        font_size: 2.0,
-        landscape: false,
-        align: TextAlignInfo::Left,
-        readonly: false,
-    }});
 }
 
 pub fn send_command(cmd: RustCommand) {

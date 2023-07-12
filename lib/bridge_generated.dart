@@ -112,6 +112,10 @@ class NativeImpl implements Native {
     return _wire2api_dart_request_key(raw);
   }
 
+  JoystickInfo _wire2api_box_autoadd_joystick_info(dynamic raw) {
+    return _wire2api_joystick_info(raw);
+  }
+
   LabelInfo _wire2api_box_autoadd_label_info(dynamic raw) {
     return _wire2api_label_info(raw);
   }
@@ -191,18 +195,28 @@ class NativeImpl implements Native {
           info: _wire2api_box_autoadd_text_field_info(raw[2]),
         );
       case 7:
+        return DartCommand_AddJoystick(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          info: _wire2api_box_autoadd_joystick_info(raw[2]),
+        );
+      case 8:
         return DartCommand_GetText(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 8:
+      case 9:
         return DartCommand_SetText(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_String(raw[3]),
         );
-      case 9:
+      case 10:
         return DartCommand_IsPressed(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+        );
+      case 11:
+        return DartCommand_GetPosition(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
@@ -226,6 +240,21 @@ class NativeImpl implements Native {
 
   int _wire2api_i32(dynamic raw) {
     return raw as int;
+  }
+
+  JoystickInfo _wire2api_joystick_info(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 7)
+      throw Exception('unexpected arr length: expect 7 but see ${arr.length}');
+    return JoystickInfo(
+      id: _wire2api_String(arr[0]),
+      x: _wire2api_f64(arr[1]),
+      y: _wire2api_f64(arr[2]),
+      width: _wire2api_f64(arr[3]),
+      event: _wire2api_opt_String(arr[4]),
+      color: _wire2api_color_info(arr[5]),
+      landscape: _wire2api_bool(arr[6]),
+    );
   }
 
   LabelInfo _wire2api_label_info(dynamic raw) {

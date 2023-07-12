@@ -6,6 +6,9 @@ import 'package:phone_iot_2/ffi.dart';
 
 const double defaultFontSize = 16;
 const double textPadding = 5;
+const double joystickBorderWidth = 0.05;
+const double joystickHandSize = 0.3;
+const Duration joystickUpdateInterval = Duration(milliseconds: 100);
 const Color selectColor = Color.fromARGB(50, 255, 255, 255);
 
 enum ClickType {
@@ -37,6 +40,13 @@ bool ellipseContains(Rect r, Offset pos) {
   double cx = r.left + rx, cy = r.top + ry;
   double px = pos.dx - cx, py = pos.dy - cy;
   return (px * px) / (rx * rx) + (py * py) / (ry * ry) <= 1;
+}
+String encodeClickType(ClickType type) {
+  switch (type) {
+    case ClickType.down: return 'down';
+    case ClickType.move: return 'move';
+    case ClickType.up: return 'up';
+  }
 }
 
 void drawTextRect(Canvas canvas, Rect rect, Color color, String text, double fontSize, TextAlign align, bool vCenter) {
@@ -78,6 +88,9 @@ mixin TextLike {
 }
 mixin Pressable {
   bool isPressed();
+}
+mixin PositionLike {
+  (double, double) getPosition();
 }
 
 abstract class CustomControl {
@@ -280,6 +293,81 @@ class CustomTextField extends CustomControl with TextLike {
         ('text', SimpleValue.string(text)),
       ]));
     }
+  }
+}
+
+class CustomJoystick extends CustomControl with Pressable, PositionLike {
+  double x, y, width;
+  String? event;
+  Color color;
+  bool landscape;
+
+  bool pressed = false;
+  Offset pos = Offset.zero;
+  DateTime nextUpdate = DateTime.now();
+
+  CustomJoystick(JoystickInfo info) : x = info.x, y = info.y, width = info.width,
+    event = info.event, color = getColor(info.color), landscape = info.landscape, super(id: info.id);
+
+  @override
+  void draw(Canvas canvas) {
+    final paint = Paint();
+    paint.color = color;
+    final w = width * canvasSize.width / 100;
+    final r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, w, w);
+    final c = Offset(r.center.dx + pos.dx * w / 2, r.center.dy + pos.dy * w / 2);
+    final g = Rect.fromCenter(center: c, width: w * joystickHandSize, height: w * joystickHandSize);
+
+    paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = max(1, w * joystickBorderWidth);
+    canvas.drawOval(r, paint);
+
+    paint.style = PaintingStyle.fill;
+    canvas.drawOval(g, paint);
+  }
+
+  @override
+  bool contains(Offset pos) {
+    double w = width * canvasSize.width / 100;
+    Rect r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, w, w);
+    return ellipseContains(r, pos);
+  }
+
+  @override
+  ClickResult handleClick(Offset pos, ClickType type) {
+    final w = width * canvasSize.width / 100;
+    double dx = (pos.dx - (x * canvasSize.width / 100 + w / 2)) / (w / 2);
+    double dy = (pos.dy - (y * canvasSize.height / 100 + w / 2)) / (w / 2);
+    double len = sqrt(dx * dx + dy * dy);
+    pos = len <= 1 ? Offset(dx, dy) : Offset(dx / len, dy / len);
+
+    this.pos = type != ClickType.up ? pos : Offset.zero;
+    pressed = type != ClickType.up;
+
+    final now = DateTime.now();
+    if (event != null && (now.isAfter(nextUpdate) || type == ClickType.up)) {
+      nextUpdate = now.add(joystickUpdateInterval);
+      final p = getPosition();
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+        ('device', const SimpleValue.number(0)),
+        ('id', SimpleValue.string(id)),
+        ('x', SimpleValue.number(p.$1)),
+        ('y', SimpleValue.number(p.$2)),
+        ('tag', SimpleValue.string(encodeClickType(type))),
+      ]));
+    }
+
+    return ClickResult.redraw;
+  }
+
+  @override
+  bool isPressed() {
+    return pressed;
+  }
+
+  @override
+  (double, double) getPosition() {
+    return landscape ? (pos.dy, pos.dx) : (pos.dx, -pos.dy);
   }
 }
 

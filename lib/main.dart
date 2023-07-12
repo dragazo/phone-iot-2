@@ -84,19 +84,17 @@ class _MyHomePageState extends State<MyHomePage> {
     msgLifetimeUpdateLoop();
 
     void cmdHandlerLoop() async {
-      void addControl(String id, CustomControl control, DartRequestKey key) {
-        if (controls.containsKey(id)) {
-          api.completeRequest(key: key, result: RequestResult.err('id $id is already in use'));
+      void addControl(CustomControl control, DartRequestKey key) {
+        if (controls.containsKey(control.id)) {
+          api.completeRequest(key: key, result: RequestResult.err('id ${control.id} is already in use'));
         } else {
-          setState(() => controls[id] = control);
-          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(id)));
+          setState(() => controls[control.id] = control);
+          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(control.id)));
         }
       }
       T? findControl<T>(String id) {
-        for (final x in controls.values) {
-          if (x is T) return x as T;
-        }
-        return null;
+        CustomControl? x = controls[id];
+        return x is T ? x as T : null;
       }
       await for (final cmd in api.recvCommands()) {
         cmd.when(
@@ -112,9 +110,10 @@ class _MyHomePageState extends State<MyHomePage> {
             api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
           },
 
-          addLabel: (key, info) => addControl(info.id, CustomLabel(info), key),
-          addButton: (key, info) => addControl(info.id, CustomButton(info), key),
-          addTextField: (key, info) => addControl(info.id, CustomTextField(info), key),
+          addLabel: (key, info) => addControl(CustomLabel(info), key),
+          addButton: (key, info) => addControl(CustomButton(info), key),
+          addTextField: (key, info) => addControl(CustomTextField(info), key),
+          addJoystick: (key, info) => addControl(CustomJoystick(info), key),
 
           getText: (key, id) {
             TextLike? target = findControl<TextLike>(id);
@@ -128,6 +127,15 @@ class _MyHomePageState extends State<MyHomePage> {
           isPressed: (key, id) {
             Pressable? target = findControl<Pressable>(id);
             api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.isPressed())) : RequestResult.err('no pressable control with id $id'));
+          },
+          getPosition: (key, id) {
+            PositionLike? target = findControl<PositionLike>(id);
+            if (target != null) {
+              final p = target.getPosition();
+              api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list([ SimpleValue.number(p.$1), SimpleValue.number(p.$2) ])));
+            } else {
+              api.completeRequest(key: key, result: RequestResult.err('no position-like control with id $id'));
+            }
           },
         );
       }
