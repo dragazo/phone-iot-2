@@ -108,9 +108,10 @@ impl Wire2Api<SimpleValue> for JsValue {
     fn wire2api(self) -> SimpleValue {
         let self_ = self.unchecked_into::<JsArray>();
         match self_.get(0).unchecked_into_f64() as _ {
-            0 => SimpleValue::Number(self_.get(1).wire2api()),
-            1 => SimpleValue::String(self_.get(1).wire2api()),
-            2 => SimpleValue::List(self_.get(1).wire2api()),
+            0 => SimpleValue::Bool(self_.get(1).wire2api()),
+            1 => SimpleValue::Number(self_.get(1).wire2api()),
+            2 => SimpleValue::String(self_.get(1).wire2api()),
+            3 => SimpleValue::List(self_.get(1).wire2api()),
             _ => unreachable!(),
         }
     }
@@ -127,6 +128,11 @@ impl Wire2Api<Vec<u8>> for Box<[u8]> {
 impl Wire2Api<String> for JsValue {
     fn wire2api(self) -> String {
         self.as_string().expect("non-UTF-8 string, or not a string")
+    }
+}
+impl Wire2Api<bool> for JsValue {
+    fn wire2api(self) -> bool {
+        self.is_truthy()
     }
 }
 impl Wire2Api<f64> for JsValue {

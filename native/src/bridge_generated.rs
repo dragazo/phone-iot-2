@@ -95,6 +95,12 @@ where
     }
 }
 
+impl Wire2Api<bool> for bool {
+    fn wire2api(self) -> bool {
+        self
+    }
+}
+
 impl Wire2Api<f64> for f64 {
     fn wire2api(self) -> f64 {
         self
@@ -179,6 +185,7 @@ impl support::IntoDart for DartCommand {
                 id.into_dart(),
                 value.into_dart(),
             ],
+            Self::IsPressed { key, id } => vec![9.into_dart(), key.into_dart(), id.into_dart()],
         }
         .into_dart()
     }

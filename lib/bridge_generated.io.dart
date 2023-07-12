@@ -163,23 +163,30 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
 
   void _api_fill_to_wire_simple_value(
       SimpleValue apiObj, wire_SimpleValue wireObj) {
+    if (apiObj is SimpleValue_Bool) {
+      var pre_field0 = api2wire_bool(apiObj.field0);
+      wireObj.tag = 0;
+      wireObj.kind = inner.inflate_SimpleValue_Bool();
+      wireObj.kind.ref.Bool.ref.field0 = pre_field0;
+      return;
+    }
     if (apiObj is SimpleValue_Number) {
       var pre_field0 = api2wire_f64(apiObj.field0);
-      wireObj.tag = 0;
+      wireObj.tag = 1;
       wireObj.kind = inner.inflate_SimpleValue_Number();
       wireObj.kind.ref.Number.ref.field0 = pre_field0;
       return;
     }
     if (apiObj is SimpleValue_String) {
       var pre_field0 = api2wire_String(apiObj.field0);
-      wireObj.tag = 1;
+      wireObj.tag = 2;
       wireObj.kind = inner.inflate_SimpleValue_String();
       wireObj.kind.ref.String.ref.field0 = pre_field0;
       return;
     }
     if (apiObj is SimpleValue_List) {
       var pre_field0 = api2wire_list_simple_value(apiObj.field0);
-      wireObj.tag = 2;
+      wireObj.tag = 3;
       wireObj.kind = inner.inflate_SimpleValue_List();
       wireObj.kind.ref.List.ref.field0 = pre_field0;
       return;
@@ -481,6 +488,16 @@ class NativeWire implements FlutterRustBridgeWireBase {
       _inflate_RustCommand_InjectMessagePtr
           .asFunction<ffi.Pointer<RustCommandKind> Function()>();
 
+  ffi.Pointer<SimpleValueKind> inflate_SimpleValue_Bool() {
+    return _inflate_SimpleValue_Bool();
+  }
+
+  late final _inflate_SimpleValue_BoolPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<SimpleValueKind> Function()>>(
+          'inflate_SimpleValue_Bool');
+  late final _inflate_SimpleValue_Bool = _inflate_SimpleValue_BoolPtr
+      .asFunction<ffi.Pointer<SimpleValueKind> Function()>();
+
   ffi.Pointer<SimpleValueKind> inflate_SimpleValue_Number() {
     return _inflate_SimpleValue_Number();
   }
@@ -541,6 +558,11 @@ final class wire_RustCommand_SetProject extends ffi.Struct {
 
 final class wire_RustCommand_Start extends ffi.Opaque {}
 
+final class wire_SimpleValue_Bool extends ffi.Struct {
+  @ffi.Bool()
+  external bool field0;
+}
+
 final class wire_SimpleValue_Number extends ffi.Struct {
   @ffi.Double()
   external double field0;
@@ -565,6 +587,8 @@ final class wire_SimpleValue extends ffi.Struct {
 }
 
 final class SimpleValueKind extends ffi.Union {
+  external ffi.Pointer<wire_SimpleValue_Bool> Bool;
+
   external ffi.Pointer<wire_SimpleValue_Number> Number;
 
   external ffi.Pointer<wire_SimpleValue_String> String;

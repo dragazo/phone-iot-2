@@ -118,12 +118,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
           getText: (key, id) {
             TextLike? target = findControl<TextLike>(id);
-            api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.string(target.getText())) : RequestResult.err('no text-like widget with id $id'));
+            api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.string(target.getText())) : RequestResult.err('no text-like control with id $id'));
           },
           setText: (key, id, value) {
             TextLike? target = findControl<TextLike>(id);
-            if (target != null) setState(() => target.setText(value));
-            api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no text-like widget with id $id'));
+            if (target != null) setState(() => target.setText(value, UpdateSource.code));
+            api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no text-like control with id $id'));
+          },
+          isPressed: (key, id) {
+            Pressable? target = findControl<Pressable>(id);
+            api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.isPressed())) : RequestResult.err('no pressable control with id $id'));
           },
         );
       }
@@ -275,7 +279,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 InkWell(
                   onTap: () {
                     if (inputTextTarget == null) return;
-                    inputTextTarget!.setText(widget.textInput.text);
+                    inputTextTarget!.setText(widget.textInput.text, UpdateSource.user);
                     setState(() => inputTextTarget = null);
                   },
                   child: const Icon(Icons.check),
@@ -375,8 +379,10 @@ class _MyHomePageState extends State<MyHomePage> {
       for (final x in controls.values) {
         if (x.contains(pos)) target = x; // don't break, cause we need the last hit on highest layer (no reversed iterator, sadly)
       }
+      if (clickTargets.containsValue(target)) return; // don't allow multiple simultaneous touches on the same control
     }
     if (target == null) return;
+
     switch (type) {
       case ClickType.down: clickTargets[id] = target;
       case ClickType.up: clickTargets.remove(id);

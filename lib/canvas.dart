@@ -14,6 +14,9 @@ enum ClickType {
 enum ClickResult {
   none, redraw, requestText,
 }
+enum UpdateSource {
+  code, user,
+}
 
 Color getColor(ColorInfo color) {
   return Color.fromARGB(color.a, color.r, color.g, color.b);
@@ -71,7 +74,10 @@ void drawTextPos(Canvas canvas, Offset offset, Color color, String text, double 
 
 mixin TextLike {
   String getText();
-  void setText(String value);
+  void setText(String value, UpdateSource source);
+}
+mixin Pressable {
+  bool isPressed();
 }
 
 abstract class CustomControl {
@@ -116,12 +122,12 @@ class CustomLabel extends CustomControl with TextLike {
   }
 
   @override
-  void setText(String value) {
+  void setText(String value, UpdateSource source) {
     text = value;
   }
 }
 
-class CustomButton extends CustomControl with TextLike {
+class CustomButton extends CustomControl with TextLike, Pressable {
   double x, y, width, height, fontSize;
   Color backColor, foreColor;
   ButtonStyleInfo style;
@@ -129,7 +135,7 @@ class CustomButton extends CustomControl with TextLike {
   String? event;
   String text;
 
-  bool clicked = false;
+  bool pressed = false;
 
   CustomButton(ButtonInfo info) : x = info.x, y = info.y, width = info.width, height = info.height,
     backColor = getColor(info.backColor), foreColor = getColor(info.foreColor), text = info.text, event = info.event,
@@ -151,14 +157,14 @@ class CustomButton extends CustomControl with TextLike {
       case ButtonStyleInfo.Rectangle:
       case ButtonStyleInfo.Square:
         canvas.drawRect(rect, paint);
-        if (clicked) {
+        if (pressed) {
           paint.color = selectColor;
           canvas.drawRect(rect, paint);
         }
       case ButtonStyleInfo.Ellipse:
       case ButtonStyleInfo.Circle:
         canvas.drawOval(rect, paint);
-        if (clicked) {
+        if (pressed) {
           paint.color = selectColor;
           canvas.drawOval(rect, paint);
         }
@@ -188,7 +194,7 @@ class CustomButton extends CustomControl with TextLike {
   ClickResult handleClick(Offset pos, ClickType type) {
     switch (type) {
       case ClickType.down:
-        clicked = true;
+        pressed = true;
         if (event != null) {
           api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
             ('device', const SimpleValue.number(0)),
@@ -197,7 +203,7 @@ class CustomButton extends CustomControl with TextLike {
         }
         return ClickResult.redraw;
       case ClickType.up:
-        clicked = false;
+        pressed = false;
         return ClickResult.redraw;
       case ClickType.move:
         return ClickResult.none;
@@ -210,8 +216,13 @@ class CustomButton extends CustomControl with TextLike {
   }
 
   @override
-  void setText(String value) {
+  void setText(String value, UpdateSource source) {
     text = value;
+  }
+
+  @override
+  bool isPressed() {
+    return pressed;
   }
 }
 
@@ -260,9 +271,9 @@ class CustomTextField extends CustomControl with TextLike {
   }
 
   @override
-  void setText(String value) {
+  void setText(String value, UpdateSource source) {
     text = value;
-    if (event != null) {
+    if (source == UpdateSource.user && event != null) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
         ('device', const SimpleValue.number(0)),
         ('id', SimpleValue.string(id)),

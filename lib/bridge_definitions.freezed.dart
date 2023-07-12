@@ -29,6 +29,7 @@ mixin _$DartCommand {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +43,7 @@ mixin _$DartCommand {
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +57,7 @@ mixin _$DartCommand {
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,6 +72,7 @@ mixin _$DartCommand {
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +86,7 @@ mixin _$DartCommand {
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,6 +100,7 @@ mixin _$DartCommand {
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -194,6 +200,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
   }) {
     return stdout(msg);
   }
@@ -210,6 +217,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
   }) {
     return stdout?.call(msg);
   }
@@ -226,6 +234,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -246,6 +255,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
   }) {
     return stdout(this);
   }
@@ -262,6 +272,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
   }) {
     return stdout?.call(this);
   }
@@ -278,6 +289,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -373,6 +385,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
   }) {
     return stderr(msg);
   }
@@ -389,6 +402,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
   }) {
     return stderr?.call(msg);
   }
@@ -405,6 +419,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -425,6 +440,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
   }) {
     return stderr(this);
   }
@@ -441,6 +457,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
   }) {
     return stderr?.call(this);
   }
@@ -457,6 +474,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -553,6 +571,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
   }) {
     return clearControls(key);
   }
@@ -569,6 +588,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
   }) {
     return clearControls?.call(key);
   }
@@ -585,6 +605,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
@@ -605,6 +626,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
   }) {
     return clearControls(this);
   }
@@ -621,6 +643,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
   }) {
     return clearControls?.call(this);
   }
@@ -637,6 +660,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
@@ -741,6 +765,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
   }) {
     return removeControl(key, id);
   }
@@ -757,6 +782,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
   }) {
     return removeControl?.call(key, id);
   }
@@ -773,6 +799,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
     required TResult orElse(),
   }) {
     if (removeControl != null) {
@@ -793,6 +820,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
   }) {
     return removeControl(this);
   }
@@ -809,6 +837,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
   }) {
     return removeControl?.call(this);
   }
@@ -825,6 +854,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
     required TResult orElse(),
   }) {
     if (removeControl != null) {
@@ -930,6 +960,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
   }) {
     return addLabel(key, info);
   }
@@ -946,6 +977,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
   }) {
     return addLabel?.call(key, info);
   }
@@ -962,6 +994,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
@@ -982,6 +1015,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
   }) {
     return addLabel(this);
   }
@@ -998,6 +1032,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
   }) {
     return addLabel?.call(this);
   }
@@ -1014,6 +1049,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
@@ -1119,6 +1155,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
   }) {
     return addButton(key, info);
   }
@@ -1135,6 +1172,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
   }) {
     return addButton?.call(key, info);
   }
@@ -1151,6 +1189,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
     required TResult orElse(),
   }) {
     if (addButton != null) {
@@ -1171,6 +1210,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
   }) {
     return addButton(this);
   }
@@ -1187,6 +1227,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
   }) {
     return addButton?.call(this);
   }
@@ -1203,6 +1244,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
     required TResult orElse(),
   }) {
     if (addButton != null) {
@@ -1309,6 +1351,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
   }) {
     return addTextField(key, info);
   }
@@ -1325,6 +1368,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
   }) {
     return addTextField?.call(key, info);
   }
@@ -1341,6 +1385,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
     required TResult orElse(),
   }) {
     if (addTextField != null) {
@@ -1361,6 +1406,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
   }) {
     return addTextField(this);
   }
@@ -1377,6 +1423,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
   }) {
     return addTextField?.call(this);
   }
@@ -1393,6 +1440,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
     required TResult orElse(),
   }) {
     if (addTextField != null) {
@@ -1498,6 +1546,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
   }) {
     return getText(key, id);
   }
@@ -1514,6 +1563,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
   }) {
     return getText?.call(key, id);
   }
@@ -1530,6 +1580,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
     required TResult orElse(),
   }) {
     if (getText != null) {
@@ -1550,6 +1601,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
   }) {
     return getText(this);
   }
@@ -1566,6 +1618,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
   }) {
     return getText?.call(this);
   }
@@ -1582,6 +1635,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
     required TResult orElse(),
   }) {
     if (getText != null) {
@@ -1696,6 +1750,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
   }) {
     return setText(key, id, value);
   }
@@ -1712,6 +1767,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
   }) {
     return setText?.call(key, id, value);
   }
@@ -1728,6 +1784,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
     required TResult orElse(),
   }) {
     if (setText != null) {
@@ -1748,6 +1805,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
   }) {
     return setText(this);
   }
@@ -1764,6 +1822,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
   }) {
     return setText?.call(this);
   }
@@ -1780,6 +1839,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
     required TResult orElse(),
   }) {
     if (setText != null) {
@@ -1800,6 +1860,201 @@ abstract class DartCommand_SetText implements DartCommand {
   String get value;
   @JsonKey(ignore: true)
   _$$DartCommand_SetTextCopyWith<_$DartCommand_SetText> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_IsPressedCopyWith<$Res> {
+  factory _$$DartCommand_IsPressedCopyWith(_$DartCommand_IsPressed value,
+          $Res Function(_$DartCommand_IsPressed) then) =
+      __$$DartCommand_IsPressedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key, String id});
+}
+
+/// @nodoc
+class __$$DartCommand_IsPressedCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_IsPressed>
+    implements _$$DartCommand_IsPressedCopyWith<$Res> {
+  __$$DartCommand_IsPressedCopyWithImpl(_$DartCommand_IsPressed _value,
+      $Res Function(_$DartCommand_IsPressed) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+    Object? id = null,
+  }) {
+    return _then(_$DartCommand_IsPressed(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_IsPressed implements DartCommand_IsPressed {
+  const _$DartCommand_IsPressed({required this.key, required this.id});
+
+  @override
+  final DartRequestKey key;
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'DartCommand.isPressed(key: $key, id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_IsPressed &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_IsPressedCopyWith<_$DartCommand_IsPressed> get copyWith =>
+      __$$DartCommand_IsPressedCopyWithImpl<_$DartCommand_IsPressed>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+  }) {
+    return isPressed(key, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+  }) {
+    return isPressed?.call(key, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    required TResult orElse(),
+  }) {
+    if (isPressed != null) {
+      return isPressed(key, id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+  }) {
+    return isPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+  }) {
+    return isPressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    required TResult orElse(),
+  }) {
+    if (isPressed != null) {
+      return isPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_IsPressed implements DartCommand {
+  const factory DartCommand_IsPressed(
+      {required final DartRequestKey key,
+      required final String id}) = _$DartCommand_IsPressed;
+
+  DartRequestKey get key;
+  String get id;
+  @JsonKey(ignore: true)
+  _$$DartCommand_IsPressedCopyWith<_$DartCommand_IsPressed> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2640,6 +2895,7 @@ mixin _$SimpleValue {
   Object get field0 => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
     required TResult Function(List<SimpleValue> field0) list,
@@ -2647,6 +2903,7 @@ mixin _$SimpleValue {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
     TResult? Function(List<SimpleValue> field0)? list,
@@ -2654,6 +2911,7 @@ mixin _$SimpleValue {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
     TResult Function(List<SimpleValue> field0)? list,
@@ -2662,6 +2920,7 @@ mixin _$SimpleValue {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(SimpleValue_Bool value) bool,
     required TResult Function(SimpleValue_Number value) number,
     required TResult Function(SimpleValue_String value) string,
     required TResult Function(SimpleValue_List value) list,
@@ -2669,6 +2928,7 @@ mixin _$SimpleValue {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SimpleValue_Bool value)? bool,
     TResult? Function(SimpleValue_Number value)? number,
     TResult? Function(SimpleValue_String value)? string,
     TResult? Function(SimpleValue_List value)? list,
@@ -2676,6 +2936,7 @@ mixin _$SimpleValue {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(SimpleValue_Bool value)? bool,
     TResult Function(SimpleValue_Number value)? number,
     TResult Function(SimpleValue_String value)? string,
     TResult Function(SimpleValue_List value)? list,
@@ -2700,6 +2961,152 @@ class _$SimpleValueCopyWithImpl<$Res, $Val extends SimpleValue>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$SimpleValue_BoolCopyWith<$Res> {
+  factory _$$SimpleValue_BoolCopyWith(
+          _$SimpleValue_Bool value, $Res Function(_$SimpleValue_Bool) then) =
+      __$$SimpleValue_BoolCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool field0});
+}
+
+/// @nodoc
+class __$$SimpleValue_BoolCopyWithImpl<$Res>
+    extends _$SimpleValueCopyWithImpl<$Res, _$SimpleValue_Bool>
+    implements _$$SimpleValue_BoolCopyWith<$Res> {
+  __$$SimpleValue_BoolCopyWithImpl(
+      _$SimpleValue_Bool _value, $Res Function(_$SimpleValue_Bool) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$SimpleValue_Bool(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SimpleValue_Bool implements SimpleValue_Bool {
+  const _$SimpleValue_Bool(this.field0);
+
+  @override
+  final bool field0;
+
+  @override
+  String toString() {
+    return 'SimpleValue.bool(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SimpleValue_Bool &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SimpleValue_BoolCopyWith<_$SimpleValue_Bool> get copyWith =>
+      __$$SimpleValue_BoolCopyWithImpl<_$SimpleValue_Bool>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
+    required TResult Function(double field0) number,
+    required TResult Function(String field0) string,
+    required TResult Function(List<SimpleValue> field0) list,
+  }) {
+    return bool(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
+    TResult? Function(double field0)? number,
+    TResult? Function(String field0)? string,
+    TResult? Function(List<SimpleValue> field0)? list,
+  }) {
+    return bool?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
+    TResult Function(double field0)? number,
+    TResult Function(String field0)? string,
+    TResult Function(List<SimpleValue> field0)? list,
+    required TResult orElse(),
+  }) {
+    if (bool != null) {
+      return bool(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SimpleValue_Bool value) bool,
+    required TResult Function(SimpleValue_Number value) number,
+    required TResult Function(SimpleValue_String value) string,
+    required TResult Function(SimpleValue_List value) list,
+  }) {
+    return bool(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SimpleValue_Bool value)? bool,
+    TResult? Function(SimpleValue_Number value)? number,
+    TResult? Function(SimpleValue_String value)? string,
+    TResult? Function(SimpleValue_List value)? list,
+  }) {
+    return bool?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SimpleValue_Bool value)? bool,
+    TResult Function(SimpleValue_Number value)? number,
+    TResult Function(SimpleValue_String value)? string,
+    TResult Function(SimpleValue_List value)? list,
+    required TResult orElse(),
+  }) {
+    if (bool != null) {
+      return bool(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SimpleValue_Bool implements SimpleValue {
+  const factory SimpleValue_Bool(final bool field0) = _$SimpleValue_Bool;
+
+  @override
+  bool get field0;
+  @JsonKey(ignore: true)
+  _$$SimpleValue_BoolCopyWith<_$SimpleValue_Bool> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2767,6 +3174,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
     required TResult Function(List<SimpleValue> field0) list,
@@ -2777,6 +3185,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
     TResult? Function(List<SimpleValue> field0)? list,
@@ -2787,6 +3196,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
     TResult Function(List<SimpleValue> field0)? list,
@@ -2801,6 +3211,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(SimpleValue_Bool value) bool,
     required TResult Function(SimpleValue_Number value) number,
     required TResult Function(SimpleValue_String value) string,
     required TResult Function(SimpleValue_List value) list,
@@ -2811,6 +3222,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SimpleValue_Bool value)? bool,
     TResult? Function(SimpleValue_Number value)? number,
     TResult? Function(SimpleValue_String value)? string,
     TResult? Function(SimpleValue_List value)? list,
@@ -2821,6 +3233,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(SimpleValue_Bool value)? bool,
     TResult Function(SimpleValue_Number value)? number,
     TResult Function(SimpleValue_String value)? string,
     TResult Function(SimpleValue_List value)? list,
@@ -2908,6 +3321,7 @@ class _$SimpleValue_String implements SimpleValue_String {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
     required TResult Function(List<SimpleValue> field0) list,
@@ -2918,6 +3332,7 @@ class _$SimpleValue_String implements SimpleValue_String {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
     TResult? Function(List<SimpleValue> field0)? list,
@@ -2928,6 +3343,7 @@ class _$SimpleValue_String implements SimpleValue_String {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
     TResult Function(List<SimpleValue> field0)? list,
@@ -2942,6 +3358,7 @@ class _$SimpleValue_String implements SimpleValue_String {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(SimpleValue_Bool value) bool,
     required TResult Function(SimpleValue_Number value) number,
     required TResult Function(SimpleValue_String value) string,
     required TResult Function(SimpleValue_List value) list,
@@ -2952,6 +3369,7 @@ class _$SimpleValue_String implements SimpleValue_String {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SimpleValue_Bool value)? bool,
     TResult? Function(SimpleValue_Number value)? number,
     TResult? Function(SimpleValue_String value)? string,
     TResult? Function(SimpleValue_List value)? list,
@@ -2962,6 +3380,7 @@ class _$SimpleValue_String implements SimpleValue_String {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(SimpleValue_Bool value)? bool,
     TResult Function(SimpleValue_Number value)? number,
     TResult Function(SimpleValue_String value)? string,
     TResult Function(SimpleValue_List value)? list,
@@ -3054,6 +3473,7 @@ class _$SimpleValue_List implements SimpleValue_List {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
     required TResult Function(List<SimpleValue> field0) list,
@@ -3064,6 +3484,7 @@ class _$SimpleValue_List implements SimpleValue_List {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
     TResult? Function(List<SimpleValue> field0)? list,
@@ -3074,6 +3495,7 @@ class _$SimpleValue_List implements SimpleValue_List {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
     TResult Function(List<SimpleValue> field0)? list,
@@ -3088,6 +3510,7 @@ class _$SimpleValue_List implements SimpleValue_List {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(SimpleValue_Bool value) bool,
     required TResult Function(SimpleValue_Number value) number,
     required TResult Function(SimpleValue_String value) string,
     required TResult Function(SimpleValue_List value) list,
@@ -3098,6 +3521,7 @@ class _$SimpleValue_List implements SimpleValue_List {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SimpleValue_Bool value)? bool,
     TResult? Function(SimpleValue_Number value)? number,
     TResult? Function(SimpleValue_String value)? string,
     TResult? Function(SimpleValue_List value)? list,
@@ -3108,6 +3532,7 @@ class _$SimpleValue_List implements SimpleValue_List {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(SimpleValue_Bool value)? bool,
     TResult Function(SimpleValue_Number value)? number,
     TResult Function(SimpleValue_String value)? string,
     TResult Function(SimpleValue_List value)? list,

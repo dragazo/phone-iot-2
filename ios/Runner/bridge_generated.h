@@ -22,6 +22,10 @@ typedef struct wire_RustCommand_Start {
 
 } wire_RustCommand_Start;
 
+typedef struct wire_SimpleValue_Bool {
+  bool field0;
+} wire_SimpleValue_Bool;
+
 typedef struct wire_SimpleValue_Number {
   double field0;
 } wire_SimpleValue_Number;
@@ -40,6 +44,7 @@ typedef struct wire_SimpleValue_List {
 } wire_SimpleValue_List;
 
 typedef union SimpleValueKind {
+  struct wire_SimpleValue_Bool *Bool;
   struct wire_SimpleValue_Number *Number;
   struct wire_SimpleValue_String *String;
   struct wire_SimpleValue_List *List;
@@ -142,6 +147,8 @@ union RustCommandKind *inflate_RustCommand_SetProject(void);
 
 union RustCommandKind *inflate_RustCommand_InjectMessage(void);
 
+union SimpleValueKind *inflate_SimpleValue_Bool(void);
+
 union SimpleValueKind *inflate_SimpleValue_Number(void);
 
 union SimpleValueKind *inflate_SimpleValue_String(void);
@@ -167,6 +174,7 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) inflate_RequestResult_Err);
     dummy_var ^= ((int64_t) (void*) inflate_RustCommand_SetProject);
     dummy_var ^= ((int64_t) (void*) inflate_RustCommand_InjectMessage);
+    dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_Bool);
     dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_Number);
     dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_String);
     dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_List);

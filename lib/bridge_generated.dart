@@ -201,6 +201,11 @@ class NativeImpl implements Native {
           id: _wire2api_String(raw[2]),
           value: _wire2api_String(raw[3]),
         );
+      case 9:
+        return DartCommand_IsPressed(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+        );
       default:
         throw Exception("unreachable");
     }
@@ -286,6 +291,11 @@ class NativeImpl implements Native {
 }
 
 // Section: api2wire
+
+@protected
+bool api2wire_bool(bool raw) {
+  return raw;
+}
 
 @protected
 double api2wire_f64(double raw) {

@@ -100,14 +100,17 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
 
   @protected
   List<dynamic> api2wire_simple_value(SimpleValue raw) {
+    if (raw is SimpleValue_Bool) {
+      return [0, api2wire_bool(raw.field0)];
+    }
     if (raw is SimpleValue_Number) {
-      return [0, api2wire_f64(raw.field0)];
+      return [1, api2wire_f64(raw.field0)];
     }
     if (raw is SimpleValue_String) {
-      return [1, api2wire_String(raw.field0)];
+      return [2, api2wire_String(raw.field0)];
     }
     if (raw is SimpleValue_List) {
-      return [2, api2wire_list_simple_value(raw.field0)];
+      return [3, api2wire_list_simple_value(raw.field0)];
     }
 
     throw Exception('unreachable');

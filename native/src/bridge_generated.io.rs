@@ -94,6 +94,7 @@ impl Wire2Api<(String, SimpleValue)> for wire___record__String_simple_value {
         (self.field0.wire2api(), self.field1.wire2api())
     }
 }
+
 impl Wire2Api<DartRequestKey> for *mut wire_DartRequestKey {
     fn wire2api(self) -> DartRequestKey {
         let wrap = unsafe { support::box_from_leak_ptr(self) };
@@ -189,15 +190,20 @@ impl Wire2Api<SimpleValue> for wire_SimpleValue {
         match self.tag {
             0 => unsafe {
                 let ans = support::box_from_leak_ptr(self.kind);
+                let ans = support::box_from_leak_ptr(ans.Bool);
+                SimpleValue::Bool(ans.field0.wire2api())
+            },
+            1 => unsafe {
+                let ans = support::box_from_leak_ptr(self.kind);
                 let ans = support::box_from_leak_ptr(ans.Number);
                 SimpleValue::Number(ans.field0.wire2api())
             },
-            1 => unsafe {
+            2 => unsafe {
                 let ans = support::box_from_leak_ptr(self.kind);
                 let ans = support::box_from_leak_ptr(ans.String);
                 SimpleValue::String(ans.field0.wire2api())
             },
-            2 => unsafe {
+            3 => unsafe {
                 let ans = support::box_from_leak_ptr(self.kind);
                 let ans = support::box_from_leak_ptr(ans.List);
                 SimpleValue::List(ans.field0.wire2api())
@@ -315,9 +321,16 @@ pub struct wire_SimpleValue {
 
 #[repr(C)]
 pub union SimpleValueKind {
+    Bool: *mut wire_SimpleValue_Bool,
     Number: *mut wire_SimpleValue_Number,
     String: *mut wire_SimpleValue_String,
     List: *mut wire_SimpleValue_List,
+}
+
+#[repr(C)]
+#[derive(Clone)]
+pub struct wire_SimpleValue_Bool {
+    field0: bool,
 }
 
 #[repr(C)]
@@ -459,6 +472,15 @@ impl NewWithNullPtr for wire_SimpleValue {
             kind: core::ptr::null_mut(),
         }
     }
+}
+
+#[no_mangle]
+pub extern "C" fn inflate_SimpleValue_Bool() -> *mut SimpleValueKind {
+    support::new_leak_box_ptr(SimpleValueKind {
+        Bool: support::new_leak_box_ptr(wire_SimpleValue_Bool {
+            field0: Default::default(),
+        }),
+    })
 }
 
 #[no_mangle]

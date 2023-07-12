@@ -210,9 +210,11 @@ pub enum DartCommand {
 
     GetText { key: DartRequestKey, id: String },
     SetText { key: DartRequestKey, id: String, value: String },
+    IsPressed { key: DartRequestKey, id: String },
 }
 
 pub enum SimpleValue {
+    Bool(bool),
     Number(f64),
     String(String),
     List(Vec<SimpleValue>),
@@ -220,6 +222,7 @@ pub enum SimpleValue {
 impl SimpleValue {
     fn into_json(self) -> Json {
         match self {
+            SimpleValue::Bool(x) => Json::Bool(x),
             SimpleValue::Number(x) => json!(x),
             SimpleValue::String(x) => Json::String(x),
             SimpleValue::List(x) => Json::Array(x.into_iter().map(SimpleValue::into_json).collect()),
@@ -527,6 +530,17 @@ pub fn initialize() {
 
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::SetText { key, id, value });
+                            RequestStatus::Handled
+                        }
+                        "isPressed" => {
+                            if args.len() != 2 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::IsPressed { key, id });
                             RequestStatus::Handled
                         }
                         _ => RequestStatus::UseDefault { key, request },

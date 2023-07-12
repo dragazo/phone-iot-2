@@ -121,6 +121,10 @@ sealed class DartCommand with _$DartCommand {
     required String id,
     required String value,
   }) = DartCommand_SetText;
+  const factory DartCommand.isPressed({
+    required DartRequestKey key,
+    required String id,
+  }) = DartCommand_IsPressed;
 }
 
 class DartRequestKey {
@@ -177,6 +181,9 @@ sealed class RustCommand with _$RustCommand {
 
 @freezed
 sealed class SimpleValue with _$SimpleValue {
+  const factory SimpleValue.bool(
+    bool field0,
+  ) = SimpleValue_Bool;
   const factory SimpleValue.number(
     double field0,
   ) = SimpleValue_Number;

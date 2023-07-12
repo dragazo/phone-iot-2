@@ -4,6 +4,7 @@
         "Deque",
         "LTWH",
         "netsblox",
+        "Pressable",
         "Rootable"
     ],
     "files.associations": {
