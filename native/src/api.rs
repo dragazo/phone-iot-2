@@ -128,6 +128,10 @@ pub enum TextAlignInfo {
     Left, Center, Right,
 }
 #[derive(Clone, Copy, Debug)]
+pub enum ImageFitInfo {
+    Fit, Zoom, Stretch,
+}
+#[derive(Clone, Copy, Debug)]
 pub struct ColorInfo {
     pub a: u8,
     pub r: u8,
@@ -187,6 +191,18 @@ pub struct JoystickInfo {
     pub color: ColorInfo,
     pub landscape: bool,
 }
+#[derive(Clone, Debug)]
+pub struct ImageDisplayInfo {
+    pub id: String,
+    pub x: f64,
+    pub y: f64,
+    pub width: f64,
+    pub height: f64,
+    pub event: Option<String>,
+    pub readonly: bool,
+    pub landscape: bool,
+    pub fit: ImageFitInfo,
+}
 
 pub enum RustCommand {
     SetProject { xml: String },
@@ -218,6 +234,7 @@ pub enum DartCommand {
     AddButton { key: DartRequestKey, info: ButtonInfo },
     AddTextField { key: DartRequestKey, info: TextFieldInfo },
     AddJoystick { key: DartRequestKey, info: JoystickInfo },
+    AddImageDisplay { key: DartRequestKey, info: ImageDisplayInfo },
 
     GetText { key: DartRequestKey, id: String },
     SetText { key: DartRequestKey, id: String, value: String },
@@ -359,6 +376,17 @@ pub fn initialize() {
                             "center" => TextAlignInfo::Center,
                             x => {
                                 key.complete(Err(format!("'{}': unknown text align '{}'", stringify!($n), x)));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
+                    ($n:ident := $e:expr => ImageFitInfo) => {
+                        match parse!($n := $e => String).as_str() {
+                            "fit" => ImageFitInfo::Fit,
+                            "zoom" => ImageFitInfo::Zoom,
+                            "stretch" => ImageFitInfo::Stretch,
+                            x => {
+                                key.complete(Err(format!("'{}': unknown image fit mode '{}'", stringify!($n), x)));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -538,6 +566,28 @@ pub fn initialize() {
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::AddJoystick { key, info: JoystickInfo {
                                 x, y, width, id, event, color, landscape,
+                            }});
+                            RequestStatus::Handled
+                        }
+                        "addImageDisplay" => {
+                            if args.len() != 6 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let x = parse!(x := args[1].1 => f64);
+                            let y = parse!(y := args[2].1 => f64);
+                            let width = parse!(width := args[3].1 => f64);
+                            let height = parse!(height := args[4].1 => f64);
+                            let options = parse!(options := args[5].1 => { id, event, readonly, landscape, fit });
+                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                            let event = parse!(event := options.get("event") => Option<String>);
+                            let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(true);
+                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                            let fit = parse!(fit := options.get("fit") => Option<ImageFitInfo>).unwrap_or(ImageFitInfo::Fit);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::AddImageDisplay { key, info: ImageDisplayInfo {
+                                id, x, y, width, height, event, readonly, landscape, fit,
                             }});
                             RequestStatus::Handled
                         }

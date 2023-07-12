@@ -116,6 +116,10 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required JoystickInfo info,
   }) = DartCommand_AddJoystick;
+  const factory DartCommand.addImageDisplay({
+    required DartRequestKey key,
+    required ImageDisplayInfo info,
+  }) = DartCommand_AddImageDisplay;
   const factory DartCommand.getText({
     required DartRequestKey key,
     required String id,
@@ -141,6 +145,36 @@ class DartRequestKey {
   const DartRequestKey({
     required this.value,
   });
+}
+
+class ImageDisplayInfo {
+  final String id;
+  final double x;
+  final double y;
+  final double width;
+  final double height;
+  final String? event;
+  final bool readonly;
+  final bool landscape;
+  final ImageFitInfo fit;
+
+  const ImageDisplayInfo({
+    required this.id,
+    required this.x,
+    required this.y,
+    required this.width,
+    required this.height,
+    this.event,
+    required this.readonly,
+    required this.landscape,
+    required this.fit,
+  });
+}
+
+enum ImageFitInfo {
+  Fit,
+  Zoom,
+  Stretch,
 }
 
 class JoystickInfo {

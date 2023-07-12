@@ -112,6 +112,10 @@ class NativeImpl implements Native {
     return _wire2api_dart_request_key(raw);
   }
 
+  ImageDisplayInfo _wire2api_box_autoadd_image_display_info(dynamic raw) {
+    return _wire2api_image_display_info(raw);
+  }
+
   JoystickInfo _wire2api_box_autoadd_joystick_info(dynamic raw) {
     return _wire2api_joystick_info(raw);
   }
@@ -200,22 +204,27 @@ class NativeImpl implements Native {
           info: _wire2api_box_autoadd_joystick_info(raw[2]),
         );
       case 8:
+        return DartCommand_AddImageDisplay(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          info: _wire2api_box_autoadd_image_display_info(raw[2]),
+        );
+      case 9:
         return DartCommand_GetText(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 9:
+      case 10:
         return DartCommand_SetText(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_String(raw[3]),
         );
-      case 10:
+      case 11:
         return DartCommand_IsPressed(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 11:
+      case 12:
         return DartCommand_GetPosition(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
@@ -240,6 +249,27 @@ class NativeImpl implements Native {
 
   int _wire2api_i32(dynamic raw) {
     return raw as int;
+  }
+
+  ImageDisplayInfo _wire2api_image_display_info(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 9)
+      throw Exception('unexpected arr length: expect 9 but see ${arr.length}');
+    return ImageDisplayInfo(
+      id: _wire2api_String(arr[0]),
+      x: _wire2api_f64(arr[1]),
+      y: _wire2api_f64(arr[2]),
+      width: _wire2api_f64(arr[3]),
+      height: _wire2api_f64(arr[4]),
+      event: _wire2api_opt_String(arr[5]),
+      readonly: _wire2api_bool(arr[6]),
+      landscape: _wire2api_bool(arr[7]),
+      fit: _wire2api_image_fit_info(arr[8]),
+    );
+  }
+
+  ImageFitInfo _wire2api_image_fit_info(dynamic raw) {
+    return ImageFitInfo.values[raw as int];
   }
 
   JoystickInfo _wire2api_joystick_info(dynamic raw) {

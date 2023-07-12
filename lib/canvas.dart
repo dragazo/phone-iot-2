@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -30,6 +31,13 @@ TextAlign getAlign(TextAlignInfo align) {
     case TextAlignInfo.Left: return TextAlign.left;
     case TextAlignInfo.Center: return TextAlign.center;
     case TextAlignInfo.Right: return TextAlign.right;
+  }
+}
+BoxFit getFit(ImageFitInfo fit) {
+  switch (fit) {
+    case ImageFitInfo.Fit: return BoxFit.contain;
+    case ImageFitInfo.Zoom: return BoxFit.cover;
+    case ImageFitInfo.Stretch: return BoxFit.fill;
   }
 }
 
@@ -369,6 +377,50 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
   @override
   (double, double) getPosition() {
     return landscape ? (pos.dy, pos.dx) : (pos.dx, -pos.dy);
+  }
+}
+
+class CustomImageDisplay extends CustomControl {
+  double x, y, width, height;
+  String? event;
+  bool readonly, landscape;
+  BoxFit fit;
+
+  ui.Image? image;
+
+  CustomImageDisplay(ImageDisplayInfo info) : x = info.x, y = info.y, width = info.width, height = info.height,
+    event = info.event, readonly = info.readonly, landscape = info.landscape, fit = getFit(info.fit), super(id: info.id);
+
+  @override
+  void draw(Canvas canvas) {
+    final paint = Paint();
+    paint.style = PaintingStyle.fill;
+    paint.color = Colors.black;
+    Rect r = Rect.fromLTWH(0, 0, width * canvasSize.width / 100, height * canvasSize.height / 100);
+
+    canvas.save();
+    canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
+    if (landscape) canvas.rotate(pi / 2);
+    canvas.drawRect(r, paint);
+    if (image != null) {
+      paintImage(
+        canvas: canvas,
+        rect: r,
+        image: image!,
+        fit: fit,
+      );
+    }
+    canvas.restore();
+  }
+
+  @override
+  bool contains(Offset pos) {
+    
+  }
+
+  @override
+  ClickResult handleClick(ui.Offset pos, ClickType type) {
+
   }
 }
 

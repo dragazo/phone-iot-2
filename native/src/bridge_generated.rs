@@ -181,15 +181,18 @@ impl support::IntoDart for DartCommand {
             Self::AddJoystick { key, info } => {
                 vec![7.into_dart(), key.into_dart(), info.into_dart()]
             }
-            Self::GetText { key, id } => vec![8.into_dart(), key.into_dart(), id.into_dart()],
+            Self::AddImageDisplay { key, info } => {
+                vec![8.into_dart(), key.into_dart(), info.into_dart()]
+            }
+            Self::GetText { key, id } => vec![9.into_dart(), key.into_dart(), id.into_dart()],
             Self::SetText { key, id, value } => vec![
-                9.into_dart(),
+                10.into_dart(),
                 key.into_dart(),
                 id.into_dart(),
                 value.into_dart(),
             ],
-            Self::IsPressed { key, id } => vec![10.into_dart(), key.into_dart(), id.into_dart()],
-            Self::GetPosition { key, id } => vec![11.into_dart(), key.into_dart(), id.into_dart()],
+            Self::IsPressed { key, id } => vec![11.into_dart(), key.into_dart(), id.into_dart()],
+            Self::GetPosition { key, id } => vec![12.into_dart(), key.into_dart(), id.into_dart()],
         }
         .into_dart()
     }
@@ -202,6 +205,35 @@ impl support::IntoDart for DartRequestKey {
 }
 impl support::IntoDartExceptPrimitive for DartRequestKey {}
 
+impl support::IntoDart for ImageDisplayInfo {
+    fn into_dart(self) -> support::DartAbi {
+        vec![
+            self.id.into_dart(),
+            self.x.into_dart(),
+            self.y.into_dart(),
+            self.width.into_dart(),
+            self.height.into_dart(),
+            self.event.into_dart(),
+            self.readonly.into_dart(),
+            self.landscape.into_dart(),
+            self.fit.into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for ImageDisplayInfo {}
+
+impl support::IntoDart for ImageFitInfo {
+    fn into_dart(self) -> support::DartAbi {
+        match self {
+            Self::Fit => 0,
+            Self::Zoom => 1,
+            Self::Stretch => 2,
+        }
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for ImageFitInfo {}
 impl support::IntoDart for JoystickInfo {
     fn into_dart(self) -> support::DartAbi {
         vec![

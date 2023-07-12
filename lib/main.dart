@@ -1,14 +1,19 @@
 import 'dart:collection';
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 import 'dart:async';
+import 'dart:ui' as ui;
 import 'package:http/http.dart' as http;
 
 import 'canvas.dart';
 
 const updateInterval = Duration(milliseconds: 500);
 const messageLifetime = Duration(seconds: 10);
+
+final blankImage = base64Decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TpSIVB4uIOGSoThZFRRy1CkWoEGqFVh1MLv2CJg1Jiouj4Fpw8GOx6uDirKuDqyAIfoC4ujgpukiJ/0sKLWI8OO7Hu3uPu3eAUC8zzeoYBzTdNlOJuJjJroqhV4QQRj');
 
 void main() {
   runApp(const MyApp());
@@ -114,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
           addButton: (key, info) => addControl(CustomButton(info), key),
           addTextField: (key, info) => addControl(CustomTextField(info), key),
           addJoystick: (key, info) => addControl(CustomJoystick(info), key),
+          addImageDisplay: (key, info) => addControl(CustomImageDisplay(info), key),
 
           getText: (key, id) {
             TextLike? target = findControl<TextLike>(id);
