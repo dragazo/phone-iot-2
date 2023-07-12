@@ -6,10 +6,11 @@ import 'package:phone_iot_2/ffi.dart';
 
 const double defaultFontSize = 16;
 const double textPadding = 5;
-const double joystickBorderWidth = 0.05;
-const double joystickHandSize = 0.3;
-const Duration joystickUpdateInterval = Duration(milliseconds: 100);
 const Color selectColor = Color.fromARGB(50, 255, 255, 255);
+
+const double joystickBorderWidth = 0.035;
+const double joystickHandSize = 0.3333;
+const Duration joystickUpdateInterval = Duration(milliseconds: 100);
 
 enum ClickType {
   down, move, up,
