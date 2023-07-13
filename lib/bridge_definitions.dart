@@ -120,6 +120,10 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required TouchpadInfo info,
   }) = DartCommand_AddTouchpad;
+  const factory DartCommand.addSlider({
+    required DartRequestKey key,
+    required SliderInfo info,
+  }) = DartCommand_AddSlider;
   const factory DartCommand.addImageDisplay({
     required DartRequestKey key,
     required ImageDisplayInfo info,
@@ -133,14 +137,19 @@ sealed class DartCommand with _$DartCommand {
     required String id,
     required String value,
   }) = DartCommand_SetText;
-  const factory DartCommand.isPressed({
-    required DartRequestKey key,
-    required String id,
-  }) = DartCommand_IsPressed;
   const factory DartCommand.getPosition({
     required DartRequestKey key,
     required String id,
   }) = DartCommand_GetPosition;
+  const factory DartCommand.getLevel({
+    required DartRequestKey key,
+    required String id,
+  }) = DartCommand_GetLevel;
+  const factory DartCommand.setLevel({
+    required DartRequestKey key,
+    required String id,
+    required double value,
+  }) = DartCommand_SetLevel;
   const factory DartCommand.getImage({
     required DartRequestKey key,
     required String id,
@@ -150,6 +159,10 @@ sealed class DartCommand with _$DartCommand {
     required String id,
     required Uint8List value,
   }) = DartCommand_SetImage;
+  const factory DartCommand.isPressed({
+    required DartRequestKey key,
+    required String id,
+  }) = DartCommand_IsPressed;
 }
 
 class DartRequestKey {
@@ -271,6 +284,37 @@ sealed class SimpleValue with _$SimpleValue {
   const factory SimpleValue.image(
     Uint8List field0,
   ) = SimpleValue_Image;
+}
+
+class SliderInfo {
+  final String id;
+  final double x;
+  final double y;
+  final double width;
+  final String? event;
+  final ColorInfo color;
+  final double value;
+  final SliderStyleInfo style;
+  final bool landscape;
+  final bool readonly;
+
+  const SliderInfo({
+    required this.id,
+    required this.x,
+    required this.y,
+    required this.width,
+    this.event,
+    required this.color,
+    required this.value,
+    required this.style,
+    required this.landscape,
+    required this.readonly,
+  });
+}
+
+enum SliderStyleInfo {
+  Slider,
+  Progress,
 }
 
 enum TextAlignInfo {

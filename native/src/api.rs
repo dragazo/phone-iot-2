@@ -136,6 +136,10 @@ pub enum TouchpadStyleInfo {
     Rectangle, Square,
 }
 #[derive(Clone, Copy, Debug)]
+pub enum SliderStyleInfo {
+    Slider, Progress,
+}
+#[derive(Clone, Copy, Debug)]
 pub struct ColorInfo {
     pub a: u8,
     pub r: u8,
@@ -208,6 +212,19 @@ pub struct TouchpadInfo {
     pub landscape: bool,
 }
 #[derive(Clone, Debug)]
+pub struct SliderInfo {
+    pub id: String,
+    pub x: f64,
+    pub y: f64,
+    pub width: f64,
+    pub event: Option<String>,
+    pub color: ColorInfo,
+    pub value: f64,
+    pub style: SliderStyleInfo,
+    pub landscape: bool,
+    pub readonly: bool,
+}
+#[derive(Clone, Debug)]
 pub struct ImageDisplayInfo {
     pub id: String,
     pub x: f64,
@@ -251,14 +268,17 @@ pub enum DartCommand {
     AddTextField { key: DartRequestKey, info: TextFieldInfo },
     AddJoystick { key: DartRequestKey, info: JoystickInfo },
     AddTouchpad { key: DartRequestKey, info: TouchpadInfo },
+    AddSlider { key: DartRequestKey, info: SliderInfo },
     AddImageDisplay { key: DartRequestKey, info: ImageDisplayInfo },
 
     GetText { key: DartRequestKey, id: String },
     SetText { key: DartRequestKey, id: String, value: String },
-    IsPressed { key: DartRequestKey, id: String },
     GetPosition { key: DartRequestKey, id: String },
+    GetLevel { key: DartRequestKey, id: String },
+    SetLevel { key: DartRequestKey, id: String, value: f64 },
     GetImage { key: DartRequestKey, id: String },
     SetImage { key: DartRequestKey, id: String, value: Vec<u8> },
+    IsPressed { key: DartRequestKey, id: String },
 }
 
 pub enum SimpleValue {
@@ -427,6 +447,16 @@ pub fn initialize() {
                             "stretch" => ImageFitInfo::Stretch,
                             x => {
                                 key.complete(Err(format!("'{}': unknown image fit mode '{}'", stringify!($n), x)));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
+                    ($n:ident := $e:expr => SliderStyleInfo) => {
+                        match parse!($n := $e => String).as_str() {
+                            "slider" => SliderStyleInfo::Slider,
+                            "progress" => SliderStyleInfo::Progress,
+                            x => {
+                                key.complete(Err(format!("'{}': unknown slider style '{}'", stringify!($n), x)));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -640,6 +670,29 @@ pub fn initialize() {
                             }});
                             RequestStatus::Handled
                         }
+                        "addSlider" => {
+                            if args.len() != 5 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let x = parse!(x := args[1].1 => f64);
+                            let y = parse!(y := args[2].1 => f64);
+                            let width = parse!(width := args[3].1 => f64);
+                            let options = parse!(options := args[4].1 => { id, event, color, value, style, landscape, readonly });
+                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                            let event = parse!(event := options.get("event") => Option<String>);
+                            let color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                            let value = parse!(value := options.get("value") => Option<f64>).unwrap_or(0.0);
+                            let style = parse!(style := options.get("style") => Option<SliderStyleInfo>).unwrap_or(SliderStyleInfo::Slider);
+                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                            let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::AddSlider { key, info: SliderInfo {
+                                x, y, width, id, event, color, value, style, landscape, readonly,
+                            }});
+                            RequestStatus::Handled
+                        }
                         "addImageDisplay" => {
                             if args.len() != 6 || !is_local_id(&args[0].1) {
                                 return RequestStatus::UseDefault { key, request };
@@ -728,6 +781,29 @@ pub fn initialize() {
 
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::SetImage { key, id, value });
+                            RequestStatus::Handled
+                        }
+                        "getLevel" => {
+                            if args.len() != 2 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::GetLevel { key, id });
+                            RequestStatus::Handled
+                        }
+                        "setLevel" => {
+                            if args.len() != 3 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+                            let value = parse!(value := args[2].1 => f64);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::SetLevel { key, id, value });
                             RequestStatus::Handled
                         }
                         _ => RequestStatus::UseDefault { key, request },

@@ -110,6 +110,10 @@ mixin Pressable {
 mixin PositionLike {
   (double, double) getPosition();
 }
+mixin LevelLike {
+  double getLevel();
+  void setLevel(double value);
+}
 mixin ImageLike {
   ui.Image? getImage();
   void setImage(ui.Image? value, UpdateSource source);
@@ -483,6 +487,111 @@ class CustomTouchpad extends CustomControl with Pressable, PositionLike {
   @override
   (double, double) getPosition() {
     return (pos.dx, -pos.dy);
+  }
+}
+
+class CustomSlider extends CustomControl with Pressable, LevelLike {
+  double x, y, width, value;
+  String? event;
+  Color color;
+  SliderStyleInfo style;
+  bool landscape, readonly;
+
+  bool pressed = false;
+  DateTime nextUpdate = DateTime.now();
+
+  static const double transparency = 0.5;
+  static const double height = 12;
+  static const double handSize = 20;
+  static const double hitboxPadding = 10;
+  static const Duration updateInterval = Duration(milliseconds: 100);
+
+  CustomSlider(SliderInfo info) : x = info.x, y = info.y, width = info.width, value = ui.clampDouble(info.value, 0, 1),
+    event = info.event, color = getColor(info.color), style = info.style, landscape = info.landscape, readonly = info.readonly, super(id: info.id);
+
+  @override
+  void draw(Canvas canvas) {
+    final transColor = Color.fromARGB((color.alpha * transparency).round(), color.red, color.green, color.blue);
+    final paint = Paint();
+    double w = width * canvasSize.width / 100;
+
+    final outerPath = Path();
+    outerPath.moveTo(0, 0);
+    outerPath.arcTo(Rect.fromLTWH(w - height / 2, 0, height, height), -pi / 2, pi, false);
+    outerPath.arcTo(const Rect.fromLTWH(-height / 2, 0, height, height), pi / 2, pi, false);
+
+    canvas.save();
+    canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
+    if (landscape) canvas.rotate(pi / 2);
+    switch (style) {
+      case SliderStyleInfo.Slider:
+        Rect hand = Rect.fromCenter(center: Offset(value * w, height / 2), width: handSize, height: handSize);
+        paint.style = PaintingStyle.fill;
+        paint.color = color;
+        canvas.drawOval(hand, paint);
+      case SliderStyleInfo.Progress:
+        final valuePath = Path();
+        if (value >= 1) {
+          valuePath.addPath(outerPath, Offset.zero);
+        } else if (value > 0) {
+          valuePath.moveTo(0, 0);
+          valuePath.lineTo(value * w, 0);
+          valuePath.lineTo(value * w, height);
+          valuePath.arcTo(const Rect.fromLTWH(-height / 2, 0, height, height), pi / 2, pi, false);
+        }
+        paint.style = PaintingStyle.fill;
+        paint.color = transColor;
+        canvas.drawPath(valuePath, paint);
+    }
+    paint.style = PaintingStyle.stroke;
+    paint.color = color;
+    canvas.drawPath(outerPath, paint);
+    canvas.restore();
+  }
+
+  @override
+  bool contains(Offset pos) {
+    Rect r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, width * canvasSize.width / 100, height);
+    if (landscape) r = rotated(r);
+    return r.inflate(hitboxPadding).contains(pos);
+  }
+
+  @override
+  ClickResult handleClick(Offset pos, ClickType type) {
+    if (readonly) return ClickResult.none;
+
+    double v = landscape ? pos.dy - y * canvasSize.height / 100 : pos.dx - x * canvasSize.width / 100;
+    value = ui.clampDouble(v / (width * canvasSize.width / 100), 0, 1);
+    pressed = type != ClickType.up;
+
+    final now = DateTime.now();
+    if (event != null && (now.isAfter(nextUpdate) || type == ClickType.up)) {
+      nextUpdate = now.add(updateInterval);
+      final v = getLevel();
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+        ('device', const SimpleValue.number(0)),
+        ('id', SimpleValue.string(id)),
+        ('level', SimpleValue.number(v)),
+        ('tag', SimpleValue.string(encodeClickType(type))),
+      ]));
+    }
+
+    return ClickResult.redraw;
+  }
+
+  @override
+  bool isPressed() {
+    return pressed;
+  }
+
+  @override
+  double getLevel() {
+    return value;
+  }
+
+  @override
+  void setLevel(double value) {
+    this.value = ui.clampDouble(value, 0, 1);
   }
 }
 

@@ -115,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           addTextField: (key, info) => addControl(CustomTextField(info), key),
           addJoystick: (key, info) => addControl(CustomJoystick(info), key),
           addTouchpad: (key, info) => addControl(CustomTouchpad(info), key),
+          addSlider: (key, info) => addControl(CustomSlider(info), key),
           addImageDisplay: (key, info) => addControl(CustomImageDisplay(info), key),
 
           getText: (key, id) {
@@ -129,6 +130,15 @@ class _MyHomePageState extends State<MyHomePage> {
           isPressed: (key, id) {
             Pressable? target = findControl<Pressable>(id);
             api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.isPressed())) : RequestResult.err('no pressable control with id $id'));
+          },
+          getLevel: (key, id) {
+            LevelLike? target = findControl<LevelLike>(id);
+            api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.number(target.getLevel())) : RequestResult.err('no level-like control with id $id'));
+          },
+          setLevel: (key, id, value) {
+            LevelLike? target = findControl<LevelLike>(id);
+            if (target != null) setState(() => target.setLevel(value));
+            api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no level-like control with id $id'));
           },
           getPosition: (key, id) {
             PositionLike? target = findControl<PositionLike>(id);

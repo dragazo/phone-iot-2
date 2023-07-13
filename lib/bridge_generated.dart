@@ -124,6 +124,10 @@ class NativeImpl implements Native {
     return _wire2api_label_info(raw);
   }
 
+  SliderInfo _wire2api_box_autoadd_slider_info(dynamic raw) {
+    return _wire2api_slider_info(raw);
+  }
+
   TextFieldInfo _wire2api_box_autoadd_text_field_info(dynamic raw) {
     return _wire2api_text_field_info(raw);
   }
@@ -213,25 +217,25 @@ class NativeImpl implements Native {
           info: _wire2api_box_autoadd_touchpad_info(raw[2]),
         );
       case 9:
+        return DartCommand_AddSlider(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          info: _wire2api_box_autoadd_slider_info(raw[2]),
+        );
+      case 10:
         return DartCommand_AddImageDisplay(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_image_display_info(raw[2]),
         );
-      case 10:
+      case 11:
         return DartCommand_GetText(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 11:
+      case 12:
         return DartCommand_SetText(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_String(raw[3]),
-        );
-      case 12:
-        return DartCommand_IsPressed(
-          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
-          id: _wire2api_String(raw[2]),
         );
       case 13:
         return DartCommand_GetPosition(
@@ -239,15 +243,31 @@ class NativeImpl implements Native {
           id: _wire2api_String(raw[2]),
         );
       case 14:
-        return DartCommand_GetImage(
+        return DartCommand_GetLevel(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
       case 15:
+        return DartCommand_SetLevel(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+          value: _wire2api_f64(raw[3]),
+        );
+      case 16:
+        return DartCommand_GetImage(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+        );
+      case 17:
         return DartCommand_SetImage(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_uint_8_list(raw[3]),
+        );
+      case 18:
+        return DartCommand_IsPressed(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
         );
       default:
         throw Exception("unreachable");
@@ -325,6 +345,28 @@ class NativeImpl implements Native {
 
   String? _wire2api_opt_String(dynamic raw) {
     return raw == null ? null : _wire2api_String(raw);
+  }
+
+  SliderInfo _wire2api_slider_info(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 10)
+      throw Exception('unexpected arr length: expect 10 but see ${arr.length}');
+    return SliderInfo(
+      id: _wire2api_String(arr[0]),
+      x: _wire2api_f64(arr[1]),
+      y: _wire2api_f64(arr[2]),
+      width: _wire2api_f64(arr[3]),
+      event: _wire2api_opt_String(arr[4]),
+      color: _wire2api_color_info(arr[5]),
+      value: _wire2api_f64(arr[6]),
+      style: _wire2api_slider_style_info(arr[7]),
+      landscape: _wire2api_bool(arr[8]),
+      readonly: _wire2api_bool(arr[9]),
+    );
+  }
+
+  SliderStyleInfo _wire2api_slider_style_info(dynamic raw) {
+    return SliderStyleInfo.values[raw as int];
   }
 
   TextAlignInfo _wire2api_text_align_info(dynamic raw) {
