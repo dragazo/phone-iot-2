@@ -240,6 +240,7 @@ pub enum DartCommand {
     SetText { key: DartRequestKey, id: String, value: String },
     IsPressed { key: DartRequestKey, id: String },
     GetPosition { key: DartRequestKey, id: String },
+    GetImage { key: DartRequestKey, id: String },
     SetImage { key: DartRequestKey, id: String, value: Vec<u8> },
 }
 
@@ -248,6 +249,7 @@ pub enum SimpleValue {
     Number(f64),
     String(String),
     List(Vec<SimpleValue>),
+    Image(Vec<u8>),
 }
 impl SimpleValue {
     fn into_json(self) -> Json {
@@ -256,6 +258,16 @@ impl SimpleValue {
             SimpleValue::Number(x) => json!(x),
             SimpleValue::String(x) => Json::String(x),
             SimpleValue::List(x) => Json::Array(x.into_iter().map(SimpleValue::into_json).collect()),
+            SimpleValue::Image(_) => panic!("attempt to transfer image as json"),
+        }
+    }
+    fn into_intermediate(self) -> Intermediate {
+        match self {
+            SimpleValue::Bool(x) => Intermediate::Json(Json::Bool(x)),
+            SimpleValue::Number(x) => Intermediate::Json(json!(x)),
+            SimpleValue::String(x) => Intermediate::Json(Json::String(x)),
+            SimpleValue::List(x) => Intermediate::Json(Json::Array(x.into_iter().map(SimpleValue::into_json).collect())),
+            SimpleValue::Image(x) => Intermediate::Image(x),
         }
     }
 }
@@ -646,6 +658,17 @@ pub fn initialize() {
                             send_dart_command(DartCommand::GetPosition { key, id });
                             RequestStatus::Handled
                         }
+                        "getImage" => {
+                            if args.len() != 2 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::GetImage { key, id });
+                            RequestStatus::Handled
+                        }
                         "setImage" => {
                             if args.len() != 3 || !is_local_id(&args[0].1) {
                                 return RequestStatus::UseDefault { key, request };
@@ -726,6 +749,6 @@ pub fn recv_commands(sink: StreamSink<DartCommand>) {
 pub fn complete_request(key: DartRequestKey, result: RequestResult) {
     let key = PENDING_REQUESTS.lock().unwrap().remove(&key);
     if let Some(key) = key {
-        key.complete(result.into_result().map(|x| Intermediate::Json(x.into_json())));
+        key.complete(result.into_result().map(SimpleValue::into_intermediate));
     }
 }

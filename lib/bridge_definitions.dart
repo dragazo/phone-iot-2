@@ -137,6 +137,10 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required String id,
   }) = DartCommand_GetPosition;
+  const factory DartCommand.getImage({
+    required DartRequestKey key,
+    required String id,
+  }) = DartCommand_GetImage;
   const factory DartCommand.setImage({
     required DartRequestKey key,
     required String id,
@@ -260,6 +264,9 @@ sealed class SimpleValue with _$SimpleValue {
   const factory SimpleValue.list(
     List<SimpleValue> field0,
   ) = SimpleValue_List;
+  const factory SimpleValue.image(
+    Uint8List field0,
+  ) = SimpleValue_Image;
 }
 
 enum TextAlignInfo {

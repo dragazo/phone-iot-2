@@ -1,28 +1,14 @@
 import 'dart:collection';
-import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 import 'dart:async';
-import 'dart:ui' as ui;
 import 'package:http/http.dart' as http;
 
 import 'canvas.dart';
 
 const updateInterval = Duration(milliseconds: 500);
 const messageLifetime = Duration(seconds: 10);
-
-final blankImage = base64Decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TpSIVB4uIOGSoThZFRRy1CkWoEGqFVh1MLv2CJg1Jiouj4Fpw8GOx6uDirKuDqyAIfoC4ujgpukiJ/0sKLWI8OO7Hu3uPu3eAUC8zzeoYBzTdNlOJuJjJroqhV4QQRj');
-
-Future<Uint8List> encodeImage(ui.Image img) async {
-  return (await img.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
-}
-Future<ui.Image> decodeImage(Uint8List raw) async {
-  final c = Completer<ui.Image>();
-  ui.decodeImageFromList(raw, (x) => c.complete(x));
-  return c.future;
-}
 
 void main() {
   runApp(const MyApp());
@@ -152,20 +138,37 @@ class _MyHomePageState extends State<MyHomePage> {
               api.completeRequest(key: key, result: RequestResult.err('no position-like control with id $id'));
             }
           },
-          setImage: (key, id, value) {
+          getImage: (key, id) async {
             ImageLike? target = findControl<ImageLike>(id);
             if (target == null) {
               api.completeRequest(key: key, result: RequestResult.err('no image-like control with id $id'));
               return;
             }
-            decodeImage(value)
-              .then((img) {
-                setState(() => target.setImage(img, UpdateSource.code));
-                api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
-              })
-              .catchError((e) {
-                api.completeRequest(key: key, result: RequestResult.err('failed to decode image: $e'));
-              });
+
+            final src = target.getImage()?.clone(); // make sure we have an owning handle for concurrency safety
+            try {
+              final raw = src != null ? await encodeImage(src) : blankImage;
+              api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.image(raw)));
+            } catch (e) {
+              api.completeRequest(key: key, result: RequestResult.err('failed to encode image: $e'));
+            } finally {
+              src?.dispose();
+            }
+          },
+          setImage: (key, id, value) async {
+            ImageLike? target = findControl<ImageLike>(id);
+            if (target == null) {
+              api.completeRequest(key: key, result: RequestResult.err('no image-like control with id $id'));
+              return;
+            }
+
+            try {
+              final img = await decodeImage(value);
+              setState(() => target.setImage(img, UpdateSource.code));
+              api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+            } catch (e) {
+              api.completeRequest(key: key, result: RequestResult.err('failed to decode image: $e'));
+            }
           },
         );
       }

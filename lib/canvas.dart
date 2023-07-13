@@ -1,4 +1,7 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:math';
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -11,6 +14,8 @@ const Color selectColor = Color.fromARGB(50, 255, 255, 255);
 const double joystickBorderWidth = 0.035;
 const double joystickHandSize = 0.3333;
 const Duration joystickUpdateInterval = Duration(milliseconds: 100);
+
+final Uint8List blankImage = base64Decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kTtIw0Acxr8+pCItHewg4pChOlkQXzhqFYpQIdQKrTqYXPqCJg1Jiouj4Fpw8LFYdXBx1tXBVRAEHyCuLk6KLlLi/5JCixgPjvvx3X0fd98B/maVqWZwDFA1y8ikkkIuvyqEXhFCBEFMISoxU58TxTQ8x9c9fHy9S/As73N/johSMBngE4hnmW5YxBvE05uWznmfOMbKkkJ8Tjxq0AWJH7kuu/zGueSwn2fGjGxmnjhGLJS6WO5iVjZU4kniuKJqlO/Puaxw3uKsVuusfU/+wnBBW1nmOs0hpLCIJYgQIKOOCqqwkKBVI8VEhvaTHv5Bxy+SSyZXBYwcC6hBheT4wf/gd7dmcWLcTQongZ4X2/4YBkK7QKth29/Htt06AQLPwJXW8deawMwn6Y2OFj8CotvAxXVHk/eAyx1g4EmXDMmRAjT9xSLwfkbflAf6b4G+Nbe39j5OH4AsdZW+AQ4OgZESZa97vLu3u7d/z7T7+wFXoHKclT4nBwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+cHDQQ1KWBVd1EAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAADElEQVQI12NgYGAAAAAEAAEnNCcKAAAAAElFTkSuQmCC');
 
 enum ClickType {
   down, move, up,
@@ -55,6 +60,15 @@ String encodeClickType(ClickType type) {
     case ClickType.move: return 'move';
     case ClickType.up: return 'up';
   }
+}
+
+Future<Uint8List> encodeImage(ui.Image img) async {
+  return (await img.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
+}
+Future<ui.Image> decodeImage(Uint8List raw) async {
+  final c = Completer<ui.Image>();
+  ui.decodeImageFromList(raw, (x) => c.complete(x));
+  return c.future;
 }
 
 void drawTextRect(Canvas canvas, Rect rect, Color color, String text, double fontSize, TextAlign align, bool vCenter) {
@@ -298,6 +312,7 @@ class CustomTextField extends CustomControl with TextLike {
   @override
   void setText(String value, UpdateSource source) {
     text = value;
+
     if (source == UpdateSource.user && event != null) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
         ('device', const SimpleValue.number(0)),
@@ -435,7 +450,15 @@ class CustomImageDisplay extends CustomControl with ImageLike {
 
   @override
   void setImage(ui.Image? value, UpdateSource source) {
+    if (image != value) image?.dispose();
     image = value;
+
+    if (source == UpdateSource.user && event != null) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+        ('device', const SimpleValue.number(0)),
+        ('id', SimpleValue.string(id)),
+      ]));
+    }
   }
 }
 

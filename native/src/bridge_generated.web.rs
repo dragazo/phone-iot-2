@@ -112,6 +112,7 @@ impl Wire2Api<SimpleValue> for JsValue {
             1 => SimpleValue::Number(self_.get(1).wire2api()),
             2 => SimpleValue::String(self_.get(1).wire2api()),
             3 => SimpleValue::List(self_.get(1).wire2api()),
+            4 => SimpleValue::Image(self_.get(1).wire2api()),
             _ => unreachable!(),
         }
     }

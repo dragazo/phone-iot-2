@@ -208,6 +208,11 @@ impl Wire2Api<SimpleValue> for wire_SimpleValue {
                 let ans = support::box_from_leak_ptr(ans.List);
                 SimpleValue::List(ans.field0.wire2api())
             },
+            4 => unsafe {
+                let ans = support::box_from_leak_ptr(self.kind);
+                let ans = support::box_from_leak_ptr(ans.Image);
+                SimpleValue::Image(ans.field0.wire2api())
+            },
             _ => unreachable!(),
         }
     }
@@ -325,6 +330,7 @@ pub union SimpleValueKind {
     Number: *mut wire_SimpleValue_Number,
     String: *mut wire_SimpleValue_String,
     List: *mut wire_SimpleValue_List,
+    Image: *mut wire_SimpleValue_Image,
 }
 
 #[repr(C)]
@@ -349,6 +355,12 @@ pub struct wire_SimpleValue_String {
 #[derive(Clone)]
 pub struct wire_SimpleValue_List {
     field0: *mut wire_list_simple_value,
+}
+
+#[repr(C)]
+#[derive(Clone)]
+pub struct wire_SimpleValue_Image {
+    field0: *mut wire_uint_8_list,
 }
 
 // Section: impl NewWithNullPtr
@@ -505,6 +517,15 @@ pub extern "C" fn inflate_SimpleValue_String() -> *mut SimpleValueKind {
 pub extern "C" fn inflate_SimpleValue_List() -> *mut SimpleValueKind {
     support::new_leak_box_ptr(SimpleValueKind {
         List: support::new_leak_box_ptr(wire_SimpleValue_List {
+            field0: core::ptr::null_mut(),
+        }),
+    })
+}
+
+#[no_mangle]
+pub extern "C" fn inflate_SimpleValue_Image() -> *mut SimpleValueKind {
+    support::new_leak_box_ptr(SimpleValueKind {
+        Image: support::new_leak_box_ptr(wire_SimpleValue_Image {
             field0: core::ptr::null_mut(),
         }),
     })

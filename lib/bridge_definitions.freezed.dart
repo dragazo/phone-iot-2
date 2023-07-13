@@ -35,6 +35,7 @@ mixin _$DartCommand {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) =>
@@ -55,6 +56,7 @@ mixin _$DartCommand {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +76,7 @@ mixin _$DartCommand {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) =>
@@ -94,6 +97,7 @@ mixin _$DartCommand {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +116,7 @@ mixin _$DartCommand {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) =>
       throw _privateConstructorUsedError;
@@ -130,6 +135,7 @@ mixin _$DartCommand {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) =>
@@ -236,6 +242,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -259,6 +266,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return stdout?.call(msg);
@@ -281,6 +289,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -307,6 +316,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return stdout(this);
@@ -328,6 +338,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return stdout?.call(this);
@@ -349,6 +360,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -451,6 +463,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -474,6 +487,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return stderr?.call(msg);
@@ -496,6 +510,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -522,6 +537,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return stderr(this);
@@ -543,6 +559,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return stderr?.call(this);
@@ -564,6 +581,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -667,6 +685,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -690,6 +709,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return clearControls?.call(key);
@@ -712,6 +732,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -738,6 +759,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return clearControls(this);
@@ -759,6 +781,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return clearControls?.call(this);
@@ -780,6 +803,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -891,6 +915,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -914,6 +939,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return removeControl?.call(key, id);
@@ -936,6 +962,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -962,6 +989,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return removeControl(this);
@@ -983,6 +1011,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return removeControl?.call(this);
@@ -1004,6 +1033,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -1116,6 +1146,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -1139,6 +1170,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return addLabel?.call(key, info);
@@ -1161,6 +1193,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -1187,6 +1220,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return addLabel(this);
@@ -1208,6 +1242,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return addLabel?.call(this);
@@ -1229,6 +1264,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -1341,6 +1377,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -1364,6 +1401,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return addButton?.call(key, info);
@@ -1386,6 +1424,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -1412,6 +1451,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return addButton(this);
@@ -1433,6 +1473,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return addButton?.call(this);
@@ -1454,6 +1495,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -1567,6 +1609,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -1590,6 +1633,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return addTextField?.call(key, info);
@@ -1612,6 +1656,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -1638,6 +1683,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return addTextField(this);
@@ -1659,6 +1705,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return addTextField?.call(this);
@@ -1680,6 +1727,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -1792,6 +1840,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -1815,6 +1864,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return addJoystick?.call(key, info);
@@ -1837,6 +1887,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -1863,6 +1914,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return addJoystick(this);
@@ -1884,6 +1936,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return addJoystick?.call(this);
@@ -1905,6 +1958,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -2019,6 +2073,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -2042,6 +2097,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return addImageDisplay?.call(key, info);
@@ -2064,6 +2120,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -2090,6 +2147,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return addImageDisplay(this);
@@ -2111,6 +2169,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return addImageDisplay?.call(this);
@@ -2132,6 +2191,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -2244,6 +2304,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -2267,6 +2328,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return getText?.call(key, id);
@@ -2289,6 +2351,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -2315,6 +2378,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return getText(this);
@@ -2336,6 +2400,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return getText?.call(this);
@@ -2357,6 +2422,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -2478,6 +2544,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -2501,6 +2568,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return setText?.call(key, id, value);
@@ -2523,6 +2591,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -2549,6 +2618,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return setText(this);
@@ -2570,6 +2640,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return setText?.call(this);
@@ -2591,6 +2662,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -2705,6 +2777,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -2728,6 +2801,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return isPressed?.call(key, id);
@@ -2750,6 +2824,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -2776,6 +2851,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return isPressed(this);
@@ -2797,6 +2873,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return isPressed?.call(this);
@@ -2818,6 +2895,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -2930,6 +3008,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -2953,6 +3032,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return getPosition?.call(key, id);
@@ -2975,6 +3055,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -3001,6 +3082,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return getPosition(this);
@@ -3022,6 +3104,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return getPosition?.call(this);
@@ -3043,6 +3126,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -3062,6 +3146,237 @@ abstract class DartCommand_GetPosition implements DartCommand {
   String get id;
   @JsonKey(ignore: true)
   _$$DartCommand_GetPositionCopyWith<_$DartCommand_GetPosition> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_GetImageCopyWith<$Res> {
+  factory _$$DartCommand_GetImageCopyWith(_$DartCommand_GetImage value,
+          $Res Function(_$DartCommand_GetImage) then) =
+      __$$DartCommand_GetImageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key, String id});
+}
+
+/// @nodoc
+class __$$DartCommand_GetImageCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetImage>
+    implements _$$DartCommand_GetImageCopyWith<$Res> {
+  __$$DartCommand_GetImageCopyWithImpl(_$DartCommand_GetImage _value,
+      $Res Function(_$DartCommand_GetImage) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+    Object? id = null,
+  }) {
+    return _then(_$DartCommand_GetImage(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_GetImage implements DartCommand_GetImage {
+  const _$DartCommand_GetImage({required this.key, required this.id});
+
+  @override
+  final DartRequestKey key;
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'DartCommand.getImage(key: $key, id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_GetImage &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_GetImageCopyWith<_$DartCommand_GetImage> get copyWith =>
+      __$$DartCommand_GetImageCopyWithImpl<_$DartCommand_GetImage>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+  }) {
+    return getImage(key, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+  }) {
+    return getImage?.call(key, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    required TResult orElse(),
+  }) {
+    if (getImage != null) {
+      return getImage(key, id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+  }) {
+    return getImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+  }) {
+    return getImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    required TResult orElse(),
+  }) {
+    if (getImage != null) {
+      return getImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_GetImage implements DartCommand {
+  const factory DartCommand_GetImage(
+      {required final DartRequestKey key,
+      required final String id}) = _$DartCommand_GetImage;
+
+  DartRequestKey get key;
+  String get id;
+  @JsonKey(ignore: true)
+  _$$DartCommand_GetImageCopyWith<_$DartCommand_GetImage> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3165,6 +3480,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
         setText,
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
     required TResult Function(DartRequestKey key, String id, Uint8List value)
         setImage,
   }) {
@@ -3188,6 +3504,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartRequestKey key, String id, String value)? setText,
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
     TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
   }) {
     return setImage?.call(key, id, value);
@@ -3210,6 +3527,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartRequestKey key, String id, String value)? setText,
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
     TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
     required TResult orElse(),
   }) {
@@ -3236,6 +3554,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     required TResult Function(DartCommand_SetText value) setText,
     required TResult Function(DartCommand_IsPressed value) isPressed,
     required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
     required TResult Function(DartCommand_SetImage value) setImage,
   }) {
     return setImage(this);
@@ -3257,6 +3576,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartCommand_SetText value)? setText,
     TResult? Function(DartCommand_IsPressed value)? isPressed,
     TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
     TResult? Function(DartCommand_SetImage value)? setImage,
   }) {
     return setImage?.call(this);
@@ -3278,6 +3598,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartCommand_SetText value)? setText,
     TResult Function(DartCommand_IsPressed value)? isPressed,
     TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
     TResult Function(DartCommand_SetImage value)? setImage,
     required TResult orElse(),
   }) {
@@ -4143,6 +4464,7 @@ mixin _$SimpleValue {
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
     required TResult Function(List<SimpleValue> field0) list,
+    required TResult Function(Uint8List field0) image,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -4151,6 +4473,7 @@ mixin _$SimpleValue {
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
     TResult? Function(List<SimpleValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -4159,6 +4482,7 @@ mixin _$SimpleValue {
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
     TResult Function(List<SimpleValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -4168,6 +4492,7 @@ mixin _$SimpleValue {
     required TResult Function(SimpleValue_Number value) number,
     required TResult Function(SimpleValue_String value) string,
     required TResult Function(SimpleValue_List value) list,
+    required TResult Function(SimpleValue_Image value) image,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -4176,6 +4501,7 @@ mixin _$SimpleValue {
     TResult? Function(SimpleValue_Number value)? number,
     TResult? Function(SimpleValue_String value)? string,
     TResult? Function(SimpleValue_List value)? list,
+    TResult? Function(SimpleValue_Image value)? image,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -4184,6 +4510,7 @@ mixin _$SimpleValue {
     TResult Function(SimpleValue_Number value)? number,
     TResult Function(SimpleValue_String value)? string,
     TResult Function(SimpleValue_List value)? list,
+    TResult Function(SimpleValue_Image value)? image,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -4275,6 +4602,7 @@ class _$SimpleValue_Bool implements SimpleValue_Bool {
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
     required TResult Function(List<SimpleValue> field0) list,
+    required TResult Function(Uint8List field0) image,
   }) {
     return bool(field0);
   }
@@ -4286,6 +4614,7 @@ class _$SimpleValue_Bool implements SimpleValue_Bool {
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
     TResult? Function(List<SimpleValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
   }) {
     return bool?.call(field0);
   }
@@ -4297,6 +4626,7 @@ class _$SimpleValue_Bool implements SimpleValue_Bool {
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
     TResult Function(List<SimpleValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
     required TResult orElse(),
   }) {
     if (bool != null) {
@@ -4312,6 +4642,7 @@ class _$SimpleValue_Bool implements SimpleValue_Bool {
     required TResult Function(SimpleValue_Number value) number,
     required TResult Function(SimpleValue_String value) string,
     required TResult Function(SimpleValue_List value) list,
+    required TResult Function(SimpleValue_Image value) image,
   }) {
     return bool(this);
   }
@@ -4323,6 +4654,7 @@ class _$SimpleValue_Bool implements SimpleValue_Bool {
     TResult? Function(SimpleValue_Number value)? number,
     TResult? Function(SimpleValue_String value)? string,
     TResult? Function(SimpleValue_List value)? list,
+    TResult? Function(SimpleValue_Image value)? image,
   }) {
     return bool?.call(this);
   }
@@ -4334,6 +4666,7 @@ class _$SimpleValue_Bool implements SimpleValue_Bool {
     TResult Function(SimpleValue_Number value)? number,
     TResult Function(SimpleValue_String value)? string,
     TResult Function(SimpleValue_List value)? list,
+    TResult Function(SimpleValue_Image value)? image,
     required TResult orElse(),
   }) {
     if (bool != null) {
@@ -4422,6 +4755,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
     required TResult Function(List<SimpleValue> field0) list,
+    required TResult Function(Uint8List field0) image,
   }) {
     return number(field0);
   }
@@ -4433,6 +4767,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
     TResult? Function(List<SimpleValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
   }) {
     return number?.call(field0);
   }
@@ -4444,6 +4779,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
     TResult Function(List<SimpleValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
     required TResult orElse(),
   }) {
     if (number != null) {
@@ -4459,6 +4795,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
     required TResult Function(SimpleValue_Number value) number,
     required TResult Function(SimpleValue_String value) string,
     required TResult Function(SimpleValue_List value) list,
+    required TResult Function(SimpleValue_Image value) image,
   }) {
     return number(this);
   }
@@ -4470,6 +4807,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
     TResult? Function(SimpleValue_Number value)? number,
     TResult? Function(SimpleValue_String value)? string,
     TResult? Function(SimpleValue_List value)? list,
+    TResult? Function(SimpleValue_Image value)? image,
   }) {
     return number?.call(this);
   }
@@ -4481,6 +4819,7 @@ class _$SimpleValue_Number implements SimpleValue_Number {
     TResult Function(SimpleValue_Number value)? number,
     TResult Function(SimpleValue_String value)? string,
     TResult Function(SimpleValue_List value)? list,
+    TResult Function(SimpleValue_Image value)? image,
     required TResult orElse(),
   }) {
     if (number != null) {
@@ -4569,6 +4908,7 @@ class _$SimpleValue_String implements SimpleValue_String {
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
     required TResult Function(List<SimpleValue> field0) list,
+    required TResult Function(Uint8List field0) image,
   }) {
     return string(field0);
   }
@@ -4580,6 +4920,7 @@ class _$SimpleValue_String implements SimpleValue_String {
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
     TResult? Function(List<SimpleValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
   }) {
     return string?.call(field0);
   }
@@ -4591,6 +4932,7 @@ class _$SimpleValue_String implements SimpleValue_String {
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
     TResult Function(List<SimpleValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
     required TResult orElse(),
   }) {
     if (string != null) {
@@ -4606,6 +4948,7 @@ class _$SimpleValue_String implements SimpleValue_String {
     required TResult Function(SimpleValue_Number value) number,
     required TResult Function(SimpleValue_String value) string,
     required TResult Function(SimpleValue_List value) list,
+    required TResult Function(SimpleValue_Image value) image,
   }) {
     return string(this);
   }
@@ -4617,6 +4960,7 @@ class _$SimpleValue_String implements SimpleValue_String {
     TResult? Function(SimpleValue_Number value)? number,
     TResult? Function(SimpleValue_String value)? string,
     TResult? Function(SimpleValue_List value)? list,
+    TResult? Function(SimpleValue_Image value)? image,
   }) {
     return string?.call(this);
   }
@@ -4628,6 +4972,7 @@ class _$SimpleValue_String implements SimpleValue_String {
     TResult Function(SimpleValue_Number value)? number,
     TResult Function(SimpleValue_String value)? string,
     TResult Function(SimpleValue_List value)? list,
+    TResult Function(SimpleValue_Image value)? image,
     required TResult orElse(),
   }) {
     if (string != null) {
@@ -4721,6 +5066,7 @@ class _$SimpleValue_List implements SimpleValue_List {
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
     required TResult Function(List<SimpleValue> field0) list,
+    required TResult Function(Uint8List field0) image,
   }) {
     return list(field0);
   }
@@ -4732,6 +5078,7 @@ class _$SimpleValue_List implements SimpleValue_List {
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
     TResult? Function(List<SimpleValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
   }) {
     return list?.call(field0);
   }
@@ -4743,6 +5090,7 @@ class _$SimpleValue_List implements SimpleValue_List {
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
     TResult Function(List<SimpleValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
     required TResult orElse(),
   }) {
     if (list != null) {
@@ -4758,6 +5106,7 @@ class _$SimpleValue_List implements SimpleValue_List {
     required TResult Function(SimpleValue_Number value) number,
     required TResult Function(SimpleValue_String value) string,
     required TResult Function(SimpleValue_List value) list,
+    required TResult Function(SimpleValue_Image value) image,
   }) {
     return list(this);
   }
@@ -4769,6 +5118,7 @@ class _$SimpleValue_List implements SimpleValue_List {
     TResult? Function(SimpleValue_Number value)? number,
     TResult? Function(SimpleValue_String value)? string,
     TResult? Function(SimpleValue_List value)? list,
+    TResult? Function(SimpleValue_Image value)? image,
   }) {
     return list?.call(this);
   }
@@ -4780,6 +5130,7 @@ class _$SimpleValue_List implements SimpleValue_List {
     TResult Function(SimpleValue_Number value)? number,
     TResult Function(SimpleValue_String value)? string,
     TResult Function(SimpleValue_List value)? list,
+    TResult Function(SimpleValue_Image value)? image,
     required TResult orElse(),
   }) {
     if (list != null) {
@@ -4797,5 +5148,158 @@ abstract class SimpleValue_List implements SimpleValue {
   List<SimpleValue> get field0;
   @JsonKey(ignore: true)
   _$$SimpleValue_ListCopyWith<_$SimpleValue_List> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SimpleValue_ImageCopyWith<$Res> {
+  factory _$$SimpleValue_ImageCopyWith(
+          _$SimpleValue_Image value, $Res Function(_$SimpleValue_Image) then) =
+      __$$SimpleValue_ImageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Uint8List field0});
+}
+
+/// @nodoc
+class __$$SimpleValue_ImageCopyWithImpl<$Res>
+    extends _$SimpleValueCopyWithImpl<$Res, _$SimpleValue_Image>
+    implements _$$SimpleValue_ImageCopyWith<$Res> {
+  __$$SimpleValue_ImageCopyWithImpl(
+      _$SimpleValue_Image _value, $Res Function(_$SimpleValue_Image) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$SimpleValue_Image(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SimpleValue_Image implements SimpleValue_Image {
+  const _$SimpleValue_Image(this.field0);
+
+  @override
+  final Uint8List field0;
+
+  @override
+  String toString() {
+    return 'SimpleValue.image(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SimpleValue_Image &&
+            const DeepCollectionEquality().equals(other.field0, field0));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(field0));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SimpleValue_ImageCopyWith<_$SimpleValue_Image> get copyWith =>
+      __$$SimpleValue_ImageCopyWithImpl<_$SimpleValue_Image>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
+    required TResult Function(double field0) number,
+    required TResult Function(String field0) string,
+    required TResult Function(List<SimpleValue> field0) list,
+    required TResult Function(Uint8List field0) image,
+  }) {
+    return image(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
+    TResult? Function(double field0)? number,
+    TResult? Function(String field0)? string,
+    TResult? Function(List<SimpleValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
+  }) {
+    return image?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
+    TResult Function(double field0)? number,
+    TResult Function(String field0)? string,
+    TResult Function(List<SimpleValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
+    required TResult orElse(),
+  }) {
+    if (image != null) {
+      return image(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SimpleValue_Bool value) bool,
+    required TResult Function(SimpleValue_Number value) number,
+    required TResult Function(SimpleValue_String value) string,
+    required TResult Function(SimpleValue_List value) list,
+    required TResult Function(SimpleValue_Image value) image,
+  }) {
+    return image(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SimpleValue_Bool value)? bool,
+    TResult? Function(SimpleValue_Number value)? number,
+    TResult? Function(SimpleValue_String value)? string,
+    TResult? Function(SimpleValue_List value)? list,
+    TResult? Function(SimpleValue_Image value)? image,
+  }) {
+    return image?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SimpleValue_Bool value)? bool,
+    TResult Function(SimpleValue_Number value)? number,
+    TResult Function(SimpleValue_String value)? string,
+    TResult Function(SimpleValue_List value)? list,
+    TResult Function(SimpleValue_Image value)? image,
+    required TResult orElse(),
+  }) {
+    if (image != null) {
+      return image(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SimpleValue_Image implements SimpleValue {
+  const factory SimpleValue_Image(final Uint8List field0) = _$SimpleValue_Image;
+
+  @override
+  Uint8List get field0;
+  @JsonKey(ignore: true)
+  _$$SimpleValue_ImageCopyWith<_$SimpleValue_Image> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -112,6 +112,9 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
     if (raw is SimpleValue_List) {
       return [3, api2wire_list_simple_value(raw.field0)];
     }
+    if (raw is SimpleValue_Image) {
+      return [4, api2wire_uint_8_list(raw.field0)];
+    }
 
     throw Exception('unreachable');
   }

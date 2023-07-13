@@ -191,6 +191,13 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
       wireObj.kind.ref.List.ref.field0 = pre_field0;
       return;
     }
+    if (apiObj is SimpleValue_Image) {
+      var pre_field0 = api2wire_uint_8_list(apiObj.field0);
+      wireObj.tag = 4;
+      wireObj.kind = inner.inflate_SimpleValue_Image();
+      wireObj.kind.ref.Image.ref.field0 = pre_field0;
+      return;
+    }
   }
 }
 
@@ -528,6 +535,16 @@ class NativeWire implements FlutterRustBridgeWireBase {
   late final _inflate_SimpleValue_List = _inflate_SimpleValue_ListPtr
       .asFunction<ffi.Pointer<SimpleValueKind> Function()>();
 
+  ffi.Pointer<SimpleValueKind> inflate_SimpleValue_Image() {
+    return _inflate_SimpleValue_Image();
+  }
+
+  late final _inflate_SimpleValue_ImagePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<SimpleValueKind> Function()>>(
+          'inflate_SimpleValue_Image');
+  late final _inflate_SimpleValue_Image = _inflate_SimpleValue_ImagePtr
+      .asFunction<ffi.Pointer<SimpleValueKind> Function()>();
+
   void free_WireSyncReturn(
     WireSyncReturn ptr,
   ) {
@@ -594,10 +611,16 @@ final class SimpleValueKind extends ffi.Union {
   external ffi.Pointer<wire_SimpleValue_String> String;
 
   external ffi.Pointer<wire_SimpleValue_List> List;
+
+  external ffi.Pointer<wire_SimpleValue_Image> Image;
 }
 
 final class wire_SimpleValue_List extends ffi.Struct {
   external ffi.Pointer<wire_list_simple_value> field0;
+}
+
+final class wire_SimpleValue_Image extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
 }
 
 final class wire___record__String_simple_value extends ffi.Struct {

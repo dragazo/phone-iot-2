@@ -193,8 +193,9 @@ impl support::IntoDart for DartCommand {
             ],
             Self::IsPressed { key, id } => vec![11.into_dart(), key.into_dart(), id.into_dart()],
             Self::GetPosition { key, id } => vec![12.into_dart(), key.into_dart(), id.into_dart()],
+            Self::GetImage { key, id } => vec![13.into_dart(), key.into_dart(), id.into_dart()],
             Self::SetImage { key, id, value } => vec![
-                13.into_dart(),
+                14.into_dart(),
                 key.into_dart(),
                 id.into_dart(),
                 value.into_dart(),

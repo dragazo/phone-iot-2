@@ -230,6 +230,11 @@ class NativeImpl implements Native {
           id: _wire2api_String(raw[2]),
         );
       case 13:
+        return DartCommand_GetImage(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+        );
+      case 14:
         return DartCommand_SetImage(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),

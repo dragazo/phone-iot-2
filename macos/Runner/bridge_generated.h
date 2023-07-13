@@ -43,11 +43,16 @@ typedef struct wire_SimpleValue_List {
   struct wire_list_simple_value *field0;
 } wire_SimpleValue_List;
 
+typedef struct wire_SimpleValue_Image {
+  struct wire_uint_8_list *field0;
+} wire_SimpleValue_Image;
+
 typedef union SimpleValueKind {
   struct wire_SimpleValue_Bool *Bool;
   struct wire_SimpleValue_Number *Number;
   struct wire_SimpleValue_String *String;
   struct wire_SimpleValue_List *List;
+  struct wire_SimpleValue_Image *Image;
 } SimpleValueKind;
 
 typedef struct wire_SimpleValue {
@@ -155,6 +160,8 @@ union SimpleValueKind *inflate_SimpleValue_String(void);
 
 union SimpleValueKind *inflate_SimpleValue_List(void);
 
+union SimpleValueKind *inflate_SimpleValue_Image(void);
+
 void free_WireSyncReturn(WireSyncReturn ptr);
 
 static int64_t dummy_method_to_enforce_bundling(void) {
@@ -178,6 +185,7 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_Number);
     dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_String);
     dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_List);
+    dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_Image);
     dummy_var ^= ((int64_t) (void*) free_WireSyncReturn);
     dummy_var ^= ((int64_t) (void*) store_dart_post_cobject);
     dummy_var ^= ((int64_t) (void*) get_dart_object);
