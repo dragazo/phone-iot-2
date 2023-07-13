@@ -15,6 +15,15 @@ const messageLifetime = Duration(seconds: 10);
 
 final blankImage = base64Decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TpSIVB4uIOGSoThZFRRy1CkWoEGqFVh1MLv2CJg1Jiouj4Fpw8GOx6uDirKuDqyAIfoC4ujgpukiJ/0sKLWI8OO7Hu3uPu3eAUC8zzeoYBzTdNlOJuJjJroqhV4QQRj');
 
+Future<Uint8List> encodeImage(ui.Image img) async {
+  return (await img.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
+}
+Future<ui.Image> decodeImage(Uint8List raw) async {
+  final c = Completer<ui.Image>();
+  ui.decodeImageFromList(raw, (x) => c.complete(x));
+  return c.future;
+}
+
 void main() {
   runApp(const MyApp());
 }
@@ -142,6 +151,21 @@ class _MyHomePageState extends State<MyHomePage> {
             } else {
               api.completeRequest(key: key, result: RequestResult.err('no position-like control with id $id'));
             }
+          },
+          setImage: (key, id, value) {
+            ImageLike? target = findControl<ImageLike>(id);
+            if (target == null) {
+              api.completeRequest(key: key, result: RequestResult.err('no image-like control with id $id'));
+              return;
+            }
+            decodeImage(value)
+              .then((img) {
+                setState(() => target.setImage(img, UpdateSource.code));
+                api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+              })
+              .catchError((e) {
+                api.completeRequest(key: key, result: RequestResult.err('failed to decode image: $e'));
+              });
           },
         );
       }
@@ -409,6 +433,8 @@ class _MyHomePageState extends State<MyHomePage> {
         inputTextTarget = target as TextLike;
         widget.textInput.text = inputTextTarget!.getText();
         setState(() {});
+      case ClickResult.requestImage:
+        setState(() => messages.add(Message('requested image - NOT YET SUPPORTED', MessageType.stderr)));
     }
   }
 }

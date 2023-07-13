@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ enum ClickType {
   down, move, up,
 }
 enum ClickResult {
-  none, redraw, requestText,
+  none, redraw, requestText, requestImage,
 }
 enum UpdateSource {
   code, user,
@@ -100,6 +99,10 @@ mixin Pressable {
 }
 mixin PositionLike {
   (double, double) getPosition();
+}
+mixin ImageLike {
+  ui.Image? getImage();
+  void setImage(ui.Image? value, UpdateSource source);
 }
 
 abstract class CustomControl {
@@ -380,7 +383,7 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
   }
 }
 
-class CustomImageDisplay extends CustomControl {
+class CustomImageDisplay extends CustomControl with ImageLike {
   double x, y, width, height;
   String? event;
   bool readonly, landscape;
@@ -415,12 +418,24 @@ class CustomImageDisplay extends CustomControl {
 
   @override
   bool contains(Offset pos) {
-    
+    Rect r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, width * canvasSize.width / 100, height * canvasSize.height / 100);
+    if (landscape) r = rotated(r);
+    return r.contains(pos);
   }
 
   @override
-  ClickResult handleClick(ui.Offset pos, ClickType type) {
+  ClickResult handleClick(Offset pos, ClickType type) {
+    return type == ClickType.down && !readonly ? ClickResult.requestImage : ClickResult.none;
+  }
 
+  @override
+  ui.Image? getImage() {
+    return image;
+  }
+
+  @override
+  void setImage(ui.Image? value, UpdateSource source) {
+    image = value;
   }
 }
 

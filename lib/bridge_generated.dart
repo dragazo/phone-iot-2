@@ -229,6 +229,12 @@ class NativeImpl implements Native {
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
+      case 13:
+        return DartCommand_SetImage(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+          value: _wire2api_uint_8_list(raw[3]),
+        );
       default:
         throw Exception("unreachable");
     }

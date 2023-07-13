@@ -137,6 +137,11 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required String id,
   }) = DartCommand_GetPosition;
+  const factory DartCommand.setImage({
+    required DartRequestKey key,
+    required String id,
+    required Uint8List value,
+  }) = DartCommand_SetImage;
 }
 
 class DartRequestKey {

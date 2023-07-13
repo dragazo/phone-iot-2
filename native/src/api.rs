@@ -240,6 +240,7 @@ pub enum DartCommand {
     SetText { key: DartRequestKey, id: String, value: String },
     IsPressed { key: DartRequestKey, id: String },
     GetPosition { key: DartRequestKey, id: String },
+    SetImage { key: DartRequestKey, id: String, value: Vec<u8> },
 }
 
 pub enum SimpleValue {
@@ -387,6 +388,15 @@ pub fn initialize() {
                             "stretch" => ImageFitInfo::Stretch,
                             x => {
                                 key.complete(Err(format!("'{}': unknown image fit mode '{}'", stringify!($n), x)));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
+                    ($n:ident := $e:expr => Image) => {
+                        match &$e {
+                            Value::Image(x) => (**x).clone(),
+                            x => {
+                                key.complete(Err(format!("{}': expected image, got {:?}", stringify!($n), x.get_type())));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -634,6 +644,18 @@ pub fn initialize() {
 
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::GetPosition { key, id });
+                            RequestStatus::Handled
+                        }
+                        "setImage" => {
+                            if args.len() != 3 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+                            let value = parse!(img := args[2].1 => Image);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::SetImage { key, id, value });
                             RequestStatus::Handled
                         }
                         _ => RequestStatus::UseDefault { key, request },
