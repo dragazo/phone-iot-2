@@ -132,6 +132,10 @@ pub enum ImageFitInfo {
     Fit, Zoom, Stretch,
 }
 #[derive(Clone, Copy, Debug)]
+pub enum TouchpadStyleInfo {
+    Rectangle, Square,
+}
+#[derive(Clone, Copy, Debug)]
 pub struct ColorInfo {
     pub a: u8,
     pub r: u8,
@@ -192,6 +196,18 @@ pub struct JoystickInfo {
     pub landscape: bool,
 }
 #[derive(Clone, Debug)]
+pub struct TouchpadInfo {
+    pub id: String,
+    pub x: f64,
+    pub y: f64,
+    pub width: f64,
+    pub height: f64,
+    pub event: Option<String>,
+    pub color: ColorInfo,
+    pub style: TouchpadStyleInfo,
+    pub landscape: bool,
+}
+#[derive(Clone, Debug)]
 pub struct ImageDisplayInfo {
     pub id: String,
     pub x: f64,
@@ -234,6 +250,7 @@ pub enum DartCommand {
     AddButton { key: DartRequestKey, info: ButtonInfo },
     AddTextField { key: DartRequestKey, info: TextFieldInfo },
     AddJoystick { key: DartRequestKey, info: JoystickInfo },
+    AddTouchpad { key: DartRequestKey, info: TouchpadInfo },
     AddImageDisplay { key: DartRequestKey, info: ImageDisplayInfo },
 
     GetText { key: DartRequestKey, id: String },
@@ -378,6 +395,16 @@ pub fn initialize() {
                             "circle" => ButtonStyleInfo::Circle,
                             x => {
                                 key.complete(Err(format!("'{}': unknown button style '{}'", stringify!($n), x)));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
+                    ($n:ident := $e:expr => TouchpadStyleInfo) => {
+                        match parse!($n := $e => String).as_str() {
+                            "rectangle" => TouchpadStyleInfo::Rectangle,
+                            "square" => TouchpadStyleInfo::Square,
+                            x => {
+                                key.complete(Err(format!("'{}': unknown touchpad style '{}'", stringify!($n), x)));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -588,6 +615,28 @@ pub fn initialize() {
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::AddJoystick { key, info: JoystickInfo {
                                 x, y, width, id, event, color, landscape,
+                            }});
+                            RequestStatus::Handled
+                        }
+                        "addTouchpad" => {
+                            if args.len() != 6 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let x = parse!(x := args[1].1 => f64);
+                            let y = parse!(y := args[2].1 => f64);
+                            let width = parse!(width := args[3].1 => f64);
+                            let height = parse!(height := args[4].1 => f64);
+                            let options = parse!(options := args[5].1 => { id, event, color, style, landscape });
+                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                            let event = parse!(event := options.get("event") => Option<String>);
+                            let color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                            let style = parse!(style := options.get("style") => Option<TouchpadStyleInfo>).unwrap_or(TouchpadStyleInfo::Rectangle);
+                            let landscape = parse!(style := options.get("landscape") => Option<bool>).unwrap_or(false);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::AddTouchpad { key, info: TouchpadInfo {
+                                x, y, width, height, id, event, color, style, landscape,
                             }});
                             RequestStatus::Handled
                         }

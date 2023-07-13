@@ -181,21 +181,24 @@ impl support::IntoDart for DartCommand {
             Self::AddJoystick { key, info } => {
                 vec![7.into_dart(), key.into_dart(), info.into_dart()]
             }
-            Self::AddImageDisplay { key, info } => {
+            Self::AddTouchpad { key, info } => {
                 vec![8.into_dart(), key.into_dart(), info.into_dart()]
             }
-            Self::GetText { key, id } => vec![9.into_dart(), key.into_dart(), id.into_dart()],
+            Self::AddImageDisplay { key, info } => {
+                vec![9.into_dart(), key.into_dart(), info.into_dart()]
+            }
+            Self::GetText { key, id } => vec![10.into_dart(), key.into_dart(), id.into_dart()],
             Self::SetText { key, id, value } => vec![
-                10.into_dart(),
+                11.into_dart(),
                 key.into_dart(),
                 id.into_dart(),
                 value.into_dart(),
             ],
-            Self::IsPressed { key, id } => vec![11.into_dart(), key.into_dart(), id.into_dart()],
-            Self::GetPosition { key, id } => vec![12.into_dart(), key.into_dart(), id.into_dart()],
-            Self::GetImage { key, id } => vec![13.into_dart(), key.into_dart(), id.into_dart()],
+            Self::IsPressed { key, id } => vec![12.into_dart(), key.into_dart(), id.into_dart()],
+            Self::GetPosition { key, id } => vec![13.into_dart(), key.into_dart(), id.into_dart()],
+            Self::GetImage { key, id } => vec![14.into_dart(), key.into_dart(), id.into_dart()],
             Self::SetImage { key, id, value } => vec![
-                14.into_dart(),
+                15.into_dart(),
                 key.into_dart(),
                 id.into_dart(),
                 value.into_dart(),
@@ -306,6 +309,35 @@ impl support::IntoDart for TextFieldInfo {
     }
 }
 impl support::IntoDartExceptPrimitive for TextFieldInfo {}
+
+impl support::IntoDart for TouchpadInfo {
+    fn into_dart(self) -> support::DartAbi {
+        vec![
+            self.id.into_dart(),
+            self.x.into_dart(),
+            self.y.into_dart(),
+            self.width.into_dart(),
+            self.height.into_dart(),
+            self.event.into_dart(),
+            self.color.into_dart(),
+            self.style.into_dart(),
+            self.landscape.into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for TouchpadInfo {}
+
+impl support::IntoDart for TouchpadStyleInfo {
+    fn into_dart(self) -> support::DartAbi {
+        match self {
+            Self::Rectangle => 0,
+            Self::Square => 1,
+        }
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for TouchpadStyleInfo {}
 
 // Section: executor
 

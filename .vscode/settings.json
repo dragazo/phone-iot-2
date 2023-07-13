@@ -5,7 +5,8 @@
         "LTWH",
         "netsblox",
         "Pressable",
-        "Rootable"
+        "Rootable",
+        "Touchpad"
     ],
     "files.associations": {
         "array": "cpp",

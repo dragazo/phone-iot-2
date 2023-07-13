@@ -11,10 +11,6 @@ const double defaultFontSize = 16;
 const double textPadding = 5;
 const Color selectColor = Color.fromARGB(50, 255, 255, 255);
 
-const double joystickBorderWidth = 0.035;
-const double joystickHandSize = 0.3333;
-const Duration joystickUpdateInterval = Duration(milliseconds: 100);
-
 final Uint8List blankImage = base64Decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kTtIw0Acxr8+pCItHewg4pChOlkQXzhqFYpQIdQKrTqYXPqCJg1Jiouj4Fpw8LFYdXBx1tXBVRAEHyCuLk6KLlLi/5JCixgPjvvx3X0fd98B/maVqWZwDFA1y8ikkkIuvyqEXhFCBEFMISoxU58TxTQ8x9c9fHy9S/As73N/johSMBngE4hnmW5YxBvE05uWznmfOMbKkkJ8Tjxq0AWJH7kuu/zGueSwn2fGjGxmnjhGLJS6WO5iVjZU4kniuKJqlO/Puaxw3uKsVuusfU/+wnBBW1nmOs0hpLCIJYgQIKOOCqqwkKBVI8VEhvaTHv5Bxy+SSyZXBYwcC6hBheT4wf/gd7dmcWLcTQongZ4X2/4YBkK7QKth29/Htt06AQLPwJXW8deawMwn6Y2OFj8CotvAxXVHk/eAyx1g4EmXDMmRAjT9xSLwfkbflAf6b4G+Nbe39j5OH4AsdZW+AQ4OgZESZa97vLu3u7d/z7T7+wFXoHKclT4nBwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+cHDQQ1KWBVd1EAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAADElEQVQI12NgYGAAAAAEAAEnNCcKAAAAAElFTkSuQmCC');
 
 enum ClickType {
@@ -333,6 +329,10 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
   Offset pos = Offset.zero;
   DateTime nextUpdate = DateTime.now();
 
+  static const double borderWidth = 0.035;
+  static const double handSize = 0.3333;
+  static const Duration updateInterval = Duration(milliseconds: 100);
+
   CustomJoystick(JoystickInfo info) : x = info.x, y = info.y, width = info.width,
     event = info.event, color = getColor(info.color), landscape = info.landscape, super(id: info.id);
 
@@ -343,10 +343,10 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
     final w = width * canvasSize.width / 100;
     final r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, w, w);
     final c = Offset(r.center.dx + pos.dx * w / 2, r.center.dy + pos.dy * w / 2);
-    final g = Rect.fromCenter(center: c, width: w * joystickHandSize, height: w * joystickHandSize);
+    final g = Rect.fromCenter(center: c, width: w * handSize, height: w * handSize);
 
     paint.style = PaintingStyle.stroke;
-    paint.strokeWidth = max(1, w * joystickBorderWidth);
+    paint.strokeWidth = max(1, w * borderWidth);
     canvas.drawOval(r, paint);
 
     paint.style = PaintingStyle.fill;
@@ -373,7 +373,7 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
 
     final now = DateTime.now();
     if (event != null && (now.isAfter(nextUpdate) || type == ClickType.up)) {
-      nextUpdate = now.add(joystickUpdateInterval);
+      nextUpdate = now.add(updateInterval);
       final p = getPosition();
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
         ('device', const SimpleValue.number(0)),
@@ -395,6 +395,94 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
   @override
   (double, double) getPosition() {
     return landscape ? (pos.dy, pos.dx) : (pos.dx, -pos.dy);
+  }
+}
+
+class CustomTouchpad extends CustomControl with Pressable, PositionLike {
+  double x, y, width, height;
+  String? event;
+  Color color;
+  bool landscape;
+  TouchpadStyleInfo style;
+
+  bool pressed = false;
+  Offset pos = Offset.zero;
+  DateTime nextUpdate = DateTime.now();
+
+  static const double transparency = 0.5;
+  static const double handSize = 20;
+  static const Duration updateInterval = Duration(milliseconds: 100);
+
+  CustomTouchpad(TouchpadInfo info) : x = info.x, y = info.y, width = info.width, height = info.height,
+    event = info.event, color = getColor(info.color), landscape = info.landscape, style = info.style, super(id: info.id);
+
+  @override
+  void draw(Canvas canvas) {
+    final transColor = Color.fromARGB((color.alpha * transparency).round(), color.red, color.green, color.blue);
+    final paint = Paint();
+    double w = width * canvasSize.width / 100;
+    Rect r = Rect.fromLTWH(0, 0, w, style == TouchpadStyleInfo.Square ? w : height * canvasSize.height / 100);
+    Rect hand = Rect.fromCenter(center: Offset((pos.dx + 1) * r.width / 2, (pos.dy + 1) * r.height / 2), width: handSize, height: handSize);
+
+    canvas.save();
+    canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
+    if (landscape) canvas.rotate(pi / 2);
+    paint.style = PaintingStyle.fill;
+    paint.color = transColor;
+    canvas.drawRect(r, paint);
+    paint.style = PaintingStyle.stroke;
+    paint.color = color;
+    canvas.drawRect(r, paint);
+    if (pressed) {
+      paint.style = PaintingStyle.fill;
+      canvas.drawOval(hand, paint);
+    }
+    canvas.restore();
+  }
+
+  @override
+  bool contains(Offset pos) {
+    double w = width * canvasSize.width / 100;
+    Rect r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, w, style == TouchpadStyleInfo.Square ? w : height * canvasSize.height / 100);
+    if (landscape) r = rotated(r);
+    return r.contains(pos);
+  }
+
+  @override
+  ClickResult handleClick(Offset pos, ClickType type) {
+    Rect r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, width * canvasSize.width / 100, height * canvasSize.height / 100);
+    if (landscape) r = rotated(r);
+
+    double dx = ui.clampDouble((pos.dx - r.center.dx) / (r.width / 2), -1, 1);
+    double dy = ui.clampDouble((pos.dy - r.center.dy) / (r.height / 2), -1, 1);
+
+    this.pos = landscape ? Offset(dy, -dx) : Offset(dx, dy);
+    pressed = type != ClickType.up;
+
+    final now = DateTime.now();
+    if (event != null && (now.isAfter(nextUpdate) || type == ClickType.up)) {
+      nextUpdate = now.add(updateInterval);
+      final p = getPosition();
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+        ('device', const SimpleValue.number(0)),
+        ('id', SimpleValue.string(id)),
+        ('x', SimpleValue.number(p.$1)),
+        ('y', SimpleValue.number(p.$2)),
+        ('tag', SimpleValue.string(encodeClickType(type))),
+      ]));
+    }
+
+    return ClickResult.redraw;
+  }
+
+  @override
+  bool isPressed() {
+    return pressed;
+  }
+
+  @override
+  (double, double) getPosition() {
+    return (pos.dx, -pos.dy);
   }
 }
 

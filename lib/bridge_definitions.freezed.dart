@@ -28,6 +28,8 @@ mixin _$DartCommand {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -50,6 +52,7 @@ mixin _$DartCommand {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -70,6 +73,7 @@ mixin _$DartCommand {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -91,6 +95,7 @@ mixin _$DartCommand {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -111,6 +116,7 @@ mixin _$DartCommand {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -130,6 +136,7 @@ mixin _$DartCommand {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -235,6 +242,8 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -260,6 +269,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -283,6 +293,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -310,6 +321,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -333,6 +345,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -355,6 +368,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -456,6 +470,8 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -481,6 +497,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -504,6 +521,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -531,6 +549,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -554,6 +573,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -576,6 +596,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -678,6 +699,8 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -703,6 +726,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -726,6 +750,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -753,6 +778,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -776,6 +802,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -798,6 +825,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -908,6 +936,8 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -933,6 +963,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -956,6 +987,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -983,6 +1015,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -1006,6 +1039,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -1028,6 +1062,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -1139,6 +1174,8 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -1164,6 +1201,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -1187,6 +1225,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -1214,6 +1253,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -1237,6 +1277,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -1259,6 +1300,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -1370,6 +1412,8 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -1395,6 +1439,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -1418,6 +1463,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -1445,6 +1491,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -1468,6 +1515,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -1490,6 +1538,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -1602,6 +1651,8 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -1627,6 +1678,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -1650,6 +1702,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -1677,6 +1730,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -1700,6 +1754,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -1722,6 +1777,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -1833,6 +1889,8 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -1858,6 +1916,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -1881,6 +1940,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -1908,6 +1968,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -1931,6 +1992,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -1953,6 +2015,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -1978,6 +2041,244 @@ abstract class DartCommand_AddJoystick implements DartCommand {
   JoystickInfo get info;
   @JsonKey(ignore: true)
   _$$DartCommand_AddJoystickCopyWith<_$DartCommand_AddJoystick> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_AddTouchpadCopyWith<$Res> {
+  factory _$$DartCommand_AddTouchpadCopyWith(_$DartCommand_AddTouchpad value,
+          $Res Function(_$DartCommand_AddTouchpad) then) =
+      __$$DartCommand_AddTouchpadCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key, TouchpadInfo info});
+}
+
+/// @nodoc
+class __$$DartCommand_AddTouchpadCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddTouchpad>
+    implements _$$DartCommand_AddTouchpadCopyWith<$Res> {
+  __$$DartCommand_AddTouchpadCopyWithImpl(_$DartCommand_AddTouchpad _value,
+      $Res Function(_$DartCommand_AddTouchpad) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+    Object? info = null,
+  }) {
+    return _then(_$DartCommand_AddTouchpad(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as TouchpadInfo,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
+  const _$DartCommand_AddTouchpad({required this.key, required this.info});
+
+  @override
+  final DartRequestKey key;
+  @override
+  final TouchpadInfo info;
+
+  @override
+  String toString() {
+    return 'DartCommand.addTouchpad(key: $key, info: $info)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_AddTouchpad &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.info, info) || other.info == info));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key, info);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_AddTouchpadCopyWith<_$DartCommand_AddTouchpad> get copyWith =>
+      __$$DartCommand_AddTouchpadCopyWithImpl<_$DartCommand_AddTouchpad>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+  }) {
+    return addTouchpad(key, info);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+  }) {
+    return addTouchpad?.call(key, info);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    required TResult orElse(),
+  }) {
+    if (addTouchpad != null) {
+      return addTouchpad(key, info);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+  }) {
+    return addTouchpad(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+  }) {
+    return addTouchpad?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    required TResult orElse(),
+  }) {
+    if (addTouchpad != null) {
+      return addTouchpad(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_AddTouchpad implements DartCommand {
+  const factory DartCommand_AddTouchpad(
+      {required final DartRequestKey key,
+      required final TouchpadInfo info}) = _$DartCommand_AddTouchpad;
+
+  DartRequestKey get key;
+  TouchpadInfo get info;
+  @JsonKey(ignore: true)
+  _$$DartCommand_AddTouchpadCopyWith<_$DartCommand_AddTouchpad> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2066,6 +2367,8 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -2091,6 +2394,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -2114,6 +2418,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -2141,6 +2446,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -2164,6 +2470,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -2186,6 +2493,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -2297,6 +2605,8 @@ class _$DartCommand_GetText implements DartCommand_GetText {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -2322,6 +2632,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -2345,6 +2656,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -2372,6 +2684,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -2395,6 +2708,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -2417,6 +2731,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -2537,6 +2852,8 @@ class _$DartCommand_SetText implements DartCommand_SetText {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -2562,6 +2879,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -2585,6 +2903,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -2612,6 +2931,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -2635,6 +2955,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -2657,6 +2978,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -2770,6 +3092,8 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -2795,6 +3119,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -2818,6 +3143,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -2845,6 +3171,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -2868,6 +3195,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -2890,6 +3218,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -3001,6 +3330,8 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -3026,6 +3357,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -3049,6 +3381,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -3076,6 +3409,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -3099,6 +3433,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -3121,6 +3456,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -3232,6 +3568,8 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -3257,6 +3595,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -3280,6 +3619,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -3307,6 +3647,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -3330,6 +3671,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -3352,6 +3694,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -3473,6 +3816,8 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
         addTextField,
     required TResult Function(DartRequestKey key, JoystickInfo info)
         addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -3498,6 +3843,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -3521,6 +3867,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
     TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
     TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -3548,6 +3895,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     required TResult Function(DartCommand_AddButton value) addButton,
     required TResult Function(DartCommand_AddTextField value) addTextField,
     required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -3571,6 +3919,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartCommand_AddButton value)? addButton,
     TResult? Function(DartCommand_AddTextField value)? addTextField,
     TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -3593,6 +3942,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartCommand_AddButton value)? addButton,
     TResult Function(DartCommand_AddTextField value)? addTextField,
     TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,

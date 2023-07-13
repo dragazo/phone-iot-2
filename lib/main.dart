@@ -114,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           addButton: (key, info) => addControl(CustomButton(info), key),
           addTextField: (key, info) => addControl(CustomTextField(info), key),
           addJoystick: (key, info) => addControl(CustomJoystick(info), key),
+          addTouchpad: (key, info) => addControl(CustomTouchpad(info), key),
           addImageDisplay: (key, info) => addControl(CustomImageDisplay(info), key),
 
           getText: (key, id) {

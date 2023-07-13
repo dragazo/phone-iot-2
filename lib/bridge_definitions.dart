@@ -116,6 +116,10 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required JoystickInfo info,
   }) = DartCommand_AddJoystick;
+  const factory DartCommand.addTouchpad({
+    required DartRequestKey key,
+    required TouchpadInfo info,
+  }) = DartCommand_AddTouchpad;
   const factory DartCommand.addImageDisplay({
     required DartRequestKey key,
     required ImageDisplayInfo info,
@@ -305,4 +309,33 @@ class TextFieldInfo {
     required this.readonly,
     required this.align,
   });
+}
+
+class TouchpadInfo {
+  final String id;
+  final double x;
+  final double y;
+  final double width;
+  final double height;
+  final String? event;
+  final ColorInfo color;
+  final TouchpadStyleInfo style;
+  final bool landscape;
+
+  const TouchpadInfo({
+    required this.id,
+    required this.x,
+    required this.y,
+    required this.width,
+    required this.height,
+    this.event,
+    required this.color,
+    required this.style,
+    required this.landscape,
+  });
+}
+
+enum TouchpadStyleInfo {
+  Rectangle,
+  Square,
 }
