@@ -185,17 +185,19 @@ impl support::IntoDart for DartCommand {
                 vec![8.into_dart(), key.into_dart(), info.into_dart()]
             }
             Self::AddSlider { key, info } => vec![9.into_dart(), key.into_dart(), info.into_dart()],
-            Self::AddImageDisplay { key, info } => {
+            Self::AddToggle { key, info } => {
                 vec![10.into_dart(), key.into_dart(), info.into_dart()]
             }
-            Self::GetText { key, id } => vec![11.into_dart(), key.into_dart(), id.into_dart()],
+            Self::AddImageDisplay { key, info } => {
+                vec![11.into_dart(), key.into_dart(), info.into_dart()]
+            }
+            Self::GetText { key, id } => vec![12.into_dart(), key.into_dart(), id.into_dart()],
             Self::SetText { key, id, value } => vec![
-                12.into_dart(),
+                13.into_dart(),
                 key.into_dart(),
                 id.into_dart(),
                 value.into_dart(),
             ],
-            Self::GetPosition { key, id } => vec![13.into_dart(), key.into_dart(), id.into_dart()],
             Self::GetLevel { key, id } => vec![14.into_dart(), key.into_dart(), id.into_dart()],
             Self::SetLevel { key, id, value } => vec![
                 15.into_dart(),
@@ -203,14 +205,24 @@ impl support::IntoDart for DartCommand {
                 id.into_dart(),
                 value.into_dart(),
             ],
-            Self::GetImage { key, id } => vec![16.into_dart(), key.into_dart(), id.into_dart()],
-            Self::SetImage { key, id, value } => vec![
+            Self::GetToggleState { key, id } => {
+                vec![16.into_dart(), key.into_dart(), id.into_dart()]
+            }
+            Self::SetToggleState { key, id, value } => vec![
                 17.into_dart(),
                 key.into_dart(),
                 id.into_dart(),
                 value.into_dart(),
             ],
-            Self::IsPressed { key, id } => vec![18.into_dart(), key.into_dart(), id.into_dart()],
+            Self::GetImage { key, id } => vec![18.into_dart(), key.into_dart(), id.into_dart()],
+            Self::SetImage { key, id, value } => vec![
+                19.into_dart(),
+                key.into_dart(),
+                id.into_dart(),
+                value.into_dart(),
+            ],
+            Self::GetPosition { key, id } => vec![20.into_dart(), key.into_dart(), id.into_dart()],
+            Self::IsPressed { key, id } => vec![21.into_dart(), key.into_dart(), id.into_dart()],
         }
         .into_dart()
     }
@@ -347,6 +359,37 @@ impl support::IntoDart for TextFieldInfo {
 }
 impl support::IntoDartExceptPrimitive for TextFieldInfo {}
 
+impl support::IntoDart for ToggleInfo {
+    fn into_dart(self) -> support::DartAbi {
+        vec![
+            self.id.into_dart(),
+            self.x.into_dart(),
+            self.y.into_dart(),
+            self.text.into_dart(),
+            self.style.into_dart(),
+            self.event.into_dart(),
+            self.checked.into_dart(),
+            self.fore_color.into_dart(),
+            self.back_color.into_dart(),
+            self.font_size.into_dart(),
+            self.landscape.into_dart(),
+            self.readonly.into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for ToggleInfo {}
+
+impl support::IntoDart for ToggleStyleInfo {
+    fn into_dart(self) -> support::DartAbi {
+        match self {
+            Self::Switch => 0,
+            Self::Checkbox => 1,
+        }
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for ToggleStyleInfo {}
 impl support::IntoDart for TouchpadInfo {
     fn into_dart(self) -> support::DartAbi {
         vec![

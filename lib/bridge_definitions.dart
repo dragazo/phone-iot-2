@@ -124,6 +124,10 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required SliderInfo info,
   }) = DartCommand_AddSlider;
+  const factory DartCommand.addToggle({
+    required DartRequestKey key,
+    required ToggleInfo info,
+  }) = DartCommand_AddToggle;
   const factory DartCommand.addImageDisplay({
     required DartRequestKey key,
     required ImageDisplayInfo info,
@@ -137,10 +141,6 @@ sealed class DartCommand with _$DartCommand {
     required String id,
     required String value,
   }) = DartCommand_SetText;
-  const factory DartCommand.getPosition({
-    required DartRequestKey key,
-    required String id,
-  }) = DartCommand_GetPosition;
   const factory DartCommand.getLevel({
     required DartRequestKey key,
     required String id,
@@ -150,6 +150,15 @@ sealed class DartCommand with _$DartCommand {
     required String id,
     required double value,
   }) = DartCommand_SetLevel;
+  const factory DartCommand.getToggleState({
+    required DartRequestKey key,
+    required String id,
+  }) = DartCommand_GetToggleState;
+  const factory DartCommand.setToggleState({
+    required DartRequestKey key,
+    required String id,
+    required bool value,
+  }) = DartCommand_SetToggleState;
   const factory DartCommand.getImage({
     required DartRequestKey key,
     required String id,
@@ -159,6 +168,10 @@ sealed class DartCommand with _$DartCommand {
     required String id,
     required Uint8List value,
   }) = DartCommand_SetImage;
+  const factory DartCommand.getPosition({
+    required DartRequestKey key,
+    required String id,
+  }) = DartCommand_GetPosition;
   const factory DartCommand.isPressed({
     required DartRequestKey key,
     required String id,
@@ -353,6 +366,41 @@ class TextFieldInfo {
     required this.readonly,
     required this.align,
   });
+}
+
+class ToggleInfo {
+  final String id;
+  final double x;
+  final double y;
+  final String text;
+  final ToggleStyleInfo style;
+  final String? event;
+  final bool checked;
+  final ColorInfo foreColor;
+  final ColorInfo backColor;
+  final double fontSize;
+  final bool landscape;
+  final bool readonly;
+
+  const ToggleInfo({
+    required this.id,
+    required this.x,
+    required this.y,
+    required this.text,
+    required this.style,
+    this.event,
+    required this.checked,
+    required this.foreColor,
+    required this.backColor,
+    required this.fontSize,
+    required this.landscape,
+    required this.readonly,
+  });
+}
+
+enum ToggleStyleInfo {
+  Switch,
+  Checkbox,
 }
 
 class TouchpadInfo {

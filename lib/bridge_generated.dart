@@ -132,6 +132,10 @@ class NativeImpl implements Native {
     return _wire2api_text_field_info(raw);
   }
 
+  ToggleInfo _wire2api_box_autoadd_toggle_info(dynamic raw) {
+    return _wire2api_toggle_info(raw);
+  }
+
   TouchpadInfo _wire2api_box_autoadd_touchpad_info(dynamic raw) {
     return _wire2api_touchpad_info(raw);
   }
@@ -222,25 +226,25 @@ class NativeImpl implements Native {
           info: _wire2api_box_autoadd_slider_info(raw[2]),
         );
       case 10:
+        return DartCommand_AddToggle(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          info: _wire2api_box_autoadd_toggle_info(raw[2]),
+        );
+      case 11:
         return DartCommand_AddImageDisplay(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_image_display_info(raw[2]),
         );
-      case 11:
+      case 12:
         return DartCommand_GetText(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 12:
+      case 13:
         return DartCommand_SetText(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_String(raw[3]),
-        );
-      case 13:
-        return DartCommand_GetPosition(
-          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
-          id: _wire2api_String(raw[2]),
         );
       case 14:
         return DartCommand_GetLevel(
@@ -254,17 +258,33 @@ class NativeImpl implements Native {
           value: _wire2api_f64(raw[3]),
         );
       case 16:
-        return DartCommand_GetImage(
+        return DartCommand_GetToggleState(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
       case 17:
+        return DartCommand_SetToggleState(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+          value: _wire2api_bool(raw[3]),
+        );
+      case 18:
+        return DartCommand_GetImage(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+        );
+      case 19:
         return DartCommand_SetImage(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_uint_8_list(raw[3]),
         );
-      case 18:
+      case 20:
+        return DartCommand_GetPosition(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+        );
+      case 21:
         return DartCommand_IsPressed(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
@@ -392,6 +412,30 @@ class NativeImpl implements Native {
       readonly: _wire2api_bool(arr[11]),
       align: _wire2api_text_align_info(arr[12]),
     );
+  }
+
+  ToggleInfo _wire2api_toggle_info(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 12)
+      throw Exception('unexpected arr length: expect 12 but see ${arr.length}');
+    return ToggleInfo(
+      id: _wire2api_String(arr[0]),
+      x: _wire2api_f64(arr[1]),
+      y: _wire2api_f64(arr[2]),
+      text: _wire2api_String(arr[3]),
+      style: _wire2api_toggle_style_info(arr[4]),
+      event: _wire2api_opt_String(arr[5]),
+      checked: _wire2api_bool(arr[6]),
+      foreColor: _wire2api_color_info(arr[7]),
+      backColor: _wire2api_color_info(arr[8]),
+      fontSize: _wire2api_f64(arr[9]),
+      landscape: _wire2api_bool(arr[10]),
+      readonly: _wire2api_bool(arr[11]),
+    );
+  }
+
+  ToggleStyleInfo _wire2api_toggle_style_info(dynamic raw) {
+    return ToggleStyleInfo.values[raw as int];
   }
 
   TouchpadInfo _wire2api_touchpad_info(dynamic raw) {

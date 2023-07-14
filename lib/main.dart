@@ -116,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           addJoystick: (key, info) => addControl(CustomJoystick(info), key),
           addTouchpad: (key, info) => addControl(CustomTouchpad(info), key),
           addSlider: (key, info) => addControl(CustomSlider(info), key),
+          addToggle: (key, info) => addControl(CustomToggle(info), key),
           addImageDisplay: (key, info) => addControl(CustomImageDisplay(info), key),
 
           getText: (key, id) {
@@ -139,6 +140,15 @@ class _MyHomePageState extends State<MyHomePage> {
             LevelLike? target = findControl<LevelLike>(id);
             if (target != null) setState(() => target.setLevel(value));
             api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no level-like control with id $id'));
+          },
+          getToggleState: (key, id) {
+            ToggleLike? target = findControl<ToggleLike>(id);
+            api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.getToggled())) : RequestResult.err('no toggle-like control with id $id'));
+          },
+          setToggleState: (key, id, value) {
+            ToggleLike? target = findControl<ToggleLike>(id);
+            if (target != null) setState(() => target.setToggled(value));
+            api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no toggle-like control with id $id'));
           },
           getPosition: (key, id) {
             PositionLike? target = findControl<PositionLike>(id);

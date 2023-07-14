@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:phone_iot_2/ffi.dart';
 
 const double defaultFontSize = 16;
-const double textPadding = 5;
-const Color selectColor = Color.fromARGB(50, 255, 255, 255);
 
 final Uint8List blankImage = base64Decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kTtIw0Acxr8+pCItHewg4pChOlkQXzhqFYpQIdQKrTqYXPqCJg1Jiouj4Fpw8LFYdXBx1tXBVRAEHyCuLk6KLlLi/5JCixgPjvvx3X0fd98B/maVqWZwDFA1y8ikkkIuvyqEXhFCBEFMISoxU58TxTQ8x9c9fHy9S/As73N/johSMBngE4hnmW5YxBvE05uWznmfOMbKkkJ8Tjxq0AWJH7kuu/zGueSwn2fGjGxmnjhGLJS6WO5iVjZU4kniuKJqlO/Puaxw3uKsVuusfU/+wnBBW1nmOs0hpLCIJYgQIKOOCqqwkKBVI8VEhvaTHv5Bxy+SSyZXBYwcC6hBheT4wf/gd7dmcWLcTQongZ4X2/4YBkK7QKth29/Htt06AQLPwJXW8deawMwn6Y2OFj8CotvAxXVHk/eAyx1g4EmXDMmRAjT9xSLwfkbflAf6b4G+Nbe39j5OH4AsdZW+AQ4OgZESZa97vLu3u7d/z7T7+wFXoHKclT4nBwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+cHDQQ1KWBVd1EAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAADElEQVQI12NgYGAAAAAEAAEnNCcKAAAAAElFTkSuQmCC');
 
@@ -100,10 +98,7 @@ void drawTextPos(Canvas canvas, Offset offset, Color color, String text, double 
   canvas.drawParagraph(par, Offset(offset.dx + dx, offset.dy));
 }
 
-mixin TextLike {
-  String getText();
-  void setText(String value, UpdateSource source);
-}
+
 mixin Pressable {
   bool isPressed();
 }
@@ -113,6 +108,14 @@ mixin PositionLike {
 mixin LevelLike {
   double getLevel();
   void setLevel(double value);
+}
+mixin ToggleLike {
+  bool getToggled();
+  void setToggled(bool value);
+}
+mixin TextLike {
+  String getText();
+  void setText(String value, UpdateSource source);
 }
 mixin ImageLike {
   ui.Image? getImage();
@@ -176,6 +179,9 @@ class CustomButton extends CustomControl with TextLike, Pressable {
 
   bool pressed = false;
 
+  static const double padding = 5;
+  static const Color selectColor = Color.fromARGB(50, 255, 255, 255);
+
   CustomButton(ButtonInfo info) : x = info.x, y = info.y, width = info.width, height = info.height,
     backColor = getColor(info.backColor), foreColor = getColor(info.foreColor), text = info.text, event = info.event,
     fontSize = info.fontSize, style = info.style, landscape = info.landscape, super(id: info.id);
@@ -208,7 +214,7 @@ class CustomButton extends CustomControl with TextLike, Pressable {
           canvas.drawOval(rect, paint);
         }
     }
-    drawTextRect(canvas, rect.deflate(textPadding), foreColor, text, fontSize, TextAlign.center, true);
+    drawTextRect(canvas, rect.deflate(padding), foreColor, text, fontSize, TextAlign.center, true);
     canvas.restore();
   }
 
@@ -273,6 +279,8 @@ class CustomTextField extends CustomControl with TextLike {
   String? event;
   String text;
 
+  static const double padding = 5;
+
   CustomTextField(TextFieldInfo info) : x = info.x, y = info.y, width = info.width, height = info.height,
     backColor = getColor(info.backColor), foreColor = getColor(info.foreColor), text = info.text, readonly = info.readonly,
     event = info.event, fontSize = info.fontSize, align = getAlign(info.align), landscape = info.landscape, super(id: info.id);
@@ -288,7 +296,7 @@ class CustomTextField extends CustomControl with TextLike {
     canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
     if (landscape) canvas.rotate(pi / 2);
     canvas.drawRect(rect, paint);
-    drawTextRect(canvas, rect.deflate(textPadding), foreColor, text, fontSize, align, false);
+    drawTextRect(canvas, rect.deflate(padding), foreColor, text, fontSize, align, false);
     canvas.restore();
   }
 
@@ -592,6 +600,130 @@ class CustomSlider extends CustomControl with Pressable, LevelLike {
   @override
   void setLevel(double value) {
     this.value = ui.clampDouble(value, 0, 1);
+  }
+}
+
+class CustomToggle extends CustomControl with TextLike, ToggleLike {
+  double x, y, fontSize;
+  String? event;
+  bool checked, landscape, readonly;
+  String text;
+  ToggleStyleInfo style;
+  Color backColor, foreColor;
+
+  static const (double, double) fontOffsetPoly = (-0.6, 10);
+  static const double strokeWidth = 2;
+  static const double textPadding = 10;
+  static const double hitboxPadding = 10;
+  static const double transparency = 0.4;
+  static const double switchHandSize = 0.6;
+  static const Size switchSize = Size(20, 20);
+  static const double checkboxSize =  20;
+  static const List<(double, double)> checkboxPoints = [(0.15, 0.6), (0.5, 0.85), (0.85, 0.15)];
+
+  CustomToggle(ToggleInfo info) : x = info.x, y = info.y, fontSize = info.fontSize, event = info.event,
+    checked = info.checked, landscape = info.landscape, readonly = info.readonly, backColor = getColor(info.backColor),
+    foreColor = getColor(info.foreColor), style = info.style, text = info.text, super(id: info.id);
+
+  @override
+  void draw(Canvas canvas) {
+    final transBackColor = Color.fromARGB((backColor.alpha * transparency).round(), backColor.red, backColor.green, backColor.blue);
+    final paint = Paint();
+    paint.strokeWidth = strokeWidth;
+
+    canvas.save();
+    canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
+    if (landscape) canvas.rotate(pi / 2);
+    Offset textOffset;
+    switch (style) {
+      case ToggleStyleInfo.Switch:
+        final outer = Path();
+        outer.moveTo(0, 0);
+        outer.arcTo(Rect.fromLTWH(switchSize.width - switchSize.height / 2, 0, switchSize.height, switchSize.height), -pi / 2, pi, false);
+        outer.arcTo(Rect.fromLTWH(-switchSize.height / 2, 0, switchSize.height, switchSize.height), pi / 2, pi, false);
+
+        double h = switchSize.height * switchHandSize;
+        if (checked) {
+          paint.style = PaintingStyle.fill;
+          paint.color = transBackColor;
+          canvas.drawPath(outer, paint);
+          paint.color = backColor;
+          canvas.drawOval(Rect.fromCenter(center: Offset(switchSize.width, switchSize.height / 2), width: h, height: h), paint);
+        } else {
+          paint.style = PaintingStyle.stroke;
+          paint.color = backColor;
+          canvas.drawOval(Rect.fromCenter(center: Offset(0, switchSize.height / 2), width: h, height: h), paint);
+        }
+
+        paint.style = PaintingStyle.stroke;
+        paint.color = backColor;
+        canvas.drawPath(outer, paint);
+
+        textOffset = Offset(switchSize.width + switchSize.height / 2 + textPadding, 0);
+      case ToggleStyleInfo.Checkbox:
+        paint.style = PaintingStyle.stroke;
+        paint.color = backColor;
+        canvas.drawRect(const Rect.fromLTWH(0, 0, checkboxSize, checkboxSize), paint);
+
+        if (checked) {
+          final check = Path();
+          check.moveTo(checkboxPoints[0].$1 * checkboxSize, checkboxPoints[0].$2 * checkboxSize);
+          for (int i = 1; i < checkboxPoints.length; ++i) {
+            check.lineTo(checkboxPoints[i].$1 * checkboxSize, checkboxPoints[i].$2 * checkboxSize);
+          }
+          canvas.drawPath(check, paint);
+        }
+
+        textOffset = const Offset(checkboxSize + textPadding, 0);
+    }
+    double dy = fontOffsetPoly.$1 * fontSize * defaultFontSize + fontOffsetPoly.$2;
+    drawTextPos(canvas, Offset(textOffset.dx, textOffset.dy + dy), foreColor, text, fontSize, TextAlign.left);
+    canvas.restore();
+  }
+
+  @override
+  bool contains(Offset pos) {
+    Rect r;
+    switch (style) {
+      case ToggleStyleInfo.Switch: r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, switchSize.width, switchSize.height);
+      case ToggleStyleInfo.Checkbox: r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, checkboxSize, checkboxSize);
+    }
+    return r.inflate(hitboxPadding).contains(pos);
+  }
+
+  @override
+  ClickResult handleClick(Offset pos, ClickType type) {
+    if (readonly || type != ClickType.down) return ClickResult.none;
+    checked = !checked;
+    if (event != null) {
+      final v = getToggled();
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+        ('device', const SimpleValue.number(0)),
+        ('id', SimpleValue.string(id)),
+        ('state', SimpleValue.bool(v)),
+      ]));
+    }
+    return ClickResult.redraw;
+  }
+
+  @override
+  String getText() {
+    return text;
+  }
+
+  @override
+  void setText(String value, UpdateSource source) {
+    text = value;
+  }
+
+  @override
+  bool getToggled() {
+    return checked;
+  }
+
+  @override
+  void setToggled(bool value) {
+    checked = value;
   }
 }
 

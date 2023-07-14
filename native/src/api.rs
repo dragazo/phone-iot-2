@@ -140,6 +140,10 @@ pub enum SliderStyleInfo {
     Slider, Progress,
 }
 #[derive(Clone, Copy, Debug)]
+pub enum ToggleStyleInfo {
+    Switch, Checkbox,
+}
+#[derive(Clone, Copy, Debug)]
 pub struct ColorInfo {
     pub a: u8,
     pub r: u8,
@@ -225,6 +229,21 @@ pub struct SliderInfo {
     pub readonly: bool,
 }
 #[derive(Clone, Debug)]
+pub struct ToggleInfo {
+    pub id: String,
+    pub x: f64,
+    pub y: f64,
+    pub text: String,
+    pub style: ToggleStyleInfo,
+    pub event: Option<String>,
+    pub checked: bool,
+    pub fore_color: ColorInfo,
+    pub back_color: ColorInfo,
+    pub font_size: f64,
+    pub landscape: bool,
+    pub readonly: bool,
+}
+#[derive(Clone, Debug)]
 pub struct ImageDisplayInfo {
     pub id: String,
     pub x: f64,
@@ -269,15 +288,18 @@ pub enum DartCommand {
     AddJoystick { key: DartRequestKey, info: JoystickInfo },
     AddTouchpad { key: DartRequestKey, info: TouchpadInfo },
     AddSlider { key: DartRequestKey, info: SliderInfo },
+    AddToggle { key: DartRequestKey, info: ToggleInfo },
     AddImageDisplay { key: DartRequestKey, info: ImageDisplayInfo },
 
     GetText { key: DartRequestKey, id: String },
     SetText { key: DartRequestKey, id: String, value: String },
-    GetPosition { key: DartRequestKey, id: String },
     GetLevel { key: DartRequestKey, id: String },
     SetLevel { key: DartRequestKey, id: String, value: f64 },
+    GetToggleState { key: DartRequestKey, id: String },
+    SetToggleState { key: DartRequestKey, id: String, value: bool },
     GetImage { key: DartRequestKey, id: String },
     SetImage { key: DartRequestKey, id: String, value: Vec<u8> },
+    GetPosition { key: DartRequestKey, id: String },
     IsPressed { key: DartRequestKey, id: String },
 }
 
@@ -461,6 +483,16 @@ pub fn initialize() {
                             }
                         }
                     };
+                    ($n:ident := $e:expr => ToggleStyleInfo) => {
+                        match parse!($n := $e => String).as_str() {
+                            "switch" => ToggleStyleInfo::Switch,
+                            "checkbox" => ToggleStyleInfo::Checkbox,
+                            x => {
+                                key.complete(Err(format!("'{}': unknown toggle style '{}'", stringify!($n), x)));
+                                return RequestStatus::Handled;
+                            }
+                        }
+                    };
                     ($n:ident := $e:expr => Image) => {
                         match &$e {
                             Value::Image(x) => (**x).clone(),
@@ -511,10 +543,10 @@ pub fn initialize() {
                                 return RequestStatus::UseDefault { key, request };
                             }
 
-                            let r = parse!(r := args[0].1 => f64) as u8;
-                            let g = parse!(g := args[1].1 => f64) as u8;
-                            let b = parse!(b := args[2].1 => f64) as u8;
-                            let a = parse!(a := args[3].1 => f64) as u8;
+                            let r = parse!(red := args[0].1 => f64) as u8;
+                            let g = parse!(green := args[1].1 => f64) as u8;
+                            let b = parse!(blue := args[2].1 => f64) as u8;
+                            let a = parse!(alpha := args[3].1 => f64) as u8;
 
                             let encoded = ((a as i32) << 24) | ((r as i32) << 16) | ((g as i32) << 8) | b as i32;
                             key.complete(Ok(Intermediate::Json(json!(encoded))));
@@ -693,6 +725,31 @@ pub fn initialize() {
                             }});
                             RequestStatus::Handled
                         }
+                        "addToggle" => {
+                            if args.len() != 5 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let x = parse!(x := args[1].1 => f64);
+                            let y = parse!(y := args[2].1 => f64);
+                            let text = parse!(text := args[3].1 => String);
+                            let options = parse!(options := args[4].1 => { style, id, event, checked, color, textColor, fontSize, landscape, readonly });
+                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                            let style = parse!(style := options.get("style") => Option<ToggleStyleInfo>).unwrap_or(ToggleStyleInfo::Switch);
+                            let event = parse!(event := options.get("event") => Option<String>);
+                            let checked = parse!(checked := options.get("checked") => Option<bool>).unwrap_or(false);
+                            let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                            let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
+                            let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
+                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                            let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::AddToggle { key, info: ToggleInfo {
+                                x, y, text, id, style, event, checked, fore_color, back_color, font_size, landscape, readonly,
+                            }});
+                            RequestStatus::Handled
+                        }
                         "addImageDisplay" => {
                             if args.len() != 6 || !is_local_id(&args[0].1) {
                                 return RequestStatus::UseDefault { key, request };
@@ -804,6 +861,29 @@ pub fn initialize() {
 
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::SetLevel { key, id, value });
+                            RequestStatus::Handled
+                        }
+                        "getToggleState" => {
+                            if args.len() != 2 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::GetToggleState { key, id });
+                            RequestStatus::Handled
+                        }
+                        "setToggleState" => {
+                            if args.len() != 3 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let id = parse!(id := args[1].1 => String);
+                            let value = parse!(state := args[2].1 => bool);
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::SetToggleState { key, id, value });
                             RequestStatus::Handled
                         }
                         _ => RequestStatus::UseDefault { key, request },
