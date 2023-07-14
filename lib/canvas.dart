@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:phone_iot_2/ffi.dart';
 
 const double defaultFontSize = 16;
+const double vCenterFontSizeScale = -0.6;
 
 final Uint8List blankImage = base64Decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kTtIw0Acxr8+pCItHewg4pChOlkQXzhqFYpQIdQKrTqYXPqCJg1Jiouj4Fpw8LFYdXBx1tXBVRAEHyCuLk6KLlLi/5JCixgPjvvx3X0fd98B/maVqWZwDFA1y8ikkkIuvyqEXhFCBEFMISoxU58TxTQ8x9c9fHy9S/As73N/johSMBngE4hnmW5YxBvE05uWznmfOMbKkkJ8Tjxq0AWJH7kuu/zGueSwn2fGjGxmnjhGLJS6WO5iVjZU4kniuKJqlO/Puaxw3uKsVuusfU/+wnBBW1nmOs0hpLCIJYgQIKOOCqqwkKBVI8VEhvaTHv5Bxy+SSyZXBYwcC6hBheT4wf/gd7dmcWLcTQongZ4X2/4YBkK7QKth29/Htt06AQLPwJXW8deawMwn6Y2OFj8CotvAxXVHk/eAyx1g4EmXDMmRAjT9xSLwfkbflAf6b4G+Nbe39j5OH4AsdZW+AQ4OgZESZa97vLu3u7d/z7T7+wFXoHKclT4nBwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+cHDQQ1KWBVd1EAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAADElEQVQI12NgYGAAAAAEAAEnNCcKAAAAAElFTkSuQmCC');
 
@@ -77,7 +78,7 @@ void drawTextRect(Canvas canvas, Rect rect, Color color, String text, double fon
   canvas.drawParagraph(par, Offset(rect.left, rect.top + vOffset));
   canvas.restore();
 }
-void drawTextPos(Canvas canvas, Offset offset, Color color, String text, double fontSize, TextAlign align) {
+void drawTextPos(Canvas canvas, Offset offset, Color color, String text, double fontSize, TextAlign align, bool vCenter) {
   final parBuilder = ui.ParagraphBuilder(ui.ParagraphStyle());
   parBuilder.pushStyle(ui.TextStyle(color: color, fontSize: defaultFontSize * fontSize));
   parBuilder.addText(text);
@@ -95,9 +96,9 @@ void drawTextPos(Canvas canvas, Offset offset, Color color, String text, double 
     case TextAlign.end:
       dx = -par.longestLine;
   }
-  canvas.drawParagraph(par, Offset(offset.dx + dx, offset.dy));
+  double dy = vCenter ? vCenterFontSizeScale * defaultFontSize * fontSize : 0;
+  canvas.drawParagraph(par, Offset(offset.dx + dx, offset.dy + dy));
 }
-
 
 mixin Pressable {
   bool isPressed();
@@ -148,7 +149,7 @@ class CustomLabel extends CustomControl with TextLike {
     canvas.save();
     canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
     if (landscape) canvas.rotate(pi / 2);
-    drawTextPos(canvas, Offset.zero, color, text, fontSize, align);
+    drawTextPos(canvas, Offset.zero, color, text, fontSize, align, false);
     canvas.restore();
   }
 
@@ -611,7 +612,6 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
   ToggleStyleInfo style;
   Color backColor, foreColor;
 
-  static const (double, double) fontOffsetPoly = (-0.6, 10);
   static const double strokeWidth = 2;
   static const double textPadding = 10;
   static const double hitboxPadding = 10;
@@ -659,7 +659,7 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
         paint.color = backColor;
         canvas.drawPath(outer, paint);
 
-        textOffset = Offset(switchSize.width + switchSize.height / 2 + textPadding, 0);
+        textOffset = Offset(switchSize.width + switchSize.height / 2 + textPadding, switchSize.height / 2);
       case ToggleStyleInfo.Checkbox:
         paint.style = PaintingStyle.stroke;
         paint.color = backColor;
@@ -674,10 +674,9 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
           canvas.drawPath(check, paint);
         }
 
-        textOffset = const Offset(checkboxSize + textPadding, 0);
+        textOffset = const Offset(checkboxSize + textPadding, checkboxSize / 2);
     }
-    double dy = fontOffsetPoly.$1 * fontSize * defaultFontSize + fontOffsetPoly.$2;
-    drawTextPos(canvas, Offset(textOffset.dx, textOffset.dy + dy), foreColor, text, fontSize, TextAlign.left);
+    drawTextPos(canvas, textOffset, foreColor, text, fontSize, TextAlign.left, true);
     canvas.restore();
   }
 
