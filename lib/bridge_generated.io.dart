@@ -303,17 +303,19 @@ class NativeWire implements FlutterRustBridgeWireBase {
 
   void wire_initialize(
     int port_,
+    int utc_offset_in_seconds,
   ) {
     return _wire_initialize(
       port_,
+      utc_offset_in_seconds,
     );
   }
 
   late final _wire_initializePtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
           'wire_initialize');
   late final _wire_initialize =
-      _wire_initializePtr.asFunction<void Function(int)>();
+      _wire_initializePtr.asFunction<void Function(int, int)>();
 
   void wire_send_command(
     int port_,

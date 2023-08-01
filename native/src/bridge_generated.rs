@@ -22,14 +22,20 @@ use std::sync::Arc;
 
 // Section: wire functions
 
-fn wire_initialize_impl(port_: MessagePort) {
+fn wire_initialize_impl(
+    port_: MessagePort,
+    utc_offset_in_seconds: impl Wire2Api<i32> + UnwindSafe,
+) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap::<_, _, _, ()>(
         WrapInfo {
             debug_name: "initialize",
             port: Some(port_),
             mode: FfiCallMode::Normal,
         },
-        move || move |task_callback| Ok(initialize()),
+        move || {
+            let api_utc_offset_in_seconds = utc_offset_in_seconds.wire2api();
+            move |task_callback| Ok(initialize(api_utc_offset_in_seconds))
+        },
     )
 }
 fn wire_send_command_impl(port_: MessagePort, cmd: impl Wire2Api<RustCommand> + UnwindSafe) {
@@ -106,6 +112,11 @@ impl Wire2Api<bool> for bool {
 
 impl Wire2Api<f64> for f64 {
     fn wire2api(self) -> f64 {
+        self
+    }
+}
+impl Wire2Api<i32> for i32 {
+    fn wire2api(self) -> i32 {
         self
     }
 }

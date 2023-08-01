@@ -14,7 +14,7 @@ import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'bridge_definitions.freezed.dart';
 
 abstract class Native {
-  Future<void> initialize({dynamic hint});
+  Future<void> initialize({required int utcOffsetInSeconds, dynamic hint});
 
   FlutterRustBridgeTaskConstMeta get kInitializeConstMeta;
 

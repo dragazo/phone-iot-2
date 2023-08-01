@@ -346,7 +346,7 @@ impl RequestResult {
     }
 }
 
-pub fn initialize() {
+pub fn initialize(utc_offset_in_seconds: i32) {
     if INITIALIZED.swap(true, MemOrder::Relaxed) { return }
     thread::spawn(move || {
         let config = Config::<C, StdSystem<C>> {
@@ -894,7 +894,8 @@ pub fn initialize() {
                 }
             })),
         };
-        let system = Rc::new(StdSystem::new(SERVER_URL.to_owned(), None, config, UtcOffset::UTC));
+        let utc_offset = UtcOffset::from_whole_seconds(utc_offset_in_seconds).unwrap_or(UtcOffset::UTC);
+        let system = Rc::new(StdSystem::new(SERVER_URL.to_owned(), None, config, utc_offset));
         let mut env = {
             let project = ast::Parser::default().parse(netsblox_vm::template::EMPTY_PROJECT).unwrap();
             get_env(&project.roles[0], system.clone()).unwrap()

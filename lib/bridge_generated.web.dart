@@ -140,7 +140,8 @@ external NativeWasmModule get wasmModule;
 class NativeWasmModule implements WasmModule {
   external Object /* Promise */ call([String? moduleName]);
   external NativeWasmModule bind(dynamic thisArg, String moduleName);
-  external dynamic /* void */ wire_initialize(NativePortType port_);
+  external dynamic /* void */ wire_initialize(
+      NativePortType port_, int utc_offset_in_seconds);
 
   external dynamic /* void */ wire_send_command(
       NativePortType port_, List<dynamic> cmd);
@@ -157,8 +158,8 @@ class NativeWire extends FlutterRustBridgeWasmWireBase<NativeWasmModule> {
   NativeWire(FutureOr<WasmModule> module)
       : super(WasmModule.cast<NativeWasmModule>(module));
 
-  void wire_initialize(NativePortType port_) =>
-      wasmModule.wire_initialize(port_);
+  void wire_initialize(NativePortType port_, int utc_offset_in_seconds) =>
+      wasmModule.wire_initialize(port_, utc_offset_in_seconds);
 
   void wire_send_command(NativePortType port_, List<dynamic> cmd) =>
       wasmModule.wire_send_command(port_, cmd);

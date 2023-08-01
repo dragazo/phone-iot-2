@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     deviceID = 'test id';
     devicePW = 'test pass';
 
-    api.initialize();
+    api.initialize(utcOffsetInSeconds: DateTime.now().timeZoneOffset.inSeconds);
 
     void msgLifetimeUpdateLoop() async {
       while (true) {

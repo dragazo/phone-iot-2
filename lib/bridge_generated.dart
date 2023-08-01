@@ -20,12 +20,13 @@ class NativeImpl implements Native {
   factory NativeImpl.wasm(FutureOr<WasmModule> module) =>
       NativeImpl(module as ExternalLibrary);
   NativeImpl.raw(this._platform);
-  Future<void> initialize({dynamic hint}) {
+  Future<void> initialize({required int utcOffsetInSeconds, dynamic hint}) {
+    var arg0 = api2wire_i32(utcOffsetInSeconds);
     return _platform.executeNormal(FlutterRustBridgeTask(
-      callFfi: (port_) => _platform.inner.wire_initialize(port_),
+      callFfi: (port_) => _platform.inner.wire_initialize(port_, arg0),
       parseSuccessData: _wire2api_unit,
       constMeta: kInitializeConstMeta,
-      argValues: [],
+      argValues: [utcOffsetInSeconds],
       hint: hint,
     ));
   }
@@ -33,7 +34,7 @@ class NativeImpl implements Native {
   FlutterRustBridgeTaskConstMeta get kInitializeConstMeta =>
       const FlutterRustBridgeTaskConstMeta(
         debugName: "initialize",
-        argNames: [],
+        argNames: ["utcOffsetInSeconds"],
       );
 
   Future<void> sendCommand({required RustCommand cmd, dynamic hint}) {
@@ -485,6 +486,11 @@ bool api2wire_bool(bool raw) {
 
 @protected
 double api2wire_f64(double raw) {
+  return raw;
+}
+
+@protected
+int api2wire_i32(int raw) {
   return raw;
 }
 

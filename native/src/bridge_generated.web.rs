@@ -2,8 +2,8 @@ use super::*;
 // Section: wire functions
 
 #[wasm_bindgen]
-pub fn wire_initialize(port_: MessagePort) {
-    wire_initialize_impl(port_)
+pub fn wire_initialize(port_: MessagePort, utc_offset_in_seconds: i32) {
+    wire_initialize_impl(port_, utc_offset_in_seconds)
 }
 
 #[wasm_bindgen]
@@ -139,6 +139,11 @@ impl Wire2Api<bool> for JsValue {
 }
 impl Wire2Api<f64> for JsValue {
     fn wire2api(self) -> f64 {
+        self.unchecked_into_f64() as _
+    }
+}
+impl Wire2Api<i32> for JsValue {
+    fn wire2api(self) -> i32 {
         self.unchecked_into_f64() as _
     }
 }
