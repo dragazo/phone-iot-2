@@ -6669,6 +6669,7 @@ mixin _$RustCommand {
   TResult when<TResult extends Object?>({
     required TResult Function(String xml) setProject,
     required TResult Function() start,
+    required TResult Function() stop,
     required TResult Function(
             String msgType, List<(String, SimpleValue)> values)
         injectMessage,
@@ -6678,6 +6679,7 @@ mixin _$RustCommand {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String xml)? setProject,
     TResult? Function()? start,
+    TResult? Function()? stop,
     TResult? Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
   }) =>
@@ -6686,6 +6688,7 @@ mixin _$RustCommand {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String xml)? setProject,
     TResult Function()? start,
+    TResult Function()? stop,
     TResult Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
     required TResult orElse(),
@@ -6695,6 +6698,7 @@ mixin _$RustCommand {
   TResult map<TResult extends Object?>({
     required TResult Function(RustCommand_SetProject value) setProject,
     required TResult Function(RustCommand_Start value) start,
+    required TResult Function(RustCommand_Stop value) stop,
     required TResult Function(RustCommand_InjectMessage value) injectMessage,
   }) =>
       throw _privateConstructorUsedError;
@@ -6702,6 +6706,7 @@ mixin _$RustCommand {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RustCommand_SetProject value)? setProject,
     TResult? Function(RustCommand_Start value)? start,
+    TResult? Function(RustCommand_Stop value)? stop,
     TResult? Function(RustCommand_InjectMessage value)? injectMessage,
   }) =>
       throw _privateConstructorUsedError;
@@ -6709,6 +6714,7 @@ mixin _$RustCommand {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RustCommand_SetProject value)? setProject,
     TResult Function(RustCommand_Start value)? start,
+    TResult Function(RustCommand_Stop value)? stop,
     TResult Function(RustCommand_InjectMessage value)? injectMessage,
     required TResult orElse(),
   }) =>
@@ -6800,6 +6806,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
   TResult when<TResult extends Object?>({
     required TResult Function(String xml) setProject,
     required TResult Function() start,
+    required TResult Function() stop,
     required TResult Function(
             String msgType, List<(String, SimpleValue)> values)
         injectMessage,
@@ -6812,6 +6819,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String xml)? setProject,
     TResult? Function()? start,
+    TResult? Function()? stop,
     TResult? Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
   }) {
@@ -6823,6 +6831,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String xml)? setProject,
     TResult Function()? start,
+    TResult Function()? stop,
     TResult Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
     required TResult orElse(),
@@ -6838,6 +6847,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
   TResult map<TResult extends Object?>({
     required TResult Function(RustCommand_SetProject value) setProject,
     required TResult Function(RustCommand_Start value) start,
+    required TResult Function(RustCommand_Stop value) stop,
     required TResult Function(RustCommand_InjectMessage value) injectMessage,
   }) {
     return setProject(this);
@@ -6848,6 +6858,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RustCommand_SetProject value)? setProject,
     TResult? Function(RustCommand_Start value)? start,
+    TResult? Function(RustCommand_Stop value)? stop,
     TResult? Function(RustCommand_InjectMessage value)? injectMessage,
   }) {
     return setProject?.call(this);
@@ -6858,6 +6869,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RustCommand_SetProject value)? setProject,
     TResult Function(RustCommand_Start value)? start,
+    TResult Function(RustCommand_Stop value)? stop,
     TResult Function(RustCommand_InjectMessage value)? injectMessage,
     required TResult orElse(),
   }) {
@@ -6918,6 +6930,7 @@ class _$RustCommand_Start implements RustCommand_Start {
   TResult when<TResult extends Object?>({
     required TResult Function(String xml) setProject,
     required TResult Function() start,
+    required TResult Function() stop,
     required TResult Function(
             String msgType, List<(String, SimpleValue)> values)
         injectMessage,
@@ -6930,6 +6943,7 @@ class _$RustCommand_Start implements RustCommand_Start {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String xml)? setProject,
     TResult? Function()? start,
+    TResult? Function()? stop,
     TResult? Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
   }) {
@@ -6941,6 +6955,7 @@ class _$RustCommand_Start implements RustCommand_Start {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String xml)? setProject,
     TResult Function()? start,
+    TResult Function()? stop,
     TResult Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
     required TResult orElse(),
@@ -6956,6 +6971,7 @@ class _$RustCommand_Start implements RustCommand_Start {
   TResult map<TResult extends Object?>({
     required TResult Function(RustCommand_SetProject value) setProject,
     required TResult Function(RustCommand_Start value) start,
+    required TResult Function(RustCommand_Stop value) stop,
     required TResult Function(RustCommand_InjectMessage value) injectMessage,
   }) {
     return start(this);
@@ -6966,6 +6982,7 @@ class _$RustCommand_Start implements RustCommand_Start {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RustCommand_SetProject value)? setProject,
     TResult? Function(RustCommand_Start value)? start,
+    TResult? Function(RustCommand_Stop value)? stop,
     TResult? Function(RustCommand_InjectMessage value)? injectMessage,
   }) {
     return start?.call(this);
@@ -6976,6 +6993,7 @@ class _$RustCommand_Start implements RustCommand_Start {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RustCommand_SetProject value)? setProject,
     TResult Function(RustCommand_Start value)? start,
+    TResult Function(RustCommand_Stop value)? stop,
     TResult Function(RustCommand_InjectMessage value)? injectMessage,
     required TResult orElse(),
   }) {
@@ -6988,6 +7006,124 @@ class _$RustCommand_Start implements RustCommand_Start {
 
 abstract class RustCommand_Start implements RustCommand {
   const factory RustCommand_Start() = _$RustCommand_Start;
+}
+
+/// @nodoc
+abstract class _$$RustCommand_StopCopyWith<$Res> {
+  factory _$$RustCommand_StopCopyWith(
+          _$RustCommand_Stop value, $Res Function(_$RustCommand_Stop) then) =
+      __$$RustCommand_StopCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RustCommand_StopCopyWithImpl<$Res>
+    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_Stop>
+    implements _$$RustCommand_StopCopyWith<$Res> {
+  __$$RustCommand_StopCopyWithImpl(
+      _$RustCommand_Stop _value, $Res Function(_$RustCommand_Stop) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RustCommand_Stop implements RustCommand_Stop {
+  const _$RustCommand_Stop();
+
+  @override
+  String toString() {
+    return 'RustCommand.stop()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RustCommand_Stop);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String xml) setProject,
+    required TResult Function() start,
+    required TResult Function() stop,
+    required TResult Function(
+            String msgType, List<(String, SimpleValue)> values)
+        injectMessage,
+  }) {
+    return stop();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String xml)? setProject,
+    TResult? Function()? start,
+    TResult? Function()? stop,
+    TResult? Function(String msgType, List<(String, SimpleValue)> values)?
+        injectMessage,
+  }) {
+    return stop?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String xml)? setProject,
+    TResult Function()? start,
+    TResult Function()? stop,
+    TResult Function(String msgType, List<(String, SimpleValue)> values)?
+        injectMessage,
+    required TResult orElse(),
+  }) {
+    if (stop != null) {
+      return stop();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RustCommand_SetProject value) setProject,
+    required TResult Function(RustCommand_Start value) start,
+    required TResult Function(RustCommand_Stop value) stop,
+    required TResult Function(RustCommand_InjectMessage value) injectMessage,
+  }) {
+    return stop(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RustCommand_SetProject value)? setProject,
+    TResult? Function(RustCommand_Start value)? start,
+    TResult? Function(RustCommand_Stop value)? stop,
+    TResult? Function(RustCommand_InjectMessage value)? injectMessage,
+  }) {
+    return stop?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RustCommand_SetProject value)? setProject,
+    TResult Function(RustCommand_Start value)? start,
+    TResult Function(RustCommand_Stop value)? stop,
+    TResult Function(RustCommand_InjectMessage value)? injectMessage,
+    required TResult orElse(),
+  }) {
+    if (stop != null) {
+      return stop(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RustCommand_Stop implements RustCommand {
+  const factory RustCommand_Stop() = _$RustCommand_Stop;
 }
 
 /// @nodoc
@@ -7075,6 +7211,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
   TResult when<TResult extends Object?>({
     required TResult Function(String xml) setProject,
     required TResult Function() start,
+    required TResult Function() stop,
     required TResult Function(
             String msgType, List<(String, SimpleValue)> values)
         injectMessage,
@@ -7087,6 +7224,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String xml)? setProject,
     TResult? Function()? start,
+    TResult? Function()? stop,
     TResult? Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
   }) {
@@ -7098,6 +7236,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String xml)? setProject,
     TResult Function()? start,
+    TResult Function()? stop,
     TResult Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
     required TResult orElse(),
@@ -7113,6 +7252,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
   TResult map<TResult extends Object?>({
     required TResult Function(RustCommand_SetProject value) setProject,
     required TResult Function(RustCommand_Start value) start,
+    required TResult Function(RustCommand_Stop value) stop,
     required TResult Function(RustCommand_InjectMessage value) injectMessage,
   }) {
     return injectMessage(this);
@@ -7123,6 +7263,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RustCommand_SetProject value)? setProject,
     TResult? Function(RustCommand_Start value)? start,
+    TResult? Function(RustCommand_Stop value)? stop,
     TResult? Function(RustCommand_InjectMessage value)? injectMessage,
   }) {
     return injectMessage?.call(this);
@@ -7133,6 +7274,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RustCommand_SetProject value)? setProject,
     TResult Function(RustCommand_Start value)? start,
+    TResult Function(RustCommand_Stop value)? stop,
     TResult Function(RustCommand_InjectMessage value)? injectMessage,
     required TResult orElse(),
   }) {

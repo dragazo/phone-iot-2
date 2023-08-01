@@ -18,10 +18,8 @@ clean:
     flutter clean
     cd native && cargo clean
 
-run-linux *args='':
-    flutter run -d linux {{args}}
+run-on *args='':
+    flutter run -d {{args}}
 
-run-web *args='':
+run-on-web *args='':
     dart run flutter_rust_bridge:serve {{args}}
-
-# vim:expandtab:sw=4:ts=4

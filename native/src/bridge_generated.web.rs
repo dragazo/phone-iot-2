@@ -96,7 +96,8 @@ impl Wire2Api<RustCommand> for JsValue {
                 xml: self_.get(1).wire2api(),
             },
             1 => RustCommand::Start,
-            2 => RustCommand::InjectMessage {
+            2 => RustCommand::Stop,
+            3 => RustCommand::InjectMessage {
                 msg_type: self_.get(1).wire2api(),
                 values: self_.get(2).wire2api(),
             },

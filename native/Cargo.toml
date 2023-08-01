@@ -11,5 +11,5 @@ crate-type = ["cdylib", "staticlib"]
 [dependencies]
 anyhow = "1"
 flutter_rust_bridge = "1"
-netsblox-vm = "0.2.1"
 gc-arena = "=0.3.0"
+netsblox-vm = { version = "0.2.4", default-features = false, features = ["std", "native-tls-vendored"] }

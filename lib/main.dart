@@ -7,8 +7,8 @@ import 'package:http/http.dart' as http;
 
 import 'canvas.dart';
 
-const updateInterval = Duration(milliseconds: 500);
-const messageLifetime = Duration(seconds: 10);
+const msgUpdateInterval = Duration(milliseconds: 500);
+const msgLifetime = Duration(seconds: 10);
 
 void main() {
   runApp(const MyApp());
@@ -48,7 +48,7 @@ class Message {
   DateTime expiry;
   String msg;
   MessageType type;
-  Message(this.msg, this.type) : expiry = DateTime.now().add(messageLifetime);
+  Message(this.msg, this.type) : expiry = DateTime.now().add(msgLifetime);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     void msgLifetimeUpdateLoop() async {
       while (true) {
-        await Future.delayed(const Duration(milliseconds: 500));
+        await Future.delayed(msgUpdateInterval);
         final now = DateTime.now();
         while (messages.isNotEmpty && messages.first.expiry.isBefore(now)) {
           setState(() => messages.removeAt(0));
@@ -243,22 +243,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _connect,
-              child: const Text('Connect'),
-            ),
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: _reconnect,
-              child: const Text('Reconnect'),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: _connect,
+                  child: const Text('Connect'),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: _reconnect,
+                  child: const Text('Reconnect'),
+                ),
+              ],
             ),
-            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _newPassword,
               child: const Text('New Password'),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
             SizedBox(
               width: 250,
               child: TextFormField(
@@ -271,15 +274,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _loadProject,
               child: const Text('Load Project'),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: _startProject,
-              child: const Text('Start'),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: _startProject,
+                  child: const Text('Start'),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: _stopProject,
+                  child: const Text('Stop'),
+                ),
+              ],
             ),
           ],
         ),
@@ -327,7 +338,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           children: [
             SizedBox(
-              width: 400,
+              width: 250,
               height: 150,
               child: TextFormField(
                 controller: widget.textInput,
@@ -383,7 +394,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(children: msgs),
           ),
           AnimatedPositioned(
-            duration: const Duration(milliseconds: 10000),
+            duration: const Duration(milliseconds: 500),
             left: 0,
             right: 0,
             bottom: inputTextTarget != null ? 20 : -200,
@@ -394,7 +405,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           AnimatedPositioned(
-            duration: const Duration(milliseconds: 10000),
+            duration: const Duration(milliseconds: 500),
             left: menuOpen ? 20 : -300,
             top: 20,
             curve: Curves.ease,
@@ -433,6 +444,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   void _startProject() {
     api.sendCommand(cmd: const RustCommand.start());
+  }
+  void _stopProject() {
+    api.sendCommand(cmd: const RustCommand.stop());
   }
 
   void _handleClick(Offset pos, int id, ClickType type) {

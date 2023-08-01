@@ -10,6 +10,7 @@ use netsblox_vm::std_system::{StdSystem, RequestKey};
 use netsblox_vm::bytecode::{ByteCode, Locations};
 use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, IntermediateType, ErrorCause, Value, FromAstError, Config, Command, Request, CommandStatus, RequestStatus, Key, System};
 use netsblox_vm::gc::{Gc, RefLock, Collect, Arena, Rootable, Mutation};
+use netsblox_vm::real_time::UtcOffset;
 use netsblox_vm::json::{Json, json};
 use netsblox_vm::ast;
 
@@ -259,6 +260,7 @@ pub struct ImageDisplayInfo {
 pub enum RustCommand {
     SetProject { xml: String },
     Start,
+    Stop,
     InjectMessage { msg_type: String, values: Vec<(String, SimpleValue)> },
 }
 
@@ -892,7 +894,7 @@ pub fn initialize() {
                 }
             })),
         };
-        let system = Rc::new(StdSystem::new(SERVER_URL.to_owned(), None, config));
+        let system = Rc::new(StdSystem::new(SERVER_URL.to_owned(), None, config, UtcOffset::UTC));
         let mut env = {
             let project = ast::Parser::default().parse(netsblox_vm::template::EMPTY_PROJECT).unwrap();
             get_env(&project.roles[0], system.clone()).unwrap()
@@ -916,11 +918,12 @@ pub fn initialize() {
                         }
                         Err(e) => send_dart_command(DartCommand::Stderr { msg: format!("project load error: {e:?}") }),
                     }
-                    RustCommand::Start => {
-                        env.mutate(|mc, env| {
-                            env.proj.borrow_mut(mc).input(Input::Start);
-                        });
-                    }
+                    RustCommand::Start => env.mutate(|mc, env| {
+                        env.proj.borrow_mut(mc).input(mc, Input::Start);
+                    }),
+                    RustCommand::Stop => env.mutate(|mc, env| {
+                        env.proj.borrow_mut(mc).input(mc, Input::Stop);
+                    }),
                     RustCommand::InjectMessage { msg_type, values } => system.inject_message(msg_type, values.into_iter().map(|x| (x.0, x.1.into_json())).collect()),
                 }
             }
