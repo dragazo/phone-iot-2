@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:phone_iot_2/sensors.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -9,6 +10,8 @@ import 'canvas.dart';
 
 const msgUpdateInterval = Duration(milliseconds: 500);
 const msgLifetime = Duration(seconds: 10);
+
+const missingSensorError = RequestResult.err('sensor is not available or is disabled');
 
 void main() {
   runApp(const MyApp());
@@ -191,16 +194,28 @@ class _MyHomePageState extends State<MyHomePage> {
               api.completeRequest(key: key, result: RequestResult.err('failed to decode image: $e'));
             }
           },
+
+          getAccelerometer: (key) {
+            final res = SensorManager.accelerometer.value;
+            if (res != null) {
+              api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list([ SimpleValue.number(res.$1), SimpleValue.number(res.$2), SimpleValue.number(res.$3) ])));
+            } else {
+              api.completeRequest(key: key, result: missingSensorError);
+            }
+          },
         );
       }
     }
     cmdHandlerLoop();
+
+    SensorManager.start();
   }
 
   @override
   void dispose() {
     super.dispose();
     timer?.cancel();
+    SensorManager.stop();
   }
 
   @override

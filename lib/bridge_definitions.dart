@@ -176,6 +176,9 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required String id,
   }) = DartCommand_IsPressed;
+  const factory DartCommand.getAccelerometer({
+    required DartRequestKey key,
+  }) = DartCommand_GetAccelerometer;
 }
 
 class DartRequestKey {

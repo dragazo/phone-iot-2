@@ -290,6 +290,10 @@ class NativeImpl implements Native {
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
+      case 22:
+        return DartCommand_GetAccelerometer(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
       default:
         throw Exception("unreachable");
     }

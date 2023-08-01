@@ -303,6 +303,8 @@ pub enum DartCommand {
     SetImage { key: DartRequestKey, id: String, value: Vec<u8> },
     GetPosition { key: DartRequestKey, id: String },
     IsPressed { key: DartRequestKey, id: String },
+
+    GetAccelerometer { key: DartRequestKey },
 }
 
 pub enum SimpleValue {
@@ -886,6 +888,15 @@ pub fn initialize(utc_offset_in_seconds: i32) {
 
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::SetToggleState { key, id, value });
+                            RequestStatus::Handled
+                        }
+                        "getAccelerometer" => {
+                            if args.len() != 1 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::GetAccelerometer { key });
                             RequestStatus::Handled
                         }
                         _ => RequestStatus::UseDefault { key, request },
