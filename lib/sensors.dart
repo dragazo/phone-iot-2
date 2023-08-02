@@ -9,6 +9,15 @@ const double radToDeg = 180 / pi;
 // annoyingly, some of our sensor deps have platform-dependent units
 final double pressureScale = Platform.isAndroid ? 0.1 : 1;
 
+const List<(List<double>, double)> facingDirClasses = [
+  ([1, 0, 0], 0),
+  ([0, 1, 0], 1),
+  ([0, 0, 1], 2),
+  ([-1, 0, 0], 3),
+  ([0, -1, 0], 4),
+  ([0, 0, -1], 5),
+];
+
 List<double> elementwise(List<double> a, List<double> b, double Function (double, double) f) {
   assert (a.length == b.length);
 
@@ -17,6 +26,27 @@ List<double> elementwise(List<double> a, List<double> b, double Function (double
     res.add(f(a[i], b[i]));
   }
   return res;
+}
+
+double dotProduct(List<double> a, List<double> b) {
+  assert (a.length == b.length);
+
+  double res = 0;
+  for (int i = 0; i < a.length; ++i) {
+    res += a[i] * b[i];
+  }
+  return res;
+}
+
+T dotProductClassify<T>(List<double> v, List<(List<double>, T)> classes) {
+  var best = (double.negativeInfinity, -1);
+  for (int i = 0; i < classes.length; ++i) {
+    double sim = dotProduct(v, classes[i].$1);
+    if (sim > best.$1) {
+      best = (sim, i);
+    }
+  }
+  return classes[best.$2].$2;
 }
 
 abstract class Sensor {
@@ -63,6 +93,7 @@ class SensorManager {
   static RawSensor<double> temperature = RawSensor();
 
   static CalcSensor gravity = CalcSensor(src: [accelerometer, linearAccelerometer], f: (x) => elementwise(x[0], x[1], (a, b) => a - b));
+  static CalcSensor facingDir = CalcSensor(src: [accelerometer], f: (x) => [dotProductClassify(x[0], facingDirClasses)]);
 
   static void start() {
     if (running) return;

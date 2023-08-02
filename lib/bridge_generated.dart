@@ -326,6 +326,10 @@ class NativeImpl implements Native {
         return DartCommand_GetTemperature(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
+      case 31:
+        return DartCommand_GetFacingDirection(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
       default:
         throw Exception("unreachable");
     }

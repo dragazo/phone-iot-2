@@ -13,6 +13,10 @@ const msgLifetime = Duration(seconds: 10);
 
 const sensorErrorMsg = 'sensor is not available or is disabled';
 
+const facingDirNames = [
+  'left', 'vertical', 'up', 'right', 'upside down', 'down',
+];
+
 void main() {
   runApp(const MyApp());
 }
@@ -27,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'PhoneIoT'),
+      home: MyHomePage(title: 'PhoneIoT-2'),
     );
   }
 }
@@ -223,6 +227,15 @@ class _MyHomePageState extends State<MyHomePage> {
           getRelativeHumidity: (key) => sendSensorScalar(SensorManager.relativeHumidity.value, key),
           getLightLevel: (key) => sendSensorScalar(SensorManager.lightLevel.value, key),
           getTemperature: (key) => sendSensorScalar(SensorManager.temperature.value, key),
+
+          getFacingDirection: (key) {
+            final encoded = SensorManager.facingDir.value;
+            if (encoded != null) {
+              api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(facingDirNames[encoded[0].truncate()])));
+            } else {
+              api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
+            }
+          }
         );
       }
     }

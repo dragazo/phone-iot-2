@@ -57,6 +57,7 @@ mixin _$DartCommand {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,6 +95,7 @@ mixin _$DartCommand {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -130,6 +132,7 @@ mixin _$DartCommand {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -171,6 +174,8 @@ mixin _$DartCommand {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -208,6 +213,7 @@ mixin _$DartCommand {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -245,6 +251,7 @@ mixin _$DartCommand {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -372,6 +379,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return stdout(msg);
   }
@@ -412,6 +420,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return stdout?.call(msg);
   }
@@ -451,6 +460,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -498,6 +508,8 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return stdout(this);
   }
@@ -538,6 +550,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return stdout?.call(this);
   }
@@ -578,6 +591,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -701,6 +715,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return stderr(msg);
   }
@@ -741,6 +756,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return stderr?.call(msg);
   }
@@ -780,6 +796,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -827,6 +844,8 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return stderr(this);
   }
@@ -867,6 +886,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return stderr?.call(this);
   }
@@ -907,6 +927,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -1031,6 +1052,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return clearControls(key);
   }
@@ -1071,6 +1093,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return clearControls?.call(key);
   }
@@ -1110,6 +1133,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
@@ -1157,6 +1181,8 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return clearControls(this);
   }
@@ -1197,6 +1223,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return clearControls?.call(this);
   }
@@ -1237,6 +1264,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
@@ -1369,6 +1397,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return removeControl(key, id);
   }
@@ -1409,6 +1438,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return removeControl?.call(key, id);
   }
@@ -1448,6 +1478,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (removeControl != null) {
@@ -1495,6 +1526,8 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return removeControl(this);
   }
@@ -1535,6 +1568,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return removeControl?.call(this);
   }
@@ -1575,6 +1609,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (removeControl != null) {
@@ -1708,6 +1743,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return addLabel(key, info);
   }
@@ -1748,6 +1784,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return addLabel?.call(key, info);
   }
@@ -1787,6 +1824,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
@@ -1834,6 +1872,8 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return addLabel(this);
   }
@@ -1874,6 +1914,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return addLabel?.call(this);
   }
@@ -1914,6 +1955,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
@@ -2047,6 +2089,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return addButton(key, info);
   }
@@ -2087,6 +2130,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return addButton?.call(key, info);
   }
@@ -2126,6 +2170,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addButton != null) {
@@ -2173,6 +2218,8 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return addButton(this);
   }
@@ -2213,6 +2260,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return addButton?.call(this);
   }
@@ -2253,6 +2301,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addButton != null) {
@@ -2387,6 +2436,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return addTextField(key, info);
   }
@@ -2427,6 +2477,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return addTextField?.call(key, info);
   }
@@ -2466,6 +2517,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addTextField != null) {
@@ -2513,6 +2565,8 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return addTextField(this);
   }
@@ -2553,6 +2607,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return addTextField?.call(this);
   }
@@ -2593,6 +2648,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addTextField != null) {
@@ -2726,6 +2782,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return addJoystick(key, info);
   }
@@ -2766,6 +2823,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return addJoystick?.call(key, info);
   }
@@ -2805,6 +2863,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addJoystick != null) {
@@ -2852,6 +2911,8 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return addJoystick(this);
   }
@@ -2892,6 +2953,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return addJoystick?.call(this);
   }
@@ -2932,6 +2994,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addJoystick != null) {
@@ -3065,6 +3128,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return addTouchpad(key, info);
   }
@@ -3105,6 +3169,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return addTouchpad?.call(key, info);
   }
@@ -3144,6 +3209,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addTouchpad != null) {
@@ -3191,6 +3257,8 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return addTouchpad(this);
   }
@@ -3231,6 +3299,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return addTouchpad?.call(this);
   }
@@ -3271,6 +3340,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addTouchpad != null) {
@@ -3404,6 +3474,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return addSlider(key, info);
   }
@@ -3444,6 +3515,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return addSlider?.call(key, info);
   }
@@ -3483,6 +3555,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addSlider != null) {
@@ -3530,6 +3603,8 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return addSlider(this);
   }
@@ -3570,6 +3645,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return addSlider?.call(this);
   }
@@ -3610,6 +3686,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addSlider != null) {
@@ -3743,6 +3820,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return addToggle(key, info);
   }
@@ -3783,6 +3861,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return addToggle?.call(key, info);
   }
@@ -3822,6 +3901,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addToggle != null) {
@@ -3869,6 +3949,8 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return addToggle(this);
   }
@@ -3909,6 +3991,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return addToggle?.call(this);
   }
@@ -3949,6 +4032,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addToggle != null) {
@@ -4084,6 +4168,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return addImageDisplay(key, info);
   }
@@ -4124,6 +4209,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return addImageDisplay?.call(key, info);
   }
@@ -4163,6 +4249,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addImageDisplay != null) {
@@ -4210,6 +4297,8 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return addImageDisplay(this);
   }
@@ -4250,6 +4339,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return addImageDisplay?.call(this);
   }
@@ -4290,6 +4380,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (addImageDisplay != null) {
@@ -4423,6 +4514,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getText(key, id);
   }
@@ -4463,6 +4555,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getText?.call(key, id);
   }
@@ -4502,6 +4595,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getText != null) {
@@ -4549,6 +4643,8 @@ class _$DartCommand_GetText implements DartCommand_GetText {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getText(this);
   }
@@ -4589,6 +4685,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getText?.call(this);
   }
@@ -4629,6 +4726,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getText != null) {
@@ -4771,6 +4869,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return setText(key, id, value);
   }
@@ -4811,6 +4910,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return setText?.call(key, id, value);
   }
@@ -4850,6 +4950,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (setText != null) {
@@ -4897,6 +4998,8 @@ class _$DartCommand_SetText implements DartCommand_SetText {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return setText(this);
   }
@@ -4937,6 +5040,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return setText?.call(this);
   }
@@ -4977,6 +5081,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (setText != null) {
@@ -5112,6 +5217,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getLevel(key, id);
   }
@@ -5152,6 +5258,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getLevel?.call(key, id);
   }
@@ -5191,6 +5298,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getLevel != null) {
@@ -5238,6 +5346,8 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getLevel(this);
   }
@@ -5278,6 +5388,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getLevel?.call(this);
   }
@@ -5318,6 +5429,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getLevel != null) {
@@ -5460,6 +5572,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return setLevel(key, id, value);
   }
@@ -5500,6 +5613,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return setLevel?.call(key, id, value);
   }
@@ -5539,6 +5653,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (setLevel != null) {
@@ -5586,6 +5701,8 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return setLevel(this);
   }
@@ -5626,6 +5743,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return setLevel?.call(this);
   }
@@ -5666,6 +5784,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (setLevel != null) {
@@ -5803,6 +5922,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getToggleState(key, id);
   }
@@ -5843,6 +5963,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getToggleState?.call(key, id);
   }
@@ -5882,6 +6003,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getToggleState != null) {
@@ -5929,6 +6051,8 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getToggleState(this);
   }
@@ -5969,6 +6093,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getToggleState?.call(this);
   }
@@ -6009,6 +6134,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getToggleState != null) {
@@ -6153,6 +6279,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return setToggleState(key, id, value);
   }
@@ -6193,6 +6320,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return setToggleState?.call(key, id, value);
   }
@@ -6232,6 +6360,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (setToggleState != null) {
@@ -6279,6 +6408,8 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return setToggleState(this);
   }
@@ -6319,6 +6450,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return setToggleState?.call(this);
   }
@@ -6359,6 +6491,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (setToggleState != null) {
@@ -6494,6 +6627,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getImage(key, id);
   }
@@ -6534,6 +6668,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getImage?.call(key, id);
   }
@@ -6573,6 +6708,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getImage != null) {
@@ -6620,6 +6756,8 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getImage(this);
   }
@@ -6660,6 +6798,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getImage?.call(this);
   }
@@ -6700,6 +6839,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getImage != null) {
@@ -6843,6 +6983,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return setImage(key, id, value);
   }
@@ -6883,6 +7024,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return setImage?.call(key, id, value);
   }
@@ -6922,6 +7064,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (setImage != null) {
@@ -6969,6 +7112,8 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return setImage(this);
   }
@@ -7009,6 +7154,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return setImage?.call(this);
   }
@@ -7049,6 +7195,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (setImage != null) {
@@ -7184,6 +7331,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getPosition(key, id);
   }
@@ -7224,6 +7372,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getPosition?.call(key, id);
   }
@@ -7263,6 +7412,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getPosition != null) {
@@ -7310,6 +7460,8 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getPosition(this);
   }
@@ -7350,6 +7502,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getPosition?.call(this);
   }
@@ -7390,6 +7543,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getPosition != null) {
@@ -7523,6 +7677,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return isPressed(key, id);
   }
@@ -7563,6 +7718,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return isPressed?.call(key, id);
   }
@@ -7602,6 +7758,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (isPressed != null) {
@@ -7649,6 +7806,8 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return isPressed(this);
   }
@@ -7689,6 +7848,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return isPressed?.call(this);
   }
@@ -7729,6 +7889,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (isPressed != null) {
@@ -7856,6 +8017,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getAccelerometer(key);
   }
@@ -7896,6 +8058,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getAccelerometer?.call(key);
   }
@@ -7935,6 +8098,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getAccelerometer != null) {
@@ -7982,6 +8146,8 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getAccelerometer(this);
   }
@@ -8022,6 +8188,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getAccelerometer?.call(this);
   }
@@ -8062,6 +8229,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getAccelerometer != null) {
@@ -8190,6 +8358,7 @@ class _$DartCommand_GetLinearAccelerometer
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getLinearAccelerometer(key);
   }
@@ -8230,6 +8399,7 @@ class _$DartCommand_GetLinearAccelerometer
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getLinearAccelerometer?.call(key);
   }
@@ -8269,6 +8439,7 @@ class _$DartCommand_GetLinearAccelerometer
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getLinearAccelerometer != null) {
@@ -8316,6 +8487,8 @@ class _$DartCommand_GetLinearAccelerometer
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getLinearAccelerometer(this);
   }
@@ -8356,6 +8529,7 @@ class _$DartCommand_GetLinearAccelerometer
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getLinearAccelerometer?.call(this);
   }
@@ -8396,6 +8570,7 @@ class _$DartCommand_GetLinearAccelerometer
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getLinearAccelerometer != null) {
@@ -8522,6 +8697,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getGyroscope(key);
   }
@@ -8562,6 +8738,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getGyroscope?.call(key);
   }
@@ -8601,6 +8778,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getGyroscope != null) {
@@ -8648,6 +8826,8 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getGyroscope(this);
   }
@@ -8688,6 +8868,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getGyroscope?.call(this);
   }
@@ -8728,6 +8909,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getGyroscope != null) {
@@ -8853,6 +9035,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getMagnetometer(key);
   }
@@ -8893,6 +9076,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getMagnetometer?.call(key);
   }
@@ -8932,6 +9116,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getMagnetometer != null) {
@@ -8979,6 +9164,8 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getMagnetometer(this);
   }
@@ -9019,6 +9206,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getMagnetometer?.call(this);
   }
@@ -9059,6 +9247,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getMagnetometer != null) {
@@ -9182,6 +9371,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getGravity(key);
   }
@@ -9222,6 +9412,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getGravity?.call(key);
   }
@@ -9261,6 +9452,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getGravity != null) {
@@ -9308,6 +9500,8 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getGravity(this);
   }
@@ -9348,6 +9542,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getGravity?.call(this);
   }
@@ -9388,6 +9583,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getGravity != null) {
@@ -9511,6 +9707,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getPressure(key);
   }
@@ -9551,6 +9748,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getPressure?.call(key);
   }
@@ -9590,6 +9788,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getPressure != null) {
@@ -9637,6 +9836,8 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getPressure(this);
   }
@@ -9677,6 +9878,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getPressure?.call(this);
   }
@@ -9717,6 +9919,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getPressure != null) {
@@ -9843,6 +10046,7 @@ class _$DartCommand_GetRelativeHumidity
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getRelativeHumidity(key);
   }
@@ -9883,6 +10087,7 @@ class _$DartCommand_GetRelativeHumidity
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getRelativeHumidity?.call(key);
   }
@@ -9922,6 +10127,7 @@ class _$DartCommand_GetRelativeHumidity
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getRelativeHumidity != null) {
@@ -9969,6 +10175,8 @@ class _$DartCommand_GetRelativeHumidity
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getRelativeHumidity(this);
   }
@@ -10009,6 +10217,7 @@ class _$DartCommand_GetRelativeHumidity
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getRelativeHumidity?.call(this);
   }
@@ -10049,6 +10258,7 @@ class _$DartCommand_GetRelativeHumidity
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getRelativeHumidity != null) {
@@ -10173,6 +10383,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getLightLevel(key);
   }
@@ -10213,6 +10424,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getLightLevel?.call(key);
   }
@@ -10252,6 +10464,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getLightLevel != null) {
@@ -10299,6 +10512,8 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getLightLevel(this);
   }
@@ -10339,6 +10554,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getLightLevel?.call(this);
   }
@@ -10379,6 +10595,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getLightLevel != null) {
@@ -10504,6 +10721,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     required TResult Function(DartRequestKey key) getRelativeHumidity,
     required TResult Function(DartRequestKey key) getLightLevel,
     required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
   }) {
     return getTemperature(key);
   }
@@ -10544,6 +10762,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult? Function(DartRequestKey key)? getRelativeHumidity,
     TResult? Function(DartRequestKey key)? getLightLevel,
     TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
   }) {
     return getTemperature?.call(key);
   }
@@ -10583,6 +10802,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult Function(DartRequestKey key)? getRelativeHumidity,
     TResult Function(DartRequestKey key)? getLightLevel,
     TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getTemperature != null) {
@@ -10630,6 +10850,8 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
         getRelativeHumidity,
     required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
     required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
   }) {
     return getTemperature(this);
   }
@@ -10670,6 +10892,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
         getRelativeHumidity,
     TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
   }) {
     return getTemperature?.call(this);
   }
@@ -10710,6 +10933,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
         getRelativeHumidity,
     TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
     TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
     required TResult orElse(),
   }) {
     if (getTemperature != null) {
@@ -10726,6 +10950,345 @@ abstract class DartCommand_GetTemperature implements DartCommand {
   DartRequestKey get key;
   @JsonKey(ignore: true)
   _$$DartCommand_GetTemperatureCopyWith<_$DartCommand_GetTemperature>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_GetFacingDirectionCopyWith<$Res> {
+  factory _$$DartCommand_GetFacingDirectionCopyWith(
+          _$DartCommand_GetFacingDirection value,
+          $Res Function(_$DartCommand_GetFacingDirection) then) =
+      __$$DartCommand_GetFacingDirectionCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key});
+}
+
+/// @nodoc
+class __$$DartCommand_GetFacingDirectionCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetFacingDirection>
+    implements _$$DartCommand_GetFacingDirectionCopyWith<$Res> {
+  __$$DartCommand_GetFacingDirectionCopyWithImpl(
+      _$DartCommand_GetFacingDirection _value,
+      $Res Function(_$DartCommand_GetFacingDirection) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+  }) {
+    return _then(_$DartCommand_GetFacingDirection(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_GetFacingDirection
+    implements DartCommand_GetFacingDirection {
+  const _$DartCommand_GetFacingDirection({required this.key});
+
+  @override
+  final DartRequestKey key;
+
+  @override
+  String toString() {
+    return 'DartCommand.getFacingDirection(key: $key)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_GetFacingDirection &&
+            (identical(other.key, key) || other.key == key));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_GetFacingDirectionCopyWith<_$DartCommand_GetFacingDirection>
+      get copyWith => __$$DartCommand_GetFacingDirectionCopyWithImpl<
+          _$DartCommand_GetFacingDirection>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
+    required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
+    required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) getLevel,
+    required TResult Function(DartRequestKey key, String id, double value)
+        setLevel,
+    required TResult Function(DartRequestKey key, String id) getToggleState,
+    required TResult Function(DartRequestKey key, String id, bool value)
+        setToggleState,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key) getAccelerometer,
+    required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
+    required TResult Function(DartRequestKey key) getGravity,
+    required TResult Function(DartRequestKey key) getPressure,
+    required TResult Function(DartRequestKey key) getRelativeHumidity,
+    required TResult Function(DartRequestKey key) getLightLevel,
+    required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
+  }) {
+    return getFacingDirection(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? getLevel,
+    TResult? Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult? Function(DartRequestKey key, String id)? getToggleState,
+    TResult? Function(DartRequestKey key, String id, bool value)?
+        setToggleState,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key)? getAccelerometer,
+    TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
+    TResult? Function(DartRequestKey key)? getGravity,
+    TResult? Function(DartRequestKey key)? getPressure,
+    TResult? Function(DartRequestKey key)? getRelativeHumidity,
+    TResult? Function(DartRequestKey key)? getLightLevel,
+    TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
+  }) {
+    return getFacingDirection?.call(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? getLevel,
+    TResult Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult Function(DartRequestKey key, String id)? getToggleState,
+    TResult Function(DartRequestKey key, String id, bool value)? setToggleState,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key)? getAccelerometer,
+    TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
+    TResult Function(DartRequestKey key)? getGravity,
+    TResult Function(DartRequestKey key)? getPressure,
+    TResult Function(DartRequestKey key)? getRelativeHumidity,
+    TResult Function(DartRequestKey key)? getLightLevel,
+    TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
+    required TResult orElse(),
+  }) {
+    if (getFacingDirection != null) {
+      return getFacingDirection(key);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
+    required TResult Function(DartCommand_AddSlider value) addSlider,
+    required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_GetLevel value) getLevel,
+    required TResult Function(DartCommand_SetLevel value) setLevel,
+    required TResult Function(DartCommand_GetToggleState value) getToggleState,
+    required TResult Function(DartCommand_SetToggleState value) setToggleState,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetAccelerometer value)
+        getAccelerometer,
+    required TResult Function(DartCommand_GetLinearAccelerometer value)
+        getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
+    required TResult Function(DartCommand_GetGravity value) getGravity,
+    required TResult Function(DartCommand_GetPressure value) getPressure,
+    required TResult Function(DartCommand_GetRelativeHumidity value)
+        getRelativeHumidity,
+    required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
+    required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
+  }) {
+    return getFacingDirection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult? Function(DartCommand_AddSlider value)? addSlider,
+    TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_GetLevel value)? getLevel,
+    TResult? Function(DartCommand_SetLevel value)? setLevel,
+    TResult? Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult? Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult? Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult? Function(DartCommand_GetGravity value)? getGravity,
+    TResult? Function(DartCommand_GetPressure value)? getPressure,
+    TResult? Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+  }) {
+    return getFacingDirection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult Function(DartCommand_AddSlider value)? addSlider,
+    TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_GetLevel value)? getLevel,
+    TResult Function(DartCommand_SetLevel value)? setLevel,
+    TResult Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult Function(DartCommand_GetGravity value)? getGravity,
+    TResult Function(DartCommand_GetPressure value)? getPressure,
+    TResult Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    required TResult orElse(),
+  }) {
+    if (getFacingDirection != null) {
+      return getFacingDirection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_GetFacingDirection implements DartCommand {
+  const factory DartCommand_GetFacingDirection(
+      {required final DartRequestKey key}) = _$DartCommand_GetFacingDirection;
+
+  DartRequestKey get key;
+  @JsonKey(ignore: true)
+  _$$DartCommand_GetFacingDirectionCopyWith<_$DartCommand_GetFacingDirection>
       get copyWith => throw _privateConstructorUsedError;
 }
 

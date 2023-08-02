@@ -203,6 +203,9 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.getTemperature({
     required DartRequestKey key,
   }) = DartCommand_GetTemperature;
+  const factory DartCommand.getFacingDirection({
+    required DartRequestKey key,
+  }) = DartCommand_GetFacingDirection;
 }
 
 class DartRequestKey {

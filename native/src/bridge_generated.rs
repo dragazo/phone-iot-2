@@ -316,6 +316,9 @@ impl support::IntoDart for DartCommand {
             }
             Self::GetLightLevel { key } => vec![29.into_dart(), key.into_into_dart().into_dart()],
             Self::GetTemperature { key } => vec![30.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetFacingDirection { key } => {
+                vec![31.into_dart(), key.into_into_dart().into_dart()]
+            }
         }
         .into_dart()
     }
