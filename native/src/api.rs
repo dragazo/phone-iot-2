@@ -308,6 +308,7 @@ pub enum DartCommand {
     GetLinearAccelerometer { key: DartRequestKey },
     GetGyroscope { key: DartRequestKey },
     GetMagnetometer { key: DartRequestKey },
+    GetGravity { key: DartRequestKey },
 }
 
 pub enum SimpleValue {
@@ -927,6 +928,15 @@ pub fn initialize(utc_offset_in_seconds: i32) {
 
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::GetMagnetometer { key });
+                            RequestStatus::Handled
+                        }
+                        "getGravity" => {
+                            if args.len() != 1 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::GetGravity { key });
                             RequestStatus::Handled
                         }
                         _ => RequestStatus::UseDefault { key, request },

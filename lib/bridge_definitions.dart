@@ -188,6 +188,9 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.getMagnetometer({
     required DartRequestKey key,
   }) = DartCommand_GetMagnetometer;
+  const factory DartCommand.getGravity({
+    required DartRequestKey key,
+  }) = DartCommand_GetGravity;
 }
 
 class DartRequestKey {
