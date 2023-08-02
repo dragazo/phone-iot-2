@@ -1,5 +1,5 @@
-import 'package:sensors_plus/sensors_plus.dart';
 import 'package:environment_sensors/environment_sensors.dart';
+import 'package:motion_sensors/motion_sensors.dart';
 import 'dart:io' show Platform;
 import 'dart:async';
 import 'dart:math';
@@ -87,6 +87,7 @@ class SensorManager {
   static RawSensor<UserAccelerometerEvent> linearAccelerometer = RawSensor();
   static RawSensor<GyroscopeEvent> gyroscope = RawSensor();
   static RawSensor<MagnetometerEvent> magnetometer = RawSensor();
+  static RawSensor<AbsoluteOrientationEvent> orientation = RawSensor();
   static RawSensor<double> pressure = RawSensor();
   static RawSensor<double> relativeHumidity = RawSensor();
   static RawSensor<double> lightLevel = RawSensor();
@@ -101,14 +102,15 @@ class SensorManager {
 
     final envSensors = EnvironmentSensors();
 
-    accelerometer.listener ??= accelerometerEvents.listen((e) => accelerometer.value = [e.x, e.y, e.z]);
-    linearAccelerometer.listener ??= userAccelerometerEvents.listen((e) => linearAccelerometer.value = [e.x, e.y, e.z]);
-    gyroscope.listener ??= gyroscopeEvents.listen((e) => gyroscope.value = [e.x * radToDeg, e.y * radToDeg, e.z * radToDeg]);
-    magnetometer.listener ??= magnetometerEvents.listen((e) => magnetometer.value = [e.x, e.y, e.z]);
+    accelerometer.listener ??= motionSensors.accelerometer.listen((e) => accelerometer.value = [e.x, e.y, e.z]);
+    linearAccelerometer.listener ??= motionSensors.userAccelerometer.listen((e) => linearAccelerometer.value = [e.x, e.y, e.z]);
+    gyroscope.listener ??= motionSensors.gyroscope.listen((e) => gyroscope.value = [e.x * radToDeg, e.y * radToDeg, e.z * radToDeg]);
+    magnetometer.listener ??= motionSensors.magnetometer.listen((e) => magnetometer.value = [e.x, e.y, e.z]);
     pressure.listener ??= envSensors.pressure.listen((e) => pressure.value = [e * pressureScale]);
     relativeHumidity.listener ??= envSensors.humidity.listen((e) => relativeHumidity.value = [e]);
     lightLevel.listener ??= envSensors.light.listen((e) => lightLevel.value = [e]);
     temperature.listener ??= envSensors.temperature.listen((e) => temperature.value = [e]);
+    orientation.listener ??= motionSensors.absoluteOrientation.listen((e) => orientation.value = [-e.yaw * radToDeg, e.pitch * radToDeg, e.roll * radToDeg]);
   }
   static void stop() {
     if (!running) return;
@@ -122,5 +124,6 @@ class SensorManager {
     relativeHumidity.stop();
     lightLevel.stop();
     temperature.stop();
+    orientation.stop();
   }
 }

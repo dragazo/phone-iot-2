@@ -206,6 +206,9 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.getFacingDirection({
     required DartRequestKey key,
   }) = DartCommand_GetFacingDirection;
+  const factory DartCommand.getOrientation({
+    required DartRequestKey key,
+  }) = DartCommand_GetOrientation;
 }
 
 class DartRequestKey {

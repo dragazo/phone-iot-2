@@ -319,6 +319,7 @@ impl support::IntoDart for DartCommand {
             Self::GetFacingDirection { key } => {
                 vec![31.into_dart(), key.into_into_dart().into_dart()]
             }
+            Self::GetOrientation { key } => vec![32.into_dart(), key.into_into_dart().into_dart()],
         }
         .into_dart()
     }

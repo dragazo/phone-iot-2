@@ -314,6 +314,7 @@ pub enum DartCommand {
     GetLightLevel { key: DartRequestKey },
     GetTemperature { key: DartRequestKey },
     GetFacingDirection { key: DartRequestKey },
+    GetOrientation { key: DartRequestKey },
 }
 
 pub enum SimpleValue {
@@ -899,6 +900,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                             "getLightLevel" => simple_request!(GetLightLevel),
                             "getTemperature" => simple_request!(GetTemperature),
                             "getFacingDirection" => simple_request!(GetFacingDirection),
+                            "getOrientation" => simple_request!(GetOrientation),
                             _ => RequestStatus::UseDefault { key, request },
                         }
                     }
