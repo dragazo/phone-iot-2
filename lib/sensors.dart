@@ -95,6 +95,7 @@ class SensorManager {
 
   static CalcSensor gravity = CalcSensor(src: [accelerometer, linearAccelerometer], f: (x) => elementwise(x[0], x[1], (a, b) => a - b));
   static CalcSensor facingDir = CalcSensor(src: [accelerometer], f: (x) => [dotProductClassify(x[0], facingDirClasses)]);
+  static CalcSensor compassHeading = CalcSensor(src: [orientation], f: (x) => [x[0][0]]);
 
   static void start() {
     if (running) return;

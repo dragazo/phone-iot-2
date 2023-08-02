@@ -320,6 +320,9 @@ impl support::IntoDart for DartCommand {
                 vec![31.into_dart(), key.into_into_dart().into_dart()]
             }
             Self::GetOrientation { key } => vec![32.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetCompassHeading { key } => {
+                vec![33.into_dart(), key.into_into_dart().into_dart()]
+            }
         }
         .into_dart()
     }

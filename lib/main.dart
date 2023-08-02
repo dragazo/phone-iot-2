@@ -256,6 +256,7 @@ class _MyHomePageState extends State<MyHomePage> {
           getRelativeHumidity: (key) => sendSensorScalar(SensorManager.relativeHumidity.value, key),
           getLightLevel: (key) => sendSensorScalar(SensorManager.lightLevel.value, key),
           getTemperature: (key) => sendSensorScalar(SensorManager.temperature.value, key),
+          getCompassHeading: (key) => sendSensorScalar(SensorManager.compassHeading.value, key),
 
           getFacingDirection: (key) {
             final encoded = SensorManager.facingDir.value;
