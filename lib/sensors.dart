@@ -58,6 +58,7 @@ class SensorManager {
   static RawSensor<GyroscopeEvent> gyroscope = RawSensor();
   static RawSensor<MagnetometerEvent> magnetometer = RawSensor();
   static RawSensor<double> pressure = RawSensor();
+  static RawSensor<double> relativeHumidity = RawSensor();
 
   static CalcSensor gravity = CalcSensor(src: [accelerometer, linearAccelerometer], f: (x) => elementwise(x[0], x[1], (a, b) => a - b));
 
@@ -72,6 +73,7 @@ class SensorManager {
     gyroscope.listener ??= gyroscopeEvents.listen((e) => gyroscope.value = [e.x * radToDeg, e.y * radToDeg, e.z * radToDeg]);
     magnetometer.listener ??= magnetometerEvents.listen((e) => magnetometer.value = [e.x, e.y, e.z]);
     pressure.listener ??= envSensors.pressure.listen((e) => pressure.value = [e * pressureScale]);
+    relativeHumidity.listener ??= envSensors.humidity.listen((e) => relativeHumidity.value = [e]);
   }
   static void stop() {
     if (!running) return;
@@ -82,5 +84,6 @@ class SensorManager {
     gyroscope.stop();
     magnetometer.stop();
     pressure.stop();
+    relativeHumidity.stop();
   }
 }

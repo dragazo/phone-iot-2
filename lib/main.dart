@@ -220,6 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
           getGyroscope: (key) => sendSensorVec(SensorManager.gyroscope.value, key),
           getMagnetometer: (key) => sendSensorVec(SensorManager.magnetometer.value, key),
           getPressure: (key) => sendSensorScalar(SensorManager.pressure.value, key),
+          getRelativeHumidity: (key) => sendSensorScalar(SensorManager.relativeHumidity.value, key),
         );
       }
     }

@@ -314,6 +314,10 @@ class NativeImpl implements Native {
         return DartCommand_GetPressure(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
+      case 28:
+        return DartCommand_GetRelativeHumidity(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
       default:
         throw Exception("unreachable");
     }
