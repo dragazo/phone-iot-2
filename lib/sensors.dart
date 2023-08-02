@@ -1,5 +1,13 @@
 import 'package:sensors_plus/sensors_plus.dart';
+import 'package:environment_sensors/environment_sensors.dart';
+import 'dart:io' show Platform;
 import 'dart:async';
+import 'dart:math';
+
+const double radToDeg = 180 / pi;
+
+// annoyingly, some of our sensor deps have platform-dependent units
+final double pressureScale = Platform.isAndroid ? 0.1 : 1;
 
 List<double> elementwise(List<double> a, List<double> b, double Function (double, double) f) {
   assert (a.length == b.length);
@@ -49,6 +57,7 @@ class SensorManager {
   static RawSensor<UserAccelerometerEvent> linearAccelerometer = RawSensor();
   static RawSensor<GyroscopeEvent> gyroscope = RawSensor();
   static RawSensor<MagnetometerEvent> magnetometer = RawSensor();
+  static RawSensor<double> pressure = RawSensor();
 
   static CalcSensor gravity = CalcSensor(src: [accelerometer, linearAccelerometer], f: (x) => elementwise(x[0], x[1], (a, b) => a - b));
 
@@ -56,10 +65,13 @@ class SensorManager {
     if (running) return;
     running = true;
 
+    final envSensors = EnvironmentSensors();
+
     accelerometer.listener ??= accelerometerEvents.listen((e) => accelerometer.value = [e.x, e.y, e.z]);
     linearAccelerometer.listener ??= userAccelerometerEvents.listen((e) => linearAccelerometer.value = [e.x, e.y, e.z]);
-    gyroscope.listener ??= gyroscopeEvents.listen((e) => gyroscope.value = [e.x, e.y, e.z]);
+    gyroscope.listener ??= gyroscopeEvents.listen((e) => gyroscope.value = [e.x * radToDeg, e.y * radToDeg, e.z * radToDeg]);
     magnetometer.listener ??= magnetometerEvents.listen((e) => magnetometer.value = [e.x, e.y, e.z]);
+    pressure.listener ??= envSensors.pressure.listen((e) => pressure.value = [e * pressureScale]);
   }
   static void stop() {
     if (!running) return;
@@ -69,5 +81,6 @@ class SensorManager {
     linearAccelerometer.stop();
     gyroscope.stop();
     magnetometer.stop();
+    pressure.stop();
   }
 }

@@ -98,6 +98,14 @@ class _MyHomePageState extends State<MyHomePage> {
           api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
         }
       }
+      void sendSensorScalar(List<double>? vals, DartRequestKey key) {
+        if (vals != null) {
+          assert (vals.length == 1);
+          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.number(vals[0])));
+        } else {
+          api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
+        }
+      }
       void addControl(CustomControl control, DartRequestKey key) {
         if (controls.containsKey(control.id)) {
           api.completeRequest(key: key, result: RequestResult.err('id ${control.id} is already in use'));
@@ -211,6 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
           getGravity: (key) => sendSensorVec(SensorManager.gravity.value, key),
           getGyroscope: (key) => sendSensorVec(SensorManager.gyroscope.value, key),
           getMagnetometer: (key) => sendSensorVec(SensorManager.magnetometer.value, key),
+          getPressure: (key) => sendSensorScalar(SensorManager.pressure.value, key),
         );
       }
     }

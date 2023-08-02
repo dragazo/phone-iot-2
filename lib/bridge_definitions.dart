@@ -191,6 +191,9 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.getGravity({
     required DartRequestKey key,
   }) = DartCommand_GetGravity;
+  const factory DartCommand.getPressure({
+    required DartRequestKey key,
+  }) = DartCommand_GetPressure;
 }
 
 class DartRequestKey {

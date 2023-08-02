@@ -43,6 +43,7 @@ dependencies:
 
   # sensor stuff
   sensors_plus: ^3.0.2
+  environment_sensors: ^0.3.0
 
 dev_dependencies:
   flutter_test:

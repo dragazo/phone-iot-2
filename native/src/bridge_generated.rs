@@ -310,6 +310,7 @@ impl support::IntoDart for DartCommand {
             Self::GetGyroscope { key } => vec![24.into_dart(), key.into_into_dart().into_dart()],
             Self::GetMagnetometer { key } => vec![25.into_dart(), key.into_into_dart().into_dart()],
             Self::GetGravity { key } => vec![26.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetPressure { key } => vec![27.into_dart(), key.into_into_dart().into_dart()],
         }
         .into_dart()
     }
