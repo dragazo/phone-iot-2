@@ -197,6 +197,12 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.getRelativeHumidity({
     required DartRequestKey key,
   }) = DartCommand_GetRelativeHumidity;
+  const factory DartCommand.getLightLevel({
+    required DartRequestKey key,
+  }) = DartCommand_GetLightLevel;
+  const factory DartCommand.getTemperature({
+    required DartRequestKey key,
+  }) = DartCommand_GetTemperature;
 }
 
 class DartRequestKey {

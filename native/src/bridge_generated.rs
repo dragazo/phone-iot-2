@@ -314,6 +314,8 @@ impl support::IntoDart for DartCommand {
             Self::GetRelativeHumidity { key } => {
                 vec![28.into_dart(), key.into_into_dart().into_dart()]
             }
+            Self::GetLightLevel { key } => vec![29.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetTemperature { key } => vec![30.into_dart(), key.into_into_dart().into_dart()],
         }
         .into_dart()
     }

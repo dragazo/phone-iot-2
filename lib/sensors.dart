@@ -59,6 +59,8 @@ class SensorManager {
   static RawSensor<MagnetometerEvent> magnetometer = RawSensor();
   static RawSensor<double> pressure = RawSensor();
   static RawSensor<double> relativeHumidity = RawSensor();
+  static RawSensor<double> lightLevel = RawSensor();
+  static RawSensor<double> temperature = RawSensor();
 
   static CalcSensor gravity = CalcSensor(src: [accelerometer, linearAccelerometer], f: (x) => elementwise(x[0], x[1], (a, b) => a - b));
 
@@ -74,6 +76,8 @@ class SensorManager {
     magnetometer.listener ??= magnetometerEvents.listen((e) => magnetometer.value = [e.x, e.y, e.z]);
     pressure.listener ??= envSensors.pressure.listen((e) => pressure.value = [e * pressureScale]);
     relativeHumidity.listener ??= envSensors.humidity.listen((e) => relativeHumidity.value = [e]);
+    lightLevel.listener ??= envSensors.light.listen((e) => lightLevel.value = [e]);
+    temperature.listener ??= envSensors.temperature.listen((e) => temperature.value = [e]);
   }
   static void stop() {
     if (!running) return;
@@ -85,5 +89,7 @@ class SensorManager {
     magnetometer.stop();
     pressure.stop();
     relativeHumidity.stop();
+    lightLevel.stop();
+    temperature.stop();
   }
 }

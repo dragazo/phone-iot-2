@@ -221,6 +221,8 @@ class _MyHomePageState extends State<MyHomePage> {
           getMagnetometer: (key) => sendSensorVec(SensorManager.magnetometer.value, key),
           getPressure: (key) => sendSensorScalar(SensorManager.pressure.value, key),
           getRelativeHumidity: (key) => sendSensorScalar(SensorManager.relativeHumidity.value, key),
+          getLightLevel: (key) => sendSensorScalar(SensorManager.lightLevel.value, key),
+          getTemperature: (key) => sendSensorScalar(SensorManager.temperature.value, key),
         );
       }
     }

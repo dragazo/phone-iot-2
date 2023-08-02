@@ -318,6 +318,14 @@ class NativeImpl implements Native {
         return DartCommand_GetRelativeHumidity(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
+      case 29:
+        return DartCommand_GetLightLevel(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
+      case 30:
+        return DartCommand_GetTemperature(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
       default:
         throw Exception("unreachable");
     }

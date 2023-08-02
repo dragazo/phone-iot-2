@@ -311,6 +311,8 @@ pub enum DartCommand {
     GetGravity { key: DartRequestKey },
     GetPressure { key: DartRequestKey },
     GetRelativeHumidity { key: DartRequestKey },
+    GetLightLevel { key: DartRequestKey },
+    GetTemperature { key: DartRequestKey },
 }
 
 pub enum SimpleValue {
@@ -957,6 +959,24 @@ pub fn initialize(utc_offset_in_seconds: i32) {
 
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::GetRelativeHumidity { key });
+                            RequestStatus::Handled
+                        }
+                        "getLightLevel" => {
+                            if args.len() != 1 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::GetLightLevel { key });
+                            RequestStatus::Handled
+                        }
+                        "getTemperature" => {
+                            if args.len() != 1 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::GetTemperature { key });
                             RequestStatus::Handled
                         }
                         _ => RequestStatus::UseDefault { key, request },
