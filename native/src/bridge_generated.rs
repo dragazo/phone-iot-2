@@ -323,6 +323,12 @@ impl support::IntoDart for DartCommand {
             Self::GetCompassHeading { key } => {
                 vec![33.into_dart(), key.into_into_dart().into_dart()]
             }
+            Self::GetCompassDirection { key } => {
+                vec![34.into_dart(), key.into_into_dart().into_dart()]
+            }
+            Self::GetCompassCardinalDirection { key } => {
+                vec![35.into_dart(), key.into_into_dart().into_dart()]
+            }
         }
         .into_dart()
     }

@@ -9,13 +9,31 @@ const double radToDeg = 180 / pi;
 // annoyingly, some of our sensor deps have platform-dependent units
 final double pressureScale = Platform.isAndroid ? 0.1 : 1;
 
-const List<(List<double>, double)> facingDirClasses = [
+const List<(List<double>, double)> facingDirectionClasses = [
   ([1, 0, 0], 0),
   ([0, 1, 0], 1),
   ([0, 0, 1], 2),
   ([-1, 0, 0], 3),
   ([0, -1, 0], 4),
   ([0, 0, -1], 5),
+];
+const List<(double, double)> compassDirectionClasses = [
+  (0, 0),
+  (45, 1),
+  (90, 2),
+  (135, 3),
+  (180, 4),
+  (-180, 4),
+  (-135, 5),
+  (-90, 6),
+  (-45, 7),
+];
+const List<(double, double)> compassCardinalDirectionClasses = [
+  (0, 0),
+  (90, 1),
+  (180, 2),
+  (-180, 2),
+  (-90, 3),
 ];
 
 List<double> elementwise(List<double> a, List<double> b, double Function (double, double) f) {
@@ -44,6 +62,17 @@ T dotProductClassify<T>(List<double> v, List<(List<double>, T)> classes) {
     double sim = dotProduct(v, classes[i].$1);
     if (sim > best.$1) {
       best = (sim, i);
+    }
+  }
+  return classes[best.$2].$2;
+}
+
+T closestClassify<T>(double v, List<(double, T)> classes) {
+  var best = (double.infinity, -1);
+  for (int i = 0; i < classes.length; ++i) {
+    double dist = (v - classes[i].$1).abs();
+    if (dist < best.$1) {
+      best = (dist, i);
     }
   }
   return classes[best.$2].$2;
@@ -94,8 +123,10 @@ class SensorManager {
   static RawSensor<double> temperature = RawSensor();
 
   static CalcSensor gravity = CalcSensor(src: [accelerometer, linearAccelerometer], f: (x) => elementwise(x[0], x[1], (a, b) => a - b));
-  static CalcSensor facingDir = CalcSensor(src: [accelerometer], f: (x) => [dotProductClassify(x[0], facingDirClasses)]);
+  static CalcSensor facingDirection = CalcSensor(src: [accelerometer], f: (x) => [dotProductClassify(x[0], facingDirectionClasses)]);
   static CalcSensor compassHeading = CalcSensor(src: [orientation], f: (x) => [x[0][0]]);
+  static CalcSensor compassDirection = CalcSensor(src: [orientation], f: (x) => [closestClassify(x[0][0], compassDirectionClasses)]);
+  static CalcSensor compassCardinalDirection = CalcSensor(src: [orientation], f: (x) => [closestClassify(x[0][0], compassCardinalDirectionClasses)]);
 
   static void start() {
     if (running) return;

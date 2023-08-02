@@ -338,6 +338,14 @@ class NativeImpl implements Native {
         return DartCommand_GetCompassHeading(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
+      case 34:
+        return DartCommand_GetCompassDirection(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
+      case 35:
+        return DartCommand_GetCompassCardinalDirection(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
       default:
         throw Exception("unreachable");
     }

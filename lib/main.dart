@@ -14,8 +14,14 @@ const msgLifetime = Duration(seconds: 10);
 
 const sensorErrorMsg = 'sensor is not available or is disabled';
 
-const facingDirNames = [
+const facingDirectionNames = [
   'left', 'vertical', 'up', 'right', 'upside down', 'down',
+];
+const compassDirectionNames = [
+  'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW',
+];
+const compassCardinalDirectionNames = [
+  'N', 'E', 'S', 'W',
 ];
 
 const passwordLifetime = Duration(hours: 24);
@@ -134,6 +140,14 @@ class _MyHomePageState extends State<MyHomePage> {
         if (vals != null) {
           assert (vals.length == 1);
           api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.number(vals[0])));
+        } else {
+          api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
+        }
+      }
+      void sendSensorScalarEncoded(List<double>? vals, List<String> encoding, DartRequestKey key) {
+        if (vals != null) {
+          assert (vals.length == 1);
+          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(encoding[vals[0].toInt()])));
         } else {
           api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
         }
@@ -257,15 +271,9 @@ class _MyHomePageState extends State<MyHomePage> {
           getLightLevel: (key) => sendSensorScalar(SensorManager.lightLevel.value, key),
           getTemperature: (key) => sendSensorScalar(SensorManager.temperature.value, key),
           getCompassHeading: (key) => sendSensorScalar(SensorManager.compassHeading.value, key),
-
-          getFacingDirection: (key) {
-            final encoded = SensorManager.facingDir.value;
-            if (encoded != null) {
-              api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(facingDirNames[encoded[0].truncate()])));
-            } else {
-              api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
-            }
-          }
+          getFacingDirection: (key) => sendSensorScalarEncoded(SensorManager.facingDirection.value, facingDirectionNames, key),
+          getCompassDirection: (key) => sendSensorScalarEncoded(SensorManager.compassDirection.value, compassDirectionNames, key),
+          getCompassCardinalDirection: (key) => sendSensorScalarEncoded(SensorManager.compassCardinalDirection.value, compassCardinalDirectionNames, key),
         );
       }
     }
