@@ -11,7 +11,7 @@ import 'canvas.dart';
 const msgUpdateInterval = Duration(milliseconds: 500);
 const msgLifetime = Duration(seconds: 10);
 
-const missingSensorError = RequestResult.err('sensor is not available or is disabled');
+const sensorErrorMsg = 'sensor is not available or is disabled';
 
 void main() {
   runApp(const MyApp());
@@ -87,6 +87,17 @@ class _MyHomePageState extends State<MyHomePage> {
     msgLifetimeUpdateLoop();
 
     void cmdHandlerLoop() async {
+      void sendSensorVec(List<double>? vals, DartRequestKey key) {
+        if (vals != null) {
+          final res = <SimpleValue>[];
+          for (final val in vals) {
+            res.add(SimpleValue.number(val));
+          }
+          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list(res)));
+        } else {
+          api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
+        }
+      }
       void addControl(CustomControl control, DartRequestKey key) {
         if (controls.containsKey(control.id)) {
           api.completeRequest(key: key, result: RequestResult.err('id ${control.id} is already in use'));
@@ -195,14 +206,8 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           },
 
-          getAccelerometer: (key) {
-            final res = SensorManager.accelerometer.value;
-            if (res != null) {
-              api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list([ SimpleValue.number(res.$1), SimpleValue.number(res.$2), SimpleValue.number(res.$3) ])));
-            } else {
-              api.completeRequest(key: key, result: missingSensorError);
-            }
-          },
+          getAccelerometer: (key) => sendSensorVec(SensorManager.accelerometer.value, key),
+          getLinearAccelerometer: (key) => sendSensorVec(SensorManager.linearAccelerometer.value, key),
         );
       }
     }

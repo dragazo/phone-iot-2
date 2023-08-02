@@ -304,6 +304,9 @@ impl support::IntoDart for DartCommand {
             Self::GetAccelerometer { key } => {
                 vec![22.into_dart(), key.into_into_dart().into_dart()]
             }
+            Self::GetLinearAccelerometer { key } => {
+                vec![23.into_dart(), key.into_into_dart().into_dart()]
+            }
         }
         .into_dart()
     }

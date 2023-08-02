@@ -305,6 +305,7 @@ pub enum DartCommand {
     IsPressed { key: DartRequestKey, id: String },
 
     GetAccelerometer { key: DartRequestKey },
+    GetLinearAccelerometer { key: DartRequestKey },
 }
 
 pub enum SimpleValue {
@@ -897,6 +898,15 @@ pub fn initialize(utc_offset_in_seconds: i32) {
 
                             let key = DartRequestKey::new(key);
                             send_dart_command(DartCommand::GetAccelerometer { key });
+                            RequestStatus::Handled
+                        }
+                        "getLinearAcceleration" => {
+                            if args.len() != 1 || !is_local_id(&args[0].1) {
+                                return RequestStatus::UseDefault { key, request };
+                            }
+
+                            let key = DartRequestKey::new(key);
+                            send_dart_command(DartCommand::GetLinearAccelerometer { key });
                             RequestStatus::Handled
                         }
                         _ => RequestStatus::UseDefault { key, request },

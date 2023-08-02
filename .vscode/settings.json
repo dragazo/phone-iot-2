@@ -6,7 +6,8 @@
         "netsblox",
         "Pressable",
         "Rootable",
-        "Touchpad"
+        "Touchpad",
+        "vals"
     ],
     "files.associations": {
         "array": "cpp",
