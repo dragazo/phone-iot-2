@@ -540,456 +540,367 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                     };
                 }
                 match &request {
-                    Request::Rpc { service, rpc, args } if service == "PhoneIoT" => match rpc.as_str() {
-                        "getSensors" => {
-                            if args.len() != 0 {
-                                return RequestStatus::UseDefault { key, request };
-                            }
-                            key.complete(Ok(Intermediate::Json(json!([
-                                "gravity", "gyroscope", "orientation", "accelerometer", "magneticField", "linearAcceleration", "lightLevel",
-                                "microphoneLevel", "proximity", "stepCount", "location", "pressure", "temperature", "humidity",
-                            ]))));
-                            RequestStatus::Handled
+                    Request::Rpc { service, rpc, args } if service == "PhoneIoT" => {
+                        macro_rules! simple_request {
+                            ($cmd:ident) => {{
+                                if args.len() != 1 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
+                                send_dart_command(DartCommand::$cmd { key: DartRequestKey::new(key) });
+                                RequestStatus::Handled
+                            }};
                         }
-                        "getColor" => {
-                            if args.len() != 4 {
-                                return RequestStatus::UseDefault { key, request };
+                        match rpc.as_str() {
+                            "getSensors" => {
+                                if args.len() != 0 {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
+                                key.complete(Ok(Intermediate::Json(json!([
+                                    "gravity", "gyroscope", "orientation", "accelerometer", "magneticField", "linearAcceleration", "lightLevel",
+                                    "microphoneLevel", "proximity", "stepCount", "location", "pressure", "temperature", "humidity",
+                                ]))));
+                                RequestStatus::Handled
                             }
+                            "getColor" => {
+                                if args.len() != 4 {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let r = parse!(red := args[0].1 => f64) as u8;
-                            let g = parse!(green := args[1].1 => f64) as u8;
-                            let b = parse!(blue := args[2].1 => f64) as u8;
-                            let a = parse!(alpha := args[3].1 => f64) as u8;
+                                let r = parse!(red := args[0].1 => f64) as u8;
+                                let g = parse!(green := args[1].1 => f64) as u8;
+                                let b = parse!(blue := args[2].1 => f64) as u8;
+                                let a = parse!(alpha := args[3].1 => f64) as u8;
 
-                            let encoded = ((a as i32) << 24) | ((r as i32) << 16) | ((g as i32) << 8) | b as i32;
-                            key.complete(Ok(Intermediate::Json(json!(encoded))));
-                            RequestStatus::Handled
-                        }
-                        "setCredentials" => {
-                            if args.len() != 2 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                let encoded = ((a as i32) << 24) | ((r as i32) << 16) | ((g as i32) << 8) | b as i32;
+                                key.complete(Ok(Intermediate::Json(json!(encoded))));
+                                RequestStatus::Handled
                             }
-                            key.complete(Ok(Intermediate::Json(json!("OK"))));
-                            RequestStatus::Handled
-                        }
-                        "authenticate" | "listenToGUI" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                            "setCredentials" => {
+                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
+                                key.complete(Ok(Intermediate::Json(json!("OK"))));
+                                RequestStatus::Handled
                             }
-                            key.complete(Ok(Intermediate::Json(json!("OK"))));
-                            RequestStatus::Handled
-                        }
-                        "clearControls" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                            "authenticate" | "listenToGUI" => {
+                                if args.len() != 1 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
+                                key.complete(Ok(Intermediate::Json(json!("OK"))));
+                                RequestStatus::Handled
                             }
+                            "clearControls" => {
+                                if args.len() != 1 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            CONTROL_COUNTER.store(0, MemOrder::Relaxed);
+                                CONTROL_COUNTER.store(0, MemOrder::Relaxed);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::ClearControls { key });
-                            RequestStatus::Handled
-                        }
-                        "removeControl" => {
-                            if args.len() != 2 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::ClearControls { key: DartRequestKey::new(key) });
+                                RequestStatus::Handled
                             }
+                            "removeControl" => {
+                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => String);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::RemoveControl { key, id });
-                            RequestStatus::Handled
-                        }
-                        "addButton" => {
-                            if args.len() != 7 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::RemoveControl { key: DartRequestKey::new(key), id });
+                                RequestStatus::Handled
                             }
+                            "addButton" => {
+                                if args.len() != 7 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let x = parse!(x := args[1].1 => f64);
-                            let y = parse!(y := args[2].1 => f64);
-                            let width = parse!(width := args[3].1 => f64);
-                            let height = parse!(height := args[4].1 => f64);
-                            let text = parse!(text := args[5].1 => String);
-                            let options = parse!(options := args[6].1 => { id, event, style, color, textColor, landscape, fontSize });
-                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
-                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
-                            let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
-                            let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(WHITE);
-                            let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
-                            let event = parse!(event := options.get("event") => Option<String>);
-                            let style = parse!(style := options.get("style") => Option<ButtonStyleInfo>).unwrap_or(ButtonStyleInfo::Rectangle);
+                                let x = parse!(x := args[1].1 => f64);
+                                let y = parse!(y := args[2].1 => f64);
+                                let width = parse!(width := args[3].1 => f64);
+                                let height = parse!(height := args[4].1 => f64);
+                                let text = parse!(text := args[5].1 => String);
+                                let options = parse!(options := args[6].1 => { id, event, style, color, textColor, landscape, fontSize });
+                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                                let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                                let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(WHITE);
+                                let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
+                                let event = parse!(event := options.get("event") => Option<String>);
+                                let style = parse!(style := options.get("style") => Option<ButtonStyleInfo>).unwrap_or(ButtonStyleInfo::Rectangle);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::AddButton { key, info: ButtonInfo {
-                                id, x, y, width, height, text, landscape, back_color, fore_color, font_size, event, style,
-                            }});
-                            RequestStatus::Handled
-                        }
-                        "addLabel" => {
-                            if args.len() != 5 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::AddButton { key: DartRequestKey::new(key), info: ButtonInfo {
+                                    id, x, y, width, height, text, landscape, back_color, fore_color, font_size, event, style,
+                                }});
+                                RequestStatus::Handled
                             }
+                            "addLabel" => {
+                                if args.len() != 5 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let x = parse!(x := args[1].1 => f64);
-                            let y = parse!(y := args[2].1 => f64);
-                            let text = parse!(text := args[3].1 => String);
-                            let options = parse!(options := args[4].1 => { id, textColor, align, fontSize, landscape });
-                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
-                            let color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
-                            let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
-                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
-                            let align = parse!(align := options.get("align") => Option<TextAlignInfo>).unwrap_or(TextAlignInfo::Left);
+                                let x = parse!(x := args[1].1 => f64);
+                                let y = parse!(y := args[2].1 => f64);
+                                let text = parse!(text := args[3].1 => String);
+                                let options = parse!(options := args[4].1 => { id, textColor, align, fontSize, landscape });
+                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
+                                let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
+                                let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                                let align = parse!(align := options.get("align") => Option<TextAlignInfo>).unwrap_or(TextAlignInfo::Left);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::AddLabel { key, info: LabelInfo {
-                                x, y, text, id, color, font_size, landscape, align,
-                            }});
-                            RequestStatus::Handled
-                        }
-                        "addTextField" => {
-                            if args.len() != 6 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::AddLabel { key: DartRequestKey::new(key), info: LabelInfo {
+                                    x, y, text, id, color, font_size, landscape, align,
+                                }});
+                                RequestStatus::Handled
                             }
+                            "addTextField" => {
+                                if args.len() != 6 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let x = parse!(x := args[1].1 => f64);
-                            let y = parse!(y := args[2].1 => f64);
-                            let width = parse!(width := args[3].1 => f64);
-                            let height = parse!(height := args[4].1 => f64);
-                            let options = parse!(options := args[5].1 => { id, event, text, color, textColor, readonly, fontSize, align, landscape });
-                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
-                            let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
-                            let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
-                            let text = parse!(text := options.get("text") => Option<String>).unwrap_or_default();
-                            let event = parse!(event := options.get("event") => Option<String>);
-                            let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
-                            let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
-                            let align = parse!(align := options.get("align") => Option<TextAlignInfo>).unwrap_or(TextAlignInfo::Left);
-                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                                let x = parse!(x := args[1].1 => f64);
+                                let y = parse!(y := args[2].1 => f64);
+                                let width = parse!(width := args[3].1 => f64);
+                                let height = parse!(height := args[4].1 => f64);
+                                let options = parse!(options := args[5].1 => { id, event, text, color, textColor, readonly, fontSize, align, landscape });
+                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                                let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
+                                let text = parse!(text := options.get("text") => Option<String>).unwrap_or_default();
+                                let event = parse!(event := options.get("event") => Option<String>);
+                                let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
+                                let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
+                                let align = parse!(align := options.get("align") => Option<TextAlignInfo>).unwrap_or(TextAlignInfo::Left);
+                                let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::AddTextField { key, info: TextFieldInfo {
-                                id, x, y, width, height, back_color, fore_color, text, event, font_size, landscape, readonly, align,
-                            }});
-                            RequestStatus::Handled
-                        }
-                        "addJoystick" => {
-                            if args.len() != 5 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::AddTextField { key: DartRequestKey::new(key), info: TextFieldInfo {
+                                    id, x, y, width, height, back_color, fore_color, text, event, font_size, landscape, readonly, align,
+                                }});
+                                RequestStatus::Handled
                             }
+                            "addJoystick" => {
+                                if args.len() != 5 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let x = parse!(x := args[1].1 => f64);
-                            let y = parse!(y := args[2].1 => f64);
-                            let width = parse!(width := args[3].1 => f64);
-                            let options = parse!(options := args[4].1 => { id, event, color, landscape });
-                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
-                            let event = parse!(event := options.get("event") => Option<String>);
-                            let color = parse!(event := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
-                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                                let x = parse!(x := args[1].1 => f64);
+                                let y = parse!(y := args[2].1 => f64);
+                                let width = parse!(width := args[3].1 => f64);
+                                let options = parse!(options := args[4].1 => { id, event, color, landscape });
+                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let event = parse!(event := options.get("event") => Option<String>);
+                                let color = parse!(event := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                                let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::AddJoystick { key, info: JoystickInfo {
-                                x, y, width, id, event, color, landscape,
-                            }});
-                            RequestStatus::Handled
-                        }
-                        "addTouchpad" => {
-                            if args.len() != 6 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::AddJoystick { key: DartRequestKey::new(key), info: JoystickInfo {
+                                    x, y, width, id, event, color, landscape,
+                                }});
+                                RequestStatus::Handled
                             }
+                            "addTouchpad" => {
+                                if args.len() != 6 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let x = parse!(x := args[1].1 => f64);
-                            let y = parse!(y := args[2].1 => f64);
-                            let width = parse!(width := args[3].1 => f64);
-                            let height = parse!(height := args[4].1 => f64);
-                            let options = parse!(options := args[5].1 => { id, event, color, style, landscape });
-                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
-                            let event = parse!(event := options.get("event") => Option<String>);
-                            let color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
-                            let style = parse!(style := options.get("style") => Option<TouchpadStyleInfo>).unwrap_or(TouchpadStyleInfo::Rectangle);
-                            let landscape = parse!(style := options.get("landscape") => Option<bool>).unwrap_or(false);
+                                let x = parse!(x := args[1].1 => f64);
+                                let y = parse!(y := args[2].1 => f64);
+                                let width = parse!(width := args[3].1 => f64);
+                                let height = parse!(height := args[4].1 => f64);
+                                let options = parse!(options := args[5].1 => { id, event, color, style, landscape });
+                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let event = parse!(event := options.get("event") => Option<String>);
+                                let color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                                let style = parse!(style := options.get("style") => Option<TouchpadStyleInfo>).unwrap_or(TouchpadStyleInfo::Rectangle);
+                                let landscape = parse!(style := options.get("landscape") => Option<bool>).unwrap_or(false);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::AddTouchpad { key, info: TouchpadInfo {
-                                x, y, width, height, id, event, color, style, landscape,
-                            }});
-                            RequestStatus::Handled
-                        }
-                        "addSlider" => {
-                            if args.len() != 5 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::AddTouchpad { key: DartRequestKey::new(key), info: TouchpadInfo {
+                                    x, y, width, height, id, event, color, style, landscape,
+                                }});
+                                RequestStatus::Handled
                             }
+                            "addSlider" => {
+                                if args.len() != 5 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let x = parse!(x := args[1].1 => f64);
-                            let y = parse!(y := args[2].1 => f64);
-                            let width = parse!(width := args[3].1 => f64);
-                            let options = parse!(options := args[4].1 => { id, event, color, value, style, landscape, readonly });
-                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
-                            let event = parse!(event := options.get("event") => Option<String>);
-                            let color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
-                            let value = parse!(value := options.get("value") => Option<f64>).unwrap_or(0.0);
-                            let style = parse!(style := options.get("style") => Option<SliderStyleInfo>).unwrap_or(SliderStyleInfo::Slider);
-                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
-                            let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
+                                let x = parse!(x := args[1].1 => f64);
+                                let y = parse!(y := args[2].1 => f64);
+                                let width = parse!(width := args[3].1 => f64);
+                                let options = parse!(options := args[4].1 => { id, event, color, value, style, landscape, readonly });
+                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let event = parse!(event := options.get("event") => Option<String>);
+                                let color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                                let value = parse!(value := options.get("value") => Option<f64>).unwrap_or(0.0);
+                                let style = parse!(style := options.get("style") => Option<SliderStyleInfo>).unwrap_or(SliderStyleInfo::Slider);
+                                let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                                let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::AddSlider { key, info: SliderInfo {
-                                x, y, width, id, event, color, value, style, landscape, readonly,
-                            }});
-                            RequestStatus::Handled
-                        }
-                        "addToggle" => {
-                            if args.len() != 5 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::AddSlider { key: DartRequestKey::new(key), info: SliderInfo {
+                                    x, y, width, id, event, color, value, style, landscape, readonly,
+                                }});
+                                RequestStatus::Handled
                             }
+                            "addToggle" => {
+                                if args.len() != 5 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let x = parse!(x := args[1].1 => f64);
-                            let y = parse!(y := args[2].1 => f64);
-                            let text = parse!(text := args[3].1 => String);
-                            let options = parse!(options := args[4].1 => { style, id, event, checked, color, textColor, fontSize, landscape, readonly });
-                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
-                            let style = parse!(style := options.get("style") => Option<ToggleStyleInfo>).unwrap_or(ToggleStyleInfo::Switch);
-                            let event = parse!(event := options.get("event") => Option<String>);
-                            let checked = parse!(checked := options.get("checked") => Option<bool>).unwrap_or(false);
-                            let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
-                            let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
-                            let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
-                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
-                            let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
+                                let x = parse!(x := args[1].1 => f64);
+                                let y = parse!(y := args[2].1 => f64);
+                                let text = parse!(text := args[3].1 => String);
+                                let options = parse!(options := args[4].1 => { style, id, event, checked, color, textColor, fontSize, landscape, readonly });
+                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let style = parse!(style := options.get("style") => Option<ToggleStyleInfo>).unwrap_or(ToggleStyleInfo::Switch);
+                                let event = parse!(event := options.get("event") => Option<String>);
+                                let checked = parse!(checked := options.get("checked") => Option<bool>).unwrap_or(false);
+                                let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                                let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
+                                let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
+                                let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                                let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::AddToggle { key, info: ToggleInfo {
-                                x, y, text, id, style, event, checked, fore_color, back_color, font_size, landscape, readonly,
-                            }});
-                            RequestStatus::Handled
-                        }
-                        "addImageDisplay" => {
-                            if args.len() != 6 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::AddToggle { key: DartRequestKey::new(key), info: ToggleInfo {
+                                    x, y, text, id, style, event, checked, fore_color, back_color, font_size, landscape, readonly,
+                                }});
+                                RequestStatus::Handled
                             }
+                            "addImageDisplay" => {
+                                if args.len() != 6 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let x = parse!(x := args[1].1 => f64);
-                            let y = parse!(y := args[2].1 => f64);
-                            let width = parse!(width := args[3].1 => f64);
-                            let height = parse!(height := args[4].1 => f64);
-                            let options = parse!(options := args[5].1 => { id, event, readonly, landscape, fit });
-                            let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
-                            let event = parse!(event := options.get("event") => Option<String>);
-                            let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(true);
-                            let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
-                            let fit = parse!(fit := options.get("fit") => Option<ImageFitInfo>).unwrap_or(ImageFitInfo::Fit);
+                                let x = parse!(x := args[1].1 => f64);
+                                let y = parse!(y := args[2].1 => f64);
+                                let width = parse!(width := args[3].1 => f64);
+                                let height = parse!(height := args[4].1 => f64);
+                                let options = parse!(options := args[5].1 => { id, event, readonly, landscape, fit });
+                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let event = parse!(event := options.get("event") => Option<String>);
+                                let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(true);
+                                let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                                let fit = parse!(fit := options.get("fit") => Option<ImageFitInfo>).unwrap_or(ImageFitInfo::Fit);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::AddImageDisplay { key, info: ImageDisplayInfo {
-                                id, x, y, width, height, event, readonly, landscape, fit,
-                            }});
-                            RequestStatus::Handled
-                        }
-                        "getText" => {
-                            if args.len() != 2 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::AddImageDisplay { key: DartRequestKey::new(key), info: ImageDisplayInfo {
+                                    id, x, y, width, height, event, readonly, landscape, fit,
+                                }});
+                                RequestStatus::Handled
                             }
+                            "getText" => {
+                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => String);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetText { key, id });
-                            RequestStatus::Handled
-                        }
-                        "setText" => {
-                            if args.len() != 3 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::GetText { key: DartRequestKey::new(key), id });
+                                RequestStatus::Handled
                             }
+                            "setText" => {
+                                if args.len() != 3 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
-                            let value = parse!(text := args[2].1 => String);
+                                let id = parse!(id := args[1].1 => String);
+                                let value = parse!(text := args[2].1 => String);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::SetText { key, id, value });
-                            RequestStatus::Handled
-                        }
-                        "isPressed" => {
-                            if args.len() != 2 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::SetText { key: DartRequestKey::new(key), id, value });
+                                RequestStatus::Handled
                             }
+                            "isPressed" => {
+                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => String);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::IsPressed { key, id });
-                            RequestStatus::Handled
-                        }
-                        "getPosition" => {
-                            if args.len() != 2 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::IsPressed { key: DartRequestKey::new(key), id });
+                                RequestStatus::Handled
                             }
+                            "getPosition" => {
+                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => String);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetPosition { key, id });
-                            RequestStatus::Handled
-                        }
-                        "getImage" => {
-                            if args.len() != 2 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::GetPosition { key: DartRequestKey::new(key), id });
+                                RequestStatus::Handled
                             }
+                            "getImage" => {
+                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => String);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetImage { key, id });
-                            RequestStatus::Handled
-                        }
-                        "setImage" => {
-                            if args.len() != 3 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::GetImage { key: DartRequestKey::new(key), id });
+                                RequestStatus::Handled
                             }
+                            "setImage" => {
+                                if args.len() != 3 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
-                            let value = parse!(img := args[2].1 => Image);
+                                let id = parse!(id := args[1].1 => String);
+                                let value = parse!(img := args[2].1 => Image);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::SetImage { key, id, value });
-                            RequestStatus::Handled
-                        }
-                        "getLevel" => {
-                            if args.len() != 2 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::SetImage { key: DartRequestKey::new(key), id, value });
+                                RequestStatus::Handled
                             }
+                            "getLevel" => {
+                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => String);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetLevel { key, id });
-                            RequestStatus::Handled
-                        }
-                        "setLevel" => {
-                            if args.len() != 3 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::GetLevel { key: DartRequestKey::new(key), id });
+                                RequestStatus::Handled
                             }
+                            "setLevel" => {
+                                if args.len() != 3 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
-                            let value = parse!(value := args[2].1 => f64);
+                                let id = parse!(id := args[1].1 => String);
+                                let value = parse!(value := args[2].1 => f64);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::SetLevel { key, id, value });
-                            RequestStatus::Handled
-                        }
-                        "getToggleState" => {
-                            if args.len() != 2 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::SetLevel { key: DartRequestKey::new(key), id, value });
+                                RequestStatus::Handled
                             }
+                            "getToggleState" => {
+                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => String);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetToggleState { key, id });
-                            RequestStatus::Handled
-                        }
-                        "setToggleState" => {
-                            if args.len() != 3 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::GetToggleState { key: DartRequestKey::new(key), id });
+                                RequestStatus::Handled
                             }
+                            "setToggleState" => {
+                                if args.len() != 3 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
 
-                            let id = parse!(id := args[1].1 => String);
-                            let value = parse!(state := args[2].1 => bool);
+                                let id = parse!(id := args[1].1 => String);
+                                let value = parse!(state := args[2].1 => bool);
 
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::SetToggleState { key, id, value });
-                            RequestStatus::Handled
-                        }
-                        "getAccelerometer" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
+                                send_dart_command(DartCommand::SetToggleState { key: DartRequestKey::new(key), id, value });
+                                RequestStatus::Handled
                             }
-
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetAccelerometer { key });
-                            RequestStatus::Handled
+                            "getAccelerometer" => simple_request!(GetAccelerometer),
+                            "getLinearAcceleration" => simple_request!(GetLinearAccelerometer),
+                            "getGyroscope" => simple_request!(GetGyroscope),
+                            "getMagneticField" => simple_request!(GetMagnetometer),
+                            "getGravity" => simple_request!(GetGravity),
+                            "getPressure" => simple_request!(GetPressure),
+                            "getRelativeHumidity" => simple_request!(GetRelativeHumidity),
+                            "getLightLevel" => simple_request!(GetLightLevel),
+                            "getTemperature" => simple_request!(GetTemperature),
+                            "getFacingDirection" => simple_request!(GetFacingDirection),
+                            _ => RequestStatus::UseDefault { key, request },
                         }
-                        "getLinearAcceleration" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
-                            }
-
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetLinearAccelerometer { key });
-                            RequestStatus::Handled
-                        }
-                        "getGyroscope" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
-                            }
-
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetGyroscope { key });
-                            RequestStatus::Handled
-                        }
-                        "getMagneticField" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
-                            }
-
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetMagnetometer { key });
-                            RequestStatus::Handled
-                        }
-                        "getGravity" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
-                            }
-
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetGravity { key });
-                            RequestStatus::Handled
-                        }
-                        "getPressure" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
-                            }
-
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetPressure { key });
-                            RequestStatus::Handled
-                        }
-                        "getRelativeHumidity" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
-                            }
-
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetRelativeHumidity { key });
-                            RequestStatus::Handled
-                        }
-                        "getLightLevel" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
-                            }
-
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetLightLevel { key });
-                            RequestStatus::Handled
-                        }
-                        "getTemperature" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
-                            }
-
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetTemperature { key });
-                            RequestStatus::Handled
-                        }
-                        "getFacingDirection" => {
-                            if args.len() != 1 || !is_local_id(&args[0].1) {
-                                return RequestStatus::UseDefault { key, request };
-                            }
-
-                            let key = DartRequestKey::new(key);
-                            send_dart_command(DartCommand::GetFacingDirection { key });
-                            RequestStatus::Handled
-                        }
-                        _ => RequestStatus::UseDefault { key, request },
                     }
                     _ => RequestStatus::UseDefault { key, request },
                 }
