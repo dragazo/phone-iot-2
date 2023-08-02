@@ -1,11 +1,12 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
-import 'package:phone_iot_2/sensors.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
+import 'dart:math';
 import 'dart:async';
+import 'dart:collection';
 import 'package:http/http.dart' as http;
+import 'package:get_storage/get_storage.dart';
 
+import 'sensors.dart';
 import 'canvas.dart';
 
 const msgUpdateInterval = Duration(milliseconds: 500);
@@ -17,7 +18,25 @@ const facingDirNames = [
   'left', 'vertical', 'up', 'right', 'upside down', 'down',
 ];
 
-void main() {
+const passwordLifetime = Duration(hours: 24);
+
+const String kvstoreDeviceID = 'device-id';
+
+late final GetStorage insecureStorage;
+
+String randomHexString(int length) {
+  final r = Random();
+  final res = StringBuffer();
+  const options = '0123456789abcdef';
+  for (int i = 0; i < length; ++i) {
+    res.writeCharCode(options.codeUnitAt(r.nextInt(options.length)));
+  }
+  return res.toString();
+}
+
+void main() async {
+  await GetStorage.init();
+  insecureStorage = GetStorage();
   runApp(const MyApp());
 }
 
@@ -61,6 +80,8 @@ class Message {
 class _MyHomePageState extends State<MyHomePage> {
   late String deviceID;
   late String devicePW;
+  late DateTime devicePWExpiry;
+
   Timer? timer;
 
   final List<Message> messages = [];
@@ -74,8 +95,15 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    deviceID = 'test id';
-    devicePW = 'test pass';
+    if (insecureStorage.hasData(kvstoreDeviceID)) {
+      deviceID = insecureStorage.read(kvstoreDeviceID);
+    } else {
+      deviceID = randomHexString(12);
+      insecureStorage.write(kvstoreDeviceID, deviceID);
+    }
+
+    devicePW = '00000000';
+    devicePWExpiry = DateTime.now().add(passwordLifetime);
 
     api.initialize(utcOffsetInSeconds: DateTime.now().timeZoneOffset.inSeconds);
 

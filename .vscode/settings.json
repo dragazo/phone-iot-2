@@ -3,6 +3,7 @@
         "ARGB",
         "Deque",
         "elementwise",
+        "kvstore",
         "LTWH",
         "netsblox",
         "Pressable",

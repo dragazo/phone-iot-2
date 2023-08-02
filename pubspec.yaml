@@ -41,6 +41,9 @@ dependencies:
   freezed: ^2.3.5
   http: ^1.1.0
 
+  # util stuff
+  get_storage: ^2.1.1
+
   # sensor stuff
   sensors_plus: ^3.0.2
   environment_sensors: ^0.3.0
