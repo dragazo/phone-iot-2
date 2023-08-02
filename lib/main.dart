@@ -208,6 +208,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
           getAccelerometer: (key) => sendSensorVec(SensorManager.accelerometer.value, key),
           getLinearAccelerometer: (key) => sendSensorVec(SensorManager.linearAccelerometer.value, key),
+          getGyroscope: (key) => sendSensorVec(SensorManager.gyroscope.value, key),
+          getMagnetometer: (key) => sendSensorVec(SensorManager.magnetometer.value, key),
         );
       }
     }

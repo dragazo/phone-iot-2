@@ -50,6 +50,8 @@ mixin _$DartCommand {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,6 +82,8 @@ mixin _$DartCommand {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -109,6 +113,8 @@ mixin _$DartCommand {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +147,9 @@ mixin _$DartCommand {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -170,6 +179,8 @@ mixin _$DartCommand {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -199,6 +210,8 @@ mixin _$DartCommand {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -319,6 +332,8 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return stdout(msg);
   }
@@ -352,6 +367,8 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return stdout?.call(msg);
   }
@@ -384,6 +401,8 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -422,6 +441,9 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return stdout(this);
   }
@@ -454,6 +476,8 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return stdout?.call(this);
   }
@@ -486,6 +510,8 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -602,6 +628,8 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return stderr(msg);
   }
@@ -635,6 +663,8 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return stderr?.call(msg);
   }
@@ -667,6 +697,8 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -705,6 +737,9 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return stderr(this);
   }
@@ -737,6 +772,8 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return stderr?.call(this);
   }
@@ -769,6 +806,8 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -886,6 +925,8 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return clearControls(key);
   }
@@ -919,6 +960,8 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return clearControls?.call(key);
   }
@@ -951,6 +994,8 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
@@ -989,6 +1034,9 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return clearControls(this);
   }
@@ -1021,6 +1069,8 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return clearControls?.call(this);
   }
@@ -1053,6 +1103,8 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
@@ -1178,6 +1230,8 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return removeControl(key, id);
   }
@@ -1211,6 +1265,8 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return removeControl?.call(key, id);
   }
@@ -1243,6 +1299,8 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (removeControl != null) {
@@ -1281,6 +1339,9 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return removeControl(this);
   }
@@ -1313,6 +1374,8 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return removeControl?.call(this);
   }
@@ -1345,6 +1408,8 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (removeControl != null) {
@@ -1471,6 +1536,8 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return addLabel(key, info);
   }
@@ -1504,6 +1571,8 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return addLabel?.call(key, info);
   }
@@ -1536,6 +1605,8 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
@@ -1574,6 +1645,9 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return addLabel(this);
   }
@@ -1606,6 +1680,8 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return addLabel?.call(this);
   }
@@ -1638,6 +1714,8 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
@@ -1764,6 +1842,8 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return addButton(key, info);
   }
@@ -1797,6 +1877,8 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return addButton?.call(key, info);
   }
@@ -1829,6 +1911,8 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addButton != null) {
@@ -1867,6 +1951,9 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return addButton(this);
   }
@@ -1899,6 +1986,8 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return addButton?.call(this);
   }
@@ -1931,6 +2020,8 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addButton != null) {
@@ -2058,6 +2149,8 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return addTextField(key, info);
   }
@@ -2091,6 +2184,8 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return addTextField?.call(key, info);
   }
@@ -2123,6 +2218,8 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addTextField != null) {
@@ -2161,6 +2258,9 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return addTextField(this);
   }
@@ -2193,6 +2293,8 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return addTextField?.call(this);
   }
@@ -2225,6 +2327,8 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addTextField != null) {
@@ -2351,6 +2455,8 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return addJoystick(key, info);
   }
@@ -2384,6 +2490,8 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return addJoystick?.call(key, info);
   }
@@ -2416,6 +2524,8 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addJoystick != null) {
@@ -2454,6 +2564,9 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return addJoystick(this);
   }
@@ -2486,6 +2599,8 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return addJoystick?.call(this);
   }
@@ -2518,6 +2633,8 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addJoystick != null) {
@@ -2644,6 +2761,8 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return addTouchpad(key, info);
   }
@@ -2677,6 +2796,8 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return addTouchpad?.call(key, info);
   }
@@ -2709,6 +2830,8 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addTouchpad != null) {
@@ -2747,6 +2870,9 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return addTouchpad(this);
   }
@@ -2779,6 +2905,8 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return addTouchpad?.call(this);
   }
@@ -2811,6 +2939,8 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addTouchpad != null) {
@@ -2937,6 +3067,8 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return addSlider(key, info);
   }
@@ -2970,6 +3102,8 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return addSlider?.call(key, info);
   }
@@ -3002,6 +3136,8 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addSlider != null) {
@@ -3040,6 +3176,9 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return addSlider(this);
   }
@@ -3072,6 +3211,8 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return addSlider?.call(this);
   }
@@ -3104,6 +3245,8 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addSlider != null) {
@@ -3230,6 +3373,8 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return addToggle(key, info);
   }
@@ -3263,6 +3408,8 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return addToggle?.call(key, info);
   }
@@ -3295,6 +3442,8 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addToggle != null) {
@@ -3333,6 +3482,9 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return addToggle(this);
   }
@@ -3365,6 +3517,8 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return addToggle?.call(this);
   }
@@ -3397,6 +3551,8 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addToggle != null) {
@@ -3525,6 +3681,8 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return addImageDisplay(key, info);
   }
@@ -3558,6 +3716,8 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return addImageDisplay?.call(key, info);
   }
@@ -3590,6 +3750,8 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addImageDisplay != null) {
@@ -3628,6 +3790,9 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return addImageDisplay(this);
   }
@@ -3660,6 +3825,8 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return addImageDisplay?.call(this);
   }
@@ -3692,6 +3859,8 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (addImageDisplay != null) {
@@ -3818,6 +3987,8 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return getText(key, id);
   }
@@ -3851,6 +4022,8 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return getText?.call(key, id);
   }
@@ -3883,6 +4056,8 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getText != null) {
@@ -3921,6 +4096,9 @@ class _$DartCommand_GetText implements DartCommand_GetText {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return getText(this);
   }
@@ -3953,6 +4131,8 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return getText?.call(this);
   }
@@ -3985,6 +4165,8 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getText != null) {
@@ -4120,6 +4302,8 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return setText(key, id, value);
   }
@@ -4153,6 +4337,8 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return setText?.call(key, id, value);
   }
@@ -4185,6 +4371,8 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (setText != null) {
@@ -4223,6 +4411,9 @@ class _$DartCommand_SetText implements DartCommand_SetText {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return setText(this);
   }
@@ -4255,6 +4446,8 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return setText?.call(this);
   }
@@ -4287,6 +4480,8 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (setText != null) {
@@ -4415,6 +4610,8 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return getLevel(key, id);
   }
@@ -4448,6 +4645,8 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return getLevel?.call(key, id);
   }
@@ -4480,6 +4679,8 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getLevel != null) {
@@ -4518,6 +4719,9 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return getLevel(this);
   }
@@ -4550,6 +4754,8 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return getLevel?.call(this);
   }
@@ -4582,6 +4788,8 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getLevel != null) {
@@ -4717,6 +4925,8 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return setLevel(key, id, value);
   }
@@ -4750,6 +4960,8 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return setLevel?.call(key, id, value);
   }
@@ -4782,6 +4994,8 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (setLevel != null) {
@@ -4820,6 +5034,9 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return setLevel(this);
   }
@@ -4852,6 +5069,8 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return setLevel?.call(this);
   }
@@ -4884,6 +5103,8 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (setLevel != null) {
@@ -5014,6 +5235,8 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return getToggleState(key, id);
   }
@@ -5047,6 +5270,8 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return getToggleState?.call(key, id);
   }
@@ -5079,6 +5304,8 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getToggleState != null) {
@@ -5117,6 +5344,9 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return getToggleState(this);
   }
@@ -5149,6 +5379,8 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return getToggleState?.call(this);
   }
@@ -5181,6 +5413,8 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getToggleState != null) {
@@ -5318,6 +5552,8 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return setToggleState(key, id, value);
   }
@@ -5351,6 +5587,8 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return setToggleState?.call(key, id, value);
   }
@@ -5383,6 +5621,8 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (setToggleState != null) {
@@ -5421,6 +5661,9 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return setToggleState(this);
   }
@@ -5453,6 +5696,8 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return setToggleState?.call(this);
   }
@@ -5485,6 +5730,8 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (setToggleState != null) {
@@ -5613,6 +5860,8 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return getImage(key, id);
   }
@@ -5646,6 +5895,8 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return getImage?.call(key, id);
   }
@@ -5678,6 +5929,8 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getImage != null) {
@@ -5716,6 +5969,9 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return getImage(this);
   }
@@ -5748,6 +6004,8 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return getImage?.call(this);
   }
@@ -5780,6 +6038,8 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getImage != null) {
@@ -5916,6 +6176,8 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return setImage(key, id, value);
   }
@@ -5949,6 +6211,8 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return setImage?.call(key, id, value);
   }
@@ -5981,6 +6245,8 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (setImage != null) {
@@ -6019,6 +6285,9 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return setImage(this);
   }
@@ -6051,6 +6320,8 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return setImage?.call(this);
   }
@@ -6083,6 +6354,8 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (setImage != null) {
@@ -6211,6 +6484,8 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return getPosition(key, id);
   }
@@ -6244,6 +6519,8 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return getPosition?.call(key, id);
   }
@@ -6276,6 +6553,8 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getPosition != null) {
@@ -6314,6 +6593,9 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return getPosition(this);
   }
@@ -6346,6 +6628,8 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return getPosition?.call(this);
   }
@@ -6378,6 +6662,8 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getPosition != null) {
@@ -6504,6 +6790,8 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return isPressed(key, id);
   }
@@ -6537,6 +6825,8 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return isPressed?.call(key, id);
   }
@@ -6569,6 +6859,8 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (isPressed != null) {
@@ -6607,6 +6899,9 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return isPressed(this);
   }
@@ -6639,6 +6934,8 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return isPressed?.call(this);
   }
@@ -6671,6 +6968,8 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (isPressed != null) {
@@ -6791,6 +7090,8 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return getAccelerometer(key);
   }
@@ -6824,6 +7125,8 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return getAccelerometer?.call(key);
   }
@@ -6856,6 +7159,8 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getAccelerometer != null) {
@@ -6894,6 +7199,9 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return getAccelerometer(this);
   }
@@ -6926,6 +7234,8 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return getAccelerometer?.call(this);
   }
@@ -6958,6 +7268,8 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getAccelerometer != null) {
@@ -7079,6 +7391,8 @@ class _$DartCommand_GetLinearAccelerometer
     required TResult Function(DartRequestKey key, String id) isPressed,
     required TResult Function(DartRequestKey key) getAccelerometer,
     required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
   }) {
     return getLinearAccelerometer(key);
   }
@@ -7112,6 +7426,8 @@ class _$DartCommand_GetLinearAccelerometer
     TResult? Function(DartRequestKey key, String id)? isPressed,
     TResult? Function(DartRequestKey key)? getAccelerometer,
     TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
   }) {
     return getLinearAccelerometer?.call(key);
   }
@@ -7144,6 +7460,8 @@ class _$DartCommand_GetLinearAccelerometer
     TResult Function(DartRequestKey key, String id)? isPressed,
     TResult Function(DartRequestKey key)? getAccelerometer,
     TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getLinearAccelerometer != null) {
@@ -7182,6 +7500,9 @@ class _$DartCommand_GetLinearAccelerometer
         getAccelerometer,
     required TResult Function(DartCommand_GetLinearAccelerometer value)
         getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
   }) {
     return getLinearAccelerometer(this);
   }
@@ -7214,6 +7535,8 @@ class _$DartCommand_GetLinearAccelerometer
     TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult? Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
   }) {
     return getLinearAccelerometer?.call(this);
   }
@@ -7246,6 +7569,8 @@ class _$DartCommand_GetLinearAccelerometer
     TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
     TResult Function(DartCommand_GetLinearAccelerometer value)?
         getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
     required TResult orElse(),
   }) {
     if (getLinearAccelerometer != null) {
@@ -7264,6 +7589,601 @@ abstract class DartCommand_GetLinearAccelerometer implements DartCommand {
   @JsonKey(ignore: true)
   _$$DartCommand_GetLinearAccelerometerCopyWith<
           _$DartCommand_GetLinearAccelerometer>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_GetGyroscopeCopyWith<$Res> {
+  factory _$$DartCommand_GetGyroscopeCopyWith(_$DartCommand_GetGyroscope value,
+          $Res Function(_$DartCommand_GetGyroscope) then) =
+      __$$DartCommand_GetGyroscopeCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key});
+}
+
+/// @nodoc
+class __$$DartCommand_GetGyroscopeCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetGyroscope>
+    implements _$$DartCommand_GetGyroscopeCopyWith<$Res> {
+  __$$DartCommand_GetGyroscopeCopyWithImpl(_$DartCommand_GetGyroscope _value,
+      $Res Function(_$DartCommand_GetGyroscope) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+  }) {
+    return _then(_$DartCommand_GetGyroscope(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
+  const _$DartCommand_GetGyroscope({required this.key});
+
+  @override
+  final DartRequestKey key;
+
+  @override
+  String toString() {
+    return 'DartCommand.getGyroscope(key: $key)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_GetGyroscope &&
+            (identical(other.key, key) || other.key == key));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_GetGyroscopeCopyWith<_$DartCommand_GetGyroscope>
+      get copyWith =>
+          __$$DartCommand_GetGyroscopeCopyWithImpl<_$DartCommand_GetGyroscope>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
+    required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
+    required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) getLevel,
+    required TResult Function(DartRequestKey key, String id, double value)
+        setLevel,
+    required TResult Function(DartRequestKey key, String id) getToggleState,
+    required TResult Function(DartRequestKey key, String id, bool value)
+        setToggleState,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key) getAccelerometer,
+    required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
+  }) {
+    return getGyroscope(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? getLevel,
+    TResult? Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult? Function(DartRequestKey key, String id)? getToggleState,
+    TResult? Function(DartRequestKey key, String id, bool value)?
+        setToggleState,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key)? getAccelerometer,
+    TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
+  }) {
+    return getGyroscope?.call(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? getLevel,
+    TResult Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult Function(DartRequestKey key, String id)? getToggleState,
+    TResult Function(DartRequestKey key, String id, bool value)? setToggleState,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key)? getAccelerometer,
+    TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
+    required TResult orElse(),
+  }) {
+    if (getGyroscope != null) {
+      return getGyroscope(key);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
+    required TResult Function(DartCommand_AddSlider value) addSlider,
+    required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_GetLevel value) getLevel,
+    required TResult Function(DartCommand_SetLevel value) setLevel,
+    required TResult Function(DartCommand_GetToggleState value) getToggleState,
+    required TResult Function(DartCommand_SetToggleState value) setToggleState,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetAccelerometer value)
+        getAccelerometer,
+    required TResult Function(DartCommand_GetLinearAccelerometer value)
+        getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
+  }) {
+    return getGyroscope(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult? Function(DartCommand_AddSlider value)? addSlider,
+    TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_GetLevel value)? getLevel,
+    TResult? Function(DartCommand_SetLevel value)? setLevel,
+    TResult? Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult? Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult? Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+  }) {
+    return getGyroscope?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult Function(DartCommand_AddSlider value)? addSlider,
+    TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_GetLevel value)? getLevel,
+    TResult Function(DartCommand_SetLevel value)? setLevel,
+    TResult Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    required TResult orElse(),
+  }) {
+    if (getGyroscope != null) {
+      return getGyroscope(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_GetGyroscope implements DartCommand {
+  const factory DartCommand_GetGyroscope({required final DartRequestKey key}) =
+      _$DartCommand_GetGyroscope;
+
+  DartRequestKey get key;
+  @JsonKey(ignore: true)
+  _$$DartCommand_GetGyroscopeCopyWith<_$DartCommand_GetGyroscope>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_GetMagnetometerCopyWith<$Res> {
+  factory _$$DartCommand_GetMagnetometerCopyWith(
+          _$DartCommand_GetMagnetometer value,
+          $Res Function(_$DartCommand_GetMagnetometer) then) =
+      __$$DartCommand_GetMagnetometerCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key});
+}
+
+/// @nodoc
+class __$$DartCommand_GetMagnetometerCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetMagnetometer>
+    implements _$$DartCommand_GetMagnetometerCopyWith<$Res> {
+  __$$DartCommand_GetMagnetometerCopyWithImpl(
+      _$DartCommand_GetMagnetometer _value,
+      $Res Function(_$DartCommand_GetMagnetometer) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+  }) {
+    return _then(_$DartCommand_GetMagnetometer(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
+  const _$DartCommand_GetMagnetometer({required this.key});
+
+  @override
+  final DartRequestKey key;
+
+  @override
+  String toString() {
+    return 'DartCommand.getMagnetometer(key: $key)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_GetMagnetometer &&
+            (identical(other.key, key) || other.key == key));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_GetMagnetometerCopyWith<_$DartCommand_GetMagnetometer>
+      get copyWith => __$$DartCommand_GetMagnetometerCopyWithImpl<
+          _$DartCommand_GetMagnetometer>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
+    required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
+    required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) getLevel,
+    required TResult Function(DartRequestKey key, String id, double value)
+        setLevel,
+    required TResult Function(DartRequestKey key, String id) getToggleState,
+    required TResult Function(DartRequestKey key, String id, bool value)
+        setToggleState,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key) getAccelerometer,
+    required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
+  }) {
+    return getMagnetometer(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? getLevel,
+    TResult? Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult? Function(DartRequestKey key, String id)? getToggleState,
+    TResult? Function(DartRequestKey key, String id, bool value)?
+        setToggleState,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key)? getAccelerometer,
+    TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
+  }) {
+    return getMagnetometer?.call(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? getLevel,
+    TResult Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult Function(DartRequestKey key, String id)? getToggleState,
+    TResult Function(DartRequestKey key, String id, bool value)? setToggleState,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key)? getAccelerometer,
+    TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
+    required TResult orElse(),
+  }) {
+    if (getMagnetometer != null) {
+      return getMagnetometer(key);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
+    required TResult Function(DartCommand_AddSlider value) addSlider,
+    required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_GetLevel value) getLevel,
+    required TResult Function(DartCommand_SetLevel value) setLevel,
+    required TResult Function(DartCommand_GetToggleState value) getToggleState,
+    required TResult Function(DartCommand_SetToggleState value) setToggleState,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetAccelerometer value)
+        getAccelerometer,
+    required TResult Function(DartCommand_GetLinearAccelerometer value)
+        getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
+  }) {
+    return getMagnetometer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult? Function(DartCommand_AddSlider value)? addSlider,
+    TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_GetLevel value)? getLevel,
+    TResult? Function(DartCommand_SetLevel value)? setLevel,
+    TResult? Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult? Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult? Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+  }) {
+    return getMagnetometer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult Function(DartCommand_AddSlider value)? addSlider,
+    TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_GetLevel value)? getLevel,
+    TResult Function(DartCommand_SetLevel value)? setLevel,
+    TResult Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    required TResult orElse(),
+  }) {
+    if (getMagnetometer != null) {
+      return getMagnetometer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_GetMagnetometer implements DartCommand {
+  const factory DartCommand_GetMagnetometer(
+      {required final DartRequestKey key}) = _$DartCommand_GetMagnetometer;
+
+  DartRequestKey get key;
+  @JsonKey(ignore: true)
+  _$$DartCommand_GetMagnetometerCopyWith<_$DartCommand_GetMagnetometer>
       get copyWith => throw _privateConstructorUsedError;
 }
 

@@ -182,6 +182,12 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.getLinearAccelerometer({
     required DartRequestKey key,
   }) = DartCommand_GetLinearAccelerometer;
+  const factory DartCommand.getGyroscope({
+    required DartRequestKey key,
+  }) = DartCommand_GetGyroscope;
+  const factory DartCommand.getMagnetometer({
+    required DartRequestKey key,
+  }) = DartCommand_GetMagnetometer;
 }
 
 class DartRequestKey {
