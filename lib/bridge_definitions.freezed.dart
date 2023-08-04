@@ -62,7 +62,9 @@ mixin _$DartCommand {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,7 +107,9 @@ mixin _$DartCommand {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -147,7 +151,9 @@ mixin _$DartCommand {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -198,7 +204,12 @@ mixin _$DartCommand {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -243,7 +254,10 @@ mixin _$DartCommand {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -288,7 +302,10 @@ mixin _$DartCommand {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -421,7 +438,9 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return stdout(msg);
   }
@@ -467,7 +486,9 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return stdout?.call(msg);
   }
@@ -512,7 +533,9 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -569,7 +592,12 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return stdout(this);
   }
@@ -617,7 +645,10 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return stdout?.call(this);
   }
@@ -665,7 +696,10 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (stdout != null) {
@@ -794,7 +828,9 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return stderr(msg);
   }
@@ -840,7 +876,9 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return stderr?.call(msg);
   }
@@ -885,7 +923,9 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -942,7 +982,12 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return stderr(this);
   }
@@ -990,7 +1035,10 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return stderr?.call(this);
   }
@@ -1038,7 +1086,10 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (stderr != null) {
@@ -1168,7 +1219,9 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return clearControls(key);
   }
@@ -1214,7 +1267,9 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return clearControls?.call(key);
   }
@@ -1259,7 +1314,9 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
@@ -1316,7 +1373,12 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return clearControls(this);
   }
@@ -1364,7 +1426,10 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return clearControls?.call(this);
   }
@@ -1412,7 +1477,10 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (clearControls != null) {
@@ -1550,7 +1618,9 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return removeControl(key, id);
   }
@@ -1596,7 +1666,9 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return removeControl?.call(key, id);
   }
@@ -1641,7 +1713,9 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (removeControl != null) {
@@ -1698,7 +1772,12 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return removeControl(this);
   }
@@ -1746,7 +1825,10 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return removeControl?.call(this);
   }
@@ -1794,7 +1876,10 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (removeControl != null) {
@@ -1933,7 +2018,9 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return addLabel(key, info);
   }
@@ -1979,7 +2066,9 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return addLabel?.call(key, info);
   }
@@ -2024,7 +2113,9 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
@@ -2081,7 +2172,12 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return addLabel(this);
   }
@@ -2129,7 +2225,10 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return addLabel?.call(this);
   }
@@ -2177,7 +2276,10 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addLabel != null) {
@@ -2316,7 +2418,9 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return addButton(key, info);
   }
@@ -2362,7 +2466,9 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return addButton?.call(key, info);
   }
@@ -2407,7 +2513,9 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addButton != null) {
@@ -2464,7 +2572,12 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return addButton(this);
   }
@@ -2512,7 +2625,10 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return addButton?.call(this);
   }
@@ -2560,7 +2676,10 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addButton != null) {
@@ -2700,7 +2819,9 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return addTextField(key, info);
   }
@@ -2746,7 +2867,9 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return addTextField?.call(key, info);
   }
@@ -2791,7 +2914,9 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addTextField != null) {
@@ -2848,7 +2973,12 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return addTextField(this);
   }
@@ -2896,7 +3026,10 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return addTextField?.call(this);
   }
@@ -2944,7 +3077,10 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addTextField != null) {
@@ -3083,7 +3219,9 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return addJoystick(key, info);
   }
@@ -3129,7 +3267,9 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return addJoystick?.call(key, info);
   }
@@ -3174,7 +3314,9 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addJoystick != null) {
@@ -3231,7 +3373,12 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return addJoystick(this);
   }
@@ -3279,7 +3426,10 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return addJoystick?.call(this);
   }
@@ -3327,7 +3477,10 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addJoystick != null) {
@@ -3466,7 +3619,9 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return addTouchpad(key, info);
   }
@@ -3512,7 +3667,9 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return addTouchpad?.call(key, info);
   }
@@ -3557,7 +3714,9 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addTouchpad != null) {
@@ -3614,7 +3773,12 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return addTouchpad(this);
   }
@@ -3662,7 +3826,10 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return addTouchpad?.call(this);
   }
@@ -3710,7 +3877,10 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addTouchpad != null) {
@@ -3849,7 +4019,9 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return addSlider(key, info);
   }
@@ -3895,7 +4067,9 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return addSlider?.call(key, info);
   }
@@ -3940,7 +4114,9 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addSlider != null) {
@@ -3997,7 +4173,12 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return addSlider(this);
   }
@@ -4045,7 +4226,10 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return addSlider?.call(this);
   }
@@ -4093,7 +4277,10 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addSlider != null) {
@@ -4232,7 +4419,9 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return addToggle(key, info);
   }
@@ -4278,7 +4467,9 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return addToggle?.call(key, info);
   }
@@ -4323,7 +4514,9 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addToggle != null) {
@@ -4380,7 +4573,12 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return addToggle(this);
   }
@@ -4428,7 +4626,10 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return addToggle?.call(this);
   }
@@ -4476,7 +4677,10 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addToggle != null) {
@@ -4617,7 +4821,9 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return addImageDisplay(key, info);
   }
@@ -4663,7 +4869,9 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return addImageDisplay?.call(key, info);
   }
@@ -4708,7 +4916,9 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addImageDisplay != null) {
@@ -4765,7 +4975,12 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return addImageDisplay(this);
   }
@@ -4813,7 +5028,10 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return addImageDisplay?.call(this);
   }
@@ -4861,7 +5079,10 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (addImageDisplay != null) {
@@ -5000,7 +5221,9 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getText(key, id);
   }
@@ -5046,7 +5269,9 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getText?.call(key, id);
   }
@@ -5091,7 +5316,9 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getText != null) {
@@ -5148,7 +5375,12 @@ class _$DartCommand_GetText implements DartCommand_GetText {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getText(this);
   }
@@ -5196,7 +5428,10 @@ class _$DartCommand_GetText implements DartCommand_GetText {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getText?.call(this);
   }
@@ -5244,7 +5479,10 @@ class _$DartCommand_GetText implements DartCommand_GetText {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getText != null) {
@@ -5392,7 +5630,9 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return setText(key, id, value);
   }
@@ -5438,7 +5678,9 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return setText?.call(key, id, value);
   }
@@ -5483,7 +5725,9 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (setText != null) {
@@ -5540,7 +5784,12 @@ class _$DartCommand_SetText implements DartCommand_SetText {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return setText(this);
   }
@@ -5588,7 +5837,10 @@ class _$DartCommand_SetText implements DartCommand_SetText {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return setText?.call(this);
   }
@@ -5636,7 +5888,10 @@ class _$DartCommand_SetText implements DartCommand_SetText {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (setText != null) {
@@ -5777,7 +6032,9 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getLevel(key, id);
   }
@@ -5823,7 +6080,9 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getLevel?.call(key, id);
   }
@@ -5868,7 +6127,9 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getLevel != null) {
@@ -5925,7 +6186,12 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getLevel(this);
   }
@@ -5973,7 +6239,10 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getLevel?.call(this);
   }
@@ -6021,7 +6290,10 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getLevel != null) {
@@ -6169,7 +6441,9 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return setLevel(key, id, value);
   }
@@ -6215,7 +6489,9 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return setLevel?.call(key, id, value);
   }
@@ -6260,7 +6536,9 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (setLevel != null) {
@@ -6317,7 +6595,12 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return setLevel(this);
   }
@@ -6365,7 +6648,10 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return setLevel?.call(this);
   }
@@ -6413,7 +6699,10 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (setLevel != null) {
@@ -6556,7 +6845,9 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getToggleState(key, id);
   }
@@ -6602,7 +6893,9 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getToggleState?.call(key, id);
   }
@@ -6647,7 +6940,9 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getToggleState != null) {
@@ -6704,7 +6999,12 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getToggleState(this);
   }
@@ -6752,7 +7052,10 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getToggleState?.call(this);
   }
@@ -6800,7 +7103,10 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getToggleState != null) {
@@ -6950,7 +7256,9 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return setToggleState(key, id, value);
   }
@@ -6996,7 +7304,9 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return setToggleState?.call(key, id, value);
   }
@@ -7041,7 +7351,9 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (setToggleState != null) {
@@ -7098,7 +7410,12 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return setToggleState(this);
   }
@@ -7146,7 +7463,10 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return setToggleState?.call(this);
   }
@@ -7194,7 +7514,10 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (setToggleState != null) {
@@ -7335,7 +7658,9 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getImage(key, id);
   }
@@ -7381,7 +7706,9 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getImage?.call(key, id);
   }
@@ -7426,7 +7753,9 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getImage != null) {
@@ -7483,7 +7812,12 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getImage(this);
   }
@@ -7531,7 +7865,10 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getImage?.call(this);
   }
@@ -7579,7 +7916,10 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getImage != null) {
@@ -7728,7 +8068,9 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return setImage(key, id, value);
   }
@@ -7774,7 +8116,9 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return setImage?.call(key, id, value);
   }
@@ -7819,7 +8163,9 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (setImage != null) {
@@ -7876,7 +8222,12 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return setImage(this);
   }
@@ -7924,7 +8275,10 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return setImage?.call(this);
   }
@@ -7972,7 +8326,10 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (setImage != null) {
@@ -8113,7 +8470,9 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getPosition(key, id);
   }
@@ -8159,7 +8518,9 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getPosition?.call(key, id);
   }
@@ -8204,7 +8565,9 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getPosition != null) {
@@ -8261,7 +8624,12 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getPosition(this);
   }
@@ -8309,7 +8677,10 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getPosition?.call(this);
   }
@@ -8357,7 +8728,10 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getPosition != null) {
@@ -8496,7 +8870,9 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return isPressed(key, id);
   }
@@ -8542,7 +8918,9 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return isPressed?.call(key, id);
   }
@@ -8587,7 +8965,9 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (isPressed != null) {
@@ -8644,7 +9024,12 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return isPressed(this);
   }
@@ -8692,7 +9077,10 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return isPressed?.call(this);
   }
@@ -8740,7 +9128,10 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (isPressed != null) {
@@ -8873,7 +9264,9 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getAccelerometer(key);
   }
@@ -8919,7 +9312,9 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getAccelerometer?.call(key);
   }
@@ -8964,7 +9359,9 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getAccelerometer != null) {
@@ -9021,7 +9418,12 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getAccelerometer(this);
   }
@@ -9069,7 +9471,10 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getAccelerometer?.call(this);
   }
@@ -9117,7 +9522,10 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getAccelerometer != null) {
@@ -9251,7 +9659,9 @@ class _$DartCommand_GetLinearAccelerometer
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getLinearAccelerometer(key);
   }
@@ -9297,7 +9707,9 @@ class _$DartCommand_GetLinearAccelerometer
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getLinearAccelerometer?.call(key);
   }
@@ -9342,7 +9754,9 @@ class _$DartCommand_GetLinearAccelerometer
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getLinearAccelerometer != null) {
@@ -9399,7 +9813,12 @@ class _$DartCommand_GetLinearAccelerometer
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getLinearAccelerometer(this);
   }
@@ -9447,7 +9866,10 @@ class _$DartCommand_GetLinearAccelerometer
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getLinearAccelerometer?.call(this);
   }
@@ -9495,7 +9917,10 @@ class _$DartCommand_GetLinearAccelerometer
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getLinearAccelerometer != null) {
@@ -9627,7 +10052,9 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getGyroscope(key);
   }
@@ -9673,7 +10100,9 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getGyroscope?.call(key);
   }
@@ -9718,7 +10147,9 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getGyroscope != null) {
@@ -9775,7 +10206,12 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getGyroscope(this);
   }
@@ -9823,7 +10259,10 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getGyroscope?.call(this);
   }
@@ -9871,7 +10310,10 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getGyroscope != null) {
@@ -10002,7 +10444,9 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getMagnetometer(key);
   }
@@ -10048,7 +10492,9 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getMagnetometer?.call(key);
   }
@@ -10093,7 +10539,9 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getMagnetometer != null) {
@@ -10150,7 +10598,12 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getMagnetometer(this);
   }
@@ -10198,7 +10651,10 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getMagnetometer?.call(this);
   }
@@ -10246,7 +10702,10 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getMagnetometer != null) {
@@ -10375,7 +10834,9 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getGravity(key);
   }
@@ -10421,7 +10882,9 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getGravity?.call(key);
   }
@@ -10466,7 +10929,9 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getGravity != null) {
@@ -10523,7 +10988,12 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getGravity(this);
   }
@@ -10571,7 +11041,10 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getGravity?.call(this);
   }
@@ -10619,7 +11092,10 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getGravity != null) {
@@ -10748,7 +11224,9 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getPressure(key);
   }
@@ -10794,7 +11272,9 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getPressure?.call(key);
   }
@@ -10839,7 +11319,9 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getPressure != null) {
@@ -10896,7 +11378,12 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getPressure(this);
   }
@@ -10944,7 +11431,10 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getPressure?.call(this);
   }
@@ -10992,7 +11482,10 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getPressure != null) {
@@ -11124,7 +11617,9 @@ class _$DartCommand_GetRelativeHumidity
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getRelativeHumidity(key);
   }
@@ -11170,7 +11665,9 @@ class _$DartCommand_GetRelativeHumidity
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getRelativeHumidity?.call(key);
   }
@@ -11215,7 +11712,9 @@ class _$DartCommand_GetRelativeHumidity
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getRelativeHumidity != null) {
@@ -11272,7 +11771,12 @@ class _$DartCommand_GetRelativeHumidity
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getRelativeHumidity(this);
   }
@@ -11320,7 +11824,10 @@ class _$DartCommand_GetRelativeHumidity
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getRelativeHumidity?.call(this);
   }
@@ -11368,7 +11875,10 @@ class _$DartCommand_GetRelativeHumidity
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getRelativeHumidity != null) {
@@ -11498,7 +12008,9 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getLightLevel(key);
   }
@@ -11544,7 +12056,9 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getLightLevel?.call(key);
   }
@@ -11589,7 +12103,9 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getLightLevel != null) {
@@ -11646,7 +12162,12 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getLightLevel(this);
   }
@@ -11694,7 +12215,10 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getLightLevel?.call(this);
   }
@@ -11742,7 +12266,10 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getLightLevel != null) {
@@ -11873,7 +12400,9 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getTemperature(key);
   }
@@ -11919,7 +12448,9 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getTemperature?.call(key);
   }
@@ -11964,7 +12495,9 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getTemperature != null) {
@@ -12021,7 +12554,12 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getTemperature(this);
   }
@@ -12069,7 +12607,10 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getTemperature?.call(this);
   }
@@ -12117,7 +12658,10 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getTemperature != null) {
@@ -12249,7 +12793,9 @@ class _$DartCommand_GetFacingDirection
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getFacingDirection(key);
   }
@@ -12295,7 +12841,9 @@ class _$DartCommand_GetFacingDirection
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getFacingDirection?.call(key);
   }
@@ -12340,7 +12888,9 @@ class _$DartCommand_GetFacingDirection
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getFacingDirection != null) {
@@ -12397,7 +12947,12 @@ class _$DartCommand_GetFacingDirection
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getFacingDirection(this);
   }
@@ -12445,7 +13000,10 @@ class _$DartCommand_GetFacingDirection
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getFacingDirection?.call(this);
   }
@@ -12493,7 +13051,10 @@ class _$DartCommand_GetFacingDirection
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getFacingDirection != null) {
@@ -12624,7 +13185,9 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getOrientation(key);
   }
@@ -12670,7 +13233,9 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getOrientation?.call(key);
   }
@@ -12715,7 +13280,9 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getOrientation != null) {
@@ -12772,7 +13339,12 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getOrientation(this);
   }
@@ -12820,7 +13392,10 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getOrientation?.call(this);
   }
@@ -12868,7 +13443,10 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getOrientation != null) {
@@ -12999,7 +13577,9 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getCompassHeading(key);
   }
@@ -13045,7 +13625,9 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getCompassHeading?.call(key);
   }
@@ -13090,7 +13672,9 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getCompassHeading != null) {
@@ -13147,7 +13731,12 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getCompassHeading(this);
   }
@@ -13195,7 +13784,10 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getCompassHeading?.call(this);
   }
@@ -13243,7 +13835,10 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getCompassHeading != null) {
@@ -13375,7 +13970,9 @@ class _$DartCommand_GetCompassDirection
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getCompassDirection(key);
   }
@@ -13421,7 +14018,9 @@ class _$DartCommand_GetCompassDirection
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getCompassDirection?.call(key);
   }
@@ -13466,7 +14065,9 @@ class _$DartCommand_GetCompassDirection
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getCompassDirection != null) {
@@ -13523,7 +14124,12 @@ class _$DartCommand_GetCompassDirection
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getCompassDirection(this);
   }
@@ -13571,7 +14177,10 @@ class _$DartCommand_GetCompassDirection
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getCompassDirection?.call(this);
   }
@@ -13619,7 +14228,10 @@ class _$DartCommand_GetCompassDirection
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getCompassDirection != null) {
@@ -13753,7 +14365,9 @@ class _$DartCommand_GetCompassCardinalDirection
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
     return getCompassCardinalDirection(key);
   }
@@ -13799,7 +14413,9 @@ class _$DartCommand_GetCompassCardinalDirection
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
     return getCompassCardinalDirection?.call(key);
   }
@@ -13844,7 +14460,9 @@ class _$DartCommand_GetCompassCardinalDirection
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getCompassCardinalDirection != null) {
@@ -13901,7 +14519,12 @@ class _$DartCommand_GetCompassCardinalDirection
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
     return getCompassCardinalDirection(this);
   }
@@ -13949,7 +14572,10 @@ class _$DartCommand_GetCompassCardinalDirection
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
     return getCompassCardinalDirection?.call(this);
   }
@@ -13997,7 +14623,10 @@ class _$DartCommand_GetCompassCardinalDirection
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
     if (getCompassCardinalDirection != null) {
@@ -14020,20 +14649,22 @@ abstract class DartCommand_GetCompassCardinalDirection implements DartCommand {
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetLocationCopyWith<$Res> {
-  factory _$$DartCommand_GetLocationCopyWith(_$DartCommand_GetLocation value,
-          $Res Function(_$DartCommand_GetLocation) then) =
-      __$$DartCommand_GetLocationCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetLocationLatLongCopyWith<$Res> {
+  factory _$$DartCommand_GetLocationLatLongCopyWith(
+          _$DartCommand_GetLocationLatLong value,
+          $Res Function(_$DartCommand_GetLocationLatLong) then) =
+      __$$DartCommand_GetLocationLatLongCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetLocationCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLocation>
-    implements _$$DartCommand_GetLocationCopyWith<$Res> {
-  __$$DartCommand_GetLocationCopyWithImpl(_$DartCommand_GetLocation _value,
-      $Res Function(_$DartCommand_GetLocation) _then)
+class __$$DartCommand_GetLocationLatLongCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLocationLatLong>
+    implements _$$DartCommand_GetLocationLatLongCopyWith<$Res> {
+  __$$DartCommand_GetLocationLatLongCopyWithImpl(
+      _$DartCommand_GetLocationLatLong _value,
+      $Res Function(_$DartCommand_GetLocationLatLong) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -14041,7 +14672,7 @@ class __$$DartCommand_GetLocationCopyWithImpl<$Res>
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetLocation(
+    return _then(_$DartCommand_GetLocationLatLong(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -14052,22 +14683,23 @@ class __$$DartCommand_GetLocationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetLocation implements DartCommand_GetLocation {
-  const _$DartCommand_GetLocation({required this.key});
+class _$DartCommand_GetLocationLatLong
+    implements DartCommand_GetLocationLatLong {
+  const _$DartCommand_GetLocationLatLong({required this.key});
 
   @override
   final DartRequestKey key;
 
   @override
   String toString() {
-    return 'DartCommand.getLocation(key: $key)';
+    return 'DartCommand.getLocationLatLong(key: $key)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetLocation &&
+            other is _$DartCommand_GetLocationLatLong &&
             (identical(other.key, key) || other.key == key));
   }
 
@@ -14077,9 +14709,9 @@ class _$DartCommand_GetLocation implements DartCommand_GetLocation {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetLocationCopyWith<_$DartCommand_GetLocation> get copyWith =>
-      __$$DartCommand_GetLocationCopyWithImpl<_$DartCommand_GetLocation>(
-          this, _$identity);
+  _$$DartCommand_GetLocationLatLongCopyWith<_$DartCommand_GetLocationLatLong>
+      get copyWith => __$$DartCommand_GetLocationLatLongCopyWithImpl<
+          _$DartCommand_GetLocationLatLong>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -14128,9 +14760,11 @@ class _$DartCommand_GetLocation implements DartCommand_GetLocation {
     required TResult Function(DartRequestKey key) getCompassHeading,
     required TResult Function(DartRequestKey key) getCompassDirection,
     required TResult Function(DartRequestKey key) getCompassCardinalDirection,
-    required TResult Function(DartRequestKey key) getLocation,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
   }) {
-    return getLocation(key);
+    return getLocationLatLong(key);
   }
 
   @override
@@ -14174,9 +14808,11 @@ class _$DartCommand_GetLocation implements DartCommand_GetLocation {
     TResult? Function(DartRequestKey key)? getCompassHeading,
     TResult? Function(DartRequestKey key)? getCompassDirection,
     TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult? Function(DartRequestKey key)? getLocation,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
   }) {
-    return getLocation?.call(key);
+    return getLocationLatLong?.call(key);
   }
 
   @override
@@ -14219,11 +14855,13 @@ class _$DartCommand_GetLocation implements DartCommand_GetLocation {
     TResult Function(DartRequestKey key)? getCompassHeading,
     TResult Function(DartRequestKey key)? getCompassDirection,
     TResult Function(DartRequestKey key)? getCompassCardinalDirection,
-    TResult Function(DartRequestKey key)? getLocation,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
     required TResult orElse(),
   }) {
-    if (getLocation != null) {
-      return getLocation(key);
+    if (getLocationLatLong != null) {
+      return getLocationLatLong(key);
     }
     return orElse();
   }
@@ -14276,9 +14914,14 @@ class _$DartCommand_GetLocation implements DartCommand_GetLocation {
         getCompassDirection,
     required TResult Function(DartCommand_GetCompassCardinalDirection value)
         getCompassCardinalDirection,
-    required TResult Function(DartCommand_GetLocation value) getLocation,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
   }) {
-    return getLocation(this);
+    return getLocationLatLong(this);
   }
 
   @override
@@ -14324,9 +14967,12 @@ class _$DartCommand_GetLocation implements DartCommand_GetLocation {
         getCompassDirection,
     TResult? Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult? Function(DartCommand_GetLocation value)? getLocation,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
   }) {
-    return getLocation?.call(this);
+    return getLocationLatLong?.call(this);
   }
 
   @override
@@ -14372,24 +15018,813 @@ class _$DartCommand_GetLocation implements DartCommand_GetLocation {
         getCompassDirection,
     TResult Function(DartCommand_GetCompassCardinalDirection value)?
         getCompassCardinalDirection,
-    TResult Function(DartCommand_GetLocation value)? getLocation,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
     required TResult orElse(),
   }) {
-    if (getLocation != null) {
-      return getLocation(this);
+    if (getLocationLatLong != null) {
+      return getLocationLatLong(this);
     }
     return orElse();
   }
 }
 
-abstract class DartCommand_GetLocation implements DartCommand {
-  const factory DartCommand_GetLocation({required final DartRequestKey key}) =
-      _$DartCommand_GetLocation;
+abstract class DartCommand_GetLocationLatLong implements DartCommand {
+  const factory DartCommand_GetLocationLatLong(
+      {required final DartRequestKey key}) = _$DartCommand_GetLocationLatLong;
 
   DartRequestKey get key;
   @JsonKey(ignore: true)
-  _$$DartCommand_GetLocationCopyWith<_$DartCommand_GetLocation> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$DartCommand_GetLocationLatLongCopyWith<_$DartCommand_GetLocationLatLong>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_GetLocationHeadingCopyWith<$Res> {
+  factory _$$DartCommand_GetLocationHeadingCopyWith(
+          _$DartCommand_GetLocationHeading value,
+          $Res Function(_$DartCommand_GetLocationHeading) then) =
+      __$$DartCommand_GetLocationHeadingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key});
+}
+
+/// @nodoc
+class __$$DartCommand_GetLocationHeadingCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLocationHeading>
+    implements _$$DartCommand_GetLocationHeadingCopyWith<$Res> {
+  __$$DartCommand_GetLocationHeadingCopyWithImpl(
+      _$DartCommand_GetLocationHeading _value,
+      $Res Function(_$DartCommand_GetLocationHeading) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+  }) {
+    return _then(_$DartCommand_GetLocationHeading(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_GetLocationHeading
+    implements DartCommand_GetLocationHeading {
+  const _$DartCommand_GetLocationHeading({required this.key});
+
+  @override
+  final DartRequestKey key;
+
+  @override
+  String toString() {
+    return 'DartCommand.getLocationHeading(key: $key)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_GetLocationHeading &&
+            (identical(other.key, key) || other.key == key));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_GetLocationHeadingCopyWith<_$DartCommand_GetLocationHeading>
+      get copyWith => __$$DartCommand_GetLocationHeadingCopyWithImpl<
+          _$DartCommand_GetLocationHeading>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
+    required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
+    required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) getLevel,
+    required TResult Function(DartRequestKey key, String id, double value)
+        setLevel,
+    required TResult Function(DartRequestKey key, String id) getToggleState,
+    required TResult Function(DartRequestKey key, String id, bool value)
+        setToggleState,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key) getAccelerometer,
+    required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
+    required TResult Function(DartRequestKey key) getGravity,
+    required TResult Function(DartRequestKey key) getPressure,
+    required TResult Function(DartRequestKey key) getRelativeHumidity,
+    required TResult Function(DartRequestKey key) getLightLevel,
+    required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
+    required TResult Function(DartRequestKey key) getOrientation,
+    required TResult Function(DartRequestKey key) getCompassHeading,
+    required TResult Function(DartRequestKey key) getCompassDirection,
+    required TResult Function(DartRequestKey key) getCompassCardinalDirection,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
+  }) {
+    return getLocationHeading(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? getLevel,
+    TResult? Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult? Function(DartRequestKey key, String id)? getToggleState,
+    TResult? Function(DartRequestKey key, String id, bool value)?
+        setToggleState,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key)? getAccelerometer,
+    TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
+    TResult? Function(DartRequestKey key)? getGravity,
+    TResult? Function(DartRequestKey key)? getPressure,
+    TResult? Function(DartRequestKey key)? getRelativeHumidity,
+    TResult? Function(DartRequestKey key)? getLightLevel,
+    TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
+    TResult? Function(DartRequestKey key)? getOrientation,
+    TResult? Function(DartRequestKey key)? getCompassHeading,
+    TResult? Function(DartRequestKey key)? getCompassDirection,
+    TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
+  }) {
+    return getLocationHeading?.call(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? getLevel,
+    TResult Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult Function(DartRequestKey key, String id)? getToggleState,
+    TResult Function(DartRequestKey key, String id, bool value)? setToggleState,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key)? getAccelerometer,
+    TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
+    TResult Function(DartRequestKey key)? getGravity,
+    TResult Function(DartRequestKey key)? getPressure,
+    TResult Function(DartRequestKey key)? getRelativeHumidity,
+    TResult Function(DartRequestKey key)? getLightLevel,
+    TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
+    TResult Function(DartRequestKey key)? getOrientation,
+    TResult Function(DartRequestKey key)? getCompassHeading,
+    TResult Function(DartRequestKey key)? getCompassDirection,
+    TResult Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
+    required TResult orElse(),
+  }) {
+    if (getLocationHeading != null) {
+      return getLocationHeading(key);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
+    required TResult Function(DartCommand_AddSlider value) addSlider,
+    required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_GetLevel value) getLevel,
+    required TResult Function(DartCommand_SetLevel value) setLevel,
+    required TResult Function(DartCommand_GetToggleState value) getToggleState,
+    required TResult Function(DartCommand_SetToggleState value) setToggleState,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetAccelerometer value)
+        getAccelerometer,
+    required TResult Function(DartCommand_GetLinearAccelerometer value)
+        getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
+    required TResult Function(DartCommand_GetGravity value) getGravity,
+    required TResult Function(DartCommand_GetPressure value) getPressure,
+    required TResult Function(DartCommand_GetRelativeHumidity value)
+        getRelativeHumidity,
+    required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
+    required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
+    required TResult Function(DartCommand_GetOrientation value) getOrientation,
+    required TResult Function(DartCommand_GetCompassHeading value)
+        getCompassHeading,
+    required TResult Function(DartCommand_GetCompassDirection value)
+        getCompassDirection,
+    required TResult Function(DartCommand_GetCompassCardinalDirection value)
+        getCompassCardinalDirection,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
+  }) {
+    return getLocationHeading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult? Function(DartCommand_AddSlider value)? addSlider,
+    TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_GetLevel value)? getLevel,
+    TResult? Function(DartCommand_SetLevel value)? setLevel,
+    TResult? Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult? Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult? Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult? Function(DartCommand_GetGravity value)? getGravity,
+    TResult? Function(DartCommand_GetPressure value)? getPressure,
+    TResult? Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult? Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult? Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult? Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult? Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+  }) {
+    return getLocationHeading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult Function(DartCommand_AddSlider value)? addSlider,
+    TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_GetLevel value)? getLevel,
+    TResult Function(DartCommand_SetLevel value)? setLevel,
+    TResult Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult Function(DartCommand_GetGravity value)? getGravity,
+    TResult Function(DartCommand_GetPressure value)? getPressure,
+    TResult Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+    required TResult orElse(),
+  }) {
+    if (getLocationHeading != null) {
+      return getLocationHeading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_GetLocationHeading implements DartCommand {
+  const factory DartCommand_GetLocationHeading(
+      {required final DartRequestKey key}) = _$DartCommand_GetLocationHeading;
+
+  DartRequestKey get key;
+  @JsonKey(ignore: true)
+  _$$DartCommand_GetLocationHeadingCopyWith<_$DartCommand_GetLocationHeading>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_GetLocationAltitudeCopyWith<$Res> {
+  factory _$$DartCommand_GetLocationAltitudeCopyWith(
+          _$DartCommand_GetLocationAltitude value,
+          $Res Function(_$DartCommand_GetLocationAltitude) then) =
+      __$$DartCommand_GetLocationAltitudeCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key});
+}
+
+/// @nodoc
+class __$$DartCommand_GetLocationAltitudeCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLocationAltitude>
+    implements _$$DartCommand_GetLocationAltitudeCopyWith<$Res> {
+  __$$DartCommand_GetLocationAltitudeCopyWithImpl(
+      _$DartCommand_GetLocationAltitude _value,
+      $Res Function(_$DartCommand_GetLocationAltitude) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+  }) {
+    return _then(_$DartCommand_GetLocationAltitude(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_GetLocationAltitude
+    implements DartCommand_GetLocationAltitude {
+  const _$DartCommand_GetLocationAltitude({required this.key});
+
+  @override
+  final DartRequestKey key;
+
+  @override
+  String toString() {
+    return 'DartCommand.getLocationAltitude(key: $key)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_GetLocationAltitude &&
+            (identical(other.key, key) || other.key == key));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_GetLocationAltitudeCopyWith<_$DartCommand_GetLocationAltitude>
+      get copyWith => __$$DartCommand_GetLocationAltitudeCopyWithImpl<
+          _$DartCommand_GetLocationAltitude>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
+    required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
+    required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) getLevel,
+    required TResult Function(DartRequestKey key, String id, double value)
+        setLevel,
+    required TResult Function(DartRequestKey key, String id) getToggleState,
+    required TResult Function(DartRequestKey key, String id, bool value)
+        setToggleState,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key) getAccelerometer,
+    required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
+    required TResult Function(DartRequestKey key) getGravity,
+    required TResult Function(DartRequestKey key) getPressure,
+    required TResult Function(DartRequestKey key) getRelativeHumidity,
+    required TResult Function(DartRequestKey key) getLightLevel,
+    required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
+    required TResult Function(DartRequestKey key) getOrientation,
+    required TResult Function(DartRequestKey key) getCompassHeading,
+    required TResult Function(DartRequestKey key) getCompassDirection,
+    required TResult Function(DartRequestKey key) getCompassCardinalDirection,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
+  }) {
+    return getLocationAltitude(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? getLevel,
+    TResult? Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult? Function(DartRequestKey key, String id)? getToggleState,
+    TResult? Function(DartRequestKey key, String id, bool value)?
+        setToggleState,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key)? getAccelerometer,
+    TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
+    TResult? Function(DartRequestKey key)? getGravity,
+    TResult? Function(DartRequestKey key)? getPressure,
+    TResult? Function(DartRequestKey key)? getRelativeHumidity,
+    TResult? Function(DartRequestKey key)? getLightLevel,
+    TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
+    TResult? Function(DartRequestKey key)? getOrientation,
+    TResult? Function(DartRequestKey key)? getCompassHeading,
+    TResult? Function(DartRequestKey key)? getCompassDirection,
+    TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
+  }) {
+    return getLocationAltitude?.call(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? getLevel,
+    TResult Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult Function(DartRequestKey key, String id)? getToggleState,
+    TResult Function(DartRequestKey key, String id, bool value)? setToggleState,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key)? getAccelerometer,
+    TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
+    TResult Function(DartRequestKey key)? getGravity,
+    TResult Function(DartRequestKey key)? getPressure,
+    TResult Function(DartRequestKey key)? getRelativeHumidity,
+    TResult Function(DartRequestKey key)? getLightLevel,
+    TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
+    TResult Function(DartRequestKey key)? getOrientation,
+    TResult Function(DartRequestKey key)? getCompassHeading,
+    TResult Function(DartRequestKey key)? getCompassDirection,
+    TResult Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
+    required TResult orElse(),
+  }) {
+    if (getLocationAltitude != null) {
+      return getLocationAltitude(key);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
+    required TResult Function(DartCommand_AddSlider value) addSlider,
+    required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_GetLevel value) getLevel,
+    required TResult Function(DartCommand_SetLevel value) setLevel,
+    required TResult Function(DartCommand_GetToggleState value) getToggleState,
+    required TResult Function(DartCommand_SetToggleState value) setToggleState,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetAccelerometer value)
+        getAccelerometer,
+    required TResult Function(DartCommand_GetLinearAccelerometer value)
+        getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
+    required TResult Function(DartCommand_GetGravity value) getGravity,
+    required TResult Function(DartCommand_GetPressure value) getPressure,
+    required TResult Function(DartCommand_GetRelativeHumidity value)
+        getRelativeHumidity,
+    required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
+    required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
+    required TResult Function(DartCommand_GetOrientation value) getOrientation,
+    required TResult Function(DartCommand_GetCompassHeading value)
+        getCompassHeading,
+    required TResult Function(DartCommand_GetCompassDirection value)
+        getCompassDirection,
+    required TResult Function(DartCommand_GetCompassCardinalDirection value)
+        getCompassCardinalDirection,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
+  }) {
+    return getLocationAltitude(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult? Function(DartCommand_AddSlider value)? addSlider,
+    TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_GetLevel value)? getLevel,
+    TResult? Function(DartCommand_SetLevel value)? setLevel,
+    TResult? Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult? Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult? Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult? Function(DartCommand_GetGravity value)? getGravity,
+    TResult? Function(DartCommand_GetPressure value)? getPressure,
+    TResult? Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult? Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult? Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult? Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult? Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+  }) {
+    return getLocationAltitude?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult Function(DartCommand_AddSlider value)? addSlider,
+    TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_GetLevel value)? getLevel,
+    TResult Function(DartCommand_SetLevel value)? setLevel,
+    TResult Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult Function(DartCommand_GetGravity value)? getGravity,
+    TResult Function(DartCommand_GetPressure value)? getPressure,
+    TResult Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+    required TResult orElse(),
+  }) {
+    if (getLocationAltitude != null) {
+      return getLocationAltitude(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_GetLocationAltitude implements DartCommand {
+  const factory DartCommand_GetLocationAltitude(
+      {required final DartRequestKey key}) = _$DartCommand_GetLocationAltitude;
+
+  DartRequestKey get key;
+  @JsonKey(ignore: true)
+  _$$DartCommand_GetLocationAltitudeCopyWith<_$DartCommand_GetLocationAltitude>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -347,7 +347,15 @@ class NativeImpl implements Native {
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
       case 36:
-        return DartCommand_GetLocation(
+        return DartCommand_GetLocationLatLong(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
+      case 37:
+        return DartCommand_GetLocationHeading(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
+      case 38:
+        return DartCommand_GetLocationAltitude(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
       default:
