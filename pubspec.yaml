@@ -45,6 +45,7 @@ dependencies:
   get_storage: ^2.1.1
 
   # sensor stuff
+  geolocator: ^9.0.2
   motion_sensors: ^0.1.0
   environment_sensors: ^0.3.0
 

@@ -318,6 +318,7 @@ pub enum DartCommand {
     GetCompassHeading { key: DartRequestKey },
     GetCompassDirection { key: DartRequestKey },
     GetCompassCardinalDirection { key: DartRequestKey },
+    GetLocation { key: DartRequestKey },
 }
 
 pub enum SimpleValue {
@@ -907,6 +908,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                             "getCompassHeading" => simple_request!(GetCompassHeading),
                             "getCompassDirection" => simple_request!(GetCompassDirection),
                             "getCompassCardinalDirection" => simple_request!(GetCompassCardinalDirection),
+                            "getLocation" => simple_request!(GetLocation),
                             _ => RequestStatus::UseDefault { key, request },
                         }
                     }

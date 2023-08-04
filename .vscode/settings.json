@@ -3,6 +3,7 @@
         "ARGB",
         "Deque",
         "elementwise",
+        "Geolocator",
         "kvstore",
         "LTWH",
         "netsblox",

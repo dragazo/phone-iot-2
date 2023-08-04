@@ -218,6 +218,9 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.getCompassCardinalDirection({
     required DartRequestKey key,
   }) = DartCommand_GetCompassCardinalDirection;
+  const factory DartCommand.getLocation({
+    required DartRequestKey key,
+  }) = DartCommand_GetLocation;
 }
 
 class DartRequestKey {

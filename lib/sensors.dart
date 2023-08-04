@@ -1,5 +1,6 @@
 import 'package:environment_sensors/environment_sensors.dart';
 import 'package:motion_sensors/motion_sensors.dart';
+import 'package:geolocator/geolocator.dart';
 import 'dart:io' show Platform;
 import 'dart:async';
 import 'dart:math';
@@ -94,7 +95,7 @@ class RawSensor<E> extends Sensor {
 
 class CalcSensor extends Sensor {
   final List<Sensor> src;
-  final List<double> Function(List<List<double>>) f;
+  final List<double>? Function(List<List<double>>) f;
 
   CalcSensor({ required this.src, required this.f });
 
@@ -117,6 +118,7 @@ class SensorManager {
   static RawSensor<GyroscopeEvent> gyroscope = RawSensor();
   static RawSensor<MagnetometerEvent> magnetometer = RawSensor();
   static RawSensor<AbsoluteOrientationEvent> orientation = RawSensor();
+  static RawSensor<Position> gps = RawSensor();
   static RawSensor<double> pressure = RawSensor();
   static RawSensor<double> relativeHumidity = RawSensor();
   static RawSensor<double> lightLevel = RawSensor();
@@ -127,6 +129,13 @@ class SensorManager {
   static CalcSensor compassHeading = CalcSensor(src: [orientation], f: (x) => [x[0][0]]);
   static CalcSensor compassDirection = CalcSensor(src: [orientation], f: (x) => [closestClassify(x[0][0], compassDirectionClasses)]);
   static CalcSensor compassCardinalDirection = CalcSensor(src: [orientation], f: (x) => [closestClassify(x[0][0], compassCardinalDirectionClasses)]);
+  static CalcSensor locationLatLong = CalcSensor(src: [gps], f: (x) => [x[0][0], x[0][1]]);
+  static CalcSensor locationHeading = CalcSensor(src: [gps], f: (x) => x[0][2] != 0 ? [x[0][2]] : null);
+  static CalcSensor locationAltitude = CalcSensor(src: [gps], f: (x) => x[0][3] != 0 ? [x[0][3]] : null);
+
+  static Future<void> requestPermissions() async {
+    await Geolocator.requestPermission();
+  }
 
   static void start() {
     if (running) return;
@@ -139,6 +148,7 @@ class SensorManager {
     gyroscope.listener ??= motionSensors.gyroscope.listen((e) => gyroscope.value = [e.x * radToDeg, e.y * radToDeg, e.z * radToDeg]);
     magnetometer.listener ??= motionSensors.magnetometer.listen((e) => magnetometer.value = [e.x, e.y, e.z]);
     pressure.listener ??= envSensors.pressure.listen((e) => pressure.value = [e * pressureScale]);
+    gps.listener ??= Geolocator.getPositionStream().listen((e) => gps.value = [e.latitude, e.longitude, e.heading, e.altitude]);
     relativeHumidity.listener ??= envSensors.humidity.listen((e) => relativeHumidity.value = [e]);
     lightLevel.listener ??= envSensors.light.listen((e) => lightLevel.value = [e]);
     temperature.listener ??= envSensors.temperature.listen((e) => temperature.value = [e]);
@@ -153,6 +163,7 @@ class SensorManager {
     gyroscope.stop();
     magnetometer.stop();
     pressure.stop();
+    gps.stop();
     relativeHumidity.stop();
     lightLevel.stop();
     temperature.stop();
