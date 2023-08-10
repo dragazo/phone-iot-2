@@ -372,8 +372,8 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                 match &command {
                     Command::Print { style: _, value } => {
                         if let Some(value) = value {
-                            match value.to_string() {
-                                Ok(x) => send_dart_command(DartCommand::Stdout { msg: x.into_owned() }),
+                            match value.to_json() {
+                                Ok(x) => send_dart_command(DartCommand::Stdout { msg: x.to_string() }),
                                 Err(e) => send_dart_command(DartCommand::Stderr { msg: format!("print {e:?}") }),
                             }
                         }

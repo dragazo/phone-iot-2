@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
+import 'dart:io' show Platform;
 import 'dart:math';
 import 'dart:async';
 import 'dart:collection';
 import 'package:http/http.dart' as http;
 import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'sensors.dart';
 import 'canvas.dart';
@@ -43,7 +45,9 @@ String randomHexString(int length) {
 void main() async {
   await GetStorage.init();
   insecureStorage = GetStorage();
-  await SensorManager.requestPermissions();
+  if (Platform.isAndroid || Platform.isIOS) {
+    await SensorManager.requestPermissions();
+  }
   runApp(const MyApp());
 }
 
@@ -557,12 +561,13 @@ class _MyHomePageState extends State<MyHomePage> {
     switch (target.handleClick(pos, type)) {
       case ClickResult.none: ();
       case ClickResult.redraw: setState(() {});
-      case ClickResult.requestText:
+      case ClickResult.requestText: setState(() {
         inputTextTarget = target as TextLike;
         widget.textInput.text = inputTextTarget!.getText();
-        setState(() {});
-      case ClickResult.requestImage:
-        setState(() => messages.add(Message('requested image - NOT YET SUPPORTED', MessageType.stderr)));
+      });
+      case ClickResult.requestImage: ImagePicker().pickImage(source: ImageSource.gallery).then((img) {
+        if (img != null) img.readAsBytes().then(decodeImage).then((img) => setState(() => (target as ImageLike).setImage(img, UpdateSource.user)));
+      });
     }
   }
 }
