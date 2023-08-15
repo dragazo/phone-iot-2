@@ -245,6 +245,21 @@ pub struct ToggleInfo {
     pub readonly: bool,
 }
 #[derive(Clone, Debug)]
+pub struct RadioButtonInfo {
+    pub id: String,
+    pub x: f64,
+    pub y: f64,
+    pub text: String,
+    pub group: String,
+    pub event: Option<String>,
+    pub checked: bool,
+    pub fore_color: ColorInfo,
+    pub back_color: ColorInfo,
+    pub font_size: f64,
+    pub landscape: bool,
+    pub readonly: bool,
+}
+#[derive(Clone, Debug)]
 pub struct ImageDisplayInfo {
     pub id: String,
     pub x: f64,
@@ -291,6 +306,7 @@ pub enum DartCommand {
     AddTouchpad { key: DartRequestKey, info: TouchpadInfo },
     AddSlider { key: DartRequestKey, info: SliderInfo },
     AddToggle { key: DartRequestKey, info: ToggleInfo },
+    AddRadioButton { key: DartRequestKey, info: RadioButtonInfo },
     AddImageDisplay { key: DartRequestKey, info: ImageDisplayInfo },
 
     GetText { key: DartRequestKey, id: String },
@@ -768,6 +784,30 @@ pub fn initialize(utc_offset_in_seconds: i32) {
 
                                 send_dart_command(DartCommand::AddToggle { key: DartRequestKey::new(key), info: ToggleInfo {
                                     x, y, text, id, style, event, checked, fore_color, back_color, font_size, landscape, readonly,
+                                }});
+                                RequestStatus::Handled
+                            }
+                            "addRadioButton" => {
+                                if args.len() != 5 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
+
+                                let x = parse!(x := args[1].1 => f64);
+                                let y = parse!(y := args[2].1 => f64);
+                                let text = parse!(text := args[3].1 => String);
+                                let options = parse!(options := args[4].1 => { group, id, event, checked, color, textColor, fontSize, landscape, readonly });
+                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let group = parse!(id := options.get("group") => Option<String>).unwrap_or_default();
+                                let event = parse!(event := options.get("event") => Option<String>);
+                                let checked = parse!(checked := options.get("checked") => Option<bool>).unwrap_or(false);
+                                let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
+                                let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
+                                let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
+                                let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
+                                let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
+
+                                send_dart_command(DartCommand::AddRadioButton { key: DartRequestKey::new(key), info: RadioButtonInfo {
+                                    x, y, text, id, group, event, checked, fore_color, back_color, font_size, landscape, readonly,
                                 }});
                                 RequestStatus::Handled
                             }

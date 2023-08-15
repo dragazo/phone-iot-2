@@ -32,6 +32,8 @@ mixin _$DartCommand {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -80,6 +82,7 @@ mixin _$DartCommand {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -125,6 +128,7 @@ mixin _$DartCommand {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -170,6 +174,7 @@ mixin _$DartCommand {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -225,6 +230,7 @@ mixin _$DartCommand {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -273,6 +279,7 @@ mixin _$DartCommand {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -408,6 +415,8 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -459,6 +468,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -507,6 +517,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -558,6 +569,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -616,6 +628,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -667,6 +680,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -798,6 +812,8 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -849,6 +865,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -897,6 +914,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -948,6 +966,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -1006,6 +1025,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -1057,6 +1077,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -1189,6 +1210,8 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -1240,6 +1263,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -1288,6 +1312,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -1339,6 +1364,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -1397,6 +1423,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -1448,6 +1475,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -1588,6 +1616,8 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -1639,6 +1669,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -1687,6 +1718,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -1738,6 +1770,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -1796,6 +1829,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -1847,6 +1881,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -1988,6 +2023,8 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -2039,6 +2076,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -2087,6 +2125,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -2138,6 +2177,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -2196,6 +2236,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -2247,6 +2288,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -2388,6 +2430,8 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -2439,6 +2483,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -2487,6 +2532,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -2538,6 +2584,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -2596,6 +2643,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -2647,6 +2695,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -2789,6 +2838,8 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -2840,6 +2891,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -2888,6 +2940,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -2939,6 +2992,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -2997,6 +3051,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -3048,6 +3103,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -3189,6 +3245,8 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -3240,6 +3298,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -3288,6 +3347,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -3339,6 +3399,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -3397,6 +3458,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -3448,6 +3510,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -3589,6 +3652,8 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -3640,6 +3705,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -3688,6 +3754,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -3739,6 +3806,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -3797,6 +3865,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -3848,6 +3917,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -3989,6 +4059,8 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -4040,6 +4112,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -4088,6 +4161,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -4139,6 +4213,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -4197,6 +4272,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -4248,6 +4324,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -4389,6 +4466,8 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -4440,6 +4519,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -4488,6 +4568,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -4539,6 +4620,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -4597,6 +4679,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -4648,6 +4731,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -4700,6 +4784,415 @@ abstract class DartCommand_AddToggle implements DartCommand {
   @JsonKey(ignore: true)
   _$$DartCommand_AddToggleCopyWith<_$DartCommand_AddToggle> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_AddRadioButtonCopyWith<$Res> {
+  factory _$$DartCommand_AddRadioButtonCopyWith(
+          _$DartCommand_AddRadioButton value,
+          $Res Function(_$DartCommand_AddRadioButton) then) =
+      __$$DartCommand_AddRadioButtonCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartRequestKey key, RadioButtonInfo info});
+}
+
+/// @nodoc
+class __$$DartCommand_AddRadioButtonCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddRadioButton>
+    implements _$$DartCommand_AddRadioButtonCopyWith<$Res> {
+  __$$DartCommand_AddRadioButtonCopyWithImpl(
+      _$DartCommand_AddRadioButton _value,
+      $Res Function(_$DartCommand_AddRadioButton) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+    Object? info = null,
+  }) {
+    return _then(_$DartCommand_AddRadioButton(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as RadioButtonInfo,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
+  const _$DartCommand_AddRadioButton({required this.key, required this.info});
+
+  @override
+  final DartRequestKey key;
+  @override
+  final RadioButtonInfo info;
+
+  @override
+  String toString() {
+    return 'DartCommand.addRadioButton(key: $key, info: $info)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_AddRadioButton &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.info, info) || other.info == info));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key, info);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_AddRadioButtonCopyWith<_$DartCommand_AddRadioButton>
+      get copyWith => __$$DartCommand_AddRadioButtonCopyWithImpl<
+          _$DartCommand_AddRadioButton>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
+    required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
+    required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) getLevel,
+    required TResult Function(DartRequestKey key, String id, double value)
+        setLevel,
+    required TResult Function(DartRequestKey key, String id) getToggleState,
+    required TResult Function(DartRequestKey key, String id, bool value)
+        setToggleState,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key) getAccelerometer,
+    required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
+    required TResult Function(DartRequestKey key) getGravity,
+    required TResult Function(DartRequestKey key) getPressure,
+    required TResult Function(DartRequestKey key) getRelativeHumidity,
+    required TResult Function(DartRequestKey key) getLightLevel,
+    required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
+    required TResult Function(DartRequestKey key) getOrientation,
+    required TResult Function(DartRequestKey key) getCompassHeading,
+    required TResult Function(DartRequestKey key) getCompassDirection,
+    required TResult Function(DartRequestKey key) getCompassCardinalDirection,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
+  }) {
+    return addRadioButton(key, info);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? getLevel,
+    TResult? Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult? Function(DartRequestKey key, String id)? getToggleState,
+    TResult? Function(DartRequestKey key, String id, bool value)?
+        setToggleState,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key)? getAccelerometer,
+    TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
+    TResult? Function(DartRequestKey key)? getGravity,
+    TResult? Function(DartRequestKey key)? getPressure,
+    TResult? Function(DartRequestKey key)? getRelativeHumidity,
+    TResult? Function(DartRequestKey key)? getLightLevel,
+    TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
+    TResult? Function(DartRequestKey key)? getOrientation,
+    TResult? Function(DartRequestKey key)? getCompassHeading,
+    TResult? Function(DartRequestKey key)? getCompassDirection,
+    TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
+  }) {
+    return addRadioButton?.call(key, info);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? getLevel,
+    TResult Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult Function(DartRequestKey key, String id)? getToggleState,
+    TResult Function(DartRequestKey key, String id, bool value)? setToggleState,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key)? getAccelerometer,
+    TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
+    TResult Function(DartRequestKey key)? getGravity,
+    TResult Function(DartRequestKey key)? getPressure,
+    TResult Function(DartRequestKey key)? getRelativeHumidity,
+    TResult Function(DartRequestKey key)? getLightLevel,
+    TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
+    TResult Function(DartRequestKey key)? getOrientation,
+    TResult Function(DartRequestKey key)? getCompassHeading,
+    TResult Function(DartRequestKey key)? getCompassDirection,
+    TResult Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
+    required TResult orElse(),
+  }) {
+    if (addRadioButton != null) {
+      return addRadioButton(key, info);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
+    required TResult Function(DartCommand_AddSlider value) addSlider,
+    required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_GetLevel value) getLevel,
+    required TResult Function(DartCommand_SetLevel value) setLevel,
+    required TResult Function(DartCommand_GetToggleState value) getToggleState,
+    required TResult Function(DartCommand_SetToggleState value) setToggleState,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetAccelerometer value)
+        getAccelerometer,
+    required TResult Function(DartCommand_GetLinearAccelerometer value)
+        getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
+    required TResult Function(DartCommand_GetGravity value) getGravity,
+    required TResult Function(DartCommand_GetPressure value) getPressure,
+    required TResult Function(DartCommand_GetRelativeHumidity value)
+        getRelativeHumidity,
+    required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
+    required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
+    required TResult Function(DartCommand_GetOrientation value) getOrientation,
+    required TResult Function(DartCommand_GetCompassHeading value)
+        getCompassHeading,
+    required TResult Function(DartCommand_GetCompassDirection value)
+        getCompassDirection,
+    required TResult Function(DartCommand_GetCompassCardinalDirection value)
+        getCompassCardinalDirection,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
+  }) {
+    return addRadioButton(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult? Function(DartCommand_AddSlider value)? addSlider,
+    TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_GetLevel value)? getLevel,
+    TResult? Function(DartCommand_SetLevel value)? setLevel,
+    TResult? Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult? Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult? Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult? Function(DartCommand_GetGravity value)? getGravity,
+    TResult? Function(DartCommand_GetPressure value)? getPressure,
+    TResult? Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult? Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult? Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult? Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult? Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+  }) {
+    return addRadioButton?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult Function(DartCommand_AddSlider value)? addSlider,
+    TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_GetLevel value)? getLevel,
+    TResult Function(DartCommand_SetLevel value)? setLevel,
+    TResult Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult Function(DartCommand_GetGravity value)? getGravity,
+    TResult Function(DartCommand_GetPressure value)? getPressure,
+    TResult Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+    required TResult orElse(),
+  }) {
+    if (addRadioButton != null) {
+      return addRadioButton(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_AddRadioButton implements DartCommand {
+  const factory DartCommand_AddRadioButton(
+      {required final DartRequestKey key,
+      required final RadioButtonInfo info}) = _$DartCommand_AddRadioButton;
+
+  DartRequestKey get key;
+  RadioButtonInfo get info;
+  @JsonKey(ignore: true)
+  _$$DartCommand_AddRadioButtonCopyWith<_$DartCommand_AddRadioButton>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -4791,6 +5284,8 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -4842,6 +5337,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -4890,6 +5386,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -4941,6 +5438,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -4999,6 +5497,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -5050,6 +5549,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -5191,6 +5691,8 @@ class _$DartCommand_GetText implements DartCommand_GetText {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -5242,6 +5744,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -5290,6 +5793,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -5341,6 +5845,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -5399,6 +5904,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -5450,6 +5956,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -5600,6 +6107,8 @@ class _$DartCommand_SetText implements DartCommand_SetText {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -5651,6 +6160,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -5699,6 +6209,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -5750,6 +6261,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -5808,6 +6320,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -5859,6 +6372,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -6002,6 +6516,8 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -6053,6 +6569,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -6101,6 +6618,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -6152,6 +6670,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -6210,6 +6729,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -6261,6 +6781,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -6411,6 +6932,8 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -6462,6 +6985,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -6510,6 +7034,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -6561,6 +7086,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -6619,6 +7145,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -6670,6 +7197,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -6815,6 +7343,8 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -6866,6 +7396,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -6914,6 +7445,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -6965,6 +7497,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -7023,6 +7556,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -7074,6 +7608,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -7226,6 +7761,8 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -7277,6 +7814,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -7325,6 +7863,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -7376,6 +7915,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -7434,6 +7974,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -7485,6 +8026,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -7628,6 +8170,8 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -7679,6 +8223,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -7727,6 +8272,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -7778,6 +8324,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -7836,6 +8383,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -7887,6 +8435,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -8038,6 +8587,8 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -8089,6 +8640,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -8137,6 +8689,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -8188,6 +8741,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -8246,6 +8800,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -8297,6 +8852,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -8440,6 +8996,8 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -8491,6 +9049,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -8539,6 +9098,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -8590,6 +9150,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -8648,6 +9209,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -8699,6 +9261,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -8840,6 +9403,8 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -8891,6 +9456,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -8939,6 +9505,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -8990,6 +9557,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -9048,6 +9616,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -9099,6 +9668,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -9234,6 +9804,8 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -9285,6 +9857,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -9333,6 +9906,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -9384,6 +9958,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -9442,6 +10017,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -9493,6 +10069,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -9629,6 +10206,8 @@ class _$DartCommand_GetLinearAccelerometer
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -9680,6 +10259,7 @@ class _$DartCommand_GetLinearAccelerometer
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -9728,6 +10308,7 @@ class _$DartCommand_GetLinearAccelerometer
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -9779,6 +10360,7 @@ class _$DartCommand_GetLinearAccelerometer
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -9837,6 +10419,7 @@ class _$DartCommand_GetLinearAccelerometer
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -9888,6 +10471,7 @@ class _$DartCommand_GetLinearAccelerometer
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -10022,6 +10606,8 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -10073,6 +10659,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -10121,6 +10708,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -10172,6 +10760,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -10230,6 +10819,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -10281,6 +10871,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -10414,6 +11005,8 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -10465,6 +11058,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -10513,6 +11107,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -10564,6 +11159,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -10622,6 +11218,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -10673,6 +11270,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -10804,6 +11402,8 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -10855,6 +11455,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -10903,6 +11504,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -10954,6 +11556,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -11012,6 +11615,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -11063,6 +11667,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -11194,6 +11799,8 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -11245,6 +11852,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -11293,6 +11901,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -11344,6 +11953,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -11402,6 +12012,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -11453,6 +12064,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -11587,6 +12199,8 @@ class _$DartCommand_GetRelativeHumidity
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -11638,6 +12252,7 @@ class _$DartCommand_GetRelativeHumidity
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -11686,6 +12301,7 @@ class _$DartCommand_GetRelativeHumidity
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -11737,6 +12353,7 @@ class _$DartCommand_GetRelativeHumidity
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -11795,6 +12412,7 @@ class _$DartCommand_GetRelativeHumidity
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -11846,6 +12464,7 @@ class _$DartCommand_GetRelativeHumidity
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -11978,6 +12597,8 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -12029,6 +12650,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -12077,6 +12699,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -12128,6 +12751,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -12186,6 +12810,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -12237,6 +12862,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -12370,6 +12996,8 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -12421,6 +13049,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -12469,6 +13098,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -12520,6 +13150,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -12578,6 +13209,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -12629,6 +13261,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -12763,6 +13396,8 @@ class _$DartCommand_GetFacingDirection
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -12814,6 +13449,7 @@ class _$DartCommand_GetFacingDirection
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -12862,6 +13498,7 @@ class _$DartCommand_GetFacingDirection
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -12913,6 +13550,7 @@ class _$DartCommand_GetFacingDirection
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -12971,6 +13609,7 @@ class _$DartCommand_GetFacingDirection
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -13022,6 +13661,7 @@ class _$DartCommand_GetFacingDirection
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -13155,6 +13795,8 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -13206,6 +13848,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -13254,6 +13897,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -13305,6 +13949,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -13363,6 +14008,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -13414,6 +14060,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -13547,6 +14194,8 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -13598,6 +14247,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -13646,6 +14296,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -13697,6 +14348,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -13755,6 +14407,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -13806,6 +14459,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -13940,6 +14594,8 @@ class _$DartCommand_GetCompassDirection
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -13991,6 +14647,7 @@ class _$DartCommand_GetCompassDirection
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -14039,6 +14696,7 @@ class _$DartCommand_GetCompassDirection
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -14090,6 +14748,7 @@ class _$DartCommand_GetCompassDirection
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -14148,6 +14807,7 @@ class _$DartCommand_GetCompassDirection
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -14199,6 +14859,7 @@ class _$DartCommand_GetCompassDirection
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -14335,6 +14996,8 @@ class _$DartCommand_GetCompassCardinalDirection
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -14386,6 +15049,7 @@ class _$DartCommand_GetCompassCardinalDirection
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -14434,6 +15098,7 @@ class _$DartCommand_GetCompassCardinalDirection
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -14485,6 +15150,7 @@ class _$DartCommand_GetCompassCardinalDirection
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -14543,6 +15209,7 @@ class _$DartCommand_GetCompassCardinalDirection
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -14594,6 +15261,7 @@ class _$DartCommand_GetCompassCardinalDirection
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -14730,6 +15398,8 @@ class _$DartCommand_GetLocationLatLong
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -14781,6 +15451,7 @@ class _$DartCommand_GetLocationLatLong
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -14829,6 +15500,7 @@ class _$DartCommand_GetLocationLatLong
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -14880,6 +15552,7 @@ class _$DartCommand_GetLocationLatLong
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -14938,6 +15611,7 @@ class _$DartCommand_GetLocationLatLong
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -14989,6 +15663,7 @@ class _$DartCommand_GetLocationLatLong
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -15123,6 +15798,8 @@ class _$DartCommand_GetLocationHeading
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -15174,6 +15851,7 @@ class _$DartCommand_GetLocationHeading
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -15222,6 +15900,7 @@ class _$DartCommand_GetLocationHeading
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -15273,6 +15952,7 @@ class _$DartCommand_GetLocationHeading
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -15331,6 +16011,7 @@ class _$DartCommand_GetLocationHeading
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -15382,6 +16063,7 @@ class _$DartCommand_GetLocationHeading
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
@@ -15516,6 +16198,8 @@ class _$DartCommand_GetLocationAltitude
         addTouchpad,
     required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
     required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
     required TResult Function(DartRequestKey key, ImageDisplayInfo info)
         addImageDisplay,
     required TResult Function(DartRequestKey key, String id) getText,
@@ -15567,6 +16251,7 @@ class _$DartCommand_GetLocationAltitude
     TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
@@ -15615,6 +16300,7 @@ class _$DartCommand_GetLocationAltitude
     TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
     TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
     TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
     TResult Function(DartRequestKey key, ImageDisplayInfo info)?
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
@@ -15666,6 +16352,7 @@ class _$DartCommand_GetLocationAltitude
     required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
     required TResult Function(DartCommand_AddSlider value) addSlider,
     required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
     required TResult Function(DartCommand_AddImageDisplay value)
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
@@ -15724,6 +16411,7 @@ class _$DartCommand_GetLocationAltitude
     TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult? Function(DartCommand_AddSlider value)? addSlider,
     TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
@@ -15775,6 +16463,7 @@ class _$DartCommand_GetLocationAltitude
     TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
     TResult Function(DartCommand_AddSlider value)? addSlider,
     TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,

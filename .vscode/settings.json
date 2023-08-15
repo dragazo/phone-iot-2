@@ -10,6 +10,7 @@
         "Pressable",
         "Rootable",
         "Touchpad",
+        "untoggle",
         "vals"
     ],
     "files.associations": {

@@ -16,7 +16,7 @@ enum ClickType {
   down, move, up,
 }
 enum ClickResult {
-  none, redraw, requestText, requestImage,
+  none, redraw, requestText, requestImage, untoggleOthersInGroup,
 }
 enum UpdateSource {
   code, user,
@@ -113,6 +113,9 @@ mixin LevelLike {
 mixin ToggleLike {
   bool getToggled();
   void setToggled(bool value);
+}
+mixin GroupLike {
+  String getGroup();
 }
 mixin TextLike {
   String getText();
@@ -687,6 +690,7 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
       case ToggleStyleInfo.Switch: r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, switchSize.width, switchSize.height);
       case ToggleStyleInfo.Checkbox: r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, checkboxSize, checkboxSize);
     }
+    if (landscape) r = rotated(r);
     return r.inflate(hitboxPadding).contains(pos);
   }
 
@@ -723,6 +727,90 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
   @override
   void setToggled(bool value) {
     checked = value;
+  }
+}
+
+class CustomRadioButton extends CustomControl with TextLike, ToggleLike, GroupLike {
+  double x, y, fontSize;
+  String? event;
+  bool checked, landscape, readonly;
+  String text, group;
+  Color backColor, foreColor;
+
+  static const double outerSize = 20;
+  static const double innerSize = 12;
+  static const double strokeWidth = 2;
+  static const double hitboxPadding = 10;
+  static const double textPadding = 10;
+
+  CustomRadioButton(RadioButtonInfo info) : x = info.x, y = info.y, fontSize = info.fontSize, event = info.event,
+    checked = info.checked, landscape = info.landscape, readonly = info.readonly, backColor = getColor(info.backColor),
+    foreColor = getColor(info.foreColor), text = info.text, group = info.group, super(id: info.id);
+
+  @override
+  void draw(Canvas canvas) {
+    final paint = Paint();
+    paint.color = backColor;
+    paint.strokeWidth = strokeWidth;
+
+    canvas.save();
+    canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
+    if (landscape) canvas.rotate(pi / 2);
+    paint.style = PaintingStyle.stroke;
+    canvas.drawOval(const Rect.fromLTWH(0, 0, outerSize, outerSize), paint);
+    if (checked) {
+      paint.style = PaintingStyle.fill;
+      canvas.drawOval(const Rect.fromLTWH((outerSize - innerSize) / 2, (outerSize - innerSize) / 2, innerSize, innerSize), paint);
+    }
+    drawTextPos(canvas, const Offset(outerSize + textPadding, outerSize / 2), foreColor, text, fontSize, TextAlign.left, true);
+    canvas.restore();
+  }
+
+  @override
+  bool contains(Offset pos) {
+    Rect r = Rect.fromLTWH(x * canvasSize.width / 100, y * canvasSize.height / 100, outerSize, outerSize);
+    if (landscape) r = rotated(r);
+    return ellipseContains(r.inflate(hitboxPadding), pos);
+  }
+
+  @override
+  ClickResult handleClick(Offset pos, ClickType type) {
+    if (readonly || type != ClickType.down) return ClickResult.none;
+    checked = true;
+    if (event != null) {
+      final v = getToggled();
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+        ('device', const SimpleValue.number(0)),
+        ('id', SimpleValue.string(id)),
+        ('state', SimpleValue.bool(v)),
+      ]));
+    }
+    return ClickResult.untoggleOthersInGroup;
+  }
+
+  @override
+  String getText() {
+    return text;
+  }
+
+  @override
+  void setText(String value, UpdateSource source) {
+    text = value;
+  }
+
+  @override
+  bool getToggled() {
+    return checked;
+  }
+
+  @override
+  void setToggled(bool value) {
+    checked = value;
+  }
+
+  @override
+  String getGroup() {
+    return group;
   }
 }
 

@@ -190,6 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
           addTouchpad: (key, info) => addControl(CustomTouchpad(info), key),
           addSlider: (key, info) => addControl(CustomSlider(info), key),
           addToggle: (key, info) => addControl(CustomToggle(info), key),
+          addRadioButton: (key, info) => addControl(CustomRadioButton(info), key),
           addImageDisplay: (key, info) => addControl(CustomImageDisplay(info), key),
 
           getText: (key, id) {
@@ -567,6 +568,14 @@ class _MyHomePageState extends State<MyHomePage> {
       });
       case ClickResult.requestImage: ImagePicker().pickImage(source: ImageSource.gallery).then((img) {
         if (img != null) img.readAsBytes().then(decodeImage).then((img) => setState(() => (target as ImageLike).setImage(img, UpdateSource.user)));
+      });
+      case ClickResult.untoggleOthersInGroup: setState(() {
+        final g = (target as GroupLike).getGroup();
+        for (final control in controls.values) {
+          if (control != target && (control is GroupLike) && (control is ToggleLike) && (control as GroupLike).getGroup() == g) {
+            (control as ToggleLike).setToggled(false);
+          }
+        }
       });
     }
   }
