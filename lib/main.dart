@@ -89,6 +89,7 @@ class MainScreen extends StatefulWidget {
 class MainScreenState extends State<MainScreen> {
   bool menuOpen = true;
   TextLike? inputTextTarget;
+  ImageLike? inputImageTarget;
 
   @override
   void initState() {
@@ -290,6 +291,17 @@ class MainScreenState extends State<MainScreen> {
           ),
           AnimatedPositioned(
             duration: const Duration(milliseconds: 500),
+            left: 0,
+            right: 0,
+            bottom: inputImageTarget != null ? 20 : -200,
+            curve: Curves.ease,
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [ImageInput.instance],
+            ),
+          ),
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 500),
             left: menuOpen ? 20 : -300,
             top: 20,
             curve: Curves.ease,
@@ -305,12 +317,13 @@ class MainMenu extends StatefulWidget {
   const MainMenu({Key? key}) : super(key: key);
 
   static const instance = MainMenu();
+  static final state = MainMenuState();
 
   static final TextEditingController serverAddr = TextEditingController();
   static final TextEditingController projectAddr = TextEditingController();
 
   @override
-  State<MainMenu> createState() => MainMenuState();
+  State<MainMenu> createState() => state;
 }
 class MainMenuState extends State<MainMenu> {
   late String deviceID;
@@ -558,9 +571,7 @@ class DisplayState extends State<Display> {
       case ClickResult.none: ();
       case ClickResult.redraw: setState(() {});
       case ClickResult.requestText: MainScreen.state.setState(() => TextInput.controller.text = (MainScreen.state.inputTextTarget = target as TextLike).getText());
-      case ClickResult.requestImage: ImagePicker().pickImage(source: ImageSource.gallery).then((img) {
-        if (img != null) img.readAsBytes().then(decodeImage).then((img) => setState(() => (target as ImageLike).setImage(img, UpdateSource.user)));
-      });
+      case ClickResult.requestImage: MainScreen.state.setState(() => MainScreen.state.inputImageTarget = target as ImageLike);
       case ClickResult.untoggleOthersInGroup: setState(() {
         final g = (target as GroupLike).getGroup();
         for (final control in controls.values) {
@@ -577,11 +588,12 @@ class TextInput extends StatefulWidget {
   const TextInput({Key? key}) : super(key: key);
 
   static const instance = TextInput();
+  static final state = TextInputState();
 
-  static final TextEditingController controller = TextEditingController();
+  static final controller = TextEditingController();
 
   @override
-  State<TextInput> createState() => TextInputState();
+  State<TextInput> createState() => state;
 }
 class TextInputState extends State<TextInput> {
   @override
@@ -622,5 +634,60 @@ class TextInputState extends State<TextInput> {
         ),
       ),
     );
+  }
+}
+
+class ImageInput extends StatefulWidget {
+  const ImageInput({Key? key}) : super(key: key);
+
+  static const instance = ImageInput();
+  static final state = ImageInputState();
+
+  @override
+  State<ImageInput> createState() => state;
+}
+class ImageInputState extends State<ImageInput> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: App.haloDecoration,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const Text('Select an Image', style: TextStyle(fontSize: 20)),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                InkWell(
+                  onTap: () => fetchImage(ImageSource.gallery),
+                  child: const Icon(Icons.image, size: 64, color: Colors.blue),
+                ),
+                const SizedBox(width: 20),
+                InkWell(
+                  onTap: () => fetchImage(ImageSource.camera),
+                  child: const Icon(Icons.photo_camera, size: 64, color: Colors.blue),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            InkWell(
+              onTap: () => MainScreen.state.setState(() => MainScreen.state.inputImageTarget = null),
+              child: const Icon(Icons.close),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void fetchImage(ImageSource source) {
+    ImageLike? target = MainScreen.state.inputImageTarget;
+    if (target == null) return;
+
+    MainScreen.state.setState(() => MainScreen.state.inputImageTarget = null);
+    ImagePicker().pickImage(source: source).then((img) {
+      if (img != null) img.readAsBytes().then(decodeImage).then((img) => Display.state.setState(() => target.setImage(img, UpdateSource.user)));
+    });
   }
 }
