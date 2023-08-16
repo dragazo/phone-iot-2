@@ -11,24 +11,16 @@ import 'package:image_picker/image_picker.dart';
 import 'sensors.dart';
 import 'canvas.dart';
 
+const sensorErrorMsg = 'sensor is not available or is disabled';
+const kvstoreDeviceID = 'device-id';
+
 const msgUpdateInterval = Duration(milliseconds: 500);
 const msgLifetime = Duration(seconds: 10);
-
-const sensorErrorMsg = 'sensor is not available or is disabled';
-
-const facingDirectionNames = [
-  'left', 'vertical', 'up', 'right', 'upside down', 'down',
-];
-const compassDirectionNames = [
-  'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW',
-];
-const compassCardinalDirectionNames = [
-  'N', 'E', 'S', 'W',
-];
-
 const passwordLifetime = Duration(hours: 24);
 
-const String kvstoreDeviceID = 'device-id';
+const facingDirectionNames = [ 'left', 'vertical', 'up', 'right', 'upside down', 'down' ];
+const compassDirectionNames = [ 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW' ];
+const compassCardinalDirectionNames = [ 'N', 'E', 'S', 'W' ];
 
 late final GetStorage insecureStorage;
 
@@ -42,42 +34,6 @@ String randomHexString(int length) {
   return res.toString();
 }
 
-void main() async {
-  await GetStorage.init();
-  insecureStorage = GetStorage();
-  if (Platform.isAndroid || Platform.isIOS) {
-    await SensorManager.requestPermissions();
-  }
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'PhoneIoT',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'PhoneIoT-2'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-  final TextEditingController serverAddr = TextEditingController();
-  final TextEditingController projectAddr = TextEditingController();
-  final TextEditingController textInput = TextEditingController();
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
 enum MessageType {
   stdout, stderr,
 }
@@ -88,17 +44,49 @@ class Message {
   Message(this.msg, this.type) : expiry = DateTime.now().add(msgLifetime);
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  late String deviceID;
-  late String devicePW;
-  late DateTime devicePWExpiry;
+void main() async {
+  await GetStorage.init();
+  insecureStorage = GetStorage();
+  if (Platform.isAndroid || Platform.isIOS) {
+    await SensorManager.requestPermissions();
+  }
+  runApp(App.instance);
+}
 
-  Timer? timer;
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
-  final List<Message> messages = [];
-  final LinkedHashMap<String, CustomControl> controls = LinkedHashMap(); // must preserve insertion order iteration
-  final Map<int, CustomControl> clickTargets = {};
+  static const instance = App();
 
+  static const name = 'PhoneIoT-2';
+  static const haloDecoration = BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(20)),
+    color: Colors.white,
+    boxShadow: [ BoxShadow(color: Colors.black45, blurRadius: 10) ],
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'PhoneIoT',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MainScreen.instance,
+    );
+  }
+}
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
+  static const instance = MainScreen();
+  static final state = MainScreenState();
+
+  @override
+  State<MainScreen> createState() => state;
+}
+class MainScreenState extends State<MainScreen> {
   bool menuOpen = true;
   TextLike? inputTextTarget;
 
@@ -106,28 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    if (insecureStorage.hasData(kvstoreDeviceID)) {
-      deviceID = insecureStorage.read(kvstoreDeviceID);
-    } else {
-      deviceID = randomHexString(12);
-      insecureStorage.write(kvstoreDeviceID, deviceID);
-    }
-
-    devicePW = '00000000';
-    devicePWExpiry = DateTime.now().add(passwordLifetime);
-
     api.initialize(utcOffsetInSeconds: DateTime.now().timeZoneOffset.inSeconds);
-
-    void msgLifetimeUpdateLoop() async {
-      while (true) {
-        await Future.delayed(msgUpdateInterval);
-        final now = DateTime.now();
-        while (messages.isNotEmpty && messages.first.expiry.isBefore(now)) {
-          setState(() => messages.removeAt(0));
-        }
-      }
-    }
-    msgLifetimeUpdateLoop();
 
     void cmdHandlerLoop() async {
       void sendSensorVec(List<double>? vals, DartRequestKey key) {
@@ -158,28 +125,23 @@ class _MyHomePageState extends State<MyHomePage> {
         }
       }
       void addControl(CustomControl control, DartRequestKey key) {
-        if (controls.containsKey(control.id)) {
-          api.completeRequest(key: key, result: RequestResult.err('id ${control.id} is already in use'));
-        } else {
-          setState(() => controls[control.id] = control);
-          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(control.id)));
-        }
+          api.completeRequest(key: key, result: Display.state.tryAddControl(control) ? RequestResult.ok(SimpleValue.string(control.id)) : RequestResult.err('id ${control.id} is already in use'));
       }
       T? findControl<T>(String id) {
-        CustomControl? x = controls[id];
+        CustomControl? x = Display.state.controls[id];
         return x is T ? x as T : null;
       }
       await for (final cmd in api.recvCommands()) {
         cmd.when(
-          stdout: (msg) => setState(() => messages.add(Message(msg, MessageType.stdout))),
-          stderr: (msg) => setState(() => messages.add(Message(msg, MessageType.stderr))),
+          stdout: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stdout)),
+          stderr: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stderr)),
 
           clearControls: (key) {
-            setState(() => controls.clear());
+            Display.state.clearControls();
             api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
           },
           removeControl: (key, id) {
-            setState(() => controls.remove(id));
+            Display.state.removeControl(id);
             api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
           },
 
@@ -199,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           setText: (key, id, value) {
             TextLike? target = findControl<TextLike>(id);
-            if (target != null) setState(() => target.setText(value, UpdateSource.code));
+            if (target != null) Display.state.setState(() => target.setText(value, UpdateSource.code));
             api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no text-like control with id $id'));
           },
           isPressed: (key, id) {
@@ -212,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           setLevel: (key, id, value) {
             LevelLike? target = findControl<LevelLike>(id);
-            if (target != null) setState(() => target.setLevel(value));
+            if (target != null) Display.state.setState(() => target.setLevel(value));
             api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no level-like control with id $id'));
           },
           getToggleState: (key, id) {
@@ -221,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           setToggleState: (key, id, value) {
             ToggleLike? target = findControl<ToggleLike>(id);
-            if (target != null) setState(() => target.setToggled(value));
+            if (target != null) Display.state.setState(() => target.setToggled(value));
             api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no toggle-like control with id $id'));
           },
           getPosition: (key, id) {
@@ -259,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             try {
               final img = await decodeImage(value);
-              setState(() => target.setImage(img, UpdateSource.code));
+              Display.state.setState(() => target.setImage(img, UpdateSource.code));
               api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
             } catch (e) {
               api.completeRequest(key: key, result: RequestResult.err('failed to decode image: $e'));
@@ -294,34 +256,93 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void dispose() {
     super.dispose();
-    timer?.cancel();
     SensorManager.stop();
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
-
-    const haloDecoration = BoxDecoration(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
-      color: Colors.white,
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black45,
-          blurRadius: 10,
+    return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () => setState(() => menuOpen ^= true),
+          child: const Icon(Icons.list),
         ),
-      ],
+        title: const Text(App.name),
+      ),
+      body: Stack(
+        children: [
+          Display.instance,
+          const Positioned(
+            right: 20,
+            top: 20,
+            child: MessageList.instance,
+          ),
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 500),
+            left: 0,
+            right: 0,
+            bottom: inputTextTarget != null ? 20 : -200,
+            curve: Curves.ease,
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [TextInput.instance],
+            ),
+          ),
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 500),
+            left: menuOpen ? 20 : -300,
+            top: 20,
+            curve: Curves.ease,
+            child: MainMenu.instance,
+          ),
+        ],
+      ),
     );
+  }
+}
 
-    final menu = Container(
-      decoration: haloDecoration,
+class MainMenu extends StatefulWidget {
+  const MainMenu({Key? key}) : super(key: key);
+
+  static const instance = MainMenu();
+
+  static final TextEditingController serverAddr = TextEditingController();
+  static final TextEditingController projectAddr = TextEditingController();
+
+  @override
+  State<MainMenu> createState() => MainMenuState();
+}
+class MainMenuState extends State<MainMenu> {
+  late String deviceID;
+  late String devicePW;
+  late DateTime devicePWExpiry;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (insecureStorage.hasData(kvstoreDeviceID)) {
+      deviceID = insecureStorage.read(kvstoreDeviceID);
+    } else {
+      deviceID = randomHexString(12);
+      insecureStorage.write(kvstoreDeviceID, deviceID);
+    }
+
+    devicePW = '00000000';
+    devicePWExpiry = DateTime.now().add(passwordLifetime);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: App.haloDecoration,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Image.asset('assets/images/AppIcon-512-trans.png', height: 60, isAntiAlias: true),
-            Text(widget.title, style: theme.headlineSmall),
+            const Text(App.name, style: TextStyle(fontSize: 22)),
             const SizedBox(height: 10),
             Text('Device ID: $deviceID'),
             Text('Password: $devicePW'),
@@ -329,7 +350,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               width: 250,
               child: TextFormField(
-                controller: widget.serverAddr,
+                controller: MainMenu.serverAddr,
                 textAlign: TextAlign.center,
                 decoration: const InputDecoration(
                   floatingLabelAlignment: FloatingLabelAlignment.center,
@@ -342,25 +363,25 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               children: [
                 ElevatedButton(
-                  onPressed: _connect,
+                  onPressed: () => print('connect ${MainMenu.serverAddr.text}'),
                   child: const Text('Connect'),
                 ),
                 const SizedBox(width: 10),
                 ElevatedButton(
-                  onPressed: _reconnect,
+                  onPressed: () => print('reconnect ${MainMenu.serverAddr.text}'),
                   child: const Text('Reconnect'),
                 ),
               ],
             ),
             ElevatedButton(
-              onPressed: _newPassword,
+              onPressed: () => print('new password'),
               child: const Text('New Password'),
             ),
             const SizedBox(height: 20),
             SizedBox(
               width: 250,
               child: TextFormField(
-                controller: widget.projectAddr,
+                controller: MainMenu.projectAddr,
                 textAlign: TextAlign.center,
                 decoration: const InputDecoration(
                   floatingLabelAlignment: FloatingLabelAlignment.center,
@@ -371,18 +392,32 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: _loadProject,
+              onPressed: () {
+                var url = MainMenu.projectAddr.text;
+                final pat = RegExp(r'^.*\b(\w+)\.netsblox\.org/(.*)$');
+                final m = pat.firstMatch(url);
+                if (m != null) {
+                  url = 'https://${m.group(1)}.netsblox.org/api/RawPublic/${m.group(2)}';
+                }
+                http.get(Uri.parse(url))
+                  .then((res) {
+                    api.sendCommand(cmd: RustCommand.setProject(xml: res.body));
+                  })
+                  .catchError((e) {
+                    MessageList.state.addMessage(Message('error fetching project $e', MessageType.stderr));
+                  });
+              },
               child: const Text('Load Project'),
             ),
             Row(
               children: [
                 ElevatedButton(
-                  onPressed: _startProject,
+                  onPressed: () => api.sendCommand(cmd: const RustCommand.start()),
                   child: const Text('Start'),
                 ),
                 const SizedBox(width: 10),
                 ElevatedButton(
-                  onPressed: _stopProject,
+                  onPressed: () => api.sendCommand(cmd: const RustCommand.stop()),
                   child: const Text('Stop'),
                 ),
               ],
@@ -391,7 +426,39 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+}
 
+class MessageList extends StatefulWidget {
+  const MessageList({Key? key}) : super(key: key);
+
+  static const instance = MessageList();
+  static final state = MessageListState();
+
+  @override
+  State<MessageList> createState() => state;
+}
+class MessageListState extends State<MessageList> {
+  final messages = <Message>[];
+
+  @override
+  void initState() {
+    super.initState();
+
+    void updateLoop() async {
+      while (true) {
+        await Future.delayed(msgUpdateInterval);
+        final now = DateTime.now();
+        while (messages.isNotEmpty && messages.first.expiry.isBefore(now)) {
+          setState(() => messages.removeAt(0));
+        }
+      }
+    }
+    updateLoop();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final msgs = <Widget>[];
     for (final item in messages) {
       Color color;
@@ -426,125 +493,53 @@ class _MyHomePageState extends State<MyHomePage> {
       msgs.add(const SizedBox(height: 5));
     }
 
-    final textInput = Container(
-      decoration: haloDecoration,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 250,
-              height: 150,
-              child: TextFormField(
-                controller: widget.textInput,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-              ),
-            ),
-            const SizedBox(width: 20),
-            Column(
-              children: [
-                InkWell(
-                  onTap: () {
-                    if (inputTextTarget == null) return;
-                    inputTextTarget!.setText(widget.textInput.text, UpdateSource.user);
-                    setState(() => inputTextTarget = null);
-                  },
-                  child: const Icon(Icons.check),
-                ),
-                const SizedBox(height: 30),
-                InkWell(
-                  onTap: () => setState(() => inputTextTarget = null),
-                  child: const Icon(Icons.close),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+    return Column(children: msgs);
+  }
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () => setState(() => menuOpen ^= true),
-          child: const Icon(Icons.list),
-        ),
-        title: Text(widget.title),
-      ),
-      body: Stack(
-        children: [
-          Listener(
-            onPointerDown: (e) => _handleClick(e.localPosition, e.pointer, ClickType.down),
-            onPointerMove: (e) => _handleClick(e.localPosition, e.pointer, ClickType.move),
-            onPointerUp: (e) => _handleClick(e.localPosition, e.pointer, ClickType.up),
-            child: CustomPaint(
-              painter: ControlsCanvas(controls),
-              child: Container(),
-            ),
-          ),
-          Positioned(
-            right: 20,
-            top: 20,
-            child: Column(children: msgs),
-          ),
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 500),
-            left: 0,
-            right: 0,
-            bottom: inputTextTarget != null ? 20 : -200,
-            curve: Curves.ease,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [textInput],
-            ),
-          ),
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 500),
-            left: menuOpen ? 20 : -300,
-            top: 20,
-            curve: Curves.ease,
-            child: menu,
-          ),
-        ],
+  void addMessage(Message msg) {
+    setState(() => messages.add(msg));
+  }
+}
+
+class Display extends StatefulWidget {
+  const Display({Key? key}) : super(key: key);
+
+  static const instance = Display();
+  static final state = DisplayState();
+
+  @override
+  State<Display> createState() => state;
+}
+class DisplayState extends State<Display> {
+  final LinkedHashMap<String, CustomControl> controls = LinkedHashMap(); // must preserve insertion order iteration
+  final Map<int, CustomControl> clickTargets = {};
+
+  @override
+  Widget build(BuildContext context) {
+    return Listener(
+      onPointerDown: (e) => handleClick(e.localPosition, e.pointer, ClickType.down),
+      onPointerMove: (e) => handleClick(e.localPosition, e.pointer, ClickType.move),
+      onPointerUp: (e) => handleClick(e.localPosition, e.pointer, ClickType.up),
+      child: CustomPaint(
+        painter: ControlsCanvas(controls),
+        child: Container(),
       ),
     );
   }
 
-  void _connect() {
-    print('connect ${widget.serverAddr.text}');
+  bool tryAddControl(CustomControl control) {
+    if (controls.containsKey(control.id)) return false;
+    setState(() => controls[control.id] = control);
+    return true;
   }
-  void _reconnect() {
-    print('reconnect ${widget.serverAddr.text}');
+  void removeControl(String id) {
+    setState(() => controls.remove(id));
   }
-
-  void _newPassword() {
-    print('new password');
-  }
-
-  void _loadProject() {
-    var url = widget.projectAddr.text;
-    final pat = RegExp(r'^.*\b(\w+)\.netsblox\.org/(.*)$');
-    final m = pat.firstMatch(url);
-    if (m != null) {
-      url = 'https://${m.group(1)}.netsblox.org/api/RawPublic/${m.group(2)}';
-    }
-    http.get(Uri.parse(url))
-      .then((res) {
-        api.sendCommand(cmd: RustCommand.setProject(xml: res.body));
-      })
-      .catchError((e) {
-        setState(() => messages.add(Message('error fetching project $e', MessageType.stderr)));
-      });
-  }
-  void _startProject() {
-    api.sendCommand(cmd: const RustCommand.start());
-  }
-  void _stopProject() {
-    api.sendCommand(cmd: const RustCommand.stop());
+  void clearControls() {
+    setState(() => controls.clear());
   }
 
-  void _handleClick(Offset pos, int id, ClickType type) {
+  void handleClick(Offset pos, int id, ClickType type) {
     CustomControl? target = clickTargets[id];
     if (target == null && type == ClickType.down) {
       for (final x in controls.values) {
@@ -562,10 +557,7 @@ class _MyHomePageState extends State<MyHomePage> {
     switch (target.handleClick(pos, type)) {
       case ClickResult.none: ();
       case ClickResult.redraw: setState(() {});
-      case ClickResult.requestText: setState(() {
-        inputTextTarget = target as TextLike;
-        widget.textInput.text = inputTextTarget!.getText();
-      });
+      case ClickResult.requestText: MainScreen.state.setState(() => TextInput.controller.text = (MainScreen.state.inputTextTarget = target as TextLike).getText());
       case ClickResult.requestImage: ImagePicker().pickImage(source: ImageSource.gallery).then((img) {
         if (img != null) img.readAsBytes().then(decodeImage).then((img) => setState(() => (target as ImageLike).setImage(img, UpdateSource.user)));
       });
@@ -578,5 +570,57 @@ class _MyHomePageState extends State<MyHomePage> {
         }
       });
     }
+  }
+}
+
+class TextInput extends StatefulWidget {
+  const TextInput({Key? key}) : super(key: key);
+
+  static const instance = TextInput();
+
+  static final TextEditingController controller = TextEditingController();
+
+  @override
+  State<TextInput> createState() => TextInputState();
+}
+class TextInputState extends State<TextInput> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: App.haloDecoration,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 250,
+              height: 150,
+              child: TextFormField(
+                controller: TextInput.controller,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+              ),
+            ),
+            const SizedBox(width: 20),
+            Column(
+              children: [
+                InkWell(
+                  onTap: () {
+                    Display.state.setState(() => MainScreen.state.inputTextTarget?.setText(TextInput.controller.text, UpdateSource.user));
+                    MainScreen.state.setState(() => MainScreen.state.inputTextTarget = null);
+                  },
+                  child: const Icon(Icons.check),
+                ),
+                const SizedBox(height: 30),
+                InkWell(
+                  onTap: () => MainScreen.state.setState(() => MainScreen.state.inputTextTarget = null),
+                  child: const Icon(Icons.close),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -893,6 +893,6 @@ class ControlsCanvas extends CustomPainter {
 
   @override
   bool shouldRepaint(ControlsCanvas oldDelegate) {
-    return false;
+    return true;
   }
 }
