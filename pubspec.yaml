@@ -44,6 +44,7 @@ dependencies:
   # util stuff
   get_storage: ^2.1.1
   image_picker: ^1.0.2
+  mobile_scanner: ^3.4.1
 
   # sensor stuff
   geolocator: ^9.0.2

@@ -7,6 +7,7 @@ import 'dart:collection';
 import 'package:http/http.dart' as http;
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 import 'sensors.dart';
 import 'canvas.dart';
@@ -90,6 +91,7 @@ class MainScreenState extends State<MainScreen> {
   bool menuOpen = true;
   TextLike? inputTextTarget;
   ImageLike? inputImageTarget;
+  Function(String)? qrCallback;
 
   @override
   void initState() {
@@ -262,6 +264,99 @@ class MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final content = [
+      Display.instance,
+      const Positioned(
+        right: 20,
+        top: 20,
+        child: MessageList.instance,
+      ),
+      AnimatedPositioned(
+        duration: const Duration(milliseconds: 500),
+        left: 0,
+        right: 0,
+        bottom: inputTextTarget != null ? 20 : -200,
+        curve: Curves.ease,
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [TextInput.instance],
+        ),
+      ),
+      AnimatedPositioned(
+        duration: const Duration(milliseconds: 500),
+        left: 0,
+        right: 0,
+        bottom: inputImageTarget != null ? 20 : -200,
+        curve: Curves.ease,
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [ImageInput.instance],
+        ),
+      ),
+      AnimatedPositioned(
+        duration: const Duration(milliseconds: 500),
+        left: menuOpen ? 20 : -300,
+        top: 20,
+        curve: Curves.ease,
+        child: MainMenu.instance,
+      ),
+    ];
+
+    if (qrCallback != null) {
+      content.add(Positioned(
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: App.haloDecoration,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        const Text("QR Code Scanner", style: TextStyle(fontSize: 20)),
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          width: 300,
+                          height: 300,
+                          child: MobileScanner(
+                            onDetect: (capture) {
+                              final f = qrCallback;
+                              if (f == null) return;
+
+                              for (final barcode in capture.barcodes) {
+                                final v = barcode.rawValue;
+                                if (v != null) {
+                                  f(v);
+                                  setState(() => qrCallback = null);
+                                  return;
+                                }
+                              }
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        InkWell(
+                          onTap: () => MainScreen.state.setState(() => MainScreen.state.qrCallback = null),
+                          child: const Icon(Icons.close),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ));
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -270,45 +365,7 @@ class MainScreenState extends State<MainScreen> {
         ),
         title: const Text(App.name),
       ),
-      body: Stack(
-        children: [
-          Display.instance,
-          const Positioned(
-            right: 20,
-            top: 20,
-            child: MessageList.instance,
-          ),
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 500),
-            left: 0,
-            right: 0,
-            bottom: inputTextTarget != null ? 20 : -200,
-            curve: Curves.ease,
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [TextInput.instance],
-            ),
-          ),
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 500),
-            left: 0,
-            right: 0,
-            bottom: inputImageTarget != null ? 20 : -200,
-            curve: Curves.ease,
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [ImageInput.instance],
-            ),
-          ),
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 500),
-            left: menuOpen ? 20 : -300,
-            top: 20,
-            curve: Curves.ease,
-            child: MainMenu.instance,
-          ),
-        ],
-      ),
+      body: Stack(children: content),
     );
   }
 }
@@ -391,17 +448,28 @@ class MainMenuState extends State<MainMenu> {
               child: const Text('New Password'),
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              width: 250,
-              child: TextFormField(
-                controller: MainMenu.projectAddr,
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  floatingLabelAlignment: FloatingLabelAlignment.center,
-                  alignLabelWithHint: true,
-                  labelText: 'Project Address',
+            Row(
+              children: [
+                SizedBox(
+                  width: 200,
+                  child: TextFormField(
+                    controller: MainMenu.projectAddr,
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration(
+                      floatingLabelAlignment: FloatingLabelAlignment.center,
+                      alignLabelWithHint: true,
+                      labelText: 'Project Address',
+                    ),
+                  ),
                 ),
-              ),
+                const SizedBox(width: 10),
+                InkWell(
+                  onTap: () => MainScreen.state.setState(() {
+                    MainScreen.state.qrCallback = (url) => MainMenu.projectAddr.text = url;
+                  }),
+                  child: const Icon(Icons.qr_code_scanner, size: 30),
+                ),
+              ],
             ),
             const SizedBox(height: 10),
             ElevatedButton(
