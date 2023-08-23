@@ -337,6 +337,9 @@ pub enum DartCommand {
     GetLocationLatLong { key: DartRequestKey },
     GetLocationHeading { key: DartRequestKey },
     GetLocationAltitude { key: DartRequestKey },
+    GetMicrophoneLevel { key: DartRequestKey },
+    GetProximity { key: DartRequestKey },
+    GetStepCount { key: DartRequestKey },
 }
 
 pub enum SimpleValue {
@@ -953,6 +956,9 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                             "getLocation" => simple_request!(GetLocationLatLong),
                             "getGPSHeading" => simple_request!(GetLocationHeading),
                             "getAltitude" => simple_request!(GetLocationAltitude),
+                            "getMicrophoneLevel" => simple_request!(GetMicrophoneLevel),
+                            "getProximity" => simple_request!(GetProximity),
+                            "getStepCount" => simple_request!(GetStepCount),
                             _ => RequestStatus::UseDefault { key, request },
                         }
                     }

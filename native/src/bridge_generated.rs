@@ -343,6 +343,11 @@ impl support::IntoDart for DartCommand {
             Self::GetLocationAltitude { key } => {
                 vec![39.into_dart(), key.into_into_dart().into_dart()]
             }
+            Self::GetMicrophoneLevel { key } => {
+                vec![40.into_dart(), key.into_into_dart().into_dart()]
+            }
+            Self::GetProximity { key } => vec![41.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetStepCount { key } => vec![42.into_dart(), key.into_into_dart().into_dart()],
         }
         .into_dart()
     }

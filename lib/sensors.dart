@@ -83,6 +83,10 @@ abstract class Sensor {
   List<double>? get value;
 }
 
+class UnsupportedSensor extends Sensor {
+  @override List<double>? get value => null;
+}
+
 class RawSensor<E> extends Sensor {
   @override List<double>? value;
   StreamSubscription<E>? listener;
@@ -112,6 +116,10 @@ class CalcSensor extends Sensor {
 
 class SensorManager {
   static bool running = false;
+
+  static UnsupportedSensor microphone = UnsupportedSensor();
+  static UnsupportedSensor proximity = UnsupportedSensor();
+  static UnsupportedSensor stepCount = UnsupportedSensor();
 
   static RawSensor<AccelerometerEvent> accelerometer = RawSensor();
   static RawSensor<UserAccelerometerEvent> linearAccelerometer = RawSensor();

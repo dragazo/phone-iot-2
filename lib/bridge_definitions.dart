@@ -231,6 +231,15 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.getLocationAltitude({
     required DartRequestKey key,
   }) = DartCommand_GetLocationAltitude;
+  const factory DartCommand.getMicrophoneLevel({
+    required DartRequestKey key,
+  }) = DartCommand_GetMicrophoneLevel;
+  const factory DartCommand.getProximity({
+    required DartRequestKey key,
+  }) = DartCommand_GetProximity;
+  const factory DartCommand.getStepCount({
+    required DartRequestKey key,
+  }) = DartCommand_GetStepCount;
 }
 
 class DartRequestKey {

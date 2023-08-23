@@ -367,6 +367,18 @@ class NativeImpl implements Native {
         return DartCommand_GetLocationAltitude(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
+      case 40:
+        return DartCommand_GetMicrophoneLevel(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
+      case 41:
+        return DartCommand_GetProximity(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
+      case 42:
+        return DartCommand_GetStepCount(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+        );
       default:
         throw Exception("unreachable");
     }
