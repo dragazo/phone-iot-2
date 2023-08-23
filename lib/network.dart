@@ -24,6 +24,8 @@ class Scheduler {
   SchedulerEntry? gravity;
   SchedulerEntry? lightLevel;
   SchedulerEntry? pressure;
+  SchedulerEntry? gyroscope;
+  SchedulerEntry? magneticField;
 
   Scheduler.empty();
   Scheduler.basedOn(SensorUpdateInfo sensors) :
@@ -31,7 +33,9 @@ class Scheduler {
     linearAccelerometer = SchedulerEntry.maybeFromMs(sensors.linearAcceleration),
     gravity = SchedulerEntry.maybeFromMs(sensors.gravity),
     lightLevel = SchedulerEntry.maybeFromMs(sensors.lightLevel),
-    pressure = SchedulerEntry.maybeFromMs(sensors.pressure);
+    pressure = SchedulerEntry.maybeFromMs(sensors.pressure),
+    gyroscope = SchedulerEntry.maybeFromMs(sensors.gyroscope),
+    magneticField = SchedulerEntry.maybeFromMs(sensors.magneticField);
 }
 
 class NetworkManager {
@@ -116,6 +120,26 @@ class NetworkManager {
     if (pressure != null && scheduler.pressure?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'pressure', values: [
         ('pressure', SimpleValue.number(pressure[0])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final gyroscope = SensorManager.gyroscope.value;
+    if (gyroscope != null && scheduler.gyroscope?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'gyroscope', values: [
+        ('x', SimpleValue.number(gyroscope[0])),
+        ('y', SimpleValue.number(gyroscope[1])),
+        ('z', SimpleValue.number(gyroscope[2])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final magnetometer = SensorManager.magnetometer.value;
+    if (magnetometer != null && scheduler.magneticField?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'magneticField', values: [
+        ('x', SimpleValue.number(magnetometer[0])),
+        ('y', SimpleValue.number(magnetometer[1])),
+        ('z', SimpleValue.number(magnetometer[2])),
         ('device', const SimpleValue.number(0)),
       ]));
     }
