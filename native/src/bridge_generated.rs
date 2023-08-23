@@ -348,6 +348,11 @@ impl support::IntoDart for DartCommand {
             }
             Self::GetProximity { key } => vec![41.into_dart(), key.into_into_dart().into_dart()],
             Self::GetStepCount { key } => vec![42.into_dart(), key.into_into_dart().into_dart()],
+            Self::ListenToSensors { key, sensors } => vec![
+                43.into_dart(),
+                key.into_into_dart().into_dart(),
+                sensors.into_into_dart().into_dart(),
+            ],
         }
         .into_dart()
     }
@@ -475,6 +480,34 @@ impl support::IntoDart for RadioButtonInfo {
 }
 impl support::IntoDartExceptPrimitive for RadioButtonInfo {}
 impl rust2dart::IntoIntoDart<RadioButtonInfo> for RadioButtonInfo {
+    fn into_into_dart(self) -> Self {
+        self
+    }
+}
+
+impl support::IntoDart for SensorUpdateInfo {
+    fn into_dart(self) -> support::DartAbi {
+        vec![
+            self.gravity.into_dart(),
+            self.gyroscope.into_dart(),
+            self.orientation.into_dart(),
+            self.accelerometer.into_dart(),
+            self.magnetic_field.into_dart(),
+            self.linear_acceleration.into_dart(),
+            self.light_level.into_dart(),
+            self.microphone_level.into_dart(),
+            self.proximity.into_dart(),
+            self.step_count.into_dart(),
+            self.location.into_dart(),
+            self.pressure.into_dart(),
+            self.temperature.into_dart(),
+            self.humidity.into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for SensorUpdateInfo {}
+impl rust2dart::IntoIntoDart<SensorUpdateInfo> for SensorUpdateInfo {
     fn into_into_dart(self) -> Self {
         self
     }

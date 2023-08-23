@@ -240,6 +240,10 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.getStepCount({
     required DartRequestKey key,
   }) = DartCommand_GetStepCount;
+  const factory DartCommand.listenToSensors({
+    required DartRequestKey key,
+    required SensorUpdateInfo sensors,
+  }) = DartCommand_ListenToSensors;
 }
 
 class DartRequestKey {
@@ -373,6 +377,40 @@ sealed class RustCommand with _$RustCommand {
     required String msgType,
     required List<(String, SimpleValue)> values,
   }) = RustCommand_InjectMessage;
+}
+
+class SensorUpdateInfo {
+  final double? gravity;
+  final double? gyroscope;
+  final double? orientation;
+  final double? accelerometer;
+  final double? magneticField;
+  final double? linearAcceleration;
+  final double? lightLevel;
+  final double? microphoneLevel;
+  final double? proximity;
+  final double? stepCount;
+  final double? location;
+  final double? pressure;
+  final double? temperature;
+  final double? humidity;
+
+  const SensorUpdateInfo({
+    this.gravity,
+    this.gyroscope,
+    this.orientation,
+    this.accelerometer,
+    this.magneticField,
+    this.linearAcceleration,
+    this.lightLevel,
+    this.microphoneLevel,
+    this.proximity,
+    this.stepCount,
+    this.location,
+    this.pressure,
+    this.temperature,
+    this.humidity,
+  });
 }
 
 @freezed

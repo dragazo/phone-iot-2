@@ -271,6 +271,23 @@ pub struct ImageDisplayInfo {
     pub landscape: bool,
     pub fit: ImageFitInfo,
 }
+#[derive(Clone, Debug)]
+pub struct SensorUpdateInfo {
+    pub gravity: Option<f64>,
+    pub gyroscope: Option<f64>,
+    pub orientation: Option<f64>,
+    pub accelerometer: Option<f64>,
+    pub magnetic_field: Option<f64>,
+    pub linear_acceleration: Option<f64>,
+    pub light_level: Option<f64>,
+    pub microphone_level: Option<f64>,
+    pub proximity: Option<f64>,
+    pub step_count: Option<f64>,
+    pub location: Option<f64>,
+    pub pressure: Option<f64>,
+    pub temperature: Option<f64>,
+    pub humidity: Option<f64>,
+}
 
 pub enum RustCommand {
     SetProject { xml: String },
@@ -340,6 +357,8 @@ pub enum DartCommand {
     GetMicrophoneLevel { key: DartRequestKey },
     GetProximity { key: DartRequestKey },
     GetStepCount { key: DartRequestKey },
+
+    ListenToSensors { key: DartRequestKey, sensors: SensorUpdateInfo },
 }
 
 pub enum SimpleValue {
@@ -549,7 +568,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                         let b = v as u8;
                         ColorInfo { a, r, g, b }
                     }};
-                    ($n:ident := $e:expr => {$($f:ident),*}) => {
+                    ($n:ident := $e:expr => {$($f:ident),*$(,)?}) => {
                         match parse_options(stringify!($n), &$e, &[$(stringify!($f)),*]) {
                             Ok(x) => x,
                             Err(e) => {
@@ -832,6 +851,36 @@ pub fn initialize(utc_offset_in_seconds: i32) {
 
                                 send_dart_command(DartCommand::AddImageDisplay { key: DartRequestKey::new(key), info: ImageDisplayInfo {
                                     id, x, y, width, height, event, readonly, landscape, fit,
+                                }});
+                                RequestStatus::Handled
+                            }
+                            "listenToSensors" => {
+                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
+
+                                let sensors = parse!(sensors := args[1].1 => {
+                                    gravity, gyroscope, orientation, accelerometer, magneticField, linearAcceleration,
+                                    lightLevel, microphoneLevel, proximity, stepCount, location, pressure, temperature, humidity,
+                                });
+                                let gravity = parse!(gravity := sensors.get("gravity") => Option<f64>);
+                                let gyroscope = parse!(gyroscope := sensors.get("gyroscope") => Option<f64>);
+                                let orientation = parse!(orientation := sensors.get("orientation") => Option<f64>);
+                                let accelerometer = parse!(accelerometer := sensors.get("accelerometer") => Option<f64>);
+                                let magnetic_field = parse!(magneticField := sensors.get("magneticField") => Option<f64>);
+                                let linear_acceleration = parse!(linearAcceleration := sensors.get("linearAcceleration") => Option<f64>);
+                                let light_level = parse!(lightLevel := sensors.get("lightLevel") => Option<f64>);
+                                let microphone_level = parse!(microphoneLevel := sensors.get("microphoneLevel") => Option<f64>);
+                                let proximity = parse!(proximity := sensors.get("proximity") => Option<f64>);
+                                let step_count = parse!(stepCount := sensors.get("stepCount") => Option<f64>);
+                                let location = parse!(location := sensors.get("location") => Option<f64>);
+                                let pressure = parse!(pressure := sensors.get("pressure") => Option<f64>);
+                                let temperature = parse!(temperature := sensors.get("temperature") => Option<f64>);
+                                let humidity = parse!(humidity := sensors.get("humidity") => Option<f64>);
+
+                                send_dart_command(DartCommand::ListenToSensors { key: DartRequestKey::new(key), sensors: SensorUpdateInfo {
+                                    gravity, gyroscope, orientation, accelerometer, magnetic_field, linear_acceleration,
+                                    light_level, microphone_level, proximity, step_count, location, pressure, temperature, humidity,
                                 }});
                                 RequestStatus::Handled
                             }

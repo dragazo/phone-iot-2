@@ -113,6 +113,10 @@ class NativeImpl implements Native {
     return _wire2api_dart_request_key(raw);
   }
 
+  double _wire2api_box_autoadd_f64(dynamic raw) {
+    return raw as double;
+  }
+
   ImageDisplayInfo _wire2api_box_autoadd_image_display_info(dynamic raw) {
     return _wire2api_image_display_info(raw);
   }
@@ -127,6 +131,10 @@ class NativeImpl implements Native {
 
   RadioButtonInfo _wire2api_box_autoadd_radio_button_info(dynamic raw) {
     return _wire2api_radio_button_info(raw);
+  }
+
+  SensorUpdateInfo _wire2api_box_autoadd_sensor_update_info(dynamic raw) {
+    return _wire2api_sensor_update_info(raw);
   }
 
   SliderInfo _wire2api_box_autoadd_slider_info(dynamic raw) {
@@ -379,6 +387,11 @@ class NativeImpl implements Native {
         return DartCommand_GetStepCount(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
+      case 43:
+        return DartCommand_ListenToSensors(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          sensors: _wire2api_box_autoadd_sensor_update_info(raw[2]),
+        );
       default:
         throw Exception("unreachable");
     }
@@ -457,6 +470,10 @@ class NativeImpl implements Native {
     return raw == null ? null : _wire2api_String(raw);
   }
 
+  double? _wire2api_opt_box_autoadd_f64(dynamic raw) {
+    return raw == null ? null : _wire2api_box_autoadd_f64(raw);
+  }
+
   RadioButtonInfo _wire2api_radio_button_info(dynamic raw) {
     final arr = raw as List<dynamic>;
     if (arr.length != 12)
@@ -474,6 +491,28 @@ class NativeImpl implements Native {
       fontSize: _wire2api_f64(arr[9]),
       landscape: _wire2api_bool(arr[10]),
       readonly: _wire2api_bool(arr[11]),
+    );
+  }
+
+  SensorUpdateInfo _wire2api_sensor_update_info(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 14)
+      throw Exception('unexpected arr length: expect 14 but see ${arr.length}');
+    return SensorUpdateInfo(
+      gravity: _wire2api_opt_box_autoadd_f64(arr[0]),
+      gyroscope: _wire2api_opt_box_autoadd_f64(arr[1]),
+      orientation: _wire2api_opt_box_autoadd_f64(arr[2]),
+      accelerometer: _wire2api_opt_box_autoadd_f64(arr[3]),
+      magneticField: _wire2api_opt_box_autoadd_f64(arr[4]),
+      linearAcceleration: _wire2api_opt_box_autoadd_f64(arr[5]),
+      lightLevel: _wire2api_opt_box_autoadd_f64(arr[6]),
+      microphoneLevel: _wire2api_opt_box_autoadd_f64(arr[7]),
+      proximity: _wire2api_opt_box_autoadd_f64(arr[8]),
+      stepCount: _wire2api_opt_box_autoadd_f64(arr[9]),
+      location: _wire2api_opt_box_autoadd_f64(arr[10]),
+      pressure: _wire2api_opt_box_autoadd_f64(arr[11]),
+      temperature: _wire2api_opt_box_autoadd_f64(arr[12]),
+      humidity: _wire2api_opt_box_autoadd_f64(arr[13]),
     );
   }
 

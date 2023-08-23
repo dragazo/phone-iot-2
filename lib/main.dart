@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone_iot_2/network.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 import 'dart:io' show Platform;
 import 'dart:math';
@@ -18,10 +19,6 @@ const kvstoreDeviceID = 'device-id';
 const msgUpdateInterval = Duration(milliseconds: 500);
 const msgLifetime = Duration(seconds: 10);
 const passwordLifetime = Duration(hours: 24);
-
-const facingDirectionNames = [ 'left', 'vertical', 'up', 'right', 'upside down', 'down' ];
-const compassDirectionNames = [ 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW' ];
-const compassCardinalDirectionNames = [ 'N', 'E', 'S', 'W' ];
 
 late final GetStorage insecureStorage;
 
@@ -251,6 +248,11 @@ class MainScreenState extends State<MainScreen> {
           getFacingDirection: (key) => sendSensorScalarEncoded(SensorManager.facingDirection.value, facingDirectionNames, key),
           getCompassDirection: (key) => sendSensorScalarEncoded(SensorManager.compassDirection.value, compassDirectionNames, key),
           getCompassCardinalDirection: (key) => sendSensorScalarEncoded(SensorManager.compassCardinalDirection.value, compassCardinalDirectionNames, key),
+
+          listenToSensors: (key, sensors) {
+            NetworkManager.listenToSensors(sensors);
+            api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+          },
         );
       }
     }

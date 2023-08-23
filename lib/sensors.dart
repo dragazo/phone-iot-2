@@ -10,6 +10,10 @@ const double radToDeg = 180 / pi;
 // annoyingly, some of our sensor deps have platform-dependent units
 final double pressureScale = Platform.isAndroid ? 0.1 : 1;
 
+const facingDirectionNames = [ 'left', 'vertical', 'up', 'right', 'upside down', 'down' ];
+const compassDirectionNames = [ 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW' ];
+const compassCardinalDirectionNames = [ 'N', 'E', 'S', 'W' ];
+
 const List<(List<double>, double)> facingDirectionClasses = [
   ([1, 0, 0], 0),
   ([0, 1, 0], 1),
