@@ -22,12 +22,16 @@ class Scheduler {
   SchedulerEntry? accelerometer;
   SchedulerEntry? linearAccelerometer;
   SchedulerEntry? gravity;
+  SchedulerEntry? lightLevel;
+  SchedulerEntry? pressure;
 
   Scheduler.empty();
   Scheduler.basedOn(SensorUpdateInfo sensors) :
     accelerometer = SchedulerEntry.maybeFromMs(sensors.accelerometer),
     linearAccelerometer = SchedulerEntry.maybeFromMs(sensors.linearAcceleration),
-    gravity = SchedulerEntry.maybeFromMs(sensors.gravity);
+    gravity = SchedulerEntry.maybeFromMs(sensors.gravity),
+    lightLevel = SchedulerEntry.maybeFromMs(sensors.lightLevel),
+    pressure = SchedulerEntry.maybeFromMs(sensors.pressure);
 }
 
 class NetworkManager {
@@ -96,6 +100,22 @@ class NetworkManager {
         ('x', SimpleValue.number(gravity[0])),
         ('y', SimpleValue.number(gravity[1])),
         ('z', SimpleValue.number(gravity[2])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final lightLevel = SensorManager.lightLevel.value;
+    if (lightLevel != null && scheduler.lightLevel?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'lightLevel', values: [
+        ('level', SimpleValue.number(lightLevel[0])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final pressure = SensorManager.pressure.value;
+    if (pressure != null && scheduler.pressure?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'pressure', values: [
+        ('pressure', SimpleValue.number(pressure[0])),
         ('device', const SimpleValue.number(0)),
       ]));
     }
