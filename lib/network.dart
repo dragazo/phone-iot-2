@@ -20,10 +20,14 @@ class SchedulerEntry {
 }
 class Scheduler {
   SchedulerEntry? accelerometer;
+  SchedulerEntry? linearAccelerometer;
+  SchedulerEntry? gravity;
 
   Scheduler.empty();
   Scheduler.basedOn(SensorUpdateInfo sensors) :
-    accelerometer = SchedulerEntry.maybeFromMs(sensors.accelerometer);
+    accelerometer = SchedulerEntry.maybeFromMs(sensors.accelerometer),
+    linearAccelerometer = SchedulerEntry.maybeFromMs(sensors.linearAcceleration),
+    gravity = SchedulerEntry.maybeFromMs(sensors.gravity);
 }
 
 class NetworkManager {
@@ -71,7 +75,27 @@ class NetworkManager {
         ('x', SimpleValue.number(accelerometer[0])),
         ('y', SimpleValue.number(accelerometer[1])),
         ('z', SimpleValue.number(accelerometer[2])),
-        ('facingDir', SimpleValue.string(facingDirectionNames[SensorManager.facingDirection.f([accelerometer])![0].toInt()])),
+        ('facingDir', SimpleValue.string(facingDirectionNames[SensorManager.facingDirection.value![0].toInt()])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final linearAccelerometer = SensorManager.linearAccelerometer.value;
+    if (linearAccelerometer != null && scheduler.linearAccelerometer?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'linearAcceleration', values: [
+        ('x', SimpleValue.number(linearAccelerometer[0])),
+        ('y', SimpleValue.number(linearAccelerometer[1])),
+        ('z', SimpleValue.number(linearAccelerometer[2])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final gravity = SensorManager.gravity.value;
+    if (gravity != null && scheduler.gravity?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'gravity', values: [
+        ('x', SimpleValue.number(gravity[0])),
+        ('y', SimpleValue.number(gravity[1])),
+        ('z', SimpleValue.number(gravity[2])),
         ('device', const SimpleValue.number(0)),
       ]));
     }
