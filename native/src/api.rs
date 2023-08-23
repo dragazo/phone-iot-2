@@ -271,7 +271,7 @@ pub struct ImageDisplayInfo {
     pub landscape: bool,
     pub fit: ImageFitInfo,
 }
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct SensorUpdateInfo {
     pub gravity: Option<f64>,
     pub gyroscope: Option<f64>,
@@ -882,6 +882,14 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     gravity, gyroscope, orientation, accelerometer, magnetic_field, linear_acceleration,
                                     light_level, microphone_level, proximity, step_count, location, pressure, temperature, humidity,
                                 }});
+                                RequestStatus::Handled
+                            }
+                            "stopSensors" => {
+                                if args.len() != 1 || !is_local_id(&args[0].1) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
+
+                                send_dart_command(DartCommand::ListenToSensors { key: DartRequestKey::new(key), sensors: SensorUpdateInfo::default() });
                                 RequestStatus::Handled
                             }
                             "getText" => {

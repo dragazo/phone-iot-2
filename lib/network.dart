@@ -32,6 +32,9 @@ class NetworkManager {
   static Timer? updateTimer;
 
   static void listenToSensors(SensorUpdateInfo sensors) {
+    updateTimer?.cancel();
+    updateTimer = null;
+
     scheduler = Scheduler.basedOn(sensors);
 
     final updateIntervals = <double>[];
@@ -55,7 +58,6 @@ class NetworkManager {
       if (minInterval == null || x < minInterval) minInterval = x;
     }
     if (minInterval != null) {
-      updateTimer?.cancel();
       updateTimer = Timer.periodic(Duration(milliseconds: minInterval.toInt()), (timer) => sendUpdate());
     }
   }
