@@ -28,6 +28,11 @@ class Scheduler {
   SchedulerEntry? magneticField;
   SchedulerEntry? gps;
   SchedulerEntry? orientation;
+  SchedulerEntry? temperature;
+  SchedulerEntry? relativeHumidity;
+  SchedulerEntry? microphone;
+  SchedulerEntry? proximity;
+  SchedulerEntry? stepCount;
 
   Scheduler.empty();
   Scheduler.basedOn(SensorUpdateInfo sensors) :
@@ -39,7 +44,12 @@ class Scheduler {
     gyroscope = SchedulerEntry.maybeFromMs(sensors.gyroscope),
     magneticField = SchedulerEntry.maybeFromMs(sensors.magneticField),
     gps = SchedulerEntry.maybeFromMs(sensors.location),
-    orientation = SchedulerEntry.maybeFromMs(sensors.orientation);
+    orientation = SchedulerEntry.maybeFromMs(sensors.orientation),
+    temperature = SchedulerEntry.maybeFromMs(sensors.temperature),
+    relativeHumidity = SchedulerEntry.maybeFromMs(sensors.humidity),
+    microphone = SchedulerEntry.maybeFromMs(sensors.microphoneLevel),
+    proximity = SchedulerEntry.maybeFromMs(sensors.proximity),
+    stepCount = SchedulerEntry.maybeFromMs(sensors.stepCount);
 }
 
 class NetworkManager {
@@ -168,6 +178,46 @@ class NetworkManager {
         ('heading', SimpleValue.number(orientation[0])),
         ('dir', SimpleValue.string(compassDirectionNames[SensorManager.compassDirection.value![0].toInt()])),
         ('cardinalDir', SimpleValue.string(compassCardinalDirectionNames[SensorManager.compassCardinalDirection.value![0].toInt()])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final temperature = SensorManager.temperature.value;
+    if (temperature != null && scheduler.temperature?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'temperature', values: [
+        ('temp', SimpleValue.number(temperature[0])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final relativeHumidity = SensorManager.relativeHumidity.value;
+    if (relativeHumidity != null && scheduler.relativeHumidity?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'humidity', values: [
+        ('relative', SimpleValue.number(relativeHumidity[0])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final microphone = SensorManager.microphone.value;
+    if (microphone != null && scheduler.microphone?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'microphoneLevel', values: [
+        ('volume', SimpleValue.number(microphone[0])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final proximity = SensorManager.proximity.value;
+    if (proximity != null && scheduler.proximity?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'proximity', values: [
+        ('distance', SimpleValue.number(proximity[0])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final stepCount = SensorManager.stepCount.value;
+    if (stepCount != null && scheduler.stepCount?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'stepCount', values: [
+        ('count', SimpleValue.number(stepCount[0])),
         ('device', const SimpleValue.number(0)),
       ]));
     }
