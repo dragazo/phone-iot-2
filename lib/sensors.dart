@@ -142,8 +142,8 @@ class SensorManager {
   static CalcSensor compassDirection = CalcSensor(src: [orientation], f: (x) => [closestClassify(x[0][0], compassDirectionClasses)]);
   static CalcSensor compassCardinalDirection = CalcSensor(src: [orientation], f: (x) => [closestClassify(x[0][0], compassCardinalDirectionClasses)]);
   static CalcSensor locationLatLong = CalcSensor(src: [gps], f: (x) => [x[0][0], x[0][1]]);
-  static CalcSensor locationHeading = CalcSensor(src: [gps], f: (x) => x[0][2] != 0 ? [x[0][2]] : null);
-  static CalcSensor locationAltitude = CalcSensor(src: [gps], f: (x) => x[0][3] != 0 ? [x[0][3]] : null);
+  static CalcSensor locationHeading = CalcSensor(src: [gps], f: (x) => [x[0][2]]);
+  static CalcSensor locationAltitude = CalcSensor(src: [gps], f: (x) => [x[0][3]]);
 
   static Future<void> requestPermissions() async {
     await Geolocator.requestPermission();

@@ -26,6 +26,7 @@ class Scheduler {
   SchedulerEntry? pressure;
   SchedulerEntry? gyroscope;
   SchedulerEntry? magneticField;
+  SchedulerEntry? gps;
 
   Scheduler.empty();
   Scheduler.basedOn(SensorUpdateInfo sensors) :
@@ -35,7 +36,8 @@ class Scheduler {
     lightLevel = SchedulerEntry.maybeFromMs(sensors.lightLevel),
     pressure = SchedulerEntry.maybeFromMs(sensors.pressure),
     gyroscope = SchedulerEntry.maybeFromMs(sensors.gyroscope),
-    magneticField = SchedulerEntry.maybeFromMs(sensors.magneticField);
+    magneticField = SchedulerEntry.maybeFromMs(sensors.magneticField),
+    gps = SchedulerEntry.maybeFromMs(sensors.location);
 }
 
 class NetworkManager {
@@ -140,6 +142,17 @@ class NetworkManager {
         ('x', SimpleValue.number(magnetometer[0])),
         ('y', SimpleValue.number(magnetometer[1])),
         ('z', SimpleValue.number(magnetometer[2])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final gps = SensorManager.gps.value;
+    if (gps != null && scheduler.gps?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'location', values: [
+        ('latitude', SimpleValue.number(gps[0])),
+        ('longitude', SimpleValue.number(gps[1])),
+        ('heading', SimpleValue.number(gps[2])),
+        ('altitude', SimpleValue.number(gps[3])),
         ('device', const SimpleValue.number(0)),
       ]));
     }
