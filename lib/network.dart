@@ -27,6 +27,7 @@ class Scheduler {
   SchedulerEntry? gyroscope;
   SchedulerEntry? magneticField;
   SchedulerEntry? gps;
+  SchedulerEntry? orientation;
 
   Scheduler.empty();
   Scheduler.basedOn(SensorUpdateInfo sensors) :
@@ -37,7 +38,8 @@ class Scheduler {
     pressure = SchedulerEntry.maybeFromMs(sensors.pressure),
     gyroscope = SchedulerEntry.maybeFromMs(sensors.gyroscope),
     magneticField = SchedulerEntry.maybeFromMs(sensors.magneticField),
-    gps = SchedulerEntry.maybeFromMs(sensors.location);
+    gps = SchedulerEntry.maybeFromMs(sensors.location),
+    orientation = SchedulerEntry.maybeFromMs(sensors.orientation);
 }
 
 class NetworkManager {
@@ -153,6 +155,19 @@ class NetworkManager {
         ('longitude', SimpleValue.number(gps[1])),
         ('heading', SimpleValue.number(gps[2])),
         ('altitude', SimpleValue.number(gps[3])),
+        ('device', const SimpleValue.number(0)),
+      ]));
+    }
+
+    final orientation = SensorManager.orientation.value;
+    if (orientation != null && scheduler.orientation?.advance(now) == true) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'orientation', values: [
+        ('x', SimpleValue.number(orientation[0])),
+        ('y', SimpleValue.number(orientation[1])),
+        ('z', SimpleValue.number(orientation[2])),
+        ('heading', SimpleValue.number(orientation[0])),
+        ('dir', SimpleValue.string(compassDirectionNames[SensorManager.compassDirection.value![0].toInt()])),
+        ('cardinalDir', SimpleValue.string(compassCardinalDirectionNames[SensorManager.compassCardinalDirection.value![0].toInt()])),
         ('device', const SimpleValue.number(0)),
       ]));
     }
