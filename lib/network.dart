@@ -1,9 +1,23 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
+import 'package:phone_iot_2/conversions.dart';
+
 import 'ffi.dart';
 import 'sensors.dart';
+import 'package:http/http.dart' as http;
+
+import 'main.dart';
 
 const int timingEpsilon = 20;
+const int defaultServerPort = 1976;
+const int defaultClientPort = 6787;
+const Duration heartbeatPeriod = Duration(seconds: 30);
+
+bool isIP(String addr) {
+  final pat = RegExp(r'^\d+\.\d+\.\d+\.\d+$');
+  return pat.firstMatch(addr) != null;
+}
 
 class SchedulerEntry {
   int lastUpdate;
@@ -56,6 +70,91 @@ class NetworkManager {
   static const double minUpdateIntervalMs = 50;
   static Scheduler scheduler = Scheduler.empty();
   static Timer? updateTimer;
+
+  static RawDatagramSocket? udp;
+  static InternetAddress? serverAddr;
+  static int? serverPort;
+  static Timer? heartbeatTimer;
+
+  static void netsbloxSend(List<int> msg) {
+    final mac = MainMenu.state.deviceID;
+    final addr = serverAddr;
+    final port = serverPort;
+    if (addr == null || port == null) return;
+
+    final res = <int>[];
+    res.addAll(mac);
+    res.addAll([0, 0, 0, 0]);
+    res.addAll(msg);
+
+    udp?.send(res, addr, port);
+  }
+
+  static void disconnect() {
+    udp?.close();
+    udp = null;
+
+    heartbeatTimer?.cancel();
+    heartbeatTimer = null;
+
+    serverPort = null;
+    serverAddr = null;
+  }
+  static Future<void> connect() async {
+    try {
+      disconnect();
+
+      String addr = MainMenu.serverAddr.text;
+      final target = isIP(addr) ? '$addr:8080' : addr.startsWith('https://') ? addr : 'https://$addr';
+      final res = await http.get(Uri.parse('$target/services/routes/phone-iot/port'));
+
+      serverPort = int.tryParse(res.body) ?? defaultServerPort;
+      serverAddr = (await InternetAddress.lookup(addr))[0];
+
+      final newUdp = await RawDatagramSocket.bind(InternetAddress.anyIPv4, defaultClientPort);
+      udp = newUdp;
+      newUdp.forEach((e) {
+        if (e == RawSocketEvent.read) {
+          final msg = newUdp.receive();
+          if (msg != null) handleUdpMessage(msg);
+        }
+      });
+
+      heartbeatTimer = Timer.periodic(heartbeatPeriod, (t) {
+        netsbloxSend([ 'I'.codeUnitAt(0) ]);
+      });
+
+      netsbloxSend([ 'I'.codeUnitAt(0), 0 ]); // send first heartbeat and add an ACK check flag
+    } catch (e) {
+      MessageList.state.addMessage(Message('Failed to Connect: $e', MessageType.stderr));
+    }
+  }
+  static void requestConnReset() {
+    netsbloxSend([ 'I'.codeUnitAt(0), 86 ]);
+  }
+
+  static void handleUdpMessage(Datagram msg) {
+    if (msg.data.isEmpty) return;
+
+    // check for things that don't need auth
+    if (msg.data.length <= 2 && msg.data[0] == 'I'.codeUnitAt(0)) {
+      if (msg.data.length == 1 || (msg.data.length == 2 && msg.data[1] == 1)) {
+        MessageList.state.addMessage(Message('Connected to NetsBlox', MessageType.stdout));
+        return;
+      } else if (msg.data.length == 2 && msg.data[1] == 87) {
+        MessageList.state.addMessage(Message('Connection Reset', MessageType.stdout));
+        Timer(const Duration(seconds: 3), () => connect());
+        return;
+      }
+    }
+
+    // ignore anything that's invalid or fails to auth
+    if (msg.data.length < 9 || u64FromBEBytes(msg.data.sublist(1, 9)) != MainMenu.state.getPassword()) {
+      return;
+    }
+
+    print('unhandled datagram... $msg');
+  }
 
   static void listenToSensors(SensorUpdateInfo sensors) {
     updateTimer?.cancel();

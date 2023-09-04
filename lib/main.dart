@@ -14,23 +14,18 @@ import 'sensors.dart';
 import 'canvas.dart';
 
 const sensorErrorMsg = 'sensor is not available or is disabled';
+const defaultServerAddr = 'editor.netsblox.org';
+
 const kvstoreDeviceID = 'device-id';
+const kvstoreServerAddr = 'server-addr';
+const kvstoreProjectAddr = 'proj-addr';
 
 const msgUpdateInterval = Duration(milliseconds: 500);
 const msgLifetime = Duration(seconds: 10);
 const passwordLifetime = Duration(hours: 24);
 
 late final GetStorage insecureStorage;
-
-String randomHexString(int length) {
-  final r = Random();
-  final res = StringBuffer();
-  const options = '0123456789abcdef';
-  for (int i = 0; i < length; ++i) {
-    res.writeCharCode(options.codeUnitAt(r.nextInt(options.length)));
-  }
-  return res.toString();
-}
+final rng = Random();
 
 enum MessageType {
   stdout, stderr,
@@ -388,23 +383,45 @@ class MainMenu extends StatefulWidget {
   State<MainMenu> createState() => state;
 }
 class MainMenuState extends State<MainMenu> {
-  late String deviceID;
-  late String devicePW;
+  late List<int> deviceID;
+  late int devicePW;
   late DateTime devicePWExpiry;
+
+  int getPassword() {
+    final now = DateTime.now();
+    if (now.isAfter(devicePWExpiry)) {
+      setState(() {
+        devicePW = rng.nextInt(0x7fffffff);
+        devicePWExpiry = now.add(passwordLifetime);
+      });
+    }
+    return devicePW;
+  }
 
   @override
   void initState() {
     super.initState();
 
     if (insecureStorage.hasData(kvstoreDeviceID)) {
-      deviceID = insecureStorage.read(kvstoreDeviceID);
+      final temp = insecureStorage.read<List<dynamic>>(kvstoreDeviceID)!;
+      deviceID = List.from(temp.map((x) => x as int));
     } else {
-      deviceID = randomHexString(12);
+      deviceID = [rng.nextInt(0xff), rng.nextInt(0xff), rng.nextInt(0xff), rng.nextInt(0xff), rng.nextInt(0xff), rng.nextInt(0xff)];
       insecureStorage.write(kvstoreDeviceID, deviceID);
     }
 
-    devicePW = '00000000';
+    devicePW = 0;
     devicePWExpiry = DateTime.now().add(passwordLifetime);
+
+    if (insecureStorage.hasData(kvstoreServerAddr)) {
+      MainMenu.serverAddr.text = insecureStorage.read(kvstoreDeviceID);
+    } else {
+      MainMenu.serverAddr.text = defaultServerAddr;
+    }
+
+    if (insecureStorage.hasData(kvstoreProjectAddr)) {
+      MainMenu.projectAddr.text = insecureStorage.read(kvstoreProjectAddr);
+    }
   }
 
   @override
@@ -419,8 +436,8 @@ class MainMenuState extends State<MainMenu> {
             Image.asset('assets/images/AppIcon-512-trans.png', height: 60, isAntiAlias: true),
             const Text(App.name, style: TextStyle(fontSize: 22)),
             const SizedBox(height: 10),
-            Text('Device ID: $deviceID'),
-            Text('Password: $devicePW'),
+            Text('Device ID: ${deviceID.map((x) => x.toRadixString(16).padLeft(2, "0")).join()}'),
+            Text('Password: ${devicePW.toRadixString(16).padLeft(8, "0")}'),
             const SizedBox(height: 10),
             SizedBox(
               width: 250,
@@ -438,18 +455,21 @@ class MainMenuState extends State<MainMenu> {
             Row(
               children: [
                 ElevatedButton(
-                  onPressed: () => print('connect ${MainMenu.serverAddr.text}'),
+                  onPressed: () => NetworkManager.connect(),
                   child: const Text('Connect'),
                 ),
                 const SizedBox(width: 10),
                 ElevatedButton(
-                  onPressed: () => print('reconnect ${MainMenu.serverAddr.text}'),
+                  onPressed: () => NetworkManager.requestConnReset(),
                   child: const Text('Reconnect'),
                 ),
               ],
             ),
             ElevatedButton(
-              onPressed: () => print('new password'),
+              onPressed: () {
+                devicePWExpiry = DateTime.fromMillisecondsSinceEpoch(0);
+                getPassword();
+              },
               child: const Text('New Password'),
             ),
             const SizedBox(height: 20),
