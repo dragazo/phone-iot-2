@@ -153,7 +153,12 @@ class NetworkManager {
       return;
     }
 
-    print('unhandled datagram... $msg');
+    // authenticate
+    if (msg.data[0] == 'a'.codeUnitAt(0)) {
+      netsbloxSend([ msg.data[0] ]);
+    } else {
+      print('unhandled datagram... ${msg.data}');
+    }
   }
 
   static void listenToSensors(SensorUpdateInfo sensors) {
