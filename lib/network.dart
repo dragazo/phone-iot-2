@@ -89,6 +89,14 @@ class NetworkManager {
 
     udp?.send(res, addr, port);
   }
+  static void netsbloxSendSensor(int heading, List<double>? value) {
+    final msg = <int>[];
+    msg.add(heading);
+    for (final x in value ?? <double>[]) {
+      msg.addAll(f64ToBEBytes(x));
+    }
+    netsbloxSend(msg);
+  }
 
   static void disconnect() {
     udp?.close();
@@ -153,10 +161,52 @@ class NetworkManager {
       return;
     }
 
-    // authenticate
-    if (msg.data[0] == 'a'.codeUnitAt(0)) {
+    if (msg.data[0] == 'a'.codeUnitAt(0)) { // authenticate
       netsbloxSend([ msg.data[0] ]);
-    } else {
+    }
+    else if (msg.data[0] == 'A'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.accelerometer.value);
+    }
+    else if (msg.data[0] == 'G'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.gravity.value);
+    }
+    else if (msg.data[0] == 'L'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.linearAccelerometer.value);
+    }
+    else if (msg.data[0] == 'Y'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.gyroscope.value);
+    }
+    else if (msg.data[0] == 'M'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.magnetometer.value);
+    }
+    else if (msg.data[0] == 'm'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.microphone.value);
+    }
+    else if (msg.data[0] == 'P'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.proximity.value);
+    }
+    else if (msg.data[0] == 'S'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.stepCount.value);
+    }
+    else if (msg.data[0] == 'l'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.lightLevel.value);
+    }
+    else if (msg.data[0] == 'F'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.pressure.value);
+    }
+    else if (msg.data[0] == 'f'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.temperature.value);
+    }
+    else if (msg.data[0] == 'K'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.relativeHumidity.value);
+    }
+    else if (msg.data[0] == 'X'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.gps.value);
+    }
+    else if (msg.data[0] == 'O'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.orientation.value);
+    }
+    else {
       print('unhandled datagram... ${msg.data}');
     }
   }
