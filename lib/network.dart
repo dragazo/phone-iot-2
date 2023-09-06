@@ -340,6 +340,23 @@ class NetworkManager {
         }
       }
     }
+    else if (msg.data[0] == 'D'.codeUnitAt(0)) { // add slider
+      final x = f32FromBEBytes(msg.data.sublist(9, 13));
+      final y = f32FromBEBytes(msg.data.sublist(13, 17));
+      final width = f32FromBEBytes(msg.data.sublist(17, 21));
+      final color = colorFromBEBytes(msg.data.sublist(21, 25));
+      final value = f32FromBEBytes(msg.data.sublist(25, 29));
+      final style = sliderStyleFromBEBytes(msg.data.sublist(29, 30));
+      final landscape = msg.data[30] != 0;
+      final readonly = msg.data[31] != 0;
+      if (msg.data.length - 32 <= 255) {
+        final id = tryStringFromBytes(msg.data.sublist(32));
+        if (id != null) {
+          final info = SliderInfo(id: id, x: x, y: y, width: width, color: color, value: value, style: style, landscape: landscape, readonly: readonly);
+          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomSlider(info)).index ]);
+        }
+      }
+    }
     else {
       print('unhandled datagram... ${msg.data}');
     }

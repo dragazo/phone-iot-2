@@ -42,6 +42,13 @@ TouchpadStyleInfo touchpadStyleFromBEBytes(Uint8List src) {
     default: return TouchpadStyleInfo.Rectangle;
   }
 }
+SliderStyleInfo sliderStyleFromBEBytes(Uint8List src) {
+  assert(src.length == 1);
+  switch (src[0]) {
+    case 1: return SliderStyleInfo.Progress;
+    default: return SliderStyleInfo.Slider;
+  }
+}
 ImageFitInfo imageFitFromBEBytes(Uint8List src) {
   assert(src.length == 1);
   switch (src[0]) {

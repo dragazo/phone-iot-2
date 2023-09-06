@@ -525,6 +525,7 @@ class CustomSlider extends CustomControl with Pressable, LevelLike {
 
   bool pressed = false;
   DateTime nextUpdate = DateTime.now();
+  int updateCount = 0;
 
   static const double transparency = 0.5;
   static const double height = 12;
@@ -591,15 +592,18 @@ class CustomSlider extends CustomControl with Pressable, LevelLike {
     pressed = type != ClickType.up;
 
     final now = DateTime.now();
-    if (event != null && (now.isAfter(nextUpdate) || type == ClickType.up)) {
+    if ((now.isAfter(nextUpdate) || type == ClickType.up)) {
       nextUpdate = now.add(updateInterval);
       final v = getLevel();
-      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
-        ('device', const SimpleValue.number(0)),
-        ('id', SimpleValue.string(id)),
-        ('level', SimpleValue.number(v)),
-        ('tag', SimpleValue.string(encodeClickType(type))),
-      ]));
+      if (event != null) {
+        api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+          ('device', const SimpleValue.number(0)),
+          ('id', SimpleValue.string(id)),
+          ('level', SimpleValue.number(v)),
+          ('tag', SimpleValue.string(encodeClickType(type))),
+        ]));
+      }
+      NetworkManager.netsbloxSend([ 'd'.codeUnitAt(0) ] + u32ToBEBytes(updateCount++) + [ type.index ] + f32ToBEBytes(v) + stringToBEBytes(id));
     }
 
     return ClickResult.redraw;
