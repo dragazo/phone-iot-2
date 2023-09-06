@@ -23,9 +23,14 @@ const kvstoreProjectAddr = 'proj-addr';
 const msgUpdateInterval = Duration(milliseconds: 500);
 const msgLifetime = Duration(seconds: 10);
 const passwordLifetime = Duration(hours: 24);
+const maxCustomControls = 1024;
 
 late final GetStorage insecureStorage;
 final rng = Random();
+
+enum AddControlResult {
+  success, tooManyControls, idConflict,
+}
 
 enum MessageType {
   stdout, stderr,
@@ -120,7 +125,13 @@ class MainScreenState extends State<MainScreen> {
         }
       }
       void addControl(CustomControl control, DartRequestKey key) {
-          api.completeRequest(key: key, result: Display.state.tryAddControl(control) ? RequestResult.ok(SimpleValue.string(control.id)) : RequestResult.err('id ${control.id} is already in use'));
+        RequestResult res;
+        switch (Display.state.tryAddControl(control)) {
+          case AddControlResult.success: res = RequestResult.ok(SimpleValue.string(control.id));
+          case AddControlResult.tooManyControls: res = const RequestResult.err('too many controls');
+          case AddControlResult.idConflict: res = RequestResult.err('id ${control.id} is already in use');
+        }
+        api.completeRequest(key: key, result: res);
       }
       T? findControl<T>(String id) {
         CustomControl? x = Display.state.controls[id];
@@ -633,10 +644,11 @@ class DisplayState extends State<Display> {
     );
   }
 
-  bool tryAddControl(CustomControl control) {
-    if (controls.containsKey(control.id)) return false;
+  AddControlResult tryAddControl(CustomControl control) {
+    if (controls.length >= maxCustomControls) return AddControlResult.tooManyControls;
+    if (controls.containsKey(control.id)) return AddControlResult.idConflict;
     setState(() => controls[control.id] = control);
-    return true;
+    return AddControlResult.success;
   }
   void removeControl(String id) {
     setState(() => controls.remove(id));

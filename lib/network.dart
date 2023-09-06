@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+import 'package:phone_iot_2/canvas.dart';
 import 'package:phone_iot_2/conversions.dart';
 
 import 'ffi.dart';
@@ -222,6 +223,34 @@ class NetworkManager {
         }
         listenToSensors(null, vals);
         netsbloxSend([ msg.data[0] ]);
+      }
+    }
+    else if (msg.data[0] == 'C'.codeUnitAt(0)) { // clear controls
+      Display.state.clearControls();
+      netsbloxSend([ msg.data[0] ]);
+    }
+    else if (msg.data[0] == 'c'.codeUnitAt(0)) { // remove control
+      final id = tryStringFromBytes(msg.data.sublist(9));
+      if (id != null) {
+        Display.state.removeControl(id);
+        netsbloxSend([ msg.data[0] ]);
+      }
+    }
+    else if (msg.data[0] == 'g'.codeUnitAt(0)) { // add label
+      final x = f32FromBEBytes(msg.data.sublist(9, 13));
+      final y = f32FromBEBytes(msg.data.sublist(13, 17));
+      final color = colorFromBEBytes(msg.data.sublist(17, 21));
+      final fontSize = f32FromBEBytes(msg.data.sublist(21, 25));
+      final align = alignFromBEBytes(msg.data.sublist(25, 26));
+      final landscape = msg.data[26] != 0;
+      final idLen = msg.data[27];
+      if (msg.data.length >= 28 + idLen) {
+          final id = tryStringFromBytes(msg.data.sublist(28, 28 + idLen));
+          final text = tryStringFromBytes(msg.data.sublist(28 + idLen));
+          if (id != null && text != null) {
+            final info = LabelInfo(id: id, x: x, y: y, color: color, text: text, fontSize: fontSize, align: align, landscape: landscape);
+            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomLabel(info)).index ]);
+          }
       }
     }
     else {
