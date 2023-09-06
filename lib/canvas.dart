@@ -350,6 +350,7 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
   bool pressed = false;
   Offset pos = Offset.zero;
   DateTime nextUpdate = DateTime.now();
+  int updateCount = 0;
 
   static const double borderWidth = 0.035;
   static const double handSize = 0.3333;
@@ -394,16 +395,19 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
     pressed = type != ClickType.up;
 
     final now = DateTime.now();
-    if (event != null && (now.isAfter(nextUpdate) || type == ClickType.up)) {
+    if ((now.isAfter(nextUpdate) || type == ClickType.up)) {
       nextUpdate = now.add(updateInterval);
       final p = getPosition();
-      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
-        ('device', const SimpleValue.number(0)),
-        ('id', SimpleValue.string(id)),
-        ('x', SimpleValue.number(p.$1)),
-        ('y', SimpleValue.number(p.$2)),
-        ('tag', SimpleValue.string(encodeClickType(type))),
-      ]));
+      if (event != null) {
+        api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+          ('device', const SimpleValue.number(0)),
+          ('id', SimpleValue.string(id)),
+          ('x', SimpleValue.number(p.$1)),
+          ('y', SimpleValue.number(p.$2)),
+          ('tag', SimpleValue.string(encodeClickType(type))),
+        ]));
+      }
+      NetworkManager.netsbloxSend([ 'n'.codeUnitAt(0) ] + u32ToBEBytes(updateCount++) + [ type.index ] + f32ToBEBytes(p.$1) + f32ToBEBytes(p.$2) + stringToBEBytes(id));
     }
 
     return ClickResult.redraw;

@@ -67,3 +67,8 @@ Uint8List f64ToBEBytes(double src) {
   ByteData.view(res.buffer).setFloat64(0, src, Endian.big);
   return res;
 }
+Uint8List f32ToBEBytes(double src) {
+  final res = Uint8List(4);
+  ByteData.view(res.buffer).setFloat32(0, src, Endian.big);
+  return res;
+}

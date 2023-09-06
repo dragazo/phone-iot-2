@@ -310,6 +310,20 @@ class NetworkManager {
         }
       }
     }
+    else if (msg.data[0] == 'j'.codeUnitAt(0)) { // add joystick
+      final x = f32FromBEBytes(msg.data.sublist(9, 13));
+      final y = f32FromBEBytes(msg.data.sublist(13, 17));
+      final width = f32FromBEBytes(msg.data.sublist(17, 21));
+      final color = colorFromBEBytes(msg.data.sublist(21, 25));
+      final landscape = msg.data[25] != 0;
+      if (msg.data.length - 26 <= 255) {
+        final id = tryStringFromBytes(msg.data.sublist(26));
+        if (id != null) {
+          final info = JoystickInfo(id: id, x: x, y: y, width: width, color: color, landscape: landscape);
+          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomJoystick(info)).index ]);
+        }
+      }
+    }
     else {
       print('unhandled datagram... ${msg.data}');
     }
