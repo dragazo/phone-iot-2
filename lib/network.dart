@@ -324,6 +324,22 @@ class NetworkManager {
         }
       }
     }
+    else if (msg.data[0] == 'N'.codeUnitAt(0)) { // add touchpad
+      final x = f32FromBEBytes(msg.data.sublist(9, 13));
+      final y = f32FromBEBytes(msg.data.sublist(13, 17));
+      final width = f32FromBEBytes(msg.data.sublist(17, 21));
+      final height = f32FromBEBytes(msg.data.sublist(21, 25));
+      final color = colorFromBEBytes(msg.data.sublist(25, 29));
+      final style = touchpadStyleFromBEBytes(msg.data.sublist(29, 30));
+      final landscape = msg.data[30] != 0;
+      if (msg.data.length - 31 <= 255) {
+        final id = tryStringFromBytes(msg.data.sublist(31));
+        if (id != null) {
+          final info = TouchpadInfo(id: id, x: x, y: y, width: width, height: height, color: color, style: style, landscape: landscape);
+          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomTouchpad(info)).index ]);
+        }
+      }
+    }
     else {
       print('unhandled datagram... ${msg.data}');
     }

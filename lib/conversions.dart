@@ -35,6 +35,13 @@ ButtonStyleInfo buttonStyleFromBEBytes(Uint8List src) {
     default: return ButtonStyleInfo.Rectangle;
   }
 }
+TouchpadStyleInfo touchpadStyleFromBEBytes(Uint8List src) {
+  assert(src.length == 1);
+  switch (src[0]) {
+    case 1: return TouchpadStyleInfo.Square;
+    default: return TouchpadStyleInfo.Rectangle;
+  }
+}
 ImageFitInfo imageFitFromBEBytes(Uint8List src) {
   assert(src.length == 1);
   switch (src[0]) {
