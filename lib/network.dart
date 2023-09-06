@@ -294,6 +294,22 @@ class NetworkManager {
         }
       }
     }
+    else if (msg.data[0] == 'U'.codeUnitAt(0)) { // add image display
+      final x = f32FromBEBytes(msg.data.sublist(9, 13));
+      final y = f32FromBEBytes(msg.data.sublist(13, 17));
+      final width = f32FromBEBytes(msg.data.sublist(17, 21));
+      final height = f32FromBEBytes(msg.data.sublist(21, 25));
+      final readonly = msg.data[25] != 0;
+      final landscape = msg.data[26] != 0;
+      final fit = imageFitFromBEBytes(msg.data.sublist(27, 28));
+      if (msg.data.length - 28 <= 255) {
+        final id = tryStringFromBytes(msg.data.sublist(28));
+        if (id != null) {
+          final info = ImageDisplayInfo(id: id, x: x, y: y, width: width, height: height, readonly: readonly, landscape: landscape, fit: fit);
+          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomImageDisplay(info)).index ]);
+        }
+      }
+    }
     else {
       print('unhandled datagram... ${msg.data}');
     }

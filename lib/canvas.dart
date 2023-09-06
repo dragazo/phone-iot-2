@@ -875,11 +875,14 @@ class CustomImageDisplay extends CustomControl with ImageLike {
     if (image != value) image?.dispose();
     image = value;
 
-    if (source == UpdateSource.user && event != null) {
-      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
-        ('device', const SimpleValue.number(0)),
-        ('id', SimpleValue.string(id)),
-      ]));
+    if (source == UpdateSource.user) {
+      if (event != null) {
+        api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+          ('device', const SimpleValue.number(0)),
+          ('id', SimpleValue.string(id)),
+        ]));
+      }
+      NetworkManager.netsbloxSend([ 'b'.codeUnitAt(0) ] + stringToBEBytes(id));
     }
   }
 }

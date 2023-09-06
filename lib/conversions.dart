@@ -29,11 +29,18 @@ TextAlignInfo textAlignFromBEBytes(Uint8List src) {
 ButtonStyleInfo buttonStyleFromBEBytes(Uint8List src) {
   assert(src.length == 1);
   switch (src[0]) {
-    case 0: return ButtonStyleInfo.Rectangle;
     case 1: return ButtonStyleInfo.Ellipse;
     case 2: return ButtonStyleInfo.Square;
     case 3: return ButtonStyleInfo.Circle;
     default: return ButtonStyleInfo.Rectangle;
+  }
+}
+ImageFitInfo imageFitFromBEBytes(Uint8List src) {
+  assert(src.length == 1);
+  switch (src[0]) {
+    case 1: return ImageFitInfo.Zoom;
+    case 2: return ImageFitInfo.Stretch;
+    default: return ImageFitInfo.Fit;
   }
 }
 
