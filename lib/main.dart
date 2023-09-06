@@ -245,7 +245,7 @@ class MainScreenState extends State<MainScreen> {
           getCompassCardinalDirection: (key) => sendSensorScalarEncoded(SensorManager.compassCardinalDirection.value, compassCardinalDirectionNames, key),
 
           listenToSensors: (key, sensors) {
-            NetworkManager.listenToSensors(sensors);
+            NetworkManager.listenToSensors(sensors, null);
             api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
           },
         );

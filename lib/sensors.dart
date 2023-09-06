@@ -124,6 +124,8 @@ class SensorManager {
   static UnsupportedSensor microphone = UnsupportedSensor();
   static UnsupportedSensor proximity = UnsupportedSensor();
   static UnsupportedSensor stepCount = UnsupportedSensor();
+  static UnsupportedSensor rotationVector = UnsupportedSensor();
+  static UnsupportedSensor gameRotationVector = UnsupportedSensor();
 
   static RawSensor<AccelerometerEvent> accelerometer = RawSensor();
   static RawSensor<UserAccelerometerEvent> linearAccelerometer = RawSensor();

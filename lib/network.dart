@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 import 'main.dart';
 
+const double minUpdateIntervalMs = 100;
 const int timingEpsilon = 20;
 const int defaultServerPort = 1976;
 const int defaultClientPort = 6787;
@@ -20,15 +21,15 @@ bool isIP(String addr) {
 }
 
 class SchedulerEntry {
-  int lastUpdate;
-  int updateInterval;
+  int lastUpdateMs;
+  int updateIntervalMs;
 
-  SchedulerEntry.fromMs(double ms) : lastUpdate = 0, updateInterval = ms.toInt() - timingEpsilon;
+  SchedulerEntry.fromMs(double ms) : lastUpdateMs = 0, updateIntervalMs = ms.toInt() - timingEpsilon;
   static SchedulerEntry? maybeFromMs(double? ms) => ms != null ? SchedulerEntry.fromMs(ms) : null;
 
-  bool advance(int now) {
-    if (now - lastUpdate < updateInterval) return false;
-    lastUpdate = now;
+  bool advance(int nowMs) {
+    if (nowMs - lastUpdateMs < updateIntervalMs) return false;
+    lastUpdateMs = nowMs;
     return true;
   }
 }
@@ -67,9 +68,10 @@ class Scheduler {
 }
 
 class NetworkManager {
-  static const double minUpdateIntervalMs = 50;
-  static Scheduler scheduler = Scheduler.empty();
-  static Timer? updateTimer;
+  static Scheduler localUpdateScheduler = Scheduler.empty();
+  static SchedulerEntry? remoteUpdateScheduler;
+  static int remoteUpdateCounter = 0;
+  static Timer? sensorUpdateTimer;
 
   static RawDatagramSocket? udp;
   static InternetAddress? serverAddr;
@@ -176,6 +178,12 @@ class NetworkManager {
     else if (msg.data[0] == 'Y'.codeUnitAt(0)) {
       netsbloxSendSensor(msg.data[0], SensorManager.gyroscope.value);
     }
+    else if (msg.data[0] == 'R'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.rotationVector.value);
+    }
+    else if (msg.data[0] == 'r'.codeUnitAt(0)) {
+      netsbloxSendSensor(msg.data[0], SensorManager.gameRotationVector.value);
+    }
     else if (msg.data[0] == 'M'.codeUnitAt(0)) {
       netsbloxSendSensor(msg.data[0], SensorManager.magnetometer.value);
     }
@@ -206,39 +214,50 @@ class NetworkManager {
     else if (msg.data[0] == 'O'.codeUnitAt(0)) {
       netsbloxSendSensor(msg.data[0], SensorManager.orientation.value);
     }
+    else if (msg.data[0] == 'p'.codeUnitAt(0)) { // set sensor packet update intervals
+      if (msg.data.length >= 9 && (msg.data.length - 9) % 4 == 0) {
+        final vals = <double>[];
+        for (int p = 9; p < msg.data.length; p += 4) {
+          vals.add(u32FromBEBytes(msg.data.sublist(p, p + 4)).toDouble());
+        }
+        listenToSensors(null, vals);
+        netsbloxSend([ msg.data[0] ]);
+      }
+    }
     else {
       print('unhandled datagram... ${msg.data}');
     }
   }
 
-  static void listenToSensors(SensorUpdateInfo sensors) {
-    updateTimer?.cancel();
-    updateTimer = null;
-
-    scheduler = Scheduler.basedOn(sensors);
+  static void listenToSensors(SensorUpdateInfo? newLocalIntervals, List<double>? newRemoteIntervals) {
+    sensorUpdateTimer?.cancel();
+    sensorUpdateTimer = null;
 
     final updateIntervals = <double>[];
-    if (sensors.gravity != null) updateIntervals.add(max(sensors.gravity!, minUpdateIntervalMs));
-    if (sensors.gyroscope != null) updateIntervals.add(max(sensors.gyroscope!, minUpdateIntervalMs));
-    if (sensors.orientation != null) updateIntervals.add(max(sensors.orientation!, minUpdateIntervalMs));
-    if (sensors.accelerometer != null) updateIntervals.add(max(sensors.accelerometer!, minUpdateIntervalMs));
-    if (sensors.magneticField != null) updateIntervals.add(max(sensors.magneticField!, minUpdateIntervalMs));
-    if (sensors.linearAcceleration != null) updateIntervals.add(max(sensors.linearAcceleration!, minUpdateIntervalMs));
-    if (sensors.lightLevel != null) updateIntervals.add(max(sensors.lightLevel!, minUpdateIntervalMs));
-    if (sensors.microphoneLevel != null) updateIntervals.add(max(sensors.microphoneLevel!, minUpdateIntervalMs));
-    if (sensors.proximity != null) updateIntervals.add(max(sensors.proximity!, minUpdateIntervalMs));
-    if (sensors.stepCount != null) updateIntervals.add(max(sensors.stepCount!, minUpdateIntervalMs));
-    if (sensors.location != null) updateIntervals.add(max(sensors.location!, minUpdateIntervalMs));
-    if (sensors.pressure != null) updateIntervals.add(max(sensors.pressure!, minUpdateIntervalMs));
-    if (sensors.temperature != null) updateIntervals.add(max(sensors.temperature!, minUpdateIntervalMs));
-    if (sensors.humidity != null) updateIntervals.add(max(sensors.humidity!, minUpdateIntervalMs));
 
-    double? minInterval;
-    for (final x in updateIntervals) {
-      if (minInterval == null || x < minInterval) minInterval = x;
-    }
-    if (minInterval != null) {
-      updateTimer = Timer.periodic(Duration(milliseconds: minInterval.toInt()), (timer) => sendUpdate());
+    final newLocal = newLocalIntervals == null ? localUpdateScheduler : Scheduler.basedOn(newLocalIntervals);
+    localUpdateScheduler = newLocal;
+    if (newLocal.gravity != null) updateIntervals.add(newLocal.gravity!.updateIntervalMs.toDouble());
+    if (newLocal.gyroscope != null) updateIntervals.add(newLocal.gyroscope!.updateIntervalMs.toDouble());
+    if (newLocal.orientation != null) updateIntervals.add(newLocal.orientation!.updateIntervalMs.toDouble());
+    if (newLocal.accelerometer != null) updateIntervals.add(newLocal.accelerometer!.updateIntervalMs.toDouble());
+    if (newLocal.magneticField != null) updateIntervals.add(newLocal.magneticField!.updateIntervalMs.toDouble());
+    if (newLocal.linearAccelerometer != null) updateIntervals.add(newLocal.linearAccelerometer!.updateIntervalMs.toDouble());
+    if (newLocal.lightLevel != null) updateIntervals.add(newLocal.lightLevel!.updateIntervalMs.toDouble());
+    if (newLocal.microphone != null) updateIntervals.add(newLocal.microphone!.updateIntervalMs.toDouble());
+    if (newLocal.proximity != null) updateIntervals.add(newLocal.proximity!.updateIntervalMs.toDouble());
+    if (newLocal.stepCount != null) updateIntervals.add(newLocal.stepCount!.updateIntervalMs.toDouble());
+    if (newLocal.gps != null) updateIntervals.add(newLocal.gps!.updateIntervalMs.toDouble());
+    if (newLocal.pressure != null) updateIntervals.add(newLocal.pressure!.updateIntervalMs.toDouble());
+    if (newLocal.temperature != null) updateIntervals.add(newLocal.temperature!.updateIntervalMs.toDouble());
+    if (newLocal.relativeHumidity != null) updateIntervals.add(newLocal.relativeHumidity!.updateIntervalMs.toDouble());
+
+    final newRemote = newRemoteIntervals == null ? remoteUpdateScheduler : newRemoteIntervals.isEmpty ? null : SchedulerEntry.fromMs(newRemoteIntervals.reduce(min));
+    remoteUpdateScheduler = newRemote;
+    if (newRemote != null) updateIntervals.add(newRemote.updateIntervalMs.toDouble());
+
+    if (updateIntervals.isNotEmpty) {
+      sensorUpdateTimer = Timer.periodic(Duration(milliseconds: max(updateIntervals.reduce(min), minUpdateIntervalMs).toInt()), (timer) => sendUpdate());
     }
   }
 
@@ -246,7 +265,7 @@ class NetworkManager {
     final now = DateTime.now().millisecondsSinceEpoch;
 
     final accelerometer = SensorManager.accelerometer.value;
-    if (accelerometer != null && scheduler.accelerometer?.advance(now) == true) {
+    if (accelerometer != null && localUpdateScheduler.accelerometer?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'accelerometer', values: [
         ('x', SimpleValue.number(accelerometer[0])),
         ('y', SimpleValue.number(accelerometer[1])),
@@ -257,7 +276,7 @@ class NetworkManager {
     }
 
     final linearAccelerometer = SensorManager.linearAccelerometer.value;
-    if (linearAccelerometer != null && scheduler.linearAccelerometer?.advance(now) == true) {
+    if (linearAccelerometer != null && localUpdateScheduler.linearAccelerometer?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'linearAcceleration', values: [
         ('x', SimpleValue.number(linearAccelerometer[0])),
         ('y', SimpleValue.number(linearAccelerometer[1])),
@@ -267,7 +286,7 @@ class NetworkManager {
     }
 
     final gravity = SensorManager.gravity.value;
-    if (gravity != null && scheduler.gravity?.advance(now) == true) {
+    if (gravity != null && localUpdateScheduler.gravity?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'gravity', values: [
         ('x', SimpleValue.number(gravity[0])),
         ('y', SimpleValue.number(gravity[1])),
@@ -277,7 +296,7 @@ class NetworkManager {
     }
 
     final lightLevel = SensorManager.lightLevel.value;
-    if (lightLevel != null && scheduler.lightLevel?.advance(now) == true) {
+    if (lightLevel != null && localUpdateScheduler.lightLevel?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'lightLevel', values: [
         ('level', SimpleValue.number(lightLevel[0])),
         ('device', const SimpleValue.number(0)),
@@ -285,7 +304,7 @@ class NetworkManager {
     }
 
     final pressure = SensorManager.pressure.value;
-    if (pressure != null && scheduler.pressure?.advance(now) == true) {
+    if (pressure != null && localUpdateScheduler.pressure?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'pressure', values: [
         ('pressure', SimpleValue.number(pressure[0])),
         ('device', const SimpleValue.number(0)),
@@ -293,7 +312,7 @@ class NetworkManager {
     }
 
     final gyroscope = SensorManager.gyroscope.value;
-    if (gyroscope != null && scheduler.gyroscope?.advance(now) == true) {
+    if (gyroscope != null && localUpdateScheduler.gyroscope?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'gyroscope', values: [
         ('x', SimpleValue.number(gyroscope[0])),
         ('y', SimpleValue.number(gyroscope[1])),
@@ -303,7 +322,7 @@ class NetworkManager {
     }
 
     final magnetometer = SensorManager.magnetometer.value;
-    if (magnetometer != null && scheduler.magneticField?.advance(now) == true) {
+    if (magnetometer != null && localUpdateScheduler.magneticField?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'magneticField', values: [
         ('x', SimpleValue.number(magnetometer[0])),
         ('y', SimpleValue.number(magnetometer[1])),
@@ -313,7 +332,7 @@ class NetworkManager {
     }
 
     final gps = SensorManager.gps.value;
-    if (gps != null && scheduler.gps?.advance(now) == true) {
+    if (gps != null && localUpdateScheduler.gps?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'location', values: [
         ('latitude', SimpleValue.number(gps[0])),
         ('longitude', SimpleValue.number(gps[1])),
@@ -324,7 +343,7 @@ class NetworkManager {
     }
 
     final orientation = SensorManager.orientation.value;
-    if (orientation != null && scheduler.orientation?.advance(now) == true) {
+    if (orientation != null && localUpdateScheduler.orientation?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'orientation', values: [
         ('x', SimpleValue.number(orientation[0])),
         ('y', SimpleValue.number(orientation[1])),
@@ -337,7 +356,7 @@ class NetworkManager {
     }
 
     final temperature = SensorManager.temperature.value;
-    if (temperature != null && scheduler.temperature?.advance(now) == true) {
+    if (temperature != null && localUpdateScheduler.temperature?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'temperature', values: [
         ('temp', SimpleValue.number(temperature[0])),
         ('device', const SimpleValue.number(0)),
@@ -345,7 +364,7 @@ class NetworkManager {
     }
 
     final relativeHumidity = SensorManager.relativeHumidity.value;
-    if (relativeHumidity != null && scheduler.relativeHumidity?.advance(now) == true) {
+    if (relativeHumidity != null && localUpdateScheduler.relativeHumidity?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'humidity', values: [
         ('relative', SimpleValue.number(relativeHumidity[0])),
         ('device', const SimpleValue.number(0)),
@@ -353,7 +372,7 @@ class NetworkManager {
     }
 
     final microphone = SensorManager.microphone.value;
-    if (microphone != null && scheduler.microphone?.advance(now) == true) {
+    if (microphone != null && localUpdateScheduler.microphone?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'microphoneLevel', values: [
         ('volume', SimpleValue.number(microphone[0])),
         ('device', const SimpleValue.number(0)),
@@ -361,7 +380,7 @@ class NetworkManager {
     }
 
     final proximity = SensorManager.proximity.value;
-    if (proximity != null && scheduler.proximity?.advance(now) == true) {
+    if (proximity != null && localUpdateScheduler.proximity?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'proximity', values: [
         ('distance', SimpleValue.number(proximity[0])),
         ('device', const SimpleValue.number(0)),
@@ -369,11 +388,39 @@ class NetworkManager {
     }
 
     final stepCount = SensorManager.stepCount.value;
-    if (stepCount != null && scheduler.stepCount?.advance(now) == true) {
+    if (stepCount != null && localUpdateScheduler.stepCount?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'stepCount', values: [
         ('count', SimpleValue.number(stepCount[0])),
         ('device', const SimpleValue.number(0)),
       ]));
+    }
+
+    if (remoteUpdateScheduler?.advance(now) == true) {
+      final packet = <int>[];
+      packet.add('Q'.codeUnitAt(0));
+      packet.addAll(u32ToBEBytes(remoteUpdateCounter++));
+
+      final sensors = [
+        SensorManager.accelerometer, SensorManager.gravity, SensorManager.linearAccelerometer, SensorManager.gyroscope,
+        SensorManager.rotationVector, SensorManager.gameRotationVector, SensorManager.magnetometer,
+        SensorManager.microphone, SensorManager.proximity, SensorManager.stepCount, SensorManager.lightLevel,
+        SensorManager.gps, SensorManager.orientation, SensorManager.pressure, SensorManager.temperature,
+        SensorManager.relativeHumidity,
+      ];
+      for (final sensor in sensors) {
+        final data = sensor.value;
+        if (data != null) {
+          assert(data.length <= 127);
+          packet.add(data.length);
+          for (final val in data) {
+            packet.addAll(f64ToBEBytes(val));
+          }
+        } else {
+          packet.add(0);
+        }
+      }
+
+      netsbloxSend(packet);
     }
   }
 }
