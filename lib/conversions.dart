@@ -49,6 +49,13 @@ SliderStyleInfo sliderStyleFromBEBytes(Uint8List src) {
     default: return SliderStyleInfo.Slider;
   }
 }
+ToggleStyleInfo toggleStyleFromBEBytes(Uint8List src) {
+  assert(src.length == 1);
+  switch (src[0]) {
+    case 1: return ToggleStyleInfo.Checkbox;
+    default: return ToggleStyleInfo.Switch;
+  }
+}
 ImageFitInfo imageFitFromBEBytes(Uint8List src) {
   assert(src.length == 1);
   switch (src[0]) {

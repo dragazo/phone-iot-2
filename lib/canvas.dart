@@ -716,14 +716,15 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
   ClickResult handleClick(Offset pos, ClickType type) {
     if (readonly || type != ClickType.down) return ClickResult.none;
     checked = !checked;
+    final v = getToggled();
     if (event != null) {
-      final v = getToggled();
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
         ('device', const SimpleValue.number(0)),
         ('id', SimpleValue.string(id)),
         ('state', SimpleValue.bool(v)),
       ]));
     }
+    NetworkManager.netsbloxSend([ 'z'.codeUnitAt(0), v ? 1 : 0 ] + stringToBEBytes(id));
     return ClickResult.redraw;
   }
 

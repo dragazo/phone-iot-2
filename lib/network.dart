@@ -357,6 +357,26 @@ class NetworkManager {
         }
       }
     }
+    else if (msg.data[0] == 'Z'.codeUnitAt(0)) { // add toggle
+      final x = f32FromBEBytes(msg.data.sublist(9, 13));
+      final y = f32FromBEBytes(msg.data.sublist(13, 17));
+      final backColor = colorFromBEBytes(msg.data.sublist(17, 21));
+      final foreColor = colorFromBEBytes(msg.data.sublist(21, 25));
+      final fontSize = f32FromBEBytes(msg.data.sublist(25, 29));
+      final checked = msg.data[29] != 0;
+      final style = toggleStyleFromBEBytes(msg.data.sublist(30, 31));
+      final landscape = msg.data[31] != 0;
+      final readonly = msg.data[32] != 0;
+      final idLen = msg.data[33];
+      if (msg.data.length >= 34 + idLen) {
+        final id = tryStringFromBytes(msg.data.sublist(34, 34 + idLen));
+        final text = tryStringFromBytes(msg.data.sublist(34 + idLen));
+        if (id != null && text != null) {
+          final info = ToggleInfo(id: id, x: x, y: y, text: text, style: style, checked: checked, foreColor: foreColor, backColor: backColor, fontSize: fontSize, landscape: landscape, readonly: readonly);
+          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomToggle(info)).index ]);
+        }
+      }
+    }
     else {
       print('unhandled datagram... ${msg.data}');
     }
