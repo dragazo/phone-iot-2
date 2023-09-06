@@ -241,16 +241,57 @@ class NetworkManager {
       final y = f32FromBEBytes(msg.data.sublist(13, 17));
       final color = colorFromBEBytes(msg.data.sublist(17, 21));
       final fontSize = f32FromBEBytes(msg.data.sublist(21, 25));
-      final align = alignFromBEBytes(msg.data.sublist(25, 26));
+      final align = textAlignFromBEBytes(msg.data.sublist(25, 26));
       final landscape = msg.data[26] != 0;
       final idLen = msg.data[27];
       if (msg.data.length >= 28 + idLen) {
-          final id = tryStringFromBytes(msg.data.sublist(28, 28 + idLen));
-          final text = tryStringFromBytes(msg.data.sublist(28 + idLen));
-          if (id != null && text != null) {
-            final info = LabelInfo(id: id, x: x, y: y, color: color, text: text, fontSize: fontSize, align: align, landscape: landscape);
-            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomLabel(info)).index ]);
-          }
+        final id = tryStringFromBytes(msg.data.sublist(28, 28 + idLen));
+        final text = tryStringFromBytes(msg.data.sublist(28 + idLen));
+        if (id != null && text != null) {
+          final info = LabelInfo(id: id, x: x, y: y, color: color, text: text, fontSize: fontSize, align: align, landscape: landscape);
+          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomLabel(info)).index ]);
+        }
+      }
+    }
+    else if (msg.data[0] == 'B'.codeUnitAt(0)) { // add button
+      final x = f32FromBEBytes(msg.data.sublist(9, 13));
+      final y = f32FromBEBytes(msg.data.sublist(13, 17));
+      final width = f32FromBEBytes(msg.data.sublist(17, 21));
+      final height = f32FromBEBytes(msg.data.sublist(21, 25));
+      final backColor = colorFromBEBytes(msg.data.sublist(25, 29));
+      final foreColor = colorFromBEBytes(msg.data.sublist(29, 33));
+      final fontSize = f32FromBEBytes(msg.data.sublist(33, 37));
+      final style = buttonStyleFromBEBytes(msg.data.sublist(37, 38));
+      final landscape = msg.data[38] != 0;
+      final idLen = msg.data[39];
+      if (msg.data.length >= 40 + idLen) {
+        final id = tryStringFromBytes(msg.data.sublist(40, 40 + idLen));
+        final text = tryStringFromBytes(msg.data.sublist(40 + idLen));
+        if (id != null && text != null) {
+          final info = ButtonInfo(id: id, x: x, y: y, width: width, height: height, backColor: backColor, foreColor: foreColor, text: text, fontSize: fontSize, style: style, landscape: landscape);
+          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomButton(info)).index ]);
+        }
+      }
+    }
+    else if (msg.data[0] == 'T'.codeUnitAt(0)) { // add text field
+      final x = f32FromBEBytes(msg.data.sublist(9, 13));
+      final y = f32FromBEBytes(msg.data.sublist(13, 17));
+      final width = f32FromBEBytes(msg.data.sublist(17, 21));
+      final height = f32FromBEBytes(msg.data.sublist(21, 25));
+      final backColor = colorFromBEBytes(msg.data.sublist(25, 29));
+      final foreColor = colorFromBEBytes(msg.data.sublist(29, 33));
+      final fontSize = f32FromBEBytes(msg.data.sublist(33, 37));
+      final align = textAlignFromBEBytes(msg.data.sublist(37, 38));
+      final readonly = msg.data[38] != 0;
+      final landscape = msg.data[39] != 0;
+      final idLen = msg.data[40];
+      if (msg.data.length >= 41 + idLen) {
+        final id = tryStringFromBytes(msg.data.sublist(41, 41 + idLen));
+        final text = tryStringFromBytes(msg.data.sublist(41 + idLen));
+        if (id != null && text != null) {
+          final info = TextFieldInfo(id: id, x: x, y: y, width: width, height: height, backColor: backColor, foreColor: foreColor, text: text, fontSize: fontSize, landscape: landscape, readonly: readonly, align: align);
+          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomTextField(info)).index ]);
+        }
       }
     }
     else {

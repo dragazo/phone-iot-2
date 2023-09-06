@@ -10,6 +10,32 @@ String? tryStringFromBytes(Uint8List src) {
     return null;
   }
 }
+List<int> stringToBEBytes(String src) {
+  return utf8.encode(src);
+}
+
+ColorInfo colorFromBEBytes(Uint8List src) {
+  assert(src.length == 4);
+  return ColorInfo(a: src[0], r: src[1], g: src[2], b: src[3]);
+}
+TextAlignInfo textAlignFromBEBytes(Uint8List src) {
+  assert(src.length == 1);
+  switch (src[0]) {
+    case 1: return TextAlignInfo.Center;
+    case 2: return TextAlignInfo.Right;
+    default: return TextAlignInfo.Left;
+  }
+}
+ButtonStyleInfo buttonStyleFromBEBytes(Uint8List src) {
+  assert(src.length == 1);
+  switch (src[0]) {
+    case 0: return ButtonStyleInfo.Rectangle;
+    case 1: return ButtonStyleInfo.Ellipse;
+    case 2: return ButtonStyleInfo.Square;
+    case 3: return ButtonStyleInfo.Circle;
+    default: return ButtonStyleInfo.Rectangle;
+  }
+}
 
 int u64FromBEBytes(Uint8List src) {
   assert(src.length == 8);
@@ -22,18 +48,6 @@ int u32FromBEBytes(Uint8List src) {
 double f32FromBEBytes(Uint8List src) {
   assert(src.length == 4);
   return ByteData.view(src.buffer).getFloat32(0, Endian.big);
-}
-ColorInfo colorFromBEBytes(Uint8List src) {
-  assert(src.length == 4);
-  return ColorInfo(a: src[0], r: src[1], g: src[2], b: src[3]);
-}
-TextAlignInfo alignFromBEBytes(Uint8List src) {
-  assert(src.length == 1);
-  switch (src[0]) {
-    case 1: return TextAlignInfo.Center;
-    case 2: return TextAlignInfo.Right;
-    default: return TextAlignInfo.Left;
-  }
 }
 
 Uint8List u32ToBEBytes(int src) {

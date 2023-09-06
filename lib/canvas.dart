@@ -5,7 +5,9 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:phone_iot_2/conversions.dart';
 import 'package:phone_iot_2/ffi.dart';
+import 'package:phone_iot_2/network.dart';
 
 const double defaultFontSize = 16;
 const double vCenterFontSizeScale = -0.6;
@@ -250,6 +252,7 @@ class CustomButton extends CustomControl with TextLike, Pressable {
             ('id', SimpleValue.string(id)),
           ]));
         }
+        NetworkManager.netsbloxSend([ 'b'.codeUnitAt(0) ] + stringToBEBytes(id));
         return ClickResult.redraw;
       case ClickType.up:
         pressed = false;
@@ -325,12 +328,15 @@ class CustomTextField extends CustomControl with TextLike {
   void setText(String value, UpdateSource source) {
     text = value;
 
-    if (source == UpdateSource.user && event != null) {
-      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
-        ('device', const SimpleValue.number(0)),
-        ('id', SimpleValue.string(id)),
-        ('text', SimpleValue.string(text)),
-      ]));
+    if (source == UpdateSource.user) {
+      if (event != null) {
+        api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+          ('device', const SimpleValue.number(0)),
+          ('id', SimpleValue.string(id)),
+          ('text', SimpleValue.string(text)),
+        ]));
+      }
+      NetworkManager.netsbloxSend([ 't'.codeUnitAt(0), id.length ] + stringToBEBytes(id) + stringToBEBytes(value));
     }
   }
 }

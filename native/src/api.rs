@@ -487,6 +487,14 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                             }
                         }
                     };
+                    ($n:ident := $e:expr => ControlId) => {{
+                        let res = parse!($n := $e => String);
+                        if res.len() > 255 {
+                            key.complete(Err(format!("'{}': string too long (max 255 bytes)", stringify!($n))));
+                            return RequestStatus::Handled;
+                        }
+                        res
+                    }};
                     ($n:ident := $e:expr => ButtonStyleInfo) => {
                         match parse!($n := $e => String).as_str() {
                             "rectangle" => ButtonStyleInfo::Rectangle,
@@ -649,7 +657,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
 
                                 send_dart_command(DartCommand::RemoveControl { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
@@ -665,7 +673,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                 let height = parse!(height := args[4].1 => f64);
                                 let text = parse!(text := args[5].1 => String);
                                 let options = parse!(options := args[6].1 => { id, event, style, color, textColor, landscape, fontSize });
-                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
                                 let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
                                 let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(WHITE);
@@ -687,7 +695,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                 let y = parse!(y := args[2].1 => f64);
                                 let text = parse!(text := args[3].1 => String);
                                 let options = parse!(options := args[4].1 => { id, textColor, align, fontSize, landscape });
-                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
                                 let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
@@ -708,7 +716,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                 let width = parse!(width := args[3].1 => f64);
                                 let height = parse!(height := args[4].1 => f64);
                                 let options = parse!(options := args[5].1 => { id, event, text, color, textColor, readonly, fontSize, align, landscape });
-                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
                                 let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
                                 let text = parse!(text := options.get("text") => Option<String>).unwrap_or_default();
@@ -732,7 +740,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                 let y = parse!(y := args[2].1 => f64);
                                 let width = parse!(width := args[3].1 => f64);
                                 let options = parse!(options := args[4].1 => { id, event, color, landscape });
-                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let color = parse!(event := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
@@ -752,7 +760,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                 let width = parse!(width := args[3].1 => f64);
                                 let height = parse!(height := args[4].1 => f64);
                                 let options = parse!(options := args[5].1 => { id, event, color, style, landscape });
-                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
                                 let style = parse!(style := options.get("style") => Option<TouchpadStyleInfo>).unwrap_or(TouchpadStyleInfo::Rectangle);
@@ -772,7 +780,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                 let y = parse!(y := args[2].1 => f64);
                                 let width = parse!(width := args[3].1 => f64);
                                 let options = parse!(options := args[4].1 => { id, event, color, value, style, landscape, readonly });
-                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
                                 let value = parse!(value := options.get("value") => Option<f64>).unwrap_or(0.0);
@@ -794,7 +802,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                 let y = parse!(y := args[2].1 => f64);
                                 let text = parse!(text := args[3].1 => String);
                                 let options = parse!(options := args[4].1 => { style, id, event, checked, color, textColor, fontSize, landscape, readonly });
-                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let style = parse!(style := options.get("style") => Option<ToggleStyleInfo>).unwrap_or(ToggleStyleInfo::Switch);
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let checked = parse!(checked := options.get("checked") => Option<bool>).unwrap_or(false);
@@ -818,7 +826,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                 let y = parse!(y := args[2].1 => f64);
                                 let text = parse!(text := args[3].1 => String);
                                 let options = parse!(options := args[4].1 => { group, id, event, checked, color, textColor, fontSize, landscape, readonly });
-                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let group = parse!(id := options.get("group") => Option<String>).unwrap_or_default();
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let checked = parse!(checked := options.get("checked") => Option<bool>).unwrap_or(false);
@@ -843,7 +851,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                 let width = parse!(width := args[3].1 => f64);
                                 let height = parse!(height := args[4].1 => f64);
                                 let options = parse!(options := args[5].1 => { id, event, readonly, landscape, fit });
-                                let id = parse!(id := options.get("id") => Option<String>).unwrap_or_else(new_control_id);
+                                let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(true);
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
@@ -897,7 +905,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
 
                                 send_dart_command(DartCommand::GetText { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
@@ -907,7 +915,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
                                 let value = parse!(text := args[2].1 => String);
 
                                 send_dart_command(DartCommand::SetText { key: DartRequestKey::new(key), id, value });
@@ -918,7 +926,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
 
                                 send_dart_command(DartCommand::IsPressed { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
@@ -928,7 +936,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
 
                                 send_dart_command(DartCommand::GetPosition { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
@@ -938,7 +946,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
 
                                 send_dart_command(DartCommand::GetImage { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
@@ -948,7 +956,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
                                 let value = parse!(img := args[2].1 => Image);
 
                                 send_dart_command(DartCommand::SetImage { key: DartRequestKey::new(key), id, value });
@@ -959,7 +967,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
 
                                 send_dart_command(DartCommand::GetLevel { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
@@ -969,7 +977,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
                                 let value = parse!(value := args[2].1 => f64);
 
                                 send_dart_command(DartCommand::SetLevel { key: DartRequestKey::new(key), id, value });
@@ -980,7 +988,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
 
                                 send_dart_command(DartCommand::GetToggleState { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
@@ -990,7 +998,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => String);
+                                let id = parse!(id := args[1].1 => ControlId);
                                 let value = parse!(state := args[2].1 => bool);
 
                                 send_dart_command(DartCommand::SetToggleState { key: DartRequestKey::new(key), id, value });
