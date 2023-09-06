@@ -377,6 +377,29 @@ class NetworkManager {
         }
       }
     }
+    else if (msg.data[0] == 'y'.codeUnitAt(0)) { // add radio button
+      final x = f32FromBEBytes(msg.data.sublist(9, 13));
+      final y = f32FromBEBytes(msg.data.sublist(13, 17));
+      final backColor = colorFromBEBytes(msg.data.sublist(17, 21));
+      final foreColor = colorFromBEBytes(msg.data.sublist(21, 25));
+      final fontSize = f32FromBEBytes(msg.data.sublist(25, 29));
+      final checked = msg.data[29] != 0;
+      final landscape = msg.data[30] != 0;
+      final readonly = msg.data[31] != 0;
+      final idLen = msg.data[32];
+      if (msg.data.length >= 33 + idLen + 1) {
+        final id = tryStringFromBytes(msg.data.sublist(33, 33 + idLen));
+        final groupLen = msg.data[33 + idLen];
+        if (id != null && msg.data.length >= 33 + idLen + 1 + groupLen) {
+          final group = tryStringFromBytes(msg.data.sublist(33 + idLen + 1, 33 + idLen + 1 + groupLen));
+          final text = tryStringFromBytes(msg.data.sublist(33 + idLen + 1 + groupLen));
+          if (group != null && text != null) {
+            final info = RadioButtonInfo(id: id, x: x, y: y, text: text, group: group, checked: checked, foreColor: foreColor, backColor: backColor, fontSize: fontSize, landscape: landscape, readonly: readonly);
+            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomRadioButton(info)).index ]);
+          }
+        }
+      }
+    }
     else {
       print('unhandled datagram... ${msg.data}');
     }

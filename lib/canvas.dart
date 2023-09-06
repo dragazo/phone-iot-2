@@ -797,13 +797,12 @@ class CustomRadioButton extends CustomControl with TextLike, ToggleLike, GroupLi
     if (readonly || type != ClickType.down) return ClickResult.none;
     checked = true;
     if (event != null) {
-      final v = getToggled();
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
         ('device', const SimpleValue.number(0)),
         ('id', SimpleValue.string(id)),
-        ('state', SimpleValue.bool(v)),
       ]));
     }
+    NetworkManager.netsbloxSend([ 'b'.codeUnitAt(0) ] + stringToBEBytes(id));
     return ClickResult.untoggleOthersInGroup;
   }
 

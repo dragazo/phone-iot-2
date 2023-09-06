@@ -827,7 +827,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                                 let text = parse!(text := args[3].1 => String);
                                 let options = parse!(options := args[4].1 => { group, id, event, checked, color, textColor, fontSize, landscape, readonly });
                                 let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
-                                let group = parse!(id := options.get("group") => Option<String>).unwrap_or_default();
+                                let group = parse!(id := options.get("group") => Option<ControlId>).unwrap_or_default();
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let checked = parse!(checked := options.get("checked") => Option<bool>).unwrap_or(false);
                                 let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
