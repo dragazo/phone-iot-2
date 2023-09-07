@@ -162,12 +162,15 @@ class SensorManager {
     gyroscope.listener ??= motionSensors.gyroscope.listen((e) => gyroscope.value = [e.x * radToDeg, e.y * radToDeg, e.z * radToDeg]);
     magnetometer.listener ??= motionSensors.magnetometer.listen((e) => magnetometer.value = [e.x, e.y, e.z]);
     pressure.listener ??= envSensors.pressure.listen((e) => pressure.value = [e * pressureScale]);
-    gps.listener ??= Geolocator.getPositionStream().listen((e) => gps.value = [
-      e.latitude,
-      e.longitude,
-      e.heading != 0 ? e.heading : (gps.value != null ? gps.value![2] : 0),
-      e.altitude != 0 ? e.altitude : (gps.value != null ? gps.value![3] : 0),
-    ]);
+    gps.listener ??= Geolocator.getPositionStream().listen((e) {
+      final prev = gps.value;
+      gps.value = [
+        e.latitude,
+        e.longitude,
+        e.heading != 0 ? e.heading : (prev != null ? prev[2] : 0),
+        e.altitude != 0 ? e.altitude : (prev != null ? prev[3] : 0),
+      ];
+    });
     relativeHumidity.listener ??= envSensors.humidity.listen((e) => relativeHumidity.value = [e]);
     lightLevel.listener ??= envSensors.light.listen((e) => lightLevel.value = [e]);
     temperature.listener ??= envSensors.temperature.listen((e) => temperature.value = [e]);

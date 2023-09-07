@@ -246,8 +246,9 @@ class CustomButton extends CustomControl with TextLike, Pressable {
     switch (type) {
       case ClickType.down:
         pressed = true;
-        if (event != null) {
-          api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+        final e = event;
+        if (e != null) {
+          api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
             ('device', const SimpleValue.number(0)),
             ('id', SimpleValue.string(id)),
           ]));
@@ -329,8 +330,9 @@ class CustomTextField extends CustomControl with TextLike {
     text = value;
 
     if (source == UpdateSource.user) {
-      if (event != null) {
-        api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+      final e = event;
+      if (e != null) {
+        api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
           ('device', const SimpleValue.number(0)),
           ('id', SimpleValue.string(id)),
           ('text', SimpleValue.string(text)),
@@ -398,8 +400,9 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
     if ((now.isAfter(nextUpdate) || type == ClickType.up)) {
       nextUpdate = now.add(updateInterval);
       final p = getPosition();
-      if (event != null) {
-        api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+      final e = event;
+      if (e != null) {
+        api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
           ('device', const SimpleValue.number(0)),
           ('id', SimpleValue.string(id)),
           ('x', SimpleValue.number(p.$1)),
@@ -490,8 +493,9 @@ class CustomTouchpad extends CustomControl with Pressable, PositionLike {
     if ((now.isAfter(nextUpdate) || type == ClickType.up)) {
       nextUpdate = now.add(updateInterval);
       final p = getPosition();
-      if (event != null) {
-        api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+      final e = event;
+      if (e != null) {
+        api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
           ('device', const SimpleValue.number(0)),
           ('id', SimpleValue.string(id)),
           ('x', SimpleValue.number(p.$1)),
@@ -595,8 +599,9 @@ class CustomSlider extends CustomControl with Pressable, LevelLike {
     if ((now.isAfter(nextUpdate) || type == ClickType.up)) {
       nextUpdate = now.add(updateInterval);
       final v = getLevel();
-      if (event != null) {
-        api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+      final e = event;
+      if (e != null) {
+        api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
           ('device', const SimpleValue.number(0)),
           ('id', SimpleValue.string(id)),
           ('level', SimpleValue.number(v)),
@@ -717,8 +722,9 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
     if (readonly || type != ClickType.down) return ClickResult.none;
     checked = !checked;
     final v = getToggled();
-    if (event != null) {
-      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+    final e = event;
+    if (e != null) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
         ('device', const SimpleValue.number(0)),
         ('id', SimpleValue.string(id)),
         ('state', SimpleValue.bool(v)),
@@ -796,8 +802,9 @@ class CustomRadioButton extends CustomControl with TextLike, ToggleLike, GroupLi
   ClickResult handleClick(Offset pos, ClickType type) {
     if (readonly || type != ClickType.down) return ClickResult.none;
     checked = true;
-    if (event != null) {
-      api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+    final e = event;
+    if (e != null) {
+      api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
         ('device', const SimpleValue.number(0)),
         ('id', SimpleValue.string(id)),
       ]));
@@ -854,11 +861,12 @@ class CustomImageDisplay extends CustomControl with ImageLike {
     canvas.translate(x * canvasSize.width / 100, y * canvasSize.height / 100);
     if (landscape) canvas.rotate(pi / 2);
     canvas.drawRect(r, paint);
-    if (image != null) {
+    final img = image;
+    if (img != null) {
       paintImage(
         canvas: canvas,
         rect: r,
-        image: image!,
+        image: img,
         fit: fit,
       );
     }
@@ -888,8 +896,9 @@ class CustomImageDisplay extends CustomControl with ImageLike {
     image = value;
 
     if (source == UpdateSource.user) {
-      if (event != null) {
-        api.sendCommand(cmd: RustCommand.injectMessage(msgType: event!, values: [
+      final e = event;
+      if (e != null) {
+        api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
           ('device', const SimpleValue.number(0)),
           ('id', SimpleValue.string(id)),
         ]));

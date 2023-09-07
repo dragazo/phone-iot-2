@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 import 'package:phone_iot_2/canvas.dart';
 import 'package:phone_iot_2/conversions.dart';
+import 'package:phone_iot_2/util.dart';
 
 import 'ffi.dart';
 import 'sensors.dart';
@@ -413,20 +414,22 @@ class NetworkManager {
 
     final newLocal = newLocalIntervals == null ? localUpdateScheduler : Scheduler.basedOn(newLocalIntervals);
     localUpdateScheduler = newLocal;
-    if (newLocal.gravity != null) updateIntervals.add(newLocal.gravity!.updateIntervalMs.toDouble());
-    if (newLocal.gyroscope != null) updateIntervals.add(newLocal.gyroscope!.updateIntervalMs.toDouble());
-    if (newLocal.orientation != null) updateIntervals.add(newLocal.orientation!.updateIntervalMs.toDouble());
-    if (newLocal.accelerometer != null) updateIntervals.add(newLocal.accelerometer!.updateIntervalMs.toDouble());
-    if (newLocal.magneticField != null) updateIntervals.add(newLocal.magneticField!.updateIntervalMs.toDouble());
-    if (newLocal.linearAccelerometer != null) updateIntervals.add(newLocal.linearAccelerometer!.updateIntervalMs.toDouble());
-    if (newLocal.lightLevel != null) updateIntervals.add(newLocal.lightLevel!.updateIntervalMs.toDouble());
-    if (newLocal.microphone != null) updateIntervals.add(newLocal.microphone!.updateIntervalMs.toDouble());
-    if (newLocal.proximity != null) updateIntervals.add(newLocal.proximity!.updateIntervalMs.toDouble());
-    if (newLocal.stepCount != null) updateIntervals.add(newLocal.stepCount!.updateIntervalMs.toDouble());
-    if (newLocal.gps != null) updateIntervals.add(newLocal.gps!.updateIntervalMs.toDouble());
-    if (newLocal.pressure != null) updateIntervals.add(newLocal.pressure!.updateIntervalMs.toDouble());
-    if (newLocal.temperature != null) updateIntervals.add(newLocal.temperature!.updateIntervalMs.toDouble());
-    if (newLocal.relativeHumidity != null) updateIntervals.add(newLocal.relativeHumidity!.updateIntervalMs.toDouble());
+    updateIntervals.maybeAddAll([
+      newLocal.gravity?.updateIntervalMs.toDouble(),
+      newLocal.gyroscope?.updateIntervalMs.toDouble(),
+      newLocal.orientation?.updateIntervalMs.toDouble(),
+      newLocal.accelerometer?.updateIntervalMs.toDouble(),
+      newLocal.magneticField?.updateIntervalMs.toDouble(),
+      newLocal.linearAccelerometer?.updateIntervalMs.toDouble(),
+      newLocal.lightLevel?.updateIntervalMs.toDouble(),
+      newLocal.microphone?.updateIntervalMs.toDouble(),
+      newLocal.proximity?.updateIntervalMs.toDouble(),
+      newLocal.stepCount?.updateIntervalMs.toDouble(),
+      newLocal.gps?.updateIntervalMs.toDouble(),
+      newLocal.pressure?.updateIntervalMs.toDouble(),
+      newLocal.temperature?.updateIntervalMs.toDouble(),
+      newLocal.relativeHumidity?.updateIntervalMs.toDouble(),
+    ]);
 
     final newRemote = newRemoteIntervals == null ? remoteUpdateScheduler : newRemoteIntervals.isEmpty ? null : SchedulerEntry.fromMs(newRemoteIntervals.reduce(min));
     remoteUpdateScheduler = newRemote;
