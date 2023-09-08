@@ -12,6 +12,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 
 import 'sensors.dart';
 import 'canvas.dart';
+import 'conversions.dart';
 
 const sensorErrorMsg = 'sensor is not available or is disabled';
 const defaultServerAddr = 'editor.netsblox.org';

@@ -265,6 +265,40 @@ class NetworkManager {
         }
       }
     }
+    else if (msg.data[0] == 'i'.codeUnitAt(0)) { // set image
+      final idLen = msg.data[9];
+      if (msg.data.length >= 10 + idLen) {
+        final id = tryStringFromBytes(msg.data.sublist(10, 10 + idLen));
+        if (id != null) {
+          final target = Display.state.findControl<ImageLike>(id);
+          if (target != null) {
+            decodeImage(msg.data.sublist(10 + idLen)).then((img) {
+              target.setImage(img, UpdateSource.code);
+              Display.state.redraw();
+              netsbloxSend([ msg.data[0], 0 ]);
+            });
+          } else {
+            netsbloxSend([ msg.data[0], 3 ]);
+          }
+        }
+      }
+    }
+    else if (msg.data[0] == 'u'.codeUnitAt(0)) { // get image
+      final id = tryStringFromBytes(msg.data.sublist(9));
+      if (id != null) {
+        final target = Display.state.findControl<ImageLike>(id);
+        if (target != null) {
+          final img = target.getImage();
+          if (img != null) {
+            packageImageForUdp(img).then((res) => netsbloxSend([ msg.data[0] ] + res));
+          } else {
+            netsbloxSend([ msg.data[0] ] + blankImage);
+          }
+        } else {
+          netsbloxSend([ msg.data[0] ]);
+        }
+      }
+    }
     else if (msg.data[0] == 'w'.codeUnitAt(0)) { // set toggle state
       final state = msg.data[9] != 0;
       final id = tryStringFromBytes(msg.data.sublist(10));

@@ -1,7 +1,12 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
+import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:phone_iot_2/ffi.dart';
+import 'package:image/image.dart' as image;
 
 String? tryStringFromBytes(Uint8List src) {
   try {
@@ -91,5 +96,30 @@ Uint8List f64ToBEBytes(double src) {
 Uint8List f32ToBEBytes(double src) {
   final res = Uint8List(4);
   ByteData.view(res.buffer).setFloat32(0, src, Endian.big);
+  return res;
+}
+
+Future<Uint8List> encodeImage(ui.Image img) async {
+  return (await img.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
+}
+Future<ui.Image> decodeImage(Uint8List raw) async {
+  final c = Completer<ui.Image>();
+  ui.decodeImageFromList(raw, (x) => c.complete(x));
+  return c.future;
+}
+
+const maxImageBytes = 4 * 64 * 1024;
+Future<Uint8List> packageImageForUdp(ui.Image img) async {
+  final rawEncoded = (await img.toByteData(format: ui.ImageByteFormat.rawRgba))!.buffer.asUint8List();
+  image.Image wrapped = image.Image.fromBytes(width: img.width, height: img.height, bytes: rawEncoded.buffer, order: image.ChannelOrder.rgba);
+
+  final rawBytes = 4 * img.width * img.height;
+  if (rawBytes > maxImageBytes) {
+    final scale = sqrt(maxImageBytes.toDouble() / rawBytes.toDouble());
+    wrapped = image.copyResize(wrapped, width: (img.width * scale).round(), height: (img.height * scale).round(), interpolation: image.Interpolation.cubic);
+  }
+
+  final res = image.encodeJpg(wrapped, quality: 70);
+  print('encoded ${img.width}x${img.height} image as ${wrapped.width}x${wrapped.height} in ${res.lengthInBytes} bytes');
   return res;
 }

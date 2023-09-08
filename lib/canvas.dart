@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
@@ -57,15 +56,6 @@ String encodeClickType(ClickType type) {
     case ClickType.move: return 'move';
     case ClickType.up: return 'up';
   }
-}
-
-Future<Uint8List> encodeImage(ui.Image img) async {
-  return (await img.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
-}
-Future<ui.Image> decodeImage(Uint8List raw) async {
-  final c = Completer<ui.Image>();
-  ui.decodeImageFromList(raw, (x) => c.complete(x));
-  return c.future;
 }
 
 void drawTextRect(Canvas canvas, Rect rect, Color color, String text, double fontSize, TextAlign align, bool vCenter) {
