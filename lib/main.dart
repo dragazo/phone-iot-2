@@ -133,10 +133,6 @@ class MainScreenState extends State<MainScreen> {
         }
         api.completeRequest(key: key, result: res);
       }
-      T? findControl<T>(String id) {
-        CustomControl? x = Display.state.controls[id];
-        return x is T ? x as T : null;
-      }
       await for (final cmd in api.recvCommands()) {
         cmd.when(
           stdout: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stdout)),
@@ -162,38 +158,38 @@ class MainScreenState extends State<MainScreen> {
           addImageDisplay: (key, info) => addControl(CustomImageDisplay(info), key),
 
           getText: (key, id) {
-            TextLike? target = findControl<TextLike>(id);
+            TextLike? target = Display.state.findControl<TextLike>(id);
             api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.string(target.getText())) : RequestResult.err('no text-like control with id $id'));
           },
           setText: (key, id, value) {
-            TextLike? target = findControl<TextLike>(id);
+            TextLike? target = Display.state.findControl<TextLike>(id);
             if (target != null) Display.state.setState(() => target.setText(value, UpdateSource.code));
             api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no text-like control with id $id'));
           },
           isPressed: (key, id) {
-            Pressable? target = findControl<Pressable>(id);
+            Pressable? target = Display.state.findControl<Pressable>(id);
             api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.isPressed())) : RequestResult.err('no pressable control with id $id'));
           },
           getLevel: (key, id) {
-            LevelLike? target = findControl<LevelLike>(id);
+            LevelLike? target = Display.state.findControl<LevelLike>(id);
             api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.number(target.getLevel())) : RequestResult.err('no level-like control with id $id'));
           },
           setLevel: (key, id, value) {
-            LevelLike? target = findControl<LevelLike>(id);
+            LevelLike? target = Display.state.findControl<LevelLike>(id);
             if (target != null) Display.state.setState(() => target.setLevel(value));
             api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no level-like control with id $id'));
           },
           getToggleState: (key, id) {
-            ToggleLike? target = findControl<ToggleLike>(id);
+            ToggleLike? target = Display.state.findControl<ToggleLike>(id);
             api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.getToggled())) : RequestResult.err('no toggle-like control with id $id'));
           },
           setToggleState: (key, id, value) {
-            ToggleLike? target = findControl<ToggleLike>(id);
+            ToggleLike? target = Display.state.findControl<ToggleLike>(id);
             if (target != null) Display.state.setState(() => target.setToggled(value));
             api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no toggle-like control with id $id'));
           },
           getPosition: (key, id) {
-            PositionLike? target = findControl<PositionLike>(id);
+            PositionLike? target = Display.state.findControl<PositionLike>(id);
             if (target != null) {
               final p = target.getPosition();
               api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list([ SimpleValue.number(p.$1), SimpleValue.number(p.$2) ])));
@@ -202,7 +198,7 @@ class MainScreenState extends State<MainScreen> {
             }
           },
           getImage: (key, id) async {
-            ImageLike? target = findControl<ImageLike>(id);
+            ImageLike? target = Display.state.findControl<ImageLike>(id);
             if (target == null) {
               api.completeRequest(key: key, result: RequestResult.err('no image-like control with id $id'));
               return;
@@ -219,7 +215,7 @@ class MainScreenState extends State<MainScreen> {
             }
           },
           setImage: (key, id, value) async {
-            ImageLike? target = findControl<ImageLike>(id);
+            ImageLike? target = Display.state.findControl<ImageLike>(id);
             if (target == null) {
               api.completeRequest(key: key, result: RequestResult.err('no image-like control with id $id'));
               return;
@@ -655,6 +651,14 @@ class DisplayState extends State<Display> {
   }
   void clearControls() {
     setState(() => controls.clear());
+  }
+  T? findControl<T>(String id) {
+    CustomControl? x = controls[id];
+    return x is T ? x as T : null;
+  }
+
+  void redraw() {
+    setState(() {});
   }
 
   void handleClick(Offset pos, int id, ClickType type) {
