@@ -1,5 +1,3 @@
-default: gen lint
-
 gen:
     flutter pub get
     flutter_rust_bridge_codegen \
@@ -9,10 +7,6 @@ gen:
         --extra-c-output-path macos/Runner/ \
         --dart-decl-output lib/bridge_definitions.dart \
         --wasm
-
-lint:
-    cd native && cargo fmt
-    dart format .
 
 clean:
     flutter clean
