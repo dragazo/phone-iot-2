@@ -305,6 +305,31 @@ class NetworkManager {
         }
       }
     }
+    else if (msg.data[0] == 'E'.codeUnitAt(0)) { // get level
+      final id = tryStringFromBytes(msg.data.sublist(9));
+      if (id != null) {
+        final target = Display.state.findControl<LevelLike>(id);
+        if (target != null) {
+          netsbloxSend([ msg.data[0] ] + f32ToBEBytes(target.getLevel()));
+        } else {
+          netsbloxSend([ msg.data[0] ]);
+        }
+      }
+    }
+    else if (msg.data[0] == 'e'.codeUnitAt(0)) { // set level
+      final level = f32FromBEBytes(msg.data.sublist(9, 13));
+      final id = tryStringFromBytes(msg.data.sublist(13));
+      if (id != null) {
+        final target = Display.state.findControl<LevelLike>(id);
+        if (target != null) {
+          target.setLevel(level);
+          Display.state.redraw();
+          netsbloxSend([ msg.data[0], 0 ]);
+        } else {
+          netsbloxSend([ msg.data[0], 3 ]);
+        }
+      }
+    }
     else if (msg.data[0] == 'g'.codeUnitAt(0)) { // add label
       final x = f32FromBEBytes(msg.data.sublist(9, 13));
       final y = f32FromBEBytes(msg.data.sublist(13, 17));
