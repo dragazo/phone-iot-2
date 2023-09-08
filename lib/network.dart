@@ -265,6 +265,34 @@ class NetworkManager {
         }
       }
     }
+    else if (msg.data[0] == 'w'.codeUnitAt(0)) { // set toggle state
+      final state = msg.data[9] != 0;
+      final id = tryStringFromBytes(msg.data.sublist(10));
+      if (id != null) {
+        final target = Display.state.findControl<ToggleLike>(id);
+        if (target != null) {
+          target.setToggled(state);
+          Display.state.redraw();
+          netsbloxSend([ msg.data[0], 0 ]);
+        } else {
+          netsbloxSend([ msg.data[0], 3 ]);
+        }
+      }
+    }
+    else if (msg.data[0] == 'W'.codeUnitAt(0)) { // get toggle state
+      final id = tryStringFromBytes(msg.data.sublist(9));
+      if (id != null) {
+        final target = Display.state.findControl<ToggleLike>(id);
+        netsbloxSend([ msg.data[0], target == null ? 2 : target.getToggled() ? 1 : 0 ]);
+      }
+    }
+    else if (msg.data[0] == 'V'.codeUnitAt(0)) { // is pushed
+      final id = tryStringFromBytes(msg.data.sublist(9));
+      if (id != null) {
+        final target = Display.state.findControl<Pressable>(id);
+        netsbloxSend([ msg.data[0], target == null ? 2 : target.isPressed() ? 1 : 0 ]);
+      }
+    }
     else if (msg.data[0] == 'g'.codeUnitAt(0)) { // add label
       final x = f32FromBEBytes(msg.data.sublist(9, 13));
       final y = f32FromBEBytes(msg.data.sublist(13, 17));
