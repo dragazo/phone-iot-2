@@ -293,6 +293,18 @@ class NetworkManager {
         netsbloxSend([ msg.data[0], target == null ? 2 : target.isPressed() ? 1 : 0 ]);
       }
     }
+    else if (msg.data[0] == 'J'.codeUnitAt(0)) { // get position
+      final id = tryStringFromBytes(msg.data.sublist(9));
+      if (id != null) {
+        final target = Display.state.findControl<PositionLike>(id);
+        if (target != null) {
+          final p = target.getPosition();
+          netsbloxSend([ msg.data[0], 1 ] + f32ToBEBytes(p.$1) + f32ToBEBytes(p.$2));
+        } else {
+          netsbloxSend([ msg.data[0] ]);
+        }
+      }
+    }
     else if (msg.data[0] == 'g'.codeUnitAt(0)) { // add label
       final x = f32FromBEBytes(msg.data.sublist(9, 13));
       final y = f32FromBEBytes(msg.data.sublist(13, 17));
