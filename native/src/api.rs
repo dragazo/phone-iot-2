@@ -14,7 +14,7 @@ use netsblox_vm::real_time::UtcOffset;
 use netsblox_vm::json::{Json, json};
 use netsblox_vm::ast;
 
-use flutter_rust_bridge::StreamSink;
+use flutter_rust_bridge::{StreamSink, IntoDart, rust2dart::IntoIntoDart};
 
 const SERVER_URL: &str = "https://editor.netsblox.org";
 const IDLE_SLEEP_THRESH: usize = 256;
@@ -25,29 +25,39 @@ const BLACK: ColorInfo = ColorInfo { a: 255, r: 0, g: 0, b: 0 };
 const WHITE: ColorInfo = ColorInfo { a: 255, r: 255, g: 255, b: 255 };
 
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
-static DART_COMMANDS: Mutex<DartCommandPipe> = Mutex::new(DartCommandPipe { sink: None, backlog: Vec::new() });
+static DART_COMMANDS: Mutex<DartPipe<DartCommand>> = Mutex::new(DartPipe::new());
 static RUST_COMMANDS: Mutex<Vec<RustCommand>> = Mutex::new(Vec::new());
 static PENDING_REQUESTS: Mutex<BTreeMap<DartRequestKey, RequestKey<C>>> = Mutex::new(BTreeMap::new());
 static KEY_COUNTER: AtomicUsize = AtomicUsize::new(0);
 static CONTROL_COUNTER: AtomicUsize = AtomicUsize::new(0);
 
-struct DartCommandPipe {
-    sink: Option<StreamSink<DartCommand>>,
-    backlog: Vec<DartCommand>,
+struct DartPipe<T> {
+    sink: Option<StreamSink<T>>,
+    backlog: Vec<T>,
+}
+impl<T: Clone + std::fmt::Debug + IntoDart + IntoIntoDart<T>> DartPipe<T> {
+    const fn new() -> Self {
+        DartPipe { sink: None, backlog: Vec::new() }
+    }
+    fn send(&mut self, val: T) {
+        let handled = self.sink.as_ref().map(|x| x.add(val.clone())).unwrap_or(false);
+        if !handled {
+            println!("backlogging cmd {val:?}");
+            self.backlog.push(val);
+        }
+    }
+    fn retry_backlog(&mut self, sink: StreamSink<T>) {
+        println!("retrying backlogged commands...");
+        self.sink = Some(sink);
+        for val in mem::take(&mut self.backlog) {
+            self.send(val);
+        }
+    }
 }
 
 fn new_control_id() -> String {
     // important: this can't be the same scheme as the default remote netsblox scheme or there will be collision failures when using both defaults
     format!("ct-{}", CONTROL_COUNTER.fetch_add(1, MemOrder::Relaxed).wrapping_add(1))
-}
-
-fn send_dart_command(cmd: DartCommand) {
-    let mut commands = DART_COMMANDS.lock().unwrap();
-    let handled = commands.sink.as_ref().map(|x| x.add(cmd.clone())).unwrap_or(false);
-    if !handled {
-        println!("backlogging cmd {cmd:?}");
-        commands.backlog.push(cmd);
-    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -411,8 +421,8 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                     Command::Print { style: _, value } => {
                         if let Some(value) = value {
                             match value.to_json() {
-                                Ok(x) => send_dart_command(DartCommand::Stdout { msg: x.to_string() }),
-                                Err(e) => send_dart_command(DartCommand::Stderr { msg: format!("print {e:?}") }),
+                                Ok(x) => DART_COMMANDS.lock().unwrap().send(DartCommand::Stdout { msg: x.to_string() }),
+                                Err(e) => DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("print {e:?}") }),
                             }
                         }
                     }
@@ -602,7 +612,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 if args.len() != 1 || !is_local_id(&args[0].1) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
-                                send_dart_command(DartCommand::$cmd { key: DartRequestKey::new(key) });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::$cmd { key: DartRequestKey::new(key) });
                                 RequestStatus::Handled
                             }};
                         }
@@ -652,7 +662,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
 
                                 CONTROL_COUNTER.store(0, MemOrder::Relaxed);
 
-                                send_dart_command(DartCommand::ClearControls { key: DartRequestKey::new(key) });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::ClearControls { key: DartRequestKey::new(key) });
                                 RequestStatus::Handled
                             }
                             "removeControl" => {
@@ -662,7 +672,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
 
                                 let id = parse!(id := args[1].1 => ControlId);
 
-                                send_dart_command(DartCommand::RemoveControl { key: DartRequestKey::new(key), id });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::RemoveControl { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "addButton" => {
@@ -684,7 +694,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let style = parse!(style := options.get("style") => Option<ButtonStyleInfo>).unwrap_or(ButtonStyleInfo::Rectangle);
 
-                                send_dart_command(DartCommand::AddButton { key: DartRequestKey::new(key), info: ButtonInfo {
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::AddButton { key: DartRequestKey::new(key), info: ButtonInfo {
                                     id, x, y, width, height, text, landscape, back_color, fore_color, font_size, event, style,
                                 }});
                                 RequestStatus::Handled
@@ -704,7 +714,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
                                 let align = parse!(align := options.get("align") => Option<TextAlignInfo>).unwrap_or(TextAlignInfo::Left);
 
-                                send_dart_command(DartCommand::AddLabel { key: DartRequestKey::new(key), info: LabelInfo {
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::AddLabel { key: DartRequestKey::new(key), info: LabelInfo {
                                     x, y, text, id, color, font_size, landscape, align,
                                 }});
                                 RequestStatus::Handled
@@ -729,7 +739,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let align = parse!(align := options.get("align") => Option<TextAlignInfo>).unwrap_or(TextAlignInfo::Left);
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
 
-                                send_dart_command(DartCommand::AddTextField { key: DartRequestKey::new(key), info: TextFieldInfo {
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::AddTextField { key: DartRequestKey::new(key), info: TextFieldInfo {
                                     id, x, y, width, height, back_color, fore_color, text, event, font_size, landscape, readonly, align,
                                 }});
                                 RequestStatus::Handled
@@ -748,7 +758,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let color = parse!(event := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
 
-                                send_dart_command(DartCommand::AddJoystick { key: DartRequestKey::new(key), info: JoystickInfo {
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::AddJoystick { key: DartRequestKey::new(key), info: JoystickInfo {
                                     x, y, width, id, event, color, landscape,
                                 }});
                                 RequestStatus::Handled
@@ -769,7 +779,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let style = parse!(style := options.get("style") => Option<TouchpadStyleInfo>).unwrap_or(TouchpadStyleInfo::Rectangle);
                                 let landscape = parse!(style := options.get("landscape") => Option<bool>).unwrap_or(false);
 
-                                send_dart_command(DartCommand::AddTouchpad { key: DartRequestKey::new(key), info: TouchpadInfo {
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::AddTouchpad { key: DartRequestKey::new(key), info: TouchpadInfo {
                                     x, y, width, height, id, event, color, style, landscape,
                                 }});
                                 RequestStatus::Handled
@@ -791,7 +801,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
                                 let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
 
-                                send_dart_command(DartCommand::AddSlider { key: DartRequestKey::new(key), info: SliderInfo {
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::AddSlider { key: DartRequestKey::new(key), info: SliderInfo {
                                     x, y, width, id, event, color, value, style, landscape, readonly,
                                 }});
                                 RequestStatus::Handled
@@ -815,7 +825,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
                                 let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
 
-                                send_dart_command(DartCommand::AddToggle { key: DartRequestKey::new(key), info: ToggleInfo {
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::AddToggle { key: DartRequestKey::new(key), info: ToggleInfo {
                                     x, y, text, id, style, event, checked, fore_color, back_color, font_size, landscape, readonly,
                                 }});
                                 RequestStatus::Handled
@@ -839,7 +849,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
                                 let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(false);
 
-                                send_dart_command(DartCommand::AddRadioButton { key: DartRequestKey::new(key), info: RadioButtonInfo {
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::AddRadioButton { key: DartRequestKey::new(key), info: RadioButtonInfo {
                                     x, y, text, id, group, event, checked, fore_color, back_color, font_size, landscape, readonly,
                                 }});
                                 RequestStatus::Handled
@@ -860,7 +870,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
                                 let fit = parse!(fit := options.get("fit") => Option<ImageFitInfo>).unwrap_or(ImageFitInfo::Fit);
 
-                                send_dart_command(DartCommand::AddImageDisplay { key: DartRequestKey::new(key), info: ImageDisplayInfo {
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::AddImageDisplay { key: DartRequestKey::new(key), info: ImageDisplayInfo {
                                     id, x, y, width, height, event, readonly, landscape, fit,
                                 }});
                                 RequestStatus::Handled
@@ -889,7 +899,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let temperature = parse!(temperature := sensors.get("temperature") => Option<f64>);
                                 let humidity = parse!(humidity := sensors.get("humidity") => Option<f64>);
 
-                                send_dart_command(DartCommand::ListenToSensors { key: DartRequestKey::new(key), sensors: SensorUpdateInfo {
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::ListenToSensors { key: DartRequestKey::new(key), sensors: SensorUpdateInfo {
                                     gravity, gyroscope, orientation, accelerometer, magnetic_field, linear_acceleration,
                                     light_level, microphone_level, proximity, step_count, location, pressure, temperature, humidity,
                                 }});
@@ -900,7 +910,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                send_dart_command(DartCommand::ListenToSensors { key: DartRequestKey::new(key), sensors: SensorUpdateInfo::default() });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::ListenToSensors { key: DartRequestKey::new(key), sensors: SensorUpdateInfo::default() });
                                 RequestStatus::Handled
                             }
                             "getText" => {
@@ -910,7 +920,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
 
                                 let id = parse!(id := args[1].1 => ControlId);
 
-                                send_dart_command(DartCommand::GetText { key: DartRequestKey::new(key), id });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::GetText { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "setText" => {
@@ -921,7 +931,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let id = parse!(id := args[1].1 => ControlId);
                                 let value = parse!(text := args[2].1 => String);
 
-                                send_dart_command(DartCommand::SetText { key: DartRequestKey::new(key), id, value });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::SetText { key: DartRequestKey::new(key), id, value });
                                 RequestStatus::Handled
                             }
                             "isPressed" => {
@@ -931,7 +941,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
 
                                 let id = parse!(id := args[1].1 => ControlId);
 
-                                send_dart_command(DartCommand::IsPressed { key: DartRequestKey::new(key), id });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::IsPressed { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "getPosition" => {
@@ -941,7 +951,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
 
                                 let id = parse!(id := args[1].1 => ControlId);
 
-                                send_dart_command(DartCommand::GetPosition { key: DartRequestKey::new(key), id });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::GetPosition { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "getImage" => {
@@ -951,7 +961,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
 
                                 let id = parse!(id := args[1].1 => ControlId);
 
-                                send_dart_command(DartCommand::GetImage { key: DartRequestKey::new(key), id });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::GetImage { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "setImage" => {
@@ -962,7 +972,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let id = parse!(id := args[1].1 => ControlId);
                                 let value = parse!(img := args[2].1 => Image);
 
-                                send_dart_command(DartCommand::SetImage { key: DartRequestKey::new(key), id, value });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::SetImage { key: DartRequestKey::new(key), id, value });
                                 RequestStatus::Handled
                             }
                             "getLevel" => {
@@ -972,7 +982,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
 
                                 let id = parse!(id := args[1].1 => ControlId);
 
-                                send_dart_command(DartCommand::GetLevel { key: DartRequestKey::new(key), id });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::GetLevel { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "setLevel" => {
@@ -983,7 +993,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let id = parse!(id := args[1].1 => ControlId);
                                 let value = parse!(value := args[2].1 => f64);
 
-                                send_dart_command(DartCommand::SetLevel { key: DartRequestKey::new(key), id, value });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::SetLevel { key: DartRequestKey::new(key), id, value });
                                 RequestStatus::Handled
                             }
                             "getToggleState" => {
@@ -993,7 +1003,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
 
                                 let id = parse!(id := args[1].1 => ControlId);
 
-                                send_dart_command(DartCommand::GetToggleState { key: DartRequestKey::new(key), id });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::GetToggleState { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "setToggleState" => {
@@ -1004,7 +1014,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let id = parse!(id := args[1].1 => ControlId);
                                 let value = parse!(state := args[2].1 => bool);
 
-                                send_dart_command(DartCommand::SetToggleState { key: DartRequestKey::new(key), id, value });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::SetToggleState { key: DartRequestKey::new(key), id, value });
                                 RequestStatus::Handled
                             }
                             "getAccelerometer" => simple_request!(GetAccelerometer),
@@ -1051,13 +1061,13 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                             [role] => match get_env(role, system.clone()) {
                                 Ok(x) => {
                                     env = x;
-                                    send_dart_command(DartCommand::Stdout { msg: "loaded project".into() });
+                                    DART_COMMANDS.lock().unwrap().send(DartCommand::Stdout { msg: "loaded project".into() });
                                 }
-                                Err(e) => send_dart_command(DartCommand::Stderr { msg: format!("project load error: {e:?}") }),
+                                Err(e) => DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("project load error: {e:?}") }),
                             }
-                            x => send_dart_command(DartCommand::Stderr { msg: format!("project load error: expected 1 role, got {}", x.len()) } ),
+                            x => DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("project load error: expected 1 role, got {}", x.len()) } ),
                         }
-                        Err(e) => send_dart_command(DartCommand::Stderr { msg: format!("project load error: {e:?}") }),
+                        Err(e) => DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("project load error: {e:?}") }),
                     }
                     RustCommand::Start => env.mutate(|mc, env| {
                         env.proj.borrow_mut(mc).input(mc, Input::Start);
@@ -1072,7 +1082,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
             env.mutate(|mc, env| {
                 let res = env.proj.borrow_mut(mc).step(mc);
                 if let ProjectStep::Error { error, proc } = &res {
-                    send_dart_command(DartCommand::Stderr { msg: format!("runtime error in entity {:?}: {:?}", proc.get_call_stack().last().unwrap().entity.borrow().name, error.cause) });
+                    DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("runtime error in entity {:?}: {:?}", proc.get_call_stack().last().unwrap().entity.borrow().name, error.cause) });
                 }
                 idle_sleeper.consume(&res);
             });
@@ -1084,15 +1094,7 @@ pub fn send_command(cmd: RustCommand) {
     RUST_COMMANDS.lock().unwrap().push(cmd);
 }
 pub fn recv_commands(sink: StreamSink<DartCommand>) {
-    let backlog = {
-        let mut commands = DART_COMMANDS.lock().unwrap();
-        commands.sink = Some(sink.clone());
-        mem::take(&mut commands.backlog)
-    };
-    println!("retrying backlogged commands...");
-    for cmd in backlog {
-        send_dart_command(cmd);
-    }
+    DART_COMMANDS.lock().unwrap().retry_backlog(sink);
 }
 
 pub fn complete_request(key: DartRequestKey, result: RequestResult) {

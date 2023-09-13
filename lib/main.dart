@@ -21,8 +21,6 @@ const kvstoreDeviceID = 'device-id';
 const kvstoreServerAddr = 'server-addr';
 const kvstoreProjectAddr = 'proj-addr';
 
-const msgUpdateInterval = Duration(milliseconds: 500);
-const msgLifetime = Duration(seconds: 10);
 const passwordLifetime = Duration(hours: 24);
 const maxCustomControls = 1024;
 
@@ -40,7 +38,7 @@ class Message {
   DateTime expiry;
   String msg;
   MessageType type;
-  Message(this.msg, this.type) : expiry = DateTime.now().add(msgLifetime);
+  Message(this.msg, this.type) : expiry = DateTime.now().add(MessageList.lifetime);
 }
 
 void main() async {
@@ -552,6 +550,10 @@ class MessageList extends StatefulWidget {
   static const instance = MessageList();
   static final state = MessageListState();
 
+  static const updateInterval = Duration(milliseconds: 500);
+  static const lifetime = Duration(seconds: 10);
+  static const maxMessages = 10;
+
   @override
   State<MessageList> createState() => state;
 }
@@ -564,7 +566,7 @@ class MessageListState extends State<MessageList> {
 
     void updateLoop() async {
       while (true) {
-        await Future.delayed(msgUpdateInterval);
+        await Future.delayed(MessageList.updateInterval);
         final now = DateTime.now();
         while (messages.isNotEmpty && messages.first.expiry.isBefore(now)) {
           setState(() => messages.removeAt(0));
@@ -614,7 +616,12 @@ class MessageListState extends State<MessageList> {
   }
 
   void addMessage(Message msg) {
-    setState(() => messages.add(msg));
+    setState(() {
+      if (messages.length >= MessageList.maxMessages) {
+        messages.removeAt(0);
+      }
+      messages.add(msg);
+    });
   }
 }
 
