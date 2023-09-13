@@ -272,7 +272,7 @@ class MainScreenState extends State<MainScreen> {
       Display.instance,
       const Positioned(
         right: 20,
-        top: 20,
+        bottom: 20,
         child: MessageList.instance,
       ),
       AnimatedPositioned(
@@ -578,32 +578,40 @@ class MessageListState extends State<MessageList> {
 
   @override
   Widget build(BuildContext context) {
+    assert(messages.length <= MessageList.maxMessages);
+
     final msgs = <Widget>[];
-    for (final item in messages) {
+    for (int i = 0; i < messages.length; ++i) {
+      final item = messages[i];
+
       Color color;
       switch (item.type) {
         case MessageType.stderr: color = Colors.red;
         case MessageType.stdout: color = const Color.fromARGB(255, 80, 80, 80);
       }
-      msgs.add(Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          color: color,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black45,
-              blurRadius: 10,
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: SizedBox(
-            width: 300,
-            child: Text(
-              item.msg,
-              style: const TextStyle(
-                color: Color.fromARGB(255, 230, 230, 230),
+
+      msgs.add(Opacity(
+        opacity: 1 - 0.75 * (messages.length - 1 - i).toDouble() / MessageList.maxMessages,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            color: color,
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black45,
+                blurRadius: 10,
+              ),
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: SizedBox(
+              width: 300,
+              child: Text(
+                item.msg,
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 230, 230, 230),
+                ),
               ),
             ),
           ),
