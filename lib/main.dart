@@ -95,8 +95,6 @@ class MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
 
-    api.initialize(utcOffsetInSeconds: DateTime.now().timeZoneOffset.inSeconds);
-
     void cmdHandlerLoop() async {
       void sendSensorVec(List<double>? vals, DartRequestKey key) {
         if (vals != null) {
@@ -430,6 +428,11 @@ class MainMenuState extends State<MainMenu> {
     if (insecureStorage.hasData(kvstoreProjectAddr)) {
       MainMenu.projectAddr.text = insecureStorage.read(kvstoreProjectAddr);
     }
+
+    api.initialize(
+      deviceId: deviceID.map((x) => x.toRadixString(16).padLeft(2, "0")).join(),
+      utcOffsetInSeconds: DateTime.now().timeZoneOffset.inSeconds,
+    );
   }
 
   @override

@@ -2,8 +2,12 @@ use super::*;
 // Section: wire functions
 
 #[no_mangle]
-pub extern "C" fn wire_initialize(port_: i64, utc_offset_in_seconds: i32) {
-    wire_initialize_impl(port_, utc_offset_in_seconds)
+pub extern "C" fn wire_initialize(
+    port_: i64,
+    device_id: *mut wire_uint_8_list,
+    utc_offset_in_seconds: i32,
+) {
+    wire_initialize_impl(port_, device_id, utc_offset_in_seconds)
 }
 
 #[no_mangle]

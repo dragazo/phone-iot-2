@@ -125,7 +125,9 @@ uintptr_t new_dart_opaque(Dart_Handle handle);
 
 intptr_t init_frb_dart_api_dl(void *obj);
 
-void wire_initialize(int64_t port_, int32_t utc_offset_in_seconds);
+void wire_initialize(int64_t port_,
+                     struct wire_uint_8_list *device_id,
+                     int32_t utc_offset_in_seconds);
 
 void wire_send_command(int64_t port_, struct wire_RustCommand *cmd);
 

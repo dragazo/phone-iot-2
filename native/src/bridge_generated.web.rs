@@ -2,8 +2,8 @@ use super::*;
 // Section: wire functions
 
 #[wasm_bindgen]
-pub fn wire_initialize(port_: MessagePort, utc_offset_in_seconds: i32) {
-    wire_initialize_impl(port_, utc_offset_in_seconds)
+pub fn wire_initialize(port_: MessagePort, device_id: String, utc_offset_in_seconds: i32) {
+    wire_initialize_impl(port_, device_id, utc_offset_in_seconds)
 }
 
 #[wasm_bindgen]

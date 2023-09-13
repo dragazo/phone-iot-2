@@ -16,7 +16,7 @@ use netsblox_vm::ast;
 
 use flutter_rust_bridge::StreamSink;
 
-const SERVER_URL: &'static str = "https://editor.netsblox.org";
+const SERVER_URL: &str = "https://editor.netsblox.org";
 const IDLE_SLEEP_THRESH: usize = 256;
 const IDLE_SLEEP_TIME: Duration = Duration::from_millis(1);
 
@@ -402,7 +402,7 @@ impl RequestResult {
     }
 }
 
-pub fn initialize(utc_offset_in_seconds: i32) {
+pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
     if INITIALIZED.swap(true, MemOrder::Relaxed) { return }
     thread::spawn(move || {
         let config = Config::<C, StdSystem<C>> {
@@ -422,9 +422,12 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                 CommandStatus::Handled
             })),
             request: Some(Rc::new(move |_, _, key, request, _| {
-                fn is_local_id<'gc, C: CustomTypes<S>, S: System<C>>(s: &Value<'gc, C, S>) -> bool {
-                    s.to_string().ok().map(|x| x.chars().all(|x| x == '0')).unwrap_or(false)
-                }
+                let is_local_id = |s: &Value<C, StdSystem<C>>| -> bool {
+                    match s.to_string() {
+                        Ok(x) => x.chars().all(|x| x == '0') || x == device_id,
+                        Err(_) => false,
+                    }
+                };
                 fn parse_options<'gc, C: CustomTypes<S>, S: System<C>>(name: &str, opts: &Value<'gc, C, S>, allowed: &[&str]) -> Result<BTreeMap<String, Value<'gc, C, S>>, String> {
                     let mut res = BTreeMap::new();
                     match opts {
@@ -605,7 +608,7 @@ pub fn initialize(utc_offset_in_seconds: i32) {
                         }
                         match rpc.as_str() {
                             "getSensors" => {
-                                if args.len() != 0 {
+                                if !args.is_empty() {
                                     return RequestStatus::UseDefault { key, request };
                                 }
                                 key.complete(Ok(Intermediate::Json(json!([
