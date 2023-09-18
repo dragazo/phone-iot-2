@@ -238,18 +238,20 @@ class NetworkManager {
       }
     }
     else if (msg.data[0] == 'H'.codeUnitAt(0)) { // set text
-      final idLen = msg.data[9];
-      if (msg.data.length >= 10 + idLen) {
-        final id = tryStringFromBytes(msg.data.sublist(10, 10 + idLen));
-        final text = tryStringFromBytes(msg.data.sublist(10 + idLen));
-        if (id != null && text != null) {
-          final target = Display.state.findControl<TextLike>(id);
-          if (target != null) {
-            target.setText(text, UpdateSource.code);
-            Display.state.redraw();
-            netsbloxSend([ msg.data[0], 0 ]);
-          } else {
-            netsbloxSend([ msg.data[0], 3]);
+      if (msg.data.length >= 10) {
+        final idLen = msg.data[9];
+        if (msg.data.length >= 10 + idLen) {
+          final id = tryStringFromBytes(msg.data.sublist(10, 10 + idLen));
+          final text = tryStringFromBytes(msg.data.sublist(10 + idLen));
+          if (id != null && text != null) {
+            final target = Display.state.findControl<TextLike>(id);
+            if (target != null) {
+              target.setText(text, UpdateSource.code);
+              Display.state.redraw();
+              netsbloxSend([ msg.data[0], 0 ]);
+            } else {
+              netsbloxSend([ msg.data[0], 3]);
+            }
           }
         }
       }
@@ -266,19 +268,21 @@ class NetworkManager {
       }
     }
     else if (msg.data[0] == 'i'.codeUnitAt(0)) { // set image
-      final idLen = msg.data[9];
-      if (msg.data.length >= 10 + idLen) {
-        final id = tryStringFromBytes(msg.data.sublist(10, 10 + idLen));
-        if (id != null) {
-          final target = Display.state.findControl<ImageLike>(id);
-          if (target != null) {
-            decodeImage(msg.data.sublist(10 + idLen)).then((img) {
-              target.setImage(img, UpdateSource.code);
-              Display.state.redraw();
-              netsbloxSend([ msg.data[0], 0 ]);
-            });
-          } else {
-            netsbloxSend([ msg.data[0], 3 ]);
+      if (msg.data.length >= 10) {
+        final idLen = msg.data[9];
+        if (msg.data.length >= 10 + idLen) {
+          final id = tryStringFromBytes(msg.data.sublist(10, 10 + idLen));
+          if (id != null) {
+            final target = Display.state.findControl<ImageLike>(id);
+            if (target != null) {
+              decodeImage(msg.data.sublist(10 + idLen)).then((img) {
+                target.setImage(img, UpdateSource.code);
+                Display.state.redraw();
+                netsbloxSend([ msg.data[0], 0 ]);
+              });
+            } else {
+              netsbloxSend([ msg.data[0], 3 ]);
+            }
           }
         }
       }
@@ -300,16 +304,18 @@ class NetworkManager {
       }
     }
     else if (msg.data[0] == 'w'.codeUnitAt(0)) { // set toggle state
-      final state = msg.data[9] != 0;
-      final id = tryStringFromBytes(msg.data.sublist(10));
-      if (id != null) {
-        final target = Display.state.findControl<ToggleLike>(id);
-        if (target != null) {
-          target.setToggled(state);
-          Display.state.redraw();
-          netsbloxSend([ msg.data[0], 0 ]);
-        } else {
-          netsbloxSend([ msg.data[0], 3 ]);
+      if (msg.data.length >= 10) {
+        final state = msg.data[9] != 0;
+        final id = tryStringFromBytes(msg.data.sublist(10));
+        if (id != null) {
+          final target = Display.state.findControl<ToggleLike>(id);
+          if (target != null) {
+            target.setToggled(state);
+            Display.state.redraw();
+            netsbloxSend([ msg.data[0], 0 ]);
+          } else {
+            netsbloxSend([ msg.data[0], 3 ]);
+          }
         }
       }
     }
@@ -351,179 +357,199 @@ class NetworkManager {
       }
     }
     else if (msg.data[0] == 'e'.codeUnitAt(0)) { // set level
-      final level = f32FromBEBytes(msg.data.sublist(9, 13));
-      final id = tryStringFromBytes(msg.data.sublist(13));
-      if (id != null) {
-        final target = Display.state.findControl<LevelLike>(id);
-        if (target != null) {
-          target.setLevel(level);
-          Display.state.redraw();
-          netsbloxSend([ msg.data[0], 0 ]);
-        } else {
-          netsbloxSend([ msg.data[0], 3 ]);
+      if (msg.data.length >= 13) {
+        final level = f32FromBEBytes(msg.data.sublist(9, 13));
+        final id = tryStringFromBytes(msg.data.sublist(13));
+        if (id != null) {
+          final target = Display.state.findControl<LevelLike>(id);
+          if (target != null) {
+            target.setLevel(level);
+            Display.state.redraw();
+            netsbloxSend([ msg.data[0], 0 ]);
+          } else {
+            netsbloxSend([ msg.data[0], 3 ]);
+          }
         }
       }
     }
     else if (msg.data[0] == 'g'.codeUnitAt(0)) { // add label
-      final x = f32FromBEBytes(msg.data.sublist(9, 13));
-      final y = f32FromBEBytes(msg.data.sublist(13, 17));
-      final color = colorFromBEBytes(msg.data.sublist(17, 21));
-      final fontSize = f32FromBEBytes(msg.data.sublist(21, 25));
-      final align = textAlignFromBEBytes(msg.data.sublist(25, 26));
-      final landscape = msg.data[26] != 0;
-      final idLen = msg.data[27];
-      if (msg.data.length >= 28 + idLen) {
-        final id = tryStringFromBytes(msg.data.sublist(28, 28 + idLen));
-        final text = tryStringFromBytes(msg.data.sublist(28 + idLen));
-        if (id != null && text != null) {
-          final info = LabelInfo(id: id, x: x, y: y, color: color, text: text, fontSize: fontSize, align: align, landscape: landscape);
-          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomLabel(info)).index ]);
+      if (msg.data.length >= 28) {
+        final x = f32FromBEBytes(msg.data.sublist(9, 13));
+        final y = f32FromBEBytes(msg.data.sublist(13, 17));
+        final color = colorFromBEBytes(msg.data.sublist(17, 21));
+        final fontSize = f32FromBEBytes(msg.data.sublist(21, 25));
+        final align = textAlignFromBEBytes(msg.data.sublist(25, 26));
+        final landscape = msg.data[26] != 0;
+        final idLen = msg.data[27];
+        if (msg.data.length >= 28 + idLen) {
+          final id = tryStringFromBytes(msg.data.sublist(28, 28 + idLen));
+          final text = tryStringFromBytes(msg.data.sublist(28 + idLen));
+          if (id != null && text != null) {
+            final info = LabelInfo(id: id, x: x, y: y, color: color, text: text, fontSize: fontSize, align: align, landscape: landscape);
+            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomLabel(info)).index ]);
+          }
         }
       }
     }
     else if (msg.data[0] == 'B'.codeUnitAt(0)) { // add button
-      final x = f32FromBEBytes(msg.data.sublist(9, 13));
-      final y = f32FromBEBytes(msg.data.sublist(13, 17));
-      final width = f32FromBEBytes(msg.data.sublist(17, 21));
-      final height = f32FromBEBytes(msg.data.sublist(21, 25));
-      final backColor = colorFromBEBytes(msg.data.sublist(25, 29));
-      final foreColor = colorFromBEBytes(msg.data.sublist(29, 33));
-      final fontSize = f32FromBEBytes(msg.data.sublist(33, 37));
-      final style = buttonStyleFromBEBytes(msg.data.sublist(37, 38));
-      final landscape = msg.data[38] != 0;
-      final idLen = msg.data[39];
-      if (msg.data.length >= 40 + idLen) {
-        final id = tryStringFromBytes(msg.data.sublist(40, 40 + idLen));
-        final text = tryStringFromBytes(msg.data.sublist(40 + idLen));
-        if (id != null && text != null) {
-          final info = ButtonInfo(id: id, x: x, y: y, width: width, height: height, backColor: backColor, foreColor: foreColor, text: text, fontSize: fontSize, style: style, landscape: landscape);
-          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomButton(info)).index ]);
+      if (msg.data.length >= 40) {
+        final x = f32FromBEBytes(msg.data.sublist(9, 13));
+        final y = f32FromBEBytes(msg.data.sublist(13, 17));
+        final width = f32FromBEBytes(msg.data.sublist(17, 21));
+        final height = f32FromBEBytes(msg.data.sublist(21, 25));
+        final backColor = colorFromBEBytes(msg.data.sublist(25, 29));
+        final foreColor = colorFromBEBytes(msg.data.sublist(29, 33));
+        final fontSize = f32FromBEBytes(msg.data.sublist(33, 37));
+        final style = buttonStyleFromBEBytes(msg.data.sublist(37, 38));
+        final landscape = msg.data[38] != 0;
+        final idLen = msg.data[39];
+        if (msg.data.length >= 40 + idLen) {
+          final id = tryStringFromBytes(msg.data.sublist(40, 40 + idLen));
+          final text = tryStringFromBytes(msg.data.sublist(40 + idLen));
+          if (id != null && text != null) {
+            final info = ButtonInfo(id: id, x: x, y: y, width: width, height: height, backColor: backColor, foreColor: foreColor, text: text, fontSize: fontSize, style: style, landscape: landscape);
+            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomButton(info)).index ]);
+          }
         }
       }
     }
     else if (msg.data[0] == 'T'.codeUnitAt(0)) { // add text field
-      final x = f32FromBEBytes(msg.data.sublist(9, 13));
-      final y = f32FromBEBytes(msg.data.sublist(13, 17));
-      final width = f32FromBEBytes(msg.data.sublist(17, 21));
-      final height = f32FromBEBytes(msg.data.sublist(21, 25));
-      final backColor = colorFromBEBytes(msg.data.sublist(25, 29));
-      final foreColor = colorFromBEBytes(msg.data.sublist(29, 33));
-      final fontSize = f32FromBEBytes(msg.data.sublist(33, 37));
-      final align = textAlignFromBEBytes(msg.data.sublist(37, 38));
-      final readonly = msg.data[38] != 0;
-      final landscape = msg.data[39] != 0;
-      final idLen = msg.data[40];
-      if (msg.data.length >= 41 + idLen) {
-        final id = tryStringFromBytes(msg.data.sublist(41, 41 + idLen));
-        final text = tryStringFromBytes(msg.data.sublist(41 + idLen));
-        if (id != null && text != null) {
-          final info = TextFieldInfo(id: id, x: x, y: y, width: width, height: height, backColor: backColor, foreColor: foreColor, text: text, fontSize: fontSize, landscape: landscape, readonly: readonly, align: align);
-          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomTextField(info)).index ]);
+      if (msg.data.length > 41) {
+        final x = f32FromBEBytes(msg.data.sublist(9, 13));
+        final y = f32FromBEBytes(msg.data.sublist(13, 17));
+        final width = f32FromBEBytes(msg.data.sublist(17, 21));
+        final height = f32FromBEBytes(msg.data.sublist(21, 25));
+        final backColor = colorFromBEBytes(msg.data.sublist(25, 29));
+        final foreColor = colorFromBEBytes(msg.data.sublist(29, 33));
+        final fontSize = f32FromBEBytes(msg.data.sublist(33, 37));
+        final align = textAlignFromBEBytes(msg.data.sublist(37, 38));
+        final readonly = msg.data[38] != 0;
+        final landscape = msg.data[39] != 0;
+        final idLen = msg.data[40];
+        if (msg.data.length >= 41 + idLen) {
+          final id = tryStringFromBytes(msg.data.sublist(41, 41 + idLen));
+          final text = tryStringFromBytes(msg.data.sublist(41 + idLen));
+          if (id != null && text != null) {
+            final info = TextFieldInfo(id: id, x: x, y: y, width: width, height: height, backColor: backColor, foreColor: foreColor, text: text, fontSize: fontSize, landscape: landscape, readonly: readonly, align: align);
+            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomTextField(info)).index ]);
+          }
         }
       }
     }
     else if (msg.data[0] == 'U'.codeUnitAt(0)) { // add image display
-      final x = f32FromBEBytes(msg.data.sublist(9, 13));
-      final y = f32FromBEBytes(msg.data.sublist(13, 17));
-      final width = f32FromBEBytes(msg.data.sublist(17, 21));
-      final height = f32FromBEBytes(msg.data.sublist(21, 25));
-      final readonly = msg.data[25] != 0;
-      final landscape = msg.data[26] != 0;
-      final fit = imageFitFromBEBytes(msg.data.sublist(27, 28));
-      if (msg.data.length - 28 <= 255) {
-        final id = tryStringFromBytes(msg.data.sublist(28));
-        if (id != null) {
-          final info = ImageDisplayInfo(id: id, x: x, y: y, width: width, height: height, readonly: readonly, landscape: landscape, fit: fit);
-          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomImageDisplay(info)).index ]);
+      if (msg.data.length >= 28) {
+        final x = f32FromBEBytes(msg.data.sublist(9, 13));
+        final y = f32FromBEBytes(msg.data.sublist(13, 17));
+        final width = f32FromBEBytes(msg.data.sublist(17, 21));
+        final height = f32FromBEBytes(msg.data.sublist(21, 25));
+        final readonly = msg.data[25] != 0;
+        final landscape = msg.data[26] != 0;
+        final fit = imageFitFromBEBytes(msg.data.sublist(27, 28));
+        if (msg.data.length - 28 <= 255) {
+          final id = tryStringFromBytes(msg.data.sublist(28));
+          if (id != null) {
+            final info = ImageDisplayInfo(id: id, x: x, y: y, width: width, height: height, readonly: readonly, landscape: landscape, fit: fit);
+            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomImageDisplay(info)).index ]);
+          }
         }
       }
     }
     else if (msg.data[0] == 'j'.codeUnitAt(0)) { // add joystick
-      final x = f32FromBEBytes(msg.data.sublist(9, 13));
-      final y = f32FromBEBytes(msg.data.sublist(13, 17));
-      final width = f32FromBEBytes(msg.data.sublist(17, 21));
-      final color = colorFromBEBytes(msg.data.sublist(21, 25));
-      final landscape = msg.data[25] != 0;
-      if (msg.data.length - 26 <= 255) {
-        final id = tryStringFromBytes(msg.data.sublist(26));
-        if (id != null) {
-          final info = JoystickInfo(id: id, x: x, y: y, width: width, color: color, landscape: landscape);
-          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomJoystick(info)).index ]);
+      if (msg.data.length >= 26) {
+        final x = f32FromBEBytes(msg.data.sublist(9, 13));
+        final y = f32FromBEBytes(msg.data.sublist(13, 17));
+        final width = f32FromBEBytes(msg.data.sublist(17, 21));
+        final color = colorFromBEBytes(msg.data.sublist(21, 25));
+        final landscape = msg.data[25] != 0;
+        if (msg.data.length - 26 <= 255) {
+          final id = tryStringFromBytes(msg.data.sublist(26));
+          if (id != null) {
+            final info = JoystickInfo(id: id, x: x, y: y, width: width, color: color, landscape: landscape);
+            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomJoystick(info)).index ]);
+          }
         }
       }
     }
     else if (msg.data[0] == 'N'.codeUnitAt(0)) { // add touchpad
-      final x = f32FromBEBytes(msg.data.sublist(9, 13));
-      final y = f32FromBEBytes(msg.data.sublist(13, 17));
-      final width = f32FromBEBytes(msg.data.sublist(17, 21));
-      final height = f32FromBEBytes(msg.data.sublist(21, 25));
-      final color = colorFromBEBytes(msg.data.sublist(25, 29));
-      final style = touchpadStyleFromBEBytes(msg.data.sublist(29, 30));
-      final landscape = msg.data[30] != 0;
-      if (msg.data.length - 31 <= 255) {
-        final id = tryStringFromBytes(msg.data.sublist(31));
-        if (id != null) {
-          final info = TouchpadInfo(id: id, x: x, y: y, width: width, height: height, color: color, style: style, landscape: landscape);
-          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomTouchpad(info)).index ]);
+      if (msg.data.length >= 31) {
+        final x = f32FromBEBytes(msg.data.sublist(9, 13));
+        final y = f32FromBEBytes(msg.data.sublist(13, 17));
+        final width = f32FromBEBytes(msg.data.sublist(17, 21));
+        final height = f32FromBEBytes(msg.data.sublist(21, 25));
+        final color = colorFromBEBytes(msg.data.sublist(25, 29));
+        final style = touchpadStyleFromBEBytes(msg.data.sublist(29, 30));
+        final landscape = msg.data[30] != 0;
+        if (msg.data.length - 31 <= 255) {
+          final id = tryStringFromBytes(msg.data.sublist(31));
+          if (id != null) {
+            final info = TouchpadInfo(id: id, x: x, y: y, width: width, height: height, color: color, style: style, landscape: landscape);
+            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomTouchpad(info)).index ]);
+          }
         }
       }
     }
     else if (msg.data[0] == 'D'.codeUnitAt(0)) { // add slider
-      final x = f32FromBEBytes(msg.data.sublist(9, 13));
-      final y = f32FromBEBytes(msg.data.sublist(13, 17));
-      final width = f32FromBEBytes(msg.data.sublist(17, 21));
-      final color = colorFromBEBytes(msg.data.sublist(21, 25));
-      final value = f32FromBEBytes(msg.data.sublist(25, 29));
-      final style = sliderStyleFromBEBytes(msg.data.sublist(29, 30));
-      final landscape = msg.data[30] != 0;
-      final readonly = msg.data[31] != 0;
-      if (msg.data.length - 32 <= 255) {
-        final id = tryStringFromBytes(msg.data.sublist(32));
-        if (id != null) {
-          final info = SliderInfo(id: id, x: x, y: y, width: width, color: color, value: value, style: style, landscape: landscape, readonly: readonly);
-          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomSlider(info)).index ]);
+      if (msg.data.length >= 32) {
+        final x = f32FromBEBytes(msg.data.sublist(9, 13));
+        final y = f32FromBEBytes(msg.data.sublist(13, 17));
+        final width = f32FromBEBytes(msg.data.sublist(17, 21));
+        final color = colorFromBEBytes(msg.data.sublist(21, 25));
+        final value = f32FromBEBytes(msg.data.sublist(25, 29));
+        final style = sliderStyleFromBEBytes(msg.data.sublist(29, 30));
+        final landscape = msg.data[30] != 0;
+        final readonly = msg.data[31] != 0;
+        if (msg.data.length - 32 <= 255) {
+          final id = tryStringFromBytes(msg.data.sublist(32));
+          if (id != null) {
+            final info = SliderInfo(id: id, x: x, y: y, width: width, color: color, value: value, style: style, landscape: landscape, readonly: readonly);
+            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomSlider(info)).index ]);
+          }
         }
       }
     }
     else if (msg.data[0] == 'Z'.codeUnitAt(0)) { // add toggle
-      final x = f32FromBEBytes(msg.data.sublist(9, 13));
-      final y = f32FromBEBytes(msg.data.sublist(13, 17));
-      final backColor = colorFromBEBytes(msg.data.sublist(17, 21));
-      final foreColor = colorFromBEBytes(msg.data.sublist(21, 25));
-      final fontSize = f32FromBEBytes(msg.data.sublist(25, 29));
-      final checked = msg.data[29] != 0;
-      final style = toggleStyleFromBEBytes(msg.data.sublist(30, 31));
-      final landscape = msg.data[31] != 0;
-      final readonly = msg.data[32] != 0;
-      final idLen = msg.data[33];
-      if (msg.data.length >= 34 + idLen) {
-        final id = tryStringFromBytes(msg.data.sublist(34, 34 + idLen));
-        final text = tryStringFromBytes(msg.data.sublist(34 + idLen));
-        if (id != null && text != null) {
-          final info = ToggleInfo(id: id, x: x, y: y, text: text, style: style, checked: checked, foreColor: foreColor, backColor: backColor, fontSize: fontSize, landscape: landscape, readonly: readonly);
-          netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomToggle(info)).index ]);
+      if (msg.data.length >= 34) {
+        final x = f32FromBEBytes(msg.data.sublist(9, 13));
+        final y = f32FromBEBytes(msg.data.sublist(13, 17));
+        final backColor = colorFromBEBytes(msg.data.sublist(17, 21));
+        final foreColor = colorFromBEBytes(msg.data.sublist(21, 25));
+        final fontSize = f32FromBEBytes(msg.data.sublist(25, 29));
+        final checked = msg.data[29] != 0;
+        final style = toggleStyleFromBEBytes(msg.data.sublist(30, 31));
+        final landscape = msg.data[31] != 0;
+        final readonly = msg.data[32] != 0;
+        final idLen = msg.data[33];
+        if (msg.data.length >= 34 + idLen) {
+          final id = tryStringFromBytes(msg.data.sublist(34, 34 + idLen));
+          final text = tryStringFromBytes(msg.data.sublist(34 + idLen));
+          if (id != null && text != null) {
+            final info = ToggleInfo(id: id, x: x, y: y, text: text, style: style, checked: checked, foreColor: foreColor, backColor: backColor, fontSize: fontSize, landscape: landscape, readonly: readonly);
+            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomToggle(info)).index ]);
+          }
         }
       }
     }
     else if (msg.data[0] == 'y'.codeUnitAt(0)) { // add radio button
-      final x = f32FromBEBytes(msg.data.sublist(9, 13));
-      final y = f32FromBEBytes(msg.data.sublist(13, 17));
-      final backColor = colorFromBEBytes(msg.data.sublist(17, 21));
-      final foreColor = colorFromBEBytes(msg.data.sublist(21, 25));
-      final fontSize = f32FromBEBytes(msg.data.sublist(25, 29));
-      final checked = msg.data[29] != 0;
-      final landscape = msg.data[30] != 0;
-      final readonly = msg.data[31] != 0;
-      final idLen = msg.data[32];
-      if (msg.data.length >= 33 + idLen + 1) {
-        final id = tryStringFromBytes(msg.data.sublist(33, 33 + idLen));
-        final groupLen = msg.data[33 + idLen];
-        if (id != null && msg.data.length >= 33 + idLen + 1 + groupLen) {
-          final group = tryStringFromBytes(msg.data.sublist(33 + idLen + 1, 33 + idLen + 1 + groupLen));
-          final text = tryStringFromBytes(msg.data.sublist(33 + idLen + 1 + groupLen));
-          if (group != null && text != null) {
-            final info = RadioButtonInfo(id: id, x: x, y: y, text: text, group: group, checked: checked, foreColor: foreColor, backColor: backColor, fontSize: fontSize, landscape: landscape, readonly: readonly);
-            netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomRadioButton(info)).index ]);
+      if (msg.data.length >= 33) {
+        final x = f32FromBEBytes(msg.data.sublist(9, 13));
+        final y = f32FromBEBytes(msg.data.sublist(13, 17));
+        final backColor = colorFromBEBytes(msg.data.sublist(17, 21));
+        final foreColor = colorFromBEBytes(msg.data.sublist(21, 25));
+        final fontSize = f32FromBEBytes(msg.data.sublist(25, 29));
+        final checked = msg.data[29] != 0;
+        final landscape = msg.data[30] != 0;
+        final readonly = msg.data[31] != 0;
+        final idLen = msg.data[32];
+        if (msg.data.length >= 33 + idLen + 1) {
+          final id = tryStringFromBytes(msg.data.sublist(33, 33 + idLen));
+          final groupLen = msg.data[33 + idLen];
+          if (id != null && msg.data.length >= 33 + idLen + 1 + groupLen) {
+            final group = tryStringFromBytes(msg.data.sublist(33 + idLen + 1, 33 + idLen + 1 + groupLen));
+            final text = tryStringFromBytes(msg.data.sublist(33 + idLen + 1 + groupLen));
+            if (group != null && text != null) {
+              final info = RadioButtonInfo(id: id, x: x, y: y, text: text, group: group, checked: checked, foreColor: foreColor, backColor: backColor, fontSize: fontSize, landscape: landscape, readonly: readonly);
+              netsbloxSend([ msg.data[0], Display.state.tryAddControl(CustomRadioButton(info)).index ]);
+            }
           }
         }
       }
