@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 import 'package:phone_iot_2/canvas.dart';
 import 'package:phone_iot_2/conversions.dart';
 import 'package:phone_iot_2/util.dart';
@@ -17,8 +18,17 @@ const int defaultServerPort = 1976;
 const int defaultClientPort = 6787;
 const Duration heartbeatPeriod = Duration(seconds: 30);
 
-bool isIP(String addr) {
-  final pat = RegExp(r'^\d+\.\d+\.\d+\.\d+$');
+Uint8List? parseIP(String addr) {
+  final pat = RegExp(r'^(\w+://)?(\d+\.\d+\.\d+\.\d+)(:\d+)?$');
+  final m = pat.firstMatch(addr);
+  if (m == null) return null;
+
+  final vals = m.group(2)!.split('.').map(int.tryParse).toList();
+  if (vals.length != 4 || vals.any((x) => x == null || x < 0 || x >= 256)) return null;
+  return Uint8List.fromList(vals.map((x) => x!).toList());
+}
+bool hasProtocol(String addr) {
+  final pat = RegExp(r'^\w+://');
   return pat.firstMatch(addr) != null;
 }
 
@@ -117,11 +127,11 @@ class NetworkManager {
       disconnect();
 
       String addr = MainMenu.serverAddr.text;
-      final target = isIP(addr) ? '$addr:8080' : addr.startsWith('https://') ? addr : 'https://$addr';
-      final res = await http.get(Uri.parse('$target/services/routes/phone-iot/port'));
+      Uint8List? ipInfo = parseIP(addr);
+      final res = await http.get(Uri.parse('${hasProtocol(addr) ? addr : "https://$addr"}/services/routes/phone-iot/port'));
 
       serverPort = int.tryParse(res.body) ?? defaultServerPort;
-      serverAddr = (await InternetAddress.lookup(addr))[0];
+      serverAddr = ipInfo != null ? InternetAddress.fromRawAddress(ipInfo) : (await InternetAddress.lookup(addr))[0];
 
       final newUdp = await RawDatagramSocket.bind(InternetAddress.anyIPv4, defaultClientPort);
       udp = newUdp;
