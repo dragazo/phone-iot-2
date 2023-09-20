@@ -52,6 +52,9 @@ dependencies:
   motion_sensors: ^0.1.0
   environment_sensors: ^0.3.0
 
+  # actuator stuff
+  vibration: ^1.7.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
+import 'package:phone_iot_2/actuators.dart';
 import 'package:phone_iot_2/canvas.dart';
 import 'package:phone_iot_2/conversions.dart';
 import 'package:phone_iot_2/util.dart';
@@ -562,6 +563,17 @@ class NetworkManager {
             }
           }
         }
+      }
+    }
+    else if (msg.data[0] == 'k'.codeUnitAt(0)) { // vibrate
+      if (msg.data.length >= 13 && (msg.data.length - 13) % 4 == 0) {
+        final strength = f32FromBEBytes(msg.data.sublist(9, 13));
+        final durations = <double>[];
+        for (int p = 13; p < msg.data.length; p += 4) {
+          durations.add(f32FromBEBytes(msg.data.sublist(p, p + 4)));
+        }
+        VibrationManager.vibrate(strength, durations);
+        netsbloxSend([ msg.data[0] ]);
       }
     }
     else {
