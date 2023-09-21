@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
+
 import 'package:phone_iot_2/actuators.dart';
 import 'package:phone_iot_2/canvas.dart';
 import 'package:phone_iot_2/conversions.dart';
@@ -10,6 +11,7 @@ import 'package:phone_iot_2/util.dart';
 import 'ffi.dart';
 import 'sensors.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_fgbg/flutter_fgbg.dart';
 
 import 'main.dart';
 
@@ -90,12 +92,14 @@ class NetworkManager {
   static InternetAddress? serverAddr;
   static int? serverPort;
   static Timer? heartbeatTimer;
+  static StreamSubscription<FGBGType>? fgbgListener;
+  static bool running = true;
 
   static void netsbloxSend(List<int> msg) {
     final mac = MainMenu.state.deviceID;
     final addr = serverAddr;
     final port = serverPort;
-    if (addr == null || port == null) return;
+    if (addr == null || port == null || !running) return;
 
     final res = <int>[];
     res.addAll(mac);
@@ -124,6 +128,16 @@ class NetworkManager {
     serverAddr = null;
   }
   static Future<void> connect() async {
+    fgbgListener ??= FGBGEvents.stream.listen((e) {
+      switch (e) {
+        case FGBGType.foreground:
+          running = true;
+          netsbloxSend([ 'I'.codeUnitAt(0), 0 ]); // send heartbeat with ACK request
+        case FGBGType.background:
+          running = false;
+      }
+    });
+
     try {
       disconnect();
 
@@ -147,7 +161,7 @@ class NetworkManager {
         netsbloxSend([ 'I'.codeUnitAt(0) ]);
       });
 
-      netsbloxSend([ 'I'.codeUnitAt(0), 0 ]); // send first heartbeat and add an ACK check flag
+      netsbloxSend([ 'I'.codeUnitAt(0), 0 ]); // send heartbeat with ACK request
     } catch (e) {
       MessageList.state.addMessage(Message('Failed to Connect: $e', MessageType.stderr));
     }
@@ -157,7 +171,7 @@ class NetworkManager {
   }
 
   static void handleUdpMessage(Datagram msg) {
-    if (msg.data.isEmpty) return;
+    if (msg.data.isEmpty || !running) return;
 
     // check for things that don't need auth
     if (msg.data.length <= 2 && msg.data[0] == 'I'.codeUnitAt(0)) {

@@ -822,13 +822,16 @@ class ImageInputState extends State<ImageInput> {
     );
   }
 
-  void fetchImage(ImageSource source) {
+  Future<void> fetchImage(ImageSource source) async {
     ImageLike? target = MainScreen.state.inputImageTarget;
     if (target == null) return;
 
     MainScreen.state.setState(() => MainScreen.state.inputImageTarget = null);
-    ImagePicker().pickImage(source: source).then((img) {
-      if (img != null) img.readAsBytes().then(decodeImage).then((img) => Display.state.setState(() => target.setImage(img, UpdateSource.user)));
-    });
+
+    final img = await ImagePicker().pickImage(source: source);
+    if (img != null) {
+      final res = await decodeImage(await img.readAsBytes());
+      Display.state.setState(() => target.setImage(res, UpdateSource.user));
+    }
   }
 }

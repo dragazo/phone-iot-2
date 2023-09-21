@@ -5,6 +5,7 @@
         "Datagram",
         "Deque",
         "elementwise",
+        "FGBG",
         "Geolocator",
         "kvstore",
         "LTWH",
