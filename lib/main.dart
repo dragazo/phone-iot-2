@@ -24,6 +24,8 @@ const kvstoreProjectAddr = 'proj-addr';
 const passwordLifetime = Duration(hours: 24);
 const maxCustomControls = 1024;
 
+const netsbloxButtonColor = Color.fromARGB(255, 100, 100, 100);
+
 late final GetStorage insecureStorage;
 final rng = Random();
 
@@ -528,12 +530,14 @@ class MainMenuState extends State<MainMenu> {
               children: [
                 ElevatedButton(
                   onPressed: () => api.sendCommand(cmd: const RustCommand.start()),
-                  child: const Text('Start'),
+                  style: ElevatedButton.styleFrom(backgroundColor: netsbloxButtonColor),
+                  child: const Icon(Icons.flag, color: Colors.green),
                 ),
                 const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () => api.sendCommand(cmd: const RustCommand.stop()),
-                  child: const Text('Stop'),
+                  style: ElevatedButton.styleFrom(backgroundColor: netsbloxButtonColor),
+                  child: const Icon(Icons.stop, color: Colors.red),
                 ),
               ],
             ),

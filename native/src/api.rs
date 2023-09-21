@@ -1045,7 +1045,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
             })),
         };
         let utc_offset = UtcOffset::from_whole_seconds(utc_offset_in_seconds).unwrap_or(UtcOffset::UTC);
-        let system = Rc::new(StdSystem::new(SERVER_URL.to_owned(), None, config, utc_offset));
+        let system = Rc::new(StdSystem::new_sync(SERVER_URL.to_owned(), None, config, utc_offset));
         let mut env = {
             let project = ast::Parser::default().parse(netsblox_vm::template::EMPTY_PROJECT).unwrap();
             get_env(&project.roles[0], system.clone()).unwrap()
