@@ -17,6 +17,7 @@ use netsblox_vm::ast;
 use flutter_rust_bridge::{StreamSink, IntoDart, rust2dart::IntoIntoDart};
 
 const SERVER_URL: &str = "https://editor.netsblox.org";
+const STEPS_PER_IO_ITER: usize = 16;
 const IDLE_SLEEP_THRESH: usize = 256;
 const IDLE_SLEEP_TIME: Duration = Duration::from_millis(1);
 
@@ -1099,8 +1100,12 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                     RustCommand::Stop => env.mutate(|mc, env| {
                         env.proj.borrow_mut(mc).input(mc, Input::Stop);
                     }),
-                    RustCommand::TogglePaused => pauser.toggle_paused(),
-                    RustCommand::InjectMessage { msg_type, values } => system.inject_message(msg_type, values.into_iter().map(|x| (x.0, x.1.into_json())).collect()),
+                    RustCommand::TogglePaused => {
+                        pauser.toggle_paused();
+                    }
+                    RustCommand::InjectMessage { msg_type, values } => {
+                        system.inject_message(msg_type, values.into_iter().map(|x| (x.0, x.1.into_json())).collect());
+                    }
                 }
             }
 
@@ -1110,15 +1115,21 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
             }
 
             env.mutate(|mc, env| {
-                let res = env.proj.borrow_mut(mc).step(mc);
-                match &res {
-                    ProjectStep::Error { error, proc } => {
-                        DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("runtime error in entity {:?}: {:?}", proc.get_call_stack().last().unwrap().entity.borrow().name, error.cause) });
+                let mut proj = env.proj.borrow_mut(mc);
+                for _ in 0..STEPS_PER_IO_ITER {
+                    let res = proj.step(mc);
+                    match &res {
+                        ProjectStep::Error { error, proc } => {
+                            DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("runtime error in entity {:?}: {:?}", proc.get_call_stack().last().unwrap().entity.borrow().name, error.cause) });
+                        }
+                        ProjectStep::Pause => {
+                            pauser.set_paused(true);
+                            break;
+                        }
+                        _ => (),
                     }
-                    ProjectStep::Pause => pauser.set_paused(true),
-                    _ => (),
+                    idle_sleeper.consume(&res);
                 }
-                idle_sleeper.consume(&res);
             });
         }
     });
