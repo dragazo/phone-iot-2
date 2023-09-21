@@ -134,6 +134,8 @@ class MainScreenState extends State<MainScreen> {
       }
       await for (final cmd in api.recvCommands()) {
         cmd.when(
+          updatePaused: (value) => MainMenu.state.setState(() => MainMenu.state.paused = value ),
+
           stdout: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stdout)),
           stderr: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stderr)),
 
@@ -389,6 +391,7 @@ class MainMenu extends StatefulWidget {
   State<MainMenu> createState() => state;
 }
 class MainMenuState extends State<MainMenu> {
+  bool paused = false;
   late List<int> deviceID;
   late int devicePW;
   late DateTime devicePWExpiry;
@@ -532,6 +535,12 @@ class MainMenuState extends State<MainMenu> {
                   onPressed: () => api.sendCommand(cmd: const RustCommand.start()),
                   style: ElevatedButton.styleFrom(backgroundColor: netsbloxButtonColor),
                   child: const Icon(Icons.flag, color: Colors.green),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () => api.sendCommand(cmd: const RustCommand.togglePaused()),
+                  style: ElevatedButton.styleFrom(backgroundColor: netsbloxButtonColor),
+                  child: Icon(paused ? Icons.play_arrow : Icons.pause, color: Colors.yellow),
                 ),
                 const SizedBox(width: 10),
                 ElevatedButton(

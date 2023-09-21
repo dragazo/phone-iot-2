@@ -55,6 +55,25 @@ impl<T: Clone + std::fmt::Debug + IntoDart + IntoIntoDart<T>> DartPipe<T> {
     }
 }
 
+struct PauseController {
+    value: bool,
+}
+impl PauseController {
+    fn new(value: bool) -> Self {
+        Self { value }
+    }
+    fn is_paused(&self) -> bool {
+        self.value
+    }
+    fn set_paused(&mut self, value: bool) {
+        self.value = value;
+        DART_COMMANDS.lock().unwrap().send(DartCommand::UpdatePaused { value });
+    }
+    fn toggle_paused(&mut self) {
+        self.set_paused(!self.value);
+    }
+}
+
 fn new_control_id() -> String {
     // important: this can't be the same scheme as the default remote netsblox scheme or there will be collision failures when using both defaults
     format!("ct-{}", CONTROL_COUNTER.fetch_add(1, MemOrder::Relaxed).wrapping_add(1))
@@ -303,6 +322,7 @@ pub enum RustCommand {
     SetProject { xml: String },
     Start,
     Stop,
+    TogglePaused,
     InjectMessage { msg_type: String, values: Vec<(String, SimpleValue)> },
 }
 
@@ -320,6 +340,8 @@ impl DartRequestKey {
 
 #[derive(Clone, Debug)]
 pub enum DartCommand {
+    UpdatePaused { value: bool },
+
     Stdout { msg: String },
     Stderr { msg: String },
 
@@ -1051,6 +1073,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
             get_env(&project.roles[0], system.clone()).unwrap()
         };
         let mut idle_sleeper = IdleAction::new(IDLE_SLEEP_THRESH, Box::new(move || thread::sleep(IDLE_SLEEP_TIME)));
+        let mut pauser = PauseController::new(false);
 
         loop {
             let commands = mem::take(&mut *RUST_COMMANDS.lock().unwrap());
@@ -1070,19 +1093,30 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                         Err(e) => DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("project load error: {e:?}") }),
                     }
                     RustCommand::Start => env.mutate(|mc, env| {
+                        pauser.set_paused(false);
                         env.proj.borrow_mut(mc).input(mc, Input::Start);
                     }),
                     RustCommand::Stop => env.mutate(|mc, env| {
                         env.proj.borrow_mut(mc).input(mc, Input::Stop);
                     }),
+                    RustCommand::TogglePaused => pauser.toggle_paused(),
                     RustCommand::InjectMessage { msg_type, values } => system.inject_message(msg_type, values.into_iter().map(|x| (x.0, x.1.into_json())).collect()),
                 }
             }
 
+            if pauser.is_paused() {
+                thread::sleep(IDLE_SLEEP_TIME);
+                continue;
+            }
+
             env.mutate(|mc, env| {
                 let res = env.proj.borrow_mut(mc).step(mc);
-                if let ProjectStep::Error { error, proc } = &res {
-                    DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("runtime error in entity {:?}: {:?}", proc.get_call_stack().last().unwrap().entity.borrow().name, error.cause) });
+                match &res {
+                    ProjectStep::Error { error, proc } => {
+                        DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("runtime error in entity {:?}: {:?}", proc.get_call_stack().last().unwrap().entity.borrow().name, error.cause) });
+                    }
+                    ProjectStep::Pause => pauser.set_paused(true),
+                    _ => (),
                 }
                 idle_sleeper.consume(&res);
             });

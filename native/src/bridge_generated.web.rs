@@ -97,7 +97,8 @@ impl Wire2Api<RustCommand> for JsValue {
             },
             1 => RustCommand::Start,
             2 => RustCommand::Stop,
-            3 => RustCommand::InjectMessage {
+            3 => RustCommand::TogglePaused,
+            4 => RustCommand::InjectMessage {
                 msg_type: self_.get(1).wire2api(),
                 values: self_.get(2).wire2api(),
             },

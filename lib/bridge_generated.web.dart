@@ -90,9 +90,12 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
     if (raw is RustCommand_Stop) {
       return [2];
     }
+    if (raw is RustCommand_TogglePaused) {
+      return [3];
+    }
     if (raw is RustCommand_InjectMessage) {
       return [
-        3,
+        4,
         api2wire_String(raw.msgType),
         api2wire_list___record__String_simple_value(raw.values)
       ];

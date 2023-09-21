@@ -196,202 +196,206 @@ class NativeImpl implements Native {
   DartCommand _wire2api_dart_command(dynamic raw) {
     switch (raw[0]) {
       case 0:
+        return DartCommand_UpdatePaused(
+          value: _wire2api_bool(raw[1]),
+        );
+      case 1:
         return DartCommand_Stdout(
           msg: _wire2api_String(raw[1]),
         );
-      case 1:
+      case 2:
         return DartCommand_Stderr(
           msg: _wire2api_String(raw[1]),
         );
-      case 2:
+      case 3:
         return DartCommand_ClearControls(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 3:
+      case 4:
         return DartCommand_RemoveControl(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 4:
+      case 5:
         return DartCommand_AddLabel(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_label_info(raw[2]),
         );
-      case 5:
+      case 6:
         return DartCommand_AddButton(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_button_info(raw[2]),
         );
-      case 6:
+      case 7:
         return DartCommand_AddTextField(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_text_field_info(raw[2]),
         );
-      case 7:
+      case 8:
         return DartCommand_AddJoystick(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_joystick_info(raw[2]),
         );
-      case 8:
+      case 9:
         return DartCommand_AddTouchpad(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_touchpad_info(raw[2]),
         );
-      case 9:
+      case 10:
         return DartCommand_AddSlider(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_slider_info(raw[2]),
         );
-      case 10:
+      case 11:
         return DartCommand_AddToggle(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_toggle_info(raw[2]),
         );
-      case 11:
+      case 12:
         return DartCommand_AddRadioButton(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_radio_button_info(raw[2]),
         );
-      case 12:
+      case 13:
         return DartCommand_AddImageDisplay(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           info: _wire2api_box_autoadd_image_display_info(raw[2]),
         );
-      case 13:
+      case 14:
         return DartCommand_GetText(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 14:
+      case 15:
         return DartCommand_SetText(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_String(raw[3]),
         );
-      case 15:
+      case 16:
         return DartCommand_GetLevel(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 16:
+      case 17:
         return DartCommand_SetLevel(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_f64(raw[3]),
         );
-      case 17:
+      case 18:
         return DartCommand_GetToggleState(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 18:
+      case 19:
         return DartCommand_SetToggleState(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_bool(raw[3]),
         );
-      case 19:
+      case 20:
         return DartCommand_GetImage(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 20:
+      case 21:
         return DartCommand_SetImage(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_uint_8_list(raw[3]),
         );
-      case 21:
+      case 22:
         return DartCommand_GetPosition(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 22:
+      case 23:
         return DartCommand_IsPressed(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 23:
+      case 24:
         return DartCommand_GetAccelerometer(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 24:
+      case 25:
         return DartCommand_GetLinearAccelerometer(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 25:
+      case 26:
         return DartCommand_GetGyroscope(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 26:
+      case 27:
         return DartCommand_GetMagnetometer(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 27:
+      case 28:
         return DartCommand_GetGravity(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 28:
+      case 29:
         return DartCommand_GetPressure(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 29:
+      case 30:
         return DartCommand_GetRelativeHumidity(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 30:
+      case 31:
         return DartCommand_GetLightLevel(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 31:
+      case 32:
         return DartCommand_GetTemperature(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 32:
+      case 33:
         return DartCommand_GetFacingDirection(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 33:
+      case 34:
         return DartCommand_GetOrientation(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 34:
+      case 35:
         return DartCommand_GetCompassHeading(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 35:
+      case 36:
         return DartCommand_GetCompassDirection(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 36:
+      case 37:
         return DartCommand_GetCompassCardinalDirection(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 37:
+      case 38:
         return DartCommand_GetLocationLatLong(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 38:
+      case 39:
         return DartCommand_GetLocationHeading(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 39:
+      case 40:
         return DartCommand_GetLocationAltitude(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 40:
+      case 41:
         return DartCommand_GetMicrophoneLevel(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 41:
+      case 42:
         return DartCommand_GetProximity(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 42:
+      case 43:
         return DartCommand_GetStepCount(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 43:
+      case 44:
         return DartCommand_ListenToSensors(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           sensors: _wire2api_box_autoadd_sensor_update_info(raw[2]),

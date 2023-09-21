@@ -153,11 +153,15 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
       wireObj.tag = 2;
       return;
     }
+    if (apiObj is RustCommand_TogglePaused) {
+      wireObj.tag = 3;
+      return;
+    }
     if (apiObj is RustCommand_InjectMessage) {
       var pre_msg_type = api2wire_String(apiObj.msgType);
       var pre_values =
           api2wire_list___record__String_simple_value(apiObj.values);
-      wireObj.tag = 3;
+      wireObj.tag = 4;
       wireObj.kind = inner.inflate_RustCommand_InjectMessage();
       wireObj.kind.ref.InjectMessage.ref.msg_type = pre_msg_type;
       wireObj.kind.ref.InjectMessage.ref.values = pre_values;
@@ -456,9 +460,9 @@ class NativeWire implements FlutterRustBridgeWireBase {
   }
 
   late final _new_uint_8_list_0Ptr = _lookup<
-          ffi
-          .NativeFunction<ffi.Pointer<wire_uint_8_list> Function(ffi.Int32)>>(
-      'new_uint_8_list_0');
+      ffi.NativeFunction<
+          ffi.Pointer<wire_uint_8_list> Function(
+              ffi.Int32)>>('new_uint_8_list_0');
   late final _new_uint_8_list_0 = _new_uint_8_list_0Ptr
       .asFunction<ffi.Pointer<wire_uint_8_list> Function(int)>();
 
@@ -586,6 +590,8 @@ final class wire_RustCommand_Start extends ffi.Opaque {}
 
 final class wire_RustCommand_Stop extends ffi.Opaque {}
 
+final class wire_RustCommand_TogglePaused extends ffi.Opaque {}
+
 final class wire_SimpleValue_Bool extends ffi.Struct {
   @ffi.Bool()
   external bool field0;
@@ -659,6 +665,8 @@ final class RustCommandKind extends ffi.Union {
   external ffi.Pointer<wire_RustCommand_Start> Start;
 
   external ffi.Pointer<wire_RustCommand_Stop> Stop;
+
+  external ffi.Pointer<wire_RustCommand_TogglePaused> TogglePaused;
 
   external ffi.Pointer<wire_RustCommand_InjectMessage> InjectMessage;
 }

@@ -178,7 +178,8 @@ impl Wire2Api<RustCommand> for wire_RustCommand {
             },
             1 => RustCommand::Start,
             2 => RustCommand::Stop,
-            3 => unsafe {
+            3 => RustCommand::TogglePaused,
+            4 => unsafe {
                 let ans = support::box_from_leak_ptr(self.kind);
                 let ans = support::box_from_leak_ptr(ans.InjectMessage);
                 RustCommand::InjectMessage {
@@ -304,6 +305,7 @@ pub union RustCommandKind {
     SetProject: *mut wire_RustCommand_SetProject,
     Start: *mut wire_RustCommand_Start,
     Stop: *mut wire_RustCommand_Stop,
+    TogglePaused: *mut wire_RustCommand_TogglePaused,
     InjectMessage: *mut wire_RustCommand_InjectMessage,
 }
 
@@ -320,6 +322,10 @@ pub struct wire_RustCommand_Start {}
 #[repr(C)]
 #[derive(Clone)]
 pub struct wire_RustCommand_Stop {}
+
+#[repr(C)]
+#[derive(Clone)]
+pub struct wire_RustCommand_TogglePaused {}
 
 #[repr(C)]
 #[derive(Clone)]

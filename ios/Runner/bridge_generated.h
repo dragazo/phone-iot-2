@@ -26,6 +26,10 @@ typedef struct wire_RustCommand_Stop {
 
 } wire_RustCommand_Stop;
 
+typedef struct wire_RustCommand_TogglePaused {
+
+} wire_RustCommand_TogglePaused;
+
 typedef struct wire_SimpleValue_Bool {
   bool field0;
 } wire_SimpleValue_Bool;
@@ -83,6 +87,7 @@ typedef union RustCommandKind {
   struct wire_RustCommand_SetProject *SetProject;
   struct wire_RustCommand_Start *Start;
   struct wire_RustCommand_Stop *Stop;
+  struct wire_RustCommand_TogglePaused *TogglePaused;
   struct wire_RustCommand_InjectMessage *InjectMessage;
 } RustCommandKind;
 

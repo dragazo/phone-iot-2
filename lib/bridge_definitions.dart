@@ -90,6 +90,9 @@ class ColorInfo {
 
 @freezed
 sealed class DartCommand with _$DartCommand {
+  const factory DartCommand.updatePaused({
+    required bool value,
+  }) = DartCommand_UpdatePaused;
   const factory DartCommand.stdout({
     required String msg,
   }) = DartCommand_Stdout;
@@ -376,6 +379,7 @@ sealed class RustCommand with _$RustCommand {
   }) = RustCommand_SetProject;
   const factory RustCommand.start() = RustCommand_Start;
   const factory RustCommand.stop() = RustCommand_Stop;
+  const factory RustCommand.togglePaused() = RustCommand_TogglePaused;
   const factory RustCommand.injectMessage({
     required String msgType,
     required List<(String, SimpleValue)> values,

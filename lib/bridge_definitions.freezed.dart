@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DartCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -76,6 +77,7 @@ mixin _$DartCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -127,6 +129,7 @@ mixin _$DartCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -178,6 +181,7 @@ mixin _$DartCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -240,6 +244,7 @@ mixin _$DartCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -293,6 +298,7 @@ mixin _$DartCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -366,6 +372,439 @@ class _$DartCommandCopyWithImpl<$Res, $Val extends DartCommand>
 }
 
 /// @nodoc
+abstract class _$$DartCommand_UpdatePausedCopyWith<$Res> {
+  factory _$$DartCommand_UpdatePausedCopyWith(_$DartCommand_UpdatePaused value,
+          $Res Function(_$DartCommand_UpdatePaused) then) =
+      __$$DartCommand_UpdatePausedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool value});
+}
+
+/// @nodoc
+class __$$DartCommand_UpdatePausedCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_UpdatePaused>
+    implements _$$DartCommand_UpdatePausedCopyWith<$Res> {
+  __$$DartCommand_UpdatePausedCopyWithImpl(_$DartCommand_UpdatePaused _value,
+      $Res Function(_$DartCommand_UpdatePaused) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$DartCommand_UpdatePaused(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_UpdatePaused implements DartCommand_UpdatePaused {
+  const _$DartCommand_UpdatePaused({required this.value});
+
+  @override
+  final bool value;
+
+  @override
+  String toString() {
+    return 'DartCommand.updatePaused(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_UpdatePaused &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_UpdatePausedCopyWith<_$DartCommand_UpdatePaused>
+      get copyWith =>
+          __$$DartCommand_UpdatePausedCopyWithImpl<_$DartCommand_UpdatePaused>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
+    required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
+    required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) getLevel,
+    required TResult Function(DartRequestKey key, String id, double value)
+        setLevel,
+    required TResult Function(DartRequestKey key, String id) getToggleState,
+    required TResult Function(DartRequestKey key, String id, bool value)
+        setToggleState,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key) getAccelerometer,
+    required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
+    required TResult Function(DartRequestKey key) getGravity,
+    required TResult Function(DartRequestKey key) getPressure,
+    required TResult Function(DartRequestKey key) getRelativeHumidity,
+    required TResult Function(DartRequestKey key) getLightLevel,
+    required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
+    required TResult Function(DartRequestKey key) getOrientation,
+    required TResult Function(DartRequestKey key) getCompassHeading,
+    required TResult Function(DartRequestKey key) getCompassDirection,
+    required TResult Function(DartRequestKey key) getCompassCardinalDirection,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
+    required TResult Function(DartRequestKey key) getMicrophoneLevel,
+    required TResult Function(DartRequestKey key) getProximity,
+    required TResult Function(DartRequestKey key) getStepCount,
+    required TResult Function(DartRequestKey key, SensorUpdateInfo sensors)
+        listenToSensors,
+  }) {
+    return updatePaused(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? getLevel,
+    TResult? Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult? Function(DartRequestKey key, String id)? getToggleState,
+    TResult? Function(DartRequestKey key, String id, bool value)?
+        setToggleState,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key)? getAccelerometer,
+    TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
+    TResult? Function(DartRequestKey key)? getGravity,
+    TResult? Function(DartRequestKey key)? getPressure,
+    TResult? Function(DartRequestKey key)? getRelativeHumidity,
+    TResult? Function(DartRequestKey key)? getLightLevel,
+    TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
+    TResult? Function(DartRequestKey key)? getOrientation,
+    TResult? Function(DartRequestKey key)? getCompassHeading,
+    TResult? Function(DartRequestKey key)? getCompassDirection,
+    TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
+    TResult? Function(DartRequestKey key)? getMicrophoneLevel,
+    TResult? Function(DartRequestKey key)? getProximity,
+    TResult? Function(DartRequestKey key)? getStepCount,
+    TResult? Function(DartRequestKey key, SensorUpdateInfo sensors)?
+        listenToSensors,
+  }) {
+    return updatePaused?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? getLevel,
+    TResult Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult Function(DartRequestKey key, String id)? getToggleState,
+    TResult Function(DartRequestKey key, String id, bool value)? setToggleState,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key)? getAccelerometer,
+    TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
+    TResult Function(DartRequestKey key)? getGravity,
+    TResult Function(DartRequestKey key)? getPressure,
+    TResult Function(DartRequestKey key)? getRelativeHumidity,
+    TResult Function(DartRequestKey key)? getLightLevel,
+    TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
+    TResult Function(DartRequestKey key)? getOrientation,
+    TResult Function(DartRequestKey key)? getCompassHeading,
+    TResult Function(DartRequestKey key)? getCompassDirection,
+    TResult Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
+    TResult Function(DartRequestKey key)? getMicrophoneLevel,
+    TResult Function(DartRequestKey key)? getProximity,
+    TResult Function(DartRequestKey key)? getStepCount,
+    TResult Function(DartRequestKey key, SensorUpdateInfo sensors)?
+        listenToSensors,
+    required TResult orElse(),
+  }) {
+    if (updatePaused != null) {
+      return updatePaused(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
+    required TResult Function(DartCommand_AddSlider value) addSlider,
+    required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_GetLevel value) getLevel,
+    required TResult Function(DartCommand_SetLevel value) setLevel,
+    required TResult Function(DartCommand_GetToggleState value) getToggleState,
+    required TResult Function(DartCommand_SetToggleState value) setToggleState,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetAccelerometer value)
+        getAccelerometer,
+    required TResult Function(DartCommand_GetLinearAccelerometer value)
+        getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
+    required TResult Function(DartCommand_GetGravity value) getGravity,
+    required TResult Function(DartCommand_GetPressure value) getPressure,
+    required TResult Function(DartCommand_GetRelativeHumidity value)
+        getRelativeHumidity,
+    required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
+    required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
+    required TResult Function(DartCommand_GetOrientation value) getOrientation,
+    required TResult Function(DartCommand_GetCompassHeading value)
+        getCompassHeading,
+    required TResult Function(DartCommand_GetCompassDirection value)
+        getCompassDirection,
+    required TResult Function(DartCommand_GetCompassCardinalDirection value)
+        getCompassCardinalDirection,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
+    required TResult Function(DartCommand_GetMicrophoneLevel value)
+        getMicrophoneLevel,
+    required TResult Function(DartCommand_GetProximity value) getProximity,
+    required TResult Function(DartCommand_GetStepCount value) getStepCount,
+    required TResult Function(DartCommand_ListenToSensors value)
+        listenToSensors,
+  }) {
+    return updatePaused(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult? Function(DartCommand_AddSlider value)? addSlider,
+    TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_GetLevel value)? getLevel,
+    TResult? Function(DartCommand_SetLevel value)? setLevel,
+    TResult? Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult? Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult? Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult? Function(DartCommand_GetGravity value)? getGravity,
+    TResult? Function(DartCommand_GetPressure value)? getPressure,
+    TResult? Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult? Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult? Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult? Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult? Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+    TResult? Function(DartCommand_GetMicrophoneLevel value)? getMicrophoneLevel,
+    TResult? Function(DartCommand_GetProximity value)? getProximity,
+    TResult? Function(DartCommand_GetStepCount value)? getStepCount,
+    TResult? Function(DartCommand_ListenToSensors value)? listenToSensors,
+  }) {
+    return updatePaused?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult Function(DartCommand_AddSlider value)? addSlider,
+    TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_GetLevel value)? getLevel,
+    TResult Function(DartCommand_SetLevel value)? setLevel,
+    TResult Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult Function(DartCommand_GetGravity value)? getGravity,
+    TResult Function(DartCommand_GetPressure value)? getPressure,
+    TResult Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+    TResult Function(DartCommand_GetMicrophoneLevel value)? getMicrophoneLevel,
+    TResult Function(DartCommand_GetProximity value)? getProximity,
+    TResult Function(DartCommand_GetStepCount value)? getStepCount,
+    TResult Function(DartCommand_ListenToSensors value)? listenToSensors,
+    required TResult orElse(),
+  }) {
+    if (updatePaused != null) {
+      return updatePaused(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_UpdatePaused implements DartCommand {
+  const factory DartCommand_UpdatePaused({required final bool value}) =
+      _$DartCommand_UpdatePaused;
+
+  bool get value;
+  @JsonKey(ignore: true)
+  _$$DartCommand_UpdatePausedCopyWith<_$DartCommand_UpdatePaused>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$DartCommand_StdoutCopyWith<$Res> {
   factory _$$DartCommand_StdoutCopyWith(_$DartCommand_Stdout value,
           $Res Function(_$DartCommand_Stdout) then) =
@@ -430,6 +869,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -491,6 +931,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -545,6 +986,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -602,6 +1044,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -667,6 +1110,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -723,6 +1167,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -856,6 +1301,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -917,6 +1363,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -971,6 +1418,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -1028,6 +1476,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -1093,6 +1542,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -1149,6 +1599,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -1283,6 +1734,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -1344,6 +1796,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -1398,6 +1851,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -1455,6 +1909,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -1520,6 +1975,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -1576,6 +2032,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -1718,6 +2175,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -1779,6 +2237,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -1833,6 +2292,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -1890,6 +2350,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -1955,6 +2416,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -2011,6 +2473,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -2154,6 +2617,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -2215,6 +2679,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -2269,6 +2734,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -2326,6 +2792,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -2391,6 +2858,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -2447,6 +2915,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -2590,6 +3059,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -2651,6 +3121,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -2705,6 +3176,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -2762,6 +3234,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -2827,6 +3300,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -2883,6 +3357,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -3027,6 +3502,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -3088,6 +3564,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -3142,6 +3619,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -3199,6 +3677,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -3264,6 +3743,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -3320,6 +3800,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -3463,6 +3944,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -3524,6 +4006,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -3578,6 +4061,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -3635,6 +4119,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -3700,6 +4185,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -3756,6 +4242,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -3899,6 +4386,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -3960,6 +4448,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -4014,6 +4503,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -4071,6 +4561,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -4136,6 +4627,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -4192,6 +4684,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -4335,6 +4828,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -4396,6 +4890,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -4450,6 +4945,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -4507,6 +5003,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -4572,6 +5069,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -4628,6 +5126,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -4771,6 +5270,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -4832,6 +5332,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -4886,6 +5387,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -4943,6 +5445,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -5008,6 +5511,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -5064,6 +5568,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -5209,6 +5714,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -5270,6 +5776,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -5324,6 +5831,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -5381,6 +5889,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -5446,6 +5955,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -5502,6 +6012,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -5647,6 +6158,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -5708,6 +6220,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -5762,6 +6275,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -5819,6 +6333,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -5884,6 +6399,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -5940,6 +6456,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -6083,6 +6600,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -6144,6 +6662,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -6198,6 +6717,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -6255,6 +6775,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -6320,6 +6841,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -6376,6 +6898,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -6528,6 +7051,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -6589,6 +7113,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -6643,6 +7168,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -6700,6 +7226,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -6765,6 +7292,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -6821,6 +7349,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -6966,6 +7495,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -7027,6 +7557,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -7081,6 +7612,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -7138,6 +7670,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -7203,6 +7736,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -7259,6 +7793,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -7411,6 +7946,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -7472,6 +8008,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -7526,6 +8063,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -7583,6 +8121,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -7648,6 +8187,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -7704,6 +8244,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -7851,6 +8392,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -7912,6 +8454,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -7966,6 +8509,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -8023,6 +8567,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -8088,6 +8633,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -8144,6 +8690,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -8298,6 +8845,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -8359,6 +8907,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -8413,6 +8962,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -8470,6 +9020,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -8535,6 +9086,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -8591,6 +9143,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -8736,6 +9289,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -8797,6 +9351,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -8851,6 +9406,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -8908,6 +9464,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -8973,6 +9530,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -9029,6 +9587,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -9182,6 +9741,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -9243,6 +9803,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -9297,6 +9858,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -9354,6 +9916,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -9419,6 +9982,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -9475,6 +10039,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -9620,6 +10185,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -9681,6 +10247,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -9735,6 +10302,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -9792,6 +10360,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -9857,6 +10426,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -9913,6 +10483,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -10056,6 +10627,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -10117,6 +10689,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -10171,6 +10744,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -10228,6 +10802,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -10293,6 +10868,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -10349,6 +10925,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -10486,6 +11063,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -10547,6 +11125,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -10601,6 +11180,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -10658,6 +11238,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -10723,6 +11304,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -10779,6 +11361,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -10917,6 +11500,7 @@ class _$DartCommand_GetLinearAccelerometer
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -10978,6 +11562,7 @@ class _$DartCommand_GetLinearAccelerometer
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -11032,6 +11617,7 @@ class _$DartCommand_GetLinearAccelerometer
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -11089,6 +11675,7 @@ class _$DartCommand_GetLinearAccelerometer
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -11154,6 +11741,7 @@ class _$DartCommand_GetLinearAccelerometer
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -11210,6 +11798,7 @@ class _$DartCommand_GetLinearAccelerometer
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -11346,6 +11935,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -11407,6 +11997,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -11461,6 +12052,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -11518,6 +12110,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -11583,6 +12176,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -11639,6 +12233,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -11774,6 +12369,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -11835,6 +12431,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -11889,6 +12486,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -11946,6 +12544,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -12011,6 +12610,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -12067,6 +12667,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -12200,6 +12801,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -12261,6 +12863,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -12315,6 +12918,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -12372,6 +12976,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -12437,6 +13042,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -12493,6 +13099,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -12626,6 +13233,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -12687,6 +13295,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -12741,6 +13350,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -12798,6 +13408,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -12863,6 +13474,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -12919,6 +13531,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -13055,6 +13668,7 @@ class _$DartCommand_GetRelativeHumidity
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -13116,6 +13730,7 @@ class _$DartCommand_GetRelativeHumidity
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -13170,6 +13785,7 @@ class _$DartCommand_GetRelativeHumidity
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -13227,6 +13843,7 @@ class _$DartCommand_GetRelativeHumidity
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -13292,6 +13909,7 @@ class _$DartCommand_GetRelativeHumidity
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -13348,6 +13966,7 @@ class _$DartCommand_GetRelativeHumidity
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -13482,6 +14101,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -13543,6 +14163,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -13597,6 +14218,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -13654,6 +14276,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -13719,6 +14342,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -13775,6 +14399,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -13910,6 +14535,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -13971,6 +14597,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -14025,6 +14652,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -14082,6 +14710,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -14147,6 +14776,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -14203,6 +14833,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -14339,6 +14970,7 @@ class _$DartCommand_GetFacingDirection
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -14400,6 +15032,7 @@ class _$DartCommand_GetFacingDirection
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -14454,6 +15087,7 @@ class _$DartCommand_GetFacingDirection
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -14511,6 +15145,7 @@ class _$DartCommand_GetFacingDirection
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -14576,6 +15211,7 @@ class _$DartCommand_GetFacingDirection
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -14632,6 +15268,7 @@ class _$DartCommand_GetFacingDirection
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -14767,6 +15404,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -14828,6 +15466,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -14882,6 +15521,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -14939,6 +15579,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -15004,6 +15645,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -15060,6 +15702,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -15195,6 +15838,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -15256,6 +15900,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -15310,6 +15955,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -15367,6 +16013,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -15432,6 +16079,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -15488,6 +16136,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -15624,6 +16273,7 @@ class _$DartCommand_GetCompassDirection
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -15685,6 +16335,7 @@ class _$DartCommand_GetCompassDirection
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -15739,6 +16390,7 @@ class _$DartCommand_GetCompassDirection
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -15796,6 +16448,7 @@ class _$DartCommand_GetCompassDirection
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -15861,6 +16514,7 @@ class _$DartCommand_GetCompassDirection
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -15917,6 +16571,7 @@ class _$DartCommand_GetCompassDirection
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -16055,6 +16710,7 @@ class _$DartCommand_GetCompassCardinalDirection
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -16116,6 +16772,7 @@ class _$DartCommand_GetCompassCardinalDirection
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -16170,6 +16827,7 @@ class _$DartCommand_GetCompassCardinalDirection
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -16227,6 +16885,7 @@ class _$DartCommand_GetCompassCardinalDirection
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -16292,6 +16951,7 @@ class _$DartCommand_GetCompassCardinalDirection
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -16348,6 +17008,7 @@ class _$DartCommand_GetCompassCardinalDirection
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -16486,6 +17147,7 @@ class _$DartCommand_GetLocationLatLong
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -16547,6 +17209,7 @@ class _$DartCommand_GetLocationLatLong
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -16601,6 +17264,7 @@ class _$DartCommand_GetLocationLatLong
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -16658,6 +17322,7 @@ class _$DartCommand_GetLocationLatLong
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -16723,6 +17388,7 @@ class _$DartCommand_GetLocationLatLong
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -16779,6 +17445,7 @@ class _$DartCommand_GetLocationLatLong
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -16915,6 +17582,7 @@ class _$DartCommand_GetLocationHeading
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -16976,6 +17644,7 @@ class _$DartCommand_GetLocationHeading
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -17030,6 +17699,7 @@ class _$DartCommand_GetLocationHeading
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -17087,6 +17757,7 @@ class _$DartCommand_GetLocationHeading
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -17152,6 +17823,7 @@ class _$DartCommand_GetLocationHeading
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -17208,6 +17880,7 @@ class _$DartCommand_GetLocationHeading
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -17344,6 +18017,7 @@ class _$DartCommand_GetLocationAltitude
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -17405,6 +18079,7 @@ class _$DartCommand_GetLocationAltitude
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -17459,6 +18134,7 @@ class _$DartCommand_GetLocationAltitude
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -17516,6 +18192,7 @@ class _$DartCommand_GetLocationAltitude
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -17581,6 +18258,7 @@ class _$DartCommand_GetLocationAltitude
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -17637,6 +18315,7 @@ class _$DartCommand_GetLocationAltitude
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -17773,6 +18452,7 @@ class _$DartCommand_GetMicrophoneLevel
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -17834,6 +18514,7 @@ class _$DartCommand_GetMicrophoneLevel
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -17888,6 +18569,7 @@ class _$DartCommand_GetMicrophoneLevel
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -17945,6 +18627,7 @@ class _$DartCommand_GetMicrophoneLevel
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -18010,6 +18693,7 @@ class _$DartCommand_GetMicrophoneLevel
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -18066,6 +18750,7 @@ class _$DartCommand_GetMicrophoneLevel
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -18200,6 +18885,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -18261,6 +18947,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -18315,6 +19002,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -18372,6 +19060,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -18437,6 +19126,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -18493,6 +19183,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -18627,6 +19318,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -18688,6 +19380,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -18742,6 +19435,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -18799,6 +19493,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -18864,6 +19559,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -18920,6 +19616,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -19064,6 +19761,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
     required TResult Function(DartRequestKey key) clearControls,
@@ -19125,6 +19823,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
     TResult? Function(DartRequestKey key)? clearControls,
@@ -19179,6 +19878,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
     TResult Function(DartRequestKey key)? clearControls,
@@ -19236,6 +19936,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
     required TResult Function(DartCommand_ClearControls value) clearControls,
@@ -19301,6 +20002,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
@@ -19357,6 +20059,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
     TResult Function(DartCommand_ClearControls value)? clearControls,
@@ -19773,6 +20476,7 @@ mixin _$RustCommand {
     required TResult Function(String xml) setProject,
     required TResult Function() start,
     required TResult Function() stop,
+    required TResult Function() togglePaused,
     required TResult Function(
             String msgType, List<(String, SimpleValue)> values)
         injectMessage,
@@ -19783,6 +20487,7 @@ mixin _$RustCommand {
     TResult? Function(String xml)? setProject,
     TResult? Function()? start,
     TResult? Function()? stop,
+    TResult? Function()? togglePaused,
     TResult? Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
   }) =>
@@ -19792,6 +20497,7 @@ mixin _$RustCommand {
     TResult Function(String xml)? setProject,
     TResult Function()? start,
     TResult Function()? stop,
+    TResult Function()? togglePaused,
     TResult Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
     required TResult orElse(),
@@ -19802,6 +20508,7 @@ mixin _$RustCommand {
     required TResult Function(RustCommand_SetProject value) setProject,
     required TResult Function(RustCommand_Start value) start,
     required TResult Function(RustCommand_Stop value) stop,
+    required TResult Function(RustCommand_TogglePaused value) togglePaused,
     required TResult Function(RustCommand_InjectMessage value) injectMessage,
   }) =>
       throw _privateConstructorUsedError;
@@ -19810,6 +20517,7 @@ mixin _$RustCommand {
     TResult? Function(RustCommand_SetProject value)? setProject,
     TResult? Function(RustCommand_Start value)? start,
     TResult? Function(RustCommand_Stop value)? stop,
+    TResult? Function(RustCommand_TogglePaused value)? togglePaused,
     TResult? Function(RustCommand_InjectMessage value)? injectMessage,
   }) =>
       throw _privateConstructorUsedError;
@@ -19818,6 +20526,7 @@ mixin _$RustCommand {
     TResult Function(RustCommand_SetProject value)? setProject,
     TResult Function(RustCommand_Start value)? start,
     TResult Function(RustCommand_Stop value)? stop,
+    TResult Function(RustCommand_TogglePaused value)? togglePaused,
     TResult Function(RustCommand_InjectMessage value)? injectMessage,
     required TResult orElse(),
   }) =>
@@ -19910,6 +20619,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
     required TResult Function(String xml) setProject,
     required TResult Function() start,
     required TResult Function() stop,
+    required TResult Function() togglePaused,
     required TResult Function(
             String msgType, List<(String, SimpleValue)> values)
         injectMessage,
@@ -19923,6 +20633,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
     TResult? Function(String xml)? setProject,
     TResult? Function()? start,
     TResult? Function()? stop,
+    TResult? Function()? togglePaused,
     TResult? Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
   }) {
@@ -19935,6 +20646,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
     TResult Function(String xml)? setProject,
     TResult Function()? start,
     TResult Function()? stop,
+    TResult Function()? togglePaused,
     TResult Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
     required TResult orElse(),
@@ -19951,6 +20663,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
     required TResult Function(RustCommand_SetProject value) setProject,
     required TResult Function(RustCommand_Start value) start,
     required TResult Function(RustCommand_Stop value) stop,
+    required TResult Function(RustCommand_TogglePaused value) togglePaused,
     required TResult Function(RustCommand_InjectMessage value) injectMessage,
   }) {
     return setProject(this);
@@ -19962,6 +20675,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
     TResult? Function(RustCommand_SetProject value)? setProject,
     TResult? Function(RustCommand_Start value)? start,
     TResult? Function(RustCommand_Stop value)? stop,
+    TResult? Function(RustCommand_TogglePaused value)? togglePaused,
     TResult? Function(RustCommand_InjectMessage value)? injectMessage,
   }) {
     return setProject?.call(this);
@@ -19973,6 +20687,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
     TResult Function(RustCommand_SetProject value)? setProject,
     TResult Function(RustCommand_Start value)? start,
     TResult Function(RustCommand_Stop value)? stop,
+    TResult Function(RustCommand_TogglePaused value)? togglePaused,
     TResult Function(RustCommand_InjectMessage value)? injectMessage,
     required TResult orElse(),
   }) {
@@ -20034,6 +20749,7 @@ class _$RustCommand_Start implements RustCommand_Start {
     required TResult Function(String xml) setProject,
     required TResult Function() start,
     required TResult Function() stop,
+    required TResult Function() togglePaused,
     required TResult Function(
             String msgType, List<(String, SimpleValue)> values)
         injectMessage,
@@ -20047,6 +20763,7 @@ class _$RustCommand_Start implements RustCommand_Start {
     TResult? Function(String xml)? setProject,
     TResult? Function()? start,
     TResult? Function()? stop,
+    TResult? Function()? togglePaused,
     TResult? Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
   }) {
@@ -20059,6 +20776,7 @@ class _$RustCommand_Start implements RustCommand_Start {
     TResult Function(String xml)? setProject,
     TResult Function()? start,
     TResult Function()? stop,
+    TResult Function()? togglePaused,
     TResult Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
     required TResult orElse(),
@@ -20075,6 +20793,7 @@ class _$RustCommand_Start implements RustCommand_Start {
     required TResult Function(RustCommand_SetProject value) setProject,
     required TResult Function(RustCommand_Start value) start,
     required TResult Function(RustCommand_Stop value) stop,
+    required TResult Function(RustCommand_TogglePaused value) togglePaused,
     required TResult Function(RustCommand_InjectMessage value) injectMessage,
   }) {
     return start(this);
@@ -20086,6 +20805,7 @@ class _$RustCommand_Start implements RustCommand_Start {
     TResult? Function(RustCommand_SetProject value)? setProject,
     TResult? Function(RustCommand_Start value)? start,
     TResult? Function(RustCommand_Stop value)? stop,
+    TResult? Function(RustCommand_TogglePaused value)? togglePaused,
     TResult? Function(RustCommand_InjectMessage value)? injectMessage,
   }) {
     return start?.call(this);
@@ -20097,6 +20817,7 @@ class _$RustCommand_Start implements RustCommand_Start {
     TResult Function(RustCommand_SetProject value)? setProject,
     TResult Function(RustCommand_Start value)? start,
     TResult Function(RustCommand_Stop value)? stop,
+    TResult Function(RustCommand_TogglePaused value)? togglePaused,
     TResult Function(RustCommand_InjectMessage value)? injectMessage,
     required TResult orElse(),
   }) {
@@ -20152,6 +20873,7 @@ class _$RustCommand_Stop implements RustCommand_Stop {
     required TResult Function(String xml) setProject,
     required TResult Function() start,
     required TResult Function() stop,
+    required TResult Function() togglePaused,
     required TResult Function(
             String msgType, List<(String, SimpleValue)> values)
         injectMessage,
@@ -20165,6 +20887,7 @@ class _$RustCommand_Stop implements RustCommand_Stop {
     TResult? Function(String xml)? setProject,
     TResult? Function()? start,
     TResult? Function()? stop,
+    TResult? Function()? togglePaused,
     TResult? Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
   }) {
@@ -20177,6 +20900,7 @@ class _$RustCommand_Stop implements RustCommand_Stop {
     TResult Function(String xml)? setProject,
     TResult Function()? start,
     TResult Function()? stop,
+    TResult Function()? togglePaused,
     TResult Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
     required TResult orElse(),
@@ -20193,6 +20917,7 @@ class _$RustCommand_Stop implements RustCommand_Stop {
     required TResult Function(RustCommand_SetProject value) setProject,
     required TResult Function(RustCommand_Start value) start,
     required TResult Function(RustCommand_Stop value) stop,
+    required TResult Function(RustCommand_TogglePaused value) togglePaused,
     required TResult Function(RustCommand_InjectMessage value) injectMessage,
   }) {
     return stop(this);
@@ -20204,6 +20929,7 @@ class _$RustCommand_Stop implements RustCommand_Stop {
     TResult? Function(RustCommand_SetProject value)? setProject,
     TResult? Function(RustCommand_Start value)? start,
     TResult? Function(RustCommand_Stop value)? stop,
+    TResult? Function(RustCommand_TogglePaused value)? togglePaused,
     TResult? Function(RustCommand_InjectMessage value)? injectMessage,
   }) {
     return stop?.call(this);
@@ -20215,6 +20941,7 @@ class _$RustCommand_Stop implements RustCommand_Stop {
     TResult Function(RustCommand_SetProject value)? setProject,
     TResult Function(RustCommand_Start value)? start,
     TResult Function(RustCommand_Stop value)? stop,
+    TResult Function(RustCommand_TogglePaused value)? togglePaused,
     TResult Function(RustCommand_InjectMessage value)? injectMessage,
     required TResult orElse(),
   }) {
@@ -20227,6 +20954,131 @@ class _$RustCommand_Stop implements RustCommand_Stop {
 
 abstract class RustCommand_Stop implements RustCommand {
   const factory RustCommand_Stop() = _$RustCommand_Stop;
+}
+
+/// @nodoc
+abstract class _$$RustCommand_TogglePausedCopyWith<$Res> {
+  factory _$$RustCommand_TogglePausedCopyWith(_$RustCommand_TogglePaused value,
+          $Res Function(_$RustCommand_TogglePaused) then) =
+      __$$RustCommand_TogglePausedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RustCommand_TogglePausedCopyWithImpl<$Res>
+    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_TogglePaused>
+    implements _$$RustCommand_TogglePausedCopyWith<$Res> {
+  __$$RustCommand_TogglePausedCopyWithImpl(_$RustCommand_TogglePaused _value,
+      $Res Function(_$RustCommand_TogglePaused) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RustCommand_TogglePaused implements RustCommand_TogglePaused {
+  const _$RustCommand_TogglePaused();
+
+  @override
+  String toString() {
+    return 'RustCommand.togglePaused()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RustCommand_TogglePaused);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String xml) setProject,
+    required TResult Function() start,
+    required TResult Function() stop,
+    required TResult Function() togglePaused,
+    required TResult Function(
+            String msgType, List<(String, SimpleValue)> values)
+        injectMessage,
+  }) {
+    return togglePaused();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String xml)? setProject,
+    TResult? Function()? start,
+    TResult? Function()? stop,
+    TResult? Function()? togglePaused,
+    TResult? Function(String msgType, List<(String, SimpleValue)> values)?
+        injectMessage,
+  }) {
+    return togglePaused?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String xml)? setProject,
+    TResult Function()? start,
+    TResult Function()? stop,
+    TResult Function()? togglePaused,
+    TResult Function(String msgType, List<(String, SimpleValue)> values)?
+        injectMessage,
+    required TResult orElse(),
+  }) {
+    if (togglePaused != null) {
+      return togglePaused();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RustCommand_SetProject value) setProject,
+    required TResult Function(RustCommand_Start value) start,
+    required TResult Function(RustCommand_Stop value) stop,
+    required TResult Function(RustCommand_TogglePaused value) togglePaused,
+    required TResult Function(RustCommand_InjectMessage value) injectMessage,
+  }) {
+    return togglePaused(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RustCommand_SetProject value)? setProject,
+    TResult? Function(RustCommand_Start value)? start,
+    TResult? Function(RustCommand_Stop value)? stop,
+    TResult? Function(RustCommand_TogglePaused value)? togglePaused,
+    TResult? Function(RustCommand_InjectMessage value)? injectMessage,
+  }) {
+    return togglePaused?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RustCommand_SetProject value)? setProject,
+    TResult Function(RustCommand_Start value)? start,
+    TResult Function(RustCommand_Stop value)? stop,
+    TResult Function(RustCommand_TogglePaused value)? togglePaused,
+    TResult Function(RustCommand_InjectMessage value)? injectMessage,
+    required TResult orElse(),
+  }) {
+    if (togglePaused != null) {
+      return togglePaused(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RustCommand_TogglePaused implements RustCommand {
+  const factory RustCommand_TogglePaused() = _$RustCommand_TogglePaused;
 }
 
 /// @nodoc
@@ -20315,6 +21167,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
     required TResult Function(String xml) setProject,
     required TResult Function() start,
     required TResult Function() stop,
+    required TResult Function() togglePaused,
     required TResult Function(
             String msgType, List<(String, SimpleValue)> values)
         injectMessage,
@@ -20328,6 +21181,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
     TResult? Function(String xml)? setProject,
     TResult? Function()? start,
     TResult? Function()? stop,
+    TResult? Function()? togglePaused,
     TResult? Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
   }) {
@@ -20340,6 +21194,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
     TResult Function(String xml)? setProject,
     TResult Function()? start,
     TResult Function()? stop,
+    TResult Function()? togglePaused,
     TResult Function(String msgType, List<(String, SimpleValue)> values)?
         injectMessage,
     required TResult orElse(),
@@ -20356,6 +21211,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
     required TResult Function(RustCommand_SetProject value) setProject,
     required TResult Function(RustCommand_Start value) start,
     required TResult Function(RustCommand_Stop value) stop,
+    required TResult Function(RustCommand_TogglePaused value) togglePaused,
     required TResult Function(RustCommand_InjectMessage value) injectMessage,
   }) {
     return injectMessage(this);
@@ -20367,6 +21223,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
     TResult? Function(RustCommand_SetProject value)? setProject,
     TResult? Function(RustCommand_Start value)? start,
     TResult? Function(RustCommand_Stop value)? stop,
+    TResult? Function(RustCommand_TogglePaused value)? togglePaused,
     TResult? Function(RustCommand_InjectMessage value)? injectMessage,
   }) {
     return injectMessage?.call(this);
@@ -20378,6 +21235,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
     TResult Function(RustCommand_SetProject value)? setProject,
     TResult Function(RustCommand_Start value)? start,
     TResult Function(RustCommand_Stop value)? stop,
+    TResult Function(RustCommand_TogglePaused value)? togglePaused,
     TResult Function(RustCommand_InjectMessage value)? injectMessage,
     required TResult orElse(),
   }) {
