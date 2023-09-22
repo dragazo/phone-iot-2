@@ -279,6 +279,23 @@ class MainScreenState extends State<MainScreen> {
         bottom: 20,
         child: MessageList.instance,
       ),
+    ];
+
+    if (menuOpen || inputTextTarget != null || inputImageTarget != null) {
+      content.add(Listener(
+        onPointerDown: (e) => setState(() {
+          if (menuOpen) {
+            menuOpen = false;
+          } else {
+            inputTextTarget = null;
+            inputImageTarget = null;
+          }
+        }),
+        child: Container(color: Colors.black26),
+      ));
+    }
+
+    content.addAll([
       AnimatedPositioned(
         duration: const Duration(milliseconds: 500),
         left: 0,
@@ -308,7 +325,7 @@ class MainScreenState extends State<MainScreen> {
         curve: Curves.ease,
         child: MainMenu.instance,
       ),
-    ];
+    ]);
 
     if (qrCallback != null) {
       content.add(Positioned(
