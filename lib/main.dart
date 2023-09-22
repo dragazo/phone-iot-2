@@ -332,6 +332,10 @@ class MainScreenState extends State<MainScreen> {
     ]);
 
     if (qrCallback != null) {
+      content.add(Listener(
+        onPointerDown: (e) => setState(() => qrCallback = null),
+        child: Container(color: Colors.black26),
+      ));
       content.add(Positioned(
         top: 0,
         right: 0,
@@ -389,7 +393,13 @@ class MainScreenState extends State<MainScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
-          onTap: () => setState(() => menuOpen ^= true),
+          onTap: () => setState(() {
+            if (qrCallback != null) {
+              qrCallback = null;
+            } else {
+              menuOpen ^= true;
+            }
+          }),
           child: const Icon(Icons.list),
         ),
         title: const Text(App.name),
