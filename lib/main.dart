@@ -52,6 +52,10 @@ void main() async {
   runApp(App.instance);
 }
 
+void closeKeyboard() {
+  FocusManager.instance.primaryFocus?.unfocus();
+}
+
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
@@ -788,12 +792,16 @@ class TextInputState extends State<TextInput> {
                   onTap: () {
                     Display.state.setState(() => MainScreen.state.inputTextTarget?.setText(TextInput.controller.text, UpdateSource.user));
                     MainScreen.state.setState(() => MainScreen.state.inputTextTarget = null);
+                    closeKeyboard();
                   },
                   child: const Icon(Icons.check),
                 ),
                 const SizedBox(height: 30),
                 InkWell(
-                  onTap: () => MainScreen.state.setState(() => MainScreen.state.inputTextTarget = null),
+                  onTap: () {
+                    MainScreen.state.setState(() => MainScreen.state.inputTextTarget = null);
+                    closeKeyboard();
+                  },
                   child: const Icon(Icons.close),
                 ),
               ],
