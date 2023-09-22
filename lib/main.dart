@@ -697,9 +697,19 @@ class DisplayState extends State<Display> {
   }
   void removeControl(String id) {
     setState(() => controls.remove(id));
+    if (MainScreen.state.inputTextTarget?.id == id) {
+      MainScreen.state.setState(() => MainScreen.state.inputTextTarget = null);
+    }
+    if (MainScreen.state.inputImageTarget?.id == id) {
+      MainScreen.state.setState(() => MainScreen.state.inputImageTarget = null);
+    }
   }
   void clearControls() {
     setState(() => controls.clear());
+    MainScreen.state.setState(() {
+      MainScreen.state.inputTextTarget = null;
+      MainScreen.state.inputImageTarget = null;
+    });
   }
   T? findControl<T>(String id) {
     CustomControl? x = controls[id];

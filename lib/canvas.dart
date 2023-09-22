@@ -92,28 +92,28 @@ void drawTextPos(Canvas canvas, Offset offset, Color color, String text, double 
   canvas.drawParagraph(par, Offset(offset.dx + dx, offset.dy + dy));
 }
 
-mixin Pressable {
+mixin Pressable implements CustomControl {
   bool isPressed();
 }
-mixin PositionLike {
+mixin PositionLike implements CustomControl {
   (double, double) getPosition();
 }
-mixin LevelLike {
+mixin LevelLike implements CustomControl {
   double getLevel();
   void setLevel(double value);
 }
-mixin ToggleLike {
+mixin ToggleLike implements CustomControl {
   bool getToggled();
   void setToggled(bool value);
 }
-mixin GroupLike {
+mixin GroupLike implements CustomControl {
   String getGroup();
 }
-mixin TextLike {
+mixin TextLike implements CustomControl {
   String getText();
   void setText(String value, UpdateSource source);
 }
-mixin ImageLike {
+mixin ImageLike implements CustomControl {
   ui.Image? getImage();
   void setImage(ui.Image? value, UpdateSource source);
 }
