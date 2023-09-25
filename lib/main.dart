@@ -20,6 +20,7 @@ const defaultServerAddr = 'editor.netsblox.org';
 const kvstoreDeviceID = 'device-id';
 const kvstoreServerAddr = 'server-addr';
 const kvstoreProjectAddr = 'proj-addr';
+const kvstoreControlHaptics = 'ctrl-haptics';
 
 const passwordLifetime = Duration(hours: 24);
 const maxCustomControls = 1024;
@@ -91,6 +92,7 @@ class MainScreen extends StatefulWidget {
 }
 class MainScreenState extends State<MainScreen> {
   bool menuOpen = true;
+  bool settingsOpen = false;
   TextLike? inputTextTarget;
   ImageLike? inputImageTarget;
   Function(String)? qrCallback;
@@ -331,6 +333,20 @@ class MainScreenState extends State<MainScreen> {
       ),
     ]);
 
+    if (settingsOpen) {
+      content.add(Listener(
+        onPointerDown: (e) => setState(() => settingsOpen = false),
+        child: Container(color: Colors.black26),
+      ));
+    }
+    content.add(AnimatedPositioned(
+      duration: const Duration(milliseconds: 500),
+      top: 20,
+      right: settingsOpen ? 20 : -350,
+      curve: Curves.ease,
+      child: SettingsMenu.instance,
+    ));
+
     if (qrCallback != null) {
       content.add(Listener(
         onPointerDown: (e) => setState(() => qrCallback = null),
@@ -394,7 +410,9 @@ class MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         leading: InkWell(
           onTap: () => setState(() {
-            if (qrCallback != null) {
+            if (settingsOpen) {
+              settingsOpen = false;
+            } else if (qrCallback != null) {
               qrCallback = null;
             } else {
               menuOpen ^= true;
@@ -475,112 +493,170 @@ class MainMenuState extends State<MainMenu> {
       decoration: App.haloDecoration,
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Stack(
           children: [
-            Image.asset('assets/images/AppIcon-512-trans.png', height: 60, isAntiAlias: true),
-            const Text(App.name, style: TextStyle(fontSize: 22)),
-            const SizedBox(height: 10),
-            Text('Device ID: ${deviceID.map((x) => x.toRadixString(16).padLeft(2, "0")).join()}'),
-            Text('Password: ${devicePW.toRadixString(16).padLeft(8, "0")}'),
-            const SizedBox(height: 10),
-            SizedBox(
-              width: 250,
-              child: TextFormField(
-                controller: MainMenu.serverAddr,
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  floatingLabelAlignment: FloatingLabelAlignment.center,
-                  alignLabelWithHint: true,
-                  labelText: 'Server Address',
-                ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: InkWell(
+                onTap: () => MainScreen.state.setState(() => MainScreen.state.settingsOpen = true),
+                child: const Icon(Icons.settings),
               ),
             ),
-            const SizedBox(height: 10),
-            Row(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                ElevatedButton(
-                  onPressed: () => NetworkManager.connect(),
-                  child: const Text('Connect'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () => NetworkManager.requestConnReset(),
-                  child: const Text('Reconnect'),
-                ),
-              ],
-            ),
-            ElevatedButton(
-              onPressed: () {
-                devicePWExpiry = DateTime.fromMillisecondsSinceEpoch(0);
-                getPassword();
-              },
-              child: const Text('New Password'),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
+                Image.asset('assets/images/AppIcon-512-trans.png', height: 60, isAntiAlias: true),
+                const Text(App.name, style: TextStyle(fontSize: 22)),
+                const SizedBox(height: 10),
+                Text('Device ID: ${deviceID.map((x) => x.toRadixString(16).padLeft(2, "0")).join()}'),
+                Text('Password: ${devicePW.toRadixString(16).padLeft(8, "0")}'),
+                const SizedBox(height: 10),
                 SizedBox(
-                  width: 200,
+                  width: 250,
                   child: TextFormField(
-                    controller: MainMenu.projectAddr,
+                    controller: MainMenu.serverAddr,
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       floatingLabelAlignment: FloatingLabelAlignment.center,
                       alignLabelWithHint: true,
-                      labelText: 'Project Address',
+                      labelText: 'Server Address',
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
-                InkWell(
-                  onTap: () => MainScreen.state.setState(() {
-                    MainScreen.state.qrCallback = (url) => MainMenu.projectAddr.text = url;
-                  }),
-                  child: const Icon(Icons.qr_code_scanner, size: 30),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => NetworkManager.connect(),
+                      child: const Text('Connect'),
+                    ),
+                    const SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: () => NetworkManager.requestConnReset(),
+                      child: const Text('Reconnect'),
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    devicePWExpiry = DateTime.fromMillisecondsSinceEpoch(0);
+                    getPassword();
+                  },
+                  child: const Text('New Password'),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 200,
+                      child: TextFormField(
+                        controller: MainMenu.projectAddr,
+                        textAlign: TextAlign.center,
+                        decoration: const InputDecoration(
+                          floatingLabelAlignment: FloatingLabelAlignment.center,
+                          alignLabelWithHint: true,
+                          labelText: 'Project Address',
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    InkWell(
+                      onTap: () => MainScreen.state.setState(() {
+                        MainScreen.state.qrCallback = (url) => MainMenu.projectAddr.text = url;
+                      }),
+                      child: const Icon(Icons.qr_code_scanner, size: 30),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    var url = MainMenu.projectAddr.text;
+                    final pat = RegExp(r'^.*\b(\w+)\.netsblox\.org/(.*)$');
+                    final m = pat.firstMatch(url);
+                    if (m != null) {
+                      url = 'https://${m.group(1)}.netsblox.org/api/RawPublic/${m.group(2)}';
+                    }
+                    http.get(Uri.parse(url))
+                      .then((res) {
+                        api.sendCommand(cmd: RustCommand.setProject(xml: res.body));
+                      })
+                      .catchError((e) {
+                        MessageList.state.addMessage(Message('error fetching project $e', MessageType.stderr));
+                      });
+                  },
+                  child: const Text('Load Project'),
+                ),
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => api.sendCommand(cmd: const RustCommand.start()),
+                      style: ElevatedButton.styleFrom(backgroundColor: netsbloxButtonColor),
+                      child: const Icon(Icons.flag, color: Colors.green),
+                    ),
+                    const SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: () => api.sendCommand(cmd: const RustCommand.togglePaused()),
+                      style: ElevatedButton.styleFrom(backgroundColor: netsbloxButtonColor),
+                      child: Icon(paused ? Icons.play_arrow : Icons.pause, color: Colors.yellow),
+                    ),
+                    const SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: () => api.sendCommand(cmd: const RustCommand.stop()),
+                      style: ElevatedButton.styleFrom(backgroundColor: netsbloxButtonColor),
+                      child: const Icon(Icons.stop, color: Colors.red),
+                    ),
+                  ],
                 ),
               ],
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SettingsMenu extends StatefulWidget {
+  const SettingsMenu({Key? key}) : super(key: key);
+
+  static const instance = SettingsMenu();
+  static final state = SettingsMenuState();
+
+  State<SettingsMenu> createState() => state;
+}
+class SettingsMenuState extends State<SettingsMenu> {
+  late bool controlHaptics;
+
+  @override
+  void initState() {
+    super.initState();
+
+    try {
+      controlHaptics = insecureStorage.read(kvstoreControlHaptics);
+    } catch (e) {
+      controlHaptics = true;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: App.haloDecoration,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const Text('Settings', style: TextStyle(fontSize: 20)),
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                var url = MainMenu.projectAddr.text;
-                final pat = RegExp(r'^.*\b(\w+)\.netsblox\.org/(.*)$');
-                final m = pat.firstMatch(url);
-                if (m != null) {
-                  url = 'https://${m.group(1)}.netsblox.org/api/RawPublic/${m.group(2)}';
-                }
-                http.get(Uri.parse(url))
-                  .then((res) {
-                    api.sendCommand(cmd: RustCommand.setProject(xml: res.body));
-                  })
-                  .catchError((e) {
-                    MessageList.state.addMessage(Message('error fetching project $e', MessageType.stderr));
-                  });
-              },
-              child: const Text('Load Project'),
-            ),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () => api.sendCommand(cmd: const RustCommand.start()),
-                  style: ElevatedButton.styleFrom(backgroundColor: netsbloxButtonColor),
-                  child: const Icon(Icons.flag, color: Colors.green),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () => api.sendCommand(cmd: const RustCommand.togglePaused()),
-                  style: ElevatedButton.styleFrom(backgroundColor: netsbloxButtonColor),
-                  child: Icon(paused ? Icons.play_arrow : Icons.pause, color: Colors.yellow),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () => api.sendCommand(cmd: const RustCommand.stop()),
-                  style: ElevatedButton.styleFrom(backgroundColor: netsbloxButtonColor),
-                  child: const Icon(Icons.stop, color: Colors.red),
-                ),
-              ],
-            ),
+            Row(children: [
+              Switch(value: controlHaptics, onChanged: (x) => setState(() {
+                controlHaptics = x;
+                insecureStorage.write(kvstoreControlHaptics, x);
+              })),
+              const Text('Custom Controls Haptic Feedback'),
+            ]),
           ],
         ),
       ),
@@ -757,7 +833,7 @@ class DisplayState extends State<Display> {
       case ClickResult.untoggleOthersInGroup: setState(() {
         final g = (target as GroupLike).getGroup();
         for (final control in controls.values) {
-          if (control != target && (control is GroupLike) && (control is ToggleLike) && (control as GroupLike).getGroup() == g) {
+          if (control != target && (control is GroupLike) && (control is ToggleLike) && control.getGroup() == g) {
             (control as ToggleLike).setToggled(false);
           }
         }

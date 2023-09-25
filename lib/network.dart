@@ -580,13 +580,14 @@ class NetworkManager {
       }
     }
     else if (msg.data[0] == 'k'.codeUnitAt(0)) { // vibrate
-      if (msg.data.length >= 13 && (msg.data.length - 13) % 4 == 0) {
-        final strength = f32FromBEBytes(msg.data.sublist(9, 13));
-        final durations = <double>[];
-        for (int p = 13; p < msg.data.length; p += 4) {
-          durations.add(f32FromBEBytes(msg.data.sublist(p, p + 4)));
+      if (msg.data.length >= 9 && (msg.data.length - 9) % 8 == 0) {
+        final pattern = <(double, double)>[];
+        for (int p = 9; p < msg.data.length; p += 8) {
+          final duration = f32FromBEBytes(msg.data.sublist(p, p + 4));
+          final strength = f32FromBEBytes(msg.data.sublist(p + 4, p + 8));
+          pattern.add((duration, strength));
         }
-        VibrationManager.vibrate(strength, durations);
+        VibrationManager.vibrate(pattern);
         netsbloxSend([ msg.data[0] ]);
       }
     }

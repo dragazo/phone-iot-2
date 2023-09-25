@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:phone_iot_2/actuators.dart';
 import 'package:phone_iot_2/conversions.dart';
 import 'package:phone_iot_2/ffi.dart';
 import 'package:phone_iot_2/network.dart';
@@ -244,6 +245,7 @@ class CustomButton extends CustomControl with TextLike, Pressable {
           ]));
         }
         NetworkManager.netsbloxSend([ 'b'.codeUnitAt(0) ] + stringToBEBytes(id));
+        VibrationManager.triggerControlHaptics();
         return ClickResult.redraw;
       case ClickType.up:
         pressed = false;
@@ -307,7 +309,9 @@ class CustomTextField extends CustomControl with TextLike {
 
   @override
   ClickResult handleClick(Offset pos, ClickType type) {
-    return type == ClickType.down && !readonly ? ClickResult.requestText : ClickResult.none;
+    if (readonly || type != ClickType.down) return ClickResult.none;
+    VibrationManager.triggerControlHaptics();
+    return ClickResult.requestText;
   }
 
   @override
@@ -403,6 +407,10 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
       NetworkManager.netsbloxSend([ 'n'.codeUnitAt(0) ] + u32ToBEBytes(updateCount++) + [ type.index ] + f32ToBEBytes(p.$1) + f32ToBEBytes(p.$2) + stringToBEBytes(id));
     }
 
+    if (type == ClickType.down) {
+      VibrationManager.triggerControlHaptics();
+    }
+
     return ClickResult.redraw;
   }
 
@@ -494,6 +502,10 @@ class CustomTouchpad extends CustomControl with Pressable, PositionLike {
         ]));
       }
       NetworkManager.netsbloxSend([ 'n'.codeUnitAt(0) ] + u32ToBEBytes(updateCount++) + [ type.index ] + f32ToBEBytes(p.$1) + f32ToBEBytes(p.$2) + stringToBEBytes(id));
+    }
+
+    if (type == ClickType.down) {
+      VibrationManager.triggerControlHaptics();
     }
 
     return ClickResult.redraw;
@@ -599,6 +611,10 @@ class CustomSlider extends CustomControl with Pressable, LevelLike {
         ]));
       }
       NetworkManager.netsbloxSend([ 'd'.codeUnitAt(0) ] + u32ToBEBytes(updateCount++) + [ type.index ] + f32ToBEBytes(v) + stringToBEBytes(id));
+    }
+
+    if (type == ClickType.down) {
+      VibrationManager.triggerControlHaptics();
     }
 
     return ClickResult.redraw;
@@ -721,6 +737,7 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
       ]));
     }
     NetworkManager.netsbloxSend([ 'z'.codeUnitAt(0), v ? 1 : 0 ] + stringToBEBytes(id));
+    VibrationManager.triggerControlHaptics();
     return ClickResult.redraw;
   }
 
@@ -800,6 +817,7 @@ class CustomRadioButton extends CustomControl with TextLike, ToggleLike, GroupLi
       ]));
     }
     NetworkManager.netsbloxSend([ 'b'.codeUnitAt(0) ] + stringToBEBytes(id));
+    VibrationManager.triggerControlHaptics();
     return ClickResult.untoggleOthersInGroup;
   }
 
@@ -872,7 +890,9 @@ class CustomImageDisplay extends CustomControl with ImageLike {
 
   @override
   ClickResult handleClick(Offset pos, ClickType type) {
-    return type == ClickType.down && !readonly ? ClickResult.requestImage : ClickResult.none;
+    if (readonly || type != ClickType.down) return ClickResult.none;
+    VibrationManager.triggerControlHaptics();
+    return ClickResult.requestImage;
   }
 
   @override

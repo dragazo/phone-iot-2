@@ -1,19 +1,26 @@
 import 'dart:math';
 
+import 'package:phone_iot_2/main.dart';
 import 'package:vibration/vibration.dart';
 
 class VibrationManager {
-  static void vibrate(double intensityPercent, List<double> patternSeconds) {
+  // pattern is a list of pairs of form (duration in seconds, strength percent)
+  static void vibrate(List<(double, double)> pattern) {
     Vibration.cancel();
-    final intensity = (intensityPercent * 255 / 100).round().clamp(0, 255);
 
-    final pattern = [0];
-    final intensities = [0];
-    for (int i = 0; i < patternSeconds.length; ++i) {
-      pattern.add(max(0, (patternSeconds[i] * 1000).round()));
-      intensities.add(i & 1 == 0 ? intensity : 0);
+    final x = <int>[];
+    final y = <int>[];
+    for (final v in pattern) {
+      x.add(max(0, (v.$1 * 1000).round()));
+      y.add((v.$2 * 255 / 100).round().clamp(0, 255));
     }
 
-    Vibration.vibrate(pattern: pattern, intensities: intensities);
+    Vibration.vibrate(pattern: x, intensities: y);
+  }
+
+  static void triggerControlHaptics() {
+    if (SettingsMenu.state.controlHaptics) {
+      vibrate([(0.1, 10)]);
+    }
   }
 }
