@@ -15,12 +15,17 @@ import 'canvas.dart';
 import 'conversions.dart';
 
 const sensorErrorMsg = 'sensor is not available or is disabled';
+
 const defaultServerAddr = 'editor.netsblox.org';
+const defaultProjectAddr = '';
+const defaultConnectOnLaunch = true;
+const defaultControlHaptics = true;
 
 const kvstoreDeviceID = 'device-id';
 const kvstoreServerAddr = 'server-addr';
 const kvstoreProjectAddr = 'proj-addr';
 const kvstoreControlHaptics = 'ctrl-haptics';
+const kvstoreConnectOnLaunch = 'auto-conn';
 
 const passwordLifetime = Duration(hours: 24);
 const maxCustomControls = 1024;
@@ -55,6 +60,14 @@ void main() async {
 
 void closeKeyboard() {
   FocusManager.instance.primaryFocus?.unfocus();
+}
+
+T getSettingOr<T>(String name, T val) {
+  try {
+    return insecureStorage.read(name) ?? val;
+  } catch (e) {
+    return val;
+  }
 }
 
 class App extends StatelessWidget {
@@ -471,20 +484,17 @@ class MainMenuState extends State<MainMenu> {
     devicePW = 0;
     devicePWExpiry = DateTime.now().add(passwordLifetime);
 
-    if (insecureStorage.hasData(kvstoreServerAddr)) {
-      MainMenu.serverAddr.text = insecureStorage.read(kvstoreDeviceID);
-    } else {
-      MainMenu.serverAddr.text = defaultServerAddr;
-    }
-
-    if (insecureStorage.hasData(kvstoreProjectAddr)) {
-      MainMenu.projectAddr.text = insecureStorage.read(kvstoreProjectAddr);
-    }
+    MainMenu.serverAddr.text = getSettingOr(kvstoreDeviceID, defaultServerAddr);
+    MainMenu.projectAddr.text = getSettingOr(kvstoreProjectAddr, defaultProjectAddr);
 
     api.initialize(
       deviceId: deviceID.map((x) => x.toRadixString(16).padLeft(2, "0")).join(),
       utcOffsetInSeconds: DateTime.now().timeZoneOffset.inSeconds,
     );
+
+    if (getSettingOr(kvstoreConnectOnLaunch, defaultConnectOnLaunch)) {
+      NetworkManager.connect();
+    }
   }
 
   @override
@@ -627,17 +637,15 @@ class SettingsMenu extends StatefulWidget {
   State<SettingsMenu> createState() => state;
 }
 class SettingsMenuState extends State<SettingsMenu> {
+  late bool connectOnLaunch;
   late bool controlHaptics;
 
   @override
   void initState() {
     super.initState();
 
-    try {
-      controlHaptics = insecureStorage.read(kvstoreControlHaptics);
-    } catch (e) {
-      controlHaptics = true;
-    }
+    connectOnLaunch = getSettingOr(kvstoreConnectOnLaunch, defaultConnectOnLaunch);
+    controlHaptics = getSettingOr(kvstoreControlHaptics, defaultControlHaptics);
   }
 
   @override
@@ -649,14 +657,26 @@ class SettingsMenuState extends State<SettingsMenu> {
         child: Column(
           children: [
             const Text('Settings', style: TextStyle(fontSize: 20)),
-            const SizedBox(height: 10),
-            Row(children: [
-              Switch(value: controlHaptics, onChanged: (x) => setState(() {
-                controlHaptics = x;
-                insecureStorage.write(kvstoreControlHaptics, x);
-              })),
-              const Text('Custom Controls Haptic Feedback'),
-            ]),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                Row(children: [
+                  Switch(value: connectOnLaunch, onChanged: (x) => setState(() {
+                    connectOnLaunch = x;
+                    insecureStorage.write(kvstoreConnectOnLaunch, x);
+                  })),
+                  const Text('Auto-Connect on Launch'),
+                ]),
+                Row(children: [
+                  Switch(value: controlHaptics, onChanged: (x) => setState(() {
+                    controlHaptics = x;
+                    insecureStorage.write(kvstoreControlHaptics, x);
+                  })),
+                  const Text('Custom Controls Haptic Feedback'),
+                ]),
+              ],
+            ),
           ],
         ),
       ),
