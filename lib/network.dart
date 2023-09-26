@@ -3,10 +3,10 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:phone_iot_2/actuators.dart';
-import 'package:phone_iot_2/canvas.dart';
-import 'package:phone_iot_2/conversions.dart';
-import 'package:phone_iot_2/util.dart';
+import 'actuators.dart';
+import 'canvas.dart';
+import 'conversions.dart';
+import 'util.dart';
 
 import 'ffi.dart';
 import 'sensors.dart';

@@ -4,7 +4,8 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'dart:async';
 
-import 'package:phone_iot_2/ffi.dart';
+import 'ffi.dart';
+
 import 'package:image/image.dart' as image;
 
 String? tryStringFromBytes(Uint8List src) {

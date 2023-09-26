@@ -1,6 +1,7 @@
 import 'dart:math';
 
-import 'package:phone_iot_2/main.dart';
+import 'main.dart';
+
 import 'package:vibration/vibration.dart';
 
 class VibrationManager {

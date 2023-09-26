@@ -4,10 +4,11 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:phone_iot_2/actuators.dart';
-import 'package:phone_iot_2/conversions.dart';
-import 'package:phone_iot_2/ffi.dart';
-import 'package:phone_iot_2/network.dart';
+
+import 'actuators.dart';
+import 'conversions.dart';
+import 'ffi.dart';
+import 'network.dart';
 
 const double defaultFontSize = 16;
 const double vCenterFontSizeScale = -0.6;

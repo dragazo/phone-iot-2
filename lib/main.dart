@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phone_iot_2/network.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 import 'dart:io' show Platform;
 import 'dart:math';
@@ -13,6 +12,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'sensors.dart';
 import 'canvas.dart';
 import 'conversions.dart';
+import 'network.dart';
 
 const sensorErrorMsg = 'sensor is not available or is disabled';
 
