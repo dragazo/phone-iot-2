@@ -70,6 +70,176 @@ T getSettingOr<T>(String name, T val) {
   }
 }
 
+bool commandLoopStarted = false;
+void startCommandLoop() async {
+  if (commandLoopStarted) return;
+  commandLoopStarted = true;
+
+  void sendSensorVec(List<double>? vals, DartRequestKey key) {
+    if (vals != null) {
+      final res = <SimpleValue>[];
+      for (final val in vals) {
+        res.add(SimpleValue.number(val));
+      }
+      api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list(res)));
+    } else {
+      api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
+    }
+  }
+  void sendSensorScalar(List<double>? vals, DartRequestKey key) {
+    if (vals != null) {
+      assert (vals.length == 1);
+      api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.number(vals[0])));
+    } else {
+      api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
+    }
+  }
+  void sendSensorScalarEncoded(List<double>? vals, List<String> encoding, DartRequestKey key) {
+    if (vals != null) {
+      assert (vals.length == 1);
+      api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(encoding[vals[0].toInt()])));
+    } else {
+      api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
+    }
+  }
+  void addControl(CustomControl control, DartRequestKey key) {
+    RequestResult res;
+    switch (Display.state.tryAddControl(control)) {
+      case AddControlResult.success: res = RequestResult.ok(SimpleValue.string(control.id));
+      case AddControlResult.tooManyControls: res = const RequestResult.err('too many controls');
+      case AddControlResult.idConflict: res = RequestResult.err('id ${control.id} is already in use');
+    }
+    api.completeRequest(key: key, result: res);
+  }
+  await for (final cmd in api.recvCommands()) {
+    cmd.when(
+      updatePaused: (value) => MainMenu.state.doSetState(() => MainMenu.state.paused = value ),
+
+      stdout: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stdout)),
+      stderr: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stderr)),
+
+      clearControls: (key) {
+        Display.state.clearControls();
+        api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+      },
+      removeControl: (key, id) {
+        Display.state.removeControl(id);
+        api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+      },
+
+      addLabel: (key, info) => addControl(CustomLabel(info), key),
+      addButton: (key, info) => addControl(CustomButton(info), key),
+      addTextField: (key, info) => addControl(CustomTextField(info), key),
+      addJoystick: (key, info) => addControl(CustomJoystick(info), key),
+      addTouchpad: (key, info) => addControl(CustomTouchpad(info), key),
+      addSlider: (key, info) => addControl(CustomSlider(info), key),
+      addToggle: (key, info) => addControl(CustomToggle(info), key),
+      addRadioButton: (key, info) => addControl(CustomRadioButton(info), key),
+      addImageDisplay: (key, info) => addControl(CustomImageDisplay(info), key),
+
+      getText: (key, id) {
+        TextLike? target = Display.state.findControl<TextLike>(id);
+        api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.string(target.getText())) : RequestResult.err('no text-like control with id $id'));
+      },
+      setText: (key, id, value) {
+        TextLike? target = Display.state.findControl<TextLike>(id);
+        if (target != null) Display.state.doSetState(() => target.setText(value, UpdateSource.code));
+        api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no text-like control with id $id'));
+      },
+      isPressed: (key, id) {
+        Pressable? target = Display.state.findControl<Pressable>(id);
+        api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.isPressed())) : RequestResult.err('no pressable control with id $id'));
+      },
+      getLevel: (key, id) {
+        LevelLike? target = Display.state.findControl<LevelLike>(id);
+        api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.number(target.getLevel())) : RequestResult.err('no level-like control with id $id'));
+      },
+      setLevel: (key, id, value) {
+        LevelLike? target = Display.state.findControl<LevelLike>(id);
+        if (target != null) Display.state.doSetState(() => target.setLevel(value));
+        api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no level-like control with id $id'));
+      },
+      getToggleState: (key, id) {
+        ToggleLike? target = Display.state.findControl<ToggleLike>(id);
+        api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.getToggled())) : RequestResult.err('no toggle-like control with id $id'));
+      },
+      setToggleState: (key, id, value) {
+        ToggleLike? target = Display.state.findControl<ToggleLike>(id);
+        if (target != null) Display.state.doSetState(() => target.setToggled(value));
+        api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no toggle-like control with id $id'));
+      },
+      getPosition: (key, id) {
+        PositionLike? target = Display.state.findControl<PositionLike>(id);
+        if (target != null) {
+          final p = target.getPosition();
+          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list([ SimpleValue.number(p.$1), SimpleValue.number(p.$2) ])));
+        } else {
+          api.completeRequest(key: key, result: RequestResult.err('no position-like control with id $id'));
+        }
+      },
+      getImage: (key, id) async {
+        ImageLike? target = Display.state.findControl<ImageLike>(id);
+        if (target == null) {
+          api.completeRequest(key: key, result: RequestResult.err('no image-like control with id $id'));
+          return;
+        }
+
+        final src = target.getImage()?.clone(); // make sure we have an owning handle for concurrency safety
+        try {
+          final raw = src != null ? await encodeImage(src) : blankImage;
+          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.image(raw)));
+        } catch (e) {
+          api.completeRequest(key: key, result: RequestResult.err('failed to encode image: $e'));
+        } finally {
+          src?.dispose();
+        }
+      },
+      setImage: (key, id, value) async {
+        ImageLike? target = Display.state.findControl<ImageLike>(id);
+        if (target == null) {
+          api.completeRequest(key: key, result: RequestResult.err('no image-like control with id $id'));
+          return;
+        }
+
+        try {
+          final img = await decodeImage(value);
+          
+          Display.state.doSetState(() => target.setImage(img, UpdateSource.code));
+          api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+        } catch (e) {
+          api.completeRequest(key: key, result: RequestResult.err('failed to decode image: $e'));
+        }
+      },
+
+      getAccelerometer: (key) => sendSensorVec(SensorManager.accelerometer.value, key),
+      getLinearAccelerometer: (key) => sendSensorVec(SensorManager.linearAccelerometer.value, key),
+      getGravity: (key) => sendSensorVec(SensorManager.gravity.value, key),
+      getGyroscope: (key) => sendSensorVec(SensorManager.gyroscope.value, key),
+      getMagnetometer: (key) => sendSensorVec(SensorManager.magnetometer.value, key),
+      getOrientation: (key) => sendSensorVec(SensorManager.orientation.value, key),
+      getLocationLatLong: (key) => sendSensorVec(SensorManager.locationLatLong.value, key),
+      getLocationHeading: (key) => sendSensorScalar(SensorManager.locationHeading.value, key),
+      getLocationAltitude: (key) => sendSensorScalar(SensorManager.locationAltitude.value, key),
+      getPressure: (key) => sendSensorScalar(SensorManager.pressure.value, key),
+      getRelativeHumidity: (key) => sendSensorScalar(SensorManager.relativeHumidity.value, key),
+      getLightLevel: (key) => sendSensorScalar(SensorManager.lightLevel.value, key),
+      getTemperature: (key) => sendSensorScalar(SensorManager.temperature.value, key),
+      getCompassHeading: (key) => sendSensorScalar(SensorManager.compassHeading.value, key),
+      getMicrophoneLevel: (key) => sendSensorScalar(SensorManager.microphone.value, key),
+      getProximity: (key) => sendSensorScalar(SensorManager.proximity.value, key),
+      getStepCount: (key) => sendSensorScalar(SensorManager.stepCount.value, key),
+      getFacingDirection: (key) => sendSensorScalarEncoded(SensorManager.facingDirection.value, facingDirectionNames, key),
+      getCompassDirection: (key) => sendSensorScalarEncoded(SensorManager.compassDirection.value, compassDirectionNames, key),
+      getCompassCardinalDirection: (key) => sendSensorScalarEncoded(SensorManager.compassCardinalDirection.value, compassCardinalDirectionNames, key),
+
+      listenToSensors: (key, sensors) {
+        NetworkManager.listenToSensors(sensors, null);
+        api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+      },
+    );
+  }
+}
+
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
@@ -113,172 +283,6 @@ class MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-
-    void cmdHandlerLoop() async {
-      void sendSensorVec(List<double>? vals, DartRequestKey key) {
-        if (vals != null) {
-          final res = <SimpleValue>[];
-          for (final val in vals) {
-            res.add(SimpleValue.number(val));
-          }
-          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list(res)));
-        } else {
-          api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
-        }
-      }
-      void sendSensorScalar(List<double>? vals, DartRequestKey key) {
-        if (vals != null) {
-          assert (vals.length == 1);
-          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.number(vals[0])));
-        } else {
-          api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
-        }
-      }
-      void sendSensorScalarEncoded(List<double>? vals, List<String> encoding, DartRequestKey key) {
-        if (vals != null) {
-          assert (vals.length == 1);
-          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(encoding[vals[0].toInt()])));
-        } else {
-          api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
-        }
-      }
-      void addControl(CustomControl control, DartRequestKey key) {
-        RequestResult res;
-        switch (Display.state.tryAddControl(control)) {
-          case AddControlResult.success: res = RequestResult.ok(SimpleValue.string(control.id));
-          case AddControlResult.tooManyControls: res = const RequestResult.err('too many controls');
-          case AddControlResult.idConflict: res = RequestResult.err('id ${control.id} is already in use');
-        }
-        api.completeRequest(key: key, result: res);
-      }
-      await for (final cmd in api.recvCommands()) {
-        cmd.when(
-          updatePaused: (value) => MainMenu.state.setState(() => MainMenu.state.paused = value ),
-
-          stdout: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stdout)),
-          stderr: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stderr)),
-
-          clearControls: (key) {
-            Display.state.clearControls();
-            api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
-          },
-          removeControl: (key, id) {
-            Display.state.removeControl(id);
-            api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
-          },
-
-          addLabel: (key, info) => addControl(CustomLabel(info), key),
-          addButton: (key, info) => addControl(CustomButton(info), key),
-          addTextField: (key, info) => addControl(CustomTextField(info), key),
-          addJoystick: (key, info) => addControl(CustomJoystick(info), key),
-          addTouchpad: (key, info) => addControl(CustomTouchpad(info), key),
-          addSlider: (key, info) => addControl(CustomSlider(info), key),
-          addToggle: (key, info) => addControl(CustomToggle(info), key),
-          addRadioButton: (key, info) => addControl(CustomRadioButton(info), key),
-          addImageDisplay: (key, info) => addControl(CustomImageDisplay(info), key),
-
-          getText: (key, id) {
-            TextLike? target = Display.state.findControl<TextLike>(id);
-            api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.string(target.getText())) : RequestResult.err('no text-like control with id $id'));
-          },
-          setText: (key, id, value) {
-            TextLike? target = Display.state.findControl<TextLike>(id);
-            if (target != null) Display.state.setState(() => target.setText(value, UpdateSource.code));
-            api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no text-like control with id $id'));
-          },
-          isPressed: (key, id) {
-            Pressable? target = Display.state.findControl<Pressable>(id);
-            api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.isPressed())) : RequestResult.err('no pressable control with id $id'));
-          },
-          getLevel: (key, id) {
-            LevelLike? target = Display.state.findControl<LevelLike>(id);
-            api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.number(target.getLevel())) : RequestResult.err('no level-like control with id $id'));
-          },
-          setLevel: (key, id, value) {
-            LevelLike? target = Display.state.findControl<LevelLike>(id);
-            if (target != null) Display.state.setState(() => target.setLevel(value));
-            api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no level-like control with id $id'));
-          },
-          getToggleState: (key, id) {
-            ToggleLike? target = Display.state.findControl<ToggleLike>(id);
-            api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.getToggled())) : RequestResult.err('no toggle-like control with id $id'));
-          },
-          setToggleState: (key, id, value) {
-            ToggleLike? target = Display.state.findControl<ToggleLike>(id);
-            if (target != null) Display.state.setState(() => target.setToggled(value));
-            api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no toggle-like control with id $id'));
-          },
-          getPosition: (key, id) {
-            PositionLike? target = Display.state.findControl<PositionLike>(id);
-            if (target != null) {
-              final p = target.getPosition();
-              api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list([ SimpleValue.number(p.$1), SimpleValue.number(p.$2) ])));
-            } else {
-              api.completeRequest(key: key, result: RequestResult.err('no position-like control with id $id'));
-            }
-          },
-          getImage: (key, id) async {
-            ImageLike? target = Display.state.findControl<ImageLike>(id);
-            if (target == null) {
-              api.completeRequest(key: key, result: RequestResult.err('no image-like control with id $id'));
-              return;
-            }
-
-            final src = target.getImage()?.clone(); // make sure we have an owning handle for concurrency safety
-            try {
-              final raw = src != null ? await encodeImage(src) : blankImage;
-              api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.image(raw)));
-            } catch (e) {
-              api.completeRequest(key: key, result: RequestResult.err('failed to encode image: $e'));
-            } finally {
-              src?.dispose();
-            }
-          },
-          setImage: (key, id, value) async {
-            ImageLike? target = Display.state.findControl<ImageLike>(id);
-            if (target == null) {
-              api.completeRequest(key: key, result: RequestResult.err('no image-like control with id $id'));
-              return;
-            }
-
-            try {
-              final img = await decodeImage(value);
-              Display.state.setState(() => target.setImage(img, UpdateSource.code));
-              api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
-            } catch (e) {
-              api.completeRequest(key: key, result: RequestResult.err('failed to decode image: $e'));
-            }
-          },
-
-          getAccelerometer: (key) => sendSensorVec(SensorManager.accelerometer.value, key),
-          getLinearAccelerometer: (key) => sendSensorVec(SensorManager.linearAccelerometer.value, key),
-          getGravity: (key) => sendSensorVec(SensorManager.gravity.value, key),
-          getGyroscope: (key) => sendSensorVec(SensorManager.gyroscope.value, key),
-          getMagnetometer: (key) => sendSensorVec(SensorManager.magnetometer.value, key),
-          getOrientation: (key) => sendSensorVec(SensorManager.orientation.value, key),
-          getLocationLatLong: (key) => sendSensorVec(SensorManager.locationLatLong.value, key),
-          getLocationHeading: (key) => sendSensorScalar(SensorManager.locationHeading.value, key),
-          getLocationAltitude: (key) => sendSensorScalar(SensorManager.locationAltitude.value, key),
-          getPressure: (key) => sendSensorScalar(SensorManager.pressure.value, key),
-          getRelativeHumidity: (key) => sendSensorScalar(SensorManager.relativeHumidity.value, key),
-          getLightLevel: (key) => sendSensorScalar(SensorManager.lightLevel.value, key),
-          getTemperature: (key) => sendSensorScalar(SensorManager.temperature.value, key),
-          getCompassHeading: (key) => sendSensorScalar(SensorManager.compassHeading.value, key),
-          getMicrophoneLevel: (key) => sendSensorScalar(SensorManager.microphone.value, key),
-          getProximity: (key) => sendSensorScalar(SensorManager.proximity.value, key),
-          getStepCount: (key) => sendSensorScalar(SensorManager.stepCount.value, key),
-          getFacingDirection: (key) => sendSensorScalarEncoded(SensorManager.facingDirection.value, facingDirectionNames, key),
-          getCompassDirection: (key) => sendSensorScalarEncoded(SensorManager.compassDirection.value, compassDirectionNames, key),
-          getCompassCardinalDirection: (key) => sendSensorScalarEncoded(SensorManager.compassCardinalDirection.value, compassCardinalDirectionNames, key),
-
-          listenToSensors: (key, sensors) {
-            NetworkManager.listenToSensors(sensors, null);
-            api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
-          },
-        );
-      }
-    }
-    cmdHandlerLoop();
 
     SensorManager.start();
   }
@@ -469,6 +473,10 @@ class MainMenuState extends State<MainMenu> {
     return devicePW;
   }
 
+  void doSetState(Function() f) {
+    setState(f);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -490,7 +498,8 @@ class MainMenuState extends State<MainMenu> {
     api.initialize(
       deviceId: deviceID.map((x) => x.toRadixString(16).padLeft(2, "0")).join(),
       utcOffsetInSeconds: DateTime.now().timeZoneOffset.inSeconds,
-    );
+    )
+    .then((x) => startCommandLoop());
 
     if (getSettingOr(kvstoreConnectOnLaunch, defaultConnectOnLaunch)) {
       NetworkManager.connect();
@@ -826,8 +835,8 @@ class DisplayState extends State<Display> {
     return x is T ? x as T : null;
   }
 
-  void redraw() {
-    setState(() {});
+  void doSetState(Function() f) {
+    setState(f);
   }
 
   void handleClick(Offset pos, int id, ClickType type) {

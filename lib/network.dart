@@ -271,8 +271,7 @@ class NetworkManager {
           if (id != null && text != null) {
             final target = Display.state.findControl<TextLike>(id);
             if (target != null) {
-              target.setText(text, UpdateSource.code);
-              Display.state.redraw();
+              Display.state.doSetState(() => target.setText(text, UpdateSource.code));
               netsbloxSend([ msg.data[0], 0 ]);
             } else {
               netsbloxSend([ msg.data[0], 3]);
@@ -301,8 +300,7 @@ class NetworkManager {
             final target = Display.state.findControl<ImageLike>(id);
             if (target != null) {
               decodeImage(msg.data.sublist(10 + idLen)).then((img) {
-                target.setImage(img, UpdateSource.code);
-                Display.state.redraw();
+                Display.state.doSetState(() => target.setImage(img, UpdateSource.code));
                 netsbloxSend([ msg.data[0], 0 ]);
               });
             } else {
@@ -335,8 +333,7 @@ class NetworkManager {
         if (id != null) {
           final target = Display.state.findControl<ToggleLike>(id);
           if (target != null) {
-            target.setToggled(state);
-            Display.state.redraw();
+            Display.state.doSetState(() => target.setToggled(state));
             netsbloxSend([ msg.data[0], 0 ]);
           } else {
             netsbloxSend([ msg.data[0], 3 ]);
@@ -388,8 +385,7 @@ class NetworkManager {
         if (id != null) {
           final target = Display.state.findControl<LevelLike>(id);
           if (target != null) {
-            target.setLevel(level);
-            Display.state.redraw();
+            Display.state.doSetState(() => target.setLevel(level));
             netsbloxSend([ msg.data[0], 0 ]);
           } else {
             netsbloxSend([ msg.data[0], 3 ]);
