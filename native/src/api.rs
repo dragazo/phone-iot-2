@@ -16,7 +16,7 @@ use netsblox_vm::ast;
 
 use flutter_rust_bridge::{StreamSink, IntoDart, rust2dart::IntoIntoDart};
 
-const SERVER_URL: &str = "https://editor.netsblox.org";
+const SERVER_URL: &str = "https://cloud.netsblox.org";
 const STEPS_PER_IO_ITER: usize = 16;
 const IDLE_SLEEP_THRESH: usize = 256;
 const IDLE_SLEEP_TIME: Duration = Duration::from_millis(1);
@@ -456,7 +456,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
             })),
             request: Some(Rc::new(move |_, _, key, request, _| {
                 let is_local_id = |s: &Value<C, StdSystem<C>>| -> bool {
-                    match s.to_string() {
+                    match s.as_string() {
                         Ok(x) => x.chars().all(|x| x == '0') || x == device_id,
                         Err(_) => false,
                     }
@@ -475,7 +475,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                     if x.len() != 2 {
                                         return Err(format!("'{name}' must be a list of pairs (length 2 lists)"));
                                     }
-                                    let k = match x[0].to_string() {
+                                    let k = match x[0].as_string() {
                                         Ok(x) => x.into_owned(),
                                         Err(_) => return Err(format!("'{name}' keys must be strings")),
                                     };
@@ -506,7 +506,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                         }
                     };
                     ($n:ident := $e:expr => f64) => {
-                        match $e.to_number() {
+                        match $e.as_number() {
                             Ok(x) => x.get(),
                             Err(x) => {
                                 key.complete(Err(format!("'{}': expected number, got {:?}", stringify!($n), x.got)));
@@ -515,7 +515,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                         }
                     };
                     ($n:ident := $e:expr => String) => {
-                        match $e.to_string() {
+                        match $e.as_string() {
                             Ok(x) => x.into_owned(),
                             Err(x) => {
                                 key.complete(Err(format!("'{}': expected string, got {:?}", stringify!($n), x.got)));

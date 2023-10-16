@@ -591,13 +591,20 @@ class MainMenuState extends State<MainMenu> {
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
-                    var url = MainMenu.projectAddr.text;
-                    final pat = RegExp(r'^.*\b(\w+)\.netsblox\.org/(.*)$');
-                    final m = pat.firstMatch(url);
-                    if (m != null) {
-                      url = 'https://${m.group(1)}.netsblox.org/api/RawPublic/${m.group(2)}';
+                    var parsed = Uri.tryParse(MainMenu.projectAddr.text);
+                    if (parsed == null) {
+                      MessageList.state.addMessage(Message('failed to parse uri: ${MainMenu.projectAddr.text}', MessageType.stderr));
+                      return;
                     }
-                    http.get(Uri.parse(url))
+
+                    final source = { 'editor.netsblox.org': 'cloud.netsblox.org', 'dev.netsblox.org': 'cloud.dev.netsblox.org' }[parsed.host];
+                    final username = parsed.queryParameters['Username'];
+                    final project = parsed.queryParameters['ProjectName'];
+                    if (source != null && username != null && project != null) {
+                      parsed = Uri.parse('https://$source/projects/user/${Uri.encodeComponent(username)}/${Uri.encodeComponent(project)}/xml');
+                    }
+
+                    http.get(parsed)
                       .then((res) {
                         api.sendCommand(cmd: RustCommand.setProject(xml: res.body));
                       })
