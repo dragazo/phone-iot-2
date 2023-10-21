@@ -245,7 +245,7 @@ class App extends StatelessWidget {
 
   static const instance = App();
 
-  static const name = 'PhoneIoT-2';
+  static const name = 'PhoneIoT';
   static const haloDecoration = BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(20)),
     color: Colors.white,

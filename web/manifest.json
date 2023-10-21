@@ -1,6 +1,6 @@
 {
-    "name": "phone_iot_2",
-    "short_name": "phone_iot_2",
+    "name": "PhoneIoT",
+    "short_name": "PhoneIoT",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

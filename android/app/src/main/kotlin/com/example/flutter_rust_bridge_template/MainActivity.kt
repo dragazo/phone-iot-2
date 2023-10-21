@@ -1,4 +1,4 @@
-package com.example.phone_iot_2
+package org.netsblox.phoneiot
 
 import io.flutter.embedding.android.FlutterActivity
 

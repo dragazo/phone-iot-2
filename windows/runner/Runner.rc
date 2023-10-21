@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "phone_iot_2" "\0"
+            VALUE "CompanyName", "org.netsblox" "\0"
+            VALUE "FileDescription", "PhoneIoT" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "phone_iot_2" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "phone_iot_2.exe" "\0"
-            VALUE "ProductName", "phone_iot_2" "\0"
+            VALUE "InternalName", "PhoneIoT" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2023 org.netsblox.phoneiot. All rights reserved." "\0"
+            VALUE "OriginalFilename", "PhoneIoT.exe" "\0"
+            VALUE "ProductName", "PhoneIoT" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

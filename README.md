@@ -1,4 +1,4 @@
-# phone_iot_2
+# PhoneIoT 2
 
 This repository serves as a template for Flutter projects calling into native Rust
 libraries via `flutter_rust_bridge`.
