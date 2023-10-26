@@ -47,6 +47,7 @@ dependencies:
   mobile_scanner: ^3.4.1
   image: ^4.0.17
   flutter_fgbg: ^0.3.0
+  url_launcher: ^6.2.1
 
   # sensor stuff
   geolocator: ^9.0.2

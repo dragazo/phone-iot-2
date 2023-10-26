@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'sensors.dart';
 import 'canvas.dart';
@@ -673,10 +674,10 @@ class SettingsMenuState extends State<SettingsMenu> {
         child: Column(
           children: [
             const Text('Settings', style: TextStyle(fontSize: 20)),
+            const SizedBox(height: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 10),
                 Row(children: [
                   Switch(value: connectOnLaunch, onChanged: (x) => setState(() {
                     connectOnLaunch = x;
@@ -692,6 +693,11 @@ class SettingsMenuState extends State<SettingsMenu> {
                   const Text('Custom Controls Haptic Feedback'),
                 ]),
               ],
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => launchUrl(Uri.parse('https://github.com/dragazo/phone-iot-2/issues/new')),
+              child: const Text('Report a Bug'),
             ),
           ],
         ),
