@@ -20138,8 +20138,9 @@ mixin _$DartValue {
     required TResult Function(bool field0) bool,
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
+    required TResult Function(Uint8List field0, (double, double)? field1) image,
+    required TResult Function(Uint8List field0) audio,
     required TResult Function(List<DartValue> field0) list,
-    required TResult Function(Uint8List field0) image,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -20147,8 +20148,9 @@ mixin _$DartValue {
     TResult? Function(bool field0)? bool,
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
+    TResult? Function(Uint8List field0, (double, double)? field1)? image,
+    TResult? Function(Uint8List field0)? audio,
     TResult? Function(List<DartValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -20156,8 +20158,9 @@ mixin _$DartValue {
     TResult Function(bool field0)? bool,
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
+    TResult Function(Uint8List field0, (double, double)? field1)? image,
+    TResult Function(Uint8List field0)? audio,
     TResult Function(List<DartValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -20166,8 +20169,9 @@ mixin _$DartValue {
     required TResult Function(DartValue_Bool value) bool,
     required TResult Function(DartValue_Number value) number,
     required TResult Function(DartValue_String value) string,
-    required TResult Function(DartValue_List value) list,
     required TResult Function(DartValue_Image value) image,
+    required TResult Function(DartValue_Audio value) audio,
+    required TResult Function(DartValue_List value) list,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -20175,8 +20179,9 @@ mixin _$DartValue {
     TResult? Function(DartValue_Bool value)? bool,
     TResult? Function(DartValue_Number value)? number,
     TResult? Function(DartValue_String value)? string,
-    TResult? Function(DartValue_List value)? list,
     TResult? Function(DartValue_Image value)? image,
+    TResult? Function(DartValue_Audio value)? audio,
+    TResult? Function(DartValue_List value)? list,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -20184,8 +20189,9 @@ mixin _$DartValue {
     TResult Function(DartValue_Bool value)? bool,
     TResult Function(DartValue_Number value)? number,
     TResult Function(DartValue_String value)? string,
-    TResult Function(DartValue_List value)? list,
     TResult Function(DartValue_Image value)? image,
+    TResult Function(DartValue_Audio value)? audio,
+    TResult Function(DartValue_List value)? list,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -20275,8 +20281,9 @@ class _$DartValue_Bool implements DartValue_Bool {
     required TResult Function(bool field0) bool,
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
+    required TResult Function(Uint8List field0, (double, double)? field1) image,
+    required TResult Function(Uint8List field0) audio,
     required TResult Function(List<DartValue> field0) list,
-    required TResult Function(Uint8List field0) image,
   }) {
     return bool(field0);
   }
@@ -20287,8 +20294,9 @@ class _$DartValue_Bool implements DartValue_Bool {
     TResult? Function(bool field0)? bool,
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
+    TResult? Function(Uint8List field0, (double, double)? field1)? image,
+    TResult? Function(Uint8List field0)? audio,
     TResult? Function(List<DartValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
   }) {
     return bool?.call(field0);
   }
@@ -20299,8 +20307,9 @@ class _$DartValue_Bool implements DartValue_Bool {
     TResult Function(bool field0)? bool,
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
+    TResult Function(Uint8List field0, (double, double)? field1)? image,
+    TResult Function(Uint8List field0)? audio,
     TResult Function(List<DartValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
     required TResult orElse(),
   }) {
     if (bool != null) {
@@ -20315,8 +20324,9 @@ class _$DartValue_Bool implements DartValue_Bool {
     required TResult Function(DartValue_Bool value) bool,
     required TResult Function(DartValue_Number value) number,
     required TResult Function(DartValue_String value) string,
-    required TResult Function(DartValue_List value) list,
     required TResult Function(DartValue_Image value) image,
+    required TResult Function(DartValue_Audio value) audio,
+    required TResult Function(DartValue_List value) list,
   }) {
     return bool(this);
   }
@@ -20327,8 +20337,9 @@ class _$DartValue_Bool implements DartValue_Bool {
     TResult? Function(DartValue_Bool value)? bool,
     TResult? Function(DartValue_Number value)? number,
     TResult? Function(DartValue_String value)? string,
-    TResult? Function(DartValue_List value)? list,
     TResult? Function(DartValue_Image value)? image,
+    TResult? Function(DartValue_Audio value)? audio,
+    TResult? Function(DartValue_List value)? list,
   }) {
     return bool?.call(this);
   }
@@ -20339,8 +20350,9 @@ class _$DartValue_Bool implements DartValue_Bool {
     TResult Function(DartValue_Bool value)? bool,
     TResult Function(DartValue_Number value)? number,
     TResult Function(DartValue_String value)? string,
-    TResult Function(DartValue_List value)? list,
     TResult Function(DartValue_Image value)? image,
+    TResult Function(DartValue_Audio value)? audio,
+    TResult Function(DartValue_List value)? list,
     required TResult orElse(),
   }) {
     if (bool != null) {
@@ -20427,8 +20439,9 @@ class _$DartValue_Number implements DartValue_Number {
     required TResult Function(bool field0) bool,
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
+    required TResult Function(Uint8List field0, (double, double)? field1) image,
+    required TResult Function(Uint8List field0) audio,
     required TResult Function(List<DartValue> field0) list,
-    required TResult Function(Uint8List field0) image,
   }) {
     return number(field0);
   }
@@ -20439,8 +20452,9 @@ class _$DartValue_Number implements DartValue_Number {
     TResult? Function(bool field0)? bool,
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
+    TResult? Function(Uint8List field0, (double, double)? field1)? image,
+    TResult? Function(Uint8List field0)? audio,
     TResult? Function(List<DartValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
   }) {
     return number?.call(field0);
   }
@@ -20451,8 +20465,9 @@ class _$DartValue_Number implements DartValue_Number {
     TResult Function(bool field0)? bool,
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
+    TResult Function(Uint8List field0, (double, double)? field1)? image,
+    TResult Function(Uint8List field0)? audio,
     TResult Function(List<DartValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
     required TResult orElse(),
   }) {
     if (number != null) {
@@ -20467,8 +20482,9 @@ class _$DartValue_Number implements DartValue_Number {
     required TResult Function(DartValue_Bool value) bool,
     required TResult Function(DartValue_Number value) number,
     required TResult Function(DartValue_String value) string,
-    required TResult Function(DartValue_List value) list,
     required TResult Function(DartValue_Image value) image,
+    required TResult Function(DartValue_Audio value) audio,
+    required TResult Function(DartValue_List value) list,
   }) {
     return number(this);
   }
@@ -20479,8 +20495,9 @@ class _$DartValue_Number implements DartValue_Number {
     TResult? Function(DartValue_Bool value)? bool,
     TResult? Function(DartValue_Number value)? number,
     TResult? Function(DartValue_String value)? string,
-    TResult? Function(DartValue_List value)? list,
     TResult? Function(DartValue_Image value)? image,
+    TResult? Function(DartValue_Audio value)? audio,
+    TResult? Function(DartValue_List value)? list,
   }) {
     return number?.call(this);
   }
@@ -20491,8 +20508,9 @@ class _$DartValue_Number implements DartValue_Number {
     TResult Function(DartValue_Bool value)? bool,
     TResult Function(DartValue_Number value)? number,
     TResult Function(DartValue_String value)? string,
-    TResult Function(DartValue_List value)? list,
     TResult Function(DartValue_Image value)? image,
+    TResult Function(DartValue_Audio value)? audio,
+    TResult Function(DartValue_List value)? list,
     required TResult orElse(),
   }) {
     if (number != null) {
@@ -20579,8 +20597,9 @@ class _$DartValue_String implements DartValue_String {
     required TResult Function(bool field0) bool,
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
+    required TResult Function(Uint8List field0, (double, double)? field1) image,
+    required TResult Function(Uint8List field0) audio,
     required TResult Function(List<DartValue> field0) list,
-    required TResult Function(Uint8List field0) image,
   }) {
     return string(field0);
   }
@@ -20591,8 +20610,9 @@ class _$DartValue_String implements DartValue_String {
     TResult? Function(bool field0)? bool,
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
+    TResult? Function(Uint8List field0, (double, double)? field1)? image,
+    TResult? Function(Uint8List field0)? audio,
     TResult? Function(List<DartValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
   }) {
     return string?.call(field0);
   }
@@ -20603,8 +20623,9 @@ class _$DartValue_String implements DartValue_String {
     TResult Function(bool field0)? bool,
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
+    TResult Function(Uint8List field0, (double, double)? field1)? image,
+    TResult Function(Uint8List field0)? audio,
     TResult Function(List<DartValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
     required TResult orElse(),
   }) {
     if (string != null) {
@@ -20619,8 +20640,9 @@ class _$DartValue_String implements DartValue_String {
     required TResult Function(DartValue_Bool value) bool,
     required TResult Function(DartValue_Number value) number,
     required TResult Function(DartValue_String value) string,
-    required TResult Function(DartValue_List value) list,
     required TResult Function(DartValue_Image value) image,
+    required TResult Function(DartValue_Audio value) audio,
+    required TResult Function(DartValue_List value) list,
   }) {
     return string(this);
   }
@@ -20631,8 +20653,9 @@ class _$DartValue_String implements DartValue_String {
     TResult? Function(DartValue_Bool value)? bool,
     TResult? Function(DartValue_Number value)? number,
     TResult? Function(DartValue_String value)? string,
-    TResult? Function(DartValue_List value)? list,
     TResult? Function(DartValue_Image value)? image,
+    TResult? Function(DartValue_Audio value)? audio,
+    TResult? Function(DartValue_List value)? list,
   }) {
     return string?.call(this);
   }
@@ -20643,8 +20666,9 @@ class _$DartValue_String implements DartValue_String {
     TResult Function(DartValue_Bool value)? bool,
     TResult Function(DartValue_Number value)? number,
     TResult Function(DartValue_String value)? string,
-    TResult Function(DartValue_List value)? list,
     TResult Function(DartValue_Image value)? image,
+    TResult Function(DartValue_Audio value)? audio,
+    TResult Function(DartValue_List value)? list,
     required TResult orElse(),
   }) {
     if (string != null) {
@@ -20661,6 +20685,334 @@ abstract class DartValue_String implements DartValue {
   String get field0;
   @JsonKey(ignore: true)
   _$$DartValue_StringCopyWith<_$DartValue_String> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartValue_ImageCopyWith<$Res> {
+  factory _$$DartValue_ImageCopyWith(
+          _$DartValue_Image value, $Res Function(_$DartValue_Image) then) =
+      __$$DartValue_ImageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Uint8List field0, (double, double)? field1});
+}
+
+/// @nodoc
+class __$$DartValue_ImageCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_Image>
+    implements _$$DartValue_ImageCopyWith<$Res> {
+  __$$DartValue_ImageCopyWithImpl(
+      _$DartValue_Image _value, $Res Function(_$DartValue_Image) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+    Object? field1 = freezed,
+  }) {
+    return _then(_$DartValue_Image(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
+      freezed == field1
+          ? _value.field1
+          : field1 // ignore: cast_nullable_to_non_nullable
+              as (double, double)?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartValue_Image implements DartValue_Image {
+  const _$DartValue_Image(this.field0, [this.field1]);
+
+  @override
+  final Uint8List field0;
+  @override
+  final (double, double)? field1;
+
+  @override
+  String toString() {
+    return 'DartValue.image(field0: $field0, field1: $field1)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartValue_Image &&
+            const DeepCollectionEquality().equals(other.field0, field0) &&
+            (identical(other.field1, field1) || other.field1 == field1));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(field0), field1);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartValue_ImageCopyWith<_$DartValue_Image> get copyWith =>
+      __$$DartValue_ImageCopyWithImpl<_$DartValue_Image>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
+    required TResult Function(double field0) number,
+    required TResult Function(String field0) string,
+    required TResult Function(Uint8List field0, (double, double)? field1) image,
+    required TResult Function(Uint8List field0) audio,
+    required TResult Function(List<DartValue> field0) list,
+  }) {
+    return image(field0, field1);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
+    TResult? Function(double field0)? number,
+    TResult? Function(String field0)? string,
+    TResult? Function(Uint8List field0, (double, double)? field1)? image,
+    TResult? Function(Uint8List field0)? audio,
+    TResult? Function(List<DartValue> field0)? list,
+  }) {
+    return image?.call(field0, field1);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
+    TResult Function(double field0)? number,
+    TResult Function(String field0)? string,
+    TResult Function(Uint8List field0, (double, double)? field1)? image,
+    TResult Function(Uint8List field0)? audio,
+    TResult Function(List<DartValue> field0)? list,
+    required TResult orElse(),
+  }) {
+    if (image != null) {
+      return image(field0, field1);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartValue_Bool value) bool,
+    required TResult Function(DartValue_Number value) number,
+    required TResult Function(DartValue_String value) string,
+    required TResult Function(DartValue_Image value) image,
+    required TResult Function(DartValue_Audio value) audio,
+    required TResult Function(DartValue_List value) list,
+  }) {
+    return image(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartValue_Bool value)? bool,
+    TResult? Function(DartValue_Number value)? number,
+    TResult? Function(DartValue_String value)? string,
+    TResult? Function(DartValue_Image value)? image,
+    TResult? Function(DartValue_Audio value)? audio,
+    TResult? Function(DartValue_List value)? list,
+  }) {
+    return image?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartValue_Bool value)? bool,
+    TResult Function(DartValue_Number value)? number,
+    TResult Function(DartValue_String value)? string,
+    TResult Function(DartValue_Image value)? image,
+    TResult Function(DartValue_Audio value)? audio,
+    TResult Function(DartValue_List value)? list,
+    required TResult orElse(),
+  }) {
+    if (image != null) {
+      return image(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartValue_Image implements DartValue {
+  const factory DartValue_Image(final Uint8List field0,
+      [final (double, double)? field1]) = _$DartValue_Image;
+
+  @override
+  Uint8List get field0;
+  (double, double)? get field1;
+  @JsonKey(ignore: true)
+  _$$DartValue_ImageCopyWith<_$DartValue_Image> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartValue_AudioCopyWith<$Res> {
+  factory _$$DartValue_AudioCopyWith(
+          _$DartValue_Audio value, $Res Function(_$DartValue_Audio) then) =
+      __$$DartValue_AudioCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Uint8List field0});
+}
+
+/// @nodoc
+class __$$DartValue_AudioCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_Audio>
+    implements _$$DartValue_AudioCopyWith<$Res> {
+  __$$DartValue_AudioCopyWithImpl(
+      _$DartValue_Audio _value, $Res Function(_$DartValue_Audio) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$DartValue_Audio(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartValue_Audio implements DartValue_Audio {
+  const _$DartValue_Audio(this.field0);
+
+  @override
+  final Uint8List field0;
+
+  @override
+  String toString() {
+    return 'DartValue.audio(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartValue_Audio &&
+            const DeepCollectionEquality().equals(other.field0, field0));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(field0));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartValue_AudioCopyWith<_$DartValue_Audio> get copyWith =>
+      __$$DartValue_AudioCopyWithImpl<_$DartValue_Audio>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
+    required TResult Function(double field0) number,
+    required TResult Function(String field0) string,
+    required TResult Function(Uint8List field0, (double, double)? field1) image,
+    required TResult Function(Uint8List field0) audio,
+    required TResult Function(List<DartValue> field0) list,
+  }) {
+    return audio(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
+    TResult? Function(double field0)? number,
+    TResult? Function(String field0)? string,
+    TResult? Function(Uint8List field0, (double, double)? field1)? image,
+    TResult? Function(Uint8List field0)? audio,
+    TResult? Function(List<DartValue> field0)? list,
+  }) {
+    return audio?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
+    TResult Function(double field0)? number,
+    TResult Function(String field0)? string,
+    TResult Function(Uint8List field0, (double, double)? field1)? image,
+    TResult Function(Uint8List field0)? audio,
+    TResult Function(List<DartValue> field0)? list,
+    required TResult orElse(),
+  }) {
+    if (audio != null) {
+      return audio(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartValue_Bool value) bool,
+    required TResult Function(DartValue_Number value) number,
+    required TResult Function(DartValue_String value) string,
+    required TResult Function(DartValue_Image value) image,
+    required TResult Function(DartValue_Audio value) audio,
+    required TResult Function(DartValue_List value) list,
+  }) {
+    return audio(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartValue_Bool value)? bool,
+    TResult? Function(DartValue_Number value)? number,
+    TResult? Function(DartValue_String value)? string,
+    TResult? Function(DartValue_Image value)? image,
+    TResult? Function(DartValue_Audio value)? audio,
+    TResult? Function(DartValue_List value)? list,
+  }) {
+    return audio?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartValue_Bool value)? bool,
+    TResult Function(DartValue_Number value)? number,
+    TResult Function(DartValue_String value)? string,
+    TResult Function(DartValue_Image value)? image,
+    TResult Function(DartValue_Audio value)? audio,
+    TResult Function(DartValue_List value)? list,
+    required TResult orElse(),
+  }) {
+    if (audio != null) {
+      return audio(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartValue_Audio implements DartValue {
+  const factory DartValue_Audio(final Uint8List field0) = _$DartValue_Audio;
+
+  @override
+  Uint8List get field0;
+  @JsonKey(ignore: true)
+  _$$DartValue_AudioCopyWith<_$DartValue_Audio> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -20737,8 +21089,9 @@ class _$DartValue_List implements DartValue_List {
     required TResult Function(bool field0) bool,
     required TResult Function(double field0) number,
     required TResult Function(String field0) string,
+    required TResult Function(Uint8List field0, (double, double)? field1) image,
+    required TResult Function(Uint8List field0) audio,
     required TResult Function(List<DartValue> field0) list,
-    required TResult Function(Uint8List field0) image,
   }) {
     return list(field0);
   }
@@ -20749,8 +21102,9 @@ class _$DartValue_List implements DartValue_List {
     TResult? Function(bool field0)? bool,
     TResult? Function(double field0)? number,
     TResult? Function(String field0)? string,
+    TResult? Function(Uint8List field0, (double, double)? field1)? image,
+    TResult? Function(Uint8List field0)? audio,
     TResult? Function(List<DartValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
   }) {
     return list?.call(field0);
   }
@@ -20761,8 +21115,9 @@ class _$DartValue_List implements DartValue_List {
     TResult Function(bool field0)? bool,
     TResult Function(double field0)? number,
     TResult Function(String field0)? string,
+    TResult Function(Uint8List field0, (double, double)? field1)? image,
+    TResult Function(Uint8List field0)? audio,
     TResult Function(List<DartValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
     required TResult orElse(),
   }) {
     if (list != null) {
@@ -20777,8 +21132,9 @@ class _$DartValue_List implements DartValue_List {
     required TResult Function(DartValue_Bool value) bool,
     required TResult Function(DartValue_Number value) number,
     required TResult Function(DartValue_String value) string,
-    required TResult Function(DartValue_List value) list,
     required TResult Function(DartValue_Image value) image,
+    required TResult Function(DartValue_Audio value) audio,
+    required TResult Function(DartValue_List value) list,
   }) {
     return list(this);
   }
@@ -20789,8 +21145,9 @@ class _$DartValue_List implements DartValue_List {
     TResult? Function(DartValue_Bool value)? bool,
     TResult? Function(DartValue_Number value)? number,
     TResult? Function(DartValue_String value)? string,
-    TResult? Function(DartValue_List value)? list,
     TResult? Function(DartValue_Image value)? image,
+    TResult? Function(DartValue_Audio value)? audio,
+    TResult? Function(DartValue_List value)? list,
   }) {
     return list?.call(this);
   }
@@ -20801,8 +21158,9 @@ class _$DartValue_List implements DartValue_List {
     TResult Function(DartValue_Bool value)? bool,
     TResult Function(DartValue_Number value)? number,
     TResult Function(DartValue_String value)? string,
-    TResult Function(DartValue_List value)? list,
     TResult Function(DartValue_Image value)? image,
+    TResult Function(DartValue_Audio value)? audio,
+    TResult Function(DartValue_List value)? list,
     required TResult orElse(),
   }) {
     if (list != null) {
@@ -20819,159 +21177,6 @@ abstract class DartValue_List implements DartValue {
   List<DartValue> get field0;
   @JsonKey(ignore: true)
   _$$DartValue_ListCopyWith<_$DartValue_List> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$DartValue_ImageCopyWith<$Res> {
-  factory _$$DartValue_ImageCopyWith(
-          _$DartValue_Image value, $Res Function(_$DartValue_Image) then) =
-      __$$DartValue_ImageCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Uint8List field0});
-}
-
-/// @nodoc
-class __$$DartValue_ImageCopyWithImpl<$Res>
-    extends _$DartValueCopyWithImpl<$Res, _$DartValue_Image>
-    implements _$$DartValue_ImageCopyWith<$Res> {
-  __$$DartValue_ImageCopyWithImpl(
-      _$DartValue_Image _value, $Res Function(_$DartValue_Image) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? field0 = null,
-  }) {
-    return _then(_$DartValue_Image(
-      null == field0
-          ? _value.field0
-          : field0 // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$DartValue_Image implements DartValue_Image {
-  const _$DartValue_Image(this.field0);
-
-  @override
-  final Uint8List field0;
-
-  @override
-  String toString() {
-    return 'DartValue.image(field0: $field0)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DartValue_Image &&
-            const DeepCollectionEquality().equals(other.field0, field0));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(field0));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DartValue_ImageCopyWith<_$DartValue_Image> get copyWith =>
-      __$$DartValue_ImageCopyWithImpl<_$DartValue_Image>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool field0) bool,
-    required TResult Function(double field0) number,
-    required TResult Function(String field0) string,
-    required TResult Function(List<DartValue> field0) list,
-    required TResult Function(Uint8List field0) image,
-  }) {
-    return image(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool field0)? bool,
-    TResult? Function(double field0)? number,
-    TResult? Function(String field0)? string,
-    TResult? Function(List<DartValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
-  }) {
-    return image?.call(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool field0)? bool,
-    TResult Function(double field0)? number,
-    TResult Function(String field0)? string,
-    TResult Function(List<DartValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
-    required TResult orElse(),
-  }) {
-    if (image != null) {
-      return image(field0);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DartValue_Bool value) bool,
-    required TResult Function(DartValue_Number value) number,
-    required TResult Function(DartValue_String value) string,
-    required TResult Function(DartValue_List value) list,
-    required TResult Function(DartValue_Image value) image,
-  }) {
-    return image(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DartValue_Bool value)? bool,
-    TResult? Function(DartValue_Number value)? number,
-    TResult? Function(DartValue_String value)? string,
-    TResult? Function(DartValue_List value)? list,
-    TResult? Function(DartValue_Image value)? image,
-  }) {
-    return image?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DartValue_Bool value)? bool,
-    TResult Function(DartValue_Number value)? number,
-    TResult Function(DartValue_String value)? string,
-    TResult Function(DartValue_List value)? list,
-    TResult Function(DartValue_Image value)? image,
-    required TResult orElse(),
-  }) {
-    if (image != null) {
-      return image(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DartValue_Image implements DartValue {
-  const factory DartValue_Image(final Uint8List field0) = _$DartValue_Image;
-
-  @override
-  Uint8List get field0;
-  @JsonKey(ignore: true)
-  _$$DartValue_ImageCopyWith<_$DartValue_Image> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

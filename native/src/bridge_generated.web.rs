@@ -44,6 +44,18 @@ impl Wire2Api<(String, DartValue)> for JsValue {
         (self_.get(0).wire2api(), self_.get(1).wire2api())
     }
 }
+impl Wire2Api<(f64, f64)> for JsValue {
+    fn wire2api(self) -> (f64, f64) {
+        let self_ = self.dyn_into::<JsArray>().unwrap();
+        assert_eq!(
+            self_.length(),
+            2,
+            "Expected 2 elements, got {}",
+            self_.length()
+        );
+        (self_.get(0).wire2api(), self_.get(1).wire2api())
+    }
+}
 
 impl Wire2Api<DartRequestKey> for JsValue {
     fn wire2api(self) -> DartRequestKey {
@@ -66,8 +78,9 @@ impl Wire2Api<DartValue> for JsValue {
             0 => DartValue::Bool(self_.get(1).wire2api()),
             1 => DartValue::Number(self_.get(1).wire2api()),
             2 => DartValue::String(self_.get(1).wire2api()),
-            3 => DartValue::List(self_.get(1).wire2api()),
-            4 => DartValue::Image(self_.get(1).wire2api()),
+            3 => DartValue::Image(self_.get(1).wire2api(), self_.get(2).wire2api()),
+            4 => DartValue::Audio(self_.get(1).wire2api()),
+            5 => DartValue::List(self_.get(1).wire2api()),
             _ => unreachable!(),
         }
     }
@@ -91,6 +104,7 @@ impl Wire2Api<Vec<DartValue>> for JsValue {
             .collect()
     }
 }
+
 impl Wire2Api<RequestResult> for JsValue {
     fn wire2api(self) -> RequestResult {
         let self_ = self.unchecked_into::<JsArray>();

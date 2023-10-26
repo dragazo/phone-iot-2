@@ -23,6 +23,14 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
   }
 
   @protected
+  ffi.Pointer<wire___record__f64_f64> api2wire_box_autoadd___record__f64_f64(
+      (double, double) raw) {
+    final ptr = inner.new_box_autoadd___record__f64_f64_0();
+    _api_fill_to_wire___record__f64_f64(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
   ffi.Pointer<wire_DartRequestKey> api2wire_box_autoadd_dart_request_key(
       DartRequestKey raw) {
     final ptr = inner.new_box_autoadd_dart_request_key_0();
@@ -74,6 +82,14 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
   }
 
   @protected
+  ffi.Pointer<wire___record__f64_f64>
+      api2wire_opt_box_autoadd___record__f64_f64((double, double)? raw) {
+    return raw == null
+        ? ffi.nullptr
+        : api2wire_box_autoadd___record__f64_f64(raw);
+  }
+
+  @protected
   ffi.Pointer<wire_uint_8_list> api2wire_uint_8_list(Uint8List raw) {
     final ans = inner.new_uint_8_list_0(raw.length);
     ans.ref.ptr.asTypedList(raw.length).setAll(0, raw);
@@ -88,6 +104,17 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
       (String, DartValue) apiObj, wire___record__String_dart_value wireObj) {
     wireObj.field0 = api2wire_String(apiObj.$1);
     _api_fill_to_wire_dart_value(apiObj.$2, wireObj.field1);
+  }
+
+  void _api_fill_to_wire___record__f64_f64(
+      (double, double) apiObj, wire___record__f64_f64 wireObj) {
+    wireObj.field0 = api2wire_f64(apiObj.$1);
+    wireObj.field1 = api2wire_f64(apiObj.$2);
+  }
+
+  void _api_fill_to_wire_box_autoadd___record__f64_f64(
+      (double, double) apiObj, ffi.Pointer<wire___record__f64_f64> wireObj) {
+    _api_fill_to_wire___record__f64_f64(apiObj, wireObj.ref);
   }
 
   void _api_fill_to_wire_box_autoadd_dart_request_key(
@@ -137,18 +164,28 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
       wireObj.kind.ref.String.ref.field0 = pre_field0;
       return;
     }
-    if (apiObj is DartValue_List) {
-      var pre_field0 = api2wire_list_dart_value(apiObj.field0);
-      wireObj.tag = 3;
-      wireObj.kind = inner.inflate_DartValue_List();
-      wireObj.kind.ref.List.ref.field0 = pre_field0;
-      return;
-    }
     if (apiObj is DartValue_Image) {
       var pre_field0 = api2wire_uint_8_list(apiObj.field0);
-      wireObj.tag = 4;
+      var pre_field1 =
+          api2wire_opt_box_autoadd___record__f64_f64(apiObj.field1);
+      wireObj.tag = 3;
       wireObj.kind = inner.inflate_DartValue_Image();
       wireObj.kind.ref.Image.ref.field0 = pre_field0;
+      wireObj.kind.ref.Image.ref.field1 = pre_field1;
+      return;
+    }
+    if (apiObj is DartValue_Audio) {
+      var pre_field0 = api2wire_uint_8_list(apiObj.field0);
+      wireObj.tag = 4;
+      wireObj.kind = inner.inflate_DartValue_Audio();
+      wireObj.kind.ref.Audio.ref.field0 = pre_field0;
+      return;
+    }
+    if (apiObj is DartValue_List) {
+      var pre_field0 = api2wire_list_dart_value(apiObj.field0);
+      wireObj.tag = 5;
+      wireObj.kind = inner.inflate_DartValue_List();
+      wireObj.kind.ref.List.ref.field0 = pre_field0;
       return;
     }
   }
@@ -370,6 +407,17 @@ class NativeWire implements FlutterRustBridgeWireBase {
       void Function(int, ffi.Pointer<wire_DartRequestKey>,
           ffi.Pointer<wire_RequestResult>)>();
 
+  ffi.Pointer<wire___record__f64_f64> new_box_autoadd___record__f64_f64_0() {
+    return _new_box_autoadd___record__f64_f64_0();
+  }
+
+  late final _new_box_autoadd___record__f64_f64_0Ptr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<wire___record__f64_f64> Function()>>(
+      'new_box_autoadd___record__f64_f64_0');
+  late final _new_box_autoadd___record__f64_f64_0 =
+      _new_box_autoadd___record__f64_f64_0Ptr
+          .asFunction<ffi.Pointer<wire___record__f64_f64> Function()>();
+
   ffi.Pointer<wire_DartRequestKey> new_box_autoadd_dart_request_key_0() {
     return _new_box_autoadd_dart_request_key_0();
   }
@@ -490,16 +538,6 @@ class NativeWire implements FlutterRustBridgeWireBase {
   late final _inflate_DartValue_String = _inflate_DartValue_StringPtr
       .asFunction<ffi.Pointer<DartValueKind> Function()>();
 
-  ffi.Pointer<DartValueKind> inflate_DartValue_List() {
-    return _inflate_DartValue_List();
-  }
-
-  late final _inflate_DartValue_ListPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<DartValueKind> Function()>>(
-          'inflate_DartValue_List');
-  late final _inflate_DartValue_List = _inflate_DartValue_ListPtr
-      .asFunction<ffi.Pointer<DartValueKind> Function()>();
-
   ffi.Pointer<DartValueKind> inflate_DartValue_Image() {
     return _inflate_DartValue_Image();
   }
@@ -508,6 +546,26 @@ class NativeWire implements FlutterRustBridgeWireBase {
       _lookup<ffi.NativeFunction<ffi.Pointer<DartValueKind> Function()>>(
           'inflate_DartValue_Image');
   late final _inflate_DartValue_Image = _inflate_DartValue_ImagePtr
+      .asFunction<ffi.Pointer<DartValueKind> Function()>();
+
+  ffi.Pointer<DartValueKind> inflate_DartValue_Audio() {
+    return _inflate_DartValue_Audio();
+  }
+
+  late final _inflate_DartValue_AudioPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<DartValueKind> Function()>>(
+          'inflate_DartValue_Audio');
+  late final _inflate_DartValue_Audio = _inflate_DartValue_AudioPtr
+      .asFunction<ffi.Pointer<DartValueKind> Function()>();
+
+  ffi.Pointer<DartValueKind> inflate_DartValue_List() {
+    return _inflate_DartValue_List();
+  }
+
+  late final _inflate_DartValue_ListPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<DartValueKind> Function()>>(
+          'inflate_DartValue_List');
+  late final _inflate_DartValue_List = _inflate_DartValue_ListPtr
       .asFunction<ffi.Pointer<DartValueKind> Function()>();
 
   ffi.Pointer<RequestResultKind> inflate_RequestResult_Ok() {
@@ -600,6 +658,24 @@ final class wire_DartValue_String extends ffi.Struct {
   external ffi.Pointer<wire_uint_8_list> field0;
 }
 
+final class wire___record__f64_f64 extends ffi.Struct {
+  @ffi.Double()
+  external double field0;
+
+  @ffi.Double()
+  external double field1;
+}
+
+final class wire_DartValue_Image extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+
+  external ffi.Pointer<wire___record__f64_f64> field1;
+}
+
+final class wire_DartValue_Audio extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+}
+
 final class wire_list_dart_value extends ffi.Struct {
   external ffi.Pointer<wire_DartValue> ptr;
 
@@ -621,17 +697,15 @@ final class DartValueKind extends ffi.Union {
 
   external ffi.Pointer<wire_DartValue_String> String;
 
-  external ffi.Pointer<wire_DartValue_List> List;
-
   external ffi.Pointer<wire_DartValue_Image> Image;
+
+  external ffi.Pointer<wire_DartValue_Audio> Audio;
+
+  external ffi.Pointer<wire_DartValue_List> List;
 }
 
 final class wire_DartValue_List extends ffi.Struct {
   external ffi.Pointer<wire_list_dart_value> field0;
-}
-
-final class wire_DartValue_Image extends ffi.Struct {
-  external ffi.Pointer<wire_uint_8_list> field0;
 }
 
 final class wire___record__String_dart_value extends ffi.Struct {

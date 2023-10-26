@@ -8,7 +8,7 @@ use std::{mem, thread};
 use netsblox_vm::project::{Project, IdleAction, ProjectStep, Input};
 use netsblox_vm::std_system::{StdSystem, RequestKey};
 use netsblox_vm::bytecode::{ByteCode, Locations};
-use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, IntermediateType, ErrorCause, Value, FromAstError, Config, Command, Request, CommandStatus, RequestStatus, Key, System};
+use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, ErrorCause, Value, FromAstError, Config, Command, Request, CommandStatus, RequestStatus, Key, System, SimpleValue, Number, Image, Audio};
 use netsblox_vm::gc::{Gc, RefLock, Collect, Arena, Rootable, Mutation};
 use netsblox_vm::real_time::UtcOffset;
 use netsblox_vm::json::{Json, json};
@@ -99,36 +99,15 @@ impl From<EntityKind<'_, '_, C, StdSystem<C>>> for EntityState {
     }
 }
 
-enum Intermediate {
-    Json(Json),
-    Image(Vec<u8>),
-    Audio(Vec<u8>),
-}
-impl IntermediateType for Intermediate {
-    fn from_json(json: Json) -> Self {
-        Self::Json(json)
-    }
-    fn from_image(img: Vec<u8>) -> Self {
-        Self::Image(img)
-    }
-    fn from_audio(audio: Vec<u8>) -> Self {
-        Self::Audio(audio)
-    }
-}
-
 struct C;
 impl CustomTypes<StdSystem<C>> for C {
     type NativeValue = NativeValue;
-    type Intermediate = Intermediate;
+    type Intermediate = SimpleValue;
 
     type EntityState = EntityState;
 
     fn from_intermediate<'gc>(mc: &Mutation<'gc>, value: Self::Intermediate) -> Result<Value<'gc, C, StdSystem<C>>, ErrorCause<C, StdSystem<C>>> {
-        Ok(match value {
-            Intermediate::Json(x) => Value::from_json(mc, x)?,
-            Intermediate::Image(x) => Value::Image(Rc::new(x)),
-            Intermediate::Audio(x) => Value::Audio(Rc::new(x)),
-        })
+        Ok(Value::from_simple(mc, value))
     }
 }
 
@@ -398,8 +377,9 @@ pub enum DartValue {
     Bool(bool),
     Number(f64),
     String(String),
+    Image(Vec<u8>, Option<(f64, f64)>),
+    Audio(Vec<u8>),
     List(Vec<DartValue>),
-    Image(Vec<u8>),
 }
 impl DartValue {
     fn into_json(self) -> Json {
@@ -408,16 +388,21 @@ impl DartValue {
             DartValue::Number(x) => json!(x),
             DartValue::String(x) => Json::String(x),
             DartValue::List(x) => Json::Array(x.into_iter().map(DartValue::into_json).collect()),
-            DartValue::Image(_) => panic!("attempt to transfer image as json"),
+            DartValue::Image(_, _) => panic!("attempt to transfer image as json"),
+            DartValue::Audio(_) => panic!("attempt to transfer audio as json"),
         }
     }
-    fn into_intermediate(self) -> Intermediate {
+    fn into_simple(self) -> SimpleValue {
+        fn parse_num(num: f64) -> Number {
+            Number::new(num).unwrap_or_else(|_| Number::new(0.0).unwrap())
+        }
         match self {
-            DartValue::Bool(x) => Intermediate::Json(Json::Bool(x)),
-            DartValue::Number(x) => Intermediate::Json(json!(x)),
-            DartValue::String(x) => Intermediate::Json(Json::String(x)),
-            DartValue::List(x) => Intermediate::Json(Json::Array(x.into_iter().map(DartValue::into_json).collect())),
-            DartValue::Image(x) => Intermediate::Image(x),
+            DartValue::Bool(x) => SimpleValue::Bool(x),
+            DartValue::Number(x) => SimpleValue::Number(parse_num(x)),
+            DartValue::String(x) => SimpleValue::String(x),
+            DartValue::Image(content, center) => SimpleValue::Image(Image { content, center: center.map(|(x, y)| (parse_num(x), parse_num(y))) }),
+            DartValue::Audio(content) => SimpleValue::Audio(Audio { content }),
+            DartValue::List(x) => SimpleValue::List(x.into_iter().map(DartValue::into_simple).collect()),
         }
     }
 }
@@ -443,10 +428,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                 match &command {
                     Command::Print { style: _, value } => {
                         if let Some(value) = value {
-                            match value.to_json() {
-                                Ok(x) => DART_COMMANDS.lock().unwrap().send(DartCommand::Stdout { msg: x.to_string() }),
-                                Err(e) => DART_COMMANDS.lock().unwrap().send(DartCommand::Stderr { msg: format!("print {e:?}") }),
-                            }
+                            DART_COMMANDS.lock().unwrap().send(DartCommand::Stdout { msg: value.to_string() });
                         }
                     }
                     _ => return CommandStatus::UseDefault { key, command },
@@ -644,10 +626,10 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 if !args.is_empty() {
                                     return RequestStatus::UseDefault { key, request };
                                 }
-                                key.complete(Ok(Intermediate::Json(json!([
+                                key.complete(Ok(SimpleValue::from_json(json!([
                                     "gravity", "gyroscope", "orientation", "accelerometer", "magneticField", "linearAcceleration", "lightLevel",
                                     "microphoneLevel", "proximity", "stepCount", "location", "pressure", "temperature", "humidity",
-                                ]))));
+                                ])).unwrap()));
                                 RequestStatus::Handled
                             }
                             "getColor" => {
@@ -661,21 +643,21 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let a = parse!(alpha := args[3].1 => f64) as u8;
 
                                 let encoded = ((a as i32) << 24) | ((r as i32) << 16) | ((g as i32) << 8) | b as i32;
-                                key.complete(Ok(Intermediate::Json(json!(encoded))));
+                                key.complete(Ok(SimpleValue::from_json(json!(encoded)).unwrap()));
                                 RequestStatus::Handled
                             }
                             "setCredentials" => {
                                 if args.len() != 2 || !is_local_id(&args[0].1) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
-                                key.complete(Ok(Intermediate::Json(json!("OK"))));
+                                key.complete(Ok(SimpleValue::from_json(json!("OK")).unwrap()));
                                 RequestStatus::Handled
                             }
                             "authenticate" | "listenToGUI" => {
                                 if args.len() != 1 || !is_local_id(&args[0].1) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
-                                key.complete(Ok(Intermediate::Json(json!("OK"))));
+                                key.complete(Ok(SimpleValue::from_json(json!("OK")).unwrap()));
                                 RequestStatus::Handled
                             }
                             "clearControls" => {
@@ -993,9 +975,9 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 }
 
                                 let id = parse!(id := args[1].1 => ControlId);
-                                let value = parse!(img := args[2].1 => Image);
+                                let img = parse!(img := args[2].1 => Image);
 
-                                DART_COMMANDS.lock().unwrap().send(DartCommand::SetImage { key: DartRequestKey::new(key), id, value });
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::SetImage { key: DartRequestKey::new(key), id, value: img.content });
                                 RequestStatus::Handled
                             }
                             "getLevel" => {
@@ -1145,6 +1127,6 @@ pub fn recv_commands(sink: StreamSink<DartCommand>) {
 pub fn complete_request(key: DartRequestKey, result: RequestResult) {
     let key = PENDING_REQUESTS.lock().unwrap().remove(&key);
     if let Some(key) = key {
-        key.complete(result.into_result().map(DartValue::into_intermediate));
+        key.complete(result.into_result().map(DartValue::into_simple));
     }
 }

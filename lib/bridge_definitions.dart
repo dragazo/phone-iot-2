@@ -271,12 +271,16 @@ sealed class DartValue with _$DartValue {
   const factory DartValue.string(
     String field0,
   ) = DartValue_String;
+  const factory DartValue.image(
+    Uint8List field0, [
+    (double, double)? field1,
+  ]) = DartValue_Image;
+  const factory DartValue.audio(
+    Uint8List field0,
+  ) = DartValue_Audio;
   const factory DartValue.list(
     List<DartValue> field0,
   ) = DartValue_List;
-  const factory DartValue.image(
-    Uint8List field0,
-  ) = DartValue_Image;
 }
 
 class ImageDisplayInfo {

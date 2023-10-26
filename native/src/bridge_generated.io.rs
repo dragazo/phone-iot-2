@@ -32,6 +32,11 @@ pub extern "C" fn wire_complete_request(
 // Section: allocate functions
 
 #[no_mangle]
+pub extern "C" fn new_box_autoadd___record__f64_f64_0() -> *mut wire___record__f64_f64 {
+    support::new_leak_box_ptr(wire___record__f64_f64::new_with_null_ptr())
+}
+
+#[no_mangle]
 pub extern "C" fn new_box_autoadd_dart_request_key_0() -> *mut wire_DartRequestKey {
     support::new_leak_box_ptr(wire_DartRequestKey::new_with_null_ptr())
 }
@@ -98,7 +103,18 @@ impl Wire2Api<(String, DartValue)> for wire___record__String_dart_value {
         (self.field0.wire2api(), self.field1.wire2api())
     }
 }
+impl Wire2Api<(f64, f64)> for wire___record__f64_f64 {
+    fn wire2api(self) -> (f64, f64) {
+        (self.field0.wire2api(), self.field1.wire2api())
+    }
+}
 
+impl Wire2Api<(f64, f64)> for *mut wire___record__f64_f64 {
+    fn wire2api(self) -> (f64, f64) {
+        let wrap = unsafe { support::box_from_leak_ptr(self) };
+        Wire2Api::<(f64, f64)>::wire2api(*wrap).into()
+    }
+}
 impl Wire2Api<DartRequestKey> for *mut wire_DartRequestKey {
     fn wire2api(self) -> DartRequestKey {
         let wrap = unsafe { support::box_from_leak_ptr(self) };
@@ -150,13 +166,18 @@ impl Wire2Api<DartValue> for wire_DartValue {
             },
             3 => unsafe {
                 let ans = support::box_from_leak_ptr(self.kind);
-                let ans = support::box_from_leak_ptr(ans.List);
-                DartValue::List(ans.field0.wire2api())
+                let ans = support::box_from_leak_ptr(ans.Image);
+                DartValue::Image(ans.field0.wire2api(), ans.field1.wire2api())
             },
             4 => unsafe {
                 let ans = support::box_from_leak_ptr(self.kind);
-                let ans = support::box_from_leak_ptr(ans.Image);
-                DartValue::Image(ans.field0.wire2api())
+                let ans = support::box_from_leak_ptr(ans.Audio);
+                DartValue::Audio(ans.field0.wire2api())
+            },
+            5 => unsafe {
+                let ans = support::box_from_leak_ptr(self.kind);
+                let ans = support::box_from_leak_ptr(ans.List);
+                DartValue::List(ans.field0.wire2api())
             },
             _ => unreachable!(),
         }
@@ -181,6 +202,7 @@ impl Wire2Api<Vec<DartValue>> for *mut wire_list_dart_value {
         vec.into_iter().map(Wire2Api::wire2api).collect()
     }
 }
+
 impl Wire2Api<RequestResult> for wire_RequestResult {
     fn wire2api(self) -> RequestResult {
         match self.tag {
@@ -244,6 +266,13 @@ pub struct wire___record__String_dart_value {
 
 #[repr(C)]
 #[derive(Clone)]
+pub struct wire___record__f64_f64 {
+    field0: f64,
+    field1: f64,
+}
+
+#[repr(C)]
+#[derive(Clone)]
 pub struct wire_DartRequestKey {
     value: usize,
 }
@@ -281,8 +310,9 @@ pub union DartValueKind {
     Bool: *mut wire_DartValue_Bool,
     Number: *mut wire_DartValue_Number,
     String: *mut wire_DartValue_String,
-    List: *mut wire_DartValue_List,
     Image: *mut wire_DartValue_Image,
+    Audio: *mut wire_DartValue_Audio,
+    List: *mut wire_DartValue_List,
 }
 
 #[repr(C)]
@@ -305,14 +335,21 @@ pub struct wire_DartValue_String {
 
 #[repr(C)]
 #[derive(Clone)]
-pub struct wire_DartValue_List {
-    field0: *mut wire_list_dart_value,
+pub struct wire_DartValue_Image {
+    field0: *mut wire_uint_8_list,
+    field1: *mut wire___record__f64_f64,
 }
 
 #[repr(C)]
 #[derive(Clone)]
-pub struct wire_DartValue_Image {
+pub struct wire_DartValue_Audio {
     field0: *mut wire_uint_8_list,
+}
+
+#[repr(C)]
+#[derive(Clone)]
+pub struct wire_DartValue_List {
+    field0: *mut wire_list_dart_value,
 }
 
 #[repr(C)]
@@ -407,6 +444,21 @@ impl Default for wire___record__String_dart_value {
     }
 }
 
+impl NewWithNullPtr for wire___record__f64_f64 {
+    fn new_with_null_ptr() -> Self {
+        Self {
+            field0: Default::default(),
+            field1: Default::default(),
+        }
+    }
+}
+
+impl Default for wire___record__f64_f64 {
+    fn default() -> Self {
+        Self::new_with_null_ptr()
+    }
+}
+
 impl NewWithNullPtr for wire_DartRequestKey {
     fn new_with_null_ptr() -> Self {
         Self {
@@ -464,18 +516,28 @@ pub extern "C" fn inflate_DartValue_String() -> *mut DartValueKind {
 }
 
 #[no_mangle]
-pub extern "C" fn inflate_DartValue_List() -> *mut DartValueKind {
+pub extern "C" fn inflate_DartValue_Image() -> *mut DartValueKind {
     support::new_leak_box_ptr(DartValueKind {
-        List: support::new_leak_box_ptr(wire_DartValue_List {
+        Image: support::new_leak_box_ptr(wire_DartValue_Image {
+            field0: core::ptr::null_mut(),
+            field1: core::ptr::null_mut(),
+        }),
+    })
+}
+
+#[no_mangle]
+pub extern "C" fn inflate_DartValue_Audio() -> *mut DartValueKind {
+    support::new_leak_box_ptr(DartValueKind {
+        Audio: support::new_leak_box_ptr(wire_DartValue_Audio {
             field0: core::ptr::null_mut(),
         }),
     })
 }
 
 #[no_mangle]
-pub extern "C" fn inflate_DartValue_Image() -> *mut DartValueKind {
+pub extern "C" fn inflate_DartValue_List() -> *mut DartValueKind {
     support::new_leak_box_ptr(DartValueKind {
-        Image: support::new_leak_box_ptr(wire_DartValue_Image {
+        List: support::new_leak_box_ptr(wire_DartValue_List {
             field0: core::ptr::null_mut(),
         }),
     })

@@ -31,6 +31,16 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
   }
 
   @protected
+  List<dynamic> api2wire___record__f64_f64((double, double) raw) {
+    return [api2wire_f64(raw.$1), api2wire_f64(raw.$2)];
+  }
+
+  @protected
+  List<dynamic> api2wire_box_autoadd___record__f64_f64((double, double) raw) {
+    return api2wire___record__f64_f64(raw);
+  }
+
+  @protected
   List<dynamic> api2wire_box_autoadd_dart_request_key(DartRequestKey raw) {
     return api2wire_dart_request_key(raw);
   }
@@ -66,11 +76,18 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
     if (raw is DartValue_String) {
       return [2, api2wire_String(raw.field0)];
     }
-    if (raw is DartValue_List) {
-      return [3, api2wire_list_dart_value(raw.field0)];
-    }
     if (raw is DartValue_Image) {
+      return [
+        3,
+        api2wire_uint_8_list(raw.field0),
+        api2wire_opt_box_autoadd___record__f64_f64(raw.field1)
+      ];
+    }
+    if (raw is DartValue_Audio) {
       return [4, api2wire_uint_8_list(raw.field0)];
+    }
+    if (raw is DartValue_List) {
+      return [5, api2wire_list_dart_value(raw.field0)];
     }
 
     throw Exception('unreachable');
@@ -85,6 +102,12 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
   @protected
   List<dynamic> api2wire_list_dart_value(List<DartValue> raw) {
     return raw.map(api2wire_dart_value).toList();
+  }
+
+  @protected
+  List<dynamic>? api2wire_opt_box_autoadd___record__f64_f64(
+      (double, double)? raw) {
+    return raw == null ? null : api2wire_box_autoadd___record__f64_f64(raw);
   }
 
   @protected
