@@ -632,131 +632,131 @@ class NetworkManager {
     final accelerometer = SensorManager.accelerometer.value;
     if (accelerometer != null && localUpdateScheduler.accelerometer?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'accelerometer', values: [
-        ('x', SimpleValue.number(accelerometer[0])),
-        ('y', SimpleValue.number(accelerometer[1])),
-        ('z', SimpleValue.number(accelerometer[2])),
-        ('facingDir', SimpleValue.string(facingDirectionNames[SensorManager.facingDirection.value![0].toInt()])),
-        ('device', const SimpleValue.number(0)),
+        ('x', DartValue.number(accelerometer[0])),
+        ('y', DartValue.number(accelerometer[1])),
+        ('z', DartValue.number(accelerometer[2])),
+        ('facingDir', DartValue.string(facingDirectionNames[SensorManager.facingDirection.value![0].toInt()])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final linearAccelerometer = SensorManager.linearAccelerometer.value;
     if (linearAccelerometer != null && localUpdateScheduler.linearAccelerometer?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'linearAcceleration', values: [
-        ('x', SimpleValue.number(linearAccelerometer[0])),
-        ('y', SimpleValue.number(linearAccelerometer[1])),
-        ('z', SimpleValue.number(linearAccelerometer[2])),
-        ('device', const SimpleValue.number(0)),
+        ('x', DartValue.number(linearAccelerometer[0])),
+        ('y', DartValue.number(linearAccelerometer[1])),
+        ('z', DartValue.number(linearAccelerometer[2])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final gravity = SensorManager.gravity.value;
     if (gravity != null && localUpdateScheduler.gravity?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'gravity', values: [
-        ('x', SimpleValue.number(gravity[0])),
-        ('y', SimpleValue.number(gravity[1])),
-        ('z', SimpleValue.number(gravity[2])),
-        ('device', const SimpleValue.number(0)),
+        ('x', DartValue.number(gravity[0])),
+        ('y', DartValue.number(gravity[1])),
+        ('z', DartValue.number(gravity[2])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final lightLevel = SensorManager.lightLevel.value;
     if (lightLevel != null && localUpdateScheduler.lightLevel?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'lightLevel', values: [
-        ('level', SimpleValue.number(lightLevel[0])),
-        ('device', const SimpleValue.number(0)),
+        ('level', DartValue.number(lightLevel[0])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final pressure = SensorManager.pressure.value;
     if (pressure != null && localUpdateScheduler.pressure?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'pressure', values: [
-        ('pressure', SimpleValue.number(pressure[0])),
-        ('device', const SimpleValue.number(0)),
+        ('pressure', DartValue.number(pressure[0])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final gyroscope = SensorManager.gyroscope.value;
     if (gyroscope != null && localUpdateScheduler.gyroscope?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'gyroscope', values: [
-        ('x', SimpleValue.number(gyroscope[0])),
-        ('y', SimpleValue.number(gyroscope[1])),
-        ('z', SimpleValue.number(gyroscope[2])),
-        ('device', const SimpleValue.number(0)),
+        ('x', DartValue.number(gyroscope[0])),
+        ('y', DartValue.number(gyroscope[1])),
+        ('z', DartValue.number(gyroscope[2])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final magnetometer = SensorManager.magnetometer.value;
     if (magnetometer != null && localUpdateScheduler.magneticField?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'magneticField', values: [
-        ('x', SimpleValue.number(magnetometer[0])),
-        ('y', SimpleValue.number(magnetometer[1])),
-        ('z', SimpleValue.number(magnetometer[2])),
-        ('device', const SimpleValue.number(0)),
+        ('x', DartValue.number(magnetometer[0])),
+        ('y', DartValue.number(magnetometer[1])),
+        ('z', DartValue.number(magnetometer[2])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final gps = SensorManager.gps.value;
     if (gps != null && localUpdateScheduler.gps?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'location', values: [
-        ('latitude', SimpleValue.number(gps[0])),
-        ('longitude', SimpleValue.number(gps[1])),
-        ('heading', SimpleValue.number(gps[2])),
-        ('altitude', SimpleValue.number(gps[3])),
-        ('device', const SimpleValue.number(0)),
+        ('latitude', DartValue.number(gps[0])),
+        ('longitude', DartValue.number(gps[1])),
+        ('heading', DartValue.number(gps[2])),
+        ('altitude', DartValue.number(gps[3])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final orientation = SensorManager.orientation.value;
     if (orientation != null && localUpdateScheduler.orientation?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'orientation', values: [
-        ('x', SimpleValue.number(orientation[0])),
-        ('y', SimpleValue.number(orientation[1])),
-        ('z', SimpleValue.number(orientation[2])),
-        ('heading', SimpleValue.number(orientation[0])),
-        ('dir', SimpleValue.string(compassDirectionNames[SensorManager.compassDirection.value![0].toInt()])),
-        ('cardinalDir', SimpleValue.string(compassCardinalDirectionNames[SensorManager.compassCardinalDirection.value![0].toInt()])),
-        ('device', const SimpleValue.number(0)),
+        ('x', DartValue.number(orientation[0])),
+        ('y', DartValue.number(orientation[1])),
+        ('z', DartValue.number(orientation[2])),
+        ('heading', DartValue.number(orientation[0])),
+        ('dir', DartValue.string(compassDirectionNames[SensorManager.compassDirection.value![0].toInt()])),
+        ('cardinalDir', DartValue.string(compassCardinalDirectionNames[SensorManager.compassCardinalDirection.value![0].toInt()])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final temperature = SensorManager.temperature.value;
     if (temperature != null && localUpdateScheduler.temperature?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'temperature', values: [
-        ('temp', SimpleValue.number(temperature[0])),
-        ('device', const SimpleValue.number(0)),
+        ('temp', DartValue.number(temperature[0])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final relativeHumidity = SensorManager.relativeHumidity.value;
     if (relativeHumidity != null && localUpdateScheduler.relativeHumidity?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'humidity', values: [
-        ('relative', SimpleValue.number(relativeHumidity[0])),
-        ('device', const SimpleValue.number(0)),
+        ('relative', DartValue.number(relativeHumidity[0])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final microphone = SensorManager.microphone.value;
     if (microphone != null && localUpdateScheduler.microphone?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'microphoneLevel', values: [
-        ('volume', SimpleValue.number(microphone[0])),
-        ('device', const SimpleValue.number(0)),
+        ('volume', DartValue.number(microphone[0])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final proximity = SensorManager.proximity.value;
     if (proximity != null && localUpdateScheduler.proximity?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'proximity', values: [
-        ('distance', SimpleValue.number(proximity[0])),
-        ('device', const SimpleValue.number(0)),
+        ('distance', DartValue.number(proximity[0])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 
     final stepCount = SensorManager.stepCount.value;
     if (stepCount != null && localUpdateScheduler.stepCount?.advance(now) == true) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: 'stepCount', values: [
-        ('count', SimpleValue.number(stepCount[0])),
-        ('device', const SimpleValue.number(0)),
+        ('count', DartValue.number(stepCount[0])),
+        ('device', const DartValue.number(0)),
       ]));
     }
 

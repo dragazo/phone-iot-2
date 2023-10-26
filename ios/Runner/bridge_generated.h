@@ -30,57 +30,57 @@ typedef struct wire_RustCommand_TogglePaused {
 
 } wire_RustCommand_TogglePaused;
 
-typedef struct wire_SimpleValue_Bool {
+typedef struct wire_DartValue_Bool {
   bool field0;
-} wire_SimpleValue_Bool;
+} wire_DartValue_Bool;
 
-typedef struct wire_SimpleValue_Number {
+typedef struct wire_DartValue_Number {
   double field0;
-} wire_SimpleValue_Number;
+} wire_DartValue_Number;
 
-typedef struct wire_SimpleValue_String {
+typedef struct wire_DartValue_String {
   struct wire_uint_8_list *field0;
-} wire_SimpleValue_String;
+} wire_DartValue_String;
 
-typedef struct wire_list_simple_value {
-  struct wire_SimpleValue *ptr;
+typedef struct wire_list_dart_value {
+  struct wire_DartValue *ptr;
   int32_t len;
-} wire_list_simple_value;
+} wire_list_dart_value;
 
-typedef struct wire_SimpleValue_List {
-  struct wire_list_simple_value *field0;
-} wire_SimpleValue_List;
+typedef struct wire_DartValue_List {
+  struct wire_list_dart_value *field0;
+} wire_DartValue_List;
 
-typedef struct wire_SimpleValue_Image {
+typedef struct wire_DartValue_Image {
   struct wire_uint_8_list *field0;
-} wire_SimpleValue_Image;
+} wire_DartValue_Image;
 
-typedef union SimpleValueKind {
-  struct wire_SimpleValue_Bool *Bool;
-  struct wire_SimpleValue_Number *Number;
-  struct wire_SimpleValue_String *String;
-  struct wire_SimpleValue_List *List;
-  struct wire_SimpleValue_Image *Image;
-} SimpleValueKind;
+typedef union DartValueKind {
+  struct wire_DartValue_Bool *Bool;
+  struct wire_DartValue_Number *Number;
+  struct wire_DartValue_String *String;
+  struct wire_DartValue_List *List;
+  struct wire_DartValue_Image *Image;
+} DartValueKind;
 
-typedef struct wire_SimpleValue {
+typedef struct wire_DartValue {
   int32_t tag;
-  union SimpleValueKind *kind;
-} wire_SimpleValue;
+  union DartValueKind *kind;
+} wire_DartValue;
 
-typedef struct wire___record__String_simple_value {
+typedef struct wire___record__String_dart_value {
   struct wire_uint_8_list *field0;
-  struct wire_SimpleValue field1;
-} wire___record__String_simple_value;
+  struct wire_DartValue field1;
+} wire___record__String_dart_value;
 
-typedef struct wire_list___record__String_simple_value {
-  struct wire___record__String_simple_value *ptr;
+typedef struct wire_list___record__String_dart_value {
+  struct wire___record__String_dart_value *ptr;
   int32_t len;
-} wire_list___record__String_simple_value;
+} wire_list___record__String_dart_value;
 
 typedef struct wire_RustCommand_InjectMessage {
   struct wire_uint_8_list *msg_type;
-  struct wire_list___record__String_simple_value *values;
+  struct wire_list___record__String_dart_value *values;
 } wire_RustCommand_InjectMessage;
 
 typedef union RustCommandKind {
@@ -101,7 +101,7 @@ typedef struct wire_DartRequestKey {
 } wire_DartRequestKey;
 
 typedef struct wire_RequestResult_Ok {
-  struct wire_SimpleValue *field0;
+  struct wire_DartValue *field0;
 } wire_RequestResult_Ok;
 
 typedef struct wire_RequestResult_Err {
@@ -144,17 +144,27 @@ void wire_complete_request(int64_t port_,
 
 struct wire_DartRequestKey *new_box_autoadd_dart_request_key_0(void);
 
+struct wire_DartValue *new_box_autoadd_dart_value_0(void);
+
 struct wire_RequestResult *new_box_autoadd_request_result_0(void);
 
 struct wire_RustCommand *new_box_autoadd_rust_command_0(void);
 
-struct wire_SimpleValue *new_box_autoadd_simple_value_0(void);
+struct wire_list___record__String_dart_value *new_list___record__String_dart_value_0(int32_t len);
 
-struct wire_list___record__String_simple_value *new_list___record__String_simple_value_0(int32_t len);
-
-struct wire_list_simple_value *new_list_simple_value_0(int32_t len);
+struct wire_list_dart_value *new_list_dart_value_0(int32_t len);
 
 struct wire_uint_8_list *new_uint_8_list_0(int32_t len);
+
+union DartValueKind *inflate_DartValue_Bool(void);
+
+union DartValueKind *inflate_DartValue_Number(void);
+
+union DartValueKind *inflate_DartValue_String(void);
+
+union DartValueKind *inflate_DartValue_List(void);
+
+union DartValueKind *inflate_DartValue_Image(void);
 
 union RequestResultKind *inflate_RequestResult_Ok(void);
 
@@ -163,16 +173,6 @@ union RequestResultKind *inflate_RequestResult_Err(void);
 union RustCommandKind *inflate_RustCommand_SetProject(void);
 
 union RustCommandKind *inflate_RustCommand_InjectMessage(void);
-
-union SimpleValueKind *inflate_SimpleValue_Bool(void);
-
-union SimpleValueKind *inflate_SimpleValue_Number(void);
-
-union SimpleValueKind *inflate_SimpleValue_String(void);
-
-union SimpleValueKind *inflate_SimpleValue_List(void);
-
-union SimpleValueKind *inflate_SimpleValue_Image(void);
 
 void free_WireSyncReturn(WireSyncReturn ptr);
 
@@ -183,21 +183,21 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) wire_recv_commands);
     dummy_var ^= ((int64_t) (void*) wire_complete_request);
     dummy_var ^= ((int64_t) (void*) new_box_autoadd_dart_request_key_0);
+    dummy_var ^= ((int64_t) (void*) new_box_autoadd_dart_value_0);
     dummy_var ^= ((int64_t) (void*) new_box_autoadd_request_result_0);
     dummy_var ^= ((int64_t) (void*) new_box_autoadd_rust_command_0);
-    dummy_var ^= ((int64_t) (void*) new_box_autoadd_simple_value_0);
-    dummy_var ^= ((int64_t) (void*) new_list___record__String_simple_value_0);
-    dummy_var ^= ((int64_t) (void*) new_list_simple_value_0);
+    dummy_var ^= ((int64_t) (void*) new_list___record__String_dart_value_0);
+    dummy_var ^= ((int64_t) (void*) new_list_dart_value_0);
     dummy_var ^= ((int64_t) (void*) new_uint_8_list_0);
+    dummy_var ^= ((int64_t) (void*) inflate_DartValue_Bool);
+    dummy_var ^= ((int64_t) (void*) inflate_DartValue_Number);
+    dummy_var ^= ((int64_t) (void*) inflate_DartValue_String);
+    dummy_var ^= ((int64_t) (void*) inflate_DartValue_List);
+    dummy_var ^= ((int64_t) (void*) inflate_DartValue_Image);
     dummy_var ^= ((int64_t) (void*) inflate_RequestResult_Ok);
     dummy_var ^= ((int64_t) (void*) inflate_RequestResult_Err);
     dummy_var ^= ((int64_t) (void*) inflate_RustCommand_SetProject);
     dummy_var ^= ((int64_t) (void*) inflate_RustCommand_InjectMessage);
-    dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_Bool);
-    dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_Number);
-    dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_String);
-    dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_List);
-    dummy_var ^= ((int64_t) (void*) inflate_SimpleValue_Image);
     dummy_var ^= ((int64_t) (void*) free_WireSyncReturn);
     dummy_var ^= ((int64_t) (void*) store_dart_post_cobject);
     dummy_var ^= ((int64_t) (void*) get_dart_object);

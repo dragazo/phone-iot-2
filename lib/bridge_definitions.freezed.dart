@@ -20131,23 +20131,868 @@ abstract class DartCommand_ListenToSensors implements DartCommand {
 }
 
 /// @nodoc
+mixin _$DartValue {
+  Object get field0 => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
+    required TResult Function(double field0) number,
+    required TResult Function(String field0) string,
+    required TResult Function(List<DartValue> field0) list,
+    required TResult Function(Uint8List field0) image,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
+    TResult? Function(double field0)? number,
+    TResult? Function(String field0)? string,
+    TResult? Function(List<DartValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
+    TResult Function(double field0)? number,
+    TResult Function(String field0)? string,
+    TResult Function(List<DartValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartValue_Bool value) bool,
+    required TResult Function(DartValue_Number value) number,
+    required TResult Function(DartValue_String value) string,
+    required TResult Function(DartValue_List value) list,
+    required TResult Function(DartValue_Image value) image,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartValue_Bool value)? bool,
+    TResult? Function(DartValue_Number value)? number,
+    TResult? Function(DartValue_String value)? string,
+    TResult? Function(DartValue_List value)? list,
+    TResult? Function(DartValue_Image value)? image,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartValue_Bool value)? bool,
+    TResult Function(DartValue_Number value)? number,
+    TResult Function(DartValue_String value)? string,
+    TResult Function(DartValue_List value)? list,
+    TResult Function(DartValue_Image value)? image,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DartValueCopyWith<$Res> {
+  factory $DartValueCopyWith(DartValue value, $Res Function(DartValue) then) =
+      _$DartValueCopyWithImpl<$Res, DartValue>;
+}
+
+/// @nodoc
+class _$DartValueCopyWithImpl<$Res, $Val extends DartValue>
+    implements $DartValueCopyWith<$Res> {
+  _$DartValueCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$DartValue_BoolCopyWith<$Res> {
+  factory _$$DartValue_BoolCopyWith(
+          _$DartValue_Bool value, $Res Function(_$DartValue_Bool) then) =
+      __$$DartValue_BoolCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool field0});
+}
+
+/// @nodoc
+class __$$DartValue_BoolCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_Bool>
+    implements _$$DartValue_BoolCopyWith<$Res> {
+  __$$DartValue_BoolCopyWithImpl(
+      _$DartValue_Bool _value, $Res Function(_$DartValue_Bool) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$DartValue_Bool(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartValue_Bool implements DartValue_Bool {
+  const _$DartValue_Bool(this.field0);
+
+  @override
+  final bool field0;
+
+  @override
+  String toString() {
+    return 'DartValue.bool(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartValue_Bool &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartValue_BoolCopyWith<_$DartValue_Bool> get copyWith =>
+      __$$DartValue_BoolCopyWithImpl<_$DartValue_Bool>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
+    required TResult Function(double field0) number,
+    required TResult Function(String field0) string,
+    required TResult Function(List<DartValue> field0) list,
+    required TResult Function(Uint8List field0) image,
+  }) {
+    return bool(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
+    TResult? Function(double field0)? number,
+    TResult? Function(String field0)? string,
+    TResult? Function(List<DartValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
+  }) {
+    return bool?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
+    TResult Function(double field0)? number,
+    TResult Function(String field0)? string,
+    TResult Function(List<DartValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
+    required TResult orElse(),
+  }) {
+    if (bool != null) {
+      return bool(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartValue_Bool value) bool,
+    required TResult Function(DartValue_Number value) number,
+    required TResult Function(DartValue_String value) string,
+    required TResult Function(DartValue_List value) list,
+    required TResult Function(DartValue_Image value) image,
+  }) {
+    return bool(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartValue_Bool value)? bool,
+    TResult? Function(DartValue_Number value)? number,
+    TResult? Function(DartValue_String value)? string,
+    TResult? Function(DartValue_List value)? list,
+    TResult? Function(DartValue_Image value)? image,
+  }) {
+    return bool?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartValue_Bool value)? bool,
+    TResult Function(DartValue_Number value)? number,
+    TResult Function(DartValue_String value)? string,
+    TResult Function(DartValue_List value)? list,
+    TResult Function(DartValue_Image value)? image,
+    required TResult orElse(),
+  }) {
+    if (bool != null) {
+      return bool(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartValue_Bool implements DartValue {
+  const factory DartValue_Bool(final bool field0) = _$DartValue_Bool;
+
+  @override
+  bool get field0;
+  @JsonKey(ignore: true)
+  _$$DartValue_BoolCopyWith<_$DartValue_Bool> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartValue_NumberCopyWith<$Res> {
+  factory _$$DartValue_NumberCopyWith(
+          _$DartValue_Number value, $Res Function(_$DartValue_Number) then) =
+      __$$DartValue_NumberCopyWithImpl<$Res>;
+  @useResult
+  $Res call({double field0});
+}
+
+/// @nodoc
+class __$$DartValue_NumberCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_Number>
+    implements _$$DartValue_NumberCopyWith<$Res> {
+  __$$DartValue_NumberCopyWithImpl(
+      _$DartValue_Number _value, $Res Function(_$DartValue_Number) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$DartValue_Number(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartValue_Number implements DartValue_Number {
+  const _$DartValue_Number(this.field0);
+
+  @override
+  final double field0;
+
+  @override
+  String toString() {
+    return 'DartValue.number(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartValue_Number &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartValue_NumberCopyWith<_$DartValue_Number> get copyWith =>
+      __$$DartValue_NumberCopyWithImpl<_$DartValue_Number>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
+    required TResult Function(double field0) number,
+    required TResult Function(String field0) string,
+    required TResult Function(List<DartValue> field0) list,
+    required TResult Function(Uint8List field0) image,
+  }) {
+    return number(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
+    TResult? Function(double field0)? number,
+    TResult? Function(String field0)? string,
+    TResult? Function(List<DartValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
+  }) {
+    return number?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
+    TResult Function(double field0)? number,
+    TResult Function(String field0)? string,
+    TResult Function(List<DartValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
+    required TResult orElse(),
+  }) {
+    if (number != null) {
+      return number(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartValue_Bool value) bool,
+    required TResult Function(DartValue_Number value) number,
+    required TResult Function(DartValue_String value) string,
+    required TResult Function(DartValue_List value) list,
+    required TResult Function(DartValue_Image value) image,
+  }) {
+    return number(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartValue_Bool value)? bool,
+    TResult? Function(DartValue_Number value)? number,
+    TResult? Function(DartValue_String value)? string,
+    TResult? Function(DartValue_List value)? list,
+    TResult? Function(DartValue_Image value)? image,
+  }) {
+    return number?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartValue_Bool value)? bool,
+    TResult Function(DartValue_Number value)? number,
+    TResult Function(DartValue_String value)? string,
+    TResult Function(DartValue_List value)? list,
+    TResult Function(DartValue_Image value)? image,
+    required TResult orElse(),
+  }) {
+    if (number != null) {
+      return number(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartValue_Number implements DartValue {
+  const factory DartValue_Number(final double field0) = _$DartValue_Number;
+
+  @override
+  double get field0;
+  @JsonKey(ignore: true)
+  _$$DartValue_NumberCopyWith<_$DartValue_Number> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartValue_StringCopyWith<$Res> {
+  factory _$$DartValue_StringCopyWith(
+          _$DartValue_String value, $Res Function(_$DartValue_String) then) =
+      __$$DartValue_StringCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String field0});
+}
+
+/// @nodoc
+class __$$DartValue_StringCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_String>
+    implements _$$DartValue_StringCopyWith<$Res> {
+  __$$DartValue_StringCopyWithImpl(
+      _$DartValue_String _value, $Res Function(_$DartValue_String) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$DartValue_String(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartValue_String implements DartValue_String {
+  const _$DartValue_String(this.field0);
+
+  @override
+  final String field0;
+
+  @override
+  String toString() {
+    return 'DartValue.string(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartValue_String &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartValue_StringCopyWith<_$DartValue_String> get copyWith =>
+      __$$DartValue_StringCopyWithImpl<_$DartValue_String>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
+    required TResult Function(double field0) number,
+    required TResult Function(String field0) string,
+    required TResult Function(List<DartValue> field0) list,
+    required TResult Function(Uint8List field0) image,
+  }) {
+    return string(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
+    TResult? Function(double field0)? number,
+    TResult? Function(String field0)? string,
+    TResult? Function(List<DartValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
+  }) {
+    return string?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
+    TResult Function(double field0)? number,
+    TResult Function(String field0)? string,
+    TResult Function(List<DartValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
+    required TResult orElse(),
+  }) {
+    if (string != null) {
+      return string(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartValue_Bool value) bool,
+    required TResult Function(DartValue_Number value) number,
+    required TResult Function(DartValue_String value) string,
+    required TResult Function(DartValue_List value) list,
+    required TResult Function(DartValue_Image value) image,
+  }) {
+    return string(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartValue_Bool value)? bool,
+    TResult? Function(DartValue_Number value)? number,
+    TResult? Function(DartValue_String value)? string,
+    TResult? Function(DartValue_List value)? list,
+    TResult? Function(DartValue_Image value)? image,
+  }) {
+    return string?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartValue_Bool value)? bool,
+    TResult Function(DartValue_Number value)? number,
+    TResult Function(DartValue_String value)? string,
+    TResult Function(DartValue_List value)? list,
+    TResult Function(DartValue_Image value)? image,
+    required TResult orElse(),
+  }) {
+    if (string != null) {
+      return string(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartValue_String implements DartValue {
+  const factory DartValue_String(final String field0) = _$DartValue_String;
+
+  @override
+  String get field0;
+  @JsonKey(ignore: true)
+  _$$DartValue_StringCopyWith<_$DartValue_String> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartValue_ListCopyWith<$Res> {
+  factory _$$DartValue_ListCopyWith(
+          _$DartValue_List value, $Res Function(_$DartValue_List) then) =
+      __$$DartValue_ListCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<DartValue> field0});
+}
+
+/// @nodoc
+class __$$DartValue_ListCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_List>
+    implements _$$DartValue_ListCopyWith<$Res> {
+  __$$DartValue_ListCopyWithImpl(
+      _$DartValue_List _value, $Res Function(_$DartValue_List) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$DartValue_List(
+      null == field0
+          ? _value._field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as List<DartValue>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartValue_List implements DartValue_List {
+  const _$DartValue_List(final List<DartValue> field0) : _field0 = field0;
+
+  final List<DartValue> _field0;
+  @override
+  List<DartValue> get field0 {
+    if (_field0 is EqualUnmodifiableListView) return _field0;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_field0);
+  }
+
+  @override
+  String toString() {
+    return 'DartValue.list(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartValue_List &&
+            const DeepCollectionEquality().equals(other._field0, _field0));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_field0));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartValue_ListCopyWith<_$DartValue_List> get copyWith =>
+      __$$DartValue_ListCopyWithImpl<_$DartValue_List>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
+    required TResult Function(double field0) number,
+    required TResult Function(String field0) string,
+    required TResult Function(List<DartValue> field0) list,
+    required TResult Function(Uint8List field0) image,
+  }) {
+    return list(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
+    TResult? Function(double field0)? number,
+    TResult? Function(String field0)? string,
+    TResult? Function(List<DartValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
+  }) {
+    return list?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
+    TResult Function(double field0)? number,
+    TResult Function(String field0)? string,
+    TResult Function(List<DartValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
+    required TResult orElse(),
+  }) {
+    if (list != null) {
+      return list(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartValue_Bool value) bool,
+    required TResult Function(DartValue_Number value) number,
+    required TResult Function(DartValue_String value) string,
+    required TResult Function(DartValue_List value) list,
+    required TResult Function(DartValue_Image value) image,
+  }) {
+    return list(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartValue_Bool value)? bool,
+    TResult? Function(DartValue_Number value)? number,
+    TResult? Function(DartValue_String value)? string,
+    TResult? Function(DartValue_List value)? list,
+    TResult? Function(DartValue_Image value)? image,
+  }) {
+    return list?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartValue_Bool value)? bool,
+    TResult Function(DartValue_Number value)? number,
+    TResult Function(DartValue_String value)? string,
+    TResult Function(DartValue_List value)? list,
+    TResult Function(DartValue_Image value)? image,
+    required TResult orElse(),
+  }) {
+    if (list != null) {
+      return list(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartValue_List implements DartValue {
+  const factory DartValue_List(final List<DartValue> field0) = _$DartValue_List;
+
+  @override
+  List<DartValue> get field0;
+  @JsonKey(ignore: true)
+  _$$DartValue_ListCopyWith<_$DartValue_List> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartValue_ImageCopyWith<$Res> {
+  factory _$$DartValue_ImageCopyWith(
+          _$DartValue_Image value, $Res Function(_$DartValue_Image) then) =
+      __$$DartValue_ImageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Uint8List field0});
+}
+
+/// @nodoc
+class __$$DartValue_ImageCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_Image>
+    implements _$$DartValue_ImageCopyWith<$Res> {
+  __$$DartValue_ImageCopyWithImpl(
+      _$DartValue_Image _value, $Res Function(_$DartValue_Image) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$DartValue_Image(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartValue_Image implements DartValue_Image {
+  const _$DartValue_Image(this.field0);
+
+  @override
+  final Uint8List field0;
+
+  @override
+  String toString() {
+    return 'DartValue.image(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartValue_Image &&
+            const DeepCollectionEquality().equals(other.field0, field0));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(field0));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartValue_ImageCopyWith<_$DartValue_Image> get copyWith =>
+      __$$DartValue_ImageCopyWithImpl<_$DartValue_Image>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool field0) bool,
+    required TResult Function(double field0) number,
+    required TResult Function(String field0) string,
+    required TResult Function(List<DartValue> field0) list,
+    required TResult Function(Uint8List field0) image,
+  }) {
+    return image(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool field0)? bool,
+    TResult? Function(double field0)? number,
+    TResult? Function(String field0)? string,
+    TResult? Function(List<DartValue> field0)? list,
+    TResult? Function(Uint8List field0)? image,
+  }) {
+    return image?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool field0)? bool,
+    TResult Function(double field0)? number,
+    TResult Function(String field0)? string,
+    TResult Function(List<DartValue> field0)? list,
+    TResult Function(Uint8List field0)? image,
+    required TResult orElse(),
+  }) {
+    if (image != null) {
+      return image(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartValue_Bool value) bool,
+    required TResult Function(DartValue_Number value) number,
+    required TResult Function(DartValue_String value) string,
+    required TResult Function(DartValue_List value) list,
+    required TResult Function(DartValue_Image value) image,
+  }) {
+    return image(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartValue_Bool value)? bool,
+    TResult? Function(DartValue_Number value)? number,
+    TResult? Function(DartValue_String value)? string,
+    TResult? Function(DartValue_List value)? list,
+    TResult? Function(DartValue_Image value)? image,
+  }) {
+    return image?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartValue_Bool value)? bool,
+    TResult Function(DartValue_Number value)? number,
+    TResult Function(DartValue_String value)? string,
+    TResult Function(DartValue_List value)? list,
+    TResult Function(DartValue_Image value)? image,
+    required TResult orElse(),
+  }) {
+    if (image != null) {
+      return image(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartValue_Image implements DartValue {
+  const factory DartValue_Image(final Uint8List field0) = _$DartValue_Image;
+
+  @override
+  Uint8List get field0;
+  @JsonKey(ignore: true)
+  _$$DartValue_ImageCopyWith<_$DartValue_Image> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$RequestResult {
   Object get field0 => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SimpleValue field0) ok,
+    required TResult Function(DartValue field0) ok,
     required TResult Function(String field0) err,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SimpleValue field0)? ok,
+    TResult? Function(DartValue field0)? ok,
     TResult? Function(String field0)? err,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SimpleValue field0)? ok,
+    TResult Function(DartValue field0)? ok,
     TResult Function(String field0)? err,
     required TResult orElse(),
   }) =>
@@ -20197,9 +21042,9 @@ abstract class _$$RequestResult_OkCopyWith<$Res> {
           _$RequestResult_Ok value, $Res Function(_$RequestResult_Ok) then) =
       __$$RequestResult_OkCopyWithImpl<$Res>;
   @useResult
-  $Res call({SimpleValue field0});
+  $Res call({DartValue field0});
 
-  $SimpleValueCopyWith<$Res> get field0;
+  $DartValueCopyWith<$Res> get field0;
 }
 
 /// @nodoc
@@ -20219,14 +21064,14 @@ class __$$RequestResult_OkCopyWithImpl<$Res>
       null == field0
           ? _value.field0
           : field0 // ignore: cast_nullable_to_non_nullable
-              as SimpleValue,
+              as DartValue,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SimpleValueCopyWith<$Res> get field0 {
-    return $SimpleValueCopyWith<$Res>(_value.field0, (value) {
+  $DartValueCopyWith<$Res> get field0 {
+    return $DartValueCopyWith<$Res>(_value.field0, (value) {
       return _then(_value.copyWith(field0: value));
     });
   }
@@ -20238,7 +21083,7 @@ class _$RequestResult_Ok implements RequestResult_Ok {
   const _$RequestResult_Ok(this.field0);
 
   @override
-  final SimpleValue field0;
+  final DartValue field0;
 
   @override
   String toString() {
@@ -20265,7 +21110,7 @@ class _$RequestResult_Ok implements RequestResult_Ok {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SimpleValue field0) ok,
+    required TResult Function(DartValue field0) ok,
     required TResult Function(String field0) err,
   }) {
     return ok(field0);
@@ -20274,7 +21119,7 @@ class _$RequestResult_Ok implements RequestResult_Ok {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SimpleValue field0)? ok,
+    TResult? Function(DartValue field0)? ok,
     TResult? Function(String field0)? err,
   }) {
     return ok?.call(field0);
@@ -20283,7 +21128,7 @@ class _$RequestResult_Ok implements RequestResult_Ok {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SimpleValue field0)? ok,
+    TResult Function(DartValue field0)? ok,
     TResult Function(String field0)? err,
     required TResult orElse(),
   }) {
@@ -20326,10 +21171,10 @@ class _$RequestResult_Ok implements RequestResult_Ok {
 }
 
 abstract class RequestResult_Ok implements RequestResult {
-  const factory RequestResult_Ok(final SimpleValue field0) = _$RequestResult_Ok;
+  const factory RequestResult_Ok(final DartValue field0) = _$RequestResult_Ok;
 
   @override
-  SimpleValue get field0;
+  DartValue get field0;
   @JsonKey(ignore: true)
   _$$RequestResult_OkCopyWith<_$RequestResult_Ok> get copyWith =>
       throw _privateConstructorUsedError;
@@ -20399,7 +21244,7 @@ class _$RequestResult_Err implements RequestResult_Err {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SimpleValue field0) ok,
+    required TResult Function(DartValue field0) ok,
     required TResult Function(String field0) err,
   }) {
     return err(field0);
@@ -20408,7 +21253,7 @@ class _$RequestResult_Err implements RequestResult_Err {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SimpleValue field0)? ok,
+    TResult? Function(DartValue field0)? ok,
     TResult? Function(String field0)? err,
   }) {
     return err?.call(field0);
@@ -20417,7 +21262,7 @@ class _$RequestResult_Err implements RequestResult_Err {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SimpleValue field0)? ok,
+    TResult Function(DartValue field0)? ok,
     TResult Function(String field0)? err,
     required TResult orElse(),
   }) {
@@ -20477,8 +21322,7 @@ mixin _$RustCommand {
     required TResult Function() start,
     required TResult Function() stop,
     required TResult Function() togglePaused,
-    required TResult Function(
-            String msgType, List<(String, SimpleValue)> values)
+    required TResult Function(String msgType, List<(String, DartValue)> values)
         injectMessage,
   }) =>
       throw _privateConstructorUsedError;
@@ -20488,7 +21332,7 @@ mixin _$RustCommand {
     TResult? Function()? start,
     TResult? Function()? stop,
     TResult? Function()? togglePaused,
-    TResult? Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult? Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
   }) =>
       throw _privateConstructorUsedError;
@@ -20498,7 +21342,7 @@ mixin _$RustCommand {
     TResult Function()? start,
     TResult Function()? stop,
     TResult Function()? togglePaused,
-    TResult Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
     required TResult orElse(),
   }) =>
@@ -20620,8 +21464,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
     required TResult Function() start,
     required TResult Function() stop,
     required TResult Function() togglePaused,
-    required TResult Function(
-            String msgType, List<(String, SimpleValue)> values)
+    required TResult Function(String msgType, List<(String, DartValue)> values)
         injectMessage,
   }) {
     return setProject(xml);
@@ -20634,7 +21477,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
     TResult? Function()? start,
     TResult? Function()? stop,
     TResult? Function()? togglePaused,
-    TResult? Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult? Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
   }) {
     return setProject?.call(xml);
@@ -20647,7 +21490,7 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
     TResult Function()? start,
     TResult Function()? stop,
     TResult Function()? togglePaused,
-    TResult Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
     required TResult orElse(),
   }) {
@@ -20750,8 +21593,7 @@ class _$RustCommand_Start implements RustCommand_Start {
     required TResult Function() start,
     required TResult Function() stop,
     required TResult Function() togglePaused,
-    required TResult Function(
-            String msgType, List<(String, SimpleValue)> values)
+    required TResult Function(String msgType, List<(String, DartValue)> values)
         injectMessage,
   }) {
     return start();
@@ -20764,7 +21606,7 @@ class _$RustCommand_Start implements RustCommand_Start {
     TResult? Function()? start,
     TResult? Function()? stop,
     TResult? Function()? togglePaused,
-    TResult? Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult? Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
   }) {
     return start?.call();
@@ -20777,7 +21619,7 @@ class _$RustCommand_Start implements RustCommand_Start {
     TResult Function()? start,
     TResult Function()? stop,
     TResult Function()? togglePaused,
-    TResult Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
     required TResult orElse(),
   }) {
@@ -20874,8 +21716,7 @@ class _$RustCommand_Stop implements RustCommand_Stop {
     required TResult Function() start,
     required TResult Function() stop,
     required TResult Function() togglePaused,
-    required TResult Function(
-            String msgType, List<(String, SimpleValue)> values)
+    required TResult Function(String msgType, List<(String, DartValue)> values)
         injectMessage,
   }) {
     return stop();
@@ -20888,7 +21729,7 @@ class _$RustCommand_Stop implements RustCommand_Stop {
     TResult? Function()? start,
     TResult? Function()? stop,
     TResult? Function()? togglePaused,
-    TResult? Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult? Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
   }) {
     return stop?.call();
@@ -20901,7 +21742,7 @@ class _$RustCommand_Stop implements RustCommand_Stop {
     TResult Function()? start,
     TResult Function()? stop,
     TResult Function()? togglePaused,
-    TResult Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
     required TResult orElse(),
   }) {
@@ -20999,8 +21840,7 @@ class _$RustCommand_TogglePaused implements RustCommand_TogglePaused {
     required TResult Function() start,
     required TResult Function() stop,
     required TResult Function() togglePaused,
-    required TResult Function(
-            String msgType, List<(String, SimpleValue)> values)
+    required TResult Function(String msgType, List<(String, DartValue)> values)
         injectMessage,
   }) {
     return togglePaused();
@@ -21013,7 +21853,7 @@ class _$RustCommand_TogglePaused implements RustCommand_TogglePaused {
     TResult? Function()? start,
     TResult? Function()? stop,
     TResult? Function()? togglePaused,
-    TResult? Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult? Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
   }) {
     return togglePaused?.call();
@@ -21026,7 +21866,7 @@ class _$RustCommand_TogglePaused implements RustCommand_TogglePaused {
     TResult Function()? start,
     TResult Function()? stop,
     TResult Function()? togglePaused,
-    TResult Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
     required TResult orElse(),
   }) {
@@ -21088,7 +21928,7 @@ abstract class _$$RustCommand_InjectMessageCopyWith<$Res> {
           $Res Function(_$RustCommand_InjectMessage) then) =
       __$$RustCommand_InjectMessageCopyWithImpl<$Res>;
   @useResult
-  $Res call({String msgType, List<(String, SimpleValue)> values});
+  $Res call({String msgType, List<(String, DartValue)> values});
 }
 
 /// @nodoc
@@ -21113,7 +21953,7 @@ class __$$RustCommand_InjectMessageCopyWithImpl<$Res>
       values: null == values
           ? _value._values
           : values // ignore: cast_nullable_to_non_nullable
-              as List<(String, SimpleValue)>,
+              as List<(String, DartValue)>,
     ));
   }
 }
@@ -21122,15 +21962,14 @@ class __$$RustCommand_InjectMessageCopyWithImpl<$Res>
 
 class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
   const _$RustCommand_InjectMessage(
-      {required this.msgType,
-      required final List<(String, SimpleValue)> values})
+      {required this.msgType, required final List<(String, DartValue)> values})
       : _values = values;
 
   @override
   final String msgType;
-  final List<(String, SimpleValue)> _values;
+  final List<(String, DartValue)> _values;
   @override
-  List<(String, SimpleValue)> get values {
+  List<(String, DartValue)> get values {
     if (_values is EqualUnmodifiableListView) return _values;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_values);
@@ -21168,8 +22007,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
     required TResult Function() start,
     required TResult Function() stop,
     required TResult Function() togglePaused,
-    required TResult Function(
-            String msgType, List<(String, SimpleValue)> values)
+    required TResult Function(String msgType, List<(String, DartValue)> values)
         injectMessage,
   }) {
     return injectMessage(msgType, values);
@@ -21182,7 +22020,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
     TResult? Function()? start,
     TResult? Function()? stop,
     TResult? Function()? togglePaused,
-    TResult? Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult? Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
   }) {
     return injectMessage?.call(msgType, values);
@@ -21195,7 +22033,7 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
     TResult Function()? start,
     TResult Function()? stop,
     TResult Function()? togglePaused,
-    TResult Function(String msgType, List<(String, SimpleValue)> values)?
+    TResult Function(String msgType, List<(String, DartValue)> values)?
         injectMessage,
     required TResult orElse(),
   }) {
@@ -21249,861 +22087,12 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
 abstract class RustCommand_InjectMessage implements RustCommand {
   const factory RustCommand_InjectMessage(
           {required final String msgType,
-          required final List<(String, SimpleValue)> values}) =
+          required final List<(String, DartValue)> values}) =
       _$RustCommand_InjectMessage;
 
   String get msgType;
-  List<(String, SimpleValue)> get values;
+  List<(String, DartValue)> get values;
   @JsonKey(ignore: true)
   _$$RustCommand_InjectMessageCopyWith<_$RustCommand_InjectMessage>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$SimpleValue {
-  Object get field0 => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool field0) bool,
-    required TResult Function(double field0) number,
-    required TResult Function(String field0) string,
-    required TResult Function(List<SimpleValue> field0) list,
-    required TResult Function(Uint8List field0) image,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool field0)? bool,
-    TResult? Function(double field0)? number,
-    TResult? Function(String field0)? string,
-    TResult? Function(List<SimpleValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool field0)? bool,
-    TResult Function(double field0)? number,
-    TResult Function(String field0)? string,
-    TResult Function(List<SimpleValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SimpleValue_Bool value) bool,
-    required TResult Function(SimpleValue_Number value) number,
-    required TResult Function(SimpleValue_String value) string,
-    required TResult Function(SimpleValue_List value) list,
-    required TResult Function(SimpleValue_Image value) image,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SimpleValue_Bool value)? bool,
-    TResult? Function(SimpleValue_Number value)? number,
-    TResult? Function(SimpleValue_String value)? string,
-    TResult? Function(SimpleValue_List value)? list,
-    TResult? Function(SimpleValue_Image value)? image,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SimpleValue_Bool value)? bool,
-    TResult Function(SimpleValue_Number value)? number,
-    TResult Function(SimpleValue_String value)? string,
-    TResult Function(SimpleValue_List value)? list,
-    TResult Function(SimpleValue_Image value)? image,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SimpleValueCopyWith<$Res> {
-  factory $SimpleValueCopyWith(
-          SimpleValue value, $Res Function(SimpleValue) then) =
-      _$SimpleValueCopyWithImpl<$Res, SimpleValue>;
-}
-
-/// @nodoc
-class _$SimpleValueCopyWithImpl<$Res, $Val extends SimpleValue>
-    implements $SimpleValueCopyWith<$Res> {
-  _$SimpleValueCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$SimpleValue_BoolCopyWith<$Res> {
-  factory _$$SimpleValue_BoolCopyWith(
-          _$SimpleValue_Bool value, $Res Function(_$SimpleValue_Bool) then) =
-      __$$SimpleValue_BoolCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool field0});
-}
-
-/// @nodoc
-class __$$SimpleValue_BoolCopyWithImpl<$Res>
-    extends _$SimpleValueCopyWithImpl<$Res, _$SimpleValue_Bool>
-    implements _$$SimpleValue_BoolCopyWith<$Res> {
-  __$$SimpleValue_BoolCopyWithImpl(
-      _$SimpleValue_Bool _value, $Res Function(_$SimpleValue_Bool) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? field0 = null,
-  }) {
-    return _then(_$SimpleValue_Bool(
-      null == field0
-          ? _value.field0
-          : field0 // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SimpleValue_Bool implements SimpleValue_Bool {
-  const _$SimpleValue_Bool(this.field0);
-
-  @override
-  final bool field0;
-
-  @override
-  String toString() {
-    return 'SimpleValue.bool(field0: $field0)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SimpleValue_Bool &&
-            (identical(other.field0, field0) || other.field0 == field0));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, field0);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SimpleValue_BoolCopyWith<_$SimpleValue_Bool> get copyWith =>
-      __$$SimpleValue_BoolCopyWithImpl<_$SimpleValue_Bool>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool field0) bool,
-    required TResult Function(double field0) number,
-    required TResult Function(String field0) string,
-    required TResult Function(List<SimpleValue> field0) list,
-    required TResult Function(Uint8List field0) image,
-  }) {
-    return bool(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool field0)? bool,
-    TResult? Function(double field0)? number,
-    TResult? Function(String field0)? string,
-    TResult? Function(List<SimpleValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
-  }) {
-    return bool?.call(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool field0)? bool,
-    TResult Function(double field0)? number,
-    TResult Function(String field0)? string,
-    TResult Function(List<SimpleValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
-    required TResult orElse(),
-  }) {
-    if (bool != null) {
-      return bool(field0);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SimpleValue_Bool value) bool,
-    required TResult Function(SimpleValue_Number value) number,
-    required TResult Function(SimpleValue_String value) string,
-    required TResult Function(SimpleValue_List value) list,
-    required TResult Function(SimpleValue_Image value) image,
-  }) {
-    return bool(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SimpleValue_Bool value)? bool,
-    TResult? Function(SimpleValue_Number value)? number,
-    TResult? Function(SimpleValue_String value)? string,
-    TResult? Function(SimpleValue_List value)? list,
-    TResult? Function(SimpleValue_Image value)? image,
-  }) {
-    return bool?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SimpleValue_Bool value)? bool,
-    TResult Function(SimpleValue_Number value)? number,
-    TResult Function(SimpleValue_String value)? string,
-    TResult Function(SimpleValue_List value)? list,
-    TResult Function(SimpleValue_Image value)? image,
-    required TResult orElse(),
-  }) {
-    if (bool != null) {
-      return bool(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SimpleValue_Bool implements SimpleValue {
-  const factory SimpleValue_Bool(final bool field0) = _$SimpleValue_Bool;
-
-  @override
-  bool get field0;
-  @JsonKey(ignore: true)
-  _$$SimpleValue_BoolCopyWith<_$SimpleValue_Bool> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SimpleValue_NumberCopyWith<$Res> {
-  factory _$$SimpleValue_NumberCopyWith(_$SimpleValue_Number value,
-          $Res Function(_$SimpleValue_Number) then) =
-      __$$SimpleValue_NumberCopyWithImpl<$Res>;
-  @useResult
-  $Res call({double field0});
-}
-
-/// @nodoc
-class __$$SimpleValue_NumberCopyWithImpl<$Res>
-    extends _$SimpleValueCopyWithImpl<$Res, _$SimpleValue_Number>
-    implements _$$SimpleValue_NumberCopyWith<$Res> {
-  __$$SimpleValue_NumberCopyWithImpl(
-      _$SimpleValue_Number _value, $Res Function(_$SimpleValue_Number) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? field0 = null,
-  }) {
-    return _then(_$SimpleValue_Number(
-      null == field0
-          ? _value.field0
-          : field0 // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SimpleValue_Number implements SimpleValue_Number {
-  const _$SimpleValue_Number(this.field0);
-
-  @override
-  final double field0;
-
-  @override
-  String toString() {
-    return 'SimpleValue.number(field0: $field0)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SimpleValue_Number &&
-            (identical(other.field0, field0) || other.field0 == field0));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, field0);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SimpleValue_NumberCopyWith<_$SimpleValue_Number> get copyWith =>
-      __$$SimpleValue_NumberCopyWithImpl<_$SimpleValue_Number>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool field0) bool,
-    required TResult Function(double field0) number,
-    required TResult Function(String field0) string,
-    required TResult Function(List<SimpleValue> field0) list,
-    required TResult Function(Uint8List field0) image,
-  }) {
-    return number(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool field0)? bool,
-    TResult? Function(double field0)? number,
-    TResult? Function(String field0)? string,
-    TResult? Function(List<SimpleValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
-  }) {
-    return number?.call(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool field0)? bool,
-    TResult Function(double field0)? number,
-    TResult Function(String field0)? string,
-    TResult Function(List<SimpleValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
-    required TResult orElse(),
-  }) {
-    if (number != null) {
-      return number(field0);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SimpleValue_Bool value) bool,
-    required TResult Function(SimpleValue_Number value) number,
-    required TResult Function(SimpleValue_String value) string,
-    required TResult Function(SimpleValue_List value) list,
-    required TResult Function(SimpleValue_Image value) image,
-  }) {
-    return number(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SimpleValue_Bool value)? bool,
-    TResult? Function(SimpleValue_Number value)? number,
-    TResult? Function(SimpleValue_String value)? string,
-    TResult? Function(SimpleValue_List value)? list,
-    TResult? Function(SimpleValue_Image value)? image,
-  }) {
-    return number?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SimpleValue_Bool value)? bool,
-    TResult Function(SimpleValue_Number value)? number,
-    TResult Function(SimpleValue_String value)? string,
-    TResult Function(SimpleValue_List value)? list,
-    TResult Function(SimpleValue_Image value)? image,
-    required TResult orElse(),
-  }) {
-    if (number != null) {
-      return number(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SimpleValue_Number implements SimpleValue {
-  const factory SimpleValue_Number(final double field0) = _$SimpleValue_Number;
-
-  @override
-  double get field0;
-  @JsonKey(ignore: true)
-  _$$SimpleValue_NumberCopyWith<_$SimpleValue_Number> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SimpleValue_StringCopyWith<$Res> {
-  factory _$$SimpleValue_StringCopyWith(_$SimpleValue_String value,
-          $Res Function(_$SimpleValue_String) then) =
-      __$$SimpleValue_StringCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String field0});
-}
-
-/// @nodoc
-class __$$SimpleValue_StringCopyWithImpl<$Res>
-    extends _$SimpleValueCopyWithImpl<$Res, _$SimpleValue_String>
-    implements _$$SimpleValue_StringCopyWith<$Res> {
-  __$$SimpleValue_StringCopyWithImpl(
-      _$SimpleValue_String _value, $Res Function(_$SimpleValue_String) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? field0 = null,
-  }) {
-    return _then(_$SimpleValue_String(
-      null == field0
-          ? _value.field0
-          : field0 // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SimpleValue_String implements SimpleValue_String {
-  const _$SimpleValue_String(this.field0);
-
-  @override
-  final String field0;
-
-  @override
-  String toString() {
-    return 'SimpleValue.string(field0: $field0)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SimpleValue_String &&
-            (identical(other.field0, field0) || other.field0 == field0));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, field0);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SimpleValue_StringCopyWith<_$SimpleValue_String> get copyWith =>
-      __$$SimpleValue_StringCopyWithImpl<_$SimpleValue_String>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool field0) bool,
-    required TResult Function(double field0) number,
-    required TResult Function(String field0) string,
-    required TResult Function(List<SimpleValue> field0) list,
-    required TResult Function(Uint8List field0) image,
-  }) {
-    return string(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool field0)? bool,
-    TResult? Function(double field0)? number,
-    TResult? Function(String field0)? string,
-    TResult? Function(List<SimpleValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
-  }) {
-    return string?.call(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool field0)? bool,
-    TResult Function(double field0)? number,
-    TResult Function(String field0)? string,
-    TResult Function(List<SimpleValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
-    required TResult orElse(),
-  }) {
-    if (string != null) {
-      return string(field0);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SimpleValue_Bool value) bool,
-    required TResult Function(SimpleValue_Number value) number,
-    required TResult Function(SimpleValue_String value) string,
-    required TResult Function(SimpleValue_List value) list,
-    required TResult Function(SimpleValue_Image value) image,
-  }) {
-    return string(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SimpleValue_Bool value)? bool,
-    TResult? Function(SimpleValue_Number value)? number,
-    TResult? Function(SimpleValue_String value)? string,
-    TResult? Function(SimpleValue_List value)? list,
-    TResult? Function(SimpleValue_Image value)? image,
-  }) {
-    return string?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SimpleValue_Bool value)? bool,
-    TResult Function(SimpleValue_Number value)? number,
-    TResult Function(SimpleValue_String value)? string,
-    TResult Function(SimpleValue_List value)? list,
-    TResult Function(SimpleValue_Image value)? image,
-    required TResult orElse(),
-  }) {
-    if (string != null) {
-      return string(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SimpleValue_String implements SimpleValue {
-  const factory SimpleValue_String(final String field0) = _$SimpleValue_String;
-
-  @override
-  String get field0;
-  @JsonKey(ignore: true)
-  _$$SimpleValue_StringCopyWith<_$SimpleValue_String> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SimpleValue_ListCopyWith<$Res> {
-  factory _$$SimpleValue_ListCopyWith(
-          _$SimpleValue_List value, $Res Function(_$SimpleValue_List) then) =
-      __$$SimpleValue_ListCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<SimpleValue> field0});
-}
-
-/// @nodoc
-class __$$SimpleValue_ListCopyWithImpl<$Res>
-    extends _$SimpleValueCopyWithImpl<$Res, _$SimpleValue_List>
-    implements _$$SimpleValue_ListCopyWith<$Res> {
-  __$$SimpleValue_ListCopyWithImpl(
-      _$SimpleValue_List _value, $Res Function(_$SimpleValue_List) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? field0 = null,
-  }) {
-    return _then(_$SimpleValue_List(
-      null == field0
-          ? _value._field0
-          : field0 // ignore: cast_nullable_to_non_nullable
-              as List<SimpleValue>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SimpleValue_List implements SimpleValue_List {
-  const _$SimpleValue_List(final List<SimpleValue> field0) : _field0 = field0;
-
-  final List<SimpleValue> _field0;
-  @override
-  List<SimpleValue> get field0 {
-    if (_field0 is EqualUnmodifiableListView) return _field0;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_field0);
-  }
-
-  @override
-  String toString() {
-    return 'SimpleValue.list(field0: $field0)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SimpleValue_List &&
-            const DeepCollectionEquality().equals(other._field0, _field0));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_field0));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SimpleValue_ListCopyWith<_$SimpleValue_List> get copyWith =>
-      __$$SimpleValue_ListCopyWithImpl<_$SimpleValue_List>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool field0) bool,
-    required TResult Function(double field0) number,
-    required TResult Function(String field0) string,
-    required TResult Function(List<SimpleValue> field0) list,
-    required TResult Function(Uint8List field0) image,
-  }) {
-    return list(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool field0)? bool,
-    TResult? Function(double field0)? number,
-    TResult? Function(String field0)? string,
-    TResult? Function(List<SimpleValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
-  }) {
-    return list?.call(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool field0)? bool,
-    TResult Function(double field0)? number,
-    TResult Function(String field0)? string,
-    TResult Function(List<SimpleValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
-    required TResult orElse(),
-  }) {
-    if (list != null) {
-      return list(field0);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SimpleValue_Bool value) bool,
-    required TResult Function(SimpleValue_Number value) number,
-    required TResult Function(SimpleValue_String value) string,
-    required TResult Function(SimpleValue_List value) list,
-    required TResult Function(SimpleValue_Image value) image,
-  }) {
-    return list(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SimpleValue_Bool value)? bool,
-    TResult? Function(SimpleValue_Number value)? number,
-    TResult? Function(SimpleValue_String value)? string,
-    TResult? Function(SimpleValue_List value)? list,
-    TResult? Function(SimpleValue_Image value)? image,
-  }) {
-    return list?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SimpleValue_Bool value)? bool,
-    TResult Function(SimpleValue_Number value)? number,
-    TResult Function(SimpleValue_String value)? string,
-    TResult Function(SimpleValue_List value)? list,
-    TResult Function(SimpleValue_Image value)? image,
-    required TResult orElse(),
-  }) {
-    if (list != null) {
-      return list(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SimpleValue_List implements SimpleValue {
-  const factory SimpleValue_List(final List<SimpleValue> field0) =
-      _$SimpleValue_List;
-
-  @override
-  List<SimpleValue> get field0;
-  @JsonKey(ignore: true)
-  _$$SimpleValue_ListCopyWith<_$SimpleValue_List> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SimpleValue_ImageCopyWith<$Res> {
-  factory _$$SimpleValue_ImageCopyWith(
-          _$SimpleValue_Image value, $Res Function(_$SimpleValue_Image) then) =
-      __$$SimpleValue_ImageCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Uint8List field0});
-}
-
-/// @nodoc
-class __$$SimpleValue_ImageCopyWithImpl<$Res>
-    extends _$SimpleValueCopyWithImpl<$Res, _$SimpleValue_Image>
-    implements _$$SimpleValue_ImageCopyWith<$Res> {
-  __$$SimpleValue_ImageCopyWithImpl(
-      _$SimpleValue_Image _value, $Res Function(_$SimpleValue_Image) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? field0 = null,
-  }) {
-    return _then(_$SimpleValue_Image(
-      null == field0
-          ? _value.field0
-          : field0 // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SimpleValue_Image implements SimpleValue_Image {
-  const _$SimpleValue_Image(this.field0);
-
-  @override
-  final Uint8List field0;
-
-  @override
-  String toString() {
-    return 'SimpleValue.image(field0: $field0)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SimpleValue_Image &&
-            const DeepCollectionEquality().equals(other.field0, field0));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(field0));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SimpleValue_ImageCopyWith<_$SimpleValue_Image> get copyWith =>
-      __$$SimpleValue_ImageCopyWithImpl<_$SimpleValue_Image>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool field0) bool,
-    required TResult Function(double field0) number,
-    required TResult Function(String field0) string,
-    required TResult Function(List<SimpleValue> field0) list,
-    required TResult Function(Uint8List field0) image,
-  }) {
-    return image(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool field0)? bool,
-    TResult? Function(double field0)? number,
-    TResult? Function(String field0)? string,
-    TResult? Function(List<SimpleValue> field0)? list,
-    TResult? Function(Uint8List field0)? image,
-  }) {
-    return image?.call(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool field0)? bool,
-    TResult Function(double field0)? number,
-    TResult Function(String field0)? string,
-    TResult Function(List<SimpleValue> field0)? list,
-    TResult Function(Uint8List field0)? image,
-    required TResult orElse(),
-  }) {
-    if (image != null) {
-      return image(field0);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SimpleValue_Bool value) bool,
-    required TResult Function(SimpleValue_Number value) number,
-    required TResult Function(SimpleValue_String value) string,
-    required TResult Function(SimpleValue_List value) list,
-    required TResult Function(SimpleValue_Image value) image,
-  }) {
-    return image(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SimpleValue_Bool value)? bool,
-    TResult? Function(SimpleValue_Number value)? number,
-    TResult? Function(SimpleValue_String value)? string,
-    TResult? Function(SimpleValue_List value)? list,
-    TResult? Function(SimpleValue_Image value)? image,
-  }) {
-    return image?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SimpleValue_Bool value)? bool,
-    TResult Function(SimpleValue_Number value)? number,
-    TResult Function(SimpleValue_String value)? string,
-    TResult Function(SimpleValue_List value)? list,
-    TResult Function(SimpleValue_Image value)? image,
-    required TResult orElse(),
-  }) {
-    if (image != null) {
-      return image(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SimpleValue_Image implements SimpleValue {
-  const factory SimpleValue_Image(final Uint8List field0) = _$SimpleValue_Image;
-
-  @override
-  Uint8List get field0;
-  @JsonKey(ignore: true)
-  _$$SimpleValue_ImageCopyWith<_$SimpleValue_Image> get copyWith =>
-      throw _privateConstructorUsedError;
 }

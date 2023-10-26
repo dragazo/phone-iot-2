@@ -241,8 +241,8 @@ class CustomButton extends CustomControl with TextLike, Pressable {
         final e = event;
         if (e != null) {
           api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
-            ('device', const SimpleValue.number(0)),
-            ('id', SimpleValue.string(id)),
+            ('device', const DartValue.number(0)),
+            ('id', DartValue.string(id)),
           ]));
         }
         NetworkManager.netsbloxSend([ 'b'.codeUnitAt(0) ] + stringToBEBytes(id));
@@ -328,9 +328,9 @@ class CustomTextField extends CustomControl with TextLike {
       final e = event;
       if (e != null) {
         api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
-          ('device', const SimpleValue.number(0)),
-          ('id', SimpleValue.string(id)),
-          ('text', SimpleValue.string(text)),
+          ('device', const DartValue.number(0)),
+          ('id', DartValue.string(id)),
+          ('text', DartValue.string(text)),
         ]));
       }
       NetworkManager.netsbloxSend([ 't'.codeUnitAt(0), id.length ] + stringToBEBytes(id) + stringToBEBytes(value));
@@ -398,11 +398,11 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
       final e = event;
       if (e != null) {
         api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
-          ('device', const SimpleValue.number(0)),
-          ('id', SimpleValue.string(id)),
-          ('x', SimpleValue.number(p.$1)),
-          ('y', SimpleValue.number(p.$2)),
-          ('tag', SimpleValue.string(encodeClickType(type))),
+          ('device', const DartValue.number(0)),
+          ('id', DartValue.string(id)),
+          ('x', DartValue.number(p.$1)),
+          ('y', DartValue.number(p.$2)),
+          ('tag', DartValue.string(encodeClickType(type))),
         ]));
       }
       NetworkManager.netsbloxSend([ 'n'.codeUnitAt(0) ] + u32ToBEBytes(updateCount++) + [ type.index ] + f32ToBEBytes(p.$1) + f32ToBEBytes(p.$2) + stringToBEBytes(id));
@@ -495,11 +495,11 @@ class CustomTouchpad extends CustomControl with Pressable, PositionLike {
       final e = event;
       if (e != null) {
         api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
-          ('device', const SimpleValue.number(0)),
-          ('id', SimpleValue.string(id)),
-          ('x', SimpleValue.number(p.$1)),
-          ('y', SimpleValue.number(p.$2)),
-          ('tag', SimpleValue.string(encodeClickType(type))),
+          ('device', const DartValue.number(0)),
+          ('id', DartValue.string(id)),
+          ('x', DartValue.number(p.$1)),
+          ('y', DartValue.number(p.$2)),
+          ('tag', DartValue.string(encodeClickType(type))),
         ]));
       }
       NetworkManager.netsbloxSend([ 'n'.codeUnitAt(0) ] + u32ToBEBytes(updateCount++) + [ type.index ] + f32ToBEBytes(p.$1) + f32ToBEBytes(p.$2) + stringToBEBytes(id));
@@ -605,10 +605,10 @@ class CustomSlider extends CustomControl with Pressable, LevelLike {
       final e = event;
       if (e != null) {
         api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
-          ('device', const SimpleValue.number(0)),
-          ('id', SimpleValue.string(id)),
-          ('level', SimpleValue.number(v)),
-          ('tag', SimpleValue.string(encodeClickType(type))),
+          ('device', const DartValue.number(0)),
+          ('id', DartValue.string(id)),
+          ('level', DartValue.number(v)),
+          ('tag', DartValue.string(encodeClickType(type))),
         ]));
       }
       NetworkManager.netsbloxSend([ 'd'.codeUnitAt(0) ] + u32ToBEBytes(updateCount++) + [ type.index ] + f32ToBEBytes(v) + stringToBEBytes(id));
@@ -732,9 +732,9 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
     final e = event;
     if (e != null) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
-        ('device', const SimpleValue.number(0)),
-        ('id', SimpleValue.string(id)),
-        ('state', SimpleValue.bool(v)),
+        ('device', const DartValue.number(0)),
+        ('id', DartValue.string(id)),
+        ('state', DartValue.bool(v)),
       ]));
     }
     NetworkManager.netsbloxSend([ 'z'.codeUnitAt(0), v ? 1 : 0 ] + stringToBEBytes(id));
@@ -813,8 +813,8 @@ class CustomRadioButton extends CustomControl with TextLike, ToggleLike, GroupLi
     final e = event;
     if (e != null) {
       api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
-        ('device', const SimpleValue.number(0)),
-        ('id', SimpleValue.string(id)),
+        ('device', const DartValue.number(0)),
+        ('id', DartValue.string(id)),
       ]));
     }
     NetworkManager.netsbloxSend([ 'b'.codeUnitAt(0) ] + stringToBEBytes(id));
@@ -910,8 +910,8 @@ class CustomImageDisplay extends CustomControl with ImageLike {
       final e = event;
       if (e != null) {
         api.sendCommand(cmd: RustCommand.injectMessage(msgType: e, values: [
-          ('device', const SimpleValue.number(0)),
-          ('id', SimpleValue.string(id)),
+          ('device', const DartValue.number(0)),
+          ('id', DartValue.string(id)),
         ]));
       }
       NetworkManager.netsbloxSend([ 'b'.codeUnitAt(0) ] + stringToBEBytes(id));

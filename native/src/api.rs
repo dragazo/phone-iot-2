@@ -324,7 +324,7 @@ pub enum RustCommand {
     Start,
     Stop,
     TogglePaused,
-    InjectMessage { msg_type: String, values: Vec<(String, SimpleValue)> },
+    InjectMessage { msg_type: String, values: Vec<(String, DartValue)> },
 }
 
 #[derive(Clone, Copy, PartialOrd, Ord, PartialEq, Eq, Debug)]
@@ -394,40 +394,40 @@ pub enum DartCommand {
     ListenToSensors { key: DartRequestKey, sensors: SensorUpdateInfo },
 }
 
-pub enum SimpleValue {
+pub enum DartValue {
     Bool(bool),
     Number(f64),
     String(String),
-    List(Vec<SimpleValue>),
+    List(Vec<DartValue>),
     Image(Vec<u8>),
 }
-impl SimpleValue {
+impl DartValue {
     fn into_json(self) -> Json {
         match self {
-            SimpleValue::Bool(x) => Json::Bool(x),
-            SimpleValue::Number(x) => json!(x),
-            SimpleValue::String(x) => Json::String(x),
-            SimpleValue::List(x) => Json::Array(x.into_iter().map(SimpleValue::into_json).collect()),
-            SimpleValue::Image(_) => panic!("attempt to transfer image as json"),
+            DartValue::Bool(x) => Json::Bool(x),
+            DartValue::Number(x) => json!(x),
+            DartValue::String(x) => Json::String(x),
+            DartValue::List(x) => Json::Array(x.into_iter().map(DartValue::into_json).collect()),
+            DartValue::Image(_) => panic!("attempt to transfer image as json"),
         }
     }
     fn into_intermediate(self) -> Intermediate {
         match self {
-            SimpleValue::Bool(x) => Intermediate::Json(Json::Bool(x)),
-            SimpleValue::Number(x) => Intermediate::Json(json!(x)),
-            SimpleValue::String(x) => Intermediate::Json(Json::String(x)),
-            SimpleValue::List(x) => Intermediate::Json(Json::Array(x.into_iter().map(SimpleValue::into_json).collect())),
-            SimpleValue::Image(x) => Intermediate::Image(x),
+            DartValue::Bool(x) => Intermediate::Json(Json::Bool(x)),
+            DartValue::Number(x) => Intermediate::Json(json!(x)),
+            DartValue::String(x) => Intermediate::Json(Json::String(x)),
+            DartValue::List(x) => Intermediate::Json(Json::Array(x.into_iter().map(DartValue::into_json).collect())),
+            DartValue::Image(x) => Intermediate::Image(x),
         }
     }
 }
 
 pub enum RequestResult {
-    Ok(SimpleValue),
+    Ok(DartValue),
     Err(String),
 }
 impl RequestResult {
-    fn into_result(self) -> Result<SimpleValue, String> {
+    fn into_result(self) -> Result<DartValue, String> {
         match self {
             Self::Ok(x) => Ok(x),
             Self::Err(x) => Err(x),
@@ -1145,6 +1145,6 @@ pub fn recv_commands(sink: StreamSink<DartCommand>) {
 pub fn complete_request(key: DartRequestKey, result: RequestResult) {
     let key = PENDING_REQUESTS.lock().unwrap().remove(&key);
     if let Some(key) = key {
-        key.complete(result.into_result().map(SimpleValue::into_intermediate));
+        key.complete(result.into_result().map(DartValue::into_intermediate));
     }
 }

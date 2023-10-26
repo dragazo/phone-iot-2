@@ -77,11 +77,11 @@ void startCommandLoop() async {
 
   void sendSensorVec(List<double>? vals, DartRequestKey key) {
     if (vals != null) {
-      final res = <SimpleValue>[];
+      final res = <DartValue>[];
       for (final val in vals) {
-        res.add(SimpleValue.number(val));
+        res.add(DartValue.number(val));
       }
-      api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list(res)));
+      api.completeRequest(key: key, result: RequestResult.ok(DartValue.list(res)));
     } else {
       api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
     }
@@ -89,7 +89,7 @@ void startCommandLoop() async {
   void sendSensorScalar(List<double>? vals, DartRequestKey key) {
     if (vals != null) {
       assert (vals.length == 1);
-      api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.number(vals[0])));
+      api.completeRequest(key: key, result: RequestResult.ok(DartValue.number(vals[0])));
     } else {
       api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
     }
@@ -97,7 +97,7 @@ void startCommandLoop() async {
   void sendSensorScalarEncoded(List<double>? vals, List<String> encoding, DartRequestKey key) {
     if (vals != null) {
       assert (vals.length == 1);
-      api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.string(encoding[vals[0].toInt()])));
+      api.completeRequest(key: key, result: RequestResult.ok(DartValue.string(encoding[vals[0].toInt()])));
     } else {
       api.completeRequest(key: key, result: const RequestResult.err(sensorErrorMsg));
     }
@@ -105,7 +105,7 @@ void startCommandLoop() async {
   void addControl(CustomControl control, DartRequestKey key) {
     RequestResult res;
     switch (Display.state.tryAddControl(control)) {
-      case AddControlResult.success: res = RequestResult.ok(SimpleValue.string(control.id));
+      case AddControlResult.success: res = RequestResult.ok(DartValue.string(control.id));
       case AddControlResult.tooManyControls: res = const RequestResult.err('too many controls');
       case AddControlResult.idConflict: res = RequestResult.err('id ${control.id} is already in use');
     }
@@ -120,11 +120,11 @@ void startCommandLoop() async {
 
       clearControls: (key) {
         Display.state.clearControls();
-        api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+        api.completeRequest(key: key, result: const RequestResult.ok(DartValue.string('OK')));
       },
       removeControl: (key, id) {
         Display.state.removeControl(id);
-        api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+        api.completeRequest(key: key, result: const RequestResult.ok(DartValue.string('OK')));
       },
 
       addLabel: (key, info) => addControl(CustomLabel(info), key),
@@ -139,40 +139,40 @@ void startCommandLoop() async {
 
       getText: (key, id) {
         TextLike? target = Display.state.findControl<TextLike>(id);
-        api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.string(target.getText())) : RequestResult.err('no text-like control with id $id'));
+        api.completeRequest(key: key, result: target != null ? RequestResult.ok(DartValue.string(target.getText())) : RequestResult.err('no text-like control with id $id'));
       },
       setText: (key, id, value) {
         TextLike? target = Display.state.findControl<TextLike>(id);
         if (target != null) Display.state.doSetState(() => target.setText(value, UpdateSource.code));
-        api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no text-like control with id $id'));
+        api.completeRequest(key: key, result: target != null ? const RequestResult.ok(DartValue.string('OK')) : RequestResult.err('no text-like control with id $id'));
       },
       isPressed: (key, id) {
         Pressable? target = Display.state.findControl<Pressable>(id);
-        api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.isPressed())) : RequestResult.err('no pressable control with id $id'));
+        api.completeRequest(key: key, result: target != null ? RequestResult.ok(DartValue.bool(target.isPressed())) : RequestResult.err('no pressable control with id $id'));
       },
       getLevel: (key, id) {
         LevelLike? target = Display.state.findControl<LevelLike>(id);
-        api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.number(target.getLevel())) : RequestResult.err('no level-like control with id $id'));
+        api.completeRequest(key: key, result: target != null ? RequestResult.ok(DartValue.number(target.getLevel())) : RequestResult.err('no level-like control with id $id'));
       },
       setLevel: (key, id, value) {
         LevelLike? target = Display.state.findControl<LevelLike>(id);
         if (target != null) Display.state.doSetState(() => target.setLevel(value));
-        api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no level-like control with id $id'));
+        api.completeRequest(key: key, result: target != null ? const RequestResult.ok(DartValue.string('OK')) : RequestResult.err('no level-like control with id $id'));
       },
       getToggleState: (key, id) {
         ToggleLike? target = Display.state.findControl<ToggleLike>(id);
-        api.completeRequest(key: key, result: target != null ? RequestResult.ok(SimpleValue.bool(target.getToggled())) : RequestResult.err('no toggle-like control with id $id'));
+        api.completeRequest(key: key, result: target != null ? RequestResult.ok(DartValue.bool(target.getToggled())) : RequestResult.err('no toggle-like control with id $id'));
       },
       setToggleState: (key, id, value) {
         ToggleLike? target = Display.state.findControl<ToggleLike>(id);
         if (target != null) Display.state.doSetState(() => target.setToggled(value));
-        api.completeRequest(key: key, result: target != null ? const RequestResult.ok(SimpleValue.string('OK')) : RequestResult.err('no toggle-like control with id $id'));
+        api.completeRequest(key: key, result: target != null ? const RequestResult.ok(DartValue.string('OK')) : RequestResult.err('no toggle-like control with id $id'));
       },
       getPosition: (key, id) {
         PositionLike? target = Display.state.findControl<PositionLike>(id);
         if (target != null) {
           final p = target.getPosition();
-          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.list([ SimpleValue.number(p.$1), SimpleValue.number(p.$2) ])));
+          api.completeRequest(key: key, result: RequestResult.ok(DartValue.list([ DartValue.number(p.$1), DartValue.number(p.$2) ])));
         } else {
           api.completeRequest(key: key, result: RequestResult.err('no position-like control with id $id'));
         }
@@ -187,7 +187,7 @@ void startCommandLoop() async {
         final src = target.getImage()?.clone(); // make sure we have an owning handle for concurrency safety
         try {
           final raw = src != null ? await encodeImage(src) : blankImage;
-          api.completeRequest(key: key, result: RequestResult.ok(SimpleValue.image(raw)));
+          api.completeRequest(key: key, result: RequestResult.ok(DartValue.image(raw)));
         } catch (e) {
           api.completeRequest(key: key, result: RequestResult.err('failed to encode image: $e'));
         } finally {
@@ -205,7 +205,7 @@ void startCommandLoop() async {
           final img = await decodeImage(value);
           
           Display.state.doSetState(() => target.setImage(img, UpdateSource.code));
-          api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+          api.completeRequest(key: key, result: const RequestResult.ok(DartValue.string('OK')));
         } catch (e) {
           api.completeRequest(key: key, result: RequestResult.err('failed to decode image: $e'));
         }
@@ -234,7 +234,7 @@ void startCommandLoop() async {
 
       listenToSensors: (key, sensors) {
         NetworkManager.listenToSensors(sensors, null);
-        api.completeRequest(key: key, result: const RequestResult.ok(SimpleValue.string('OK')));
+        api.completeRequest(key: key, result: const RequestResult.ok(DartValue.string('OK')));
       },
     );
   }

@@ -32,8 +32,8 @@ impl Wire2Api<String> for String {
         self
     }
 }
-impl Wire2Api<(String, SimpleValue)> for JsValue {
-    fn wire2api(self) -> (String, SimpleValue) {
+impl Wire2Api<(String, DartValue)> for JsValue {
+    fn wire2api(self) -> (String, DartValue) {
         let self_ = self.dyn_into::<JsArray>().unwrap();
         assert_eq!(
             self_.length(),
@@ -59,9 +59,22 @@ impl Wire2Api<DartRequestKey> for JsValue {
         }
     }
 }
+impl Wire2Api<DartValue> for JsValue {
+    fn wire2api(self) -> DartValue {
+        let self_ = self.unchecked_into::<JsArray>();
+        match self_.get(0).unchecked_into_f64() as _ {
+            0 => DartValue::Bool(self_.get(1).wire2api()),
+            1 => DartValue::Number(self_.get(1).wire2api()),
+            2 => DartValue::String(self_.get(1).wire2api()),
+            3 => DartValue::List(self_.get(1).wire2api()),
+            4 => DartValue::Image(self_.get(1).wire2api()),
+            _ => unreachable!(),
+        }
+    }
+}
 
-impl Wire2Api<Vec<(String, SimpleValue)>> for JsValue {
-    fn wire2api(self) -> Vec<(String, SimpleValue)> {
+impl Wire2Api<Vec<(String, DartValue)>> for JsValue {
+    fn wire2api(self) -> Vec<(String, DartValue)> {
         self.dyn_into::<JsArray>()
             .unwrap()
             .iter()
@@ -69,8 +82,8 @@ impl Wire2Api<Vec<(String, SimpleValue)>> for JsValue {
             .collect()
     }
 }
-impl Wire2Api<Vec<SimpleValue>> for JsValue {
-    fn wire2api(self) -> Vec<SimpleValue> {
+impl Wire2Api<Vec<DartValue>> for JsValue {
+    fn wire2api(self) -> Vec<DartValue> {
         self.dyn_into::<JsArray>()
             .unwrap()
             .iter()
@@ -106,19 +119,6 @@ impl Wire2Api<RustCommand> for JsValue {
         }
     }
 }
-impl Wire2Api<SimpleValue> for JsValue {
-    fn wire2api(self) -> SimpleValue {
-        let self_ = self.unchecked_into::<JsArray>();
-        match self_.get(0).unchecked_into_f64() as _ {
-            0 => SimpleValue::Bool(self_.get(1).wire2api()),
-            1 => SimpleValue::Number(self_.get(1).wire2api()),
-            2 => SimpleValue::String(self_.get(1).wire2api()),
-            3 => SimpleValue::List(self_.get(1).wire2api()),
-            4 => SimpleValue::Image(self_.get(1).wire2api()),
-            _ => unreachable!(),
-        }
-    }
-}
 
 impl Wire2Api<Vec<u8>> for Box<[u8]> {
     fn wire2api(self) -> Vec<u8> {
@@ -128,6 +128,14 @@ impl Wire2Api<Vec<u8>> for Box<[u8]> {
 
 // Section: impl Wire2Api for JsValue
 
+impl<T> Wire2Api<Option<T>> for JsValue
+where
+    JsValue: Wire2Api<T>,
+{
+    fn wire2api(self) -> Option<T> {
+        (!self.is_null() && !self.is_undefined()).then(|| self.wire2api())
+    }
+}
 impl Wire2Api<String> for JsValue {
     fn wire2api(self) -> String {
         self.as_string().expect("non-UTF-8 string, or not a string")
