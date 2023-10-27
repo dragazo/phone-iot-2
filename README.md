@@ -59,3 +59,23 @@ This template is licensed under either of
 at your option.
 
 The [SPDX](https://spdx.dev/) license identifier for this project is `MIT OR Apache-2.0`.
+
+
+# Publishing
+
+## Android
+
+If it does not already exist, create a file at `android/key.properties` with the following signing information:
+
+```
+storePassword=password
+keyPassword=password
+keyAlias=upload
+storeFile=/home/devin/apk-key/upload-keystore.jks
+```
+
+Then build an app bundle in release mode (signing is automatic).
+
+```sh
+flutter build appbundle --release
+```
