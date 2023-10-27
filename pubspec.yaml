@@ -116,6 +116,7 @@ flutter:
 
 flutter_launcher_icons:
   image_path: assets/images/AppIcon-512-trans.png
+  image_path_ios: assets/images/AppIcon-512-white.png
   android: true
   ios: true
   remove_alpha_ios: true
