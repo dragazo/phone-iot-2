@@ -79,3 +79,9 @@ Then build an app bundle in release mode (signing is automatic).
 ```sh
 flutter build appbundle --release
 ```
+
+## iOS
+
+```sh
+flutter build ipa --release
+```
