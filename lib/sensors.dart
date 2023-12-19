@@ -5,6 +5,8 @@ import 'dart:io' show Platform;
 import 'dart:async';
 import 'dart:math';
 
+const sensorUpdateInterval = Duration(milliseconds: 10);
+
 const double radToDeg = 180 / pi;
 
 // annoyingly, some of our sensor deps have platform-dependent units
@@ -157,10 +159,17 @@ class SensorManager {
 
     final envSensors = EnvironmentSensors();
 
+    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_ACCELEROMETER, sensorUpdateInterval.inMicroseconds);
+    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_USER_ACCELEROMETER, sensorUpdateInterval.inMicroseconds);
+    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_GYROSCOPE, sensorUpdateInterval.inMicroseconds);
+    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_MAGNETIC_FIELD, sensorUpdateInterval.inMicroseconds);
+    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_ABSOLUTE_ORIENTATION, sensorUpdateInterval.inMicroseconds);
+
     accelerometer.listener ??= motionSensors.accelerometer.listen((e) => accelerometer.value = [e.x, e.y, e.z]);
     linearAccelerometer.listener ??= motionSensors.userAccelerometer.listen((e) => linearAccelerometer.value = [e.x, e.y, e.z]);
     gyroscope.listener ??= motionSensors.gyroscope.listen((e) => gyroscope.value = [e.x * radToDeg, e.y * radToDeg, e.z * radToDeg]);
     magnetometer.listener ??= motionSensors.magnetometer.listen((e) => magnetometer.value = [e.x, e.y, e.z]);
+    orientation.listener ??= motionSensors.absoluteOrientation.listen((e) => orientation.value = [-e.yaw * radToDeg, e.pitch * radToDeg, e.roll * radToDeg]);
     pressure.listener ??= envSensors.pressure.listen((e) => pressure.value = [e * pressureScale]);
     gps.listener ??= Geolocator.getPositionStream().listen((e) {
       final prev = gps.value;
@@ -174,7 +183,6 @@ class SensorManager {
     relativeHumidity.listener ??= envSensors.humidity.listen((e) => relativeHumidity.value = [e]);
     lightLevel.listener ??= envSensors.light.listen((e) => lightLevel.value = [e]);
     temperature.listener ??= envSensors.temperature.listen((e) => temperature.value = [e]);
-    orientation.listener ??= motionSensors.absoluteOrientation.listen((e) => orientation.value = [-e.yaw * radToDeg, e.pitch * radToDeg, e.roll * radToDeg]);
   }
   static void stop() {
     if (!running) return;

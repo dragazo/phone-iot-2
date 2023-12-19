@@ -31,6 +31,8 @@ const kvstoreConnectOnLaunch = 'auto-conn';
 const passwordLifetime = Duration(hours: 24);
 const maxCustomControls = 1024;
 
+const defaultButtonTextColor = Color.fromARGB(255, 255, 255, 255);
+const defaultButtonColor = Color.fromARGB(255, 105, 158, 255);
 const netsbloxButtonColor = Color.fromARGB(255, 100, 100, 100);
 
 late final GetStorage insecureStorage;
@@ -549,11 +551,13 @@ class MainMenuState extends State<MainMenu> {
                   children: [
                     ElevatedButton(
                       onPressed: () => NetworkManager.connect(),
+                      style: ElevatedButton.styleFrom(foregroundColor: defaultButtonTextColor, backgroundColor: defaultButtonColor),
                       child: const Text('Connect'),
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(
                       onPressed: () => NetworkManager.requestConnReset(),
+                      style: ElevatedButton.styleFrom(foregroundColor: defaultButtonTextColor, backgroundColor: defaultButtonColor),
                       child: const Text('Reconnect'),
                     ),
                   ],
@@ -563,6 +567,7 @@ class MainMenuState extends State<MainMenu> {
                     devicePWExpiry = DateTime.fromMillisecondsSinceEpoch(0);
                     getPassword();
                   },
+                  style: ElevatedButton.styleFrom(foregroundColor: defaultButtonTextColor, backgroundColor: defaultButtonColor),
                   child: const Text('New Password'),
                 ),
                 const SizedBox(height: 20),
@@ -613,6 +618,7 @@ class MainMenuState extends State<MainMenu> {
                         MessageList.state.addMessage(Message('error fetching project $e', MessageType.stderr));
                       });
                   },
+                  style: ElevatedButton.styleFrom(foregroundColor: defaultButtonTextColor, backgroundColor: defaultButtonColor),
                   child: const Text('Load Project'),
                 ),
                 Row(
@@ -679,14 +685,14 @@ class SettingsMenuState extends State<SettingsMenu> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(children: [
-                  Switch(value: connectOnLaunch, onChanged: (x) => setState(() {
+                  Switch(value: connectOnLaunch, activeColor: defaultButtonColor, onChanged: (x) => setState(() {
                     connectOnLaunch = x;
                     insecureStorage.write(kvstoreConnectOnLaunch, x);
                   })),
                   const Text('Auto-Connect on Launch'),
                 ]),
                 Row(children: [
-                  Switch(value: controlHaptics, onChanged: (x) => setState(() {
+                  Switch(value: controlHaptics, activeColor: defaultButtonColor, onChanged: (x) => setState(() {
                     controlHaptics = x;
                     insecureStorage.write(kvstoreControlHaptics, x);
                   })),
@@ -697,6 +703,7 @@ class SettingsMenuState extends State<SettingsMenu> {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () => launchUrl(Uri.parse('https://github.com/dragazo/phone-iot-2/issues/new')),
+              style: ElevatedButton.styleFrom(foregroundColor: defaultButtonTextColor, backgroundColor: defaultButtonColor),
               child: const Text('Report a Bug'),
             ),
           ],

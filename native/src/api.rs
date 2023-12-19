@@ -1,17 +1,19 @@
 use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering as MemOrder};
 use std::collections::BTreeMap;
 use std::time::Duration;
-use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 use std::rc::Rc;
 use std::{mem, thread};
 
 use netsblox_vm::project::{Project, IdleAction, ProjectStep, Input};
-use netsblox_vm::std_system::{StdSystem, RequestKey};
+use netsblox_vm::std_system::StdSystem;
+use netsblox_vm::std_util::{AsyncKey, Clock};
 use netsblox_vm::bytecode::{ByteCode, Locations};
-use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, ErrorCause, Value, FromAstError, Config, Command, Request, CommandStatus, RequestStatus, Key, System, SimpleValue, Number, Image, Audio};
+use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, ProcessKind, Value, FromAstError, Config, Command, Request, CommandStatus, RequestStatus, Key, System, SimpleValue, Number, Image, Audio, Precision};
 use netsblox_vm::gc::{Gc, RefLock, Collect, Arena, Rootable, Mutation};
 use netsblox_vm::real_time::UtcOffset;
-use netsblox_vm::json::{Json, json};
+use netsblox_vm::json::json;
+use netsblox_vm::compact_str::{CompactString, format_compact};
 use netsblox_vm::ast;
 
 use flutter_rust_bridge::{StreamSink, IntoDart, rust2dart::IntoIntoDart};
@@ -20,6 +22,8 @@ const SERVER_URL: &str = "https://cloud.netsblox.org";
 const STEPS_PER_IO_ITER: usize = 16;
 const IDLE_SLEEP_THRESH: usize = 256;
 const IDLE_SLEEP_TIME: Duration = Duration::from_millis(1);
+const CLOCK_INTERVAL: Duration = Duration::from_millis(10);
+const COLLECT_INTERVAL: Duration = Duration::from_secs(60);
 
 const BLUE: ColorInfo = ColorInfo { a: 255, r: 66, g: 135, b: 245 };
 const BLACK: ColorInfo = ColorInfo { a: 255, r: 0, g: 0, b: 0 };
@@ -28,7 +32,7 @@ const WHITE: ColorInfo = ColorInfo { a: 255, r: 255, g: 255, b: 255 };
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
 static DART_COMMANDS: Mutex<DartPipe<DartCommand>> = Mutex::new(DartPipe::new());
 static RUST_COMMANDS: Mutex<Vec<RustCommand>> = Mutex::new(Vec::new());
-static PENDING_REQUESTS: Mutex<BTreeMap<DartRequestKey, RequestKey<C>>> = Mutex::new(BTreeMap::new());
+static PENDING_REQUESTS: Mutex<BTreeMap<DartRequestKey, AsyncKey<Result<SimpleValue, CompactString>>>> = Mutex::new(BTreeMap::new());
 static KEY_COUNTER: AtomicUsize = AtomicUsize::new(0);
 static CONTROL_COUNTER: AtomicUsize = AtomicUsize::new(0);
 
@@ -98,6 +102,12 @@ impl From<EntityKind<'_, '_, C, StdSystem<C>>> for EntityState {
         EntityState
     }
 }
+struct ProcessState;
+impl From<ProcessKind<'_, '_, C, StdSystem<C>>> for ProcessState {
+    fn from(_: ProcessKind<'_, '_, C, StdSystem<C>>) -> Self {
+        ProcessState
+    }
+}
 
 struct C;
 impl CustomTypes<StdSystem<C>> for C {
@@ -105,9 +115,10 @@ impl CustomTypes<StdSystem<C>> for C {
     type Intermediate = SimpleValue;
 
     type EntityState = EntityState;
+    type ProcessState = ProcessState;
 
-    fn from_intermediate<'gc>(mc: &Mutation<'gc>, value: Self::Intermediate) -> Result<Value<'gc, C, StdSystem<C>>, ErrorCause<C, StdSystem<C>>> {
-        Ok(Value::from_simple(mc, value))
+    fn from_intermediate<'gc>(mc: &Mutation<'gc>, value: Self::Intermediate) -> Value<'gc, C, StdSystem<C>> {
+        Value::from_simple(mc, value)
     }
 }
 
@@ -121,7 +132,7 @@ type EnvArena<S> = Arena<Rootable![Env<'_, S>]>;
 
 fn get_env<C: CustomTypes<StdSystem<C>>>(role: &ast::Role, system: Rc<StdSystem<C>>) -> Result<EnvArena<C>, FromAstError> {
     let (bytecode, init_info, locs, _) = ByteCode::compile(role)?;
-    Ok(EnvArena::new(Default::default(), |mc| {
+    Ok(EnvArena::new(|mc| {
         let proj = Project::from_init(mc, &init_info, Rc::new(bytecode), Default::default(), system);
         Env { proj: Gc::new(mc, RefLock::new(proj)), locs }
     }))
@@ -311,7 +322,7 @@ pub struct DartRequestKey {
     pub value: usize,
 }
 impl DartRequestKey {
-    fn new(key: RequestKey<C>) -> Self {
+    fn new(key: AsyncKey<Result<SimpleValue, CompactString>>) -> Self {
         let res = Self { value: KEY_COUNTER.fetch_add(1, MemOrder::Relaxed) };
         PENDING_REQUESTS.lock().unwrap().insert(res, key);
         res
@@ -382,16 +393,6 @@ pub enum DartValue {
     List(Vec<DartValue>),
 }
 impl DartValue {
-    fn into_json(self) -> Json {
-        match self {
-            DartValue::Bool(x) => Json::Bool(x),
-            DartValue::Number(x) => json!(x),
-            DartValue::String(x) => Json::String(x),
-            DartValue::List(x) => Json::Array(x.into_iter().map(DartValue::into_json).collect()),
-            DartValue::Image(_, _) => panic!("attempt to transfer image as json"),
-            DartValue::Audio(_) => panic!("attempt to transfer audio as json"),
-        }
-    }
     fn into_simple(self) -> SimpleValue {
         fn parse_num(num: f64) -> Number {
             Number::new(num).unwrap_or_else(|_| Number::new(0.0).unwrap())
@@ -399,7 +400,7 @@ impl DartValue {
         match self {
             DartValue::Bool(x) => SimpleValue::Bool(x),
             DartValue::Number(x) => SimpleValue::Number(parse_num(x)),
-            DartValue::String(x) => SimpleValue::String(x),
+            DartValue::String(x) => SimpleValue::String(x.into()),
             DartValue::Image(content, center) => SimpleValue::Image(Image { content, center: center.map(|(x, y)| (parse_num(x), parse_num(y))) }),
             DartValue::Audio(content) => SimpleValue::Audio(Audio { content }),
             DartValue::List(x) => SimpleValue::List(x.into_iter().map(DartValue::into_simple).collect()),
@@ -424,7 +425,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
     if INITIALIZED.swap(true, MemOrder::Relaxed) { return }
     thread::spawn(move || {
         let config = Config::<C, StdSystem<C>> {
-            command: Some(Rc::new(move |_, _, key, command, _| {
+            command: Some(Rc::new(move |_, key, command, _| {
                 match &command {
                     Command::Print { style: _, value } => {
                         if let Some(value) = value {
@@ -436,42 +437,39 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                 key.complete(Ok(()));
                 CommandStatus::Handled
             })),
-            request: Some(Rc::new(move |_, _, key, request, _| {
+            request: Some(Rc::new(move |_, key, request, _| {
                 let is_local_id = |s: &Value<C, StdSystem<C>>| -> bool {
                     match s.as_string() {
-                        Ok(x) => x.chars().all(|x| x == '0') || x == device_id,
+                        Ok(x) => x.chars().all(|x| x == '0') || *x == device_id,
                         Err(_) => false,
                     }
                 };
-                fn parse_options<'gc, C: CustomTypes<S>, S: System<C>>(name: &str, opts: &Value<'gc, C, S>, allowed: &[&str]) -> Result<BTreeMap<String, Value<'gc, C, S>>, String> {
+                fn parse_options<'gc, C: CustomTypes<S>, S: System<C>>(name: &str, opts: &Value<'gc, C, S>, allowed: &[&str]) -> Result<BTreeMap<CompactString, Value<'gc, C, S>>, CompactString> {
                     let mut res = BTreeMap::new();
                     match opts {
-                        Value::String(x) => match x.is_empty() {
-                            true => (),
-                            false => return Err(format!("'{name}' must be a list of lists")),
-                        }
+                        Value::String(x) if x.is_empty() => (),
                         Value::List(x) => for x in x.borrow().iter() {
                             match x {
                                 Value::List(x) => {
                                     let x = x.borrow();
                                     if x.len() != 2 {
-                                        return Err(format!("'{name}' must be a list of pairs (length 2 lists)"));
+                                        return Err(format_compact!("'{name}' must be a list of pairs (length 2 lists)"));
                                     }
                                     let k = match x[0].as_string() {
                                         Ok(x) => x.into_owned(),
-                                        Err(_) => return Err(format!("'{name}' keys must be strings")),
+                                        Err(_) => return Err(format_compact!("'{name}' keys must be strings")),
                                     };
-                                    if !allowed.iter().any(|x| **x == k) {
-                                        return Err(format!("'{name}': unknown option '{k}'"));
+                                    if !allowed.iter().any(|x| **x == *k) {
+                                        return Err(format_compact!("'{name}': unknown option '{k}'"));
                                     }
                                     if res.insert(k.clone(), x[1].clone()).is_some() {
-                                        return Err(format!("'{name}': option '{k}' was already specified"));
+                                        return Err(format_compact!("'{name}': option '{k}' was already specified"));
                                     }
                                 }
-                                _ => return Err(format!("'{name}' must be a list of lists")),
+                                _ => return Err(format_compact!("'{name}' must be a list of lists")),
                             }
                         }
-                        _ => return Err(format!("{name}' must be a list of lists")),
+                        _ => return Err(format_compact!("{name}' must be a list of lists")),
                     }
                     Ok(res)
                 }
@@ -482,7 +480,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                             Value::String(x) if **x == "true" => true,
                             Value::String(x) if **x == "false" => false,
                             x => {
-                                key.complete(Err(format!("'{}': expected bool, got {:?}", stringify!($n), x.get_type())));
+                                key.complete(Err(format_compact!("'{}': expected bool, got {:?}", stringify!($n), x.get_type())));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -491,16 +489,16 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                         match $e.as_number() {
                             Ok(x) => x.get(),
                             Err(x) => {
-                                key.complete(Err(format!("'{}': expected number, got {:?}", stringify!($n), x.got)));
+                                key.complete(Err(format_compact!("'{}': expected number, got {:?}", stringify!($n), x.got)));
                                 return RequestStatus::Handled;
                             }
                         }
                     };
                     ($n:ident := $e:expr => String) => {
                         match $e.as_string() {
-                            Ok(x) => x.into_owned(),
+                            Ok(x) => (*x).to_owned(),
                             Err(x) => {
-                                key.complete(Err(format!("'{}': expected string, got {:?}", stringify!($n), x.got)));
+                                key.complete(Err(format_compact!("'{}': expected string, got {:?}", stringify!($n), x.got)));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -508,7 +506,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                     ($n:ident := $e:expr => ControlId) => {{
                         let res = parse!($n := $e => String);
                         if res.len() > 255 {
-                            key.complete(Err(format!("'{}': string too long (max 255 bytes)", stringify!($n))));
+                            key.complete(Err(format_compact!("'{}': string too long (max 255 bytes)", stringify!($n))));
                             return RequestStatus::Handled;
                         }
                         res
@@ -520,7 +518,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                             "square" => ButtonStyleInfo::Square,
                             "circle" => ButtonStyleInfo::Circle,
                             x => {
-                                key.complete(Err(format!("'{}': unknown button style '{}'", stringify!($n), x)));
+                                key.complete(Err(format_compact!("'{}': unknown button style '{}'", stringify!($n), x)));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -530,7 +528,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                             "rectangle" => TouchpadStyleInfo::Rectangle,
                             "square" => TouchpadStyleInfo::Square,
                             x => {
-                                key.complete(Err(format!("'{}': unknown touchpad style '{}'", stringify!($n), x)));
+                                key.complete(Err(format_compact!("'{}': unknown touchpad style '{}'", stringify!($n), x)));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -541,7 +539,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                             "right" => TextAlignInfo::Right,
                             "center" => TextAlignInfo::Center,
                             x => {
-                                key.complete(Err(format!("'{}': unknown text align '{}'", stringify!($n), x)));
+                                key.complete(Err(format_compact!("'{}': unknown text align '{}'", stringify!($n), x)));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -552,7 +550,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                             "zoom" => ImageFitInfo::Zoom,
                             "stretch" => ImageFitInfo::Stretch,
                             x => {
-                                key.complete(Err(format!("'{}': unknown image fit mode '{}'", stringify!($n), x)));
+                                key.complete(Err(format_compact!("'{}': unknown image fit mode '{}'", stringify!($n), x)));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -562,7 +560,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                             "slider" => SliderStyleInfo::Slider,
                             "progress" => SliderStyleInfo::Progress,
                             x => {
-                                key.complete(Err(format!("'{}': unknown slider style '{}'", stringify!($n), x)));
+                                key.complete(Err(format_compact!("'{}': unknown slider style '{}'", stringify!($n), x)));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -572,7 +570,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                             "switch" => ToggleStyleInfo::Switch,
                             "checkbox" => ToggleStyleInfo::Checkbox,
                             x => {
-                                key.complete(Err(format!("'{}': unknown toggle style '{}'", stringify!($n), x)));
+                                key.complete(Err(format_compact!("'{}': unknown toggle style '{}'", stringify!($n), x)));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -581,7 +579,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                         match &$e {
                             Value::Image(x) => (**x).clone(),
                             x => {
-                                key.complete(Err(format!("{}': expected image, got {:?}", stringify!($n), x.get_type())));
+                                key.complete(Err(format_compact!("{}': expected image, got {:?}", stringify!($n), x.get_type())));
                                 return RequestStatus::Handled;
                             }
                         }
@@ -611,10 +609,10 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                     };
                 }
                 match &request {
-                    Request::Rpc { service, rpc, args } if service == "PhoneIoT" => {
+                    Request::Rpc { service, rpc, args } if *service == "PhoneIoT" => {
                         macro_rules! simple_request {
                             ($cmd:ident) => {{
-                                if args.len() != 1 || !is_local_id(&args[0].1) {
+                                if args.len() != 1 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::$cmd { key: DartRequestKey::new(key) });
@@ -637,31 +635,31 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let r = parse!(red := args[0].1 => f64) as u8;
-                                let g = parse!(green := args[1].1 => f64) as u8;
-                                let b = parse!(blue := args[2].1 => f64) as u8;
-                                let a = parse!(alpha := args[3].1 => f64) as u8;
+                                let r = parse!(red := args.as_slice()[0].value => f64) as u8;
+                                let g = parse!(green := args.as_slice()[1].value => f64) as u8;
+                                let b = parse!(blue := args.as_slice()[2].value => f64) as u8;
+                                let a = parse!(alpha := args.as_slice()[3].value => f64) as u8;
 
                                 let encoded = ((a as i32) << 24) | ((r as i32) << 16) | ((g as i32) << 8) | b as i32;
-                                key.complete(Ok(SimpleValue::from_json(json!(encoded)).unwrap()));
+                                key.complete(Ok(SimpleValue::Number(Number::new(encoded as f64).unwrap())));
                                 RequestStatus::Handled
                             }
                             "setCredentials" => {
-                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                if args.len() != 2 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
-                                key.complete(Ok(SimpleValue::from_json(json!("OK")).unwrap()));
+                                key.complete(Ok(SimpleValue::String(CompactString::new("OK"))));
                                 RequestStatus::Handled
                             }
                             "authenticate" | "listenToGUI" => {
-                                if args.len() != 1 || !is_local_id(&args[0].1) {
+                                if args.len() != 1 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
-                                key.complete(Ok(SimpleValue::from_json(json!("OK")).unwrap()));
+                                key.complete(Ok(SimpleValue::String(CompactString::new("OK"))));
                                 RequestStatus::Handled
                             }
                             "clearControls" => {
-                                if args.len() != 1 || !is_local_id(&args[0].1) {
+                                if args.len() != 1 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
@@ -671,26 +669,26 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "removeControl" => {
-                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                if args.len() != 2 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::RemoveControl { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "addButton" => {
-                                if args.len() != 7 || !is_local_id(&args[0].1) {
+                                if args.len() != 7 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let x = parse!(x := args[1].1 => f64);
-                                let y = parse!(y := args[2].1 => f64);
-                                let width = parse!(width := args[3].1 => f64);
-                                let height = parse!(height := args[4].1 => f64);
-                                let text = parse!(text := args[5].1 => String);
-                                let options = parse!(options := args[6].1 => { id, event, style, color, textColor, landscape, fontSize });
+                                let x = parse!(x := args.as_slice()[1].value => f64);
+                                let y = parse!(y := args.as_slice()[2].value => f64);
+                                let width = parse!(width := args.as_slice()[3].value => f64);
+                                let height = parse!(height := args.as_slice()[4].value => f64);
+                                let text = parse!(text := args.as_slice()[5].value => String);
+                                let options = parse!(options := args.as_slice()[6].value => { id, event, style, color, textColor, landscape, fontSize });
                                 let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let landscape = parse!(landscape := options.get("landscape") => Option<bool>).unwrap_or(false);
                                 let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
@@ -705,14 +703,14 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "addLabel" => {
-                                if args.len() != 5 || !is_local_id(&args[0].1) {
+                                if args.len() != 5 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let x = parse!(x := args[1].1 => f64);
-                                let y = parse!(y := args[2].1 => f64);
-                                let text = parse!(text := args[3].1 => String);
-                                let options = parse!(options := args[4].1 => { id, textColor, align, fontSize, landscape });
+                                let x = parse!(x := args.as_slice()[1].value => f64);
+                                let y = parse!(y := args.as_slice()[2].value => f64);
+                                let text = parse!(text := args.as_slice()[3].value => String);
+                                let options = parse!(options := args.as_slice()[4].value => { id, textColor, align, fontSize, landscape });
                                 let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
                                 let font_size = parse!(fontSize := options.get("fontSize") => Option<f64>).unwrap_or(1.0);
@@ -725,15 +723,15 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "addTextField" => {
-                                if args.len() != 6 || !is_local_id(&args[0].1) {
+                                if args.len() != 6 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let x = parse!(x := args[1].1 => f64);
-                                let y = parse!(y := args[2].1 => f64);
-                                let width = parse!(width := args[3].1 => f64);
-                                let height = parse!(height := args[4].1 => f64);
-                                let options = parse!(options := args[5].1 => { id, event, text, color, textColor, readonly, fontSize, align, landscape });
+                                let x = parse!(x := args.as_slice()[1].value => f64);
+                                let y = parse!(y := args.as_slice()[2].value => f64);
+                                let width = parse!(width := args.as_slice()[3].value => f64);
+                                let height = parse!(height := args.as_slice()[4].value => f64);
+                                let options = parse!(options := args.as_slice()[5].value => { id, event, text, color, textColor, readonly, fontSize, align, landscape });
                                 let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let back_color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
                                 let fore_color = parse!(textColor := options.get("textColor") => Option<ColorInfo>).unwrap_or(BLACK);
@@ -750,14 +748,14 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "addJoystick" => {
-                                if args.len() != 5 || !is_local_id(&args[0].1) {
+                                if args.len() != 5 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let x = parse!(x := args[1].1 => f64);
-                                let y = parse!(y := args[2].1 => f64);
-                                let width = parse!(width := args[3].1 => f64);
-                                let options = parse!(options := args[4].1 => { id, event, color, landscape });
+                                let x = parse!(x := args.as_slice()[1].value => f64);
+                                let y = parse!(y := args.as_slice()[2].value => f64);
+                                let width = parse!(width := args.as_slice()[3].value => f64);
+                                let options = parse!(options := args.as_slice()[4].value => { id, event, color, landscape });
                                 let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let color = parse!(event := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
@@ -769,15 +767,15 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "addTouchpad" => {
-                                if args.len() != 6 || !is_local_id(&args[0].1) {
+                                if args.len() != 6 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let x = parse!(x := args[1].1 => f64);
-                                let y = parse!(y := args[2].1 => f64);
-                                let width = parse!(width := args[3].1 => f64);
-                                let height = parse!(height := args[4].1 => f64);
-                                let options = parse!(options := args[5].1 => { id, event, color, style, landscape });
+                                let x = parse!(x := args.as_slice()[1].value => f64);
+                                let y = parse!(y := args.as_slice()[2].value => f64);
+                                let width = parse!(width := args.as_slice()[3].value => f64);
+                                let height = parse!(height := args.as_slice()[4].value => f64);
+                                let options = parse!(options := args.as_slice()[5].value => { id, event, color, style, landscape });
                                 let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
@@ -790,14 +788,14 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "addSlider" => {
-                                if args.len() != 5 || !is_local_id(&args[0].1) {
+                                if args.len() != 5 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let x = parse!(x := args[1].1 => f64);
-                                let y = parse!(y := args[2].1 => f64);
-                                let width = parse!(width := args[3].1 => f64);
-                                let options = parse!(options := args[4].1 => { id, event, color, value, style, landscape, readonly });
+                                let x = parse!(x := args.as_slice()[1].value => f64);
+                                let y = parse!(y := args.as_slice()[2].value => f64);
+                                let width = parse!(width := args.as_slice()[3].value => f64);
+                                let options = parse!(options := args.as_slice()[4].value => { id, event, color, value, style, landscape, readonly });
                                 let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let color = parse!(color := options.get("color") => Option<ColorInfo>).unwrap_or(BLUE);
@@ -812,14 +810,14 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "addToggle" => {
-                                if args.len() != 5 || !is_local_id(&args[0].1) {
+                                if args.len() != 5 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let x = parse!(x := args[1].1 => f64);
-                                let y = parse!(y := args[2].1 => f64);
-                                let text = parse!(text := args[3].1 => String);
-                                let options = parse!(options := args[4].1 => { style, id, event, checked, color, textColor, fontSize, landscape, readonly });
+                                let x = parse!(x := args.as_slice()[1].value => f64);
+                                let y = parse!(y := args.as_slice()[2].value => f64);
+                                let text = parse!(text := args.as_slice()[3].value => String);
+                                let options = parse!(options := args.as_slice()[4].value => { style, id, event, checked, color, textColor, fontSize, landscape, readonly });
                                 let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let style = parse!(style := options.get("style") => Option<ToggleStyleInfo>).unwrap_or(ToggleStyleInfo::Switch);
                                 let event = parse!(event := options.get("event") => Option<String>);
@@ -836,14 +834,14 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "addRadioButton" => {
-                                if args.len() != 5 || !is_local_id(&args[0].1) {
+                                if args.len() != 5 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let x = parse!(x := args[1].1 => f64);
-                                let y = parse!(y := args[2].1 => f64);
-                                let text = parse!(text := args[3].1 => String);
-                                let options = parse!(options := args[4].1 => { group, id, event, checked, color, textColor, fontSize, landscape, readonly });
+                                let x = parse!(x := args.as_slice()[1].value => f64);
+                                let y = parse!(y := args.as_slice()[2].value => f64);
+                                let text = parse!(text := args.as_slice()[3].value => String);
+                                let options = parse!(options := args.as_slice()[4].value => { group, id, event, checked, color, textColor, fontSize, landscape, readonly });
                                 let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let group = parse!(id := options.get("group") => Option<ControlId>).unwrap_or_default();
                                 let event = parse!(event := options.get("event") => Option<String>);
@@ -860,15 +858,15 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "addImageDisplay" => {
-                                if args.len() != 6 || !is_local_id(&args[0].1) {
+                                if args.len() != 6 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let x = parse!(x := args[1].1 => f64);
-                                let y = parse!(y := args[2].1 => f64);
-                                let width = parse!(width := args[3].1 => f64);
-                                let height = parse!(height := args[4].1 => f64);
-                                let options = parse!(options := args[5].1 => { id, event, readonly, landscape, fit });
+                                let x = parse!(x := args.as_slice()[1].value => f64);
+                                let y = parse!(y := args.as_slice()[2].value => f64);
+                                let width = parse!(width := args.as_slice()[3].value => f64);
+                                let height = parse!(height := args.as_slice()[4].value => f64);
+                                let options = parse!(options := args.as_slice()[5].value => { id, event, readonly, landscape, fit });
                                 let id = parse!(id := options.get("id") => Option<ControlId>).unwrap_or_else(new_control_id);
                                 let event = parse!(event := options.get("event") => Option<String>);
                                 let readonly = parse!(readonly := options.get("readonly") => Option<bool>).unwrap_or(true);
@@ -881,11 +879,11 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "listenToSensors" => {
-                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                if args.len() != 2 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let sensors = parse!(sensors := args[1].1 => {
+                                let sensors = parse!(sensors := args.as_slice()[1].value => {
                                     gravity, gyroscope, orientation, accelerometer, magneticField, linearAcceleration,
                                     lightLevel, microphoneLevel, proximity, stepCount, location, pressure, temperature, humidity,
                                 });
@@ -911,7 +909,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "stopSensors" => {
-                                if args.len() != 1 || !is_local_id(&args[0].1) {
+                                if args.len() != 1 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
@@ -919,105 +917,105 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 RequestStatus::Handled
                             }
                             "getText" => {
-                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                if args.len() != 2 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::GetText { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "setText" => {
-                                if args.len() != 3 || !is_local_id(&args[0].1) {
+                                if args.len() != 3 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
-                                let value = parse!(text := args[2].1 => String);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
+                                let value = parse!(text := args.as_slice()[2].value => String);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::SetText { key: DartRequestKey::new(key), id, value });
                                 RequestStatus::Handled
                             }
                             "isPressed" => {
-                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                if args.len() != 2 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::IsPressed { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "getPosition" => {
-                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                if args.len() != 2 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::GetPosition { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "getImage" => {
-                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                if args.len() != 2 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::GetImage { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "setImage" => {
-                                if args.len() != 3 || !is_local_id(&args[0].1) {
+                                if args.len() != 3 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
-                                let img = parse!(img := args[2].1 => Image);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
+                                let img = parse!(img := args.as_slice()[2].value => Image);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::SetImage { key: DartRequestKey::new(key), id, value: img.content });
                                 RequestStatus::Handled
                             }
                             "getLevel" => {
-                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                if args.len() != 2 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::GetLevel { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "setLevel" => {
-                                if args.len() != 3 || !is_local_id(&args[0].1) {
+                                if args.len() != 3 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
-                                let value = parse!(value := args[2].1 => f64);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
+                                let value = parse!(value := args.as_slice()[2].value => f64);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::SetLevel { key: DartRequestKey::new(key), id, value });
                                 RequestStatus::Handled
                             }
                             "getToggleState" => {
-                                if args.len() != 2 || !is_local_id(&args[0].1) {
+                                if args.len() != 2 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::GetToggleState { key: DartRequestKey::new(key), id });
                                 RequestStatus::Handled
                             }
                             "setToggleState" => {
-                                if args.len() != 3 || !is_local_id(&args[0].1) {
+                                if args.len() != 3 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
 
-                                let id = parse!(id := args[1].1 => ControlId);
-                                let value = parse!(state := args[2].1 => bool);
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
+                                let value = parse!(state := args.as_slice()[2].value => bool);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::SetToggleState { key: DartRequestKey::new(key), id, value });
                                 RequestStatus::Handled
@@ -1049,14 +1047,23 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                 }
             })),
         };
+
         let utc_offset = UtcOffset::from_whole_seconds(utc_offset_in_seconds).unwrap_or(UtcOffset::UTC);
-        let system = Rc::new(StdSystem::new_sync(SERVER_URL.to_owned(), None, config, utc_offset));
+        let clock = Arc::new(Clock::new(utc_offset, Some(Precision::Medium)));
+        let clock_clone = clock.clone();
+        thread::spawn(move || loop {
+            thread::sleep(CLOCK_INTERVAL);
+            clock_clone.update();
+        });
+
+        let system = Rc::new(StdSystem::new_sync(CompactString::new(SERVER_URL), None, config, clock.clone()));
         let mut env = {
             let project = ast::Parser::default().parse(netsblox_vm::template::EMPTY_PROJECT).unwrap();
             get_env(&project.roles[0], system.clone()).unwrap()
         };
         let mut idle_sleeper = IdleAction::new(IDLE_SLEEP_THRESH, Box::new(move || thread::sleep(IDLE_SLEEP_TIME)));
         let mut pauser = PauseController::new(false);
+        let mut next_collect = clock.read(Precision::Medium) + COLLECT_INTERVAL;
 
         loop {
             let commands = mem::take(&mut *RUST_COMMANDS.lock().unwrap());
@@ -1086,7 +1093,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                         pauser.toggle_paused();
                     }
                     RustCommand::InjectMessage { msg_type, values } => {
-                        system.inject_message(msg_type, values.into_iter().map(|x| (x.0, x.1.into_json())).collect());
+                        system.inject_message(msg_type.into(), values.into_iter().map(|x| (x.0.into(), x.1.into_simple())).collect());
                     }
                 }
             }
@@ -1113,6 +1120,11 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                     idle_sleeper.consume(&res);
                 }
             });
+
+            if clock.read(Precision::Low) > next_collect {
+                env.collect_all();
+                next_collect = clock.read(Precision::Medium) + COLLECT_INTERVAL;
+            }
         }
     });
 }
@@ -1127,6 +1139,6 @@ pub fn recv_commands(sink: StreamSink<DartCommand>) {
 pub fn complete_request(key: DartRequestKey, result: RequestResult) {
     let key = PENDING_REQUESTS.lock().unwrap().remove(&key);
     if let Some(key) = key {
-        key.complete(result.into_result().map(DartValue::into_simple));
+        key.complete(result.into_result().map(DartValue::into_simple).map_err(Into::into));
     }
 }
