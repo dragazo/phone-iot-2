@@ -41,6 +41,16 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
   }
 
   @protected
+  List<dynamic> api2wire_box_autoadd_command_result(CommandResult raw) {
+    return api2wire_command_result(raw);
+  }
+
+  @protected
+  List<dynamic> api2wire_box_autoadd_dart_command_key(DartCommandKey raw) {
+    return api2wire_dart_command_key(raw);
+  }
+
+  @protected
   List<dynamic> api2wire_box_autoadd_dart_request_key(DartRequestKey raw) {
     return api2wire_dart_request_key(raw);
   }
@@ -58,6 +68,23 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire>
   @protected
   List<dynamic> api2wire_box_autoadd_rust_command(RustCommand raw) {
     return api2wire_rust_command(raw);
+  }
+
+  @protected
+  List<dynamic> api2wire_command_result(CommandResult raw) {
+    if (raw is CommandResult_Ok) {
+      return [0];
+    }
+    if (raw is CommandResult_Err) {
+      return [1, api2wire_String(raw.field0)];
+    }
+
+    throw Exception('unreachable');
+  }
+
+  @protected
+  List<dynamic> api2wire_dart_command_key(DartCommandKey raw) {
+    return [api2wire_usize(raw.value)];
   }
 
   @protected
@@ -175,6 +202,9 @@ class NativeWasmModule implements WasmModule {
 
   external dynamic /* void */ wire_complete_request(
       NativePortType port_, List<dynamic> key, List<dynamic> result);
+
+  external dynamic /* void */ wire_complete_command(
+      NativePortType port_, List<dynamic> key, List<dynamic> result);
 }
 
 // Section: WASM wire connector
@@ -196,4 +226,8 @@ class NativeWire extends FlutterRustBridgeWasmWireBase<NativeWasmModule> {
   void wire_complete_request(
           NativePortType port_, List<dynamic> key, List<dynamic> result) =>
       wasmModule.wire_complete_request(port_, key, result);
+
+  void wire_complete_command(
+          NativePortType port_, List<dynamic> key, List<dynamic> result) =>
+      wasmModule.wire_complete_command(port_, key, result);
 }

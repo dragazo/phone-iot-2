@@ -21,6 +21,11 @@ pub fn wire_complete_request(port_: MessagePort, key: JsValue, result: JsValue) 
     wire_complete_request_impl(port_, key, result)
 }
 
+#[wasm_bindgen]
+pub fn wire_complete_command(port_: MessagePort, key: JsValue, result: JsValue) {
+    wire_complete_command_impl(port_, key, result)
+}
+
 // Section: allocate functions
 
 // Section: related functions
@@ -57,6 +62,30 @@ impl Wire2Api<(f64, f64)> for JsValue {
     }
 }
 
+impl Wire2Api<CommandResult> for JsValue {
+    fn wire2api(self) -> CommandResult {
+        let self_ = self.unchecked_into::<JsArray>();
+        match self_.get(0).unchecked_into_f64() as _ {
+            0 => CommandResult::Ok,
+            1 => CommandResult::Err(self_.get(1).wire2api()),
+            _ => unreachable!(),
+        }
+    }
+}
+impl Wire2Api<DartCommandKey> for JsValue {
+    fn wire2api(self) -> DartCommandKey {
+        let self_ = self.dyn_into::<JsArray>().unwrap();
+        assert_eq!(
+            self_.length(),
+            1,
+            "Expected 1 elements, got {}",
+            self_.length()
+        );
+        DartCommandKey {
+            value: self_.get(0).wire2api(),
+        }
+    }
+}
 impl Wire2Api<DartRequestKey> for JsValue {
     fn wire2api(self) -> DartRequestKey {
         let self_ = self.dyn_into::<JsArray>().unwrap();

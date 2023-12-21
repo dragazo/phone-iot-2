@@ -15,12 +15,308 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$CommandResult {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() ok,
+    required TResult Function(String field0) err,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? ok,
+    TResult? Function(String field0)? err,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? ok,
+    TResult Function(String field0)? err,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CommandResult_Ok value) ok,
+    required TResult Function(CommandResult_Err value) err,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CommandResult_Ok value)? ok,
+    TResult? Function(CommandResult_Err value)? err,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CommandResult_Ok value)? ok,
+    TResult Function(CommandResult_Err value)? err,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CommandResultCopyWith<$Res> {
+  factory $CommandResultCopyWith(
+          CommandResult value, $Res Function(CommandResult) then) =
+      _$CommandResultCopyWithImpl<$Res, CommandResult>;
+}
+
+/// @nodoc
+class _$CommandResultCopyWithImpl<$Res, $Val extends CommandResult>
+    implements $CommandResultCopyWith<$Res> {
+  _$CommandResultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$CommandResult_OkCopyWith<$Res> {
+  factory _$$CommandResult_OkCopyWith(
+          _$CommandResult_Ok value, $Res Function(_$CommandResult_Ok) then) =
+      __$$CommandResult_OkCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CommandResult_OkCopyWithImpl<$Res>
+    extends _$CommandResultCopyWithImpl<$Res, _$CommandResult_Ok>
+    implements _$$CommandResult_OkCopyWith<$Res> {
+  __$$CommandResult_OkCopyWithImpl(
+      _$CommandResult_Ok _value, $Res Function(_$CommandResult_Ok) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CommandResult_Ok implements CommandResult_Ok {
+  const _$CommandResult_Ok();
+
+  @override
+  String toString() {
+    return 'CommandResult.ok()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CommandResult_Ok);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() ok,
+    required TResult Function(String field0) err,
+  }) {
+    return ok();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? ok,
+    TResult? Function(String field0)? err,
+  }) {
+    return ok?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? ok,
+    TResult Function(String field0)? err,
+    required TResult orElse(),
+  }) {
+    if (ok != null) {
+      return ok();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CommandResult_Ok value) ok,
+    required TResult Function(CommandResult_Err value) err,
+  }) {
+    return ok(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CommandResult_Ok value)? ok,
+    TResult? Function(CommandResult_Err value)? err,
+  }) {
+    return ok?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CommandResult_Ok value)? ok,
+    TResult Function(CommandResult_Err value)? err,
+    required TResult orElse(),
+  }) {
+    if (ok != null) {
+      return ok(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CommandResult_Ok implements CommandResult {
+  const factory CommandResult_Ok() = _$CommandResult_Ok;
+}
+
+/// @nodoc
+abstract class _$$CommandResult_ErrCopyWith<$Res> {
+  factory _$$CommandResult_ErrCopyWith(
+          _$CommandResult_Err value, $Res Function(_$CommandResult_Err) then) =
+      __$$CommandResult_ErrCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String field0});
+}
+
+/// @nodoc
+class __$$CommandResult_ErrCopyWithImpl<$Res>
+    extends _$CommandResultCopyWithImpl<$Res, _$CommandResult_Err>
+    implements _$$CommandResult_ErrCopyWith<$Res> {
+  __$$CommandResult_ErrCopyWithImpl(
+      _$CommandResult_Err _value, $Res Function(_$CommandResult_Err) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$CommandResult_Err(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CommandResult_Err implements CommandResult_Err {
+  const _$CommandResult_Err(this.field0);
+
+  @override
+  final String field0;
+
+  @override
+  String toString() {
+    return 'CommandResult.err(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CommandResult_Err &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CommandResult_ErrCopyWith<_$CommandResult_Err> get copyWith =>
+      __$$CommandResult_ErrCopyWithImpl<_$CommandResult_Err>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() ok,
+    required TResult Function(String field0) err,
+  }) {
+    return err(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? ok,
+    TResult? Function(String field0)? err,
+  }) {
+    return err?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? ok,
+    TResult Function(String field0)? err,
+    required TResult orElse(),
+  }) {
+    if (err != null) {
+      return err(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CommandResult_Ok value) ok,
+    required TResult Function(CommandResult_Err value) err,
+  }) {
+    return err(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CommandResult_Ok value)? ok,
+    TResult? Function(CommandResult_Err value)? err,
+  }) {
+    return err?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CommandResult_Ok value)? ok,
+    TResult Function(CommandResult_Err value)? err,
+    required TResult orElse(),
+  }) {
+    if (err != null) {
+      return err(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CommandResult_Err implements CommandResult {
+  const factory CommandResult_Err(final String field0) = _$CommandResult_Err;
+
+  String get field0;
+  @JsonKey(ignore: true)
+  _$$CommandResult_ErrCopyWith<_$CommandResult_Err> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$DartCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -80,6 +376,7 @@ mixin _$DartCommand {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -132,6 +429,7 @@ mixin _$DartCommand {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -184,6 +482,7 @@ mixin _$DartCommand {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -247,6 +546,7 @@ mixin _$DartCommand {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -301,6 +601,7 @@ mixin _$DartCommand {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -440,6 +741,7 @@ class _$DartCommand_UpdatePaused implements DartCommand_UpdatePaused {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -502,6 +804,7 @@ class _$DartCommand_UpdatePaused implements DartCommand_UpdatePaused {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -557,6 +860,7 @@ class _$DartCommand_UpdatePaused implements DartCommand_UpdatePaused {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -615,6 +919,7 @@ class _$DartCommand_UpdatePaused implements DartCommand_UpdatePaused {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -681,6 +986,7 @@ class _$DartCommand_UpdatePaused implements DartCommand_UpdatePaused {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -738,6 +1044,7 @@ class _$DartCommand_UpdatePaused implements DartCommand_UpdatePaused {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -872,6 +1179,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -934,6 +1242,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -989,6 +1298,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -1047,6 +1357,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -1113,6 +1424,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -1170,6 +1482,7 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -1304,6 +1617,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -1366,6 +1680,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -1421,6 +1736,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -1479,6 +1795,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -1545,6 +1862,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -1602,6 +1920,7 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -1665,6 +1984,455 @@ abstract class DartCommand_Stderr implements DartCommand {
   String get msg;
   @JsonKey(ignore: true)
   _$$DartCommand_StderrCopyWith<_$DartCommand_Stderr> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_PlaySoundCopyWith<$Res> {
+  factory _$$DartCommand_PlaySoundCopyWith(_$DartCommand_PlaySound value,
+          $Res Function(_$DartCommand_PlaySound) then) =
+      __$$DartCommand_PlaySoundCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DartCommandKey? key, Uint8List content});
+}
+
+/// @nodoc
+class __$$DartCommand_PlaySoundCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_PlaySound>
+    implements _$$DartCommand_PlaySoundCopyWith<$Res> {
+  __$$DartCommand_PlaySoundCopyWithImpl(_$DartCommand_PlaySound _value,
+      $Res Function(_$DartCommand_PlaySound) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = freezed,
+    Object? content = null,
+  }) {
+    return _then(_$DartCommand_PlaySound(
+      key: freezed == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartCommandKey?,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_PlaySound implements DartCommand_PlaySound {
+  const _$DartCommand_PlaySound({this.key, required this.content});
+
+  @override
+  final DartCommandKey? key;
+  @override
+  final Uint8List content;
+
+  @override
+  String toString() {
+    return 'DartCommand.playSound(key: $key, content: $content)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_PlaySound &&
+            (identical(other.key, key) || other.key == key) &&
+            const DeepCollectionEquality().equals(other.content, content));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, key, const DeepCollectionEquality().hash(content));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_PlaySoundCopyWith<_$DartCommand_PlaySound> get copyWith =>
+      __$$DartCommand_PlaySoundCopyWithImpl<_$DartCommand_PlaySound>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
+    required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
+    required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id) getLevel,
+    required TResult Function(DartRequestKey key, String id, double value)
+        setLevel,
+    required TResult Function(DartRequestKey key, String id) getToggleState,
+    required TResult Function(DartRequestKey key, String id, bool value)
+        setToggleState,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key) getAccelerometer,
+    required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
+    required TResult Function(DartRequestKey key) getGravity,
+    required TResult Function(DartRequestKey key) getPressure,
+    required TResult Function(DartRequestKey key) getRelativeHumidity,
+    required TResult Function(DartRequestKey key) getLightLevel,
+    required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
+    required TResult Function(DartRequestKey key) getOrientation,
+    required TResult Function(DartRequestKey key) getCompassHeading,
+    required TResult Function(DartRequestKey key) getCompassDirection,
+    required TResult Function(DartRequestKey key) getCompassCardinalDirection,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
+    required TResult Function(DartRequestKey key) getMicrophoneLevel,
+    required TResult Function(DartRequestKey key) getProximity,
+    required TResult Function(DartRequestKey key) getStepCount,
+    required TResult Function(DartRequestKey key, SensorUpdateInfo sensors)
+        listenToSensors,
+  }) {
+    return playSound(key, content);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id)? getLevel,
+    TResult? Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult? Function(DartRequestKey key, String id)? getToggleState,
+    TResult? Function(DartRequestKey key, String id, bool value)?
+        setToggleState,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key)? getAccelerometer,
+    TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
+    TResult? Function(DartRequestKey key)? getGravity,
+    TResult? Function(DartRequestKey key)? getPressure,
+    TResult? Function(DartRequestKey key)? getRelativeHumidity,
+    TResult? Function(DartRequestKey key)? getLightLevel,
+    TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
+    TResult? Function(DartRequestKey key)? getOrientation,
+    TResult? Function(DartRequestKey key)? getCompassHeading,
+    TResult? Function(DartRequestKey key)? getCompassDirection,
+    TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
+    TResult? Function(DartRequestKey key)? getMicrophoneLevel,
+    TResult? Function(DartRequestKey key)? getProximity,
+    TResult? Function(DartRequestKey key)? getStepCount,
+    TResult? Function(DartRequestKey key, SensorUpdateInfo sensors)?
+        listenToSensors,
+  }) {
+    return playSound?.call(key, content);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id)? getLevel,
+    TResult Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult Function(DartRequestKey key, String id)? getToggleState,
+    TResult Function(DartRequestKey key, String id, bool value)? setToggleState,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key)? getAccelerometer,
+    TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
+    TResult Function(DartRequestKey key)? getGravity,
+    TResult Function(DartRequestKey key)? getPressure,
+    TResult Function(DartRequestKey key)? getRelativeHumidity,
+    TResult Function(DartRequestKey key)? getLightLevel,
+    TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
+    TResult Function(DartRequestKey key)? getOrientation,
+    TResult Function(DartRequestKey key)? getCompassHeading,
+    TResult Function(DartRequestKey key)? getCompassDirection,
+    TResult Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
+    TResult Function(DartRequestKey key)? getMicrophoneLevel,
+    TResult Function(DartRequestKey key)? getProximity,
+    TResult Function(DartRequestKey key)? getStepCount,
+    TResult Function(DartRequestKey key, SensorUpdateInfo sensors)?
+        listenToSensors,
+    required TResult orElse(),
+  }) {
+    if (playSound != null) {
+      return playSound(key, content);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
+    required TResult Function(DartCommand_AddSlider value) addSlider,
+    required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_GetLevel value) getLevel,
+    required TResult Function(DartCommand_SetLevel value) setLevel,
+    required TResult Function(DartCommand_GetToggleState value) getToggleState,
+    required TResult Function(DartCommand_SetToggleState value) setToggleState,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetAccelerometer value)
+        getAccelerometer,
+    required TResult Function(DartCommand_GetLinearAccelerometer value)
+        getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
+    required TResult Function(DartCommand_GetGravity value) getGravity,
+    required TResult Function(DartCommand_GetPressure value) getPressure,
+    required TResult Function(DartCommand_GetRelativeHumidity value)
+        getRelativeHumidity,
+    required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
+    required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
+    required TResult Function(DartCommand_GetOrientation value) getOrientation,
+    required TResult Function(DartCommand_GetCompassHeading value)
+        getCompassHeading,
+    required TResult Function(DartCommand_GetCompassDirection value)
+        getCompassDirection,
+    required TResult Function(DartCommand_GetCompassCardinalDirection value)
+        getCompassCardinalDirection,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
+    required TResult Function(DartCommand_GetMicrophoneLevel value)
+        getMicrophoneLevel,
+    required TResult Function(DartCommand_GetProximity value) getProximity,
+    required TResult Function(DartCommand_GetStepCount value) getStepCount,
+    required TResult Function(DartCommand_ListenToSensors value)
+        listenToSensors,
+  }) {
+    return playSound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult? Function(DartCommand_AddSlider value)? addSlider,
+    TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_GetLevel value)? getLevel,
+    TResult? Function(DartCommand_SetLevel value)? setLevel,
+    TResult? Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult? Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult? Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult? Function(DartCommand_GetGravity value)? getGravity,
+    TResult? Function(DartCommand_GetPressure value)? getPressure,
+    TResult? Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult? Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult? Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult? Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult? Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+    TResult? Function(DartCommand_GetMicrophoneLevel value)? getMicrophoneLevel,
+    TResult? Function(DartCommand_GetProximity value)? getProximity,
+    TResult? Function(DartCommand_GetStepCount value)? getStepCount,
+    TResult? Function(DartCommand_ListenToSensors value)? listenToSensors,
+  }) {
+    return playSound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult Function(DartCommand_AddSlider value)? addSlider,
+    TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_GetLevel value)? getLevel,
+    TResult Function(DartCommand_SetLevel value)? setLevel,
+    TResult Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult Function(DartCommand_GetGravity value)? getGravity,
+    TResult Function(DartCommand_GetPressure value)? getPressure,
+    TResult Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+    TResult Function(DartCommand_GetMicrophoneLevel value)? getMicrophoneLevel,
+    TResult Function(DartCommand_GetProximity value)? getProximity,
+    TResult Function(DartCommand_GetStepCount value)? getStepCount,
+    TResult Function(DartCommand_ListenToSensors value)? listenToSensors,
+    required TResult orElse(),
+  }) {
+    if (playSound != null) {
+      return playSound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_PlaySound implements DartCommand {
+  const factory DartCommand_PlaySound(
+      {final DartCommandKey? key,
+      required final Uint8List content}) = _$DartCommand_PlaySound;
+
+  DartCommandKey? get key;
+  Uint8List get content;
+  @JsonKey(ignore: true)
+  _$$DartCommand_PlaySoundCopyWith<_$DartCommand_PlaySound> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1737,6 +2505,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -1799,6 +2568,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -1854,6 +2624,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -1912,6 +2683,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -1978,6 +2750,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -2035,6 +2808,7 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -2178,6 +2952,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -2240,6 +3015,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -2295,6 +3071,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -2353,6 +3130,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -2419,6 +3197,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -2476,6 +3255,7 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -2620,6 +3400,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -2682,6 +3463,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -2737,6 +3519,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -2795,6 +3578,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -2861,6 +3645,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -2918,6 +3703,7 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -3062,6 +3848,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -3124,6 +3911,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -3179,6 +3967,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -3237,6 +4026,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -3303,6 +4093,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -3360,6 +4151,7 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -3505,6 +4297,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -3567,6 +4360,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -3622,6 +4416,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -3680,6 +4475,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -3746,6 +4542,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -3803,6 +4600,7 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -3947,6 +4745,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -4009,6 +4808,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -4064,6 +4864,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -4122,6 +4923,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -4188,6 +4990,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -4245,6 +5048,7 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -4389,6 +5193,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -4451,6 +5256,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -4506,6 +5312,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -4564,6 +5371,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -4630,6 +5438,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -4687,6 +5496,7 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -4831,6 +5641,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -4893,6 +5704,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -4948,6 +5760,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -5006,6 +5819,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -5072,6 +5886,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -5129,6 +5944,7 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -5273,6 +6089,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -5335,6 +6152,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -5390,6 +6208,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -5448,6 +6267,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -5514,6 +6334,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -5571,6 +6392,7 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -5717,6 +6539,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -5779,6 +6602,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -5834,6 +6658,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -5892,6 +6717,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -5958,6 +6784,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -6015,6 +6842,7 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -6161,6 +6989,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -6223,6 +7052,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -6278,6 +7108,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -6336,6 +7167,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -6402,6 +7234,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -6459,6 +7292,7 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -6603,6 +7437,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -6665,6 +7500,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -6720,6 +7556,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -6778,6 +7615,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -6844,6 +7682,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -6901,6 +7740,7 @@ class _$DartCommand_GetText implements DartCommand_GetText {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -7054,6 +7894,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -7116,6 +7957,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -7171,6 +8013,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -7229,6 +8072,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -7295,6 +8139,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -7352,6 +8197,7 @@ class _$DartCommand_SetText implements DartCommand_SetText {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -7498,6 +8344,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -7560,6 +8407,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -7615,6 +8463,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -7673,6 +8522,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -7739,6 +8589,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -7796,6 +8647,7 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -7949,6 +8801,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -8011,6 +8864,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -8066,6 +8920,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -8124,6 +8979,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -8190,6 +9046,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -8247,6 +9104,7 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -8395,6 +9253,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -8457,6 +9316,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -8512,6 +9372,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -8570,6 +9431,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -8636,6 +9498,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -8693,6 +9556,7 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -8848,6 +9712,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -8910,6 +9775,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -8965,6 +9831,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -9023,6 +9890,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -9089,6 +9957,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -9146,6 +10015,7 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -9292,6 +10162,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -9354,6 +10225,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -9409,6 +10281,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -9467,6 +10340,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -9533,6 +10407,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -9590,6 +10465,7 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -9744,6 +10620,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -9806,6 +10683,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -9861,6 +10739,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -9919,6 +10798,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -9985,6 +10865,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -10042,6 +10923,7 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -10188,6 +11070,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -10250,6 +11133,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -10305,6 +11189,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -10363,6 +11248,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -10429,6 +11315,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -10486,6 +11373,7 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -10630,6 +11518,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -10692,6 +11581,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -10747,6 +11637,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -10805,6 +11696,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -10871,6 +11763,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -10928,6 +11821,7 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -11066,6 +11960,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -11128,6 +12023,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -11183,6 +12079,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -11241,6 +12138,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -11307,6 +12205,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -11364,6 +12263,7 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -11503,6 +12403,7 @@ class _$DartCommand_GetLinearAccelerometer
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -11565,6 +12466,7 @@ class _$DartCommand_GetLinearAccelerometer
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -11620,6 +12522,7 @@ class _$DartCommand_GetLinearAccelerometer
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -11678,6 +12581,7 @@ class _$DartCommand_GetLinearAccelerometer
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -11744,6 +12648,7 @@ class _$DartCommand_GetLinearAccelerometer
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -11801,6 +12706,7 @@ class _$DartCommand_GetLinearAccelerometer
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -11938,6 +12844,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -12000,6 +12907,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -12055,6 +12963,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -12113,6 +13022,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -12179,6 +13089,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -12236,6 +13147,7 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -12372,6 +13284,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -12434,6 +13347,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -12489,6 +13403,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -12547,6 +13462,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -12613,6 +13529,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -12670,6 +13587,7 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -12804,6 +13722,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -12866,6 +13785,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -12921,6 +13841,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -12979,6 +13900,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -13045,6 +13967,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -13102,6 +14025,7 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -13236,6 +14160,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -13298,6 +14223,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -13353,6 +14279,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -13411,6 +14338,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -13477,6 +14405,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -13534,6 +14463,7 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -13671,6 +14601,7 @@ class _$DartCommand_GetRelativeHumidity
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -13733,6 +14664,7 @@ class _$DartCommand_GetRelativeHumidity
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -13788,6 +14720,7 @@ class _$DartCommand_GetRelativeHumidity
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -13846,6 +14779,7 @@ class _$DartCommand_GetRelativeHumidity
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -13912,6 +14846,7 @@ class _$DartCommand_GetRelativeHumidity
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -13969,6 +14904,7 @@ class _$DartCommand_GetRelativeHumidity
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -14104,6 +15040,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -14166,6 +15103,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -14221,6 +15159,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -14279,6 +15218,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -14345,6 +15285,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -14402,6 +15343,7 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -14538,6 +15480,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -14600,6 +15543,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -14655,6 +15599,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -14713,6 +15658,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -14779,6 +15725,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -14836,6 +15783,7 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -14973,6 +15921,7 @@ class _$DartCommand_GetFacingDirection
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -15035,6 +15984,7 @@ class _$DartCommand_GetFacingDirection
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -15090,6 +16040,7 @@ class _$DartCommand_GetFacingDirection
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -15148,6 +16099,7 @@ class _$DartCommand_GetFacingDirection
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -15214,6 +16166,7 @@ class _$DartCommand_GetFacingDirection
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -15271,6 +16224,7 @@ class _$DartCommand_GetFacingDirection
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -15407,6 +16361,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -15469,6 +16424,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -15524,6 +16480,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -15582,6 +16539,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -15648,6 +16606,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -15705,6 +16664,7 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -15841,6 +16801,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -15903,6 +16864,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -15958,6 +16920,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -16016,6 +16979,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -16082,6 +17046,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -16139,6 +17104,7 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -16276,6 +17242,7 @@ class _$DartCommand_GetCompassDirection
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -16338,6 +17305,7 @@ class _$DartCommand_GetCompassDirection
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -16393,6 +17361,7 @@ class _$DartCommand_GetCompassDirection
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -16451,6 +17420,7 @@ class _$DartCommand_GetCompassDirection
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -16517,6 +17487,7 @@ class _$DartCommand_GetCompassDirection
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -16574,6 +17545,7 @@ class _$DartCommand_GetCompassDirection
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -16713,6 +17685,7 @@ class _$DartCommand_GetCompassCardinalDirection
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -16775,6 +17748,7 @@ class _$DartCommand_GetCompassCardinalDirection
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -16830,6 +17804,7 @@ class _$DartCommand_GetCompassCardinalDirection
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -16888,6 +17863,7 @@ class _$DartCommand_GetCompassCardinalDirection
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -16954,6 +17930,7 @@ class _$DartCommand_GetCompassCardinalDirection
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -17011,6 +17988,7 @@ class _$DartCommand_GetCompassCardinalDirection
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -17150,6 +18128,7 @@ class _$DartCommand_GetLocationLatLong
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -17212,6 +18191,7 @@ class _$DartCommand_GetLocationLatLong
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -17267,6 +18247,7 @@ class _$DartCommand_GetLocationLatLong
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -17325,6 +18306,7 @@ class _$DartCommand_GetLocationLatLong
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -17391,6 +18373,7 @@ class _$DartCommand_GetLocationLatLong
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -17448,6 +18431,7 @@ class _$DartCommand_GetLocationLatLong
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -17585,6 +18569,7 @@ class _$DartCommand_GetLocationHeading
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -17647,6 +18632,7 @@ class _$DartCommand_GetLocationHeading
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -17702,6 +18688,7 @@ class _$DartCommand_GetLocationHeading
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -17760,6 +18747,7 @@ class _$DartCommand_GetLocationHeading
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -17826,6 +18814,7 @@ class _$DartCommand_GetLocationHeading
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -17883,6 +18872,7 @@ class _$DartCommand_GetLocationHeading
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -18020,6 +19010,7 @@ class _$DartCommand_GetLocationAltitude
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -18082,6 +19073,7 @@ class _$DartCommand_GetLocationAltitude
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -18137,6 +19129,7 @@ class _$DartCommand_GetLocationAltitude
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -18195,6 +19188,7 @@ class _$DartCommand_GetLocationAltitude
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -18261,6 +19255,7 @@ class _$DartCommand_GetLocationAltitude
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -18318,6 +19313,7 @@ class _$DartCommand_GetLocationAltitude
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -18455,6 +19451,7 @@ class _$DartCommand_GetMicrophoneLevel
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -18517,6 +19514,7 @@ class _$DartCommand_GetMicrophoneLevel
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -18572,6 +19570,7 @@ class _$DartCommand_GetMicrophoneLevel
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -18630,6 +19629,7 @@ class _$DartCommand_GetMicrophoneLevel
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -18696,6 +19696,7 @@ class _$DartCommand_GetMicrophoneLevel
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -18753,6 +19754,7 @@ class _$DartCommand_GetMicrophoneLevel
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -18888,6 +19890,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -18950,6 +19953,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -19005,6 +20009,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -19063,6 +20068,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -19129,6 +20135,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -19186,6 +20193,7 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -19321,6 +20329,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -19383,6 +20392,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -19438,6 +20448,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -19496,6 +20507,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -19562,6 +20574,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -19619,6 +20632,7 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,
@@ -19764,6 +20778,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
     required TResult Function(bool value) updatePaused,
     required TResult Function(String msg) stdout,
     required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
     required TResult Function(DartRequestKey key) clearControls,
     required TResult Function(DartRequestKey key, String id) removeControl,
     required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
@@ -19826,6 +20841,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
     TResult? Function(bool value)? updatePaused,
     TResult? Function(String msg)? stdout,
     TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult? Function(DartRequestKey key)? clearControls,
     TResult? Function(DartRequestKey key, String id)? removeControl,
     TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -19881,6 +20897,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
     TResult Function(bool value)? updatePaused,
     TResult Function(String msg)? stdout,
     TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
     TResult Function(DartRequestKey key)? clearControls,
     TResult Function(DartRequestKey key, String id)? removeControl,
     TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
@@ -19939,6 +20956,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
     required TResult Function(DartCommand_UpdatePaused value) updatePaused,
     required TResult Function(DartCommand_Stdout value) stdout,
     required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
     required TResult Function(DartCommand_ClearControls value) clearControls,
     required TResult Function(DartCommand_RemoveControl value) removeControl,
     required TResult Function(DartCommand_AddLabel value) addLabel,
@@ -20005,6 +21023,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
     TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult? Function(DartCommand_Stdout value)? stdout,
     TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
     TResult? Function(DartCommand_ClearControls value)? clearControls,
     TResult? Function(DartCommand_RemoveControl value)? removeControl,
     TResult? Function(DartCommand_AddLabel value)? addLabel,
@@ -20062,6 +21081,7 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
     TResult Function(DartCommand_UpdatePaused value)? updatePaused,
     TResult Function(DartCommand_Stdout value)? stdout,
     TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
     TResult Function(DartCommand_ClearControls value)? clearControls,
     TResult Function(DartCommand_RemoveControl value)? removeControl,
     TResult Function(DartCommand_AddLabel value)? addLabel,

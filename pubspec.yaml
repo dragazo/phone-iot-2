@@ -55,6 +55,7 @@ dependencies:
   environment_sensors: ^0.3.0
 
   # actuator stuff
+  just_audio: ^0.9.36
   vibration: ^1.7.5
 
 dev_dependencies:

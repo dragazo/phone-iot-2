@@ -31,6 +31,22 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
   }
 
   @protected
+  ffi.Pointer<wire_CommandResult> api2wire_box_autoadd_command_result(
+      CommandResult raw) {
+    final ptr = inner.new_box_autoadd_command_result_0();
+    _api_fill_to_wire_command_result(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_DartCommandKey> api2wire_box_autoadd_dart_command_key(
+      DartCommandKey raw) {
+    final ptr = inner.new_box_autoadd_dart_command_key_0();
+    _api_fill_to_wire_dart_command_key(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
   ffi.Pointer<wire_DartRequestKey> api2wire_box_autoadd_dart_request_key(
       DartRequestKey raw) {
     final ptr = inner.new_box_autoadd_dart_request_key_0();
@@ -117,6 +133,16 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
     _api_fill_to_wire___record__f64_f64(apiObj, wireObj.ref);
   }
 
+  void _api_fill_to_wire_box_autoadd_command_result(
+      CommandResult apiObj, ffi.Pointer<wire_CommandResult> wireObj) {
+    _api_fill_to_wire_command_result(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_autoadd_dart_command_key(
+      DartCommandKey apiObj, ffi.Pointer<wire_DartCommandKey> wireObj) {
+    _api_fill_to_wire_dart_command_key(apiObj, wireObj.ref);
+  }
+
   void _api_fill_to_wire_box_autoadd_dart_request_key(
       DartRequestKey apiObj, ffi.Pointer<wire_DartRequestKey> wireObj) {
     _api_fill_to_wire_dart_request_key(apiObj, wireObj.ref);
@@ -135,6 +161,26 @@ class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
   void _api_fill_to_wire_box_autoadd_rust_command(
       RustCommand apiObj, ffi.Pointer<wire_RustCommand> wireObj) {
     _api_fill_to_wire_rust_command(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_command_result(
+      CommandResult apiObj, wire_CommandResult wireObj) {
+    if (apiObj is CommandResult_Ok) {
+      wireObj.tag = 0;
+      return;
+    }
+    if (apiObj is CommandResult_Err) {
+      var pre_field0 = api2wire_String(apiObj.field0);
+      wireObj.tag = 1;
+      wireObj.kind = inner.inflate_CommandResult_Err();
+      wireObj.kind.ref.Err.ref.field0 = pre_field0;
+      return;
+    }
+  }
+
+  void _api_fill_to_wire_dart_command_key(
+      DartCommandKey apiObj, wire_DartCommandKey wireObj) {
+    wireObj.value = api2wire_usize(apiObj.value);
   }
 
   void _api_fill_to_wire_dart_request_key(
@@ -407,6 +453,26 @@ class NativeWire implements FlutterRustBridgeWireBase {
       void Function(int, ffi.Pointer<wire_DartRequestKey>,
           ffi.Pointer<wire_RequestResult>)>();
 
+  void wire_complete_command(
+    int port_,
+    ffi.Pointer<wire_DartCommandKey> key,
+    ffi.Pointer<wire_CommandResult> result,
+  ) {
+    return _wire_complete_command(
+      port_,
+      key,
+      result,
+    );
+  }
+
+  late final _wire_complete_commandPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Int64, ffi.Pointer<wire_DartCommandKey>,
+              ffi.Pointer<wire_CommandResult>)>>('wire_complete_command');
+  late final _wire_complete_command = _wire_complete_commandPtr.asFunction<
+      void Function(int, ffi.Pointer<wire_DartCommandKey>,
+          ffi.Pointer<wire_CommandResult>)>();
+
   ffi.Pointer<wire___record__f64_f64> new_box_autoadd___record__f64_f64_0() {
     return _new_box_autoadd___record__f64_f64_0();
   }
@@ -417,6 +483,28 @@ class NativeWire implements FlutterRustBridgeWireBase {
   late final _new_box_autoadd___record__f64_f64_0 =
       _new_box_autoadd___record__f64_f64_0Ptr
           .asFunction<ffi.Pointer<wire___record__f64_f64> Function()>();
+
+  ffi.Pointer<wire_CommandResult> new_box_autoadd_command_result_0() {
+    return _new_box_autoadd_command_result_0();
+  }
+
+  late final _new_box_autoadd_command_result_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_CommandResult> Function()>>(
+          'new_box_autoadd_command_result_0');
+  late final _new_box_autoadd_command_result_0 =
+      _new_box_autoadd_command_result_0Ptr
+          .asFunction<ffi.Pointer<wire_CommandResult> Function()>();
+
+  ffi.Pointer<wire_DartCommandKey> new_box_autoadd_dart_command_key_0() {
+    return _new_box_autoadd_dart_command_key_0();
+  }
+
+  late final _new_box_autoadd_dart_command_key_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_DartCommandKey> Function()>>(
+          'new_box_autoadd_dart_command_key_0');
+  late final _new_box_autoadd_dart_command_key_0 =
+      _new_box_autoadd_dart_command_key_0Ptr
+          .asFunction<ffi.Pointer<wire_DartCommandKey> Function()>();
 
   ffi.Pointer<wire_DartRequestKey> new_box_autoadd_dart_request_key_0() {
     return _new_box_autoadd_dart_request_key_0();
@@ -507,6 +595,16 @@ class NativeWire implements FlutterRustBridgeWireBase {
       'new_uint_8_list_0');
   late final _new_uint_8_list_0 = _new_uint_8_list_0Ptr
       .asFunction<ffi.Pointer<wire_uint_8_list> Function(int)>();
+
+  ffi.Pointer<CommandResultKind> inflate_CommandResult_Err() {
+    return _inflate_CommandResult_Err();
+  }
+
+  late final _inflate_CommandResult_ErrPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<CommandResultKind> Function()>>(
+          'inflate_CommandResult_Err');
+  late final _inflate_CommandResult_Err = _inflate_CommandResult_ErrPtr
+      .asFunction<ffi.Pointer<CommandResultKind> Function()>();
 
   ffi.Pointer<DartValueKind> inflate_DartValue_Bool() {
     return _inflate_DartValue_Bool();
@@ -770,6 +868,30 @@ final class wire_RequestResult extends ffi.Struct {
   external int tag;
 
   external ffi.Pointer<RequestResultKind> kind;
+}
+
+final class wire_DartCommandKey extends ffi.Struct {
+  @ffi.UintPtr()
+  external int value;
+}
+
+final class wire_CommandResult_Ok extends ffi.Opaque {}
+
+final class wire_CommandResult_Err extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+}
+
+final class CommandResultKind extends ffi.Union {
+  external ffi.Pointer<wire_CommandResult_Ok> Ok;
+
+  external ffi.Pointer<wire_CommandResult_Err> Err;
+}
+
+final class wire_CommandResult extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external ffi.Pointer<CommandResultKind> kind;
 }
 
 typedef DartPostCObjectFnType = ffi.Pointer<

@@ -33,6 +33,7 @@ static INITIALIZED: AtomicBool = AtomicBool::new(false);
 static DART_COMMANDS: Mutex<DartPipe<DartCommand>> = Mutex::new(DartPipe::new());
 static RUST_COMMANDS: Mutex<Vec<RustCommand>> = Mutex::new(Vec::new());
 static PENDING_REQUESTS: Mutex<BTreeMap<DartRequestKey, AsyncKey<Result<SimpleValue, CompactString>>>> = Mutex::new(BTreeMap::new());
+static PENDING_COMMANDS: Mutex<BTreeMap<DartCommandKey, AsyncKey<Result<(), CompactString>>>> = Mutex::new(BTreeMap::new());
 static KEY_COUNTER: AtomicUsize = AtomicUsize::new(0);
 static CONTROL_COUNTER: AtomicUsize = AtomicUsize::new(0);
 
@@ -329,12 +330,26 @@ impl DartRequestKey {
     }
 }
 
+#[derive(Clone, Copy, PartialOrd, Ord, PartialEq, Eq, Debug)]
+pub struct DartCommandKey {
+    pub value: usize,
+}
+impl DartCommandKey {
+    fn new(key: AsyncKey<Result<(), CompactString>>) -> Self {
+        let res = Self { value: KEY_COUNTER.fetch_add(1, MemOrder::Relaxed) };
+        PENDING_COMMANDS.lock().unwrap().insert(res, key);
+        res
+    }
+}
+
 #[derive(Clone, Debug)]
 pub enum DartCommand {
     UpdatePaused { value: bool },
 
     Stdout { msg: String },
     Stderr { msg: String },
+
+    PlaySound { key: Option<DartCommandKey>, content: Vec<u8> },
 
     ClearControls { key: DartRequestKey },
     RemoveControl { key: DartRequestKey, id: String },
@@ -421,6 +436,19 @@ impl RequestResult {
     }
 }
 
+pub enum CommandResult {
+    Ok,
+    Err(String),
+}
+impl CommandResult {
+    fn into_result(self) -> Result<(), String> {
+        match self {
+            Self::Ok => Ok(()),
+            Self::Err(x) => Err(x),
+        }
+    }
+}
+
 pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
     if INITIALIZED.swap(true, MemOrder::Relaxed) { return }
     thread::spawn(move || {
@@ -431,10 +459,20 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                         if let Some(value) = value {
                             DART_COMMANDS.lock().unwrap().send(DartCommand::Stdout { msg: value.to_string() });
                         }
+                        key.complete(Ok(()));
+                    }
+                    Command::PlaySound { sound, blocking } => {
+                        let key = match blocking {
+                            true => Some(DartCommandKey::new(key)),
+                            false => {
+                                key.complete(Ok(()));
+                                None
+                            }
+                        };
+                        DART_COMMANDS.lock().unwrap().send(DartCommand::PlaySound { content: sound.content.clone(), key });
                     }
                     _ => return CommandStatus::UseDefault { key, command },
                 }
-                key.complete(Ok(()));
                 CommandStatus::Handled
             })),
             request: Some(Rc::new(move |_, key, request, _| {
@@ -1140,5 +1178,11 @@ pub fn complete_request(key: DartRequestKey, result: RequestResult) {
     let key = PENDING_REQUESTS.lock().unwrap().remove(&key);
     if let Some(key) = key {
         key.complete(result.into_result().map(DartValue::into_simple).map_err(Into::into));
+    }
+}
+pub fn complete_command(key: DartCommandKey, result: CommandResult) {
+    let key = PENDING_COMMANDS.lock().unwrap().remove(&key);
+    if let Some(key) = key {
+        key.complete(result.into_result().map_err(Into::into));
     }
 }

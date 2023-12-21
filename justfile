@@ -1,4 +1,4 @@
-gen:
+gen *args='':
     flutter pub get
     flutter_rust_bridge_codegen \
         --rust-input native/src/api.rs \
@@ -6,7 +6,7 @@ gen:
         --c-output ios/Runner/bridge_generated.h \
         --extra-c-output-path macos/Runner/ \
         --dart-decl-output lib/bridge_definitions.dart \
-        --wasm
+        --wasm {{args}}
 
 clean:
     flutter clean

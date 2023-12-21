@@ -129,6 +129,28 @@ typedef struct wire_RequestResult {
   union RequestResultKind *kind;
 } wire_RequestResult;
 
+typedef struct wire_DartCommandKey {
+  uintptr_t value;
+} wire_DartCommandKey;
+
+typedef struct wire_CommandResult_Ok {
+
+} wire_CommandResult_Ok;
+
+typedef struct wire_CommandResult_Err {
+  struct wire_uint_8_list *field0;
+} wire_CommandResult_Err;
+
+typedef union CommandResultKind {
+  struct wire_CommandResult_Ok *Ok;
+  struct wire_CommandResult_Err *Err;
+} CommandResultKind;
+
+typedef struct wire_CommandResult {
+  int32_t tag;
+  union CommandResultKind *kind;
+} wire_CommandResult;
+
 typedef struct DartCObject *WireSyncReturn;
 
 void store_dart_post_cobject(DartPostCObjectFnType ptr);
@@ -153,7 +175,15 @@ void wire_complete_request(int64_t port_,
                            struct wire_DartRequestKey *key,
                            struct wire_RequestResult *result);
 
+void wire_complete_command(int64_t port_,
+                           struct wire_DartCommandKey *key,
+                           struct wire_CommandResult *result);
+
 struct wire___record__f64_f64 *new_box_autoadd___record__f64_f64_0(void);
+
+struct wire_CommandResult *new_box_autoadd_command_result_0(void);
+
+struct wire_DartCommandKey *new_box_autoadd_dart_command_key_0(void);
 
 struct wire_DartRequestKey *new_box_autoadd_dart_request_key_0(void);
 
@@ -168,6 +198,8 @@ struct wire_list___record__String_dart_value *new_list___record__String_dart_val
 struct wire_list_dart_value *new_list_dart_value_0(int32_t len);
 
 struct wire_uint_8_list *new_uint_8_list_0(int32_t len);
+
+union CommandResultKind *inflate_CommandResult_Err(void);
 
 union DartValueKind *inflate_DartValue_Bool(void);
 
@@ -197,7 +229,10 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) wire_send_command);
     dummy_var ^= ((int64_t) (void*) wire_recv_commands);
     dummy_var ^= ((int64_t) (void*) wire_complete_request);
+    dummy_var ^= ((int64_t) (void*) wire_complete_command);
     dummy_var ^= ((int64_t) (void*) new_box_autoadd___record__f64_f64_0);
+    dummy_var ^= ((int64_t) (void*) new_box_autoadd_command_result_0);
+    dummy_var ^= ((int64_t) (void*) new_box_autoadd_dart_command_key_0);
     dummy_var ^= ((int64_t) (void*) new_box_autoadd_dart_request_key_0);
     dummy_var ^= ((int64_t) (void*) new_box_autoadd_dart_value_0);
     dummy_var ^= ((int64_t) (void*) new_box_autoadd_request_result_0);
@@ -205,6 +240,7 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) new_list___record__String_dart_value_0);
     dummy_var ^= ((int64_t) (void*) new_list_dart_value_0);
     dummy_var ^= ((int64_t) (void*) new_uint_8_list_0);
+    dummy_var ^= ((int64_t) (void*) inflate_CommandResult_Err);
     dummy_var ^= ((int64_t) (void*) inflate_DartValue_Bool);
     dummy_var ^= ((int64_t) (void*) inflate_DartValue_Number);
     dummy_var ^= ((int64_t) (void*) inflate_DartValue_String);

@@ -60,7 +60,6 @@ at your option.
 
 The [SPDX](https://spdx.dev/) license identifier for this project is `MIT OR Apache-2.0`.
 
-
 # Publishing
 
 ## Android

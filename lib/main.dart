@@ -14,6 +14,7 @@ import 'sensors.dart';
 import 'canvas.dart';
 import 'conversions.dart';
 import 'network.dart';
+import 'audio.dart';
 
 const sensorErrorMsg = 'sensor is not available or is disabled';
 
@@ -120,6 +121,12 @@ void startCommandLoop() async {
 
       stdout: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stdout)),
       stderr: (msg) => MessageList.state.addMessage(Message(msg, MessageType.stderr)),
+
+      playSound: (key, content) => AudioManager.play(ByteAudioSource(content)).then((_) {
+        if (key != null) {
+          api.completeCommand(key: key, result: const CommandResult.ok());
+        }
+      }),
 
       clearControls: (key) {
         Display.state.clearControls();

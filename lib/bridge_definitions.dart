@@ -35,6 +35,13 @@ abstract class Native {
       dynamic hint});
 
   FlutterRustBridgeTaskConstMeta get kCompleteRequestConstMeta;
+
+  Future<void> completeCommand(
+      {required DartCommandKey key,
+      required CommandResult result,
+      dynamic hint});
+
+  FlutterRustBridgeTaskConstMeta get kCompleteCommandConstMeta;
 }
 
 class ButtonInfo {
@@ -89,6 +96,14 @@ class ColorInfo {
 }
 
 @freezed
+sealed class CommandResult with _$CommandResult {
+  const factory CommandResult.ok() = CommandResult_Ok;
+  const factory CommandResult.err(
+    String field0,
+  ) = CommandResult_Err;
+}
+
+@freezed
 sealed class DartCommand with _$DartCommand {
   const factory DartCommand.updatePaused({
     required bool value,
@@ -99,6 +114,10 @@ sealed class DartCommand with _$DartCommand {
   const factory DartCommand.stderr({
     required String msg,
   }) = DartCommand_Stderr;
+  const factory DartCommand.playSound({
+    DartCommandKey? key,
+    required Uint8List content,
+  }) = DartCommand_PlaySound;
   const factory DartCommand.clearControls({
     required DartRequestKey key,
   }) = DartCommand_ClearControls;
@@ -250,6 +269,14 @@ sealed class DartCommand with _$DartCommand {
     required DartRequestKey key,
     required SensorUpdateInfo sensors,
   }) = DartCommand_ListenToSensors;
+}
+
+class DartCommandKey {
+  final int value;
+
+  const DartCommandKey({
+    required this.value,
+  });
 }
 
 class DartRequestKey {

@@ -29,11 +29,30 @@ pub extern "C" fn wire_complete_request(
     wire_complete_request_impl(port_, key, result)
 }
 
+#[no_mangle]
+pub extern "C" fn wire_complete_command(
+    port_: i64,
+    key: *mut wire_DartCommandKey,
+    result: *mut wire_CommandResult,
+) {
+    wire_complete_command_impl(port_, key, result)
+}
+
 // Section: allocate functions
 
 #[no_mangle]
 pub extern "C" fn new_box_autoadd___record__f64_f64_0() -> *mut wire___record__f64_f64 {
     support::new_leak_box_ptr(wire___record__f64_f64::new_with_null_ptr())
+}
+
+#[no_mangle]
+pub extern "C" fn new_box_autoadd_command_result_0() -> *mut wire_CommandResult {
+    support::new_leak_box_ptr(wire_CommandResult::new_with_null_ptr())
+}
+
+#[no_mangle]
+pub extern "C" fn new_box_autoadd_dart_command_key_0() -> *mut wire_DartCommandKey {
+    support::new_leak_box_ptr(wire_DartCommandKey::new_with_null_ptr())
 }
 
 #[no_mangle]
@@ -115,6 +134,18 @@ impl Wire2Api<(f64, f64)> for *mut wire___record__f64_f64 {
         Wire2Api::<(f64, f64)>::wire2api(*wrap).into()
     }
 }
+impl Wire2Api<CommandResult> for *mut wire_CommandResult {
+    fn wire2api(self) -> CommandResult {
+        let wrap = unsafe { support::box_from_leak_ptr(self) };
+        Wire2Api::<CommandResult>::wire2api(*wrap).into()
+    }
+}
+impl Wire2Api<DartCommandKey> for *mut wire_DartCommandKey {
+    fn wire2api(self) -> DartCommandKey {
+        let wrap = unsafe { support::box_from_leak_ptr(self) };
+        Wire2Api::<DartCommandKey>::wire2api(*wrap).into()
+    }
+}
 impl Wire2Api<DartRequestKey> for *mut wire_DartRequestKey {
     fn wire2api(self) -> DartRequestKey {
         let wrap = unsafe { support::box_from_leak_ptr(self) };
@@ -137,6 +168,26 @@ impl Wire2Api<RustCommand> for *mut wire_RustCommand {
     fn wire2api(self) -> RustCommand {
         let wrap = unsafe { support::box_from_leak_ptr(self) };
         Wire2Api::<RustCommand>::wire2api(*wrap).into()
+    }
+}
+impl Wire2Api<CommandResult> for wire_CommandResult {
+    fn wire2api(self) -> CommandResult {
+        match self.tag {
+            0 => CommandResult::Ok,
+            1 => unsafe {
+                let ans = support::box_from_leak_ptr(self.kind);
+                let ans = support::box_from_leak_ptr(ans.Err);
+                CommandResult::Err(ans.field0.wire2api())
+            },
+            _ => unreachable!(),
+        }
+    }
+}
+impl Wire2Api<DartCommandKey> for wire_DartCommandKey {
+    fn wire2api(self) -> DartCommandKey {
+        DartCommandKey {
+            value: self.value.wire2api(),
+        }
     }
 }
 impl Wire2Api<DartRequestKey> for wire_DartRequestKey {
@@ -273,6 +324,12 @@ pub struct wire___record__f64_f64 {
 
 #[repr(C)]
 #[derive(Clone)]
+pub struct wire_DartCommandKey {
+    value: usize,
+}
+
+#[repr(C)]
+#[derive(Clone)]
 pub struct wire_DartRequestKey {
     value: usize,
 }
@@ -296,6 +353,29 @@ pub struct wire_list_dart_value {
 pub struct wire_uint_8_list {
     ptr: *mut u8,
     len: i32,
+}
+
+#[repr(C)]
+#[derive(Clone)]
+pub struct wire_CommandResult {
+    tag: i32,
+    kind: *mut CommandResultKind,
+}
+
+#[repr(C)]
+pub union CommandResultKind {
+    Ok: *mut wire_CommandResult_Ok,
+    Err: *mut wire_CommandResult_Err,
+}
+
+#[repr(C)]
+#[derive(Clone)]
+pub struct wire_CommandResult_Ok {}
+
+#[repr(C)]
+#[derive(Clone)]
+pub struct wire_CommandResult_Err {
+    field0: *mut wire_uint_8_list,
 }
 
 #[repr(C)]
@@ -454,6 +534,44 @@ impl NewWithNullPtr for wire___record__f64_f64 {
 }
 
 impl Default for wire___record__f64_f64 {
+    fn default() -> Self {
+        Self::new_with_null_ptr()
+    }
+}
+
+impl Default for wire_CommandResult {
+    fn default() -> Self {
+        Self::new_with_null_ptr()
+    }
+}
+
+impl NewWithNullPtr for wire_CommandResult {
+    fn new_with_null_ptr() -> Self {
+        Self {
+            tag: -1,
+            kind: core::ptr::null_mut(),
+        }
+    }
+}
+
+#[no_mangle]
+pub extern "C" fn inflate_CommandResult_Err() -> *mut CommandResultKind {
+    support::new_leak_box_ptr(CommandResultKind {
+        Err: support::new_leak_box_ptr(wire_CommandResult_Err {
+            field0: core::ptr::null_mut(),
+        }),
+    })
+}
+
+impl NewWithNullPtr for wire_DartCommandKey {
+    fn new_with_null_ptr() -> Self {
+        Self {
+            value: Default::default(),
+        }
+    }
+}
+
+impl Default for wire_DartCommandKey {
     fn default() -> Self {
         Self::new_with_null_ptr()
     }
