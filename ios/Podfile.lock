@@ -1,4 +1,6 @@
 PODS:
+  - audio_session (0.0.1):
+    - Flutter
   - device_info_plus (0.0.1):
     - Flutter
   - environment_sensors (0.0.1):
@@ -40,6 +42,8 @@ PODS:
   - GTMSessionFetcher/Core (2.3.0)
   - image_picker_ios (0.0.1):
     - Flutter
+  - just_audio (0.0.1):
+    - Flutter
   - MLImage (1.0.0-beta4)
   - MLKitBarcodeScanning (3.0.0):
     - MLKitCommon (~> 9.0)
@@ -78,12 +82,14 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - audio_session (from `.symlinks/plugins/audio_session/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - environment_sensors (from `.symlinks/plugins/environment_sensors/ios`)
   - Flutter (from `Flutter`)
   - flutter_fgbg (from `.symlinks/plugins/flutter_fgbg/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - just_audio (from `.symlinks/plugins/just_audio/ios`)
   - mobile_scanner (from `.symlinks/plugins/mobile_scanner/ios`)
   - motion_sensors (from `.symlinks/plugins/motion_sensors/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -106,6 +112,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  audio_session:
+    :path: ".symlinks/plugins/audio_session/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   environment_sensors:
@@ -118,6 +126,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
+  just_audio:
+    :path: ".symlinks/plugins/just_audio/ios"
   mobile_scanner:
     :path: ".symlinks/plugins/mobile_scanner/ios"
   motion_sensors:
@@ -130,6 +140,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/vibration/ios"
 
 SPEC CHECKSUMS:
+  audio_session: 4f3e461722055d21515cf3261b64c973c062f345
   device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
   environment_sensors: 46802526e2f9e5b84722e0327d6391168b7ad74f
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
@@ -142,6 +153,7 @@ SPEC CHECKSUMS:
   GoogleUtilitiesComponents: 679b2c881db3b615a2777504623df6122dd20afe
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
+  just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   MLImage: 7bb7c4264164ade9bf64f679b40fb29c8f33ee9b
   MLKitBarcodeScanning: 04e264482c5f3810cb89ebc134ef6b61e67db505
   MLKitCommon: c1b791c3e667091918d91bda4bba69a91011e390
