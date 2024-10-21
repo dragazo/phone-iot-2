@@ -9,7 +9,7 @@ use netsblox_vm::project::{Project, IdleAction, ProjectStep, Input};
 use netsblox_vm::std_system::StdSystem;
 use netsblox_vm::std_util::{AsyncKey, Clock};
 use netsblox_vm::bytecode::{ByteCode, Locations};
-use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, ProcessKind, Value, FromAstError, Config, Command, Request, CommandStatus, RequestStatus, Key, System, SimpleValue, Number, Image, Audio, Precision};
+use netsblox_vm::runtime::{CustomTypes, GetType, EntityKind, ProcessKind, Value, FromAstError, Config, Command, Request, CommandStatus, RequestStatus, Key, System, SimpleValue, Number, Image, Audio, Precision, Unwindable};
 use netsblox_vm::gc::{Gc, RefLock, Collect, Arena, Rootable, Mutation};
 use netsblox_vm::real_time::UtcOffset;
 use netsblox_vm::json::json;
@@ -108,6 +108,11 @@ impl From<ProcessKind<'_, '_, C, StdSystem<C>>> for ProcessState {
     fn from(_: ProcessKind<'_, '_, C, StdSystem<C>>) -> Self {
         ProcessState
     }
+}
+impl Unwindable for ProcessState {
+    type UnwindPoint = ();
+    fn get_unwind_point(&self) -> Self::UnwindPoint {}
+    fn unwind_to(&mut self, _: &Self::UnwindPoint) {}
 }
 
 struct C;
@@ -416,8 +421,8 @@ impl DartValue {
             DartValue::Bool(x) => SimpleValue::Bool(x),
             DartValue::Number(x) => SimpleValue::Number(parse_num(x)),
             DartValue::String(x) => SimpleValue::String(x.into()),
-            DartValue::Image(content, center) => SimpleValue::Image(Image { content, center: center.map(|(x, y)| (parse_num(x), parse_num(y))) }),
-            DartValue::Audio(content) => SimpleValue::Audio(Audio { content }),
+            DartValue::Image(content, center) => SimpleValue::Image(Image { content, center: center.map(|(x, y)| (parse_num(x), parse_num(y))), name: "Untitled".into() }),
+            DartValue::Audio(content) => SimpleValue::Audio(Audio { content, name: "Untitled".into() }),
             DartValue::List(x) => SimpleValue::List(x.into_iter().map(DartValue::into_simple).collect()),
         }
     }
@@ -647,7 +652,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                     };
                 }
                 match &request {
-                    Request::Rpc { service, rpc, args } if *service == "PhoneIoT" => {
+                    Request::Rpc { host: _, service, rpc, args } if *service == "PhoneIoT" => {
                         macro_rules! simple_request {
                             ($cmd:ident) => {{
                                 if args.len() != 1 || !is_local_id(&args.as_slice()[0].value) {

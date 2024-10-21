@@ -18,6 +18,7 @@
         "Touchpad",
         "unfocus",
         "untoggle",
+        "Unwindable",
         "vals"
     ],
     "files.associations": {

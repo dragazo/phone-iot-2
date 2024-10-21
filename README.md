@@ -1,7 +1,20 @@
-# PhoneIoT 2
+## Dev Notes
 
-This repository serves as a template for Flutter projects calling into native Rust
-libraries via `flutter_rust_bridge`.
+We're currently having issues migrating to flutter_rust_bridge 2.x.
+Because of this, you'll need to use 1.82.6 for the time being.
+
+```bash
+cargo install flutter_rust_bridge_codegen@1.82.6
+```
+
+You can still upgrade flutter and dart deps, however:
+
+```bash
+flutter upgrade
+flutter pub upgrade
+```
+
+A bunch of Android stuff had breaking changes, so we need to use JDK 17. JDK 21 is busted for flutter atm.
 
 ## Getting Started
 

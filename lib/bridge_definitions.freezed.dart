@@ -12,7 +12,7 @@ part of 'bridge_definitions.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CommandResult {
@@ -72,28 +72,34 @@ class _$CommandResultCopyWithImpl<$Res, $Val extends CommandResult>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CommandResult
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$CommandResult_OkCopyWith<$Res> {
-  factory _$$CommandResult_OkCopyWith(
-          _$CommandResult_Ok value, $Res Function(_$CommandResult_Ok) then) =
-      __$$CommandResult_OkCopyWithImpl<$Res>;
+abstract class _$$CommandResult_OkImplCopyWith<$Res> {
+  factory _$$CommandResult_OkImplCopyWith(_$CommandResult_OkImpl value,
+          $Res Function(_$CommandResult_OkImpl) then) =
+      __$$CommandResult_OkImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CommandResult_OkCopyWithImpl<$Res>
-    extends _$CommandResultCopyWithImpl<$Res, _$CommandResult_Ok>
-    implements _$$CommandResult_OkCopyWith<$Res> {
-  __$$CommandResult_OkCopyWithImpl(
-      _$CommandResult_Ok _value, $Res Function(_$CommandResult_Ok) _then)
+class __$$CommandResult_OkImplCopyWithImpl<$Res>
+    extends _$CommandResultCopyWithImpl<$Res, _$CommandResult_OkImpl>
+    implements _$$CommandResult_OkImplCopyWith<$Res> {
+  __$$CommandResult_OkImplCopyWithImpl(_$CommandResult_OkImpl _value,
+      $Res Function(_$CommandResult_OkImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CommandResult
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$CommandResult_Ok implements CommandResult_Ok {
-  const _$CommandResult_Ok();
+class _$CommandResult_OkImpl implements CommandResult_Ok {
+  const _$CommandResult_OkImpl();
 
   @override
   String toString() {
@@ -101,9 +107,9 @@ class _$CommandResult_Ok implements CommandResult_Ok {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CommandResult_Ok);
+        (other.runtimeType == runtimeType && other is _$CommandResult_OkImpl);
   }
 
   @override
@@ -173,32 +179,34 @@ class _$CommandResult_Ok implements CommandResult_Ok {
 }
 
 abstract class CommandResult_Ok implements CommandResult {
-  const factory CommandResult_Ok() = _$CommandResult_Ok;
+  const factory CommandResult_Ok() = _$CommandResult_OkImpl;
 }
 
 /// @nodoc
-abstract class _$$CommandResult_ErrCopyWith<$Res> {
-  factory _$$CommandResult_ErrCopyWith(
-          _$CommandResult_Err value, $Res Function(_$CommandResult_Err) then) =
-      __$$CommandResult_ErrCopyWithImpl<$Res>;
+abstract class _$$CommandResult_ErrImplCopyWith<$Res> {
+  factory _$$CommandResult_ErrImplCopyWith(_$CommandResult_ErrImpl value,
+          $Res Function(_$CommandResult_ErrImpl) then) =
+      __$$CommandResult_ErrImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String field0});
 }
 
 /// @nodoc
-class __$$CommandResult_ErrCopyWithImpl<$Res>
-    extends _$CommandResultCopyWithImpl<$Res, _$CommandResult_Err>
-    implements _$$CommandResult_ErrCopyWith<$Res> {
-  __$$CommandResult_ErrCopyWithImpl(
-      _$CommandResult_Err _value, $Res Function(_$CommandResult_Err) _then)
+class __$$CommandResult_ErrImplCopyWithImpl<$Res>
+    extends _$CommandResultCopyWithImpl<$Res, _$CommandResult_ErrImpl>
+    implements _$$CommandResult_ErrImplCopyWith<$Res> {
+  __$$CommandResult_ErrImplCopyWithImpl(_$CommandResult_ErrImpl _value,
+      $Res Function(_$CommandResult_ErrImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CommandResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? field0 = null,
   }) {
-    return _then(_$CommandResult_Err(
+    return _then(_$CommandResult_ErrImpl(
       null == field0
           ? _value.field0
           : field0 // ignore: cast_nullable_to_non_nullable
@@ -209,8 +217,8 @@ class __$$CommandResult_ErrCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CommandResult_Err implements CommandResult_Err {
-  const _$CommandResult_Err(this.field0);
+class _$CommandResult_ErrImpl implements CommandResult_Err {
+  const _$CommandResult_ErrImpl(this.field0);
 
   @override
   final String field0;
@@ -221,21 +229,24 @@ class _$CommandResult_Err implements CommandResult_Err {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CommandResult_Err &&
+            other is _$CommandResult_ErrImpl &&
             (identical(other.field0, field0) || other.field0 == field0));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CommandResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CommandResult_ErrCopyWith<_$CommandResult_Err> get copyWith =>
-      __$$CommandResult_ErrCopyWithImpl<_$CommandResult_Err>(this, _$identity);
+  _$$CommandResult_ErrImplCopyWith<_$CommandResult_ErrImpl> get copyWith =>
+      __$$CommandResult_ErrImplCopyWithImpl<_$CommandResult_ErrImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -301,11 +312,15 @@ class _$CommandResult_Err implements CommandResult_Err {
 }
 
 abstract class CommandResult_Err implements CommandResult {
-  const factory CommandResult_Err(final String field0) = _$CommandResult_Err;
+  const factory CommandResult_Err(final String field0) =
+      _$CommandResult_ErrImpl;
 
   String get field0;
-  @JsonKey(ignore: true)
-  _$$CommandResult_ErrCopyWith<_$CommandResult_Err> get copyWith =>
+
+  /// Create a copy of CommandResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CommandResult_ErrImplCopyWith<_$CommandResult_ErrImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -670,31 +685,38 @@ class _$DartCommandCopyWithImpl<$Res, $Val extends DartCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$DartCommand_UpdatePausedCopyWith<$Res> {
-  factory _$$DartCommand_UpdatePausedCopyWith(_$DartCommand_UpdatePaused value,
-          $Res Function(_$DartCommand_UpdatePaused) then) =
-      __$$DartCommand_UpdatePausedCopyWithImpl<$Res>;
+abstract class _$$DartCommand_UpdatePausedImplCopyWith<$Res> {
+  factory _$$DartCommand_UpdatePausedImplCopyWith(
+          _$DartCommand_UpdatePausedImpl value,
+          $Res Function(_$DartCommand_UpdatePausedImpl) then) =
+      __$$DartCommand_UpdatePausedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool value});
 }
 
 /// @nodoc
-class __$$DartCommand_UpdatePausedCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_UpdatePaused>
-    implements _$$DartCommand_UpdatePausedCopyWith<$Res> {
-  __$$DartCommand_UpdatePausedCopyWithImpl(_$DartCommand_UpdatePaused _value,
-      $Res Function(_$DartCommand_UpdatePaused) _then)
+class __$$DartCommand_UpdatePausedImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_UpdatePausedImpl>
+    implements _$$DartCommand_UpdatePausedImplCopyWith<$Res> {
+  __$$DartCommand_UpdatePausedImplCopyWithImpl(
+      _$DartCommand_UpdatePausedImpl _value,
+      $Res Function(_$DartCommand_UpdatePausedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$DartCommand_UpdatePaused(
+    return _then(_$DartCommand_UpdatePausedImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -705,8 +727,8 @@ class __$$DartCommand_UpdatePausedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_UpdatePaused implements DartCommand_UpdatePaused {
-  const _$DartCommand_UpdatePaused({required this.value});
+class _$DartCommand_UpdatePausedImpl implements DartCommand_UpdatePaused {
+  const _$DartCommand_UpdatePausedImpl({required this.value});
 
   @override
   final bool value;
@@ -717,23 +739,24 @@ class _$DartCommand_UpdatePaused implements DartCommand_UpdatePaused {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_UpdatePaused &&
+            other is _$DartCommand_UpdatePausedImpl &&
             (identical(other.value, value) || other.value == value));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_UpdatePausedCopyWith<_$DartCommand_UpdatePaused>
-      get copyWith =>
-          __$$DartCommand_UpdatePausedCopyWithImpl<_$DartCommand_UpdatePaused>(
-              this, _$identity);
+  _$$DartCommand_UpdatePausedImplCopyWith<_$DartCommand_UpdatePausedImpl>
+      get copyWith => __$$DartCommand_UpdatePausedImplCopyWithImpl<
+          _$DartCommand_UpdatePausedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1103,37 +1126,42 @@ class _$DartCommand_UpdatePaused implements DartCommand_UpdatePaused {
 
 abstract class DartCommand_UpdatePaused implements DartCommand {
   const factory DartCommand_UpdatePaused({required final bool value}) =
-      _$DartCommand_UpdatePaused;
+      _$DartCommand_UpdatePausedImpl;
 
   bool get value;
-  @JsonKey(ignore: true)
-  _$$DartCommand_UpdatePausedCopyWith<_$DartCommand_UpdatePaused>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_UpdatePausedImplCopyWith<_$DartCommand_UpdatePausedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_StdoutCopyWith<$Res> {
-  factory _$$DartCommand_StdoutCopyWith(_$DartCommand_Stdout value,
-          $Res Function(_$DartCommand_Stdout) then) =
-      __$$DartCommand_StdoutCopyWithImpl<$Res>;
+abstract class _$$DartCommand_StdoutImplCopyWith<$Res> {
+  factory _$$DartCommand_StdoutImplCopyWith(_$DartCommand_StdoutImpl value,
+          $Res Function(_$DartCommand_StdoutImpl) then) =
+      __$$DartCommand_StdoutImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String msg});
 }
 
 /// @nodoc
-class __$$DartCommand_StdoutCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_Stdout>
-    implements _$$DartCommand_StdoutCopyWith<$Res> {
-  __$$DartCommand_StdoutCopyWithImpl(
-      _$DartCommand_Stdout _value, $Res Function(_$DartCommand_Stdout) _then)
+class __$$DartCommand_StdoutImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_StdoutImpl>
+    implements _$$DartCommand_StdoutImplCopyWith<$Res> {
+  __$$DartCommand_StdoutImplCopyWithImpl(_$DartCommand_StdoutImpl _value,
+      $Res Function(_$DartCommand_StdoutImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? msg = null,
   }) {
-    return _then(_$DartCommand_Stdout(
+    return _then(_$DartCommand_StdoutImpl(
       msg: null == msg
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -1144,8 +1172,8 @@ class __$$DartCommand_StdoutCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_Stdout implements DartCommand_Stdout {
-  const _$DartCommand_Stdout({required this.msg});
+class _$DartCommand_StdoutImpl implements DartCommand_Stdout {
+  const _$DartCommand_StdoutImpl({required this.msg});
 
   @override
   final String msg;
@@ -1156,21 +1184,23 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_Stdout &&
+            other is _$DartCommand_StdoutImpl &&
             (identical(other.msg, msg) || other.msg == msg));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, msg);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_StdoutCopyWith<_$DartCommand_Stdout> get copyWith =>
-      __$$DartCommand_StdoutCopyWithImpl<_$DartCommand_Stdout>(
+  _$$DartCommand_StdoutImplCopyWith<_$DartCommand_StdoutImpl> get copyWith =>
+      __$$DartCommand_StdoutImplCopyWithImpl<_$DartCommand_StdoutImpl>(
           this, _$identity);
 
   @override
@@ -1541,37 +1571,42 @@ class _$DartCommand_Stdout implements DartCommand_Stdout {
 
 abstract class DartCommand_Stdout implements DartCommand {
   const factory DartCommand_Stdout({required final String msg}) =
-      _$DartCommand_Stdout;
+      _$DartCommand_StdoutImpl;
 
   String get msg;
-  @JsonKey(ignore: true)
-  _$$DartCommand_StdoutCopyWith<_$DartCommand_Stdout> get copyWith =>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_StdoutImplCopyWith<_$DartCommand_StdoutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_StderrCopyWith<$Res> {
-  factory _$$DartCommand_StderrCopyWith(_$DartCommand_Stderr value,
-          $Res Function(_$DartCommand_Stderr) then) =
-      __$$DartCommand_StderrCopyWithImpl<$Res>;
+abstract class _$$DartCommand_StderrImplCopyWith<$Res> {
+  factory _$$DartCommand_StderrImplCopyWith(_$DartCommand_StderrImpl value,
+          $Res Function(_$DartCommand_StderrImpl) then) =
+      __$$DartCommand_StderrImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String msg});
 }
 
 /// @nodoc
-class __$$DartCommand_StderrCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_Stderr>
-    implements _$$DartCommand_StderrCopyWith<$Res> {
-  __$$DartCommand_StderrCopyWithImpl(
-      _$DartCommand_Stderr _value, $Res Function(_$DartCommand_Stderr) _then)
+class __$$DartCommand_StderrImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_StderrImpl>
+    implements _$$DartCommand_StderrImplCopyWith<$Res> {
+  __$$DartCommand_StderrImplCopyWithImpl(_$DartCommand_StderrImpl _value,
+      $Res Function(_$DartCommand_StderrImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? msg = null,
   }) {
-    return _then(_$DartCommand_Stderr(
+    return _then(_$DartCommand_StderrImpl(
       msg: null == msg
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -1582,8 +1617,8 @@ class __$$DartCommand_StderrCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_Stderr implements DartCommand_Stderr {
-  const _$DartCommand_Stderr({required this.msg});
+class _$DartCommand_StderrImpl implements DartCommand_Stderr {
+  const _$DartCommand_StderrImpl({required this.msg});
 
   @override
   final String msg;
@@ -1594,21 +1629,23 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_Stderr &&
+            other is _$DartCommand_StderrImpl &&
             (identical(other.msg, msg) || other.msg == msg));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, msg);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_StderrCopyWith<_$DartCommand_Stderr> get copyWith =>
-      __$$DartCommand_StderrCopyWithImpl<_$DartCommand_Stderr>(
+  _$$DartCommand_StderrImplCopyWith<_$DartCommand_StderrImpl> get copyWith =>
+      __$$DartCommand_StderrImplCopyWithImpl<_$DartCommand_StderrImpl>(
           this, _$identity);
 
   @override
@@ -1979,38 +2016,44 @@ class _$DartCommand_Stderr implements DartCommand_Stderr {
 
 abstract class DartCommand_Stderr implements DartCommand {
   const factory DartCommand_Stderr({required final String msg}) =
-      _$DartCommand_Stderr;
+      _$DartCommand_StderrImpl;
 
   String get msg;
-  @JsonKey(ignore: true)
-  _$$DartCommand_StderrCopyWith<_$DartCommand_Stderr> get copyWith =>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_StderrImplCopyWith<_$DartCommand_StderrImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_PlaySoundCopyWith<$Res> {
-  factory _$$DartCommand_PlaySoundCopyWith(_$DartCommand_PlaySound value,
-          $Res Function(_$DartCommand_PlaySound) then) =
-      __$$DartCommand_PlaySoundCopyWithImpl<$Res>;
+abstract class _$$DartCommand_PlaySoundImplCopyWith<$Res> {
+  factory _$$DartCommand_PlaySoundImplCopyWith(
+          _$DartCommand_PlaySoundImpl value,
+          $Res Function(_$DartCommand_PlaySoundImpl) then) =
+      __$$DartCommand_PlaySoundImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartCommandKey? key, Uint8List content});
 }
 
 /// @nodoc
-class __$$DartCommand_PlaySoundCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_PlaySound>
-    implements _$$DartCommand_PlaySoundCopyWith<$Res> {
-  __$$DartCommand_PlaySoundCopyWithImpl(_$DartCommand_PlaySound _value,
-      $Res Function(_$DartCommand_PlaySound) _then)
+class __$$DartCommand_PlaySoundImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_PlaySoundImpl>
+    implements _$$DartCommand_PlaySoundImplCopyWith<$Res> {
+  __$$DartCommand_PlaySoundImplCopyWithImpl(_$DartCommand_PlaySoundImpl _value,
+      $Res Function(_$DartCommand_PlaySoundImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = freezed,
     Object? content = null,
   }) {
-    return _then(_$DartCommand_PlaySound(
+    return _then(_$DartCommand_PlaySoundImpl(
       key: freezed == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -2025,8 +2068,8 @@ class __$$DartCommand_PlaySoundCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_PlaySound implements DartCommand_PlaySound {
-  const _$DartCommand_PlaySound({this.key, required this.content});
+class _$DartCommand_PlaySoundImpl implements DartCommand_PlaySound {
+  const _$DartCommand_PlaySoundImpl({this.key, required this.content});
 
   @override
   final DartCommandKey? key;
@@ -2039,10 +2082,10 @@ class _$DartCommand_PlaySound implements DartCommand_PlaySound {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_PlaySound &&
+            other is _$DartCommand_PlaySoundImpl &&
             (identical(other.key, key) || other.key == key) &&
             const DeepCollectionEquality().equals(other.content, content));
   }
@@ -2051,12 +2094,14 @@ class _$DartCommand_PlaySound implements DartCommand_PlaySound {
   int get hashCode => Object.hash(
       runtimeType, key, const DeepCollectionEquality().hash(content));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_PlaySoundCopyWith<_$DartCommand_PlaySound> get copyWith =>
-      __$$DartCommand_PlaySoundCopyWithImpl<_$DartCommand_PlaySound>(
-          this, _$identity);
+  _$$DartCommand_PlaySoundImplCopyWith<_$DartCommand_PlaySoundImpl>
+      get copyWith => __$$DartCommand_PlaySoundImplCopyWithImpl<
+          _$DartCommand_PlaySoundImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2427,39 +2472,45 @@ class _$DartCommand_PlaySound implements DartCommand_PlaySound {
 abstract class DartCommand_PlaySound implements DartCommand {
   const factory DartCommand_PlaySound(
       {final DartCommandKey? key,
-      required final Uint8List content}) = _$DartCommand_PlaySound;
+      required final Uint8List content}) = _$DartCommand_PlaySoundImpl;
 
   DartCommandKey? get key;
   Uint8List get content;
-  @JsonKey(ignore: true)
-  _$$DartCommand_PlaySoundCopyWith<_$DartCommand_PlaySound> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_PlaySoundImplCopyWith<_$DartCommand_PlaySoundImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_ClearControlsCopyWith<$Res> {
-  factory _$$DartCommand_ClearControlsCopyWith(
-          _$DartCommand_ClearControls value,
-          $Res Function(_$DartCommand_ClearControls) then) =
-      __$$DartCommand_ClearControlsCopyWithImpl<$Res>;
+abstract class _$$DartCommand_ClearControlsImplCopyWith<$Res> {
+  factory _$$DartCommand_ClearControlsImplCopyWith(
+          _$DartCommand_ClearControlsImpl value,
+          $Res Function(_$DartCommand_ClearControlsImpl) then) =
+      __$$DartCommand_ClearControlsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_ClearControlsCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_ClearControls>
-    implements _$$DartCommand_ClearControlsCopyWith<$Res> {
-  __$$DartCommand_ClearControlsCopyWithImpl(_$DartCommand_ClearControls _value,
-      $Res Function(_$DartCommand_ClearControls) _then)
+class __$$DartCommand_ClearControlsImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_ClearControlsImpl>
+    implements _$$DartCommand_ClearControlsImplCopyWith<$Res> {
+  __$$DartCommand_ClearControlsImplCopyWithImpl(
+      _$DartCommand_ClearControlsImpl _value,
+      $Res Function(_$DartCommand_ClearControlsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_ClearControls(
+    return _then(_$DartCommand_ClearControlsImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -2470,8 +2521,8 @@ class __$$DartCommand_ClearControlsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_ClearControls implements DartCommand_ClearControls {
-  const _$DartCommand_ClearControls({required this.key});
+class _$DartCommand_ClearControlsImpl implements DartCommand_ClearControls {
+  const _$DartCommand_ClearControlsImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -2482,22 +2533,24 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_ClearControls &&
+            other is _$DartCommand_ClearControlsImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_ClearControlsCopyWith<_$DartCommand_ClearControls>
-      get copyWith => __$$DartCommand_ClearControlsCopyWithImpl<
-          _$DartCommand_ClearControls>(this, _$identity);
+  _$$DartCommand_ClearControlsImplCopyWith<_$DartCommand_ClearControlsImpl>
+      get copyWith => __$$DartCommand_ClearControlsImplCopyWithImpl<
+          _$DartCommand_ClearControlsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2867,39 +2920,45 @@ class _$DartCommand_ClearControls implements DartCommand_ClearControls {
 
 abstract class DartCommand_ClearControls implements DartCommand {
   const factory DartCommand_ClearControls({required final DartRequestKey key}) =
-      _$DartCommand_ClearControls;
+      _$DartCommand_ClearControlsImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_ClearControlsCopyWith<_$DartCommand_ClearControls>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_ClearControlsImplCopyWith<_$DartCommand_ClearControlsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_RemoveControlCopyWith<$Res> {
-  factory _$$DartCommand_RemoveControlCopyWith(
-          _$DartCommand_RemoveControl value,
-          $Res Function(_$DartCommand_RemoveControl) then) =
-      __$$DartCommand_RemoveControlCopyWithImpl<$Res>;
+abstract class _$$DartCommand_RemoveControlImplCopyWith<$Res> {
+  factory _$$DartCommand_RemoveControlImplCopyWith(
+          _$DartCommand_RemoveControlImpl value,
+          $Res Function(_$DartCommand_RemoveControlImpl) then) =
+      __$$DartCommand_RemoveControlImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id});
 }
 
 /// @nodoc
-class __$$DartCommand_RemoveControlCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_RemoveControl>
-    implements _$$DartCommand_RemoveControlCopyWith<$Res> {
-  __$$DartCommand_RemoveControlCopyWithImpl(_$DartCommand_RemoveControl _value,
-      $Res Function(_$DartCommand_RemoveControl) _then)
+class __$$DartCommand_RemoveControlImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_RemoveControlImpl>
+    implements _$$DartCommand_RemoveControlImplCopyWith<$Res> {
+  __$$DartCommand_RemoveControlImplCopyWithImpl(
+      _$DartCommand_RemoveControlImpl _value,
+      $Res Function(_$DartCommand_RemoveControlImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? id = null,
   }) {
-    return _then(_$DartCommand_RemoveControl(
+    return _then(_$DartCommand_RemoveControlImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -2914,8 +2973,8 @@ class __$$DartCommand_RemoveControlCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
-  const _$DartCommand_RemoveControl({required this.key, required this.id});
+class _$DartCommand_RemoveControlImpl implements DartCommand_RemoveControl {
+  const _$DartCommand_RemoveControlImpl({required this.key, required this.id});
 
   @override
   final DartRequestKey key;
@@ -2928,10 +2987,10 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_RemoveControl &&
+            other is _$DartCommand_RemoveControlImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id));
   }
@@ -2939,12 +2998,14 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_RemoveControlCopyWith<_$DartCommand_RemoveControl>
-      get copyWith => __$$DartCommand_RemoveControlCopyWithImpl<
-          _$DartCommand_RemoveControl>(this, _$identity);
+  _$$DartCommand_RemoveControlImplCopyWith<_$DartCommand_RemoveControlImpl>
+      get copyWith => __$$DartCommand_RemoveControlImplCopyWithImpl<
+          _$DartCommand_RemoveControlImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3315,39 +3376,44 @@ class _$DartCommand_RemoveControl implements DartCommand_RemoveControl {
 abstract class DartCommand_RemoveControl implements DartCommand {
   const factory DartCommand_RemoveControl(
       {required final DartRequestKey key,
-      required final String id}) = _$DartCommand_RemoveControl;
+      required final String id}) = _$DartCommand_RemoveControlImpl;
 
   DartRequestKey get key;
   String get id;
-  @JsonKey(ignore: true)
-  _$$DartCommand_RemoveControlCopyWith<_$DartCommand_RemoveControl>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_RemoveControlImplCopyWith<_$DartCommand_RemoveControlImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_AddLabelCopyWith<$Res> {
-  factory _$$DartCommand_AddLabelCopyWith(_$DartCommand_AddLabel value,
-          $Res Function(_$DartCommand_AddLabel) then) =
-      __$$DartCommand_AddLabelCopyWithImpl<$Res>;
+abstract class _$$DartCommand_AddLabelImplCopyWith<$Res> {
+  factory _$$DartCommand_AddLabelImplCopyWith(_$DartCommand_AddLabelImpl value,
+          $Res Function(_$DartCommand_AddLabelImpl) then) =
+      __$$DartCommand_AddLabelImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, LabelInfo info});
 }
 
 /// @nodoc
-class __$$DartCommand_AddLabelCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddLabel>
-    implements _$$DartCommand_AddLabelCopyWith<$Res> {
-  __$$DartCommand_AddLabelCopyWithImpl(_$DartCommand_AddLabel _value,
-      $Res Function(_$DartCommand_AddLabel) _then)
+class __$$DartCommand_AddLabelImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddLabelImpl>
+    implements _$$DartCommand_AddLabelImplCopyWith<$Res> {
+  __$$DartCommand_AddLabelImplCopyWithImpl(_$DartCommand_AddLabelImpl _value,
+      $Res Function(_$DartCommand_AddLabelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? info = null,
   }) {
-    return _then(_$DartCommand_AddLabel(
+    return _then(_$DartCommand_AddLabelImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -3362,8 +3428,8 @@ class __$$DartCommand_AddLabelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_AddLabel implements DartCommand_AddLabel {
-  const _$DartCommand_AddLabel({required this.key, required this.info});
+class _$DartCommand_AddLabelImpl implements DartCommand_AddLabel {
+  const _$DartCommand_AddLabelImpl({required this.key, required this.info});
 
   @override
   final DartRequestKey key;
@@ -3376,10 +3442,10 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_AddLabel &&
+            other is _$DartCommand_AddLabelImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.info, info) || other.info == info));
   }
@@ -3387,12 +3453,15 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_AddLabelCopyWith<_$DartCommand_AddLabel> get copyWith =>
-      __$$DartCommand_AddLabelCopyWithImpl<_$DartCommand_AddLabel>(
-          this, _$identity);
+  _$$DartCommand_AddLabelImplCopyWith<_$DartCommand_AddLabelImpl>
+      get copyWith =>
+          __$$DartCommand_AddLabelImplCopyWithImpl<_$DartCommand_AddLabelImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3763,39 +3832,45 @@ class _$DartCommand_AddLabel implements DartCommand_AddLabel {
 abstract class DartCommand_AddLabel implements DartCommand {
   const factory DartCommand_AddLabel(
       {required final DartRequestKey key,
-      required final LabelInfo info}) = _$DartCommand_AddLabel;
+      required final LabelInfo info}) = _$DartCommand_AddLabelImpl;
 
   DartRequestKey get key;
   LabelInfo get info;
-  @JsonKey(ignore: true)
-  _$$DartCommand_AddLabelCopyWith<_$DartCommand_AddLabel> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_AddLabelImplCopyWith<_$DartCommand_AddLabelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_AddButtonCopyWith<$Res> {
-  factory _$$DartCommand_AddButtonCopyWith(_$DartCommand_AddButton value,
-          $Res Function(_$DartCommand_AddButton) then) =
-      __$$DartCommand_AddButtonCopyWithImpl<$Res>;
+abstract class _$$DartCommand_AddButtonImplCopyWith<$Res> {
+  factory _$$DartCommand_AddButtonImplCopyWith(
+          _$DartCommand_AddButtonImpl value,
+          $Res Function(_$DartCommand_AddButtonImpl) then) =
+      __$$DartCommand_AddButtonImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, ButtonInfo info});
 }
 
 /// @nodoc
-class __$$DartCommand_AddButtonCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddButton>
-    implements _$$DartCommand_AddButtonCopyWith<$Res> {
-  __$$DartCommand_AddButtonCopyWithImpl(_$DartCommand_AddButton _value,
-      $Res Function(_$DartCommand_AddButton) _then)
+class __$$DartCommand_AddButtonImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddButtonImpl>
+    implements _$$DartCommand_AddButtonImplCopyWith<$Res> {
+  __$$DartCommand_AddButtonImplCopyWithImpl(_$DartCommand_AddButtonImpl _value,
+      $Res Function(_$DartCommand_AddButtonImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? info = null,
   }) {
-    return _then(_$DartCommand_AddButton(
+    return _then(_$DartCommand_AddButtonImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -3810,8 +3885,8 @@ class __$$DartCommand_AddButtonCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_AddButton implements DartCommand_AddButton {
-  const _$DartCommand_AddButton({required this.key, required this.info});
+class _$DartCommand_AddButtonImpl implements DartCommand_AddButton {
+  const _$DartCommand_AddButtonImpl({required this.key, required this.info});
 
   @override
   final DartRequestKey key;
@@ -3824,10 +3899,10 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_AddButton &&
+            other is _$DartCommand_AddButtonImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.info, info) || other.info == info));
   }
@@ -3835,12 +3910,14 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_AddButtonCopyWith<_$DartCommand_AddButton> get copyWith =>
-      __$$DartCommand_AddButtonCopyWithImpl<_$DartCommand_AddButton>(
-          this, _$identity);
+  _$$DartCommand_AddButtonImplCopyWith<_$DartCommand_AddButtonImpl>
+      get copyWith => __$$DartCommand_AddButtonImplCopyWithImpl<
+          _$DartCommand_AddButtonImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -4211,39 +4288,46 @@ class _$DartCommand_AddButton implements DartCommand_AddButton {
 abstract class DartCommand_AddButton implements DartCommand {
   const factory DartCommand_AddButton(
       {required final DartRequestKey key,
-      required final ButtonInfo info}) = _$DartCommand_AddButton;
+      required final ButtonInfo info}) = _$DartCommand_AddButtonImpl;
 
   DartRequestKey get key;
   ButtonInfo get info;
-  @JsonKey(ignore: true)
-  _$$DartCommand_AddButtonCopyWith<_$DartCommand_AddButton> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_AddButtonImplCopyWith<_$DartCommand_AddButtonImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_AddTextFieldCopyWith<$Res> {
-  factory _$$DartCommand_AddTextFieldCopyWith(_$DartCommand_AddTextField value,
-          $Res Function(_$DartCommand_AddTextField) then) =
-      __$$DartCommand_AddTextFieldCopyWithImpl<$Res>;
+abstract class _$$DartCommand_AddTextFieldImplCopyWith<$Res> {
+  factory _$$DartCommand_AddTextFieldImplCopyWith(
+          _$DartCommand_AddTextFieldImpl value,
+          $Res Function(_$DartCommand_AddTextFieldImpl) then) =
+      __$$DartCommand_AddTextFieldImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, TextFieldInfo info});
 }
 
 /// @nodoc
-class __$$DartCommand_AddTextFieldCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddTextField>
-    implements _$$DartCommand_AddTextFieldCopyWith<$Res> {
-  __$$DartCommand_AddTextFieldCopyWithImpl(_$DartCommand_AddTextField _value,
-      $Res Function(_$DartCommand_AddTextField) _then)
+class __$$DartCommand_AddTextFieldImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddTextFieldImpl>
+    implements _$$DartCommand_AddTextFieldImplCopyWith<$Res> {
+  __$$DartCommand_AddTextFieldImplCopyWithImpl(
+      _$DartCommand_AddTextFieldImpl _value,
+      $Res Function(_$DartCommand_AddTextFieldImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? info = null,
   }) {
-    return _then(_$DartCommand_AddTextField(
+    return _then(_$DartCommand_AddTextFieldImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -4258,8 +4342,8 @@ class __$$DartCommand_AddTextFieldCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_AddTextField implements DartCommand_AddTextField {
-  const _$DartCommand_AddTextField({required this.key, required this.info});
+class _$DartCommand_AddTextFieldImpl implements DartCommand_AddTextField {
+  const _$DartCommand_AddTextFieldImpl({required this.key, required this.info});
 
   @override
   final DartRequestKey key;
@@ -4272,10 +4356,10 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_AddTextField &&
+            other is _$DartCommand_AddTextFieldImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.info, info) || other.info == info));
   }
@@ -4283,13 +4367,14 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_AddTextFieldCopyWith<_$DartCommand_AddTextField>
-      get copyWith =>
-          __$$DartCommand_AddTextFieldCopyWithImpl<_$DartCommand_AddTextField>(
-              this, _$identity);
+  _$$DartCommand_AddTextFieldImplCopyWith<_$DartCommand_AddTextFieldImpl>
+      get copyWith => __$$DartCommand_AddTextFieldImplCopyWithImpl<
+          _$DartCommand_AddTextFieldImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -4660,39 +4745,46 @@ class _$DartCommand_AddTextField implements DartCommand_AddTextField {
 abstract class DartCommand_AddTextField implements DartCommand {
   const factory DartCommand_AddTextField(
       {required final DartRequestKey key,
-      required final TextFieldInfo info}) = _$DartCommand_AddTextField;
+      required final TextFieldInfo info}) = _$DartCommand_AddTextFieldImpl;
 
   DartRequestKey get key;
   TextFieldInfo get info;
-  @JsonKey(ignore: true)
-  _$$DartCommand_AddTextFieldCopyWith<_$DartCommand_AddTextField>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_AddTextFieldImplCopyWith<_$DartCommand_AddTextFieldImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_AddJoystickCopyWith<$Res> {
-  factory _$$DartCommand_AddJoystickCopyWith(_$DartCommand_AddJoystick value,
-          $Res Function(_$DartCommand_AddJoystick) then) =
-      __$$DartCommand_AddJoystickCopyWithImpl<$Res>;
+abstract class _$$DartCommand_AddJoystickImplCopyWith<$Res> {
+  factory _$$DartCommand_AddJoystickImplCopyWith(
+          _$DartCommand_AddJoystickImpl value,
+          $Res Function(_$DartCommand_AddJoystickImpl) then) =
+      __$$DartCommand_AddJoystickImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, JoystickInfo info});
 }
 
 /// @nodoc
-class __$$DartCommand_AddJoystickCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddJoystick>
-    implements _$$DartCommand_AddJoystickCopyWith<$Res> {
-  __$$DartCommand_AddJoystickCopyWithImpl(_$DartCommand_AddJoystick _value,
-      $Res Function(_$DartCommand_AddJoystick) _then)
+class __$$DartCommand_AddJoystickImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddJoystickImpl>
+    implements _$$DartCommand_AddJoystickImplCopyWith<$Res> {
+  __$$DartCommand_AddJoystickImplCopyWithImpl(
+      _$DartCommand_AddJoystickImpl _value,
+      $Res Function(_$DartCommand_AddJoystickImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? info = null,
   }) {
-    return _then(_$DartCommand_AddJoystick(
+    return _then(_$DartCommand_AddJoystickImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -4707,8 +4799,8 @@ class __$$DartCommand_AddJoystickCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
-  const _$DartCommand_AddJoystick({required this.key, required this.info});
+class _$DartCommand_AddJoystickImpl implements DartCommand_AddJoystick {
+  const _$DartCommand_AddJoystickImpl({required this.key, required this.info});
 
   @override
   final DartRequestKey key;
@@ -4721,10 +4813,10 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_AddJoystick &&
+            other is _$DartCommand_AddJoystickImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.info, info) || other.info == info));
   }
@@ -4732,12 +4824,14 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_AddJoystickCopyWith<_$DartCommand_AddJoystick> get copyWith =>
-      __$$DartCommand_AddJoystickCopyWithImpl<_$DartCommand_AddJoystick>(
-          this, _$identity);
+  _$$DartCommand_AddJoystickImplCopyWith<_$DartCommand_AddJoystickImpl>
+      get copyWith => __$$DartCommand_AddJoystickImplCopyWithImpl<
+          _$DartCommand_AddJoystickImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -5108,39 +5202,46 @@ class _$DartCommand_AddJoystick implements DartCommand_AddJoystick {
 abstract class DartCommand_AddJoystick implements DartCommand {
   const factory DartCommand_AddJoystick(
       {required final DartRequestKey key,
-      required final JoystickInfo info}) = _$DartCommand_AddJoystick;
+      required final JoystickInfo info}) = _$DartCommand_AddJoystickImpl;
 
   DartRequestKey get key;
   JoystickInfo get info;
-  @JsonKey(ignore: true)
-  _$$DartCommand_AddJoystickCopyWith<_$DartCommand_AddJoystick> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_AddJoystickImplCopyWith<_$DartCommand_AddJoystickImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_AddTouchpadCopyWith<$Res> {
-  factory _$$DartCommand_AddTouchpadCopyWith(_$DartCommand_AddTouchpad value,
-          $Res Function(_$DartCommand_AddTouchpad) then) =
-      __$$DartCommand_AddTouchpadCopyWithImpl<$Res>;
+abstract class _$$DartCommand_AddTouchpadImplCopyWith<$Res> {
+  factory _$$DartCommand_AddTouchpadImplCopyWith(
+          _$DartCommand_AddTouchpadImpl value,
+          $Res Function(_$DartCommand_AddTouchpadImpl) then) =
+      __$$DartCommand_AddTouchpadImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, TouchpadInfo info});
 }
 
 /// @nodoc
-class __$$DartCommand_AddTouchpadCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddTouchpad>
-    implements _$$DartCommand_AddTouchpadCopyWith<$Res> {
-  __$$DartCommand_AddTouchpadCopyWithImpl(_$DartCommand_AddTouchpad _value,
-      $Res Function(_$DartCommand_AddTouchpad) _then)
+class __$$DartCommand_AddTouchpadImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddTouchpadImpl>
+    implements _$$DartCommand_AddTouchpadImplCopyWith<$Res> {
+  __$$DartCommand_AddTouchpadImplCopyWithImpl(
+      _$DartCommand_AddTouchpadImpl _value,
+      $Res Function(_$DartCommand_AddTouchpadImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? info = null,
   }) {
-    return _then(_$DartCommand_AddTouchpad(
+    return _then(_$DartCommand_AddTouchpadImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -5155,8 +5256,8 @@ class __$$DartCommand_AddTouchpadCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
-  const _$DartCommand_AddTouchpad({required this.key, required this.info});
+class _$DartCommand_AddTouchpadImpl implements DartCommand_AddTouchpad {
+  const _$DartCommand_AddTouchpadImpl({required this.key, required this.info});
 
   @override
   final DartRequestKey key;
@@ -5169,10 +5270,10 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_AddTouchpad &&
+            other is _$DartCommand_AddTouchpadImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.info, info) || other.info == info));
   }
@@ -5180,12 +5281,14 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_AddTouchpadCopyWith<_$DartCommand_AddTouchpad> get copyWith =>
-      __$$DartCommand_AddTouchpadCopyWithImpl<_$DartCommand_AddTouchpad>(
-          this, _$identity);
+  _$$DartCommand_AddTouchpadImplCopyWith<_$DartCommand_AddTouchpadImpl>
+      get copyWith => __$$DartCommand_AddTouchpadImplCopyWithImpl<
+          _$DartCommand_AddTouchpadImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -5556,39 +5659,45 @@ class _$DartCommand_AddTouchpad implements DartCommand_AddTouchpad {
 abstract class DartCommand_AddTouchpad implements DartCommand {
   const factory DartCommand_AddTouchpad(
       {required final DartRequestKey key,
-      required final TouchpadInfo info}) = _$DartCommand_AddTouchpad;
+      required final TouchpadInfo info}) = _$DartCommand_AddTouchpadImpl;
 
   DartRequestKey get key;
   TouchpadInfo get info;
-  @JsonKey(ignore: true)
-  _$$DartCommand_AddTouchpadCopyWith<_$DartCommand_AddTouchpad> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_AddTouchpadImplCopyWith<_$DartCommand_AddTouchpadImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_AddSliderCopyWith<$Res> {
-  factory _$$DartCommand_AddSliderCopyWith(_$DartCommand_AddSlider value,
-          $Res Function(_$DartCommand_AddSlider) then) =
-      __$$DartCommand_AddSliderCopyWithImpl<$Res>;
+abstract class _$$DartCommand_AddSliderImplCopyWith<$Res> {
+  factory _$$DartCommand_AddSliderImplCopyWith(
+          _$DartCommand_AddSliderImpl value,
+          $Res Function(_$DartCommand_AddSliderImpl) then) =
+      __$$DartCommand_AddSliderImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, SliderInfo info});
 }
 
 /// @nodoc
-class __$$DartCommand_AddSliderCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddSlider>
-    implements _$$DartCommand_AddSliderCopyWith<$Res> {
-  __$$DartCommand_AddSliderCopyWithImpl(_$DartCommand_AddSlider _value,
-      $Res Function(_$DartCommand_AddSlider) _then)
+class __$$DartCommand_AddSliderImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddSliderImpl>
+    implements _$$DartCommand_AddSliderImplCopyWith<$Res> {
+  __$$DartCommand_AddSliderImplCopyWithImpl(_$DartCommand_AddSliderImpl _value,
+      $Res Function(_$DartCommand_AddSliderImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? info = null,
   }) {
-    return _then(_$DartCommand_AddSlider(
+    return _then(_$DartCommand_AddSliderImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -5603,8 +5712,8 @@ class __$$DartCommand_AddSliderCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_AddSlider implements DartCommand_AddSlider {
-  const _$DartCommand_AddSlider({required this.key, required this.info});
+class _$DartCommand_AddSliderImpl implements DartCommand_AddSlider {
+  const _$DartCommand_AddSliderImpl({required this.key, required this.info});
 
   @override
   final DartRequestKey key;
@@ -5617,10 +5726,10 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_AddSlider &&
+            other is _$DartCommand_AddSliderImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.info, info) || other.info == info));
   }
@@ -5628,12 +5737,14 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_AddSliderCopyWith<_$DartCommand_AddSlider> get copyWith =>
-      __$$DartCommand_AddSliderCopyWithImpl<_$DartCommand_AddSlider>(
-          this, _$identity);
+  _$$DartCommand_AddSliderImplCopyWith<_$DartCommand_AddSliderImpl>
+      get copyWith => __$$DartCommand_AddSliderImplCopyWithImpl<
+          _$DartCommand_AddSliderImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -6004,39 +6115,45 @@ class _$DartCommand_AddSlider implements DartCommand_AddSlider {
 abstract class DartCommand_AddSlider implements DartCommand {
   const factory DartCommand_AddSlider(
       {required final DartRequestKey key,
-      required final SliderInfo info}) = _$DartCommand_AddSlider;
+      required final SliderInfo info}) = _$DartCommand_AddSliderImpl;
 
   DartRequestKey get key;
   SliderInfo get info;
-  @JsonKey(ignore: true)
-  _$$DartCommand_AddSliderCopyWith<_$DartCommand_AddSlider> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_AddSliderImplCopyWith<_$DartCommand_AddSliderImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_AddToggleCopyWith<$Res> {
-  factory _$$DartCommand_AddToggleCopyWith(_$DartCommand_AddToggle value,
-          $Res Function(_$DartCommand_AddToggle) then) =
-      __$$DartCommand_AddToggleCopyWithImpl<$Res>;
+abstract class _$$DartCommand_AddToggleImplCopyWith<$Res> {
+  factory _$$DartCommand_AddToggleImplCopyWith(
+          _$DartCommand_AddToggleImpl value,
+          $Res Function(_$DartCommand_AddToggleImpl) then) =
+      __$$DartCommand_AddToggleImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, ToggleInfo info});
 }
 
 /// @nodoc
-class __$$DartCommand_AddToggleCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddToggle>
-    implements _$$DartCommand_AddToggleCopyWith<$Res> {
-  __$$DartCommand_AddToggleCopyWithImpl(_$DartCommand_AddToggle _value,
-      $Res Function(_$DartCommand_AddToggle) _then)
+class __$$DartCommand_AddToggleImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddToggleImpl>
+    implements _$$DartCommand_AddToggleImplCopyWith<$Res> {
+  __$$DartCommand_AddToggleImplCopyWithImpl(_$DartCommand_AddToggleImpl _value,
+      $Res Function(_$DartCommand_AddToggleImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? info = null,
   }) {
-    return _then(_$DartCommand_AddToggle(
+    return _then(_$DartCommand_AddToggleImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -6051,8 +6168,8 @@ class __$$DartCommand_AddToggleCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_AddToggle implements DartCommand_AddToggle {
-  const _$DartCommand_AddToggle({required this.key, required this.info});
+class _$DartCommand_AddToggleImpl implements DartCommand_AddToggle {
+  const _$DartCommand_AddToggleImpl({required this.key, required this.info});
 
   @override
   final DartRequestKey key;
@@ -6065,10 +6182,10 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_AddToggle &&
+            other is _$DartCommand_AddToggleImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.info, info) || other.info == info));
   }
@@ -6076,12 +6193,14 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_AddToggleCopyWith<_$DartCommand_AddToggle> get copyWith =>
-      __$$DartCommand_AddToggleCopyWithImpl<_$DartCommand_AddToggle>(
-          this, _$identity);
+  _$$DartCommand_AddToggleImplCopyWith<_$DartCommand_AddToggleImpl>
+      get copyWith => __$$DartCommand_AddToggleImplCopyWithImpl<
+          _$DartCommand_AddToggleImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -6452,41 +6571,46 @@ class _$DartCommand_AddToggle implements DartCommand_AddToggle {
 abstract class DartCommand_AddToggle implements DartCommand {
   const factory DartCommand_AddToggle(
       {required final DartRequestKey key,
-      required final ToggleInfo info}) = _$DartCommand_AddToggle;
+      required final ToggleInfo info}) = _$DartCommand_AddToggleImpl;
 
   DartRequestKey get key;
   ToggleInfo get info;
-  @JsonKey(ignore: true)
-  _$$DartCommand_AddToggleCopyWith<_$DartCommand_AddToggle> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_AddToggleImplCopyWith<_$DartCommand_AddToggleImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_AddRadioButtonCopyWith<$Res> {
-  factory _$$DartCommand_AddRadioButtonCopyWith(
-          _$DartCommand_AddRadioButton value,
-          $Res Function(_$DartCommand_AddRadioButton) then) =
-      __$$DartCommand_AddRadioButtonCopyWithImpl<$Res>;
+abstract class _$$DartCommand_AddRadioButtonImplCopyWith<$Res> {
+  factory _$$DartCommand_AddRadioButtonImplCopyWith(
+          _$DartCommand_AddRadioButtonImpl value,
+          $Res Function(_$DartCommand_AddRadioButtonImpl) then) =
+      __$$DartCommand_AddRadioButtonImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, RadioButtonInfo info});
 }
 
 /// @nodoc
-class __$$DartCommand_AddRadioButtonCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddRadioButton>
-    implements _$$DartCommand_AddRadioButtonCopyWith<$Res> {
-  __$$DartCommand_AddRadioButtonCopyWithImpl(
-      _$DartCommand_AddRadioButton _value,
-      $Res Function(_$DartCommand_AddRadioButton) _then)
+class __$$DartCommand_AddRadioButtonImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddRadioButtonImpl>
+    implements _$$DartCommand_AddRadioButtonImplCopyWith<$Res> {
+  __$$DartCommand_AddRadioButtonImplCopyWithImpl(
+      _$DartCommand_AddRadioButtonImpl _value,
+      $Res Function(_$DartCommand_AddRadioButtonImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? info = null,
   }) {
-    return _then(_$DartCommand_AddRadioButton(
+    return _then(_$DartCommand_AddRadioButtonImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -6501,8 +6625,9 @@ class __$$DartCommand_AddRadioButtonCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
-  const _$DartCommand_AddRadioButton({required this.key, required this.info});
+class _$DartCommand_AddRadioButtonImpl implements DartCommand_AddRadioButton {
+  const _$DartCommand_AddRadioButtonImpl(
+      {required this.key, required this.info});
 
   @override
   final DartRequestKey key;
@@ -6515,10 +6640,10 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_AddRadioButton &&
+            other is _$DartCommand_AddRadioButtonImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.info, info) || other.info == info));
   }
@@ -6526,12 +6651,14 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_AddRadioButtonCopyWith<_$DartCommand_AddRadioButton>
-      get copyWith => __$$DartCommand_AddRadioButtonCopyWithImpl<
-          _$DartCommand_AddRadioButton>(this, _$identity);
+  _$$DartCommand_AddRadioButtonImplCopyWith<_$DartCommand_AddRadioButtonImpl>
+      get copyWith => __$$DartCommand_AddRadioButtonImplCopyWithImpl<
+          _$DartCommand_AddRadioButtonImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -6902,41 +7029,46 @@ class _$DartCommand_AddRadioButton implements DartCommand_AddRadioButton {
 abstract class DartCommand_AddRadioButton implements DartCommand {
   const factory DartCommand_AddRadioButton(
       {required final DartRequestKey key,
-      required final RadioButtonInfo info}) = _$DartCommand_AddRadioButton;
+      required final RadioButtonInfo info}) = _$DartCommand_AddRadioButtonImpl;
 
   DartRequestKey get key;
   RadioButtonInfo get info;
-  @JsonKey(ignore: true)
-  _$$DartCommand_AddRadioButtonCopyWith<_$DartCommand_AddRadioButton>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_AddRadioButtonImplCopyWith<_$DartCommand_AddRadioButtonImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_AddImageDisplayCopyWith<$Res> {
-  factory _$$DartCommand_AddImageDisplayCopyWith(
-          _$DartCommand_AddImageDisplay value,
-          $Res Function(_$DartCommand_AddImageDisplay) then) =
-      __$$DartCommand_AddImageDisplayCopyWithImpl<$Res>;
+abstract class _$$DartCommand_AddImageDisplayImplCopyWith<$Res> {
+  factory _$$DartCommand_AddImageDisplayImplCopyWith(
+          _$DartCommand_AddImageDisplayImpl value,
+          $Res Function(_$DartCommand_AddImageDisplayImpl) then) =
+      __$$DartCommand_AddImageDisplayImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, ImageDisplayInfo info});
 }
 
 /// @nodoc
-class __$$DartCommand_AddImageDisplayCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddImageDisplay>
-    implements _$$DartCommand_AddImageDisplayCopyWith<$Res> {
-  __$$DartCommand_AddImageDisplayCopyWithImpl(
-      _$DartCommand_AddImageDisplay _value,
-      $Res Function(_$DartCommand_AddImageDisplay) _then)
+class __$$DartCommand_AddImageDisplayImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_AddImageDisplayImpl>
+    implements _$$DartCommand_AddImageDisplayImplCopyWith<$Res> {
+  __$$DartCommand_AddImageDisplayImplCopyWithImpl(
+      _$DartCommand_AddImageDisplayImpl _value,
+      $Res Function(_$DartCommand_AddImageDisplayImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? info = null,
   }) {
-    return _then(_$DartCommand_AddImageDisplay(
+    return _then(_$DartCommand_AddImageDisplayImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -6951,8 +7083,9 @@ class __$$DartCommand_AddImageDisplayCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
-  const _$DartCommand_AddImageDisplay({required this.key, required this.info});
+class _$DartCommand_AddImageDisplayImpl implements DartCommand_AddImageDisplay {
+  const _$DartCommand_AddImageDisplayImpl(
+      {required this.key, required this.info});
 
   @override
   final DartRequestKey key;
@@ -6965,10 +7098,10 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_AddImageDisplay &&
+            other is _$DartCommand_AddImageDisplayImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.info, info) || other.info == info));
   }
@@ -6976,12 +7109,14 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_AddImageDisplayCopyWith<_$DartCommand_AddImageDisplay>
-      get copyWith => __$$DartCommand_AddImageDisplayCopyWithImpl<
-          _$DartCommand_AddImageDisplay>(this, _$identity);
+  _$$DartCommand_AddImageDisplayImplCopyWith<_$DartCommand_AddImageDisplayImpl>
+      get copyWith => __$$DartCommand_AddImageDisplayImplCopyWithImpl<
+          _$DartCommand_AddImageDisplayImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -7351,40 +7486,46 @@ class _$DartCommand_AddImageDisplay implements DartCommand_AddImageDisplay {
 
 abstract class DartCommand_AddImageDisplay implements DartCommand {
   const factory DartCommand_AddImageDisplay(
-      {required final DartRequestKey key,
-      required final ImageDisplayInfo info}) = _$DartCommand_AddImageDisplay;
+          {required final DartRequestKey key,
+          required final ImageDisplayInfo info}) =
+      _$DartCommand_AddImageDisplayImpl;
 
   DartRequestKey get key;
   ImageDisplayInfo get info;
-  @JsonKey(ignore: true)
-  _$$DartCommand_AddImageDisplayCopyWith<_$DartCommand_AddImageDisplay>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_AddImageDisplayImplCopyWith<_$DartCommand_AddImageDisplayImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetTextCopyWith<$Res> {
-  factory _$$DartCommand_GetTextCopyWith(_$DartCommand_GetText value,
-          $Res Function(_$DartCommand_GetText) then) =
-      __$$DartCommand_GetTextCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetTextImplCopyWith<$Res> {
+  factory _$$DartCommand_GetTextImplCopyWith(_$DartCommand_GetTextImpl value,
+          $Res Function(_$DartCommand_GetTextImpl) then) =
+      __$$DartCommand_GetTextImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id});
 }
 
 /// @nodoc
-class __$$DartCommand_GetTextCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetText>
-    implements _$$DartCommand_GetTextCopyWith<$Res> {
-  __$$DartCommand_GetTextCopyWithImpl(
-      _$DartCommand_GetText _value, $Res Function(_$DartCommand_GetText) _then)
+class __$$DartCommand_GetTextImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetTextImpl>
+    implements _$$DartCommand_GetTextImplCopyWith<$Res> {
+  __$$DartCommand_GetTextImplCopyWithImpl(_$DartCommand_GetTextImpl _value,
+      $Res Function(_$DartCommand_GetTextImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? id = null,
   }) {
-    return _then(_$DartCommand_GetText(
+    return _then(_$DartCommand_GetTextImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -7399,8 +7540,8 @@ class __$$DartCommand_GetTextCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetText implements DartCommand_GetText {
-  const _$DartCommand_GetText({required this.key, required this.id});
+class _$DartCommand_GetTextImpl implements DartCommand_GetText {
+  const _$DartCommand_GetTextImpl({required this.key, required this.id});
 
   @override
   final DartRequestKey key;
@@ -7413,10 +7554,10 @@ class _$DartCommand_GetText implements DartCommand_GetText {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetText &&
+            other is _$DartCommand_GetTextImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id));
   }
@@ -7424,11 +7565,13 @@ class _$DartCommand_GetText implements DartCommand_GetText {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetTextCopyWith<_$DartCommand_GetText> get copyWith =>
-      __$$DartCommand_GetTextCopyWithImpl<_$DartCommand_GetText>(
+  _$$DartCommand_GetTextImplCopyWith<_$DartCommand_GetTextImpl> get copyWith =>
+      __$$DartCommand_GetTextImplCopyWithImpl<_$DartCommand_GetTextImpl>(
           this, _$identity);
 
   @override
@@ -7800,32 +7943,37 @@ class _$DartCommand_GetText implements DartCommand_GetText {
 abstract class DartCommand_GetText implements DartCommand {
   const factory DartCommand_GetText(
       {required final DartRequestKey key,
-      required final String id}) = _$DartCommand_GetText;
+      required final String id}) = _$DartCommand_GetTextImpl;
 
   DartRequestKey get key;
   String get id;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetTextCopyWith<_$DartCommand_GetText> get copyWith =>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetTextImplCopyWith<_$DartCommand_GetTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_SetTextCopyWith<$Res> {
-  factory _$$DartCommand_SetTextCopyWith(_$DartCommand_SetText value,
-          $Res Function(_$DartCommand_SetText) then) =
-      __$$DartCommand_SetTextCopyWithImpl<$Res>;
+abstract class _$$DartCommand_SetTextImplCopyWith<$Res> {
+  factory _$$DartCommand_SetTextImplCopyWith(_$DartCommand_SetTextImpl value,
+          $Res Function(_$DartCommand_SetTextImpl) then) =
+      __$$DartCommand_SetTextImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id, String value});
 }
 
 /// @nodoc
-class __$$DartCommand_SetTextCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_SetText>
-    implements _$$DartCommand_SetTextCopyWith<$Res> {
-  __$$DartCommand_SetTextCopyWithImpl(
-      _$DartCommand_SetText _value, $Res Function(_$DartCommand_SetText) _then)
+class __$$DartCommand_SetTextImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_SetTextImpl>
+    implements _$$DartCommand_SetTextImplCopyWith<$Res> {
+  __$$DartCommand_SetTextImplCopyWithImpl(_$DartCommand_SetTextImpl _value,
+      $Res Function(_$DartCommand_SetTextImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7833,7 +7981,7 @@ class __$$DartCommand_SetTextCopyWithImpl<$Res>
     Object? id = null,
     Object? value = null,
   }) {
-    return _then(_$DartCommand_SetText(
+    return _then(_$DartCommand_SetTextImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -7852,8 +8000,8 @@ class __$$DartCommand_SetTextCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_SetText implements DartCommand_SetText {
-  const _$DartCommand_SetText(
+class _$DartCommand_SetTextImpl implements DartCommand_SetText {
+  const _$DartCommand_SetTextImpl(
       {required this.key, required this.id, required this.value});
 
   @override
@@ -7869,10 +8017,10 @@ class _$DartCommand_SetText implements DartCommand_SetText {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_SetText &&
+            other is _$DartCommand_SetTextImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.value, value) || other.value == value));
@@ -7881,11 +8029,13 @@ class _$DartCommand_SetText implements DartCommand_SetText {
   @override
   int get hashCode => Object.hash(runtimeType, key, id, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_SetTextCopyWith<_$DartCommand_SetText> get copyWith =>
-      __$$DartCommand_SetTextCopyWithImpl<_$DartCommand_SetText>(
+  _$$DartCommand_SetTextImplCopyWith<_$DartCommand_SetTextImpl> get copyWith =>
+      __$$DartCommand_SetTextImplCopyWithImpl<_$DartCommand_SetTextImpl>(
           this, _$identity);
 
   @override
@@ -8258,40 +8408,45 @@ abstract class DartCommand_SetText implements DartCommand {
   const factory DartCommand_SetText(
       {required final DartRequestKey key,
       required final String id,
-      required final String value}) = _$DartCommand_SetText;
+      required final String value}) = _$DartCommand_SetTextImpl;
 
   DartRequestKey get key;
   String get id;
   String get value;
-  @JsonKey(ignore: true)
-  _$$DartCommand_SetTextCopyWith<_$DartCommand_SetText> get copyWith =>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_SetTextImplCopyWith<_$DartCommand_SetTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetLevelCopyWith<$Res> {
-  factory _$$DartCommand_GetLevelCopyWith(_$DartCommand_GetLevel value,
-          $Res Function(_$DartCommand_GetLevel) then) =
-      __$$DartCommand_GetLevelCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetLevelImplCopyWith<$Res> {
+  factory _$$DartCommand_GetLevelImplCopyWith(_$DartCommand_GetLevelImpl value,
+          $Res Function(_$DartCommand_GetLevelImpl) then) =
+      __$$DartCommand_GetLevelImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id});
 }
 
 /// @nodoc
-class __$$DartCommand_GetLevelCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLevel>
-    implements _$$DartCommand_GetLevelCopyWith<$Res> {
-  __$$DartCommand_GetLevelCopyWithImpl(_$DartCommand_GetLevel _value,
-      $Res Function(_$DartCommand_GetLevel) _then)
+class __$$DartCommand_GetLevelImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLevelImpl>
+    implements _$$DartCommand_GetLevelImplCopyWith<$Res> {
+  __$$DartCommand_GetLevelImplCopyWithImpl(_$DartCommand_GetLevelImpl _value,
+      $Res Function(_$DartCommand_GetLevelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? id = null,
   }) {
-    return _then(_$DartCommand_GetLevel(
+    return _then(_$DartCommand_GetLevelImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -8306,8 +8461,8 @@ class __$$DartCommand_GetLevelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetLevel implements DartCommand_GetLevel {
-  const _$DartCommand_GetLevel({required this.key, required this.id});
+class _$DartCommand_GetLevelImpl implements DartCommand_GetLevel {
+  const _$DartCommand_GetLevelImpl({required this.key, required this.id});
 
   @override
   final DartRequestKey key;
@@ -8320,10 +8475,10 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetLevel &&
+            other is _$DartCommand_GetLevelImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id));
   }
@@ -8331,12 +8486,15 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetLevelCopyWith<_$DartCommand_GetLevel> get copyWith =>
-      __$$DartCommand_GetLevelCopyWithImpl<_$DartCommand_GetLevel>(
-          this, _$identity);
+  _$$DartCommand_GetLevelImplCopyWith<_$DartCommand_GetLevelImpl>
+      get copyWith =>
+          __$$DartCommand_GetLevelImplCopyWithImpl<_$DartCommand_GetLevelImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -8707,32 +8865,37 @@ class _$DartCommand_GetLevel implements DartCommand_GetLevel {
 abstract class DartCommand_GetLevel implements DartCommand {
   const factory DartCommand_GetLevel(
       {required final DartRequestKey key,
-      required final String id}) = _$DartCommand_GetLevel;
+      required final String id}) = _$DartCommand_GetLevelImpl;
 
   DartRequestKey get key;
   String get id;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetLevelCopyWith<_$DartCommand_GetLevel> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetLevelImplCopyWith<_$DartCommand_GetLevelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_SetLevelCopyWith<$Res> {
-  factory _$$DartCommand_SetLevelCopyWith(_$DartCommand_SetLevel value,
-          $Res Function(_$DartCommand_SetLevel) then) =
-      __$$DartCommand_SetLevelCopyWithImpl<$Res>;
+abstract class _$$DartCommand_SetLevelImplCopyWith<$Res> {
+  factory _$$DartCommand_SetLevelImplCopyWith(_$DartCommand_SetLevelImpl value,
+          $Res Function(_$DartCommand_SetLevelImpl) then) =
+      __$$DartCommand_SetLevelImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id, double value});
 }
 
 /// @nodoc
-class __$$DartCommand_SetLevelCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_SetLevel>
-    implements _$$DartCommand_SetLevelCopyWith<$Res> {
-  __$$DartCommand_SetLevelCopyWithImpl(_$DartCommand_SetLevel _value,
-      $Res Function(_$DartCommand_SetLevel) _then)
+class __$$DartCommand_SetLevelImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_SetLevelImpl>
+    implements _$$DartCommand_SetLevelImplCopyWith<$Res> {
+  __$$DartCommand_SetLevelImplCopyWithImpl(_$DartCommand_SetLevelImpl _value,
+      $Res Function(_$DartCommand_SetLevelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8740,7 +8903,7 @@ class __$$DartCommand_SetLevelCopyWithImpl<$Res>
     Object? id = null,
     Object? value = null,
   }) {
-    return _then(_$DartCommand_SetLevel(
+    return _then(_$DartCommand_SetLevelImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -8759,8 +8922,8 @@ class __$$DartCommand_SetLevelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_SetLevel implements DartCommand_SetLevel {
-  const _$DartCommand_SetLevel(
+class _$DartCommand_SetLevelImpl implements DartCommand_SetLevel {
+  const _$DartCommand_SetLevelImpl(
       {required this.key, required this.id, required this.value});
 
   @override
@@ -8776,10 +8939,10 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_SetLevel &&
+            other is _$DartCommand_SetLevelImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.value, value) || other.value == value));
@@ -8788,12 +8951,15 @@ class _$DartCommand_SetLevel implements DartCommand_SetLevel {
   @override
   int get hashCode => Object.hash(runtimeType, key, id, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_SetLevelCopyWith<_$DartCommand_SetLevel> get copyWith =>
-      __$$DartCommand_SetLevelCopyWithImpl<_$DartCommand_SetLevel>(
-          this, _$identity);
+  _$$DartCommand_SetLevelImplCopyWith<_$DartCommand_SetLevelImpl>
+      get copyWith =>
+          __$$DartCommand_SetLevelImplCopyWithImpl<_$DartCommand_SetLevelImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -9165,42 +9331,47 @@ abstract class DartCommand_SetLevel implements DartCommand {
   const factory DartCommand_SetLevel(
       {required final DartRequestKey key,
       required final String id,
-      required final double value}) = _$DartCommand_SetLevel;
+      required final double value}) = _$DartCommand_SetLevelImpl;
 
   DartRequestKey get key;
   String get id;
   double get value;
-  @JsonKey(ignore: true)
-  _$$DartCommand_SetLevelCopyWith<_$DartCommand_SetLevel> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_SetLevelImplCopyWith<_$DartCommand_SetLevelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetToggleStateCopyWith<$Res> {
-  factory _$$DartCommand_GetToggleStateCopyWith(
-          _$DartCommand_GetToggleState value,
-          $Res Function(_$DartCommand_GetToggleState) then) =
-      __$$DartCommand_GetToggleStateCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetToggleStateImplCopyWith<$Res> {
+  factory _$$DartCommand_GetToggleStateImplCopyWith(
+          _$DartCommand_GetToggleStateImpl value,
+          $Res Function(_$DartCommand_GetToggleStateImpl) then) =
+      __$$DartCommand_GetToggleStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id});
 }
 
 /// @nodoc
-class __$$DartCommand_GetToggleStateCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetToggleState>
-    implements _$$DartCommand_GetToggleStateCopyWith<$Res> {
-  __$$DartCommand_GetToggleStateCopyWithImpl(
-      _$DartCommand_GetToggleState _value,
-      $Res Function(_$DartCommand_GetToggleState) _then)
+class __$$DartCommand_GetToggleStateImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetToggleStateImpl>
+    implements _$$DartCommand_GetToggleStateImplCopyWith<$Res> {
+  __$$DartCommand_GetToggleStateImplCopyWithImpl(
+      _$DartCommand_GetToggleStateImpl _value,
+      $Res Function(_$DartCommand_GetToggleStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? id = null,
   }) {
-    return _then(_$DartCommand_GetToggleState(
+    return _then(_$DartCommand_GetToggleStateImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -9215,8 +9386,8 @@ class __$$DartCommand_GetToggleStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
-  const _$DartCommand_GetToggleState({required this.key, required this.id});
+class _$DartCommand_GetToggleStateImpl implements DartCommand_GetToggleState {
+  const _$DartCommand_GetToggleStateImpl({required this.key, required this.id});
 
   @override
   final DartRequestKey key;
@@ -9229,10 +9400,10 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetToggleState &&
+            other is _$DartCommand_GetToggleStateImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id));
   }
@@ -9240,12 +9411,14 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetToggleStateCopyWith<_$DartCommand_GetToggleState>
-      get copyWith => __$$DartCommand_GetToggleStateCopyWithImpl<
-          _$DartCommand_GetToggleState>(this, _$identity);
+  _$$DartCommand_GetToggleStateImplCopyWith<_$DartCommand_GetToggleStateImpl>
+      get copyWith => __$$DartCommand_GetToggleStateImplCopyWithImpl<
+          _$DartCommand_GetToggleStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -9616,34 +9789,39 @@ class _$DartCommand_GetToggleState implements DartCommand_GetToggleState {
 abstract class DartCommand_GetToggleState implements DartCommand {
   const factory DartCommand_GetToggleState(
       {required final DartRequestKey key,
-      required final String id}) = _$DartCommand_GetToggleState;
+      required final String id}) = _$DartCommand_GetToggleStateImpl;
 
   DartRequestKey get key;
   String get id;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetToggleStateCopyWith<_$DartCommand_GetToggleState>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetToggleStateImplCopyWith<_$DartCommand_GetToggleStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_SetToggleStateCopyWith<$Res> {
-  factory _$$DartCommand_SetToggleStateCopyWith(
-          _$DartCommand_SetToggleState value,
-          $Res Function(_$DartCommand_SetToggleState) then) =
-      __$$DartCommand_SetToggleStateCopyWithImpl<$Res>;
+abstract class _$$DartCommand_SetToggleStateImplCopyWith<$Res> {
+  factory _$$DartCommand_SetToggleStateImplCopyWith(
+          _$DartCommand_SetToggleStateImpl value,
+          $Res Function(_$DartCommand_SetToggleStateImpl) then) =
+      __$$DartCommand_SetToggleStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id, bool value});
 }
 
 /// @nodoc
-class __$$DartCommand_SetToggleStateCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_SetToggleState>
-    implements _$$DartCommand_SetToggleStateCopyWith<$Res> {
-  __$$DartCommand_SetToggleStateCopyWithImpl(
-      _$DartCommand_SetToggleState _value,
-      $Res Function(_$DartCommand_SetToggleState) _then)
+class __$$DartCommand_SetToggleStateImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_SetToggleStateImpl>
+    implements _$$DartCommand_SetToggleStateImplCopyWith<$Res> {
+  __$$DartCommand_SetToggleStateImplCopyWithImpl(
+      _$DartCommand_SetToggleStateImpl _value,
+      $Res Function(_$DartCommand_SetToggleStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9651,7 +9829,7 @@ class __$$DartCommand_SetToggleStateCopyWithImpl<$Res>
     Object? id = null,
     Object? value = null,
   }) {
-    return _then(_$DartCommand_SetToggleState(
+    return _then(_$DartCommand_SetToggleStateImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -9670,8 +9848,8 @@ class __$$DartCommand_SetToggleStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
-  const _$DartCommand_SetToggleState(
+class _$DartCommand_SetToggleStateImpl implements DartCommand_SetToggleState {
+  const _$DartCommand_SetToggleStateImpl(
       {required this.key, required this.id, required this.value});
 
   @override
@@ -9687,10 +9865,10 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_SetToggleState &&
+            other is _$DartCommand_SetToggleStateImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.value, value) || other.value == value));
@@ -9699,12 +9877,14 @@ class _$DartCommand_SetToggleState implements DartCommand_SetToggleState {
   @override
   int get hashCode => Object.hash(runtimeType, key, id, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_SetToggleStateCopyWith<_$DartCommand_SetToggleState>
-      get copyWith => __$$DartCommand_SetToggleStateCopyWithImpl<
-          _$DartCommand_SetToggleState>(this, _$identity);
+  _$$DartCommand_SetToggleStateImplCopyWith<_$DartCommand_SetToggleStateImpl>
+      get copyWith => __$$DartCommand_SetToggleStateImplCopyWithImpl<
+          _$DartCommand_SetToggleStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -10076,40 +10256,45 @@ abstract class DartCommand_SetToggleState implements DartCommand {
   const factory DartCommand_SetToggleState(
       {required final DartRequestKey key,
       required final String id,
-      required final bool value}) = _$DartCommand_SetToggleState;
+      required final bool value}) = _$DartCommand_SetToggleStateImpl;
 
   DartRequestKey get key;
   String get id;
   bool get value;
-  @JsonKey(ignore: true)
-  _$$DartCommand_SetToggleStateCopyWith<_$DartCommand_SetToggleState>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_SetToggleStateImplCopyWith<_$DartCommand_SetToggleStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetImageCopyWith<$Res> {
-  factory _$$DartCommand_GetImageCopyWith(_$DartCommand_GetImage value,
-          $Res Function(_$DartCommand_GetImage) then) =
-      __$$DartCommand_GetImageCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetImageImplCopyWith<$Res> {
+  factory _$$DartCommand_GetImageImplCopyWith(_$DartCommand_GetImageImpl value,
+          $Res Function(_$DartCommand_GetImageImpl) then) =
+      __$$DartCommand_GetImageImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id});
 }
 
 /// @nodoc
-class __$$DartCommand_GetImageCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetImage>
-    implements _$$DartCommand_GetImageCopyWith<$Res> {
-  __$$DartCommand_GetImageCopyWithImpl(_$DartCommand_GetImage _value,
-      $Res Function(_$DartCommand_GetImage) _then)
+class __$$DartCommand_GetImageImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetImageImpl>
+    implements _$$DartCommand_GetImageImplCopyWith<$Res> {
+  __$$DartCommand_GetImageImplCopyWithImpl(_$DartCommand_GetImageImpl _value,
+      $Res Function(_$DartCommand_GetImageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? id = null,
   }) {
-    return _then(_$DartCommand_GetImage(
+    return _then(_$DartCommand_GetImageImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -10124,8 +10309,8 @@ class __$$DartCommand_GetImageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetImage implements DartCommand_GetImage {
-  const _$DartCommand_GetImage({required this.key, required this.id});
+class _$DartCommand_GetImageImpl implements DartCommand_GetImage {
+  const _$DartCommand_GetImageImpl({required this.key, required this.id});
 
   @override
   final DartRequestKey key;
@@ -10138,10 +10323,10 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetImage &&
+            other is _$DartCommand_GetImageImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id));
   }
@@ -10149,12 +10334,15 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetImageCopyWith<_$DartCommand_GetImage> get copyWith =>
-      __$$DartCommand_GetImageCopyWithImpl<_$DartCommand_GetImage>(
-          this, _$identity);
+  _$$DartCommand_GetImageImplCopyWith<_$DartCommand_GetImageImpl>
+      get copyWith =>
+          __$$DartCommand_GetImageImplCopyWithImpl<_$DartCommand_GetImageImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -10525,32 +10713,37 @@ class _$DartCommand_GetImage implements DartCommand_GetImage {
 abstract class DartCommand_GetImage implements DartCommand {
   const factory DartCommand_GetImage(
       {required final DartRequestKey key,
-      required final String id}) = _$DartCommand_GetImage;
+      required final String id}) = _$DartCommand_GetImageImpl;
 
   DartRequestKey get key;
   String get id;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetImageCopyWith<_$DartCommand_GetImage> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetImageImplCopyWith<_$DartCommand_GetImageImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_SetImageCopyWith<$Res> {
-  factory _$$DartCommand_SetImageCopyWith(_$DartCommand_SetImage value,
-          $Res Function(_$DartCommand_SetImage) then) =
-      __$$DartCommand_SetImageCopyWithImpl<$Res>;
+abstract class _$$DartCommand_SetImageImplCopyWith<$Res> {
+  factory _$$DartCommand_SetImageImplCopyWith(_$DartCommand_SetImageImpl value,
+          $Res Function(_$DartCommand_SetImageImpl) then) =
+      __$$DartCommand_SetImageImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id, Uint8List value});
 }
 
 /// @nodoc
-class __$$DartCommand_SetImageCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_SetImage>
-    implements _$$DartCommand_SetImageCopyWith<$Res> {
-  __$$DartCommand_SetImageCopyWithImpl(_$DartCommand_SetImage _value,
-      $Res Function(_$DartCommand_SetImage) _then)
+class __$$DartCommand_SetImageImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_SetImageImpl>
+    implements _$$DartCommand_SetImageImplCopyWith<$Res> {
+  __$$DartCommand_SetImageImplCopyWithImpl(_$DartCommand_SetImageImpl _value,
+      $Res Function(_$DartCommand_SetImageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10558,7 +10751,7 @@ class __$$DartCommand_SetImageCopyWithImpl<$Res>
     Object? id = null,
     Object? value = null,
   }) {
-    return _then(_$DartCommand_SetImage(
+    return _then(_$DartCommand_SetImageImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -10577,8 +10770,8 @@ class __$$DartCommand_SetImageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_SetImage implements DartCommand_SetImage {
-  const _$DartCommand_SetImage(
+class _$DartCommand_SetImageImpl implements DartCommand_SetImage {
+  const _$DartCommand_SetImageImpl(
       {required this.key, required this.id, required this.value});
 
   @override
@@ -10594,10 +10787,10 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_SetImage &&
+            other is _$DartCommand_SetImageImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other.value, value));
@@ -10607,12 +10800,15 @@ class _$DartCommand_SetImage implements DartCommand_SetImage {
   int get hashCode => Object.hash(
       runtimeType, key, id, const DeepCollectionEquality().hash(value));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_SetImageCopyWith<_$DartCommand_SetImage> get copyWith =>
-      __$$DartCommand_SetImageCopyWithImpl<_$DartCommand_SetImage>(
-          this, _$identity);
+  _$$DartCommand_SetImageImplCopyWith<_$DartCommand_SetImageImpl>
+      get copyWith =>
+          __$$DartCommand_SetImageImplCopyWithImpl<_$DartCommand_SetImageImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -10984,40 +11180,47 @@ abstract class DartCommand_SetImage implements DartCommand {
   const factory DartCommand_SetImage(
       {required final DartRequestKey key,
       required final String id,
-      required final Uint8List value}) = _$DartCommand_SetImage;
+      required final Uint8List value}) = _$DartCommand_SetImageImpl;
 
   DartRequestKey get key;
   String get id;
   Uint8List get value;
-  @JsonKey(ignore: true)
-  _$$DartCommand_SetImageCopyWith<_$DartCommand_SetImage> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_SetImageImplCopyWith<_$DartCommand_SetImageImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetPositionCopyWith<$Res> {
-  factory _$$DartCommand_GetPositionCopyWith(_$DartCommand_GetPosition value,
-          $Res Function(_$DartCommand_GetPosition) then) =
-      __$$DartCommand_GetPositionCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetPositionImplCopyWith<$Res> {
+  factory _$$DartCommand_GetPositionImplCopyWith(
+          _$DartCommand_GetPositionImpl value,
+          $Res Function(_$DartCommand_GetPositionImpl) then) =
+      __$$DartCommand_GetPositionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id});
 }
 
 /// @nodoc
-class __$$DartCommand_GetPositionCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetPosition>
-    implements _$$DartCommand_GetPositionCopyWith<$Res> {
-  __$$DartCommand_GetPositionCopyWithImpl(_$DartCommand_GetPosition _value,
-      $Res Function(_$DartCommand_GetPosition) _then)
+class __$$DartCommand_GetPositionImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetPositionImpl>
+    implements _$$DartCommand_GetPositionImplCopyWith<$Res> {
+  __$$DartCommand_GetPositionImplCopyWithImpl(
+      _$DartCommand_GetPositionImpl _value,
+      $Res Function(_$DartCommand_GetPositionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? id = null,
   }) {
-    return _then(_$DartCommand_GetPosition(
+    return _then(_$DartCommand_GetPositionImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -11032,8 +11235,8 @@ class __$$DartCommand_GetPositionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetPosition implements DartCommand_GetPosition {
-  const _$DartCommand_GetPosition({required this.key, required this.id});
+class _$DartCommand_GetPositionImpl implements DartCommand_GetPosition {
+  const _$DartCommand_GetPositionImpl({required this.key, required this.id});
 
   @override
   final DartRequestKey key;
@@ -11046,10 +11249,10 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetPosition &&
+            other is _$DartCommand_GetPositionImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id));
   }
@@ -11057,12 +11260,14 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetPositionCopyWith<_$DartCommand_GetPosition> get copyWith =>
-      __$$DartCommand_GetPositionCopyWithImpl<_$DartCommand_GetPosition>(
-          this, _$identity);
+  _$$DartCommand_GetPositionImplCopyWith<_$DartCommand_GetPositionImpl>
+      get copyWith => __$$DartCommand_GetPositionImplCopyWithImpl<
+          _$DartCommand_GetPositionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -11433,39 +11638,45 @@ class _$DartCommand_GetPosition implements DartCommand_GetPosition {
 abstract class DartCommand_GetPosition implements DartCommand {
   const factory DartCommand_GetPosition(
       {required final DartRequestKey key,
-      required final String id}) = _$DartCommand_GetPosition;
+      required final String id}) = _$DartCommand_GetPositionImpl;
 
   DartRequestKey get key;
   String get id;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetPositionCopyWith<_$DartCommand_GetPosition> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetPositionImplCopyWith<_$DartCommand_GetPositionImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_IsPressedCopyWith<$Res> {
-  factory _$$DartCommand_IsPressedCopyWith(_$DartCommand_IsPressed value,
-          $Res Function(_$DartCommand_IsPressed) then) =
-      __$$DartCommand_IsPressedCopyWithImpl<$Res>;
+abstract class _$$DartCommand_IsPressedImplCopyWith<$Res> {
+  factory _$$DartCommand_IsPressedImplCopyWith(
+          _$DartCommand_IsPressedImpl value,
+          $Res Function(_$DartCommand_IsPressedImpl) then) =
+      __$$DartCommand_IsPressedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, String id});
 }
 
 /// @nodoc
-class __$$DartCommand_IsPressedCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_IsPressed>
-    implements _$$DartCommand_IsPressedCopyWith<$Res> {
-  __$$DartCommand_IsPressedCopyWithImpl(_$DartCommand_IsPressed _value,
-      $Res Function(_$DartCommand_IsPressed) _then)
+class __$$DartCommand_IsPressedImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_IsPressedImpl>
+    implements _$$DartCommand_IsPressedImplCopyWith<$Res> {
+  __$$DartCommand_IsPressedImplCopyWithImpl(_$DartCommand_IsPressedImpl _value,
+      $Res Function(_$DartCommand_IsPressedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? id = null,
   }) {
-    return _then(_$DartCommand_IsPressed(
+    return _then(_$DartCommand_IsPressedImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -11480,8 +11691,8 @@ class __$$DartCommand_IsPressedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_IsPressed implements DartCommand_IsPressed {
-  const _$DartCommand_IsPressed({required this.key, required this.id});
+class _$DartCommand_IsPressedImpl implements DartCommand_IsPressed {
+  const _$DartCommand_IsPressedImpl({required this.key, required this.id});
 
   @override
   final DartRequestKey key;
@@ -11494,10 +11705,10 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_IsPressed &&
+            other is _$DartCommand_IsPressedImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.id, id) || other.id == id));
   }
@@ -11505,12 +11716,14 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_IsPressedCopyWith<_$DartCommand_IsPressed> get copyWith =>
-      __$$DartCommand_IsPressedCopyWithImpl<_$DartCommand_IsPressed>(
-          this, _$identity);
+  _$$DartCommand_IsPressedImplCopyWith<_$DartCommand_IsPressedImpl>
+      get copyWith => __$$DartCommand_IsPressedImplCopyWithImpl<
+          _$DartCommand_IsPressedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -11881,40 +12094,45 @@ class _$DartCommand_IsPressed implements DartCommand_IsPressed {
 abstract class DartCommand_IsPressed implements DartCommand {
   const factory DartCommand_IsPressed(
       {required final DartRequestKey key,
-      required final String id}) = _$DartCommand_IsPressed;
+      required final String id}) = _$DartCommand_IsPressedImpl;
 
   DartRequestKey get key;
   String get id;
-  @JsonKey(ignore: true)
-  _$$DartCommand_IsPressedCopyWith<_$DartCommand_IsPressed> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_IsPressedImplCopyWith<_$DartCommand_IsPressedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetAccelerometerCopyWith<$Res> {
-  factory _$$DartCommand_GetAccelerometerCopyWith(
-          _$DartCommand_GetAccelerometer value,
-          $Res Function(_$DartCommand_GetAccelerometer) then) =
-      __$$DartCommand_GetAccelerometerCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetAccelerometerImplCopyWith<$Res> {
+  factory _$$DartCommand_GetAccelerometerImplCopyWith(
+          _$DartCommand_GetAccelerometerImpl value,
+          $Res Function(_$DartCommand_GetAccelerometerImpl) then) =
+      __$$DartCommand_GetAccelerometerImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetAccelerometerCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetAccelerometer>
-    implements _$$DartCommand_GetAccelerometerCopyWith<$Res> {
-  __$$DartCommand_GetAccelerometerCopyWithImpl(
-      _$DartCommand_GetAccelerometer _value,
-      $Res Function(_$DartCommand_GetAccelerometer) _then)
+class __$$DartCommand_GetAccelerometerImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetAccelerometerImpl>
+    implements _$$DartCommand_GetAccelerometerImplCopyWith<$Res> {
+  __$$DartCommand_GetAccelerometerImplCopyWithImpl(
+      _$DartCommand_GetAccelerometerImpl _value,
+      $Res Function(_$DartCommand_GetAccelerometerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetAccelerometer(
+    return _then(_$DartCommand_GetAccelerometerImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -11925,8 +12143,9 @@ class __$$DartCommand_GetAccelerometerCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
-  const _$DartCommand_GetAccelerometer({required this.key});
+class _$DartCommand_GetAccelerometerImpl
+    implements DartCommand_GetAccelerometer {
+  const _$DartCommand_GetAccelerometerImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -11937,22 +12156,25 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetAccelerometer &&
+            other is _$DartCommand_GetAccelerometerImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetAccelerometerCopyWith<_$DartCommand_GetAccelerometer>
-      get copyWith => __$$DartCommand_GetAccelerometerCopyWithImpl<
-          _$DartCommand_GetAccelerometer>(this, _$identity);
+  _$$DartCommand_GetAccelerometerImplCopyWith<
+          _$DartCommand_GetAccelerometerImpl>
+      get copyWith => __$$DartCommand_GetAccelerometerImplCopyWithImpl<
+          _$DartCommand_GetAccelerometerImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -12322,40 +12544,46 @@ class _$DartCommand_GetAccelerometer implements DartCommand_GetAccelerometer {
 
 abstract class DartCommand_GetAccelerometer implements DartCommand {
   const factory DartCommand_GetAccelerometer(
-      {required final DartRequestKey key}) = _$DartCommand_GetAccelerometer;
+      {required final DartRequestKey key}) = _$DartCommand_GetAccelerometerImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetAccelerometerCopyWith<_$DartCommand_GetAccelerometer>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetAccelerometerImplCopyWith<
+          _$DartCommand_GetAccelerometerImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetLinearAccelerometerCopyWith<$Res> {
-  factory _$$DartCommand_GetLinearAccelerometerCopyWith(
-          _$DartCommand_GetLinearAccelerometer value,
-          $Res Function(_$DartCommand_GetLinearAccelerometer) then) =
-      __$$DartCommand_GetLinearAccelerometerCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetLinearAccelerometerImplCopyWith<$Res> {
+  factory _$$DartCommand_GetLinearAccelerometerImplCopyWith(
+          _$DartCommand_GetLinearAccelerometerImpl value,
+          $Res Function(_$DartCommand_GetLinearAccelerometerImpl) then) =
+      __$$DartCommand_GetLinearAccelerometerImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetLinearAccelerometerCopyWithImpl<$Res>
+class __$$DartCommand_GetLinearAccelerometerImplCopyWithImpl<$Res>
     extends _$DartCommandCopyWithImpl<$Res,
-        _$DartCommand_GetLinearAccelerometer>
-    implements _$$DartCommand_GetLinearAccelerometerCopyWith<$Res> {
-  __$$DartCommand_GetLinearAccelerometerCopyWithImpl(
-      _$DartCommand_GetLinearAccelerometer _value,
-      $Res Function(_$DartCommand_GetLinearAccelerometer) _then)
+        _$DartCommand_GetLinearAccelerometerImpl>
+    implements _$$DartCommand_GetLinearAccelerometerImplCopyWith<$Res> {
+  __$$DartCommand_GetLinearAccelerometerImplCopyWithImpl(
+      _$DartCommand_GetLinearAccelerometerImpl _value,
+      $Res Function(_$DartCommand_GetLinearAccelerometerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetLinearAccelerometer(
+    return _then(_$DartCommand_GetLinearAccelerometerImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -12366,9 +12594,9 @@ class __$$DartCommand_GetLinearAccelerometerCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetLinearAccelerometer
+class _$DartCommand_GetLinearAccelerometerImpl
     implements DartCommand_GetLinearAccelerometer {
-  const _$DartCommand_GetLinearAccelerometer({required this.key});
+  const _$DartCommand_GetLinearAccelerometerImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -12379,23 +12607,25 @@ class _$DartCommand_GetLinearAccelerometer
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetLinearAccelerometer &&
+            other is _$DartCommand_GetLinearAccelerometerImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetLinearAccelerometerCopyWith<
-          _$DartCommand_GetLinearAccelerometer>
-      get copyWith => __$$DartCommand_GetLinearAccelerometerCopyWithImpl<
-          _$DartCommand_GetLinearAccelerometer>(this, _$identity);
+  _$$DartCommand_GetLinearAccelerometerImplCopyWith<
+          _$DartCommand_GetLinearAccelerometerImpl>
+      get copyWith => __$$DartCommand_GetLinearAccelerometerImplCopyWithImpl<
+          _$DartCommand_GetLinearAccelerometerImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -12766,38 +12996,45 @@ class _$DartCommand_GetLinearAccelerometer
 abstract class DartCommand_GetLinearAccelerometer implements DartCommand {
   const factory DartCommand_GetLinearAccelerometer(
           {required final DartRequestKey key}) =
-      _$DartCommand_GetLinearAccelerometer;
+      _$DartCommand_GetLinearAccelerometerImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetLinearAccelerometerCopyWith<
-          _$DartCommand_GetLinearAccelerometer>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetLinearAccelerometerImplCopyWith<
+          _$DartCommand_GetLinearAccelerometerImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetGyroscopeCopyWith<$Res> {
-  factory _$$DartCommand_GetGyroscopeCopyWith(_$DartCommand_GetGyroscope value,
-          $Res Function(_$DartCommand_GetGyroscope) then) =
-      __$$DartCommand_GetGyroscopeCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetGyroscopeImplCopyWith<$Res> {
+  factory _$$DartCommand_GetGyroscopeImplCopyWith(
+          _$DartCommand_GetGyroscopeImpl value,
+          $Res Function(_$DartCommand_GetGyroscopeImpl) then) =
+      __$$DartCommand_GetGyroscopeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetGyroscopeCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetGyroscope>
-    implements _$$DartCommand_GetGyroscopeCopyWith<$Res> {
-  __$$DartCommand_GetGyroscopeCopyWithImpl(_$DartCommand_GetGyroscope _value,
-      $Res Function(_$DartCommand_GetGyroscope) _then)
+class __$$DartCommand_GetGyroscopeImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetGyroscopeImpl>
+    implements _$$DartCommand_GetGyroscopeImplCopyWith<$Res> {
+  __$$DartCommand_GetGyroscopeImplCopyWithImpl(
+      _$DartCommand_GetGyroscopeImpl _value,
+      $Res Function(_$DartCommand_GetGyroscopeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetGyroscope(
+    return _then(_$DartCommand_GetGyroscopeImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -12808,8 +13045,8 @@ class __$$DartCommand_GetGyroscopeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
-  const _$DartCommand_GetGyroscope({required this.key});
+class _$DartCommand_GetGyroscopeImpl implements DartCommand_GetGyroscope {
+  const _$DartCommand_GetGyroscopeImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -12820,23 +13057,24 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetGyroscope &&
+            other is _$DartCommand_GetGyroscopeImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetGyroscopeCopyWith<_$DartCommand_GetGyroscope>
-      get copyWith =>
-          __$$DartCommand_GetGyroscopeCopyWithImpl<_$DartCommand_GetGyroscope>(
-              this, _$identity);
+  _$$DartCommand_GetGyroscopeImplCopyWith<_$DartCommand_GetGyroscopeImpl>
+      get copyWith => __$$DartCommand_GetGyroscopeImplCopyWithImpl<
+          _$DartCommand_GetGyroscopeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -13206,39 +13444,44 @@ class _$DartCommand_GetGyroscope implements DartCommand_GetGyroscope {
 
 abstract class DartCommand_GetGyroscope implements DartCommand {
   const factory DartCommand_GetGyroscope({required final DartRequestKey key}) =
-      _$DartCommand_GetGyroscope;
+      _$DartCommand_GetGyroscopeImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetGyroscopeCopyWith<_$DartCommand_GetGyroscope>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetGyroscopeImplCopyWith<_$DartCommand_GetGyroscopeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetMagnetometerCopyWith<$Res> {
-  factory _$$DartCommand_GetMagnetometerCopyWith(
-          _$DartCommand_GetMagnetometer value,
-          $Res Function(_$DartCommand_GetMagnetometer) then) =
-      __$$DartCommand_GetMagnetometerCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetMagnetometerImplCopyWith<$Res> {
+  factory _$$DartCommand_GetMagnetometerImplCopyWith(
+          _$DartCommand_GetMagnetometerImpl value,
+          $Res Function(_$DartCommand_GetMagnetometerImpl) then) =
+      __$$DartCommand_GetMagnetometerImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetMagnetometerCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetMagnetometer>
-    implements _$$DartCommand_GetMagnetometerCopyWith<$Res> {
-  __$$DartCommand_GetMagnetometerCopyWithImpl(
-      _$DartCommand_GetMagnetometer _value,
-      $Res Function(_$DartCommand_GetMagnetometer) _then)
+class __$$DartCommand_GetMagnetometerImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetMagnetometerImpl>
+    implements _$$DartCommand_GetMagnetometerImplCopyWith<$Res> {
+  __$$DartCommand_GetMagnetometerImplCopyWithImpl(
+      _$DartCommand_GetMagnetometerImpl _value,
+      $Res Function(_$DartCommand_GetMagnetometerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetMagnetometer(
+    return _then(_$DartCommand_GetMagnetometerImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -13249,8 +13492,8 @@ class __$$DartCommand_GetMagnetometerCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
-  const _$DartCommand_GetMagnetometer({required this.key});
+class _$DartCommand_GetMagnetometerImpl implements DartCommand_GetMagnetometer {
+  const _$DartCommand_GetMagnetometerImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -13261,22 +13504,24 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetMagnetometer &&
+            other is _$DartCommand_GetMagnetometerImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetMagnetometerCopyWith<_$DartCommand_GetMagnetometer>
-      get copyWith => __$$DartCommand_GetMagnetometerCopyWithImpl<
-          _$DartCommand_GetMagnetometer>(this, _$identity);
+  _$$DartCommand_GetMagnetometerImplCopyWith<_$DartCommand_GetMagnetometerImpl>
+      get copyWith => __$$DartCommand_GetMagnetometerImplCopyWithImpl<
+          _$DartCommand_GetMagnetometerImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -13646,37 +13891,44 @@ class _$DartCommand_GetMagnetometer implements DartCommand_GetMagnetometer {
 
 abstract class DartCommand_GetMagnetometer implements DartCommand {
   const factory DartCommand_GetMagnetometer(
-      {required final DartRequestKey key}) = _$DartCommand_GetMagnetometer;
+      {required final DartRequestKey key}) = _$DartCommand_GetMagnetometerImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetMagnetometerCopyWith<_$DartCommand_GetMagnetometer>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetMagnetometerImplCopyWith<_$DartCommand_GetMagnetometerImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetGravityCopyWith<$Res> {
-  factory _$$DartCommand_GetGravityCopyWith(_$DartCommand_GetGravity value,
-          $Res Function(_$DartCommand_GetGravity) then) =
-      __$$DartCommand_GetGravityCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetGravityImplCopyWith<$Res> {
+  factory _$$DartCommand_GetGravityImplCopyWith(
+          _$DartCommand_GetGravityImpl value,
+          $Res Function(_$DartCommand_GetGravityImpl) then) =
+      __$$DartCommand_GetGravityImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetGravityCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetGravity>
-    implements _$$DartCommand_GetGravityCopyWith<$Res> {
-  __$$DartCommand_GetGravityCopyWithImpl(_$DartCommand_GetGravity _value,
-      $Res Function(_$DartCommand_GetGravity) _then)
+class __$$DartCommand_GetGravityImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetGravityImpl>
+    implements _$$DartCommand_GetGravityImplCopyWith<$Res> {
+  __$$DartCommand_GetGravityImplCopyWithImpl(
+      _$DartCommand_GetGravityImpl _value,
+      $Res Function(_$DartCommand_GetGravityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetGravity(
+    return _then(_$DartCommand_GetGravityImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -13687,8 +13939,8 @@ class __$$DartCommand_GetGravityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetGravity implements DartCommand_GetGravity {
-  const _$DartCommand_GetGravity({required this.key});
+class _$DartCommand_GetGravityImpl implements DartCommand_GetGravity {
+  const _$DartCommand_GetGravityImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -13699,22 +13951,24 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetGravity &&
+            other is _$DartCommand_GetGravityImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetGravityCopyWith<_$DartCommand_GetGravity> get copyWith =>
-      __$$DartCommand_GetGravityCopyWithImpl<_$DartCommand_GetGravity>(
-          this, _$identity);
+  _$$DartCommand_GetGravityImplCopyWith<_$DartCommand_GetGravityImpl>
+      get copyWith => __$$DartCommand_GetGravityImplCopyWithImpl<
+          _$DartCommand_GetGravityImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -14084,37 +14338,44 @@ class _$DartCommand_GetGravity implements DartCommand_GetGravity {
 
 abstract class DartCommand_GetGravity implements DartCommand {
   const factory DartCommand_GetGravity({required final DartRequestKey key}) =
-      _$DartCommand_GetGravity;
+      _$DartCommand_GetGravityImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetGravityCopyWith<_$DartCommand_GetGravity> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetGravityImplCopyWith<_$DartCommand_GetGravityImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetPressureCopyWith<$Res> {
-  factory _$$DartCommand_GetPressureCopyWith(_$DartCommand_GetPressure value,
-          $Res Function(_$DartCommand_GetPressure) then) =
-      __$$DartCommand_GetPressureCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetPressureImplCopyWith<$Res> {
+  factory _$$DartCommand_GetPressureImplCopyWith(
+          _$DartCommand_GetPressureImpl value,
+          $Res Function(_$DartCommand_GetPressureImpl) then) =
+      __$$DartCommand_GetPressureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetPressureCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetPressure>
-    implements _$$DartCommand_GetPressureCopyWith<$Res> {
-  __$$DartCommand_GetPressureCopyWithImpl(_$DartCommand_GetPressure _value,
-      $Res Function(_$DartCommand_GetPressure) _then)
+class __$$DartCommand_GetPressureImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetPressureImpl>
+    implements _$$DartCommand_GetPressureImplCopyWith<$Res> {
+  __$$DartCommand_GetPressureImplCopyWithImpl(
+      _$DartCommand_GetPressureImpl _value,
+      $Res Function(_$DartCommand_GetPressureImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetPressure(
+    return _then(_$DartCommand_GetPressureImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -14125,8 +14386,8 @@ class __$$DartCommand_GetPressureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetPressure implements DartCommand_GetPressure {
-  const _$DartCommand_GetPressure({required this.key});
+class _$DartCommand_GetPressureImpl implements DartCommand_GetPressure {
+  const _$DartCommand_GetPressureImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -14137,22 +14398,24 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetPressure &&
+            other is _$DartCommand_GetPressureImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetPressureCopyWith<_$DartCommand_GetPressure> get copyWith =>
-      __$$DartCommand_GetPressureCopyWithImpl<_$DartCommand_GetPressure>(
-          this, _$identity);
+  _$$DartCommand_GetPressureImplCopyWith<_$DartCommand_GetPressureImpl>
+      get copyWith => __$$DartCommand_GetPressureImplCopyWithImpl<
+          _$DartCommand_GetPressureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -14522,39 +14785,45 @@ class _$DartCommand_GetPressure implements DartCommand_GetPressure {
 
 abstract class DartCommand_GetPressure implements DartCommand {
   const factory DartCommand_GetPressure({required final DartRequestKey key}) =
-      _$DartCommand_GetPressure;
+      _$DartCommand_GetPressureImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetPressureCopyWith<_$DartCommand_GetPressure> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetPressureImplCopyWith<_$DartCommand_GetPressureImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetRelativeHumidityCopyWith<$Res> {
-  factory _$$DartCommand_GetRelativeHumidityCopyWith(
-          _$DartCommand_GetRelativeHumidity value,
-          $Res Function(_$DartCommand_GetRelativeHumidity) then) =
-      __$$DartCommand_GetRelativeHumidityCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetRelativeHumidityImplCopyWith<$Res> {
+  factory _$$DartCommand_GetRelativeHumidityImplCopyWith(
+          _$DartCommand_GetRelativeHumidityImpl value,
+          $Res Function(_$DartCommand_GetRelativeHumidityImpl) then) =
+      __$$DartCommand_GetRelativeHumidityImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetRelativeHumidityCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetRelativeHumidity>
-    implements _$$DartCommand_GetRelativeHumidityCopyWith<$Res> {
-  __$$DartCommand_GetRelativeHumidityCopyWithImpl(
-      _$DartCommand_GetRelativeHumidity _value,
-      $Res Function(_$DartCommand_GetRelativeHumidity) _then)
+class __$$DartCommand_GetRelativeHumidityImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res,
+        _$DartCommand_GetRelativeHumidityImpl>
+    implements _$$DartCommand_GetRelativeHumidityImplCopyWith<$Res> {
+  __$$DartCommand_GetRelativeHumidityImplCopyWithImpl(
+      _$DartCommand_GetRelativeHumidityImpl _value,
+      $Res Function(_$DartCommand_GetRelativeHumidityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetRelativeHumidity(
+    return _then(_$DartCommand_GetRelativeHumidityImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -14565,9 +14834,9 @@ class __$$DartCommand_GetRelativeHumidityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetRelativeHumidity
+class _$DartCommand_GetRelativeHumidityImpl
     implements DartCommand_GetRelativeHumidity {
-  const _$DartCommand_GetRelativeHumidity({required this.key});
+  const _$DartCommand_GetRelativeHumidityImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -14578,22 +14847,25 @@ class _$DartCommand_GetRelativeHumidity
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetRelativeHumidity &&
+            other is _$DartCommand_GetRelativeHumidityImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetRelativeHumidityCopyWith<_$DartCommand_GetRelativeHumidity>
-      get copyWith => __$$DartCommand_GetRelativeHumidityCopyWithImpl<
-          _$DartCommand_GetRelativeHumidity>(this, _$identity);
+  _$$DartCommand_GetRelativeHumidityImplCopyWith<
+          _$DartCommand_GetRelativeHumidityImpl>
+      get copyWith => __$$DartCommand_GetRelativeHumidityImplCopyWithImpl<
+          _$DartCommand_GetRelativeHumidityImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -14963,38 +15235,46 @@ class _$DartCommand_GetRelativeHumidity
 
 abstract class DartCommand_GetRelativeHumidity implements DartCommand {
   const factory DartCommand_GetRelativeHumidity(
-      {required final DartRequestKey key}) = _$DartCommand_GetRelativeHumidity;
+          {required final DartRequestKey key}) =
+      _$DartCommand_GetRelativeHumidityImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetRelativeHumidityCopyWith<_$DartCommand_GetRelativeHumidity>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetRelativeHumidityImplCopyWith<
+          _$DartCommand_GetRelativeHumidityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetLightLevelCopyWith<$Res> {
-  factory _$$DartCommand_GetLightLevelCopyWith(
-          _$DartCommand_GetLightLevel value,
-          $Res Function(_$DartCommand_GetLightLevel) then) =
-      __$$DartCommand_GetLightLevelCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetLightLevelImplCopyWith<$Res> {
+  factory _$$DartCommand_GetLightLevelImplCopyWith(
+          _$DartCommand_GetLightLevelImpl value,
+          $Res Function(_$DartCommand_GetLightLevelImpl) then) =
+      __$$DartCommand_GetLightLevelImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetLightLevelCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLightLevel>
-    implements _$$DartCommand_GetLightLevelCopyWith<$Res> {
-  __$$DartCommand_GetLightLevelCopyWithImpl(_$DartCommand_GetLightLevel _value,
-      $Res Function(_$DartCommand_GetLightLevel) _then)
+class __$$DartCommand_GetLightLevelImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLightLevelImpl>
+    implements _$$DartCommand_GetLightLevelImplCopyWith<$Res> {
+  __$$DartCommand_GetLightLevelImplCopyWithImpl(
+      _$DartCommand_GetLightLevelImpl _value,
+      $Res Function(_$DartCommand_GetLightLevelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetLightLevel(
+    return _then(_$DartCommand_GetLightLevelImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -15005,8 +15285,8 @@ class __$$DartCommand_GetLightLevelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
-  const _$DartCommand_GetLightLevel({required this.key});
+class _$DartCommand_GetLightLevelImpl implements DartCommand_GetLightLevel {
+  const _$DartCommand_GetLightLevelImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -15017,22 +15297,24 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetLightLevel &&
+            other is _$DartCommand_GetLightLevelImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetLightLevelCopyWith<_$DartCommand_GetLightLevel>
-      get copyWith => __$$DartCommand_GetLightLevelCopyWithImpl<
-          _$DartCommand_GetLightLevel>(this, _$identity);
+  _$$DartCommand_GetLightLevelImplCopyWith<_$DartCommand_GetLightLevelImpl>
+      get copyWith => __$$DartCommand_GetLightLevelImplCopyWithImpl<
+          _$DartCommand_GetLightLevelImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -15402,39 +15684,44 @@ class _$DartCommand_GetLightLevel implements DartCommand_GetLightLevel {
 
 abstract class DartCommand_GetLightLevel implements DartCommand {
   const factory DartCommand_GetLightLevel({required final DartRequestKey key}) =
-      _$DartCommand_GetLightLevel;
+      _$DartCommand_GetLightLevelImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetLightLevelCopyWith<_$DartCommand_GetLightLevel>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetLightLevelImplCopyWith<_$DartCommand_GetLightLevelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetTemperatureCopyWith<$Res> {
-  factory _$$DartCommand_GetTemperatureCopyWith(
-          _$DartCommand_GetTemperature value,
-          $Res Function(_$DartCommand_GetTemperature) then) =
-      __$$DartCommand_GetTemperatureCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetTemperatureImplCopyWith<$Res> {
+  factory _$$DartCommand_GetTemperatureImplCopyWith(
+          _$DartCommand_GetTemperatureImpl value,
+          $Res Function(_$DartCommand_GetTemperatureImpl) then) =
+      __$$DartCommand_GetTemperatureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetTemperatureCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetTemperature>
-    implements _$$DartCommand_GetTemperatureCopyWith<$Res> {
-  __$$DartCommand_GetTemperatureCopyWithImpl(
-      _$DartCommand_GetTemperature _value,
-      $Res Function(_$DartCommand_GetTemperature) _then)
+class __$$DartCommand_GetTemperatureImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetTemperatureImpl>
+    implements _$$DartCommand_GetTemperatureImplCopyWith<$Res> {
+  __$$DartCommand_GetTemperatureImplCopyWithImpl(
+      _$DartCommand_GetTemperatureImpl _value,
+      $Res Function(_$DartCommand_GetTemperatureImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetTemperature(
+    return _then(_$DartCommand_GetTemperatureImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -15445,8 +15732,8 @@ class __$$DartCommand_GetTemperatureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
-  const _$DartCommand_GetTemperature({required this.key});
+class _$DartCommand_GetTemperatureImpl implements DartCommand_GetTemperature {
+  const _$DartCommand_GetTemperatureImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -15457,22 +15744,24 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetTemperature &&
+            other is _$DartCommand_GetTemperatureImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetTemperatureCopyWith<_$DartCommand_GetTemperature>
-      get copyWith => __$$DartCommand_GetTemperatureCopyWithImpl<
-          _$DartCommand_GetTemperature>(this, _$identity);
+  _$$DartCommand_GetTemperatureImplCopyWith<_$DartCommand_GetTemperatureImpl>
+      get copyWith => __$$DartCommand_GetTemperatureImplCopyWithImpl<
+          _$DartCommand_GetTemperatureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -15842,39 +16131,45 @@ class _$DartCommand_GetTemperature implements DartCommand_GetTemperature {
 
 abstract class DartCommand_GetTemperature implements DartCommand {
   const factory DartCommand_GetTemperature(
-      {required final DartRequestKey key}) = _$DartCommand_GetTemperature;
+      {required final DartRequestKey key}) = _$DartCommand_GetTemperatureImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetTemperatureCopyWith<_$DartCommand_GetTemperature>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetTemperatureImplCopyWith<_$DartCommand_GetTemperatureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetFacingDirectionCopyWith<$Res> {
-  factory _$$DartCommand_GetFacingDirectionCopyWith(
-          _$DartCommand_GetFacingDirection value,
-          $Res Function(_$DartCommand_GetFacingDirection) then) =
-      __$$DartCommand_GetFacingDirectionCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetFacingDirectionImplCopyWith<$Res> {
+  factory _$$DartCommand_GetFacingDirectionImplCopyWith(
+          _$DartCommand_GetFacingDirectionImpl value,
+          $Res Function(_$DartCommand_GetFacingDirectionImpl) then) =
+      __$$DartCommand_GetFacingDirectionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetFacingDirectionCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetFacingDirection>
-    implements _$$DartCommand_GetFacingDirectionCopyWith<$Res> {
-  __$$DartCommand_GetFacingDirectionCopyWithImpl(
-      _$DartCommand_GetFacingDirection _value,
-      $Res Function(_$DartCommand_GetFacingDirection) _then)
+class __$$DartCommand_GetFacingDirectionImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res,
+        _$DartCommand_GetFacingDirectionImpl>
+    implements _$$DartCommand_GetFacingDirectionImplCopyWith<$Res> {
+  __$$DartCommand_GetFacingDirectionImplCopyWithImpl(
+      _$DartCommand_GetFacingDirectionImpl _value,
+      $Res Function(_$DartCommand_GetFacingDirectionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetFacingDirection(
+    return _then(_$DartCommand_GetFacingDirectionImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -15885,9 +16180,9 @@ class __$$DartCommand_GetFacingDirectionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetFacingDirection
+class _$DartCommand_GetFacingDirectionImpl
     implements DartCommand_GetFacingDirection {
-  const _$DartCommand_GetFacingDirection({required this.key});
+  const _$DartCommand_GetFacingDirectionImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -15898,22 +16193,25 @@ class _$DartCommand_GetFacingDirection
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetFacingDirection &&
+            other is _$DartCommand_GetFacingDirectionImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetFacingDirectionCopyWith<_$DartCommand_GetFacingDirection>
-      get copyWith => __$$DartCommand_GetFacingDirectionCopyWithImpl<
-          _$DartCommand_GetFacingDirection>(this, _$identity);
+  _$$DartCommand_GetFacingDirectionImplCopyWith<
+          _$DartCommand_GetFacingDirectionImpl>
+      get copyWith => __$$DartCommand_GetFacingDirectionImplCopyWithImpl<
+          _$DartCommand_GetFacingDirectionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -16283,39 +16581,46 @@ class _$DartCommand_GetFacingDirection
 
 abstract class DartCommand_GetFacingDirection implements DartCommand {
   const factory DartCommand_GetFacingDirection(
-      {required final DartRequestKey key}) = _$DartCommand_GetFacingDirection;
+          {required final DartRequestKey key}) =
+      _$DartCommand_GetFacingDirectionImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetFacingDirectionCopyWith<_$DartCommand_GetFacingDirection>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetFacingDirectionImplCopyWith<
+          _$DartCommand_GetFacingDirectionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetOrientationCopyWith<$Res> {
-  factory _$$DartCommand_GetOrientationCopyWith(
-          _$DartCommand_GetOrientation value,
-          $Res Function(_$DartCommand_GetOrientation) then) =
-      __$$DartCommand_GetOrientationCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetOrientationImplCopyWith<$Res> {
+  factory _$$DartCommand_GetOrientationImplCopyWith(
+          _$DartCommand_GetOrientationImpl value,
+          $Res Function(_$DartCommand_GetOrientationImpl) then) =
+      __$$DartCommand_GetOrientationImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetOrientationCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetOrientation>
-    implements _$$DartCommand_GetOrientationCopyWith<$Res> {
-  __$$DartCommand_GetOrientationCopyWithImpl(
-      _$DartCommand_GetOrientation _value,
-      $Res Function(_$DartCommand_GetOrientation) _then)
+class __$$DartCommand_GetOrientationImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetOrientationImpl>
+    implements _$$DartCommand_GetOrientationImplCopyWith<$Res> {
+  __$$DartCommand_GetOrientationImplCopyWithImpl(
+      _$DartCommand_GetOrientationImpl _value,
+      $Res Function(_$DartCommand_GetOrientationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetOrientation(
+    return _then(_$DartCommand_GetOrientationImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -16326,8 +16631,8 @@ class __$$DartCommand_GetOrientationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
-  const _$DartCommand_GetOrientation({required this.key});
+class _$DartCommand_GetOrientationImpl implements DartCommand_GetOrientation {
+  const _$DartCommand_GetOrientationImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -16338,22 +16643,24 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetOrientation &&
+            other is _$DartCommand_GetOrientationImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetOrientationCopyWith<_$DartCommand_GetOrientation>
-      get copyWith => __$$DartCommand_GetOrientationCopyWithImpl<
-          _$DartCommand_GetOrientation>(this, _$identity);
+  _$$DartCommand_GetOrientationImplCopyWith<_$DartCommand_GetOrientationImpl>
+      get copyWith => __$$DartCommand_GetOrientationImplCopyWithImpl<
+          _$DartCommand_GetOrientationImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -16723,39 +17030,44 @@ class _$DartCommand_GetOrientation implements DartCommand_GetOrientation {
 
 abstract class DartCommand_GetOrientation implements DartCommand {
   const factory DartCommand_GetOrientation(
-      {required final DartRequestKey key}) = _$DartCommand_GetOrientation;
+      {required final DartRequestKey key}) = _$DartCommand_GetOrientationImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetOrientationCopyWith<_$DartCommand_GetOrientation>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetOrientationImplCopyWith<_$DartCommand_GetOrientationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetCompassHeadingCopyWith<$Res> {
-  factory _$$DartCommand_GetCompassHeadingCopyWith(
-          _$DartCommand_GetCompassHeading value,
-          $Res Function(_$DartCommand_GetCompassHeading) then) =
-      __$$DartCommand_GetCompassHeadingCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetCompassHeadingImplCopyWith<$Res> {
+  factory _$$DartCommand_GetCompassHeadingImplCopyWith(
+          _$DartCommand_GetCompassHeadingImpl value,
+          $Res Function(_$DartCommand_GetCompassHeadingImpl) then) =
+      __$$DartCommand_GetCompassHeadingImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetCompassHeadingCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetCompassHeading>
-    implements _$$DartCommand_GetCompassHeadingCopyWith<$Res> {
-  __$$DartCommand_GetCompassHeadingCopyWithImpl(
-      _$DartCommand_GetCompassHeading _value,
-      $Res Function(_$DartCommand_GetCompassHeading) _then)
+class __$$DartCommand_GetCompassHeadingImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetCompassHeadingImpl>
+    implements _$$DartCommand_GetCompassHeadingImplCopyWith<$Res> {
+  __$$DartCommand_GetCompassHeadingImplCopyWithImpl(
+      _$DartCommand_GetCompassHeadingImpl _value,
+      $Res Function(_$DartCommand_GetCompassHeadingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetCompassHeading(
+    return _then(_$DartCommand_GetCompassHeadingImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -16766,8 +17078,9 @@ class __$$DartCommand_GetCompassHeadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
-  const _$DartCommand_GetCompassHeading({required this.key});
+class _$DartCommand_GetCompassHeadingImpl
+    implements DartCommand_GetCompassHeading {
+  const _$DartCommand_GetCompassHeadingImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -16778,22 +17091,25 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetCompassHeading &&
+            other is _$DartCommand_GetCompassHeadingImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetCompassHeadingCopyWith<_$DartCommand_GetCompassHeading>
-      get copyWith => __$$DartCommand_GetCompassHeadingCopyWithImpl<
-          _$DartCommand_GetCompassHeading>(this, _$identity);
+  _$$DartCommand_GetCompassHeadingImplCopyWith<
+          _$DartCommand_GetCompassHeadingImpl>
+      get copyWith => __$$DartCommand_GetCompassHeadingImplCopyWithImpl<
+          _$DartCommand_GetCompassHeadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -17163,39 +17479,47 @@ class _$DartCommand_GetCompassHeading implements DartCommand_GetCompassHeading {
 
 abstract class DartCommand_GetCompassHeading implements DartCommand {
   const factory DartCommand_GetCompassHeading(
-      {required final DartRequestKey key}) = _$DartCommand_GetCompassHeading;
+          {required final DartRequestKey key}) =
+      _$DartCommand_GetCompassHeadingImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetCompassHeadingCopyWith<_$DartCommand_GetCompassHeading>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetCompassHeadingImplCopyWith<
+          _$DartCommand_GetCompassHeadingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetCompassDirectionCopyWith<$Res> {
-  factory _$$DartCommand_GetCompassDirectionCopyWith(
-          _$DartCommand_GetCompassDirection value,
-          $Res Function(_$DartCommand_GetCompassDirection) then) =
-      __$$DartCommand_GetCompassDirectionCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetCompassDirectionImplCopyWith<$Res> {
+  factory _$$DartCommand_GetCompassDirectionImplCopyWith(
+          _$DartCommand_GetCompassDirectionImpl value,
+          $Res Function(_$DartCommand_GetCompassDirectionImpl) then) =
+      __$$DartCommand_GetCompassDirectionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetCompassDirectionCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetCompassDirection>
-    implements _$$DartCommand_GetCompassDirectionCopyWith<$Res> {
-  __$$DartCommand_GetCompassDirectionCopyWithImpl(
-      _$DartCommand_GetCompassDirection _value,
-      $Res Function(_$DartCommand_GetCompassDirection) _then)
+class __$$DartCommand_GetCompassDirectionImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res,
+        _$DartCommand_GetCompassDirectionImpl>
+    implements _$$DartCommand_GetCompassDirectionImplCopyWith<$Res> {
+  __$$DartCommand_GetCompassDirectionImplCopyWithImpl(
+      _$DartCommand_GetCompassDirectionImpl _value,
+      $Res Function(_$DartCommand_GetCompassDirectionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetCompassDirection(
+    return _then(_$DartCommand_GetCompassDirectionImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -17206,9 +17530,9 @@ class __$$DartCommand_GetCompassDirectionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetCompassDirection
+class _$DartCommand_GetCompassDirectionImpl
     implements DartCommand_GetCompassDirection {
-  const _$DartCommand_GetCompassDirection({required this.key});
+  const _$DartCommand_GetCompassDirectionImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -17219,22 +17543,25 @@ class _$DartCommand_GetCompassDirection
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetCompassDirection &&
+            other is _$DartCommand_GetCompassDirectionImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetCompassDirectionCopyWith<_$DartCommand_GetCompassDirection>
-      get copyWith => __$$DartCommand_GetCompassDirectionCopyWithImpl<
-          _$DartCommand_GetCompassDirection>(this, _$identity);
+  _$$DartCommand_GetCompassDirectionImplCopyWith<
+          _$DartCommand_GetCompassDirectionImpl>
+      get copyWith => __$$DartCommand_GetCompassDirectionImplCopyWithImpl<
+          _$DartCommand_GetCompassDirectionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -17604,40 +17931,47 @@ class _$DartCommand_GetCompassDirection
 
 abstract class DartCommand_GetCompassDirection implements DartCommand {
   const factory DartCommand_GetCompassDirection(
-      {required final DartRequestKey key}) = _$DartCommand_GetCompassDirection;
+          {required final DartRequestKey key}) =
+      _$DartCommand_GetCompassDirectionImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetCompassDirectionCopyWith<_$DartCommand_GetCompassDirection>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetCompassDirectionImplCopyWith<
+          _$DartCommand_GetCompassDirectionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetCompassCardinalDirectionCopyWith<$Res> {
-  factory _$$DartCommand_GetCompassCardinalDirectionCopyWith(
-          _$DartCommand_GetCompassCardinalDirection value,
-          $Res Function(_$DartCommand_GetCompassCardinalDirection) then) =
-      __$$DartCommand_GetCompassCardinalDirectionCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetCompassCardinalDirectionImplCopyWith<$Res> {
+  factory _$$DartCommand_GetCompassCardinalDirectionImplCopyWith(
+          _$DartCommand_GetCompassCardinalDirectionImpl value,
+          $Res Function(_$DartCommand_GetCompassCardinalDirectionImpl) then) =
+      __$$DartCommand_GetCompassCardinalDirectionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetCompassCardinalDirectionCopyWithImpl<$Res>
+class __$$DartCommand_GetCompassCardinalDirectionImplCopyWithImpl<$Res>
     extends _$DartCommandCopyWithImpl<$Res,
-        _$DartCommand_GetCompassCardinalDirection>
-    implements _$$DartCommand_GetCompassCardinalDirectionCopyWith<$Res> {
-  __$$DartCommand_GetCompassCardinalDirectionCopyWithImpl(
-      _$DartCommand_GetCompassCardinalDirection _value,
-      $Res Function(_$DartCommand_GetCompassCardinalDirection) _then)
+        _$DartCommand_GetCompassCardinalDirectionImpl>
+    implements _$$DartCommand_GetCompassCardinalDirectionImplCopyWith<$Res> {
+  __$$DartCommand_GetCompassCardinalDirectionImplCopyWithImpl(
+      _$DartCommand_GetCompassCardinalDirectionImpl _value,
+      $Res Function(_$DartCommand_GetCompassCardinalDirectionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetCompassCardinalDirection(
+    return _then(_$DartCommand_GetCompassCardinalDirectionImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -17648,9 +17982,9 @@ class __$$DartCommand_GetCompassCardinalDirectionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetCompassCardinalDirection
+class _$DartCommand_GetCompassCardinalDirectionImpl
     implements DartCommand_GetCompassCardinalDirection {
-  const _$DartCommand_GetCompassCardinalDirection({required this.key});
+  const _$DartCommand_GetCompassCardinalDirectionImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -17661,23 +17995,26 @@ class _$DartCommand_GetCompassCardinalDirection
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetCompassCardinalDirection &&
+            other is _$DartCommand_GetCompassCardinalDirectionImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetCompassCardinalDirectionCopyWith<
-          _$DartCommand_GetCompassCardinalDirection>
-      get copyWith => __$$DartCommand_GetCompassCardinalDirectionCopyWithImpl<
-          _$DartCommand_GetCompassCardinalDirection>(this, _$identity);
+  _$$DartCommand_GetCompassCardinalDirectionImplCopyWith<
+          _$DartCommand_GetCompassCardinalDirectionImpl>
+      get copyWith =>
+          __$$DartCommand_GetCompassCardinalDirectionImplCopyWithImpl<
+              _$DartCommand_GetCompassCardinalDirectionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -18048,40 +18385,46 @@ class _$DartCommand_GetCompassCardinalDirection
 abstract class DartCommand_GetCompassCardinalDirection implements DartCommand {
   const factory DartCommand_GetCompassCardinalDirection(
           {required final DartRequestKey key}) =
-      _$DartCommand_GetCompassCardinalDirection;
+      _$DartCommand_GetCompassCardinalDirectionImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetCompassCardinalDirectionCopyWith<
-          _$DartCommand_GetCompassCardinalDirection>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetCompassCardinalDirectionImplCopyWith<
+          _$DartCommand_GetCompassCardinalDirectionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetLocationLatLongCopyWith<$Res> {
-  factory _$$DartCommand_GetLocationLatLongCopyWith(
-          _$DartCommand_GetLocationLatLong value,
-          $Res Function(_$DartCommand_GetLocationLatLong) then) =
-      __$$DartCommand_GetLocationLatLongCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetLocationLatLongImplCopyWith<$Res> {
+  factory _$$DartCommand_GetLocationLatLongImplCopyWith(
+          _$DartCommand_GetLocationLatLongImpl value,
+          $Res Function(_$DartCommand_GetLocationLatLongImpl) then) =
+      __$$DartCommand_GetLocationLatLongImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetLocationLatLongCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLocationLatLong>
-    implements _$$DartCommand_GetLocationLatLongCopyWith<$Res> {
-  __$$DartCommand_GetLocationLatLongCopyWithImpl(
-      _$DartCommand_GetLocationLatLong _value,
-      $Res Function(_$DartCommand_GetLocationLatLong) _then)
+class __$$DartCommand_GetLocationLatLongImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res,
+        _$DartCommand_GetLocationLatLongImpl>
+    implements _$$DartCommand_GetLocationLatLongImplCopyWith<$Res> {
+  __$$DartCommand_GetLocationLatLongImplCopyWithImpl(
+      _$DartCommand_GetLocationLatLongImpl _value,
+      $Res Function(_$DartCommand_GetLocationLatLongImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetLocationLatLong(
+    return _then(_$DartCommand_GetLocationLatLongImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -18092,9 +18435,9 @@ class __$$DartCommand_GetLocationLatLongCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetLocationLatLong
+class _$DartCommand_GetLocationLatLongImpl
     implements DartCommand_GetLocationLatLong {
-  const _$DartCommand_GetLocationLatLong({required this.key});
+  const _$DartCommand_GetLocationLatLongImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -18105,22 +18448,25 @@ class _$DartCommand_GetLocationLatLong
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetLocationLatLong &&
+            other is _$DartCommand_GetLocationLatLongImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetLocationLatLongCopyWith<_$DartCommand_GetLocationLatLong>
-      get copyWith => __$$DartCommand_GetLocationLatLongCopyWithImpl<
-          _$DartCommand_GetLocationLatLong>(this, _$identity);
+  _$$DartCommand_GetLocationLatLongImplCopyWith<
+          _$DartCommand_GetLocationLatLongImpl>
+      get copyWith => __$$DartCommand_GetLocationLatLongImplCopyWithImpl<
+          _$DartCommand_GetLocationLatLongImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -18490,39 +18836,47 @@ class _$DartCommand_GetLocationLatLong
 
 abstract class DartCommand_GetLocationLatLong implements DartCommand {
   const factory DartCommand_GetLocationLatLong(
-      {required final DartRequestKey key}) = _$DartCommand_GetLocationLatLong;
+          {required final DartRequestKey key}) =
+      _$DartCommand_GetLocationLatLongImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetLocationLatLongCopyWith<_$DartCommand_GetLocationLatLong>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetLocationLatLongImplCopyWith<
+          _$DartCommand_GetLocationLatLongImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetLocationHeadingCopyWith<$Res> {
-  factory _$$DartCommand_GetLocationHeadingCopyWith(
-          _$DartCommand_GetLocationHeading value,
-          $Res Function(_$DartCommand_GetLocationHeading) then) =
-      __$$DartCommand_GetLocationHeadingCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetLocationHeadingImplCopyWith<$Res> {
+  factory _$$DartCommand_GetLocationHeadingImplCopyWith(
+          _$DartCommand_GetLocationHeadingImpl value,
+          $Res Function(_$DartCommand_GetLocationHeadingImpl) then) =
+      __$$DartCommand_GetLocationHeadingImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetLocationHeadingCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLocationHeading>
-    implements _$$DartCommand_GetLocationHeadingCopyWith<$Res> {
-  __$$DartCommand_GetLocationHeadingCopyWithImpl(
-      _$DartCommand_GetLocationHeading _value,
-      $Res Function(_$DartCommand_GetLocationHeading) _then)
+class __$$DartCommand_GetLocationHeadingImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res,
+        _$DartCommand_GetLocationHeadingImpl>
+    implements _$$DartCommand_GetLocationHeadingImplCopyWith<$Res> {
+  __$$DartCommand_GetLocationHeadingImplCopyWithImpl(
+      _$DartCommand_GetLocationHeadingImpl _value,
+      $Res Function(_$DartCommand_GetLocationHeadingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetLocationHeading(
+    return _then(_$DartCommand_GetLocationHeadingImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -18533,9 +18887,9 @@ class __$$DartCommand_GetLocationHeadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetLocationHeading
+class _$DartCommand_GetLocationHeadingImpl
     implements DartCommand_GetLocationHeading {
-  const _$DartCommand_GetLocationHeading({required this.key});
+  const _$DartCommand_GetLocationHeadingImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -18546,22 +18900,25 @@ class _$DartCommand_GetLocationHeading
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetLocationHeading &&
+            other is _$DartCommand_GetLocationHeadingImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetLocationHeadingCopyWith<_$DartCommand_GetLocationHeading>
-      get copyWith => __$$DartCommand_GetLocationHeadingCopyWithImpl<
-          _$DartCommand_GetLocationHeading>(this, _$identity);
+  _$$DartCommand_GetLocationHeadingImplCopyWith<
+          _$DartCommand_GetLocationHeadingImpl>
+      get copyWith => __$$DartCommand_GetLocationHeadingImplCopyWithImpl<
+          _$DartCommand_GetLocationHeadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -18931,39 +19288,47 @@ class _$DartCommand_GetLocationHeading
 
 abstract class DartCommand_GetLocationHeading implements DartCommand {
   const factory DartCommand_GetLocationHeading(
-      {required final DartRequestKey key}) = _$DartCommand_GetLocationHeading;
+          {required final DartRequestKey key}) =
+      _$DartCommand_GetLocationHeadingImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetLocationHeadingCopyWith<_$DartCommand_GetLocationHeading>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetLocationHeadingImplCopyWith<
+          _$DartCommand_GetLocationHeadingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetLocationAltitudeCopyWith<$Res> {
-  factory _$$DartCommand_GetLocationAltitudeCopyWith(
-          _$DartCommand_GetLocationAltitude value,
-          $Res Function(_$DartCommand_GetLocationAltitude) then) =
-      __$$DartCommand_GetLocationAltitudeCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetLocationAltitudeImplCopyWith<$Res> {
+  factory _$$DartCommand_GetLocationAltitudeImplCopyWith(
+          _$DartCommand_GetLocationAltitudeImpl value,
+          $Res Function(_$DartCommand_GetLocationAltitudeImpl) then) =
+      __$$DartCommand_GetLocationAltitudeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetLocationAltitudeCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetLocationAltitude>
-    implements _$$DartCommand_GetLocationAltitudeCopyWith<$Res> {
-  __$$DartCommand_GetLocationAltitudeCopyWithImpl(
-      _$DartCommand_GetLocationAltitude _value,
-      $Res Function(_$DartCommand_GetLocationAltitude) _then)
+class __$$DartCommand_GetLocationAltitudeImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res,
+        _$DartCommand_GetLocationAltitudeImpl>
+    implements _$$DartCommand_GetLocationAltitudeImplCopyWith<$Res> {
+  __$$DartCommand_GetLocationAltitudeImplCopyWithImpl(
+      _$DartCommand_GetLocationAltitudeImpl _value,
+      $Res Function(_$DartCommand_GetLocationAltitudeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetLocationAltitude(
+    return _then(_$DartCommand_GetLocationAltitudeImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -18974,9 +19339,9 @@ class __$$DartCommand_GetLocationAltitudeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetLocationAltitude
+class _$DartCommand_GetLocationAltitudeImpl
     implements DartCommand_GetLocationAltitude {
-  const _$DartCommand_GetLocationAltitude({required this.key});
+  const _$DartCommand_GetLocationAltitudeImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -18987,22 +19352,25 @@ class _$DartCommand_GetLocationAltitude
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetLocationAltitude &&
+            other is _$DartCommand_GetLocationAltitudeImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetLocationAltitudeCopyWith<_$DartCommand_GetLocationAltitude>
-      get copyWith => __$$DartCommand_GetLocationAltitudeCopyWithImpl<
-          _$DartCommand_GetLocationAltitude>(this, _$identity);
+  _$$DartCommand_GetLocationAltitudeImplCopyWith<
+          _$DartCommand_GetLocationAltitudeImpl>
+      get copyWith => __$$DartCommand_GetLocationAltitudeImplCopyWithImpl<
+          _$DartCommand_GetLocationAltitudeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -19372,39 +19740,47 @@ class _$DartCommand_GetLocationAltitude
 
 abstract class DartCommand_GetLocationAltitude implements DartCommand {
   const factory DartCommand_GetLocationAltitude(
-      {required final DartRequestKey key}) = _$DartCommand_GetLocationAltitude;
+          {required final DartRequestKey key}) =
+      _$DartCommand_GetLocationAltitudeImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetLocationAltitudeCopyWith<_$DartCommand_GetLocationAltitude>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetLocationAltitudeImplCopyWith<
+          _$DartCommand_GetLocationAltitudeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetMicrophoneLevelCopyWith<$Res> {
-  factory _$$DartCommand_GetMicrophoneLevelCopyWith(
-          _$DartCommand_GetMicrophoneLevel value,
-          $Res Function(_$DartCommand_GetMicrophoneLevel) then) =
-      __$$DartCommand_GetMicrophoneLevelCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetMicrophoneLevelImplCopyWith<$Res> {
+  factory _$$DartCommand_GetMicrophoneLevelImplCopyWith(
+          _$DartCommand_GetMicrophoneLevelImpl value,
+          $Res Function(_$DartCommand_GetMicrophoneLevelImpl) then) =
+      __$$DartCommand_GetMicrophoneLevelImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetMicrophoneLevelCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetMicrophoneLevel>
-    implements _$$DartCommand_GetMicrophoneLevelCopyWith<$Res> {
-  __$$DartCommand_GetMicrophoneLevelCopyWithImpl(
-      _$DartCommand_GetMicrophoneLevel _value,
-      $Res Function(_$DartCommand_GetMicrophoneLevel) _then)
+class __$$DartCommand_GetMicrophoneLevelImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res,
+        _$DartCommand_GetMicrophoneLevelImpl>
+    implements _$$DartCommand_GetMicrophoneLevelImplCopyWith<$Res> {
+  __$$DartCommand_GetMicrophoneLevelImplCopyWithImpl(
+      _$DartCommand_GetMicrophoneLevelImpl _value,
+      $Res Function(_$DartCommand_GetMicrophoneLevelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetMicrophoneLevel(
+    return _then(_$DartCommand_GetMicrophoneLevelImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -19415,9 +19791,9 @@ class __$$DartCommand_GetMicrophoneLevelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetMicrophoneLevel
+class _$DartCommand_GetMicrophoneLevelImpl
     implements DartCommand_GetMicrophoneLevel {
-  const _$DartCommand_GetMicrophoneLevel({required this.key});
+  const _$DartCommand_GetMicrophoneLevelImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -19428,22 +19804,25 @@ class _$DartCommand_GetMicrophoneLevel
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetMicrophoneLevel &&
+            other is _$DartCommand_GetMicrophoneLevelImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetMicrophoneLevelCopyWith<_$DartCommand_GetMicrophoneLevel>
-      get copyWith => __$$DartCommand_GetMicrophoneLevelCopyWithImpl<
-          _$DartCommand_GetMicrophoneLevel>(this, _$identity);
+  _$$DartCommand_GetMicrophoneLevelImplCopyWith<
+          _$DartCommand_GetMicrophoneLevelImpl>
+      get copyWith => __$$DartCommand_GetMicrophoneLevelImplCopyWithImpl<
+          _$DartCommand_GetMicrophoneLevelImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -19813,37 +20192,46 @@ class _$DartCommand_GetMicrophoneLevel
 
 abstract class DartCommand_GetMicrophoneLevel implements DartCommand {
   const factory DartCommand_GetMicrophoneLevel(
-      {required final DartRequestKey key}) = _$DartCommand_GetMicrophoneLevel;
+          {required final DartRequestKey key}) =
+      _$DartCommand_GetMicrophoneLevelImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetMicrophoneLevelCopyWith<_$DartCommand_GetMicrophoneLevel>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetMicrophoneLevelImplCopyWith<
+          _$DartCommand_GetMicrophoneLevelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetProximityCopyWith<$Res> {
-  factory _$$DartCommand_GetProximityCopyWith(_$DartCommand_GetProximity value,
-          $Res Function(_$DartCommand_GetProximity) then) =
-      __$$DartCommand_GetProximityCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetProximityImplCopyWith<$Res> {
+  factory _$$DartCommand_GetProximityImplCopyWith(
+          _$DartCommand_GetProximityImpl value,
+          $Res Function(_$DartCommand_GetProximityImpl) then) =
+      __$$DartCommand_GetProximityImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetProximityCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetProximity>
-    implements _$$DartCommand_GetProximityCopyWith<$Res> {
-  __$$DartCommand_GetProximityCopyWithImpl(_$DartCommand_GetProximity _value,
-      $Res Function(_$DartCommand_GetProximity) _then)
+class __$$DartCommand_GetProximityImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetProximityImpl>
+    implements _$$DartCommand_GetProximityImplCopyWith<$Res> {
+  __$$DartCommand_GetProximityImplCopyWithImpl(
+      _$DartCommand_GetProximityImpl _value,
+      $Res Function(_$DartCommand_GetProximityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetProximity(
+    return _then(_$DartCommand_GetProximityImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -19854,8 +20242,8 @@ class __$$DartCommand_GetProximityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetProximity implements DartCommand_GetProximity {
-  const _$DartCommand_GetProximity({required this.key});
+class _$DartCommand_GetProximityImpl implements DartCommand_GetProximity {
+  const _$DartCommand_GetProximityImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -19866,23 +20254,24 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetProximity &&
+            other is _$DartCommand_GetProximityImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetProximityCopyWith<_$DartCommand_GetProximity>
-      get copyWith =>
-          __$$DartCommand_GetProximityCopyWithImpl<_$DartCommand_GetProximity>(
-              this, _$identity);
+  _$$DartCommand_GetProximityImplCopyWith<_$DartCommand_GetProximityImpl>
+      get copyWith => __$$DartCommand_GetProximityImplCopyWithImpl<
+          _$DartCommand_GetProximityImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -20252,37 +20641,44 @@ class _$DartCommand_GetProximity implements DartCommand_GetProximity {
 
 abstract class DartCommand_GetProximity implements DartCommand {
   const factory DartCommand_GetProximity({required final DartRequestKey key}) =
-      _$DartCommand_GetProximity;
+      _$DartCommand_GetProximityImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetProximityCopyWith<_$DartCommand_GetProximity>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetProximityImplCopyWith<_$DartCommand_GetProximityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_GetStepCountCopyWith<$Res> {
-  factory _$$DartCommand_GetStepCountCopyWith(_$DartCommand_GetStepCount value,
-          $Res Function(_$DartCommand_GetStepCount) then) =
-      __$$DartCommand_GetStepCountCopyWithImpl<$Res>;
+abstract class _$$DartCommand_GetStepCountImplCopyWith<$Res> {
+  factory _$$DartCommand_GetStepCountImplCopyWith(
+          _$DartCommand_GetStepCountImpl value,
+          $Res Function(_$DartCommand_GetStepCountImpl) then) =
+      __$$DartCommand_GetStepCountImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key});
 }
 
 /// @nodoc
-class __$$DartCommand_GetStepCountCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetStepCount>
-    implements _$$DartCommand_GetStepCountCopyWith<$Res> {
-  __$$DartCommand_GetStepCountCopyWithImpl(_$DartCommand_GetStepCount _value,
-      $Res Function(_$DartCommand_GetStepCount) _then)
+class __$$DartCommand_GetStepCountImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_GetStepCountImpl>
+    implements _$$DartCommand_GetStepCountImplCopyWith<$Res> {
+  __$$DartCommand_GetStepCountImplCopyWithImpl(
+      _$DartCommand_GetStepCountImpl _value,
+      $Res Function(_$DartCommand_GetStepCountImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
   }) {
-    return _then(_$DartCommand_GetStepCount(
+    return _then(_$DartCommand_GetStepCountImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -20293,8 +20689,8 @@ class __$$DartCommand_GetStepCountCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
-  const _$DartCommand_GetStepCount({required this.key});
+class _$DartCommand_GetStepCountImpl implements DartCommand_GetStepCount {
+  const _$DartCommand_GetStepCountImpl({required this.key});
 
   @override
   final DartRequestKey key;
@@ -20305,23 +20701,24 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_GetStepCount &&
+            other is _$DartCommand_GetStepCountImpl &&
             (identical(other.key, key) || other.key == key));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_GetStepCountCopyWith<_$DartCommand_GetStepCount>
-      get copyWith =>
-          __$$DartCommand_GetStepCountCopyWithImpl<_$DartCommand_GetStepCount>(
-              this, _$identity);
+  _$$DartCommand_GetStepCountImplCopyWith<_$DartCommand_GetStepCountImpl>
+      get copyWith => __$$DartCommand_GetStepCountImplCopyWithImpl<
+          _$DartCommand_GetStepCountImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -20691,40 +21088,45 @@ class _$DartCommand_GetStepCount implements DartCommand_GetStepCount {
 
 abstract class DartCommand_GetStepCount implements DartCommand {
   const factory DartCommand_GetStepCount({required final DartRequestKey key}) =
-      _$DartCommand_GetStepCount;
+      _$DartCommand_GetStepCountImpl;
 
   DartRequestKey get key;
-  @JsonKey(ignore: true)
-  _$$DartCommand_GetStepCountCopyWith<_$DartCommand_GetStepCount>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_GetStepCountImplCopyWith<_$DartCommand_GetStepCountImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartCommand_ListenToSensorsCopyWith<$Res> {
-  factory _$$DartCommand_ListenToSensorsCopyWith(
-          _$DartCommand_ListenToSensors value,
-          $Res Function(_$DartCommand_ListenToSensors) then) =
-      __$$DartCommand_ListenToSensorsCopyWithImpl<$Res>;
+abstract class _$$DartCommand_ListenToSensorsImplCopyWith<$Res> {
+  factory _$$DartCommand_ListenToSensorsImplCopyWith(
+          _$DartCommand_ListenToSensorsImpl value,
+          $Res Function(_$DartCommand_ListenToSensorsImpl) then) =
+      __$$DartCommand_ListenToSensorsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartRequestKey key, SensorUpdateInfo sensors});
 }
 
 /// @nodoc
-class __$$DartCommand_ListenToSensorsCopyWithImpl<$Res>
-    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_ListenToSensors>
-    implements _$$DartCommand_ListenToSensorsCopyWith<$Res> {
-  __$$DartCommand_ListenToSensorsCopyWithImpl(
-      _$DartCommand_ListenToSensors _value,
-      $Res Function(_$DartCommand_ListenToSensors) _then)
+class __$$DartCommand_ListenToSensorsImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_ListenToSensorsImpl>
+    implements _$$DartCommand_ListenToSensorsImplCopyWith<$Res> {
+  __$$DartCommand_ListenToSensorsImplCopyWithImpl(
+      _$DartCommand_ListenToSensorsImpl _value,
+      $Res Function(_$DartCommand_ListenToSensorsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = null,
     Object? sensors = null,
   }) {
-    return _then(_$DartCommand_ListenToSensors(
+    return _then(_$DartCommand_ListenToSensorsImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -20739,8 +21141,8 @@ class __$$DartCommand_ListenToSensorsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
-  const _$DartCommand_ListenToSensors(
+class _$DartCommand_ListenToSensorsImpl implements DartCommand_ListenToSensors {
+  const _$DartCommand_ListenToSensorsImpl(
       {required this.key, required this.sensors});
 
   @override
@@ -20754,10 +21156,10 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartCommand_ListenToSensors &&
+            other is _$DartCommand_ListenToSensorsImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.sensors, sensors) || other.sensors == sensors));
   }
@@ -20765,12 +21167,14 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
   @override
   int get hashCode => Object.hash(runtimeType, key, sensors);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartCommand_ListenToSensorsCopyWith<_$DartCommand_ListenToSensors>
-      get copyWith => __$$DartCommand_ListenToSensorsCopyWithImpl<
-          _$DartCommand_ListenToSensors>(this, _$identity);
+  _$$DartCommand_ListenToSensorsImplCopyWith<_$DartCommand_ListenToSensorsImpl>
+      get copyWith => __$$DartCommand_ListenToSensorsImplCopyWithImpl<
+          _$DartCommand_ListenToSensorsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -21140,13 +21544,17 @@ class _$DartCommand_ListenToSensors implements DartCommand_ListenToSensors {
 
 abstract class DartCommand_ListenToSensors implements DartCommand {
   const factory DartCommand_ListenToSensors(
-      {required final DartRequestKey key,
-      required final SensorUpdateInfo sensors}) = _$DartCommand_ListenToSensors;
+          {required final DartRequestKey key,
+          required final SensorUpdateInfo sensors}) =
+      _$DartCommand_ListenToSensorsImpl;
 
   DartRequestKey get key;
   SensorUpdateInfo get sensors;
-  @JsonKey(ignore: true)
-  _$$DartCommand_ListenToSensorsCopyWith<_$DartCommand_ListenToSensors>
+
+  /// Create a copy of DartCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartCommand_ListenToSensorsImplCopyWith<_$DartCommand_ListenToSensorsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -21232,31 +21640,36 @@ class _$DartValueCopyWithImpl<$Res, $Val extends DartValue>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$DartValue_BoolCopyWith<$Res> {
-  factory _$$DartValue_BoolCopyWith(
-          _$DartValue_Bool value, $Res Function(_$DartValue_Bool) then) =
-      __$$DartValue_BoolCopyWithImpl<$Res>;
+abstract class _$$DartValue_BoolImplCopyWith<$Res> {
+  factory _$$DartValue_BoolImplCopyWith(_$DartValue_BoolImpl value,
+          $Res Function(_$DartValue_BoolImpl) then) =
+      __$$DartValue_BoolImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool field0});
 }
 
 /// @nodoc
-class __$$DartValue_BoolCopyWithImpl<$Res>
-    extends _$DartValueCopyWithImpl<$Res, _$DartValue_Bool>
-    implements _$$DartValue_BoolCopyWith<$Res> {
-  __$$DartValue_BoolCopyWithImpl(
-      _$DartValue_Bool _value, $Res Function(_$DartValue_Bool) _then)
+class __$$DartValue_BoolImplCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_BoolImpl>
+    implements _$$DartValue_BoolImplCopyWith<$Res> {
+  __$$DartValue_BoolImplCopyWithImpl(
+      _$DartValue_BoolImpl _value, $Res Function(_$DartValue_BoolImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? field0 = null,
   }) {
-    return _then(_$DartValue_Bool(
+    return _then(_$DartValue_BoolImpl(
       null == field0
           ? _value.field0
           : field0 // ignore: cast_nullable_to_non_nullable
@@ -21267,8 +21680,8 @@ class __$$DartValue_BoolCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartValue_Bool implements DartValue_Bool {
-  const _$DartValue_Bool(this.field0);
+class _$DartValue_BoolImpl implements DartValue_Bool {
+  const _$DartValue_BoolImpl(this.field0);
 
   @override
   final bool field0;
@@ -21279,21 +21692,24 @@ class _$DartValue_Bool implements DartValue_Bool {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartValue_Bool &&
+            other is _$DartValue_BoolImpl &&
             (identical(other.field0, field0) || other.field0 == field0));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartValue_BoolCopyWith<_$DartValue_Bool> get copyWith =>
-      __$$DartValue_BoolCopyWithImpl<_$DartValue_Bool>(this, _$identity);
+  _$$DartValue_BoolImplCopyWith<_$DartValue_BoolImpl> get copyWith =>
+      __$$DartValue_BoolImplCopyWithImpl<_$DartValue_BoolImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -21383,38 +21799,43 @@ class _$DartValue_Bool implements DartValue_Bool {
 }
 
 abstract class DartValue_Bool implements DartValue {
-  const factory DartValue_Bool(final bool field0) = _$DartValue_Bool;
+  const factory DartValue_Bool(final bool field0) = _$DartValue_BoolImpl;
 
   @override
   bool get field0;
-  @JsonKey(ignore: true)
-  _$$DartValue_BoolCopyWith<_$DartValue_Bool> get copyWith =>
+
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartValue_BoolImplCopyWith<_$DartValue_BoolImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartValue_NumberCopyWith<$Res> {
-  factory _$$DartValue_NumberCopyWith(
-          _$DartValue_Number value, $Res Function(_$DartValue_Number) then) =
-      __$$DartValue_NumberCopyWithImpl<$Res>;
+abstract class _$$DartValue_NumberImplCopyWith<$Res> {
+  factory _$$DartValue_NumberImplCopyWith(_$DartValue_NumberImpl value,
+          $Res Function(_$DartValue_NumberImpl) then) =
+      __$$DartValue_NumberImplCopyWithImpl<$Res>;
   @useResult
   $Res call({double field0});
 }
 
 /// @nodoc
-class __$$DartValue_NumberCopyWithImpl<$Res>
-    extends _$DartValueCopyWithImpl<$Res, _$DartValue_Number>
-    implements _$$DartValue_NumberCopyWith<$Res> {
-  __$$DartValue_NumberCopyWithImpl(
-      _$DartValue_Number _value, $Res Function(_$DartValue_Number) _then)
+class __$$DartValue_NumberImplCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_NumberImpl>
+    implements _$$DartValue_NumberImplCopyWith<$Res> {
+  __$$DartValue_NumberImplCopyWithImpl(_$DartValue_NumberImpl _value,
+      $Res Function(_$DartValue_NumberImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? field0 = null,
   }) {
-    return _then(_$DartValue_Number(
+    return _then(_$DartValue_NumberImpl(
       null == field0
           ? _value.field0
           : field0 // ignore: cast_nullable_to_non_nullable
@@ -21425,8 +21846,8 @@ class __$$DartValue_NumberCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartValue_Number implements DartValue_Number {
-  const _$DartValue_Number(this.field0);
+class _$DartValue_NumberImpl implements DartValue_Number {
+  const _$DartValue_NumberImpl(this.field0);
 
   @override
   final double field0;
@@ -21437,21 +21858,24 @@ class _$DartValue_Number implements DartValue_Number {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartValue_Number &&
+            other is _$DartValue_NumberImpl &&
             (identical(other.field0, field0) || other.field0 == field0));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartValue_NumberCopyWith<_$DartValue_Number> get copyWith =>
-      __$$DartValue_NumberCopyWithImpl<_$DartValue_Number>(this, _$identity);
+  _$$DartValue_NumberImplCopyWith<_$DartValue_NumberImpl> get copyWith =>
+      __$$DartValue_NumberImplCopyWithImpl<_$DartValue_NumberImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -21541,38 +21965,43 @@ class _$DartValue_Number implements DartValue_Number {
 }
 
 abstract class DartValue_Number implements DartValue {
-  const factory DartValue_Number(final double field0) = _$DartValue_Number;
+  const factory DartValue_Number(final double field0) = _$DartValue_NumberImpl;
 
   @override
   double get field0;
-  @JsonKey(ignore: true)
-  _$$DartValue_NumberCopyWith<_$DartValue_Number> get copyWith =>
+
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartValue_NumberImplCopyWith<_$DartValue_NumberImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartValue_StringCopyWith<$Res> {
-  factory _$$DartValue_StringCopyWith(
-          _$DartValue_String value, $Res Function(_$DartValue_String) then) =
-      __$$DartValue_StringCopyWithImpl<$Res>;
+abstract class _$$DartValue_StringImplCopyWith<$Res> {
+  factory _$$DartValue_StringImplCopyWith(_$DartValue_StringImpl value,
+          $Res Function(_$DartValue_StringImpl) then) =
+      __$$DartValue_StringImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String field0});
 }
 
 /// @nodoc
-class __$$DartValue_StringCopyWithImpl<$Res>
-    extends _$DartValueCopyWithImpl<$Res, _$DartValue_String>
-    implements _$$DartValue_StringCopyWith<$Res> {
-  __$$DartValue_StringCopyWithImpl(
-      _$DartValue_String _value, $Res Function(_$DartValue_String) _then)
+class __$$DartValue_StringImplCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_StringImpl>
+    implements _$$DartValue_StringImplCopyWith<$Res> {
+  __$$DartValue_StringImplCopyWithImpl(_$DartValue_StringImpl _value,
+      $Res Function(_$DartValue_StringImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? field0 = null,
   }) {
-    return _then(_$DartValue_String(
+    return _then(_$DartValue_StringImpl(
       null == field0
           ? _value.field0
           : field0 // ignore: cast_nullable_to_non_nullable
@@ -21583,8 +22012,8 @@ class __$$DartValue_StringCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartValue_String implements DartValue_String {
-  const _$DartValue_String(this.field0);
+class _$DartValue_StringImpl implements DartValue_String {
+  const _$DartValue_StringImpl(this.field0);
 
   @override
   final String field0;
@@ -21595,21 +22024,24 @@ class _$DartValue_String implements DartValue_String {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartValue_String &&
+            other is _$DartValue_StringImpl &&
             (identical(other.field0, field0) || other.field0 == field0));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartValue_StringCopyWith<_$DartValue_String> get copyWith =>
-      __$$DartValue_StringCopyWithImpl<_$DartValue_String>(this, _$identity);
+  _$$DartValue_StringImplCopyWith<_$DartValue_StringImpl> get copyWith =>
+      __$$DartValue_StringImplCopyWithImpl<_$DartValue_StringImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -21699,39 +22131,44 @@ class _$DartValue_String implements DartValue_String {
 }
 
 abstract class DartValue_String implements DartValue {
-  const factory DartValue_String(final String field0) = _$DartValue_String;
+  const factory DartValue_String(final String field0) = _$DartValue_StringImpl;
 
   @override
   String get field0;
-  @JsonKey(ignore: true)
-  _$$DartValue_StringCopyWith<_$DartValue_String> get copyWith =>
+
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartValue_StringImplCopyWith<_$DartValue_StringImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartValue_ImageCopyWith<$Res> {
-  factory _$$DartValue_ImageCopyWith(
-          _$DartValue_Image value, $Res Function(_$DartValue_Image) then) =
-      __$$DartValue_ImageCopyWithImpl<$Res>;
+abstract class _$$DartValue_ImageImplCopyWith<$Res> {
+  factory _$$DartValue_ImageImplCopyWith(_$DartValue_ImageImpl value,
+          $Res Function(_$DartValue_ImageImpl) then) =
+      __$$DartValue_ImageImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Uint8List field0, (double, double)? field1});
 }
 
 /// @nodoc
-class __$$DartValue_ImageCopyWithImpl<$Res>
-    extends _$DartValueCopyWithImpl<$Res, _$DartValue_Image>
-    implements _$$DartValue_ImageCopyWith<$Res> {
-  __$$DartValue_ImageCopyWithImpl(
-      _$DartValue_Image _value, $Res Function(_$DartValue_Image) _then)
+class __$$DartValue_ImageImplCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_ImageImpl>
+    implements _$$DartValue_ImageImplCopyWith<$Res> {
+  __$$DartValue_ImageImplCopyWithImpl(
+      _$DartValue_ImageImpl _value, $Res Function(_$DartValue_ImageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? field0 = null,
     Object? field1 = freezed,
   }) {
-    return _then(_$DartValue_Image(
+    return _then(_$DartValue_ImageImpl(
       null == field0
           ? _value.field0
           : field0 // ignore: cast_nullable_to_non_nullable
@@ -21746,8 +22183,8 @@ class __$$DartValue_ImageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartValue_Image implements DartValue_Image {
-  const _$DartValue_Image(this.field0, [this.field1]);
+class _$DartValue_ImageImpl implements DartValue_Image {
+  const _$DartValue_ImageImpl(this.field0, [this.field1]);
 
   @override
   final Uint8List field0;
@@ -21760,10 +22197,10 @@ class _$DartValue_Image implements DartValue_Image {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartValue_Image &&
+            other is _$DartValue_ImageImpl &&
             const DeepCollectionEquality().equals(other.field0, field0) &&
             (identical(other.field1, field1) || other.field1 == field1));
   }
@@ -21772,11 +22209,14 @@ class _$DartValue_Image implements DartValue_Image {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(field0), field1);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartValue_ImageCopyWith<_$DartValue_Image> get copyWith =>
-      __$$DartValue_ImageCopyWithImpl<_$DartValue_Image>(this, _$identity);
+  _$$DartValue_ImageImplCopyWith<_$DartValue_ImageImpl> get copyWith =>
+      __$$DartValue_ImageImplCopyWithImpl<_$DartValue_ImageImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -21867,39 +22307,44 @@ class _$DartValue_Image implements DartValue_Image {
 
 abstract class DartValue_Image implements DartValue {
   const factory DartValue_Image(final Uint8List field0,
-      [final (double, double)? field1]) = _$DartValue_Image;
+      [final (double, double)? field1]) = _$DartValue_ImageImpl;
 
   @override
   Uint8List get field0;
   (double, double)? get field1;
-  @JsonKey(ignore: true)
-  _$$DartValue_ImageCopyWith<_$DartValue_Image> get copyWith =>
+
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartValue_ImageImplCopyWith<_$DartValue_ImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartValue_AudioCopyWith<$Res> {
-  factory _$$DartValue_AudioCopyWith(
-          _$DartValue_Audio value, $Res Function(_$DartValue_Audio) then) =
-      __$$DartValue_AudioCopyWithImpl<$Res>;
+abstract class _$$DartValue_AudioImplCopyWith<$Res> {
+  factory _$$DartValue_AudioImplCopyWith(_$DartValue_AudioImpl value,
+          $Res Function(_$DartValue_AudioImpl) then) =
+      __$$DartValue_AudioImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Uint8List field0});
 }
 
 /// @nodoc
-class __$$DartValue_AudioCopyWithImpl<$Res>
-    extends _$DartValueCopyWithImpl<$Res, _$DartValue_Audio>
-    implements _$$DartValue_AudioCopyWith<$Res> {
-  __$$DartValue_AudioCopyWithImpl(
-      _$DartValue_Audio _value, $Res Function(_$DartValue_Audio) _then)
+class __$$DartValue_AudioImplCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_AudioImpl>
+    implements _$$DartValue_AudioImplCopyWith<$Res> {
+  __$$DartValue_AudioImplCopyWithImpl(
+      _$DartValue_AudioImpl _value, $Res Function(_$DartValue_AudioImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? field0 = null,
   }) {
-    return _then(_$DartValue_Audio(
+    return _then(_$DartValue_AudioImpl(
       null == field0
           ? _value.field0
           : field0 // ignore: cast_nullable_to_non_nullable
@@ -21910,8 +22355,8 @@ class __$$DartValue_AudioCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartValue_Audio implements DartValue_Audio {
-  const _$DartValue_Audio(this.field0);
+class _$DartValue_AudioImpl implements DartValue_Audio {
+  const _$DartValue_AudioImpl(this.field0);
 
   @override
   final Uint8List field0;
@@ -21922,10 +22367,10 @@ class _$DartValue_Audio implements DartValue_Audio {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartValue_Audio &&
+            other is _$DartValue_AudioImpl &&
             const DeepCollectionEquality().equals(other.field0, field0));
   }
 
@@ -21933,11 +22378,14 @@ class _$DartValue_Audio implements DartValue_Audio {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(field0));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartValue_AudioCopyWith<_$DartValue_Audio> get copyWith =>
-      __$$DartValue_AudioCopyWithImpl<_$DartValue_Audio>(this, _$identity);
+  _$$DartValue_AudioImplCopyWith<_$DartValue_AudioImpl> get copyWith =>
+      __$$DartValue_AudioImplCopyWithImpl<_$DartValue_AudioImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -22027,38 +22475,43 @@ class _$DartValue_Audio implements DartValue_Audio {
 }
 
 abstract class DartValue_Audio implements DartValue {
-  const factory DartValue_Audio(final Uint8List field0) = _$DartValue_Audio;
+  const factory DartValue_Audio(final Uint8List field0) = _$DartValue_AudioImpl;
 
   @override
   Uint8List get field0;
-  @JsonKey(ignore: true)
-  _$$DartValue_AudioCopyWith<_$DartValue_Audio> get copyWith =>
+
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartValue_AudioImplCopyWith<_$DartValue_AudioImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DartValue_ListCopyWith<$Res> {
-  factory _$$DartValue_ListCopyWith(
-          _$DartValue_List value, $Res Function(_$DartValue_List) then) =
-      __$$DartValue_ListCopyWithImpl<$Res>;
+abstract class _$$DartValue_ListImplCopyWith<$Res> {
+  factory _$$DartValue_ListImplCopyWith(_$DartValue_ListImpl value,
+          $Res Function(_$DartValue_ListImpl) then) =
+      __$$DartValue_ListImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<DartValue> field0});
 }
 
 /// @nodoc
-class __$$DartValue_ListCopyWithImpl<$Res>
-    extends _$DartValueCopyWithImpl<$Res, _$DartValue_List>
-    implements _$$DartValue_ListCopyWith<$Res> {
-  __$$DartValue_ListCopyWithImpl(
-      _$DartValue_List _value, $Res Function(_$DartValue_List) _then)
+class __$$DartValue_ListImplCopyWithImpl<$Res>
+    extends _$DartValueCopyWithImpl<$Res, _$DartValue_ListImpl>
+    implements _$$DartValue_ListImplCopyWith<$Res> {
+  __$$DartValue_ListImplCopyWithImpl(
+      _$DartValue_ListImpl _value, $Res Function(_$DartValue_ListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? field0 = null,
   }) {
-    return _then(_$DartValue_List(
+    return _then(_$DartValue_ListImpl(
       null == field0
           ? _value._field0
           : field0 // ignore: cast_nullable_to_non_nullable
@@ -22069,8 +22522,8 @@ class __$$DartValue_ListCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartValue_List implements DartValue_List {
-  const _$DartValue_List(final List<DartValue> field0) : _field0 = field0;
+class _$DartValue_ListImpl implements DartValue_List {
+  const _$DartValue_ListImpl(final List<DartValue> field0) : _field0 = field0;
 
   final List<DartValue> _field0;
   @override
@@ -22086,10 +22539,10 @@ class _$DartValue_List implements DartValue_List {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DartValue_List &&
+            other is _$DartValue_ListImpl &&
             const DeepCollectionEquality().equals(other._field0, _field0));
   }
 
@@ -22097,11 +22550,14 @@ class _$DartValue_List implements DartValue_List {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_field0));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DartValue_ListCopyWith<_$DartValue_List> get copyWith =>
-      __$$DartValue_ListCopyWithImpl<_$DartValue_List>(this, _$identity);
+  _$$DartValue_ListImplCopyWith<_$DartValue_ListImpl> get copyWith =>
+      __$$DartValue_ListImplCopyWithImpl<_$DartValue_ListImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -22191,12 +22647,16 @@ class _$DartValue_List implements DartValue_List {
 }
 
 abstract class DartValue_List implements DartValue {
-  const factory DartValue_List(final List<DartValue> field0) = _$DartValue_List;
+  const factory DartValue_List(final List<DartValue> field0) =
+      _$DartValue_ListImpl;
 
   @override
   List<DartValue> get field0;
-  @JsonKey(ignore: true)
-  _$$DartValue_ListCopyWith<_$DartValue_List> get copyWith =>
+
+  /// Create a copy of DartValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DartValue_ListImplCopyWith<_$DartValue_ListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -22259,13 +22719,16 @@ class _$RequestResultCopyWithImpl<$Res, $Val extends RequestResult>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RequestResult
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$RequestResult_OkCopyWith<$Res> {
-  factory _$$RequestResult_OkCopyWith(
-          _$RequestResult_Ok value, $Res Function(_$RequestResult_Ok) then) =
-      __$$RequestResult_OkCopyWithImpl<$Res>;
+abstract class _$$RequestResult_OkImplCopyWith<$Res> {
+  factory _$$RequestResult_OkImplCopyWith(_$RequestResult_OkImpl value,
+          $Res Function(_$RequestResult_OkImpl) then) =
+      __$$RequestResult_OkImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DartValue field0});
 
@@ -22273,19 +22736,21 @@ abstract class _$$RequestResult_OkCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$RequestResult_OkCopyWithImpl<$Res>
-    extends _$RequestResultCopyWithImpl<$Res, _$RequestResult_Ok>
-    implements _$$RequestResult_OkCopyWith<$Res> {
-  __$$RequestResult_OkCopyWithImpl(
-      _$RequestResult_Ok _value, $Res Function(_$RequestResult_Ok) _then)
+class __$$RequestResult_OkImplCopyWithImpl<$Res>
+    extends _$RequestResultCopyWithImpl<$Res, _$RequestResult_OkImpl>
+    implements _$$RequestResult_OkImplCopyWith<$Res> {
+  __$$RequestResult_OkImplCopyWithImpl(_$RequestResult_OkImpl _value,
+      $Res Function(_$RequestResult_OkImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? field0 = null,
   }) {
-    return _then(_$RequestResult_Ok(
+    return _then(_$RequestResult_OkImpl(
       null == field0
           ? _value.field0
           : field0 // ignore: cast_nullable_to_non_nullable
@@ -22293,6 +22758,8 @@ class __$$RequestResult_OkCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of RequestResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DartValueCopyWith<$Res> get field0 {
@@ -22304,8 +22771,8 @@ class __$$RequestResult_OkCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RequestResult_Ok implements RequestResult_Ok {
-  const _$RequestResult_Ok(this.field0);
+class _$RequestResult_OkImpl implements RequestResult_Ok {
+  const _$RequestResult_OkImpl(this.field0);
 
   @override
   final DartValue field0;
@@ -22316,21 +22783,24 @@ class _$RequestResult_Ok implements RequestResult_Ok {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RequestResult_Ok &&
+            other is _$RequestResult_OkImpl &&
             (identical(other.field0, field0) || other.field0 == field0));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RequestResult_OkCopyWith<_$RequestResult_Ok> get copyWith =>
-      __$$RequestResult_OkCopyWithImpl<_$RequestResult_Ok>(this, _$identity);
+  _$$RequestResult_OkImplCopyWith<_$RequestResult_OkImpl> get copyWith =>
+      __$$RequestResult_OkImplCopyWithImpl<_$RequestResult_OkImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -22396,38 +22866,44 @@ class _$RequestResult_Ok implements RequestResult_Ok {
 }
 
 abstract class RequestResult_Ok implements RequestResult {
-  const factory RequestResult_Ok(final DartValue field0) = _$RequestResult_Ok;
+  const factory RequestResult_Ok(final DartValue field0) =
+      _$RequestResult_OkImpl;
 
   @override
   DartValue get field0;
-  @JsonKey(ignore: true)
-  _$$RequestResult_OkCopyWith<_$RequestResult_Ok> get copyWith =>
+
+  /// Create a copy of RequestResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RequestResult_OkImplCopyWith<_$RequestResult_OkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RequestResult_ErrCopyWith<$Res> {
-  factory _$$RequestResult_ErrCopyWith(
-          _$RequestResult_Err value, $Res Function(_$RequestResult_Err) then) =
-      __$$RequestResult_ErrCopyWithImpl<$Res>;
+abstract class _$$RequestResult_ErrImplCopyWith<$Res> {
+  factory _$$RequestResult_ErrImplCopyWith(_$RequestResult_ErrImpl value,
+          $Res Function(_$RequestResult_ErrImpl) then) =
+      __$$RequestResult_ErrImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String field0});
 }
 
 /// @nodoc
-class __$$RequestResult_ErrCopyWithImpl<$Res>
-    extends _$RequestResultCopyWithImpl<$Res, _$RequestResult_Err>
-    implements _$$RequestResult_ErrCopyWith<$Res> {
-  __$$RequestResult_ErrCopyWithImpl(
-      _$RequestResult_Err _value, $Res Function(_$RequestResult_Err) _then)
+class __$$RequestResult_ErrImplCopyWithImpl<$Res>
+    extends _$RequestResultCopyWithImpl<$Res, _$RequestResult_ErrImpl>
+    implements _$$RequestResult_ErrImplCopyWith<$Res> {
+  __$$RequestResult_ErrImplCopyWithImpl(_$RequestResult_ErrImpl _value,
+      $Res Function(_$RequestResult_ErrImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? field0 = null,
   }) {
-    return _then(_$RequestResult_Err(
+    return _then(_$RequestResult_ErrImpl(
       null == field0
           ? _value.field0
           : field0 // ignore: cast_nullable_to_non_nullable
@@ -22438,8 +22914,8 @@ class __$$RequestResult_ErrCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RequestResult_Err implements RequestResult_Err {
-  const _$RequestResult_Err(this.field0);
+class _$RequestResult_ErrImpl implements RequestResult_Err {
+  const _$RequestResult_ErrImpl(this.field0);
 
   @override
   final String field0;
@@ -22450,21 +22926,24 @@ class _$RequestResult_Err implements RequestResult_Err {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RequestResult_Err &&
+            other is _$RequestResult_ErrImpl &&
             (identical(other.field0, field0) || other.field0 == field0));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RequestResult_ErrCopyWith<_$RequestResult_Err> get copyWith =>
-      __$$RequestResult_ErrCopyWithImpl<_$RequestResult_Err>(this, _$identity);
+  _$$RequestResult_ErrImplCopyWith<_$RequestResult_ErrImpl> get copyWith =>
+      __$$RequestResult_ErrImplCopyWithImpl<_$RequestResult_ErrImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -22530,12 +23009,16 @@ class _$RequestResult_Err implements RequestResult_Err {
 }
 
 abstract class RequestResult_Err implements RequestResult {
-  const factory RequestResult_Err(final String field0) = _$RequestResult_Err;
+  const factory RequestResult_Err(final String field0) =
+      _$RequestResult_ErrImpl;
 
   @override
   String get field0;
-  @JsonKey(ignore: true)
-  _$$RequestResult_ErrCopyWith<_$RequestResult_Err> get copyWith =>
+
+  /// Create a copy of RequestResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RequestResult_ErrImplCopyWith<_$RequestResult_ErrImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -22618,31 +23101,38 @@ class _$RustCommandCopyWithImpl<$Res, $Val extends RustCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RustCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$RustCommand_SetProjectCopyWith<$Res> {
-  factory _$$RustCommand_SetProjectCopyWith(_$RustCommand_SetProject value,
-          $Res Function(_$RustCommand_SetProject) then) =
-      __$$RustCommand_SetProjectCopyWithImpl<$Res>;
+abstract class _$$RustCommand_SetProjectImplCopyWith<$Res> {
+  factory _$$RustCommand_SetProjectImplCopyWith(
+          _$RustCommand_SetProjectImpl value,
+          $Res Function(_$RustCommand_SetProjectImpl) then) =
+      __$$RustCommand_SetProjectImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String xml});
 }
 
 /// @nodoc
-class __$$RustCommand_SetProjectCopyWithImpl<$Res>
-    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_SetProject>
-    implements _$$RustCommand_SetProjectCopyWith<$Res> {
-  __$$RustCommand_SetProjectCopyWithImpl(_$RustCommand_SetProject _value,
-      $Res Function(_$RustCommand_SetProject) _then)
+class __$$RustCommand_SetProjectImplCopyWithImpl<$Res>
+    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_SetProjectImpl>
+    implements _$$RustCommand_SetProjectImplCopyWith<$Res> {
+  __$$RustCommand_SetProjectImplCopyWithImpl(
+      _$RustCommand_SetProjectImpl _value,
+      $Res Function(_$RustCommand_SetProjectImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RustCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? xml = null,
   }) {
-    return _then(_$RustCommand_SetProject(
+    return _then(_$RustCommand_SetProjectImpl(
       xml: null == xml
           ? _value.xml
           : xml // ignore: cast_nullable_to_non_nullable
@@ -22653,8 +23143,8 @@ class __$$RustCommand_SetProjectCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RustCommand_SetProject implements RustCommand_SetProject {
-  const _$RustCommand_SetProject({required this.xml});
+class _$RustCommand_SetProjectImpl implements RustCommand_SetProject {
+  const _$RustCommand_SetProjectImpl({required this.xml});
 
   @override
   final String xml;
@@ -22665,22 +23155,24 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RustCommand_SetProject &&
+            other is _$RustCommand_SetProjectImpl &&
             (identical(other.xml, xml) || other.xml == xml));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, xml);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RustCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RustCommand_SetProjectCopyWith<_$RustCommand_SetProject> get copyWith =>
-      __$$RustCommand_SetProjectCopyWithImpl<_$RustCommand_SetProject>(
-          this, _$identity);
+  _$$RustCommand_SetProjectImplCopyWith<_$RustCommand_SetProjectImpl>
+      get copyWith => __$$RustCommand_SetProjectImplCopyWithImpl<
+          _$RustCommand_SetProjectImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -22768,34 +23260,40 @@ class _$RustCommand_SetProject implements RustCommand_SetProject {
 
 abstract class RustCommand_SetProject implements RustCommand {
   const factory RustCommand_SetProject({required final String xml}) =
-      _$RustCommand_SetProject;
+      _$RustCommand_SetProjectImpl;
 
   String get xml;
-  @JsonKey(ignore: true)
-  _$$RustCommand_SetProjectCopyWith<_$RustCommand_SetProject> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of RustCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RustCommand_SetProjectImplCopyWith<_$RustCommand_SetProjectImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RustCommand_StartCopyWith<$Res> {
-  factory _$$RustCommand_StartCopyWith(
-          _$RustCommand_Start value, $Res Function(_$RustCommand_Start) then) =
-      __$$RustCommand_StartCopyWithImpl<$Res>;
+abstract class _$$RustCommand_StartImplCopyWith<$Res> {
+  factory _$$RustCommand_StartImplCopyWith(_$RustCommand_StartImpl value,
+          $Res Function(_$RustCommand_StartImpl) then) =
+      __$$RustCommand_StartImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RustCommand_StartCopyWithImpl<$Res>
-    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_Start>
-    implements _$$RustCommand_StartCopyWith<$Res> {
-  __$$RustCommand_StartCopyWithImpl(
-      _$RustCommand_Start _value, $Res Function(_$RustCommand_Start) _then)
+class __$$RustCommand_StartImplCopyWithImpl<$Res>
+    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_StartImpl>
+    implements _$$RustCommand_StartImplCopyWith<$Res> {
+  __$$RustCommand_StartImplCopyWithImpl(_$RustCommand_StartImpl _value,
+      $Res Function(_$RustCommand_StartImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RustCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$RustCommand_Start implements RustCommand_Start {
-  const _$RustCommand_Start();
+class _$RustCommand_StartImpl implements RustCommand_Start {
+  const _$RustCommand_StartImpl();
 
   @override
   String toString() {
@@ -22803,9 +23301,9 @@ class _$RustCommand_Start implements RustCommand_Start {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RustCommand_Start);
+        (other.runtimeType == runtimeType && other is _$RustCommand_StartImpl);
   }
 
   @override
@@ -22896,29 +23394,32 @@ class _$RustCommand_Start implements RustCommand_Start {
 }
 
 abstract class RustCommand_Start implements RustCommand {
-  const factory RustCommand_Start() = _$RustCommand_Start;
+  const factory RustCommand_Start() = _$RustCommand_StartImpl;
 }
 
 /// @nodoc
-abstract class _$$RustCommand_StopCopyWith<$Res> {
-  factory _$$RustCommand_StopCopyWith(
-          _$RustCommand_Stop value, $Res Function(_$RustCommand_Stop) then) =
-      __$$RustCommand_StopCopyWithImpl<$Res>;
+abstract class _$$RustCommand_StopImplCopyWith<$Res> {
+  factory _$$RustCommand_StopImplCopyWith(_$RustCommand_StopImpl value,
+          $Res Function(_$RustCommand_StopImpl) then) =
+      __$$RustCommand_StopImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RustCommand_StopCopyWithImpl<$Res>
-    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_Stop>
-    implements _$$RustCommand_StopCopyWith<$Res> {
-  __$$RustCommand_StopCopyWithImpl(
-      _$RustCommand_Stop _value, $Res Function(_$RustCommand_Stop) _then)
+class __$$RustCommand_StopImplCopyWithImpl<$Res>
+    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_StopImpl>
+    implements _$$RustCommand_StopImplCopyWith<$Res> {
+  __$$RustCommand_StopImplCopyWithImpl(_$RustCommand_StopImpl _value,
+      $Res Function(_$RustCommand_StopImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RustCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$RustCommand_Stop implements RustCommand_Stop {
-  const _$RustCommand_Stop();
+class _$RustCommand_StopImpl implements RustCommand_Stop {
+  const _$RustCommand_StopImpl();
 
   @override
   String toString() {
@@ -22926,9 +23427,9 @@ class _$RustCommand_Stop implements RustCommand_Stop {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RustCommand_Stop);
+        (other.runtimeType == runtimeType && other is _$RustCommand_StopImpl);
   }
 
   @override
@@ -23019,29 +23520,34 @@ class _$RustCommand_Stop implements RustCommand_Stop {
 }
 
 abstract class RustCommand_Stop implements RustCommand {
-  const factory RustCommand_Stop() = _$RustCommand_Stop;
+  const factory RustCommand_Stop() = _$RustCommand_StopImpl;
 }
 
 /// @nodoc
-abstract class _$$RustCommand_TogglePausedCopyWith<$Res> {
-  factory _$$RustCommand_TogglePausedCopyWith(_$RustCommand_TogglePaused value,
-          $Res Function(_$RustCommand_TogglePaused) then) =
-      __$$RustCommand_TogglePausedCopyWithImpl<$Res>;
+abstract class _$$RustCommand_TogglePausedImplCopyWith<$Res> {
+  factory _$$RustCommand_TogglePausedImplCopyWith(
+          _$RustCommand_TogglePausedImpl value,
+          $Res Function(_$RustCommand_TogglePausedImpl) then) =
+      __$$RustCommand_TogglePausedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RustCommand_TogglePausedCopyWithImpl<$Res>
-    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_TogglePaused>
-    implements _$$RustCommand_TogglePausedCopyWith<$Res> {
-  __$$RustCommand_TogglePausedCopyWithImpl(_$RustCommand_TogglePaused _value,
-      $Res Function(_$RustCommand_TogglePaused) _then)
+class __$$RustCommand_TogglePausedImplCopyWithImpl<$Res>
+    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_TogglePausedImpl>
+    implements _$$RustCommand_TogglePausedImplCopyWith<$Res> {
+  __$$RustCommand_TogglePausedImplCopyWithImpl(
+      _$RustCommand_TogglePausedImpl _value,
+      $Res Function(_$RustCommand_TogglePausedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RustCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$RustCommand_TogglePaused implements RustCommand_TogglePaused {
-  const _$RustCommand_TogglePaused();
+class _$RustCommand_TogglePausedImpl implements RustCommand_TogglePaused {
+  const _$RustCommand_TogglePausedImpl();
 
   @override
   String toString() {
@@ -23049,10 +23555,10 @@ class _$RustCommand_TogglePaused implements RustCommand_TogglePaused {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RustCommand_TogglePaused);
+            other is _$RustCommand_TogglePausedImpl);
   }
 
   @override
@@ -23143,34 +23649,37 @@ class _$RustCommand_TogglePaused implements RustCommand_TogglePaused {
 }
 
 abstract class RustCommand_TogglePaused implements RustCommand {
-  const factory RustCommand_TogglePaused() = _$RustCommand_TogglePaused;
+  const factory RustCommand_TogglePaused() = _$RustCommand_TogglePausedImpl;
 }
 
 /// @nodoc
-abstract class _$$RustCommand_InjectMessageCopyWith<$Res> {
-  factory _$$RustCommand_InjectMessageCopyWith(
-          _$RustCommand_InjectMessage value,
-          $Res Function(_$RustCommand_InjectMessage) then) =
-      __$$RustCommand_InjectMessageCopyWithImpl<$Res>;
+abstract class _$$RustCommand_InjectMessageImplCopyWith<$Res> {
+  factory _$$RustCommand_InjectMessageImplCopyWith(
+          _$RustCommand_InjectMessageImpl value,
+          $Res Function(_$RustCommand_InjectMessageImpl) then) =
+      __$$RustCommand_InjectMessageImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String msgType, List<(String, DartValue)> values});
 }
 
 /// @nodoc
-class __$$RustCommand_InjectMessageCopyWithImpl<$Res>
-    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_InjectMessage>
-    implements _$$RustCommand_InjectMessageCopyWith<$Res> {
-  __$$RustCommand_InjectMessageCopyWithImpl(_$RustCommand_InjectMessage _value,
-      $Res Function(_$RustCommand_InjectMessage) _then)
+class __$$RustCommand_InjectMessageImplCopyWithImpl<$Res>
+    extends _$RustCommandCopyWithImpl<$Res, _$RustCommand_InjectMessageImpl>
+    implements _$$RustCommand_InjectMessageImplCopyWith<$Res> {
+  __$$RustCommand_InjectMessageImplCopyWithImpl(
+      _$RustCommand_InjectMessageImpl _value,
+      $Res Function(_$RustCommand_InjectMessageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RustCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? msgType = null,
     Object? values = null,
   }) {
-    return _then(_$RustCommand_InjectMessage(
+    return _then(_$RustCommand_InjectMessageImpl(
       msgType: null == msgType
           ? _value.msgType
           : msgType // ignore: cast_nullable_to_non_nullable
@@ -23185,8 +23694,8 @@ class __$$RustCommand_InjectMessageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
-  const _$RustCommand_InjectMessage(
+class _$RustCommand_InjectMessageImpl implements RustCommand_InjectMessage {
+  const _$RustCommand_InjectMessageImpl(
       {required this.msgType, required final List<(String, DartValue)> values})
       : _values = values;
 
@@ -23206,10 +23715,10 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RustCommand_InjectMessage &&
+            other is _$RustCommand_InjectMessageImpl &&
             (identical(other.msgType, msgType) || other.msgType == msgType) &&
             const DeepCollectionEquality().equals(other._values, _values));
   }
@@ -23218,12 +23727,14 @@ class _$RustCommand_InjectMessage implements RustCommand_InjectMessage {
   int get hashCode => Object.hash(
       runtimeType, msgType, const DeepCollectionEquality().hash(_values));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RustCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RustCommand_InjectMessageCopyWith<_$RustCommand_InjectMessage>
-      get copyWith => __$$RustCommand_InjectMessageCopyWithImpl<
-          _$RustCommand_InjectMessage>(this, _$identity);
+  _$$RustCommand_InjectMessageImplCopyWith<_$RustCommand_InjectMessageImpl>
+      get copyWith => __$$RustCommand_InjectMessageImplCopyWithImpl<
+          _$RustCommand_InjectMessageImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -23313,11 +23824,14 @@ abstract class RustCommand_InjectMessage implements RustCommand {
   const factory RustCommand_InjectMessage(
           {required final String msgType,
           required final List<(String, DartValue)> values}) =
-      _$RustCommand_InjectMessage;
+      _$RustCommand_InjectMessageImpl;
 
   String get msgType;
   List<(String, DartValue)> get values;
-  @JsonKey(ignore: true)
-  _$$RustCommand_InjectMessageCopyWith<_$RustCommand_InjectMessage>
+
+  /// Create a copy of RustCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RustCommand_InjectMessageImplCopyWith<_$RustCommand_InjectMessageImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
