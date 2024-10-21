@@ -4,6 +4,7 @@ extension MaybeAdd<T> on List<T> {
       add(val);
     }
   }
+
   void maybeAddAll(Iterable<T?> vals) {
     for (final val in vals) {
       maybeAdd(val);

@@ -12,9 +12,16 @@ const double radToDeg = 180 / pi;
 // annoyingly, some of our sensor deps have platform-dependent units
 final double pressureScale = Platform.isAndroid ? 0.1 : 1;
 
-const facingDirectionNames = [ 'left', 'vertical', 'up', 'right', 'upside down', 'down' ];
-const compassDirectionNames = [ 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW' ];
-const compassCardinalDirectionNames = [ 'N', 'E', 'S', 'W' ];
+const facingDirectionNames = [
+  'left',
+  'vertical',
+  'up',
+  'right',
+  'upside down',
+  'down'
+];
+const compassDirectionNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+const compassCardinalDirectionNames = ['N', 'E', 'S', 'W'];
 
 const List<(List<double>, double)> facingDirectionClasses = [
   ([1, 0, 0], 0),
@@ -43,8 +50,9 @@ const List<(double, double)> compassCardinalDirectionClasses = [
   (-90, 3),
 ];
 
-List<double> elementwise(List<double> a, List<double> b, double Function (double, double) f) {
-  assert (a.length == b.length);
+List<double> elementwise(
+    List<double> a, List<double> b, double Function(double, double) f) {
+  assert(a.length == b.length);
 
   final res = <double>[];
   for (int i = 0; i < a.length; ++i) {
@@ -54,7 +62,7 @@ List<double> elementwise(List<double> a, List<double> b, double Function (double
 }
 
 double dotProduct(List<double> a, List<double> b) {
-  assert (a.length == b.length);
+  assert(a.length == b.length);
 
   double res = 0;
   for (int i = 0; i < a.length; ++i) {
@@ -90,11 +98,13 @@ abstract class Sensor {
 }
 
 class UnsupportedSensor extends Sensor {
-  @override List<double>? get value => null;
+  @override
+  List<double>? get value => null;
 }
 
 class RawSensor<E> extends Sensor {
-  @override List<double>? value;
+  @override
+  List<double>? value;
   StreamSubscription<E>? listener;
 
   void stop() {
@@ -107,9 +117,10 @@ class CalcSensor extends Sensor {
   final List<Sensor> src;
   final List<double>? Function(List<List<double>>) f;
 
-  CalcSensor({ required this.src, required this.f });
+  CalcSensor({required this.src, required this.f});
 
-  @override List<double>? get value {
+  @override
+  List<double>? get value {
     final src = <List<double>>[];
     for (final x in this.src) {
       final v = x.value;
@@ -140,14 +151,26 @@ class SensorManager {
   static RawSensor<double> lightLevel = RawSensor();
   static RawSensor<double> temperature = RawSensor();
 
-  static CalcSensor gravity = CalcSensor(src: [accelerometer, linearAccelerometer], f: (x) => elementwise(x[0], x[1], (a, b) => a - b));
-  static CalcSensor facingDirection = CalcSensor(src: [accelerometer], f: (x) => [dotProductClassify(x[0], facingDirectionClasses)]);
-  static CalcSensor compassHeading = CalcSensor(src: [orientation], f: (x) => [x[0][0]]);
-  static CalcSensor compassDirection = CalcSensor(src: [orientation], f: (x) => [closestClassify(x[0][0], compassDirectionClasses)]);
-  static CalcSensor compassCardinalDirection = CalcSensor(src: [orientation], f: (x) => [closestClassify(x[0][0], compassCardinalDirectionClasses)]);
-  static CalcSensor locationLatLong = CalcSensor(src: [gps], f: (x) => [x[0][0], x[0][1]]);
-  static CalcSensor locationHeading = CalcSensor(src: [gps], f: (x) => [x[0][2]]);
-  static CalcSensor locationAltitude = CalcSensor(src: [gps], f: (x) => [x[0][3]]);
+  static CalcSensor gravity = CalcSensor(
+      src: [accelerometer, linearAccelerometer],
+      f: (x) => elementwise(x[0], x[1], (a, b) => a - b));
+  static CalcSensor facingDirection = CalcSensor(
+      src: [accelerometer],
+      f: (x) => [dotProductClassify(x[0], facingDirectionClasses)]);
+  static CalcSensor compassHeading =
+      CalcSensor(src: [orientation], f: (x) => [x[0][0]]);
+  static CalcSensor compassDirection = CalcSensor(
+      src: [orientation],
+      f: (x) => [closestClassify(x[0][0], compassDirectionClasses)]);
+  static CalcSensor compassCardinalDirection = CalcSensor(
+      src: [orientation],
+      f: (x) => [closestClassify(x[0][0], compassCardinalDirectionClasses)]);
+  static CalcSensor locationLatLong =
+      CalcSensor(src: [gps], f: (x) => [x[0][0], x[0][1]]);
+  static CalcSensor locationHeading =
+      CalcSensor(src: [gps], f: (x) => [x[0][2]]);
+  static CalcSensor locationAltitude =
+      CalcSensor(src: [gps], f: (x) => [x[0][3]]);
 
   static Future<void> requestPermissions() async {
     await Geolocator.requestPermission();
@@ -159,18 +182,34 @@ class SensorManager {
 
     final envSensors = EnvironmentSensors();
 
-    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_ACCELEROMETER, sensorUpdateInterval.inMicroseconds);
-    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_USER_ACCELEROMETER, sensorUpdateInterval.inMicroseconds);
-    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_GYROSCOPE, sensorUpdateInterval.inMicroseconds);
-    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_MAGNETIC_FIELD, sensorUpdateInterval.inMicroseconds);
-    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_ABSOLUTE_ORIENTATION, sensorUpdateInterval.inMicroseconds);
+    motionSensors.setSensorUpdateInterval(
+        MotionSensors.TYPE_ACCELEROMETER, sensorUpdateInterval.inMicroseconds);
+    motionSensors.setSensorUpdateInterval(MotionSensors.TYPE_USER_ACCELEROMETER,
+        sensorUpdateInterval.inMicroseconds);
+    motionSensors.setSensorUpdateInterval(
+        MotionSensors.TYPE_GYROSCOPE, sensorUpdateInterval.inMicroseconds);
+    motionSensors.setSensorUpdateInterval(
+        MotionSensors.TYPE_MAGNETIC_FIELD, sensorUpdateInterval.inMicroseconds);
+    motionSensors.setSensorUpdateInterval(
+        MotionSensors.TYPE_ABSOLUTE_ORIENTATION,
+        sensorUpdateInterval.inMicroseconds);
 
-    accelerometer.listener ??= motionSensors.accelerometer.listen((e) => accelerometer.value = [e.x, e.y, e.z]);
-    linearAccelerometer.listener ??= motionSensors.userAccelerometer.listen((e) => linearAccelerometer.value = [e.x, e.y, e.z]);
-    gyroscope.listener ??= motionSensors.gyroscope.listen((e) => gyroscope.value = [e.x * radToDeg, e.y * radToDeg, e.z * radToDeg]);
-    magnetometer.listener ??= motionSensors.magnetometer.listen((e) => magnetometer.value = [e.x, e.y, e.z]);
-    orientation.listener ??= motionSensors.absoluteOrientation.listen((e) => orientation.value = [-e.yaw * radToDeg, e.pitch * radToDeg, e.roll * radToDeg]);
-    pressure.listener ??= envSensors.pressure.listen((e) => pressure.value = [e * pressureScale]);
+    accelerometer.listener ??= motionSensors.accelerometer
+        .listen((e) => accelerometer.value = [e.x, e.y, e.z]);
+    linearAccelerometer.listener ??= motionSensors.userAccelerometer
+        .listen((e) => linearAccelerometer.value = [e.x, e.y, e.z]);
+    gyroscope.listener ??= motionSensors.gyroscope.listen((e) =>
+        gyroscope.value = [e.x * radToDeg, e.y * radToDeg, e.z * radToDeg]);
+    magnetometer.listener ??= motionSensors.magnetometer
+        .listen((e) => magnetometer.value = [e.x, e.y, e.z]);
+    orientation.listener ??= motionSensors.absoluteOrientation.listen((e) =>
+        orientation.value = [
+          -e.yaw * radToDeg,
+          e.pitch * radToDeg,
+          e.roll * radToDeg
+        ]);
+    pressure.listener ??=
+        envSensors.pressure.listen((e) => pressure.value = [e * pressureScale]);
     gps.listener ??= Geolocator.getPositionStream().listen((e) {
       final prev = gps.value;
       gps.value = [
@@ -180,10 +219,14 @@ class SensorManager {
         e.altitude != 0 ? e.altitude : (prev != null ? prev[3] : 0),
       ];
     });
-    relativeHumidity.listener ??= envSensors.humidity.listen((e) => relativeHumidity.value = [e]);
-    lightLevel.listener ??= envSensors.light.listen((e) => lightLevel.value = [e]);
-    temperature.listener ??= envSensors.temperature.listen((e) => temperature.value = [e]);
+    relativeHumidity.listener ??=
+        envSensors.humidity.listen((e) => relativeHumidity.value = [e]);
+    lightLevel.listener ??=
+        envSensors.light.listen((e) => lightLevel.value = [e]);
+    temperature.listener ??=
+        envSensors.temperature.listen((e) => temperature.value = [e]);
   }
+
   static void stop() {
     if (!running) return;
     running = false;

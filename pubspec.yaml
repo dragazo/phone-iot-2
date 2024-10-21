@@ -35,7 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   ffi: ^2.0.1
-  flutter_rust_bridge: ^1.82.6
+  flutter_rust_bridge: 2.2.0
   meta: ^1.8.0
   freezed_annotation: ^2.2.0
   freezed: ^2.3.5
@@ -57,6 +57,8 @@ dependencies:
   # actuator stuff
   just_audio: ^0.9.36
   vibration: ^1.7.5
+  native:
+    path: rust_builder
 
 dev_dependencies:
   flutter_test:
