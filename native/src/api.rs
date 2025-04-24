@@ -420,7 +420,7 @@ impl DartValue {
         match self {
             DartValue::Bool(x) => SimpleValue::Bool(x),
             DartValue::Number(x) => SimpleValue::Number(parse_num(x)),
-            DartValue::String(x) => SimpleValue::String(x.into()),
+            DartValue::String(x) => SimpleValue::Text(x.into()),
             DartValue::Image(content, center) => SimpleValue::Image(Image { content, center: center.map(|(x, y)| (parse_num(x), parse_num(y))), name: "Untitled".into() }),
             DartValue::Audio(content) => SimpleValue::Audio(Audio { content, name: "Untitled".into() }),
             DartValue::List(x) => SimpleValue::List(x.into_iter().map(DartValue::into_simple).collect()),
@@ -482,7 +482,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
             })),
             request: Some(Rc::new(move |_, key, request, _| {
                 let is_local_id = |s: &Value<C, StdSystem<C>>| -> bool {
-                    match s.as_string() {
+                    match s.as_text() {
                         Ok(x) => x.chars().all(|x| x == '0') || *x == device_id,
                         Err(_) => false,
                     }
@@ -490,7 +490,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                 fn parse_options<'gc, C: CustomTypes<S>, S: System<C>>(name: &str, opts: &Value<'gc, C, S>, allowed: &[&str]) -> Result<BTreeMap<CompactString, Value<'gc, C, S>>, CompactString> {
                     let mut res = BTreeMap::new();
                     match opts {
-                        Value::String(x) if x.is_empty() => (),
+                        Value::Text(x) if x.is_empty() => (),
                         Value::List(x) => for x in x.borrow().iter() {
                             match x {
                                 Value::List(x) => {
@@ -498,8 +498,8 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                     if x.len() != 2 {
                                         return Err(format_compact!("'{name}' must be a list of pairs (length 2 lists)"));
                                     }
-                                    let k = match x[0].as_string() {
-                                        Ok(x) => x.into_owned(),
+                                    let k: CompactString = match x[0].as_text() {
+                                        Ok(x) => (*x).into(),
                                         Err(_) => return Err(format_compact!("'{name}' keys must be strings")),
                                     };
                                     if !allowed.iter().any(|x| **x == *k) {
@@ -520,8 +520,8 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                     ($n:ident := $e:expr => bool) => {
                         match &$e {
                             Value::Bool(x) => *x,
-                            Value::String(x) if **x == "true" => true,
-                            Value::String(x) if **x == "false" => false,
+                            Value::Text(x) if *x == "true" => true,
+                            Value::Text(x) if *x == "false" => false,
                             x => {
                                 key.complete(Err(format_compact!("'{}': expected bool, got {:?}", stringify!($n), x.get_type())));
                                 return RequestStatus::Handled;
@@ -538,7 +538,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                         }
                     };
                     ($n:ident := $e:expr => String) => {
-                        match $e.as_string() {
+                        match $e.as_text() {
                             Ok(x) => (*x).to_owned(),
                             Err(x) => {
                                 key.complete(Err(format_compact!("'{}': expected string, got {:?}", stringify!($n), x.got)));
@@ -691,14 +691,14 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 if args.len() != 2 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
-                                key.complete(Ok(SimpleValue::String(CompactString::new("OK"))));
+                                key.complete(Ok(SimpleValue::Text(CompactString::new("OK"))));
                                 RequestStatus::Handled
                             }
                             "authenticate" | "listenToGUI" => {
                                 if args.len() != 1 || !is_local_id(&args.as_slice()[0].value) {
                                     return RequestStatus::UseDefault { key, request };
                                 }
-                                key.complete(Ok(SimpleValue::String(CompactString::new("OK"))));
+                                key.complete(Ok(SimpleValue::Text(CompactString::new("OK"))));
                                 RequestStatus::Handled
                             }
                             "clearControls" => {
