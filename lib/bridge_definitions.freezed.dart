@@ -72,9 +72,6 @@ class _$CommandResultCopyWithImpl<$Res, $Val extends CommandResult>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of CommandResult
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,9 +88,6 @@ class __$$CommandResult_OkImplCopyWithImpl<$Res>
   __$$CommandResult_OkImplCopyWithImpl(_$CommandResult_OkImpl _value,
       $Res Function(_$CommandResult_OkImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of CommandResult
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -199,8 +193,6 @@ class __$$CommandResult_ErrImplCopyWithImpl<$Res>
       $Res Function(_$CommandResult_ErrImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CommandResult
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -239,9 +231,7 @@ class _$CommandResult_ErrImpl implements CommandResult_Err {
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  /// Create a copy of CommandResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CommandResult_ErrImplCopyWith<_$CommandResult_ErrImpl> get copyWith =>
@@ -316,10 +306,7 @@ abstract class CommandResult_Err implements CommandResult {
       _$CommandResult_ErrImpl;
 
   String get field0;
-
-  /// Create a copy of CommandResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CommandResult_ErrImplCopyWith<_$CommandResult_ErrImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -685,9 +672,6 @@ class _$DartCommandCopyWithImpl<$Res, $Val extends DartCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -709,8 +693,6 @@ class __$$DartCommand_UpdatePausedImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_UpdatePausedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -749,9 +731,7 @@ class _$DartCommand_UpdatePausedImpl implements DartCommand_UpdatePaused {
   @override
   int get hashCode => Object.hash(runtimeType, value);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_UpdatePausedImplCopyWith<_$DartCommand_UpdatePausedImpl>
@@ -1129,10 +1109,7 @@ abstract class DartCommand_UpdatePaused implements DartCommand {
       _$DartCommand_UpdatePausedImpl;
 
   bool get value;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_UpdatePausedImplCopyWith<_$DartCommand_UpdatePausedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1154,8 +1131,6 @@ class __$$DartCommand_StdoutImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_StdoutImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1194,9 +1169,7 @@ class _$DartCommand_StdoutImpl implements DartCommand_Stdout {
   @override
   int get hashCode => Object.hash(runtimeType, msg);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_StdoutImplCopyWith<_$DartCommand_StdoutImpl> get copyWith =>
@@ -1574,10 +1547,7 @@ abstract class DartCommand_Stdout implements DartCommand {
       _$DartCommand_StdoutImpl;
 
   String get msg;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_StdoutImplCopyWith<_$DartCommand_StdoutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1599,8 +1569,6 @@ class __$$DartCommand_StderrImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_StderrImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1639,9 +1607,7 @@ class _$DartCommand_StderrImpl implements DartCommand_Stderr {
   @override
   int get hashCode => Object.hash(runtimeType, msg);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_StderrImplCopyWith<_$DartCommand_StderrImpl> get copyWith =>
@@ -2019,10 +1985,7 @@ abstract class DartCommand_Stderr implements DartCommand {
       _$DartCommand_StderrImpl;
 
   String get msg;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_StderrImplCopyWith<_$DartCommand_StderrImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2045,8 +2008,6 @@ class __$$DartCommand_PlaySoundImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_PlaySoundImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2094,9 +2055,7 @@ class _$DartCommand_PlaySoundImpl implements DartCommand_PlaySound {
   int get hashCode => Object.hash(
       runtimeType, key, const DeepCollectionEquality().hash(content));
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_PlaySoundImplCopyWith<_$DartCommand_PlaySoundImpl>
@@ -2476,10 +2435,7 @@ abstract class DartCommand_PlaySound implements DartCommand {
 
   DartCommandKey? get key;
   Uint8List get content;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_PlaySoundImplCopyWith<_$DartCommand_PlaySoundImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2503,8 +2459,6 @@ class __$$DartCommand_ClearControlsImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_ClearControlsImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2543,9 +2497,7 @@ class _$DartCommand_ClearControlsImpl implements DartCommand_ClearControls {
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_ClearControlsImplCopyWith<_$DartCommand_ClearControlsImpl>
@@ -2923,10 +2875,7 @@ abstract class DartCommand_ClearControls implements DartCommand {
       _$DartCommand_ClearControlsImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_ClearControlsImplCopyWith<_$DartCommand_ClearControlsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2950,8 +2899,6 @@ class __$$DartCommand_RemoveControlImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_RemoveControlImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2998,9 +2945,7 @@ class _$DartCommand_RemoveControlImpl implements DartCommand_RemoveControl {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_RemoveControlImplCopyWith<_$DartCommand_RemoveControlImpl>
@@ -3380,10 +3325,7 @@ abstract class DartCommand_RemoveControl implements DartCommand {
 
   DartRequestKey get key;
   String get id;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_RemoveControlImplCopyWith<_$DartCommand_RemoveControlImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3405,8 +3347,6 @@ class __$$DartCommand_AddLabelImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_AddLabelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3453,9 +3393,7 @@ class _$DartCommand_AddLabelImpl implements DartCommand_AddLabel {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_AddLabelImplCopyWith<_$DartCommand_AddLabelImpl>
@@ -3836,10 +3774,7 @@ abstract class DartCommand_AddLabel implements DartCommand {
 
   DartRequestKey get key;
   LabelInfo get info;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_AddLabelImplCopyWith<_$DartCommand_AddLabelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3862,8 +3797,6 @@ class __$$DartCommand_AddButtonImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_AddButtonImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3910,9 +3843,7 @@ class _$DartCommand_AddButtonImpl implements DartCommand_AddButton {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_AddButtonImplCopyWith<_$DartCommand_AddButtonImpl>
@@ -4292,10 +4223,7 @@ abstract class DartCommand_AddButton implements DartCommand {
 
   DartRequestKey get key;
   ButtonInfo get info;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_AddButtonImplCopyWith<_$DartCommand_AddButtonImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4319,8 +4247,6 @@ class __$$DartCommand_AddTextFieldImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_AddTextFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4367,9 +4293,7 @@ class _$DartCommand_AddTextFieldImpl implements DartCommand_AddTextField {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_AddTextFieldImplCopyWith<_$DartCommand_AddTextFieldImpl>
@@ -4749,10 +4673,7 @@ abstract class DartCommand_AddTextField implements DartCommand {
 
   DartRequestKey get key;
   TextFieldInfo get info;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_AddTextFieldImplCopyWith<_$DartCommand_AddTextFieldImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4776,8 +4697,6 @@ class __$$DartCommand_AddJoystickImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_AddJoystickImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4824,9 +4743,7 @@ class _$DartCommand_AddJoystickImpl implements DartCommand_AddJoystick {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_AddJoystickImplCopyWith<_$DartCommand_AddJoystickImpl>
@@ -5206,10 +5123,7 @@ abstract class DartCommand_AddJoystick implements DartCommand {
 
   DartRequestKey get key;
   JoystickInfo get info;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_AddJoystickImplCopyWith<_$DartCommand_AddJoystickImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5233,8 +5147,6 @@ class __$$DartCommand_AddTouchpadImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_AddTouchpadImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5281,9 +5193,7 @@ class _$DartCommand_AddTouchpadImpl implements DartCommand_AddTouchpad {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_AddTouchpadImplCopyWith<_$DartCommand_AddTouchpadImpl>
@@ -5663,10 +5573,7 @@ abstract class DartCommand_AddTouchpad implements DartCommand {
 
   DartRequestKey get key;
   TouchpadInfo get info;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_AddTouchpadImplCopyWith<_$DartCommand_AddTouchpadImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5689,8 +5596,6 @@ class __$$DartCommand_AddSliderImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_AddSliderImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5737,9 +5642,7 @@ class _$DartCommand_AddSliderImpl implements DartCommand_AddSlider {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_AddSliderImplCopyWith<_$DartCommand_AddSliderImpl>
@@ -6119,10 +6022,7 @@ abstract class DartCommand_AddSlider implements DartCommand {
 
   DartRequestKey get key;
   SliderInfo get info;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_AddSliderImplCopyWith<_$DartCommand_AddSliderImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6145,8 +6045,6 @@ class __$$DartCommand_AddToggleImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_AddToggleImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6193,9 +6091,7 @@ class _$DartCommand_AddToggleImpl implements DartCommand_AddToggle {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_AddToggleImplCopyWith<_$DartCommand_AddToggleImpl>
@@ -6575,10 +6471,7 @@ abstract class DartCommand_AddToggle implements DartCommand {
 
   DartRequestKey get key;
   ToggleInfo get info;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_AddToggleImplCopyWith<_$DartCommand_AddToggleImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6602,8 +6495,6 @@ class __$$DartCommand_AddRadioButtonImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_AddRadioButtonImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6651,9 +6542,7 @@ class _$DartCommand_AddRadioButtonImpl implements DartCommand_AddRadioButton {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_AddRadioButtonImplCopyWith<_$DartCommand_AddRadioButtonImpl>
@@ -7033,10 +6922,7 @@ abstract class DartCommand_AddRadioButton implements DartCommand {
 
   DartRequestKey get key;
   RadioButtonInfo get info;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_AddRadioButtonImplCopyWith<_$DartCommand_AddRadioButtonImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -7060,8 +6946,6 @@ class __$$DartCommand_AddImageDisplayImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_AddImageDisplayImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7109,9 +6993,7 @@ class _$DartCommand_AddImageDisplayImpl implements DartCommand_AddImageDisplay {
   @override
   int get hashCode => Object.hash(runtimeType, key, info);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_AddImageDisplayImplCopyWith<_$DartCommand_AddImageDisplayImpl>
@@ -7492,10 +7374,7 @@ abstract class DartCommand_AddImageDisplay implements DartCommand {
 
   DartRequestKey get key;
   ImageDisplayInfo get info;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_AddImageDisplayImplCopyWith<_$DartCommand_AddImageDisplayImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -7517,8 +7396,6 @@ class __$$DartCommand_GetTextImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetTextImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7565,9 +7442,7 @@ class _$DartCommand_GetTextImpl implements DartCommand_GetText {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetTextImplCopyWith<_$DartCommand_GetTextImpl> get copyWith =>
@@ -7947,10 +7822,7 @@ abstract class DartCommand_GetText implements DartCommand {
 
   DartRequestKey get key;
   String get id;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetTextImplCopyWith<_$DartCommand_GetTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -7972,8 +7844,6 @@ class __$$DartCommand_SetTextImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_SetTextImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8029,9 +7899,7 @@ class _$DartCommand_SetTextImpl implements DartCommand_SetText {
   @override
   int get hashCode => Object.hash(runtimeType, key, id, value);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_SetTextImplCopyWith<_$DartCommand_SetTextImpl> get copyWith =>
@@ -8413,10 +8281,7 @@ abstract class DartCommand_SetText implements DartCommand {
   DartRequestKey get key;
   String get id;
   String get value;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_SetTextImplCopyWith<_$DartCommand_SetTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -8438,8 +8303,6 @@ class __$$DartCommand_GetLevelImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetLevelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8486,9 +8349,7 @@ class _$DartCommand_GetLevelImpl implements DartCommand_GetLevel {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetLevelImplCopyWith<_$DartCommand_GetLevelImpl>
@@ -8869,10 +8730,7 @@ abstract class DartCommand_GetLevel implements DartCommand {
 
   DartRequestKey get key;
   String get id;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetLevelImplCopyWith<_$DartCommand_GetLevelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -8894,8 +8752,6 @@ class __$$DartCommand_SetLevelImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_SetLevelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8951,9 +8807,7 @@ class _$DartCommand_SetLevelImpl implements DartCommand_SetLevel {
   @override
   int get hashCode => Object.hash(runtimeType, key, id, value);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_SetLevelImplCopyWith<_$DartCommand_SetLevelImpl>
@@ -9336,10 +9190,7 @@ abstract class DartCommand_SetLevel implements DartCommand {
   DartRequestKey get key;
   String get id;
   double get value;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_SetLevelImplCopyWith<_$DartCommand_SetLevelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -9363,8 +9214,6 @@ class __$$DartCommand_GetToggleStateImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetToggleStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9411,9 +9260,7 @@ class _$DartCommand_GetToggleStateImpl implements DartCommand_GetToggleState {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetToggleStateImplCopyWith<_$DartCommand_GetToggleStateImpl>
@@ -9793,10 +9640,7 @@ abstract class DartCommand_GetToggleState implements DartCommand {
 
   DartRequestKey get key;
   String get id;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetToggleStateImplCopyWith<_$DartCommand_GetToggleStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -9820,8 +9664,6 @@ class __$$DartCommand_SetToggleStateImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_SetToggleStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9877,9 +9719,7 @@ class _$DartCommand_SetToggleStateImpl implements DartCommand_SetToggleState {
   @override
   int get hashCode => Object.hash(runtimeType, key, id, value);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_SetToggleStateImplCopyWith<_$DartCommand_SetToggleStateImpl>
@@ -10261,10 +10101,7 @@ abstract class DartCommand_SetToggleState implements DartCommand {
   DartRequestKey get key;
   String get id;
   bool get value;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_SetToggleStateImplCopyWith<_$DartCommand_SetToggleStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -10286,8 +10123,6 @@ class __$$DartCommand_GetImageImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetImageImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10334,9 +10169,7 @@ class _$DartCommand_GetImageImpl implements DartCommand_GetImage {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetImageImplCopyWith<_$DartCommand_GetImageImpl>
@@ -10717,10 +10550,7 @@ abstract class DartCommand_GetImage implements DartCommand {
 
   DartRequestKey get key;
   String get id;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetImageImplCopyWith<_$DartCommand_GetImageImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -10742,8 +10572,6 @@ class __$$DartCommand_SetImageImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_SetImageImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10800,9 +10628,7 @@ class _$DartCommand_SetImageImpl implements DartCommand_SetImage {
   int get hashCode => Object.hash(
       runtimeType, key, id, const DeepCollectionEquality().hash(value));
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_SetImageImplCopyWith<_$DartCommand_SetImageImpl>
@@ -11185,10 +11011,7 @@ abstract class DartCommand_SetImage implements DartCommand {
   DartRequestKey get key;
   String get id;
   Uint8List get value;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_SetImageImplCopyWith<_$DartCommand_SetImageImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -11212,8 +11035,6 @@ class __$$DartCommand_GetPositionImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetPositionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -11260,9 +11081,7 @@ class _$DartCommand_GetPositionImpl implements DartCommand_GetPosition {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetPositionImplCopyWith<_$DartCommand_GetPositionImpl>
@@ -11642,10 +11461,7 @@ abstract class DartCommand_GetPosition implements DartCommand {
 
   DartRequestKey get key;
   String get id;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetPositionImplCopyWith<_$DartCommand_GetPositionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -11668,8 +11484,6 @@ class __$$DartCommand_IsPressedImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_IsPressedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -11716,9 +11530,7 @@ class _$DartCommand_IsPressedImpl implements DartCommand_IsPressed {
   @override
   int get hashCode => Object.hash(runtimeType, key, id);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_IsPressedImplCopyWith<_$DartCommand_IsPressedImpl>
@@ -12098,10 +11910,7 @@ abstract class DartCommand_IsPressed implements DartCommand {
 
   DartRequestKey get key;
   String get id;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_IsPressedImplCopyWith<_$DartCommand_IsPressedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -12125,8 +11934,6 @@ class __$$DartCommand_GetAccelerometerImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetAccelerometerImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -12166,9 +11973,7 @@ class _$DartCommand_GetAccelerometerImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetAccelerometerImplCopyWith<
@@ -12547,10 +12352,7 @@ abstract class DartCommand_GetAccelerometer implements DartCommand {
       {required final DartRequestKey key}) = _$DartCommand_GetAccelerometerImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetAccelerometerImplCopyWith<
           _$DartCommand_GetAccelerometerImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -12576,8 +12378,6 @@ class __$$DartCommand_GetLinearAccelerometerImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetLinearAccelerometerImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -12617,9 +12417,7 @@ class _$DartCommand_GetLinearAccelerometerImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetLinearAccelerometerImplCopyWith<
@@ -12999,10 +12797,7 @@ abstract class DartCommand_GetLinearAccelerometer implements DartCommand {
       _$DartCommand_GetLinearAccelerometerImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetLinearAccelerometerImplCopyWith<
           _$DartCommand_GetLinearAccelerometerImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -13027,8 +12822,6 @@ class __$$DartCommand_GetGyroscopeImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetGyroscopeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -13067,9 +12860,7 @@ class _$DartCommand_GetGyroscopeImpl implements DartCommand_GetGyroscope {
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetGyroscopeImplCopyWith<_$DartCommand_GetGyroscopeImpl>
@@ -13447,10 +13238,7 @@ abstract class DartCommand_GetGyroscope implements DartCommand {
       _$DartCommand_GetGyroscopeImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetGyroscopeImplCopyWith<_$DartCommand_GetGyroscopeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -13474,8 +13262,6 @@ class __$$DartCommand_GetMagnetometerImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetMagnetometerImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -13514,9 +13300,7 @@ class _$DartCommand_GetMagnetometerImpl implements DartCommand_GetMagnetometer {
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetMagnetometerImplCopyWith<_$DartCommand_GetMagnetometerImpl>
@@ -13894,10 +13678,7 @@ abstract class DartCommand_GetMagnetometer implements DartCommand {
       {required final DartRequestKey key}) = _$DartCommand_GetMagnetometerImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetMagnetometerImplCopyWith<_$DartCommand_GetMagnetometerImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -13921,8 +13702,6 @@ class __$$DartCommand_GetGravityImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetGravityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -13961,9 +13740,7 @@ class _$DartCommand_GetGravityImpl implements DartCommand_GetGravity {
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetGravityImplCopyWith<_$DartCommand_GetGravityImpl>
@@ -14341,10 +14118,7 @@ abstract class DartCommand_GetGravity implements DartCommand {
       _$DartCommand_GetGravityImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetGravityImplCopyWith<_$DartCommand_GetGravityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -14368,8 +14142,6 @@ class __$$DartCommand_GetPressureImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetPressureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -14408,9 +14180,7 @@ class _$DartCommand_GetPressureImpl implements DartCommand_GetPressure {
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetPressureImplCopyWith<_$DartCommand_GetPressureImpl>
@@ -14788,10 +14558,7 @@ abstract class DartCommand_GetPressure implements DartCommand {
       _$DartCommand_GetPressureImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetPressureImplCopyWith<_$DartCommand_GetPressureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -14816,8 +14583,6 @@ class __$$DartCommand_GetRelativeHumidityImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetRelativeHumidityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -14857,9 +14622,7 @@ class _$DartCommand_GetRelativeHumidityImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetRelativeHumidityImplCopyWith<
@@ -15239,10 +15002,7 @@ abstract class DartCommand_GetRelativeHumidity implements DartCommand {
       _$DartCommand_GetRelativeHumidityImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetRelativeHumidityImplCopyWith<
           _$DartCommand_GetRelativeHumidityImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -15267,8 +15027,6 @@ class __$$DartCommand_GetLightLevelImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetLightLevelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -15307,9 +15065,7 @@ class _$DartCommand_GetLightLevelImpl implements DartCommand_GetLightLevel {
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetLightLevelImplCopyWith<_$DartCommand_GetLightLevelImpl>
@@ -15687,10 +15443,7 @@ abstract class DartCommand_GetLightLevel implements DartCommand {
       _$DartCommand_GetLightLevelImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetLightLevelImplCopyWith<_$DartCommand_GetLightLevelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -15714,8 +15467,6 @@ class __$$DartCommand_GetTemperatureImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetTemperatureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -15754,9 +15505,7 @@ class _$DartCommand_GetTemperatureImpl implements DartCommand_GetTemperature {
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetTemperatureImplCopyWith<_$DartCommand_GetTemperatureImpl>
@@ -16134,10 +15883,7 @@ abstract class DartCommand_GetTemperature implements DartCommand {
       {required final DartRequestKey key}) = _$DartCommand_GetTemperatureImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetTemperatureImplCopyWith<_$DartCommand_GetTemperatureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -16162,8 +15908,6 @@ class __$$DartCommand_GetFacingDirectionImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetFacingDirectionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -16203,9 +15947,7 @@ class _$DartCommand_GetFacingDirectionImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetFacingDirectionImplCopyWith<
@@ -16585,10 +16327,7 @@ abstract class DartCommand_GetFacingDirection implements DartCommand {
       _$DartCommand_GetFacingDirectionImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetFacingDirectionImplCopyWith<
           _$DartCommand_GetFacingDirectionImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -16613,8 +16352,6 @@ class __$$DartCommand_GetOrientationImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetOrientationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -16653,9 +16390,7 @@ class _$DartCommand_GetOrientationImpl implements DartCommand_GetOrientation {
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetOrientationImplCopyWith<_$DartCommand_GetOrientationImpl>
@@ -17033,10 +16768,7 @@ abstract class DartCommand_GetOrientation implements DartCommand {
       {required final DartRequestKey key}) = _$DartCommand_GetOrientationImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetOrientationImplCopyWith<_$DartCommand_GetOrientationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -17060,8 +16792,6 @@ class __$$DartCommand_GetCompassHeadingImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetCompassHeadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -17101,9 +16831,7 @@ class _$DartCommand_GetCompassHeadingImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetCompassHeadingImplCopyWith<
@@ -17483,10 +17211,7 @@ abstract class DartCommand_GetCompassHeading implements DartCommand {
       _$DartCommand_GetCompassHeadingImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetCompassHeadingImplCopyWith<
           _$DartCommand_GetCompassHeadingImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -17512,8 +17237,6 @@ class __$$DartCommand_GetCompassDirectionImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetCompassDirectionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -17553,9 +17276,7 @@ class _$DartCommand_GetCompassDirectionImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetCompassDirectionImplCopyWith<
@@ -17935,10 +17656,7 @@ abstract class DartCommand_GetCompassDirection implements DartCommand {
       _$DartCommand_GetCompassDirectionImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetCompassDirectionImplCopyWith<
           _$DartCommand_GetCompassDirectionImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -17964,8 +17682,6 @@ class __$$DartCommand_GetCompassCardinalDirectionImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetCompassCardinalDirectionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -18005,9 +17721,7 @@ class _$DartCommand_GetCompassCardinalDirectionImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetCompassCardinalDirectionImplCopyWith<
@@ -18388,10 +18102,7 @@ abstract class DartCommand_GetCompassCardinalDirection implements DartCommand {
       _$DartCommand_GetCompassCardinalDirectionImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetCompassCardinalDirectionImplCopyWith<
           _$DartCommand_GetCompassCardinalDirectionImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -18417,8 +18128,6 @@ class __$$DartCommand_GetLocationLatLongImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetLocationLatLongImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -18458,9 +18167,7 @@ class _$DartCommand_GetLocationLatLongImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetLocationLatLongImplCopyWith<
@@ -18840,10 +18547,7 @@ abstract class DartCommand_GetLocationLatLong implements DartCommand {
       _$DartCommand_GetLocationLatLongImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetLocationLatLongImplCopyWith<
           _$DartCommand_GetLocationLatLongImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -18869,8 +18573,6 @@ class __$$DartCommand_GetLocationHeadingImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetLocationHeadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -18910,9 +18612,7 @@ class _$DartCommand_GetLocationHeadingImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetLocationHeadingImplCopyWith<
@@ -19292,10 +18992,7 @@ abstract class DartCommand_GetLocationHeading implements DartCommand {
       _$DartCommand_GetLocationHeadingImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetLocationHeadingImplCopyWith<
           _$DartCommand_GetLocationHeadingImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -19321,8 +19018,6 @@ class __$$DartCommand_GetLocationAltitudeImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetLocationAltitudeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -19362,9 +19057,7 @@ class _$DartCommand_GetLocationAltitudeImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetLocationAltitudeImplCopyWith<
@@ -19744,10 +19437,7 @@ abstract class DartCommand_GetLocationAltitude implements DartCommand {
       _$DartCommand_GetLocationAltitudeImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetLocationAltitudeImplCopyWith<
           _$DartCommand_GetLocationAltitudeImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -19773,8 +19463,6 @@ class __$$DartCommand_GetMicrophoneLevelImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetMicrophoneLevelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -19814,9 +19502,7 @@ class _$DartCommand_GetMicrophoneLevelImpl
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetMicrophoneLevelImplCopyWith<
@@ -20196,10 +19882,7 @@ abstract class DartCommand_GetMicrophoneLevel implements DartCommand {
       _$DartCommand_GetMicrophoneLevelImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetMicrophoneLevelImplCopyWith<
           _$DartCommand_GetMicrophoneLevelImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -20224,8 +19907,6 @@ class __$$DartCommand_GetProximityImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetProximityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -20264,9 +19945,7 @@ class _$DartCommand_GetProximityImpl implements DartCommand_GetProximity {
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetProximityImplCopyWith<_$DartCommand_GetProximityImpl>
@@ -20644,10 +20323,7 @@ abstract class DartCommand_GetProximity implements DartCommand {
       _$DartCommand_GetProximityImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetProximityImplCopyWith<_$DartCommand_GetProximityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -20671,8 +20347,6 @@ class __$$DartCommand_GetStepCountImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_GetStepCountImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -20711,9 +20385,7 @@ class _$DartCommand_GetStepCountImpl implements DartCommand_GetStepCount {
   @override
   int get hashCode => Object.hash(runtimeType, key);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_GetStepCountImplCopyWith<_$DartCommand_GetStepCountImpl>
@@ -21091,10 +20763,7 @@ abstract class DartCommand_GetStepCount implements DartCommand {
       _$DartCommand_GetStepCountImpl;
 
   DartRequestKey get key;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_GetStepCountImplCopyWith<_$DartCommand_GetStepCountImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -21118,8 +20787,6 @@ class __$$DartCommand_ListenToSensorsImplCopyWithImpl<$Res>
       $Res Function(_$DartCommand_ListenToSensorsImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -21167,9 +20834,7 @@ class _$DartCommand_ListenToSensorsImpl implements DartCommand_ListenToSensors {
   @override
   int get hashCode => Object.hash(runtimeType, key, sensors);
 
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartCommand_ListenToSensorsImplCopyWith<_$DartCommand_ListenToSensorsImpl>
@@ -21550,10 +21215,7 @@ abstract class DartCommand_ListenToSensors implements DartCommand {
 
   DartRequestKey get key;
   SensorUpdateInfo get sensors;
-
-  /// Create a copy of DartCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartCommand_ListenToSensorsImplCopyWith<_$DartCommand_ListenToSensorsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -21640,9 +21302,6 @@ class _$DartValueCopyWithImpl<$Res, $Val extends DartValue>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -21662,8 +21321,6 @@ class __$$DartValue_BoolImplCopyWithImpl<$Res>
       _$DartValue_BoolImpl _value, $Res Function(_$DartValue_BoolImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -21702,9 +21359,7 @@ class _$DartValue_BoolImpl implements DartValue_Bool {
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartValue_BoolImplCopyWith<_$DartValue_BoolImpl> get copyWith =>
@@ -21803,10 +21458,7 @@ abstract class DartValue_Bool implements DartValue {
 
   @override
   bool get field0;
-
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartValue_BoolImplCopyWith<_$DartValue_BoolImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -21828,8 +21480,6 @@ class __$$DartValue_NumberImplCopyWithImpl<$Res>
       $Res Function(_$DartValue_NumberImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -21868,9 +21518,7 @@ class _$DartValue_NumberImpl implements DartValue_Number {
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartValue_NumberImplCopyWith<_$DartValue_NumberImpl> get copyWith =>
@@ -21969,10 +21617,7 @@ abstract class DartValue_Number implements DartValue {
 
   @override
   double get field0;
-
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartValue_NumberImplCopyWith<_$DartValue_NumberImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -21994,8 +21639,6 @@ class __$$DartValue_StringImplCopyWithImpl<$Res>
       $Res Function(_$DartValue_StringImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -22034,9 +21677,7 @@ class _$DartValue_StringImpl implements DartValue_String {
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartValue_StringImplCopyWith<_$DartValue_StringImpl> get copyWith =>
@@ -22135,10 +21776,7 @@ abstract class DartValue_String implements DartValue {
 
   @override
   String get field0;
-
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartValue_StringImplCopyWith<_$DartValue_StringImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -22160,8 +21798,6 @@ class __$$DartValue_ImageImplCopyWithImpl<$Res>
       _$DartValue_ImageImpl _value, $Res Function(_$DartValue_ImageImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -22209,9 +21845,7 @@ class _$DartValue_ImageImpl implements DartValue_Image {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(field0), field1);
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartValue_ImageImplCopyWith<_$DartValue_ImageImpl> get copyWith =>
@@ -22312,10 +21946,7 @@ abstract class DartValue_Image implements DartValue {
   @override
   Uint8List get field0;
   (double, double)? get field1;
-
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartValue_ImageImplCopyWith<_$DartValue_ImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -22337,8 +21968,6 @@ class __$$DartValue_AudioImplCopyWithImpl<$Res>
       _$DartValue_AudioImpl _value, $Res Function(_$DartValue_AudioImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -22378,9 +22007,7 @@ class _$DartValue_AudioImpl implements DartValue_Audio {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(field0));
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartValue_AudioImplCopyWith<_$DartValue_AudioImpl> get copyWith =>
@@ -22479,10 +22106,7 @@ abstract class DartValue_Audio implements DartValue {
 
   @override
   Uint8List get field0;
-
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartValue_AudioImplCopyWith<_$DartValue_AudioImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -22504,8 +22128,6 @@ class __$$DartValue_ListImplCopyWithImpl<$Res>
       _$DartValue_ListImpl _value, $Res Function(_$DartValue_ListImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -22550,9 +22172,7 @@ class _$DartValue_ListImpl implements DartValue_List {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_field0));
 
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DartValue_ListImplCopyWith<_$DartValue_ListImpl> get copyWith =>
@@ -22652,10 +22272,7 @@ abstract class DartValue_List implements DartValue {
 
   @override
   List<DartValue> get field0;
-
-  /// Create a copy of DartValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DartValue_ListImplCopyWith<_$DartValue_ListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -22719,9 +22336,6 @@ class _$RequestResultCopyWithImpl<$Res, $Val extends RequestResult>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of RequestResult
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -22743,8 +22357,6 @@ class __$$RequestResult_OkImplCopyWithImpl<$Res>
       $Res Function(_$RequestResult_OkImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RequestResult
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -22758,8 +22370,6 @@ class __$$RequestResult_OkImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of RequestResult
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DartValueCopyWith<$Res> get field0 {
@@ -22793,9 +22403,7 @@ class _$RequestResult_OkImpl implements RequestResult_Ok {
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  /// Create a copy of RequestResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestResult_OkImplCopyWith<_$RequestResult_OkImpl> get copyWith =>
@@ -22871,10 +22479,7 @@ abstract class RequestResult_Ok implements RequestResult {
 
   @override
   DartValue get field0;
-
-  /// Create a copy of RequestResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RequestResult_OkImplCopyWith<_$RequestResult_OkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -22896,8 +22501,6 @@ class __$$RequestResult_ErrImplCopyWithImpl<$Res>
       $Res Function(_$RequestResult_ErrImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RequestResult
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -22936,9 +22539,7 @@ class _$RequestResult_ErrImpl implements RequestResult_Err {
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  /// Create a copy of RequestResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestResult_ErrImplCopyWith<_$RequestResult_ErrImpl> get copyWith =>
@@ -23014,10 +22615,7 @@ abstract class RequestResult_Err implements RequestResult {
 
   @override
   String get field0;
-
-  /// Create a copy of RequestResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RequestResult_ErrImplCopyWith<_$RequestResult_ErrImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -23101,9 +22699,6 @@ class _$RustCommandCopyWithImpl<$Res, $Val extends RustCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of RustCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -23125,8 +22720,6 @@ class __$$RustCommand_SetProjectImplCopyWithImpl<$Res>
       $Res Function(_$RustCommand_SetProjectImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RustCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -23165,9 +22758,7 @@ class _$RustCommand_SetProjectImpl implements RustCommand_SetProject {
   @override
   int get hashCode => Object.hash(runtimeType, xml);
 
-  /// Create a copy of RustCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RustCommand_SetProjectImplCopyWith<_$RustCommand_SetProjectImpl>
@@ -23263,10 +22854,7 @@ abstract class RustCommand_SetProject implements RustCommand {
       _$RustCommand_SetProjectImpl;
 
   String get xml;
-
-  /// Create a copy of RustCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RustCommand_SetProjectImplCopyWith<_$RustCommand_SetProjectImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -23285,9 +22873,6 @@ class __$$RustCommand_StartImplCopyWithImpl<$Res>
   __$$RustCommand_StartImplCopyWithImpl(_$RustCommand_StartImpl _value,
       $Res Function(_$RustCommand_StartImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of RustCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -23411,9 +22996,6 @@ class __$$RustCommand_StopImplCopyWithImpl<$Res>
   __$$RustCommand_StopImplCopyWithImpl(_$RustCommand_StopImpl _value,
       $Res Function(_$RustCommand_StopImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of RustCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -23539,9 +23121,6 @@ class __$$RustCommand_TogglePausedImplCopyWithImpl<$Res>
       _$RustCommand_TogglePausedImpl _value,
       $Res Function(_$RustCommand_TogglePausedImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of RustCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -23671,8 +23250,6 @@ class __$$RustCommand_InjectMessageImplCopyWithImpl<$Res>
       $Res Function(_$RustCommand_InjectMessageImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RustCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -23727,9 +23304,7 @@ class _$RustCommand_InjectMessageImpl implements RustCommand_InjectMessage {
   int get hashCode => Object.hash(
       runtimeType, msgType, const DeepCollectionEquality().hash(_values));
 
-  /// Create a copy of RustCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RustCommand_InjectMessageImplCopyWith<_$RustCommand_InjectMessageImpl>
@@ -23828,10 +23403,7 @@ abstract class RustCommand_InjectMessage implements RustCommand {
 
   String get msgType;
   List<(String, DartValue)> get values;
-
-  /// Create a copy of RustCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RustCommand_InjectMessageImplCopyWith<_$RustCommand_InjectMessageImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

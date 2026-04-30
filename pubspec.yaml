@@ -50,7 +50,7 @@ dependencies:
   url_launcher: ^6.2.1
 
   # sensor stuff
-  geolocator: ^9.0.2
+  geolocator: ^14.0.2
   motion_sensors: ^0.1.0
   environment_sensors: ^0.3.0
 
