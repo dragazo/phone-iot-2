@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
+        "androideabi",
         "ARGB",
+        "armv",
         "barcodes",
         "Datagram",
         "Deque",
@@ -14,6 +16,7 @@
         "Pressable",
         "Rgba",
         "Rootable",
+        "rustflags",
         "sublist",
         "Touchpad",
         "unfocus",
