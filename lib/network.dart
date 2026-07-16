@@ -39,11 +39,11 @@ class SchedulerEntry {
   int lastUpdateMs;
   int updateIntervalMs;
 
-  SchedulerEntry.fromMs(double ms) : lastUpdateMs = 0, updateIntervalMs = ms.toInt() - timingEpsilon;
+  SchedulerEntry.fromMs(double ms) : lastUpdateMs = 0, updateIntervalMs = ms.toInt();
   static SchedulerEntry? maybeFromMs(double? ms) => ms != null ? SchedulerEntry.fromMs(ms) : null;
 
   bool advance(int nowMs) {
-    if (nowMs - lastUpdateMs < updateIntervalMs) return false;
+    if (nowMs - lastUpdateMs < updateIntervalMs - timingEpsilon) return false;
     lastUpdateMs = nowMs;
     return true;
   }
