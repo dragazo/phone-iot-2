@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMotionUsageDescription</key>
+	<string>Motion sensor access is needed for you to access the accelerometer and gyroscope sensors</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera access is needed for you to take photos and save them into an ImageDisplay</string>
 	<key>NSPhotoLibraryUsageDescription</key>
