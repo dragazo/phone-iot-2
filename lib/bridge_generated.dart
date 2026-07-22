@@ -8,8 +8,14 @@ import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge.dart';
 import 'package:uuid/uuid.dart';
-import 'bridge_generated.io.dart'
-    if (dart.library.html) 'bridge_generated.web.dart';
+
+import 'dart:convert';
+import 'dart:async';
+import 'package:meta/meta.dart';
+import 'package:flutter_rust_bridge/flutter_rust_bridge.dart';
+import 'package:uuid/uuid.dart';
+
+import 'dart:ffi' as ffi;
 
 class NativeImpl implements Native {
   final NativePlatform _platform;
@@ -138,6 +144,10 @@ class NativeImpl implements Native {
 
   ButtonInfo _wire2api_box_autoadd_button_info(dynamic raw) {
     return _wire2api_button_info(raw);
+  }
+
+  ColorInfo _wire2api_box_autoadd_color_info(dynamic raw) {
+    return _wire2api_color_info(raw);
   }
 
   DartCommandKey _wire2api_box_autoadd_dart_command_key(dynamic raw) {
@@ -309,129 +319,136 @@ class NativeImpl implements Native {
           value: _wire2api_String(raw[3]),
         );
       case 17:
+        return DartCommand_SetColor(
+          key: _wire2api_box_autoadd_dart_request_key(raw[1]),
+          id: _wire2api_String(raw[2]),
+          primary: _wire2api_box_autoadd_color_info(raw[3]),
+          secondary: _wire2api_box_autoadd_color_info(raw[4]),
+        );
+      case 18:
         return DartCommand_GetLevel(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 18:
+      case 19:
         return DartCommand_SetLevel(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_f64(raw[3]),
         );
-      case 19:
+      case 20:
         return DartCommand_GetToggleState(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 20:
+      case 21:
         return DartCommand_SetToggleState(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_bool(raw[3]),
         );
-      case 21:
+      case 22:
         return DartCommand_GetImage(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 22:
+      case 23:
         return DartCommand_SetImage(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
           value: _wire2api_uint_8_list(raw[3]),
         );
-      case 23:
+      case 24:
         return DartCommand_GetPosition(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 24:
+      case 25:
         return DartCommand_IsPressed(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           id: _wire2api_String(raw[2]),
         );
-      case 25:
+      case 26:
         return DartCommand_GetAccelerometer(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 26:
+      case 27:
         return DartCommand_GetLinearAccelerometer(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 27:
+      case 28:
         return DartCommand_GetGyroscope(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 28:
+      case 29:
         return DartCommand_GetMagnetometer(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 29:
+      case 30:
         return DartCommand_GetGravity(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 30:
+      case 31:
         return DartCommand_GetPressure(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 31:
+      case 32:
         return DartCommand_GetRelativeHumidity(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 32:
+      case 33:
         return DartCommand_GetLightLevel(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 33:
+      case 34:
         return DartCommand_GetTemperature(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 34:
+      case 35:
         return DartCommand_GetFacingDirection(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 35:
+      case 36:
         return DartCommand_GetOrientation(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 36:
+      case 37:
         return DartCommand_GetCompassHeading(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 37:
+      case 38:
         return DartCommand_GetCompassDirection(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 38:
+      case 39:
         return DartCommand_GetCompassCardinalDirection(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 39:
+      case 40:
         return DartCommand_GetLocationLatLong(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 40:
+      case 41:
         return DartCommand_GetLocationHeading(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 41:
+      case 42:
         return DartCommand_GetLocationAltitude(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 42:
+      case 43:
         return DartCommand_GetMicrophoneLevel(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 43:
+      case 44:
         return DartCommand_GetProximity(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 44:
+      case 45:
         return DartCommand_GetStepCount(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
         );
-      case 45:
+      case 46:
         return DartCommand_ListenToSensors(
           key: _wire2api_box_autoadd_dart_request_key(raw[1]),
           sensors: _wire2api_box_autoadd_sensor_update_info(raw[2]),
@@ -709,3 +726,867 @@ int api2wire_usize(int raw) {
   return raw;
 }
 // Section: finalizer
+
+class NativePlatform extends FlutterRustBridgeBase<NativeWire> {
+  NativePlatform(ffi.DynamicLibrary dylib) : super(NativeWire(dylib));
+
+// Section: api2wire
+
+  @protected
+  ffi.Pointer<wire_uint_8_list> api2wire_String(String raw) {
+    return api2wire_uint_8_list(utf8.encoder.convert(raw));
+  }
+
+  @protected
+  ffi.Pointer<wire___record__f64_f64> api2wire_box_autoadd___record__f64_f64(
+      (double, double) raw) {
+    final ptr = inner.new_box_autoadd___record__f64_f64_0();
+    _api_fill_to_wire___record__f64_f64(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_CommandResult> api2wire_box_autoadd_command_result(
+      CommandResult raw) {
+    final ptr = inner.new_box_autoadd_command_result_0();
+    _api_fill_to_wire_command_result(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_DartCommandKey> api2wire_box_autoadd_dart_command_key(
+      DartCommandKey raw) {
+    final ptr = inner.new_box_autoadd_dart_command_key_0();
+    _api_fill_to_wire_dart_command_key(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_DartRequestKey> api2wire_box_autoadd_dart_request_key(
+      DartRequestKey raw) {
+    final ptr = inner.new_box_autoadd_dart_request_key_0();
+    _api_fill_to_wire_dart_request_key(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_DartValue> api2wire_box_autoadd_dart_value(DartValue raw) {
+    final ptr = inner.new_box_autoadd_dart_value_0();
+    _api_fill_to_wire_dart_value(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_RequestResult> api2wire_box_autoadd_request_result(
+      RequestResult raw) {
+    final ptr = inner.new_box_autoadd_request_result_0();
+    _api_fill_to_wire_request_result(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_RustCommand> api2wire_box_autoadd_rust_command(
+      RustCommand raw) {
+    final ptr = inner.new_box_autoadd_rust_command_0();
+    _api_fill_to_wire_rust_command(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_list___record__String_dart_value>
+      api2wire_list___record__String_dart_value(List<(String, DartValue)> raw) {
+    final ans = inner.new_list___record__String_dart_value_0(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      _api_fill_to_wire___record__String_dart_value(raw[i], ans.ref.ptr[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_list_dart_value> api2wire_list_dart_value(
+      List<DartValue> raw) {
+    final ans = inner.new_list_dart_value_0(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      _api_fill_to_wire_dart_value(raw[i], ans.ref.ptr[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire___record__f64_f64>
+      api2wire_opt_box_autoadd___record__f64_f64((double, double)? raw) {
+    return raw == null
+        ? ffi.nullptr
+        : api2wire_box_autoadd___record__f64_f64(raw);
+  }
+
+  @protected
+  ffi.Pointer<wire_uint_8_list> api2wire_uint_8_list(Uint8List raw) {
+    final ans = inner.new_uint_8_list_0(raw.length);
+    ans.ref.ptr.asTypedList(raw.length).setAll(0, raw);
+    return ans;
+  }
+
+// Section: finalizer
+
+// Section: api_fill_to_wire
+
+  void _api_fill_to_wire___record__String_dart_value(
+      (String, DartValue) apiObj, wire___record__String_dart_value wireObj) {
+    wireObj.field0 = api2wire_String(apiObj.$1);
+    _api_fill_to_wire_dart_value(apiObj.$2, wireObj.field1);
+  }
+
+  void _api_fill_to_wire___record__f64_f64(
+      (double, double) apiObj, wire___record__f64_f64 wireObj) {
+    wireObj.field0 = api2wire_f64(apiObj.$1);
+    wireObj.field1 = api2wire_f64(apiObj.$2);
+  }
+
+  void _api_fill_to_wire_box_autoadd___record__f64_f64(
+      (double, double) apiObj, ffi.Pointer<wire___record__f64_f64> wireObj) {
+    _api_fill_to_wire___record__f64_f64(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_autoadd_command_result(
+      CommandResult apiObj, ffi.Pointer<wire_CommandResult> wireObj) {
+    _api_fill_to_wire_command_result(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_autoadd_dart_command_key(
+      DartCommandKey apiObj, ffi.Pointer<wire_DartCommandKey> wireObj) {
+    _api_fill_to_wire_dart_command_key(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_autoadd_dart_request_key(
+      DartRequestKey apiObj, ffi.Pointer<wire_DartRequestKey> wireObj) {
+    _api_fill_to_wire_dart_request_key(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_autoadd_dart_value(
+      DartValue apiObj, ffi.Pointer<wire_DartValue> wireObj) {
+    _api_fill_to_wire_dart_value(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_autoadd_request_result(
+      RequestResult apiObj, ffi.Pointer<wire_RequestResult> wireObj) {
+    _api_fill_to_wire_request_result(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_autoadd_rust_command(
+      RustCommand apiObj, ffi.Pointer<wire_RustCommand> wireObj) {
+    _api_fill_to_wire_rust_command(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_command_result(
+      CommandResult apiObj, wire_CommandResult wireObj) {
+    if (apiObj is CommandResult_Ok) {
+      wireObj.tag = 0;
+      return;
+    }
+    if (apiObj is CommandResult_Err) {
+      var pre_field0 = api2wire_String(apiObj.field0);
+      wireObj.tag = 1;
+      wireObj.kind = inner.inflate_CommandResult_Err();
+      wireObj.kind.ref.Err.ref.field0 = pre_field0;
+      return;
+    }
+  }
+
+  void _api_fill_to_wire_dart_command_key(
+      DartCommandKey apiObj, wire_DartCommandKey wireObj) {
+    wireObj.value = api2wire_usize(apiObj.value);
+  }
+
+  void _api_fill_to_wire_dart_request_key(
+      DartRequestKey apiObj, wire_DartRequestKey wireObj) {
+    wireObj.value = api2wire_usize(apiObj.value);
+  }
+
+  void _api_fill_to_wire_dart_value(DartValue apiObj, wire_DartValue wireObj) {
+    if (apiObj is DartValue_Bool) {
+      var pre_field0 = api2wire_bool(apiObj.field0);
+      wireObj.tag = 0;
+      wireObj.kind = inner.inflate_DartValue_Bool();
+      wireObj.kind.ref.Bool.ref.field0 = pre_field0;
+      return;
+    }
+    if (apiObj is DartValue_Number) {
+      var pre_field0 = api2wire_f64(apiObj.field0);
+      wireObj.tag = 1;
+      wireObj.kind = inner.inflate_DartValue_Number();
+      wireObj.kind.ref.Number.ref.field0 = pre_field0;
+      return;
+    }
+    if (apiObj is DartValue_String) {
+      var pre_field0 = api2wire_String(apiObj.field0);
+      wireObj.tag = 2;
+      wireObj.kind = inner.inflate_DartValue_String();
+      wireObj.kind.ref.String.ref.field0 = pre_field0;
+      return;
+    }
+    if (apiObj is DartValue_Image) {
+      var pre_field0 = api2wire_uint_8_list(apiObj.field0);
+      var pre_field1 =
+          api2wire_opt_box_autoadd___record__f64_f64(apiObj.field1);
+      wireObj.tag = 3;
+      wireObj.kind = inner.inflate_DartValue_Image();
+      wireObj.kind.ref.Image.ref.field0 = pre_field0;
+      wireObj.kind.ref.Image.ref.field1 = pre_field1;
+      return;
+    }
+    if (apiObj is DartValue_Audio) {
+      var pre_field0 = api2wire_uint_8_list(apiObj.field0);
+      wireObj.tag = 4;
+      wireObj.kind = inner.inflate_DartValue_Audio();
+      wireObj.kind.ref.Audio.ref.field0 = pre_field0;
+      return;
+    }
+    if (apiObj is DartValue_List) {
+      var pre_field0 = api2wire_list_dart_value(apiObj.field0);
+      wireObj.tag = 5;
+      wireObj.kind = inner.inflate_DartValue_List();
+      wireObj.kind.ref.List.ref.field0 = pre_field0;
+      return;
+    }
+  }
+
+  void _api_fill_to_wire_request_result(
+      RequestResult apiObj, wire_RequestResult wireObj) {
+    if (apiObj is RequestResult_Ok) {
+      var pre_field0 = api2wire_box_autoadd_dart_value(apiObj.field0);
+      wireObj.tag = 0;
+      wireObj.kind = inner.inflate_RequestResult_Ok();
+      wireObj.kind.ref.Ok.ref.field0 = pre_field0;
+      return;
+    }
+    if (apiObj is RequestResult_Err) {
+      var pre_field0 = api2wire_String(apiObj.field0);
+      wireObj.tag = 1;
+      wireObj.kind = inner.inflate_RequestResult_Err();
+      wireObj.kind.ref.Err.ref.field0 = pre_field0;
+      return;
+    }
+  }
+
+  void _api_fill_to_wire_rust_command(
+      RustCommand apiObj, wire_RustCommand wireObj) {
+    if (apiObj is RustCommand_SetProject) {
+      var pre_xml = api2wire_String(apiObj.xml);
+      wireObj.tag = 0;
+      wireObj.kind = inner.inflate_RustCommand_SetProject();
+      wireObj.kind.ref.SetProject.ref.xml = pre_xml;
+      return;
+    }
+    if (apiObj is RustCommand_Start) {
+      wireObj.tag = 1;
+      return;
+    }
+    if (apiObj is RustCommand_Stop) {
+      wireObj.tag = 2;
+      return;
+    }
+    if (apiObj is RustCommand_TogglePaused) {
+      wireObj.tag = 3;
+      return;
+    }
+    if (apiObj is RustCommand_InjectMessage) {
+      var pre_msg_type = api2wire_String(apiObj.msgType);
+      var pre_values = api2wire_list___record__String_dart_value(apiObj.values);
+      wireObj.tag = 4;
+      wireObj.kind = inner.inflate_RustCommand_InjectMessage();
+      wireObj.kind.ref.InjectMessage.ref.msg_type = pre_msg_type;
+      wireObj.kind.ref.InjectMessage.ref.values = pre_values;
+      return;
+    }
+  }
+}
+
+// ignore_for_file: camel_case_types, non_constant_identifier_names, avoid_positional_boolean_parameters, annotate_overrides, constant_identifier_names
+
+// AUTO GENERATED FILE, DO NOT EDIT.
+//
+// Generated by `package:ffigen`.
+// ignore_for_file: type=lint
+
+/// generated by flutter_rust_bridge
+class NativeWire implements FlutterRustBridgeWireBase {
+  @internal
+  late final dartApi = DartApiDl(init_frb_dart_api_dl);
+
+  /// Holds the symbol lookup function.
+  final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
+      _lookup;
+
+  /// The symbols are looked up in [dynamicLibrary].
+  NativeWire(ffi.DynamicLibrary dynamicLibrary)
+      : _lookup = dynamicLibrary.lookup;
+
+  /// The symbols are looked up with [lookup].
+  NativeWire.fromLookup(
+    ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) lookup,
+  ) : _lookup = lookup;
+
+  void store_dart_post_cobject(DartPostCObjectFnType ptr) {
+    return _store_dart_post_cobject(ptr);
+  }
+
+  late final _store_dart_post_cobjectPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(DartPostCObjectFnType)>>(
+    'store_dart_post_cobject',
+  );
+  late final _store_dart_post_cobject = _store_dart_post_cobjectPtr
+      .asFunction<void Function(DartPostCObjectFnType)>();
+
+  Object get_dart_object(int ptr) {
+    return _get_dart_object(ptr);
+  }
+
+  late final _get_dart_objectPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.UintPtr)>>(
+    'get_dart_object',
+  );
+  late final _get_dart_object =
+      _get_dart_objectPtr.asFunction<Object Function(int)>();
+
+  void drop_dart_object(int ptr) {
+    return _drop_dart_object(ptr);
+  }
+
+  late final _drop_dart_objectPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UintPtr)>>(
+    'drop_dart_object',
+  );
+  late final _drop_dart_object =
+      _drop_dart_objectPtr.asFunction<void Function(int)>();
+
+  int new_dart_opaque(Object handle) {
+    return _new_dart_opaque(handle);
+  }
+
+  late final _new_dart_opaquePtr =
+      _lookup<ffi.NativeFunction<ffi.UintPtr Function(ffi.Handle)>>(
+    'new_dart_opaque',
+  );
+  late final _new_dart_opaque =
+      _new_dart_opaquePtr.asFunction<int Function(Object)>();
+
+  int init_frb_dart_api_dl(ffi.Pointer<ffi.Void> obj) {
+    return _init_frb_dart_api_dl(obj);
+  }
+
+  late final _init_frb_dart_api_dlPtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.Pointer<ffi.Void>)>>(
+    'init_frb_dart_api_dl',
+  );
+  late final _init_frb_dart_api_dl = _init_frb_dart_api_dlPtr
+      .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
+
+  void wire_initialize(
+    int port_,
+    ffi.Pointer<wire_uint_8_list> device_id,
+    int utc_offset_in_seconds,
+  ) {
+    return _wire_initialize(port_, device_id, utc_offset_in_seconds);
+  }
+
+  late final _wire_initializePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Int64, ffi.Pointer<wire_uint_8_list>,
+              ffi.Int32)>>('wire_initialize');
+  late final _wire_initialize = _wire_initializePtr
+      .asFunction<void Function(int, ffi.Pointer<wire_uint_8_list>, int)>();
+
+  void wire_send_command(int port_, ffi.Pointer<wire_RustCommand> cmd) {
+    return _wire_send_command(port_, cmd);
+  }
+
+  late final _wire_send_commandPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Int64, ffi.Pointer<wire_RustCommand>)>>('wire_send_command');
+  late final _wire_send_command = _wire_send_commandPtr
+      .asFunction<void Function(int, ffi.Pointer<wire_RustCommand>)>();
+
+  void wire_recv_commands(int port_) {
+    return _wire_recv_commands(port_);
+  }
+
+  late final _wire_recv_commandsPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+    'wire_recv_commands',
+  );
+  late final _wire_recv_commands =
+      _wire_recv_commandsPtr.asFunction<void Function(int)>();
+
+  void wire_complete_request(
+    int port_,
+    ffi.Pointer<wire_DartRequestKey> key,
+    ffi.Pointer<wire_RequestResult> result,
+  ) {
+    return _wire_complete_request(port_, key, result);
+  }
+
+  late final _wire_complete_requestPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+            ffi.Int64,
+            ffi.Pointer<wire_DartRequestKey>,
+            ffi.Pointer<wire_RequestResult>,
+          )>>('wire_complete_request');
+  late final _wire_complete_request = _wire_complete_requestPtr.asFunction<
+      void Function(
+        int,
+        ffi.Pointer<wire_DartRequestKey>,
+        ffi.Pointer<wire_RequestResult>,
+      )>();
+
+  void wire_complete_command(
+    int port_,
+    ffi.Pointer<wire_DartCommandKey> key,
+    ffi.Pointer<wire_CommandResult> result,
+  ) {
+    return _wire_complete_command(port_, key, result);
+  }
+
+  late final _wire_complete_commandPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+            ffi.Int64,
+            ffi.Pointer<wire_DartCommandKey>,
+            ffi.Pointer<wire_CommandResult>,
+          )>>('wire_complete_command');
+  late final _wire_complete_command = _wire_complete_commandPtr.asFunction<
+      void Function(
+        int,
+        ffi.Pointer<wire_DartCommandKey>,
+        ffi.Pointer<wire_CommandResult>,
+      )>();
+
+  ffi.Pointer<wire___record__f64_f64> new_box_autoadd___record__f64_f64_0() {
+    return _new_box_autoadd___record__f64_f64_0();
+  }
+
+  late final _new_box_autoadd___record__f64_f64_0Ptr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<wire___record__f64_f64> Function()>>(
+      'new_box_autoadd___record__f64_f64_0');
+  late final _new_box_autoadd___record__f64_f64_0 =
+      _new_box_autoadd___record__f64_f64_0Ptr
+          .asFunction<ffi.Pointer<wire___record__f64_f64> Function()>();
+
+  ffi.Pointer<wire_CommandResult> new_box_autoadd_command_result_0() {
+    return _new_box_autoadd_command_result_0();
+  }
+
+  late final _new_box_autoadd_command_result_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_CommandResult> Function()>>(
+    'new_box_autoadd_command_result_0',
+  );
+  late final _new_box_autoadd_command_result_0 =
+      _new_box_autoadd_command_result_0Ptr
+          .asFunction<ffi.Pointer<wire_CommandResult> Function()>();
+
+  ffi.Pointer<wire_DartCommandKey> new_box_autoadd_dart_command_key_0() {
+    return _new_box_autoadd_dart_command_key_0();
+  }
+
+  late final _new_box_autoadd_dart_command_key_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_DartCommandKey> Function()>>(
+    'new_box_autoadd_dart_command_key_0',
+  );
+  late final _new_box_autoadd_dart_command_key_0 =
+      _new_box_autoadd_dart_command_key_0Ptr
+          .asFunction<ffi.Pointer<wire_DartCommandKey> Function()>();
+
+  ffi.Pointer<wire_DartRequestKey> new_box_autoadd_dart_request_key_0() {
+    return _new_box_autoadd_dart_request_key_0();
+  }
+
+  late final _new_box_autoadd_dart_request_key_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_DartRequestKey> Function()>>(
+    'new_box_autoadd_dart_request_key_0',
+  );
+  late final _new_box_autoadd_dart_request_key_0 =
+      _new_box_autoadd_dart_request_key_0Ptr
+          .asFunction<ffi.Pointer<wire_DartRequestKey> Function()>();
+
+  ffi.Pointer<wire_DartValue> new_box_autoadd_dart_value_0() {
+    return _new_box_autoadd_dart_value_0();
+  }
+
+  late final _new_box_autoadd_dart_value_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_DartValue> Function()>>(
+    'new_box_autoadd_dart_value_0',
+  );
+  late final _new_box_autoadd_dart_value_0 = _new_box_autoadd_dart_value_0Ptr
+      .asFunction<ffi.Pointer<wire_DartValue> Function()>();
+
+  ffi.Pointer<wire_RequestResult> new_box_autoadd_request_result_0() {
+    return _new_box_autoadd_request_result_0();
+  }
+
+  late final _new_box_autoadd_request_result_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_RequestResult> Function()>>(
+    'new_box_autoadd_request_result_0',
+  );
+  late final _new_box_autoadd_request_result_0 =
+      _new_box_autoadd_request_result_0Ptr
+          .asFunction<ffi.Pointer<wire_RequestResult> Function()>();
+
+  ffi.Pointer<wire_RustCommand> new_box_autoadd_rust_command_0() {
+    return _new_box_autoadd_rust_command_0();
+  }
+
+  late final _new_box_autoadd_rust_command_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_RustCommand> Function()>>(
+    'new_box_autoadd_rust_command_0',
+  );
+  late final _new_box_autoadd_rust_command_0 =
+      _new_box_autoadd_rust_command_0Ptr
+          .asFunction<ffi.Pointer<wire_RustCommand> Function()>();
+
+  ffi.Pointer<wire_list___record__String_dart_value>
+      new_list___record__String_dart_value_0(int len) {
+    return _new_list___record__String_dart_value_0(len);
+  }
+
+  late final _new_list___record__String_dart_value_0Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_list___record__String_dart_value> Function(
+              ffi.Int32)>>('new_list___record__String_dart_value_0');
+  late final _new_list___record__String_dart_value_0 =
+      _new_list___record__String_dart_value_0Ptr.asFunction<
+          ffi.Pointer<wire_list___record__String_dart_value> Function(int)>();
+
+  ffi.Pointer<wire_list_dart_value> new_list_dart_value_0(int len) {
+    return _new_list_dart_value_0(len);
+  }
+
+  late final _new_list_dart_value_0Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_list_dart_value> Function(
+              ffi.Int32)>>('new_list_dart_value_0');
+  late final _new_list_dart_value_0 = _new_list_dart_value_0Ptr
+      .asFunction<ffi.Pointer<wire_list_dart_value> Function(int)>();
+
+  ffi.Pointer<wire_uint_8_list> new_uint_8_list_0(int len) {
+    return _new_uint_8_list_0(len);
+  }
+
+  late final _new_uint_8_list_0Ptr = _lookup<
+          ffi
+          .NativeFunction<ffi.Pointer<wire_uint_8_list> Function(ffi.Int32)>>(
+      'new_uint_8_list_0');
+  late final _new_uint_8_list_0 = _new_uint_8_list_0Ptr
+      .asFunction<ffi.Pointer<wire_uint_8_list> Function(int)>();
+
+  ffi.Pointer<CommandResultKind> inflate_CommandResult_Err() {
+    return _inflate_CommandResult_Err();
+  }
+
+  late final _inflate_CommandResult_ErrPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<CommandResultKind> Function()>>(
+    'inflate_CommandResult_Err',
+  );
+  late final _inflate_CommandResult_Err = _inflate_CommandResult_ErrPtr
+      .asFunction<ffi.Pointer<CommandResultKind> Function()>();
+
+  ffi.Pointer<DartValueKind> inflate_DartValue_Bool() {
+    return _inflate_DartValue_Bool();
+  }
+
+  late final _inflate_DartValue_BoolPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<DartValueKind> Function()>>(
+    'inflate_DartValue_Bool',
+  );
+  late final _inflate_DartValue_Bool = _inflate_DartValue_BoolPtr
+      .asFunction<ffi.Pointer<DartValueKind> Function()>();
+
+  ffi.Pointer<DartValueKind> inflate_DartValue_Number() {
+    return _inflate_DartValue_Number();
+  }
+
+  late final _inflate_DartValue_NumberPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<DartValueKind> Function()>>(
+    'inflate_DartValue_Number',
+  );
+  late final _inflate_DartValue_Number = _inflate_DartValue_NumberPtr
+      .asFunction<ffi.Pointer<DartValueKind> Function()>();
+
+  ffi.Pointer<DartValueKind> inflate_DartValue_String() {
+    return _inflate_DartValue_String();
+  }
+
+  late final _inflate_DartValue_StringPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<DartValueKind> Function()>>(
+    'inflate_DartValue_String',
+  );
+  late final _inflate_DartValue_String = _inflate_DartValue_StringPtr
+      .asFunction<ffi.Pointer<DartValueKind> Function()>();
+
+  ffi.Pointer<DartValueKind> inflate_DartValue_Image() {
+    return _inflate_DartValue_Image();
+  }
+
+  late final _inflate_DartValue_ImagePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<DartValueKind> Function()>>(
+    'inflate_DartValue_Image',
+  );
+  late final _inflate_DartValue_Image = _inflate_DartValue_ImagePtr
+      .asFunction<ffi.Pointer<DartValueKind> Function()>();
+
+  ffi.Pointer<DartValueKind> inflate_DartValue_Audio() {
+    return _inflate_DartValue_Audio();
+  }
+
+  late final _inflate_DartValue_AudioPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<DartValueKind> Function()>>(
+    'inflate_DartValue_Audio',
+  );
+  late final _inflate_DartValue_Audio = _inflate_DartValue_AudioPtr
+      .asFunction<ffi.Pointer<DartValueKind> Function()>();
+
+  ffi.Pointer<DartValueKind> inflate_DartValue_List() {
+    return _inflate_DartValue_List();
+  }
+
+  late final _inflate_DartValue_ListPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<DartValueKind> Function()>>(
+    'inflate_DartValue_List',
+  );
+  late final _inflate_DartValue_List = _inflate_DartValue_ListPtr
+      .asFunction<ffi.Pointer<DartValueKind> Function()>();
+
+  ffi.Pointer<RequestResultKind> inflate_RequestResult_Ok() {
+    return _inflate_RequestResult_Ok();
+  }
+
+  late final _inflate_RequestResult_OkPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<RequestResultKind> Function()>>(
+    'inflate_RequestResult_Ok',
+  );
+  late final _inflate_RequestResult_Ok = _inflate_RequestResult_OkPtr
+      .asFunction<ffi.Pointer<RequestResultKind> Function()>();
+
+  ffi.Pointer<RequestResultKind> inflate_RequestResult_Err() {
+    return _inflate_RequestResult_Err();
+  }
+
+  late final _inflate_RequestResult_ErrPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<RequestResultKind> Function()>>(
+    'inflate_RequestResult_Err',
+  );
+  late final _inflate_RequestResult_Err = _inflate_RequestResult_ErrPtr
+      .asFunction<ffi.Pointer<RequestResultKind> Function()>();
+
+  ffi.Pointer<RustCommandKind> inflate_RustCommand_SetProject() {
+    return _inflate_RustCommand_SetProject();
+  }
+
+  late final _inflate_RustCommand_SetProjectPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<RustCommandKind> Function()>>(
+    'inflate_RustCommand_SetProject',
+  );
+  late final _inflate_RustCommand_SetProject =
+      _inflate_RustCommand_SetProjectPtr
+          .asFunction<ffi.Pointer<RustCommandKind> Function()>();
+
+  ffi.Pointer<RustCommandKind> inflate_RustCommand_InjectMessage() {
+    return _inflate_RustCommand_InjectMessage();
+  }
+
+  late final _inflate_RustCommand_InjectMessagePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<RustCommandKind> Function()>>(
+    'inflate_RustCommand_InjectMessage',
+  );
+  late final _inflate_RustCommand_InjectMessage =
+      _inflate_RustCommand_InjectMessagePtr
+          .asFunction<ffi.Pointer<RustCommandKind> Function()>();
+
+  void free_WireSyncReturn(WireSyncReturn ptr) {
+    return _free_WireSyncReturn(ptr);
+  }
+
+  late final _free_WireSyncReturnPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(WireSyncReturn)>>(
+    'free_WireSyncReturn',
+  );
+  late final _free_WireSyncReturn =
+      _free_WireSyncReturnPtr.asFunction<void Function(WireSyncReturn)>();
+}
+
+final class _Dart_Handle extends ffi.Opaque {}
+
+final class wire_uint_8_list extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint8> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_RustCommand_SetProject extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> xml;
+}
+
+final class wire_RustCommand_Start extends ffi.Opaque {}
+
+final class wire_RustCommand_Stop extends ffi.Opaque {}
+
+final class wire_RustCommand_TogglePaused extends ffi.Opaque {}
+
+final class wire_DartValue_Bool extends ffi.Struct {
+  @ffi.Bool()
+  external bool field0;
+}
+
+final class wire_DartValue_Number extends ffi.Struct {
+  @ffi.Double()
+  external double field0;
+}
+
+final class wire_DartValue_String extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+}
+
+final class wire___record__f64_f64 extends ffi.Struct {
+  @ffi.Double()
+  external double field0;
+
+  @ffi.Double()
+  external double field1;
+}
+
+final class wire_DartValue_Image extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+
+  external ffi.Pointer<wire___record__f64_f64> field1;
+}
+
+final class wire_DartValue_Audio extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+}
+
+final class wire_list_dart_value extends ffi.Struct {
+  external ffi.Pointer<wire_DartValue> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_DartValue extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external ffi.Pointer<DartValueKind> kind;
+}
+
+final class DartValueKind extends ffi.Union {
+  external ffi.Pointer<wire_DartValue_Bool> Bool;
+
+  external ffi.Pointer<wire_DartValue_Number> Number;
+
+  external ffi.Pointer<wire_DartValue_String> String;
+
+  external ffi.Pointer<wire_DartValue_Image> Image;
+
+  external ffi.Pointer<wire_DartValue_Audio> Audio;
+
+  external ffi.Pointer<wire_DartValue_List> List;
+}
+
+final class wire_DartValue_List extends ffi.Struct {
+  external ffi.Pointer<wire_list_dart_value> field0;
+}
+
+final class wire___record__String_dart_value extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+
+  external wire_DartValue field1;
+}
+
+final class wire_list___record__String_dart_value extends ffi.Struct {
+  external ffi.Pointer<wire___record__String_dart_value> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_RustCommand_InjectMessage extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> msg_type;
+
+  external ffi.Pointer<wire_list___record__String_dart_value> values;
+}
+
+final class RustCommandKind extends ffi.Union {
+  external ffi.Pointer<wire_RustCommand_SetProject> SetProject;
+
+  external ffi.Pointer<wire_RustCommand_Start> Start;
+
+  external ffi.Pointer<wire_RustCommand_Stop> Stop;
+
+  external ffi.Pointer<wire_RustCommand_TogglePaused> TogglePaused;
+
+  external ffi.Pointer<wire_RustCommand_InjectMessage> InjectMessage;
+}
+
+final class wire_RustCommand extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external ffi.Pointer<RustCommandKind> kind;
+}
+
+final class wire_DartRequestKey extends ffi.Struct {
+  @ffi.UintPtr()
+  external int value;
+}
+
+final class wire_RequestResult_Ok extends ffi.Struct {
+  external ffi.Pointer<wire_DartValue> field0;
+}
+
+final class wire_RequestResult_Err extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+}
+
+final class RequestResultKind extends ffi.Union {
+  external ffi.Pointer<wire_RequestResult_Ok> Ok;
+
+  external ffi.Pointer<wire_RequestResult_Err> Err;
+}
+
+final class wire_RequestResult extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external ffi.Pointer<RequestResultKind> kind;
+}
+
+final class wire_DartCommandKey extends ffi.Struct {
+  @ffi.UintPtr()
+  external int value;
+}
+
+final class wire_CommandResult_Ok extends ffi.Opaque {}
+
+final class wire_CommandResult_Err extends ffi.Struct {
+  external ffi.Pointer<wire_uint_8_list> field0;
+}
+
+final class CommandResultKind extends ffi.Union {
+  external ffi.Pointer<wire_CommandResult_Ok> Ok;
+
+  external ffi.Pointer<wire_CommandResult_Err> Err;
+}
+
+final class wire_CommandResult extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external ffi.Pointer<CommandResultKind> kind;
+}
+
+typedef DartPostCObjectFnType = ffi.Pointer<
+    ffi.NativeFunction<
+        ffi.Bool Function(DartPort port_id, ffi.Pointer<ffi.Void> message)>>;
+typedef DartPort = ffi.Int64;

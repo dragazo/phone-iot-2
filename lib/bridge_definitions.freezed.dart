@@ -338,6 +338,9 @@ mixin _$DartCommand {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -393,6 +396,9 @@ mixin _$DartCommand {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -446,6 +452,9 @@ mixin _$DartCommand {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -499,6 +508,7 @@ mixin _$DartCommand {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -562,6 +572,7 @@ mixin _$DartCommand {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -617,6 +628,7 @@ mixin _$DartCommand {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -764,6 +776,9 @@ class _$DartCommand_UpdatePausedImpl implements DartCommand_UpdatePaused {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -822,6 +837,9 @@ class _$DartCommand_UpdatePausedImpl implements DartCommand_UpdatePaused {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -878,6 +896,9 @@ class _$DartCommand_UpdatePausedImpl implements DartCommand_UpdatePaused {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -937,6 +958,7 @@ class _$DartCommand_UpdatePausedImpl implements DartCommand_UpdatePaused {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -1003,6 +1025,7 @@ class _$DartCommand_UpdatePausedImpl implements DartCommand_UpdatePaused {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -1061,6 +1084,7 @@ class _$DartCommand_UpdatePausedImpl implements DartCommand_UpdatePaused {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -1202,6 +1226,9 @@ class _$DartCommand_StdoutImpl implements DartCommand_Stdout {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -1260,6 +1287,9 @@ class _$DartCommand_StdoutImpl implements DartCommand_Stdout {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -1316,6 +1346,9 @@ class _$DartCommand_StdoutImpl implements DartCommand_Stdout {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -1375,6 +1408,7 @@ class _$DartCommand_StdoutImpl implements DartCommand_Stdout {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -1441,6 +1475,7 @@ class _$DartCommand_StdoutImpl implements DartCommand_Stdout {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -1499,6 +1534,7 @@ class _$DartCommand_StdoutImpl implements DartCommand_Stdout {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -1640,6 +1676,9 @@ class _$DartCommand_StderrImpl implements DartCommand_Stderr {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -1698,6 +1737,9 @@ class _$DartCommand_StderrImpl implements DartCommand_Stderr {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -1754,6 +1796,9 @@ class _$DartCommand_StderrImpl implements DartCommand_Stderr {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -1813,6 +1858,7 @@ class _$DartCommand_StderrImpl implements DartCommand_Stderr {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -1879,6 +1925,7 @@ class _$DartCommand_StderrImpl implements DartCommand_Stderr {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -1937,6 +1984,7 @@ class _$DartCommand_StderrImpl implements DartCommand_Stderr {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -2088,6 +2136,9 @@ class _$DartCommand_PlaySoundImpl implements DartCommand_PlaySound {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -2146,6 +2197,9 @@ class _$DartCommand_PlaySoundImpl implements DartCommand_PlaySound {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -2202,6 +2256,9 @@ class _$DartCommand_PlaySoundImpl implements DartCommand_PlaySound {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -2261,6 +2318,7 @@ class _$DartCommand_PlaySoundImpl implements DartCommand_PlaySound {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -2327,6 +2385,7 @@ class _$DartCommand_PlaySoundImpl implements DartCommand_PlaySound {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -2385,6 +2444,7 @@ class _$DartCommand_PlaySoundImpl implements DartCommand_PlaySound {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -2530,6 +2590,9 @@ class _$DartCommand_ClearControlsImpl implements DartCommand_ClearControls {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -2588,6 +2651,9 @@ class _$DartCommand_ClearControlsImpl implements DartCommand_ClearControls {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -2644,6 +2710,9 @@ class _$DartCommand_ClearControlsImpl implements DartCommand_ClearControls {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -2703,6 +2772,7 @@ class _$DartCommand_ClearControlsImpl implements DartCommand_ClearControls {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -2769,6 +2839,7 @@ class _$DartCommand_ClearControlsImpl implements DartCommand_ClearControls {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -2827,6 +2898,7 @@ class _$DartCommand_ClearControlsImpl implements DartCommand_ClearControls {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -2978,6 +3050,9 @@ class _$DartCommand_RemoveControlImpl implements DartCommand_RemoveControl {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -3036,6 +3111,9 @@ class _$DartCommand_RemoveControlImpl implements DartCommand_RemoveControl {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -3092,6 +3170,9 @@ class _$DartCommand_RemoveControlImpl implements DartCommand_RemoveControl {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -3151,6 +3232,7 @@ class _$DartCommand_RemoveControlImpl implements DartCommand_RemoveControl {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -3217,6 +3299,7 @@ class _$DartCommand_RemoveControlImpl implements DartCommand_RemoveControl {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -3275,6 +3358,7 @@ class _$DartCommand_RemoveControlImpl implements DartCommand_RemoveControl {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -3427,6 +3511,9 @@ class _$DartCommand_AddLabelImpl implements DartCommand_AddLabel {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -3485,6 +3572,9 @@ class _$DartCommand_AddLabelImpl implements DartCommand_AddLabel {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -3541,6 +3631,9 @@ class _$DartCommand_AddLabelImpl implements DartCommand_AddLabel {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -3600,6 +3693,7 @@ class _$DartCommand_AddLabelImpl implements DartCommand_AddLabel {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -3666,6 +3760,7 @@ class _$DartCommand_AddLabelImpl implements DartCommand_AddLabel {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -3724,6 +3819,7 @@ class _$DartCommand_AddLabelImpl implements DartCommand_AddLabel {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -3876,6 +3972,9 @@ class _$DartCommand_AddButtonImpl implements DartCommand_AddButton {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -3934,6 +4033,9 @@ class _$DartCommand_AddButtonImpl implements DartCommand_AddButton {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -3990,6 +4092,9 @@ class _$DartCommand_AddButtonImpl implements DartCommand_AddButton {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -4049,6 +4154,7 @@ class _$DartCommand_AddButtonImpl implements DartCommand_AddButton {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -4115,6 +4221,7 @@ class _$DartCommand_AddButtonImpl implements DartCommand_AddButton {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -4173,6 +4280,7 @@ class _$DartCommand_AddButtonImpl implements DartCommand_AddButton {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -4326,6 +4434,9 @@ class _$DartCommand_AddTextFieldImpl implements DartCommand_AddTextField {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -4384,6 +4495,9 @@ class _$DartCommand_AddTextFieldImpl implements DartCommand_AddTextField {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -4440,6 +4554,9 @@ class _$DartCommand_AddTextFieldImpl implements DartCommand_AddTextField {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -4499,6 +4616,7 @@ class _$DartCommand_AddTextFieldImpl implements DartCommand_AddTextField {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -4565,6 +4683,7 @@ class _$DartCommand_AddTextFieldImpl implements DartCommand_AddTextField {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -4623,6 +4742,7 @@ class _$DartCommand_AddTextFieldImpl implements DartCommand_AddTextField {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -4776,6 +4896,9 @@ class _$DartCommand_AddJoystickImpl implements DartCommand_AddJoystick {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -4834,6 +4957,9 @@ class _$DartCommand_AddJoystickImpl implements DartCommand_AddJoystick {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -4890,6 +5016,9 @@ class _$DartCommand_AddJoystickImpl implements DartCommand_AddJoystick {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -4949,6 +5078,7 @@ class _$DartCommand_AddJoystickImpl implements DartCommand_AddJoystick {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -5015,6 +5145,7 @@ class _$DartCommand_AddJoystickImpl implements DartCommand_AddJoystick {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -5073,6 +5204,7 @@ class _$DartCommand_AddJoystickImpl implements DartCommand_AddJoystick {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -5226,6 +5358,9 @@ class _$DartCommand_AddTouchpadImpl implements DartCommand_AddTouchpad {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -5284,6 +5419,9 @@ class _$DartCommand_AddTouchpadImpl implements DartCommand_AddTouchpad {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -5340,6 +5478,9 @@ class _$DartCommand_AddTouchpadImpl implements DartCommand_AddTouchpad {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -5399,6 +5540,7 @@ class _$DartCommand_AddTouchpadImpl implements DartCommand_AddTouchpad {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -5465,6 +5607,7 @@ class _$DartCommand_AddTouchpadImpl implements DartCommand_AddTouchpad {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -5523,6 +5666,7 @@ class _$DartCommand_AddTouchpadImpl implements DartCommand_AddTouchpad {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -5675,6 +5819,9 @@ class _$DartCommand_AddSliderImpl implements DartCommand_AddSlider {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -5733,6 +5880,9 @@ class _$DartCommand_AddSliderImpl implements DartCommand_AddSlider {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -5789,6 +5939,9 @@ class _$DartCommand_AddSliderImpl implements DartCommand_AddSlider {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -5848,6 +6001,7 @@ class _$DartCommand_AddSliderImpl implements DartCommand_AddSlider {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -5914,6 +6068,7 @@ class _$DartCommand_AddSliderImpl implements DartCommand_AddSlider {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -5972,6 +6127,7 @@ class _$DartCommand_AddSliderImpl implements DartCommand_AddSlider {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -6124,6 +6280,9 @@ class _$DartCommand_AddToggleImpl implements DartCommand_AddToggle {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -6182,6 +6341,9 @@ class _$DartCommand_AddToggleImpl implements DartCommand_AddToggle {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -6238,6 +6400,9 @@ class _$DartCommand_AddToggleImpl implements DartCommand_AddToggle {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -6297,6 +6462,7 @@ class _$DartCommand_AddToggleImpl implements DartCommand_AddToggle {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -6363,6 +6529,7 @@ class _$DartCommand_AddToggleImpl implements DartCommand_AddToggle {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -6421,6 +6588,7 @@ class _$DartCommand_AddToggleImpl implements DartCommand_AddToggle {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -6575,6 +6743,9 @@ class _$DartCommand_AddRadioButtonImpl implements DartCommand_AddRadioButton {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -6633,6 +6804,9 @@ class _$DartCommand_AddRadioButtonImpl implements DartCommand_AddRadioButton {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -6689,6 +6863,9 @@ class _$DartCommand_AddRadioButtonImpl implements DartCommand_AddRadioButton {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -6748,6 +6925,7 @@ class _$DartCommand_AddRadioButtonImpl implements DartCommand_AddRadioButton {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -6814,6 +6992,7 @@ class _$DartCommand_AddRadioButtonImpl implements DartCommand_AddRadioButton {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -6872,6 +7051,7 @@ class _$DartCommand_AddRadioButtonImpl implements DartCommand_AddRadioButton {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -7026,6 +7206,9 @@ class _$DartCommand_AddImageDisplayImpl implements DartCommand_AddImageDisplay {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -7084,6 +7267,9 @@ class _$DartCommand_AddImageDisplayImpl implements DartCommand_AddImageDisplay {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -7140,6 +7326,9 @@ class _$DartCommand_AddImageDisplayImpl implements DartCommand_AddImageDisplay {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -7199,6 +7388,7 @@ class _$DartCommand_AddImageDisplayImpl implements DartCommand_AddImageDisplay {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -7265,6 +7455,7 @@ class _$DartCommand_AddImageDisplayImpl implements DartCommand_AddImageDisplay {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -7323,6 +7514,7 @@ class _$DartCommand_AddImageDisplayImpl implements DartCommand_AddImageDisplay {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -7475,6 +7667,9 @@ class _$DartCommand_GetTextImpl implements DartCommand_GetText {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -7533,6 +7728,9 @@ class _$DartCommand_GetTextImpl implements DartCommand_GetText {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -7589,6 +7787,9 @@ class _$DartCommand_GetTextImpl implements DartCommand_GetText {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -7648,6 +7849,7 @@ class _$DartCommand_GetTextImpl implements DartCommand_GetText {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -7714,6 +7916,7 @@ class _$DartCommand_GetTextImpl implements DartCommand_GetText {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -7772,6 +7975,7 @@ class _$DartCommand_GetTextImpl implements DartCommand_GetText {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -7932,6 +8136,9 @@ class _$DartCommand_SetTextImpl implements DartCommand_SetText {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -7990,6 +8197,9 @@ class _$DartCommand_SetTextImpl implements DartCommand_SetText {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -8046,6 +8256,9 @@ class _$DartCommand_SetTextImpl implements DartCommand_SetText {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -8105,6 +8318,7 @@ class _$DartCommand_SetTextImpl implements DartCommand_SetText {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -8171,6 +8385,7 @@ class _$DartCommand_SetTextImpl implements DartCommand_SetText {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -8229,6 +8444,7 @@ class _$DartCommand_SetTextImpl implements DartCommand_SetText {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -8284,6 +8500,493 @@ abstract class DartCommand_SetText implements DartCommand {
   @JsonKey(ignore: true)
   _$$DartCommand_SetTextImplCopyWith<_$DartCommand_SetTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DartCommand_SetColorImplCopyWith<$Res> {
+  factory _$$DartCommand_SetColorImplCopyWith(_$DartCommand_SetColorImpl value,
+          $Res Function(_$DartCommand_SetColorImpl) then) =
+      __$$DartCommand_SetColorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {DartRequestKey key, String id, ColorInfo primary, ColorInfo secondary});
+}
+
+/// @nodoc
+class __$$DartCommand_SetColorImplCopyWithImpl<$Res>
+    extends _$DartCommandCopyWithImpl<$Res, _$DartCommand_SetColorImpl>
+    implements _$$DartCommand_SetColorImplCopyWith<$Res> {
+  __$$DartCommand_SetColorImplCopyWithImpl(_$DartCommand_SetColorImpl _value,
+      $Res Function(_$DartCommand_SetColorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+    Object? id = null,
+    Object? primary = null,
+    Object? secondary = null,
+  }) {
+    return _then(_$DartCommand_SetColorImpl(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as DartRequestKey,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      primary: null == primary
+          ? _value.primary
+          : primary // ignore: cast_nullable_to_non_nullable
+              as ColorInfo,
+      secondary: null == secondary
+          ? _value.secondary
+          : secondary // ignore: cast_nullable_to_non_nullable
+              as ColorInfo,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DartCommand_SetColorImpl implements DartCommand_SetColor {
+  const _$DartCommand_SetColorImpl(
+      {required this.key,
+      required this.id,
+      required this.primary,
+      required this.secondary});
+
+  @override
+  final DartRequestKey key;
+  @override
+  final String id;
+  @override
+  final ColorInfo primary;
+  @override
+  final ColorInfo secondary;
+
+  @override
+  String toString() {
+    return 'DartCommand.setColor(key: $key, id: $id, primary: $primary, secondary: $secondary)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DartCommand_SetColorImpl &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.primary, primary) || other.primary == primary) &&
+            (identical(other.secondary, secondary) ||
+                other.secondary == secondary));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key, id, primary, secondary);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DartCommand_SetColorImplCopyWith<_$DartCommand_SetColorImpl>
+      get copyWith =>
+          __$$DartCommand_SetColorImplCopyWithImpl<_$DartCommand_SetColorImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool value) updatePaused,
+    required TResult Function(String msg) stdout,
+    required TResult Function(String msg) stderr,
+    required TResult Function(DartCommandKey? key, Uint8List content) playSound,
+    required TResult Function(DartRequestKey key) clearControls,
+    required TResult Function(DartRequestKey key, String id) removeControl,
+    required TResult Function(DartRequestKey key, LabelInfo info) addLabel,
+    required TResult Function(DartRequestKey key, ButtonInfo info) addButton,
+    required TResult Function(DartRequestKey key, TextFieldInfo info)
+        addTextField,
+    required TResult Function(DartRequestKey key, JoystickInfo info)
+        addJoystick,
+    required TResult Function(DartRequestKey key, TouchpadInfo info)
+        addTouchpad,
+    required TResult Function(DartRequestKey key, SliderInfo info) addSlider,
+    required TResult Function(DartRequestKey key, ToggleInfo info) addToggle,
+    required TResult Function(DartRequestKey key, RadioButtonInfo info)
+        addRadioButton,
+    required TResult Function(DartRequestKey key, ImageDisplayInfo info)
+        addImageDisplay,
+    required TResult Function(DartRequestKey key, String id) getText,
+    required TResult Function(DartRequestKey key, String id, String value)
+        setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
+    required TResult Function(DartRequestKey key, String id) getLevel,
+    required TResult Function(DartRequestKey key, String id, double value)
+        setLevel,
+    required TResult Function(DartRequestKey key, String id) getToggleState,
+    required TResult Function(DartRequestKey key, String id, bool value)
+        setToggleState,
+    required TResult Function(DartRequestKey key, String id) getImage,
+    required TResult Function(DartRequestKey key, String id, Uint8List value)
+        setImage,
+    required TResult Function(DartRequestKey key, String id) getPosition,
+    required TResult Function(DartRequestKey key, String id) isPressed,
+    required TResult Function(DartRequestKey key) getAccelerometer,
+    required TResult Function(DartRequestKey key) getLinearAccelerometer,
+    required TResult Function(DartRequestKey key) getGyroscope,
+    required TResult Function(DartRequestKey key) getMagnetometer,
+    required TResult Function(DartRequestKey key) getGravity,
+    required TResult Function(DartRequestKey key) getPressure,
+    required TResult Function(DartRequestKey key) getRelativeHumidity,
+    required TResult Function(DartRequestKey key) getLightLevel,
+    required TResult Function(DartRequestKey key) getTemperature,
+    required TResult Function(DartRequestKey key) getFacingDirection,
+    required TResult Function(DartRequestKey key) getOrientation,
+    required TResult Function(DartRequestKey key) getCompassHeading,
+    required TResult Function(DartRequestKey key) getCompassDirection,
+    required TResult Function(DartRequestKey key) getCompassCardinalDirection,
+    required TResult Function(DartRequestKey key) getLocationLatLong,
+    required TResult Function(DartRequestKey key) getLocationHeading,
+    required TResult Function(DartRequestKey key) getLocationAltitude,
+    required TResult Function(DartRequestKey key) getMicrophoneLevel,
+    required TResult Function(DartRequestKey key) getProximity,
+    required TResult Function(DartRequestKey key) getStepCount,
+    required TResult Function(DartRequestKey key, SensorUpdateInfo sensors)
+        listenToSensors,
+  }) {
+    return setColor(key, id, primary, secondary);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool value)? updatePaused,
+    TResult? Function(String msg)? stdout,
+    TResult? Function(String msg)? stderr,
+    TResult? Function(DartCommandKey? key, Uint8List content)? playSound,
+    TResult? Function(DartRequestKey key)? clearControls,
+    TResult? Function(DartRequestKey key, String id)? removeControl,
+    TResult? Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult? Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult? Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult? Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult? Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult? Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult? Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult? Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
+    TResult? Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult? Function(DartRequestKey key, String id)? getText,
+    TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
+    TResult? Function(DartRequestKey key, String id)? getLevel,
+    TResult? Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult? Function(DartRequestKey key, String id)? getToggleState,
+    TResult? Function(DartRequestKey key, String id, bool value)?
+        setToggleState,
+    TResult? Function(DartRequestKey key, String id)? getImage,
+    TResult? Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult? Function(DartRequestKey key, String id)? getPosition,
+    TResult? Function(DartRequestKey key, String id)? isPressed,
+    TResult? Function(DartRequestKey key)? getAccelerometer,
+    TResult? Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult? Function(DartRequestKey key)? getGyroscope,
+    TResult? Function(DartRequestKey key)? getMagnetometer,
+    TResult? Function(DartRequestKey key)? getGravity,
+    TResult? Function(DartRequestKey key)? getPressure,
+    TResult? Function(DartRequestKey key)? getRelativeHumidity,
+    TResult? Function(DartRequestKey key)? getLightLevel,
+    TResult? Function(DartRequestKey key)? getTemperature,
+    TResult? Function(DartRequestKey key)? getFacingDirection,
+    TResult? Function(DartRequestKey key)? getOrientation,
+    TResult? Function(DartRequestKey key)? getCompassHeading,
+    TResult? Function(DartRequestKey key)? getCompassDirection,
+    TResult? Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult? Function(DartRequestKey key)? getLocationLatLong,
+    TResult? Function(DartRequestKey key)? getLocationHeading,
+    TResult? Function(DartRequestKey key)? getLocationAltitude,
+    TResult? Function(DartRequestKey key)? getMicrophoneLevel,
+    TResult? Function(DartRequestKey key)? getProximity,
+    TResult? Function(DartRequestKey key)? getStepCount,
+    TResult? Function(DartRequestKey key, SensorUpdateInfo sensors)?
+        listenToSensors,
+  }) {
+    return setColor?.call(key, id, primary, secondary);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool value)? updatePaused,
+    TResult Function(String msg)? stdout,
+    TResult Function(String msg)? stderr,
+    TResult Function(DartCommandKey? key, Uint8List content)? playSound,
+    TResult Function(DartRequestKey key)? clearControls,
+    TResult Function(DartRequestKey key, String id)? removeControl,
+    TResult Function(DartRequestKey key, LabelInfo info)? addLabel,
+    TResult Function(DartRequestKey key, ButtonInfo info)? addButton,
+    TResult Function(DartRequestKey key, TextFieldInfo info)? addTextField,
+    TResult Function(DartRequestKey key, JoystickInfo info)? addJoystick,
+    TResult Function(DartRequestKey key, TouchpadInfo info)? addTouchpad,
+    TResult Function(DartRequestKey key, SliderInfo info)? addSlider,
+    TResult Function(DartRequestKey key, ToggleInfo info)? addToggle,
+    TResult Function(DartRequestKey key, RadioButtonInfo info)? addRadioButton,
+    TResult Function(DartRequestKey key, ImageDisplayInfo info)?
+        addImageDisplay,
+    TResult Function(DartRequestKey key, String id)? getText,
+    TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
+    TResult Function(DartRequestKey key, String id)? getLevel,
+    TResult Function(DartRequestKey key, String id, double value)? setLevel,
+    TResult Function(DartRequestKey key, String id)? getToggleState,
+    TResult Function(DartRequestKey key, String id, bool value)? setToggleState,
+    TResult Function(DartRequestKey key, String id)? getImage,
+    TResult Function(DartRequestKey key, String id, Uint8List value)? setImage,
+    TResult Function(DartRequestKey key, String id)? getPosition,
+    TResult Function(DartRequestKey key, String id)? isPressed,
+    TResult Function(DartRequestKey key)? getAccelerometer,
+    TResult Function(DartRequestKey key)? getLinearAccelerometer,
+    TResult Function(DartRequestKey key)? getGyroscope,
+    TResult Function(DartRequestKey key)? getMagnetometer,
+    TResult Function(DartRequestKey key)? getGravity,
+    TResult Function(DartRequestKey key)? getPressure,
+    TResult Function(DartRequestKey key)? getRelativeHumidity,
+    TResult Function(DartRequestKey key)? getLightLevel,
+    TResult Function(DartRequestKey key)? getTemperature,
+    TResult Function(DartRequestKey key)? getFacingDirection,
+    TResult Function(DartRequestKey key)? getOrientation,
+    TResult Function(DartRequestKey key)? getCompassHeading,
+    TResult Function(DartRequestKey key)? getCompassDirection,
+    TResult Function(DartRequestKey key)? getCompassCardinalDirection,
+    TResult Function(DartRequestKey key)? getLocationLatLong,
+    TResult Function(DartRequestKey key)? getLocationHeading,
+    TResult Function(DartRequestKey key)? getLocationAltitude,
+    TResult Function(DartRequestKey key)? getMicrophoneLevel,
+    TResult Function(DartRequestKey key)? getProximity,
+    TResult Function(DartRequestKey key)? getStepCount,
+    TResult Function(DartRequestKey key, SensorUpdateInfo sensors)?
+        listenToSensors,
+    required TResult orElse(),
+  }) {
+    if (setColor != null) {
+      return setColor(key, id, primary, secondary);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartCommand_UpdatePaused value) updatePaused,
+    required TResult Function(DartCommand_Stdout value) stdout,
+    required TResult Function(DartCommand_Stderr value) stderr,
+    required TResult Function(DartCommand_PlaySound value) playSound,
+    required TResult Function(DartCommand_ClearControls value) clearControls,
+    required TResult Function(DartCommand_RemoveControl value) removeControl,
+    required TResult Function(DartCommand_AddLabel value) addLabel,
+    required TResult Function(DartCommand_AddButton value) addButton,
+    required TResult Function(DartCommand_AddTextField value) addTextField,
+    required TResult Function(DartCommand_AddJoystick value) addJoystick,
+    required TResult Function(DartCommand_AddTouchpad value) addTouchpad,
+    required TResult Function(DartCommand_AddSlider value) addSlider,
+    required TResult Function(DartCommand_AddToggle value) addToggle,
+    required TResult Function(DartCommand_AddRadioButton value) addRadioButton,
+    required TResult Function(DartCommand_AddImageDisplay value)
+        addImageDisplay,
+    required TResult Function(DartCommand_GetText value) getText,
+    required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
+    required TResult Function(DartCommand_GetLevel value) getLevel,
+    required TResult Function(DartCommand_SetLevel value) setLevel,
+    required TResult Function(DartCommand_GetToggleState value) getToggleState,
+    required TResult Function(DartCommand_SetToggleState value) setToggleState,
+    required TResult Function(DartCommand_GetImage value) getImage,
+    required TResult Function(DartCommand_SetImage value) setImage,
+    required TResult Function(DartCommand_GetPosition value) getPosition,
+    required TResult Function(DartCommand_IsPressed value) isPressed,
+    required TResult Function(DartCommand_GetAccelerometer value)
+        getAccelerometer,
+    required TResult Function(DartCommand_GetLinearAccelerometer value)
+        getLinearAccelerometer,
+    required TResult Function(DartCommand_GetGyroscope value) getGyroscope,
+    required TResult Function(DartCommand_GetMagnetometer value)
+        getMagnetometer,
+    required TResult Function(DartCommand_GetGravity value) getGravity,
+    required TResult Function(DartCommand_GetPressure value) getPressure,
+    required TResult Function(DartCommand_GetRelativeHumidity value)
+        getRelativeHumidity,
+    required TResult Function(DartCommand_GetLightLevel value) getLightLevel,
+    required TResult Function(DartCommand_GetTemperature value) getTemperature,
+    required TResult Function(DartCommand_GetFacingDirection value)
+        getFacingDirection,
+    required TResult Function(DartCommand_GetOrientation value) getOrientation,
+    required TResult Function(DartCommand_GetCompassHeading value)
+        getCompassHeading,
+    required TResult Function(DartCommand_GetCompassDirection value)
+        getCompassDirection,
+    required TResult Function(DartCommand_GetCompassCardinalDirection value)
+        getCompassCardinalDirection,
+    required TResult Function(DartCommand_GetLocationLatLong value)
+        getLocationLatLong,
+    required TResult Function(DartCommand_GetLocationHeading value)
+        getLocationHeading,
+    required TResult Function(DartCommand_GetLocationAltitude value)
+        getLocationAltitude,
+    required TResult Function(DartCommand_GetMicrophoneLevel value)
+        getMicrophoneLevel,
+    required TResult Function(DartCommand_GetProximity value) getProximity,
+    required TResult Function(DartCommand_GetStepCount value) getStepCount,
+    required TResult Function(DartCommand_ListenToSensors value)
+        listenToSensors,
+  }) {
+    return setColor(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DartCommand_UpdatePaused value)? updatePaused,
+    TResult? Function(DartCommand_Stdout value)? stdout,
+    TResult? Function(DartCommand_Stderr value)? stderr,
+    TResult? Function(DartCommand_PlaySound value)? playSound,
+    TResult? Function(DartCommand_ClearControls value)? clearControls,
+    TResult? Function(DartCommand_RemoveControl value)? removeControl,
+    TResult? Function(DartCommand_AddLabel value)? addLabel,
+    TResult? Function(DartCommand_AddButton value)? addButton,
+    TResult? Function(DartCommand_AddTextField value)? addTextField,
+    TResult? Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult? Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult? Function(DartCommand_AddSlider value)? addSlider,
+    TResult? Function(DartCommand_AddToggle value)? addToggle,
+    TResult? Function(DartCommand_AddRadioButton value)? addRadioButton,
+    TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult? Function(DartCommand_GetText value)? getText,
+    TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
+    TResult? Function(DartCommand_GetLevel value)? getLevel,
+    TResult? Function(DartCommand_SetLevel value)? setLevel,
+    TResult? Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult? Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult? Function(DartCommand_GetImage value)? getImage,
+    TResult? Function(DartCommand_SetImage value)? setImage,
+    TResult? Function(DartCommand_GetPosition value)? getPosition,
+    TResult? Function(DartCommand_IsPressed value)? isPressed,
+    TResult? Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult? Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult? Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult? Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult? Function(DartCommand_GetGravity value)? getGravity,
+    TResult? Function(DartCommand_GetPressure value)? getPressure,
+    TResult? Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult? Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult? Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult? Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult? Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult? Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult? Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult? Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult? Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult? Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult? Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+    TResult? Function(DartCommand_GetMicrophoneLevel value)? getMicrophoneLevel,
+    TResult? Function(DartCommand_GetProximity value)? getProximity,
+    TResult? Function(DartCommand_GetStepCount value)? getStepCount,
+    TResult? Function(DartCommand_ListenToSensors value)? listenToSensors,
+  }) {
+    return setColor?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartCommand_UpdatePaused value)? updatePaused,
+    TResult Function(DartCommand_Stdout value)? stdout,
+    TResult Function(DartCommand_Stderr value)? stderr,
+    TResult Function(DartCommand_PlaySound value)? playSound,
+    TResult Function(DartCommand_ClearControls value)? clearControls,
+    TResult Function(DartCommand_RemoveControl value)? removeControl,
+    TResult Function(DartCommand_AddLabel value)? addLabel,
+    TResult Function(DartCommand_AddButton value)? addButton,
+    TResult Function(DartCommand_AddTextField value)? addTextField,
+    TResult Function(DartCommand_AddJoystick value)? addJoystick,
+    TResult Function(DartCommand_AddTouchpad value)? addTouchpad,
+    TResult Function(DartCommand_AddSlider value)? addSlider,
+    TResult Function(DartCommand_AddToggle value)? addToggle,
+    TResult Function(DartCommand_AddRadioButton value)? addRadioButton,
+    TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
+    TResult Function(DartCommand_GetText value)? getText,
+    TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
+    TResult Function(DartCommand_GetLevel value)? getLevel,
+    TResult Function(DartCommand_SetLevel value)? setLevel,
+    TResult Function(DartCommand_GetToggleState value)? getToggleState,
+    TResult Function(DartCommand_SetToggleState value)? setToggleState,
+    TResult Function(DartCommand_GetImage value)? getImage,
+    TResult Function(DartCommand_SetImage value)? setImage,
+    TResult Function(DartCommand_GetPosition value)? getPosition,
+    TResult Function(DartCommand_IsPressed value)? isPressed,
+    TResult Function(DartCommand_GetAccelerometer value)? getAccelerometer,
+    TResult Function(DartCommand_GetLinearAccelerometer value)?
+        getLinearAccelerometer,
+    TResult Function(DartCommand_GetGyroscope value)? getGyroscope,
+    TResult Function(DartCommand_GetMagnetometer value)? getMagnetometer,
+    TResult Function(DartCommand_GetGravity value)? getGravity,
+    TResult Function(DartCommand_GetPressure value)? getPressure,
+    TResult Function(DartCommand_GetRelativeHumidity value)?
+        getRelativeHumidity,
+    TResult Function(DartCommand_GetLightLevel value)? getLightLevel,
+    TResult Function(DartCommand_GetTemperature value)? getTemperature,
+    TResult Function(DartCommand_GetFacingDirection value)? getFacingDirection,
+    TResult Function(DartCommand_GetOrientation value)? getOrientation,
+    TResult Function(DartCommand_GetCompassHeading value)? getCompassHeading,
+    TResult Function(DartCommand_GetCompassDirection value)?
+        getCompassDirection,
+    TResult Function(DartCommand_GetCompassCardinalDirection value)?
+        getCompassCardinalDirection,
+    TResult Function(DartCommand_GetLocationLatLong value)? getLocationLatLong,
+    TResult Function(DartCommand_GetLocationHeading value)? getLocationHeading,
+    TResult Function(DartCommand_GetLocationAltitude value)?
+        getLocationAltitude,
+    TResult Function(DartCommand_GetMicrophoneLevel value)? getMicrophoneLevel,
+    TResult Function(DartCommand_GetProximity value)? getProximity,
+    TResult Function(DartCommand_GetStepCount value)? getStepCount,
+    TResult Function(DartCommand_ListenToSensors value)? listenToSensors,
+    required TResult orElse(),
+  }) {
+    if (setColor != null) {
+      return setColor(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DartCommand_SetColor implements DartCommand {
+  const factory DartCommand_SetColor(
+      {required final DartRequestKey key,
+      required final String id,
+      required final ColorInfo primary,
+      required final ColorInfo secondary}) = _$DartCommand_SetColorImpl;
+
+  DartRequestKey get key;
+  String get id;
+  ColorInfo get primary;
+  ColorInfo get secondary;
+  @JsonKey(ignore: true)
+  _$$DartCommand_SetColorImplCopyWith<_$DartCommand_SetColorImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -8383,6 +9086,9 @@ class _$DartCommand_GetLevelImpl implements DartCommand_GetLevel {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -8441,6 +9147,9 @@ class _$DartCommand_GetLevelImpl implements DartCommand_GetLevel {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -8497,6 +9206,9 @@ class _$DartCommand_GetLevelImpl implements DartCommand_GetLevel {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -8556,6 +9268,7 @@ class _$DartCommand_GetLevelImpl implements DartCommand_GetLevel {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -8622,6 +9335,7 @@ class _$DartCommand_GetLevelImpl implements DartCommand_GetLevel {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -8680,6 +9394,7 @@ class _$DartCommand_GetLevelImpl implements DartCommand_GetLevel {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -8841,6 +9556,9 @@ class _$DartCommand_SetLevelImpl implements DartCommand_SetLevel {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -8899,6 +9617,9 @@ class _$DartCommand_SetLevelImpl implements DartCommand_SetLevel {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -8955,6 +9676,9 @@ class _$DartCommand_SetLevelImpl implements DartCommand_SetLevel {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -9014,6 +9738,7 @@ class _$DartCommand_SetLevelImpl implements DartCommand_SetLevel {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -9080,6 +9805,7 @@ class _$DartCommand_SetLevelImpl implements DartCommand_SetLevel {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -9138,6 +9864,7 @@ class _$DartCommand_SetLevelImpl implements DartCommand_SetLevel {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -9293,6 +10020,9 @@ class _$DartCommand_GetToggleStateImpl implements DartCommand_GetToggleState {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -9351,6 +10081,9 @@ class _$DartCommand_GetToggleStateImpl implements DartCommand_GetToggleState {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -9407,6 +10140,9 @@ class _$DartCommand_GetToggleStateImpl implements DartCommand_GetToggleState {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -9466,6 +10202,7 @@ class _$DartCommand_GetToggleStateImpl implements DartCommand_GetToggleState {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -9532,6 +10269,7 @@ class _$DartCommand_GetToggleStateImpl implements DartCommand_GetToggleState {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -9590,6 +10328,7 @@ class _$DartCommand_GetToggleStateImpl implements DartCommand_GetToggleState {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -9752,6 +10491,9 @@ class _$DartCommand_SetToggleStateImpl implements DartCommand_SetToggleState {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -9810,6 +10552,9 @@ class _$DartCommand_SetToggleStateImpl implements DartCommand_SetToggleState {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -9866,6 +10611,9 @@ class _$DartCommand_SetToggleStateImpl implements DartCommand_SetToggleState {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -9925,6 +10673,7 @@ class _$DartCommand_SetToggleStateImpl implements DartCommand_SetToggleState {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -9991,6 +10740,7 @@ class _$DartCommand_SetToggleStateImpl implements DartCommand_SetToggleState {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -10049,6 +10799,7 @@ class _$DartCommand_SetToggleStateImpl implements DartCommand_SetToggleState {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -10203,6 +10954,9 @@ class _$DartCommand_GetImageImpl implements DartCommand_GetImage {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -10261,6 +11015,9 @@ class _$DartCommand_GetImageImpl implements DartCommand_GetImage {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -10317,6 +11074,9 @@ class _$DartCommand_GetImageImpl implements DartCommand_GetImage {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -10376,6 +11136,7 @@ class _$DartCommand_GetImageImpl implements DartCommand_GetImage {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -10442,6 +11203,7 @@ class _$DartCommand_GetImageImpl implements DartCommand_GetImage {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -10500,6 +11262,7 @@ class _$DartCommand_GetImageImpl implements DartCommand_GetImage {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -10662,6 +11425,9 @@ class _$DartCommand_SetImageImpl implements DartCommand_SetImage {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -10720,6 +11486,9 @@ class _$DartCommand_SetImageImpl implements DartCommand_SetImage {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -10776,6 +11545,9 @@ class _$DartCommand_SetImageImpl implements DartCommand_SetImage {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -10835,6 +11607,7 @@ class _$DartCommand_SetImageImpl implements DartCommand_SetImage {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -10901,6 +11674,7 @@ class _$DartCommand_SetImageImpl implements DartCommand_SetImage {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -10959,6 +11733,7 @@ class _$DartCommand_SetImageImpl implements DartCommand_SetImage {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -11114,6 +11889,9 @@ class _$DartCommand_GetPositionImpl implements DartCommand_GetPosition {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -11172,6 +11950,9 @@ class _$DartCommand_GetPositionImpl implements DartCommand_GetPosition {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -11228,6 +12009,9 @@ class _$DartCommand_GetPositionImpl implements DartCommand_GetPosition {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -11287,6 +12071,7 @@ class _$DartCommand_GetPositionImpl implements DartCommand_GetPosition {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -11353,6 +12138,7 @@ class _$DartCommand_GetPositionImpl implements DartCommand_GetPosition {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -11411,6 +12197,7 @@ class _$DartCommand_GetPositionImpl implements DartCommand_GetPosition {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -11563,6 +12350,9 @@ class _$DartCommand_IsPressedImpl implements DartCommand_IsPressed {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -11621,6 +12411,9 @@ class _$DartCommand_IsPressedImpl implements DartCommand_IsPressed {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -11677,6 +12470,9 @@ class _$DartCommand_IsPressedImpl implements DartCommand_IsPressed {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -11736,6 +12532,7 @@ class _$DartCommand_IsPressedImpl implements DartCommand_IsPressed {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -11802,6 +12599,7 @@ class _$DartCommand_IsPressedImpl implements DartCommand_IsPressed {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -11860,6 +12658,7 @@ class _$DartCommand_IsPressedImpl implements DartCommand_IsPressed {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -12007,6 +12806,9 @@ class _$DartCommand_GetAccelerometerImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -12065,6 +12867,9 @@ class _$DartCommand_GetAccelerometerImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -12121,6 +12926,9 @@ class _$DartCommand_GetAccelerometerImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -12180,6 +12988,7 @@ class _$DartCommand_GetAccelerometerImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -12246,6 +13055,7 @@ class _$DartCommand_GetAccelerometerImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -12304,6 +13114,7 @@ class _$DartCommand_GetAccelerometerImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -12451,6 +13262,9 @@ class _$DartCommand_GetLinearAccelerometerImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -12509,6 +13323,9 @@ class _$DartCommand_GetLinearAccelerometerImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -12565,6 +13382,9 @@ class _$DartCommand_GetLinearAccelerometerImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -12624,6 +13444,7 @@ class _$DartCommand_GetLinearAccelerometerImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -12690,6 +13511,7 @@ class _$DartCommand_GetLinearAccelerometerImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -12748,6 +13570,7 @@ class _$DartCommand_GetLinearAccelerometerImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -12893,6 +13716,9 @@ class _$DartCommand_GetGyroscopeImpl implements DartCommand_GetGyroscope {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -12951,6 +13777,9 @@ class _$DartCommand_GetGyroscopeImpl implements DartCommand_GetGyroscope {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -13007,6 +13836,9 @@ class _$DartCommand_GetGyroscopeImpl implements DartCommand_GetGyroscope {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -13066,6 +13898,7 @@ class _$DartCommand_GetGyroscopeImpl implements DartCommand_GetGyroscope {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -13132,6 +13965,7 @@ class _$DartCommand_GetGyroscopeImpl implements DartCommand_GetGyroscope {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -13190,6 +14024,7 @@ class _$DartCommand_GetGyroscopeImpl implements DartCommand_GetGyroscope {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -13333,6 +14168,9 @@ class _$DartCommand_GetMagnetometerImpl implements DartCommand_GetMagnetometer {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -13391,6 +14229,9 @@ class _$DartCommand_GetMagnetometerImpl implements DartCommand_GetMagnetometer {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -13447,6 +14288,9 @@ class _$DartCommand_GetMagnetometerImpl implements DartCommand_GetMagnetometer {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -13506,6 +14350,7 @@ class _$DartCommand_GetMagnetometerImpl implements DartCommand_GetMagnetometer {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -13572,6 +14417,7 @@ class _$DartCommand_GetMagnetometerImpl implements DartCommand_GetMagnetometer {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -13630,6 +14476,7 @@ class _$DartCommand_GetMagnetometerImpl implements DartCommand_GetMagnetometer {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -13773,6 +14620,9 @@ class _$DartCommand_GetGravityImpl implements DartCommand_GetGravity {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -13831,6 +14681,9 @@ class _$DartCommand_GetGravityImpl implements DartCommand_GetGravity {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -13887,6 +14740,9 @@ class _$DartCommand_GetGravityImpl implements DartCommand_GetGravity {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -13946,6 +14802,7 @@ class _$DartCommand_GetGravityImpl implements DartCommand_GetGravity {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -14012,6 +14869,7 @@ class _$DartCommand_GetGravityImpl implements DartCommand_GetGravity {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -14070,6 +14928,7 @@ class _$DartCommand_GetGravityImpl implements DartCommand_GetGravity {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -14213,6 +15072,9 @@ class _$DartCommand_GetPressureImpl implements DartCommand_GetPressure {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -14271,6 +15133,9 @@ class _$DartCommand_GetPressureImpl implements DartCommand_GetPressure {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -14327,6 +15192,9 @@ class _$DartCommand_GetPressureImpl implements DartCommand_GetPressure {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -14386,6 +15254,7 @@ class _$DartCommand_GetPressureImpl implements DartCommand_GetPressure {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -14452,6 +15321,7 @@ class _$DartCommand_GetPressureImpl implements DartCommand_GetPressure {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -14510,6 +15380,7 @@ class _$DartCommand_GetPressureImpl implements DartCommand_GetPressure {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -14656,6 +15527,9 @@ class _$DartCommand_GetRelativeHumidityImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -14714,6 +15588,9 @@ class _$DartCommand_GetRelativeHumidityImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -14770,6 +15647,9 @@ class _$DartCommand_GetRelativeHumidityImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -14829,6 +15709,7 @@ class _$DartCommand_GetRelativeHumidityImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -14895,6 +15776,7 @@ class _$DartCommand_GetRelativeHumidityImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -14953,6 +15835,7 @@ class _$DartCommand_GetRelativeHumidityImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -15098,6 +15981,9 @@ class _$DartCommand_GetLightLevelImpl implements DartCommand_GetLightLevel {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -15156,6 +16042,9 @@ class _$DartCommand_GetLightLevelImpl implements DartCommand_GetLightLevel {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -15212,6 +16101,9 @@ class _$DartCommand_GetLightLevelImpl implements DartCommand_GetLightLevel {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -15271,6 +16163,7 @@ class _$DartCommand_GetLightLevelImpl implements DartCommand_GetLightLevel {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -15337,6 +16230,7 @@ class _$DartCommand_GetLightLevelImpl implements DartCommand_GetLightLevel {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -15395,6 +16289,7 @@ class _$DartCommand_GetLightLevelImpl implements DartCommand_GetLightLevel {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -15538,6 +16433,9 @@ class _$DartCommand_GetTemperatureImpl implements DartCommand_GetTemperature {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -15596,6 +16494,9 @@ class _$DartCommand_GetTemperatureImpl implements DartCommand_GetTemperature {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -15652,6 +16553,9 @@ class _$DartCommand_GetTemperatureImpl implements DartCommand_GetTemperature {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -15711,6 +16615,7 @@ class _$DartCommand_GetTemperatureImpl implements DartCommand_GetTemperature {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -15777,6 +16682,7 @@ class _$DartCommand_GetTemperatureImpl implements DartCommand_GetTemperature {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -15835,6 +16741,7 @@ class _$DartCommand_GetTemperatureImpl implements DartCommand_GetTemperature {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -15981,6 +16888,9 @@ class _$DartCommand_GetFacingDirectionImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -16039,6 +16949,9 @@ class _$DartCommand_GetFacingDirectionImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -16095,6 +17008,9 @@ class _$DartCommand_GetFacingDirectionImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -16154,6 +17070,7 @@ class _$DartCommand_GetFacingDirectionImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -16220,6 +17137,7 @@ class _$DartCommand_GetFacingDirectionImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -16278,6 +17196,7 @@ class _$DartCommand_GetFacingDirectionImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -16423,6 +17342,9 @@ class _$DartCommand_GetOrientationImpl implements DartCommand_GetOrientation {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -16481,6 +17403,9 @@ class _$DartCommand_GetOrientationImpl implements DartCommand_GetOrientation {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -16537,6 +17462,9 @@ class _$DartCommand_GetOrientationImpl implements DartCommand_GetOrientation {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -16596,6 +17524,7 @@ class _$DartCommand_GetOrientationImpl implements DartCommand_GetOrientation {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -16662,6 +17591,7 @@ class _$DartCommand_GetOrientationImpl implements DartCommand_GetOrientation {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -16720,6 +17650,7 @@ class _$DartCommand_GetOrientationImpl implements DartCommand_GetOrientation {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -16865,6 +17796,9 @@ class _$DartCommand_GetCompassHeadingImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -16923,6 +17857,9 @@ class _$DartCommand_GetCompassHeadingImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -16979,6 +17916,9 @@ class _$DartCommand_GetCompassHeadingImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -17038,6 +17978,7 @@ class _$DartCommand_GetCompassHeadingImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -17104,6 +18045,7 @@ class _$DartCommand_GetCompassHeadingImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -17162,6 +18104,7 @@ class _$DartCommand_GetCompassHeadingImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -17310,6 +18253,9 @@ class _$DartCommand_GetCompassDirectionImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -17368,6 +18314,9 @@ class _$DartCommand_GetCompassDirectionImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -17424,6 +18373,9 @@ class _$DartCommand_GetCompassDirectionImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -17483,6 +18435,7 @@ class _$DartCommand_GetCompassDirectionImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -17549,6 +18502,7 @@ class _$DartCommand_GetCompassDirectionImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -17607,6 +18561,7 @@ class _$DartCommand_GetCompassDirectionImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -17756,6 +18711,9 @@ class _$DartCommand_GetCompassCardinalDirectionImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -17814,6 +18772,9 @@ class _$DartCommand_GetCompassCardinalDirectionImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -17870,6 +18831,9 @@ class _$DartCommand_GetCompassCardinalDirectionImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -17929,6 +18893,7 @@ class _$DartCommand_GetCompassCardinalDirectionImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -17995,6 +18960,7 @@ class _$DartCommand_GetCompassCardinalDirectionImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -18053,6 +19019,7 @@ class _$DartCommand_GetCompassCardinalDirectionImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -18201,6 +19168,9 @@ class _$DartCommand_GetLocationLatLongImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -18259,6 +19229,9 @@ class _$DartCommand_GetLocationLatLongImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -18315,6 +19288,9 @@ class _$DartCommand_GetLocationLatLongImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -18374,6 +19350,7 @@ class _$DartCommand_GetLocationLatLongImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -18440,6 +19417,7 @@ class _$DartCommand_GetLocationLatLongImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -18498,6 +19476,7 @@ class _$DartCommand_GetLocationLatLongImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -18646,6 +19625,9 @@ class _$DartCommand_GetLocationHeadingImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -18704,6 +19686,9 @@ class _$DartCommand_GetLocationHeadingImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -18760,6 +19745,9 @@ class _$DartCommand_GetLocationHeadingImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -18819,6 +19807,7 @@ class _$DartCommand_GetLocationHeadingImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -18885,6 +19874,7 @@ class _$DartCommand_GetLocationHeadingImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -18943,6 +19933,7 @@ class _$DartCommand_GetLocationHeadingImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -19091,6 +20082,9 @@ class _$DartCommand_GetLocationAltitudeImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -19149,6 +20143,9 @@ class _$DartCommand_GetLocationAltitudeImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -19205,6 +20202,9 @@ class _$DartCommand_GetLocationAltitudeImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -19264,6 +20264,7 @@ class _$DartCommand_GetLocationAltitudeImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -19330,6 +20331,7 @@ class _$DartCommand_GetLocationAltitudeImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -19388,6 +20390,7 @@ class _$DartCommand_GetLocationAltitudeImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -19536,6 +20539,9 @@ class _$DartCommand_GetMicrophoneLevelImpl
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -19594,6 +20600,9 @@ class _$DartCommand_GetMicrophoneLevelImpl
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -19650,6 +20659,9 @@ class _$DartCommand_GetMicrophoneLevelImpl
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -19709,6 +20721,7 @@ class _$DartCommand_GetMicrophoneLevelImpl
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -19775,6 +20788,7 @@ class _$DartCommand_GetMicrophoneLevelImpl
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -19833,6 +20847,7 @@ class _$DartCommand_GetMicrophoneLevelImpl
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -19978,6 +20993,9 @@ class _$DartCommand_GetProximityImpl implements DartCommand_GetProximity {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -20036,6 +21054,9 @@ class _$DartCommand_GetProximityImpl implements DartCommand_GetProximity {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -20092,6 +21113,9 @@ class _$DartCommand_GetProximityImpl implements DartCommand_GetProximity {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -20151,6 +21175,7 @@ class _$DartCommand_GetProximityImpl implements DartCommand_GetProximity {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -20217,6 +21242,7 @@ class _$DartCommand_GetProximityImpl implements DartCommand_GetProximity {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -20275,6 +21301,7 @@ class _$DartCommand_GetProximityImpl implements DartCommand_GetProximity {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -20418,6 +21445,9 @@ class _$DartCommand_GetStepCountImpl implements DartCommand_GetStepCount {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -20476,6 +21506,9 @@ class _$DartCommand_GetStepCountImpl implements DartCommand_GetStepCount {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -20532,6 +21565,9 @@ class _$DartCommand_GetStepCountImpl implements DartCommand_GetStepCount {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -20591,6 +21627,7 @@ class _$DartCommand_GetStepCountImpl implements DartCommand_GetStepCount {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -20657,6 +21694,7 @@ class _$DartCommand_GetStepCountImpl implements DartCommand_GetStepCount {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -20715,6 +21753,7 @@ class _$DartCommand_GetStepCountImpl implements DartCommand_GetStepCount {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,
@@ -20867,6 +21906,9 @@ class _$DartCommand_ListenToSensorsImpl implements DartCommand_ListenToSensors {
     required TResult Function(DartRequestKey key, String id) getText,
     required TResult Function(DartRequestKey key, String id, String value)
         setText,
+    required TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)
+        setColor,
     required TResult Function(DartRequestKey key, String id) getLevel,
     required TResult Function(DartRequestKey key, String id, double value)
         setLevel,
@@ -20925,6 +21967,9 @@ class _$DartCommand_ListenToSensorsImpl implements DartCommand_ListenToSensors {
         addImageDisplay,
     TResult? Function(DartRequestKey key, String id)? getText,
     TResult? Function(DartRequestKey key, String id, String value)? setText,
+    TResult? Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult? Function(DartRequestKey key, String id)? getLevel,
     TResult? Function(DartRequestKey key, String id, double value)? setLevel,
     TResult? Function(DartRequestKey key, String id)? getToggleState,
@@ -20981,6 +22026,9 @@ class _$DartCommand_ListenToSensorsImpl implements DartCommand_ListenToSensors {
         addImageDisplay,
     TResult Function(DartRequestKey key, String id)? getText,
     TResult Function(DartRequestKey key, String id, String value)? setText,
+    TResult Function(DartRequestKey key, String id, ColorInfo primary,
+            ColorInfo secondary)?
+        setColor,
     TResult Function(DartRequestKey key, String id)? getLevel,
     TResult Function(DartRequestKey key, String id, double value)? setLevel,
     TResult Function(DartRequestKey key, String id)? getToggleState,
@@ -21040,6 +22088,7 @@ class _$DartCommand_ListenToSensorsImpl implements DartCommand_ListenToSensors {
         addImageDisplay,
     required TResult Function(DartCommand_GetText value) getText,
     required TResult Function(DartCommand_SetText value) setText,
+    required TResult Function(DartCommand_SetColor value) setColor,
     required TResult Function(DartCommand_GetLevel value) getLevel,
     required TResult Function(DartCommand_SetLevel value) setLevel,
     required TResult Function(DartCommand_GetToggleState value) getToggleState,
@@ -21106,6 +22155,7 @@ class _$DartCommand_ListenToSensorsImpl implements DartCommand_ListenToSensors {
     TResult? Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult? Function(DartCommand_GetText value)? getText,
     TResult? Function(DartCommand_SetText value)? setText,
+    TResult? Function(DartCommand_SetColor value)? setColor,
     TResult? Function(DartCommand_GetLevel value)? getLevel,
     TResult? Function(DartCommand_SetLevel value)? setLevel,
     TResult? Function(DartCommand_GetToggleState value)? getToggleState,
@@ -21164,6 +22214,7 @@ class _$DartCommand_ListenToSensorsImpl implements DartCommand_ListenToSensors {
     TResult Function(DartCommand_AddImageDisplay value)? addImageDisplay,
     TResult Function(DartCommand_GetText value)? getText,
     TResult Function(DartCommand_SetText value)? setText,
+    TResult Function(DartCommand_SetColor value)? setColor,
     TResult Function(DartCommand_GetLevel value)? getLevel,
     TResult Function(DartCommand_SetLevel value)? setLevel,
     TResult Function(DartCommand_GetToggleState value)? getToggleState,

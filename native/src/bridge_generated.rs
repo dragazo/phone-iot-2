@@ -293,93 +293,105 @@ impl support::IntoDart for DartCommand {
                 id.into_into_dart().into_dart(),
                 value.into_into_dart().into_dart(),
             ],
-            Self::GetLevel { key, id } => vec![
+            Self::SetColor {
+                key,
+                id,
+                primary,
+                secondary,
+            } => vec![
                 17.into_dart(),
+                key.into_into_dart().into_dart(),
+                id.into_into_dart().into_dart(),
+                primary.into_into_dart().into_dart(),
+                secondary.into_into_dart().into_dart(),
+            ],
+            Self::GetLevel { key, id } => vec![
+                18.into_dart(),
                 key.into_into_dart().into_dart(),
                 id.into_into_dart().into_dart(),
             ],
             Self::SetLevel { key, id, value } => vec![
-                18.into_dart(),
+                19.into_dart(),
                 key.into_into_dart().into_dart(),
                 id.into_into_dart().into_dart(),
                 value.into_into_dart().into_dart(),
             ],
             Self::GetToggleState { key, id } => vec![
-                19.into_dart(),
+                20.into_dart(),
                 key.into_into_dart().into_dart(),
                 id.into_into_dart().into_dart(),
             ],
             Self::SetToggleState { key, id, value } => vec![
-                20.into_dart(),
+                21.into_dart(),
                 key.into_into_dart().into_dart(),
                 id.into_into_dart().into_dart(),
                 value.into_into_dart().into_dart(),
             ],
             Self::GetImage { key, id } => vec![
-                21.into_dart(),
+                22.into_dart(),
                 key.into_into_dart().into_dart(),
                 id.into_into_dart().into_dart(),
             ],
             Self::SetImage { key, id, value } => vec![
-                22.into_dart(),
+                23.into_dart(),
                 key.into_into_dart().into_dart(),
                 id.into_into_dart().into_dart(),
                 value.into_into_dart().into_dart(),
             ],
             Self::GetPosition { key, id } => vec![
-                23.into_dart(),
-                key.into_into_dart().into_dart(),
-                id.into_into_dart().into_dart(),
-            ],
-            Self::IsPressed { key, id } => vec![
                 24.into_dart(),
                 key.into_into_dart().into_dart(),
                 id.into_into_dart().into_dart(),
             ],
+            Self::IsPressed { key, id } => vec![
+                25.into_dart(),
+                key.into_into_dart().into_dart(),
+                id.into_into_dart().into_dart(),
+            ],
             Self::GetAccelerometer { key } => {
-                vec![25.into_dart(), key.into_into_dart().into_dart()]
-            }
-            Self::GetLinearAccelerometer { key } => {
                 vec![26.into_dart(), key.into_into_dart().into_dart()]
             }
-            Self::GetGyroscope { key } => vec![27.into_dart(), key.into_into_dart().into_dart()],
-            Self::GetMagnetometer { key } => vec![28.into_dart(), key.into_into_dart().into_dart()],
-            Self::GetGravity { key } => vec![29.into_dart(), key.into_into_dart().into_dart()],
-            Self::GetPressure { key } => vec![30.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetLinearAccelerometer { key } => {
+                vec![27.into_dart(), key.into_into_dart().into_dart()]
+            }
+            Self::GetGyroscope { key } => vec![28.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetMagnetometer { key } => vec![29.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetGravity { key } => vec![30.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetPressure { key } => vec![31.into_dart(), key.into_into_dart().into_dart()],
             Self::GetRelativeHumidity { key } => {
-                vec![31.into_dart(), key.into_into_dart().into_dart()]
+                vec![32.into_dart(), key.into_into_dart().into_dart()]
             }
-            Self::GetLightLevel { key } => vec![32.into_dart(), key.into_into_dart().into_dart()],
-            Self::GetTemperature { key } => vec![33.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetLightLevel { key } => vec![33.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetTemperature { key } => vec![34.into_dart(), key.into_into_dart().into_dart()],
             Self::GetFacingDirection { key } => {
-                vec![34.into_dart(), key.into_into_dart().into_dart()]
+                vec![35.into_dart(), key.into_into_dart().into_dart()]
             }
-            Self::GetOrientation { key } => vec![35.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetOrientation { key } => vec![36.into_dart(), key.into_into_dart().into_dart()],
             Self::GetCompassHeading { key } => {
-                vec![36.into_dart(), key.into_into_dart().into_dart()]
-            }
-            Self::GetCompassDirection { key } => {
                 vec![37.into_dart(), key.into_into_dart().into_dart()]
             }
-            Self::GetCompassCardinalDirection { key } => {
+            Self::GetCompassDirection { key } => {
                 vec![38.into_dart(), key.into_into_dart().into_dart()]
             }
-            Self::GetLocationLatLong { key } => {
+            Self::GetCompassCardinalDirection { key } => {
                 vec![39.into_dart(), key.into_into_dart().into_dart()]
             }
-            Self::GetLocationHeading { key } => {
+            Self::GetLocationLatLong { key } => {
                 vec![40.into_dart(), key.into_into_dart().into_dart()]
             }
-            Self::GetLocationAltitude { key } => {
+            Self::GetLocationHeading { key } => {
                 vec![41.into_dart(), key.into_into_dart().into_dart()]
             }
-            Self::GetMicrophoneLevel { key } => {
+            Self::GetLocationAltitude { key } => {
                 vec![42.into_dart(), key.into_into_dart().into_dart()]
             }
-            Self::GetProximity { key } => vec![43.into_dart(), key.into_into_dart().into_dart()],
-            Self::GetStepCount { key } => vec![44.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetMicrophoneLevel { key } => {
+                vec![43.into_dart(), key.into_into_dart().into_dart()]
+            }
+            Self::GetProximity { key } => vec![44.into_dart(), key.into_into_dart().into_dart()],
+            Self::GetStepCount { key } => vec![45.into_dart(), key.into_into_dart().into_dart()],
             Self::ListenToSensors { key, sensors } => vec![
-                45.into_dart(),
+                46.into_dart(),
                 key.into_into_dart().into_dart(),
                 sensors.into_into_dart().into_dart(),
             ],
@@ -725,13 +737,6 @@ impl rust2dart::IntoIntoDart<TouchpadStyleInfo> for TouchpadStyleInfo {
 support::lazy_static! {
     pub static ref FLUTTER_RUST_BRIDGE_HANDLER: support::DefaultHandler = Default::default();
 }
-
-/// cbindgen:ignore
-#[cfg(target_family = "wasm")]
-#[path = "bridge_generated.web.rs"]
-mod web;
-#[cfg(target_family = "wasm")]
-pub use self::web::*;
 
 #[cfg(not(target_family = "wasm"))]
 #[path = "bridge_generated.io.rs"]

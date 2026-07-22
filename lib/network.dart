@@ -272,7 +272,26 @@ class NetworkManager {
             final target = Display.state.findControl<TextLike>(id);
             if (target != null) {
               Display.state.doSetState(() => target.setText(text, UpdateSource.code));
-              netsbloxSend([ msg.data[0], 0 ]);
+              netsbloxSend([ msg.data[0], 0]);
+            } else {
+              netsbloxSend([ msg.data[0], 3]);
+            }
+          }
+        }
+      }
+    }
+    else if (msg.data[0] == 's'.codeUnitAt(0)) { // set color
+      if (msg.data.length >= 18) {
+        final idLen = msg.data[17];
+        if (msg.data.length >= 18 + idLen) {
+          final id = tryStringFromBytes(msg.data.sublist(18, 18 + idLen));
+          final primary = colorFromBEBytes(msg.data.sublist(9, 13));
+          final secondary = colorFromBEBytes(msg.data.sublist(13, 17));
+          if (id != null) {
+            final target = Display.state.findControl<ColorLike>(id);
+            if (target != null) {
+              Display.state.doSetState(() => target.setColor(primary, secondary, UpdateSource.code));
+              netsbloxSend([ msg.data[0], 0]);
             } else {
               netsbloxSend([ msg.data[0], 3]);
             }

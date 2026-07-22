@@ -371,6 +371,7 @@ pub enum DartCommand {
 
     GetText { key: DartRequestKey, id: String },
     SetText { key: DartRequestKey, id: String, value: String },
+    SetColor { key: DartRequestKey, id: String, primary: ColorInfo, secondary: ColorInfo },
     GetLevel { key: DartRequestKey, id: String },
     SetLevel { key: DartRequestKey, id: String, value: f64 },
     GetToggleState { key: DartRequestKey, id: String },
@@ -515,6 +516,9 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                         _ => return Err(format_compact!("{name}' must be a list of lists")),
                     }
                     Ok(res)
+                }
+                fn optional<'a, 'gc, C: CustomTypes<S>, S: System<C>>(value: &'a Value<'gc, C, S>) -> Option<&'a Value<'gc, C, S>> {
+                    if value.as_text().map(|x| !x.is_empty()).unwrap_or(true) { Some(value) } else { None }
                 }
                 macro_rules! parse {
                     ($n:ident := $e:expr => bool) => {
@@ -681,7 +685,7 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let r = parse!(red := args.as_slice()[0].value => f64) as u8;
                                 let g = parse!(green := args.as_slice()[1].value => f64) as u8;
                                 let b = parse!(blue := args.as_slice()[2].value => f64) as u8;
-                                let a = parse!(alpha := args.as_slice()[3].value => f64) as u8;
+                                let a = parse!(alpha := optional(&args.as_slice()[3].value) => Option<f64>).unwrap_or(255.0) as u8;
 
                                 let encoded = ((a as i32) << 24) | ((r as i32) << 16) | ((g as i32) << 8) | b as i32;
                                 key.complete(Ok(SimpleValue::Number(Number::new(encoded as f64).unwrap())));
@@ -978,6 +982,18 @@ pub fn initialize(device_id: String, utc_offset_in_seconds: i32) {
                                 let value = parse!(text := args.as_slice()[2].value => String);
 
                                 DART_COMMANDS.lock().unwrap().send(DartCommand::SetText { key: DartRequestKey::new(key), id, value });
+                                RequestStatus::Handled
+                            }
+                            "setColor" => {
+                                if args.len() != 4 || !is_local_id(&args.as_slice()[0].value) {
+                                    return RequestStatus::UseDefault { key, request };
+                                }
+
+                                let id = parse!(id := args.as_slice()[1].value => ControlId);
+                                let primary = parse!(primary := args.as_slice()[2].value => ColorInfo);
+                                let secondary = parse!(secondary := args.as_slice()[3].value => ColorInfo);
+
+                                DART_COMMANDS.lock().unwrap().send(DartCommand::SetColor { key: DartRequestKey::new(key), id, primary, secondary });
                                 RequestStatus::Handled
                             }
                             "isPressed" => {

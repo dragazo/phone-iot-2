@@ -156,6 +156,11 @@ void startCommandLoop() async {
         if (target != null) Display.state.doSetState(() => target.setText(value, UpdateSource.code));
         api.completeRequest(key: key, result: target != null ? const RequestResult.ok(DartValue.string('OK')) : RequestResult.err('no text-like control with id $id'));
       },
+      setColor: (key, id, primary, secondary) {
+        ColorLike? target = Display.state.findControl<ColorLike>(id);
+        if (target != null) Display.state.doSetState(() => target.setColor(primary, secondary, UpdateSource.code));
+        api.completeRequest(key: key, result: target != null ? const RequestResult.ok(DartValue.string('OK')) : RequestResult.err('no color-like control with id $id'));
+      },
       isPressed: (key, id) {
         Pressable? target = Display.state.findControl<Pressable>(id);
         api.completeRequest(key: key, result: target != null ? RequestResult.ok(DartValue.bool(target.isPressed())) : RequestResult.err('no pressable control with id $id'));
@@ -213,7 +218,7 @@ void startCommandLoop() async {
 
         try {
           final img = await decodeImage(value);
-          
+
           Display.state.doSetState(() => target.setImage(img, UpdateSource.code));
           api.completeRequest(key: key, result: const RequestResult.ok(DartValue.string('OK')));
         } catch (e) {

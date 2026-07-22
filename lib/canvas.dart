@@ -115,6 +115,9 @@ mixin TextLike implements CustomControl {
   String getText();
   void setText(String value, UpdateSource source);
 }
+mixin ColorLike implements CustomControl {
+  void setColor(ColorInfo primary, ColorInfo secondary, UpdateSource source);
+}
 mixin ImageLike implements CustomControl {
   ui.Image? getImage();
   void setImage(ui.Image? value, UpdateSource source);
@@ -131,7 +134,7 @@ abstract class CustomControl {
   ClickResult handleClick(Offset pos, ClickType type);
 }
 
-class CustomLabel extends CustomControl with TextLike {
+class CustomLabel extends CustomControl with TextLike, ColorLike {
   double x, y, fontSize;
   TextAlign align;
   Color color;
@@ -165,9 +168,14 @@ class CustomLabel extends CustomControl with TextLike {
   void setText(String value, UpdateSource source) {
     text = value;
   }
+
+  @override
+  void setColor(ColorInfo primary, ColorInfo secondary, UpdateSource source) {
+    color = getColor(primary);
+  }
 }
 
-class CustomButton extends CustomControl with TextLike, Pressable {
+class CustomButton extends CustomControl with TextLike, ColorLike, Pressable {
   double x, y, width, height, fontSize;
   Color backColor, foreColor;
   ButtonStyleInfo style;
@@ -267,12 +275,18 @@ class CustomButton extends CustomControl with TextLike, Pressable {
   }
 
   @override
+  void setColor(ColorInfo primary, ColorInfo secondary, UpdateSource source) {
+    foreColor = getColor(primary);
+    backColor = getColor(secondary);
+  }
+
+  @override
   bool isPressed() {
     return pressed;
   }
 }
 
-class CustomTextField extends CustomControl with TextLike {
+class CustomTextField extends CustomControl with TextLike, ColorLike {
   double x, y, width, height, fontSize;
   Color backColor, foreColor;
   TextAlign align;
@@ -336,9 +350,15 @@ class CustomTextField extends CustomControl with TextLike {
       NetworkManager.netsbloxSend([ 't'.codeUnitAt(0), id.length ] + stringToBEBytes(id) + stringToBEBytes(value));
     }
   }
+
+  @override
+  void setColor(ColorInfo primary, ColorInfo secondary, UpdateSource source) {
+    foreColor = getColor(primary);
+    backColor = getColor(secondary);
+  }
 }
 
-class CustomJoystick extends CustomControl with Pressable, PositionLike {
+class CustomJoystick extends CustomControl with Pressable, PositionLike, ColorLike {
   double x, y, width;
   String? event;
   Color color;
@@ -424,9 +444,14 @@ class CustomJoystick extends CustomControl with Pressable, PositionLike {
   (double, double) getPosition() {
     return landscape ? (pos.dy, pos.dx) : (pos.dx, -pos.dy);
   }
+
+  @override
+  void setColor(ColorInfo primary, ColorInfo secondary, UpdateSource source) {
+    color = getColor(primary);
+  }
 }
 
-class CustomTouchpad extends CustomControl with Pressable, PositionLike {
+class CustomTouchpad extends CustomControl with Pressable, PositionLike, ColorLike {
   double x, y, width, height;
   String? event;
   Color color;
@@ -521,9 +546,14 @@ class CustomTouchpad extends CustomControl with Pressable, PositionLike {
   (double, double) getPosition() {
     return (pos.dx, -pos.dy);
   }
+
+  @override
+  void setColor(ColorInfo primary, ColorInfo secondary, UpdateSource source) {
+    color = getColor(primary);
+  }
 }
 
-class CustomSlider extends CustomControl with Pressable, LevelLike {
+class CustomSlider extends CustomControl with Pressable, LevelLike, ColorLike {
   double x, y, width, value;
   String? event;
   Color color;
@@ -635,9 +665,14 @@ class CustomSlider extends CustomControl with Pressable, LevelLike {
   void setLevel(double value) {
     this.value = ui.clampDouble(value, 0, 1);
   }
+
+  @override
+  void setColor(ColorInfo primary, ColorInfo secondary, UpdateSource source) {
+    color = getColor(primary);
+  }
 }
 
-class CustomToggle extends CustomControl with TextLike, ToggleLike {
+class CustomToggle extends CustomControl with TextLike, ToggleLike, ColorLike {
   double x, y, fontSize;
   String? event;
   bool checked, landscape, readonly;
@@ -753,6 +788,12 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
   }
 
   @override
+  void setColor(ColorInfo primary, ColorInfo secondary, UpdateSource source) {
+    foreColor = getColor(primary);
+    backColor = getColor(secondary);
+  }
+
+  @override
   bool getToggled() {
     return checked;
   }
@@ -763,7 +804,7 @@ class CustomToggle extends CustomControl with TextLike, ToggleLike {
   }
 }
 
-class CustomRadioButton extends CustomControl with TextLike, ToggleLike, GroupLike {
+class CustomRadioButton extends CustomControl with TextLike, ToggleLike, GroupLike, ColorLike {
   double x, y, fontSize;
   String? event;
   bool checked, landscape, readonly;
@@ -845,6 +886,12 @@ class CustomRadioButton extends CustomControl with TextLike, ToggleLike, GroupLi
   @override
   String getGroup() {
     return group;
+  }
+
+  @override
+  void setColor(ColorInfo primary, ColorInfo secondary, UpdateSource source) {
+    foreColor = getColor(primary);
+    backColor = getColor(secondary);
   }
 }
 
