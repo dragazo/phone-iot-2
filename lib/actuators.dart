@@ -11,12 +11,25 @@ class VibrationManager {
 
     final x = <int>[];
     final y = <int>[];
+    var sleep = 0;
     for (final v in pattern) {
-      x.add(max(0, (v.$1 * 1000).round()));
-      y.add((v.$2 * 255 / 100).round().clamp(0, 255));
+      final duration = (v.$1 * 1000).round();
+      final intensity = (v.$2 * 255 / 100).round().clamp(0, 255);
+      if (duration <= 0) continue;
+
+      if (intensity != 0) {
+        x.add(sleep);
+        x.add(duration);
+        y.add(intensity);
+        sleep = 0;
+      } else {
+        sleep += duration;
+      }
     }
 
-    Vibration.vibrate(pattern: x, intensities: y);
+    if (x.isNotEmpty) {
+      Vibration.vibrate(pattern: x, intensities: y);
+    }
   }
 
   static void triggerControlHaptics() {
