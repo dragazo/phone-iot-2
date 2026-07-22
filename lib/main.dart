@@ -713,11 +713,19 @@ class SettingsMenuState extends State<SettingsMenu> {
               ],
             ),
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () => launchUrl(Uri.parse('https://github.com/dragazo/phone-iot-2/issues/new')),
-              style: ElevatedButton.styleFrom(foregroundColor: defaultButtonTextColor, backgroundColor: defaultButtonColor),
-              child: const Text('Report a Bug'),
-            ),
+            Row(children: [
+              ElevatedButton(
+                onPressed: () => launchUrl(Uri.parse('https://netsblox.org/phoneiot')),
+                style: ElevatedButton.styleFrom(foregroundColor: defaultButtonTextColor, backgroundColor: defaultButtonColor),
+                child: const Text ('About'),
+              ),
+              const SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () => launchUrl(Uri.parse('https://github.com/dragazo/phone-iot-2/issues/new')),
+                style: ElevatedButton.styleFrom(foregroundColor: defaultButtonTextColor, backgroundColor: defaultButtonColor),
+                child: const Text('Report a Bug'),
+              ),
+            ]),
           ],
         ),
       ),
